@@ -10,106 +10,106 @@
 10        android:targetSdkVersion="33" />
 11
 12    <supports-screens
-12-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:9:5-13:40
+12-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:9:5-13:40
 13        android:largeScreens="true"
-13-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:12:9-36
+13-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:12:9-36
 14        android:normalScreens="true"
-14-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:11:9-37
+14-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:11:9-37
 15        android:smallScreens="true"
-15-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:10:9-36
+15-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:10:9-36
 16        android:xlargeScreens="true" />
-16-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:13:9-37
+16-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:13:9-37
 17
 18    <uses-feature
-18-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:15:5-17:35
+18-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:15:5-17:35
 19        android:glEsVersion="0x00030000"
-19-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:16:9-41
+19-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:16:9-41
 20        android:required="true" />
-20-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:17:9-32
+20-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:17:9-32
 21
 22    <uses-permission android:name="android.permission.INTERNET" />
-22-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:11:5-67
-22-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:11:22-64
+22-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:11:5-67
+22-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:11:22-64
 23
 24    <uses-feature
-24-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:12:5-132
+24-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:12:5-132
 25        android:name="android.hardware.vulkan.level"
-25-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:12:40-84
+25-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:12:40-84
 26        android:required="false"
-26-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:12:85-109
+26-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:12:85-109
 27        android:version="1" />
-27-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:12:110-129
+27-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:12:110-129
 28    <uses-feature
-28-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:13:5-140
+28-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:13:5-140
 29        android:name="android.hardware.vulkan.version"
-29-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:13:40-86
+29-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:13:40-86
 30        android:required="true"
-30-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:13:87-110
+30-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:13:87-110
 31        android:version="0x400003" />
-31-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:13:111-137
+31-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:13:111-137
 32
 33    <application
-33-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:19:5-53:19
+33-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:19:5-53:19
 34        android:allowBackup="false"
-34-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:21:9-36
+34-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:21:9-36
 35        android:appCategory="game"
-35-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:23:9-35
+35-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:23:9-35
 36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 36-->[androidx.core:core:1.2.0] C:\Users\reisa\.gradle\caches\transforms-3\9bcb1a65f5938aad264f4d73e9a06f28\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
 37        android:debuggable="true"
 38        android:extractNativeLibs="false"
 39        android:hasFragileUserData="false"
-39-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:25:9-43
+39-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:25:9-43
 40        android:icon="@mipmap/icon"
-40-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:22:9-36
+40-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:22:9-36
 41        android:isGame="true"
-41-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:24:9-30
+41-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:24:9-30
 42        android:label="@string/godot_project_name_string"
-42-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:20:9-58
+42-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:20:9-58
 43        android:requestLegacyExternalStorage="false" >
-43-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:26:9-53
+43-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:26:9-53
 44        <activity
-44-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:34:9-51:20
+44-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:34:9-51:20
 45            android:name="com.godot.game.GodotApp"
-45-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:35:13-37
+45-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:35:13-37
 46            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
-46-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:42:13-141
+46-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:42:13-141
 47            android:excludeFromRecents="false"
-47-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:39:13-47
+47-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:39:13-47
 48            android:exported="true"
-48-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:40:13-36
+48-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:40:13-36
 49            android:label="@string/godot_project_name_string"
-49-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:36:13-62
+49-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:36:13-62
 50            android:launchMode="singleInstancePerTask"
-50-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:38:13-55
+50-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:38:13-55
 51            android:resizeableActivity="true"
-51-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:43:13-47
+51-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:43:13-47
 52            android:screenOrientation="landscape"
-52-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:41:13-50
+52-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:41:13-50
 53            android:theme="@style/GodotAppSplashTheme" >
-53-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:37:13-55
+53-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:37:13-55
 54            <intent-filter>
-54-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:46:13-50:29
+54-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:46:13-50:29
 55                <action android:name="android.intent.action.MAIN" />
-55-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:47:17-69
-55-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:47:25-66
+55-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:47:17-69
+55-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:47:25-66
 56
 57                <category android:name="android.intent.category.DEFAULT" />
-57-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:48:17-76
-57-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:48:27-73
+57-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:48:17-76
+57-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:48:27-73
 58                <category android:name="android.intent.category.LAUNCHER" />
-58-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:49:17-77
-58-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:49:27-74
+58-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:49:17-77
+58-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:49:27-74
 59            </intent-filter>
 60            <intent-filter>
-60-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:31:5-45:21
+60-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:31:5-45:21
 61                <action android:name="android.intent.action.MAIN" />
-61-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:47:17-69
-61-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:47:25-66
+61-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:47:17-69
+61-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:47:25-66
 62
 63                <category android:name="android.intent.category.LAUNCHER" />
-63-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:49:17-77
-63-->C:\Users\reisa\Desktop\Dreamblossom\android\build\AndroidManifest.xml:49:27-74
+63-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:49:17-77
+63-->C:\Users\reisa\Desktop\DreamBlossom\android\build\AndroidManifest.xml:49:27-74
 64
 65                <!--
 66                    OpenXR category tag to indicate the activity starts in an immersive OpenXR mode. 
@@ -118,8 +118,8 @@
 69                -->
 70
 71                <category android:name="org.khronos.openxr.intent.category.IMMERSIVE_HMD" />
-71-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:43:6-82
-71-->C:\Users\reisa\Desktop\Dreamblossom\android\build\src\debug\AndroidManifest.xml:43:16-79
+71-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:43:6-82
+71-->C:\Users\reisa\Desktop\DreamBlossom\android\build\src\debug\AndroidManifest.xml:43:16-79
 72            </intent-filter>
 73        </activity>
 74        <!-- Records the version of the Godot editor used for building -->

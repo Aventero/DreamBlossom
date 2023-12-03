@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://6iog81gjrtfl"]
+
+[ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_6o68o"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tdsmh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_chq8x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ql37u"]
+sky_material = SubResource("ProceduralSkyMaterial_chq8x")
+
+[sub_resource type="Environment" id="Environment_ttf1r"]
+background_mode = 2
+sky = SubResource("Sky_ql37u")
+tonemap_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_jk3oh"]
+size = Vector2(4, 4)
+
+[node name="OlisTestScene" type="Node3D"]
+script = ExtResource("1_tdsmh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttf1r")
+
+[node name="XROrigin3D" parent="." instance=ExtResource("1_6o68o")]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_jk3oh")
+skeleton = NodePath("../..")

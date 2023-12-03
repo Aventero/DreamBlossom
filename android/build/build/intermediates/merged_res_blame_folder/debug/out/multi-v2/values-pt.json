@@ -4,7 +4,7 @@
             "outputFile": "com.godot.game-mergeDebugResources-9:/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-pt\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-pt\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",

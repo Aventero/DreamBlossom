@@ -25,12 +25,10 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addon
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 
 [xr]
 
 openxr/enabled=true
-openxr/foveation_level=3
-openxr/foveation_dynamic=true
 shaders/enabled=true

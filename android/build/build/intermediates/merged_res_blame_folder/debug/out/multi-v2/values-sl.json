@@ -4,6 +4,23 @@
             "outputFile": "com.godot.game-mergeDebugResources-9:/values-sl/values-sl.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-sl\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                },
+                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2",
@@ -18,23 +35,6 @@
                         "startOffsets": "122",
                         "endColumns": "100",
                         "endOffsets": "218"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-sl\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
                     }
                 }
             ]

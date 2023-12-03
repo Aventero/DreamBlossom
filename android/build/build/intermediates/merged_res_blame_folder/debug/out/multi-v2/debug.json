@@ -4,7 +4,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-fa_values-fa.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-fa\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-fa\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -77,7 +77,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-de\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-de\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -114,7 +114,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-el_values-el.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-el\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-el\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -153,7 +153,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-sv_values-sv.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-sv\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-sv\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -192,7 +192,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-uk_values-uk.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-uk\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-uk\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -261,7 +261,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-pl_values-pl.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-pl\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-pl\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -360,7 +360,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-tr_values-tr.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-tr\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-tr\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -429,7 +429,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-en_values-en.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-en\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-en\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -451,7 +451,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-zh_values-zh.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-zh\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-zh\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -488,23 +488,6 @@
             "outputFile": "com.godot.game-merged_res-11:/values-ar_values-ar.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ar\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
-                    }
-                },
-                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2",
@@ -520,6 +503,23 @@
                         "endColumns": "100",
                         "endOffsets": "218"
                     }
+                },
+                {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ar\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
                 }
             ]
         },
@@ -527,7 +527,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-ro_values-ro.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ro\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ro\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -596,7 +596,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-nl_values-nl.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-nl\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-nl\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -635,7 +635,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-ko_values-ko.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ko\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ko\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -708,7 +708,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-lt\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-lt\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -852,7 +852,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-th\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-th\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -891,7 +891,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-es\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-es\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -960,7 +960,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-nb\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-nb\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1014,7 +1014,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-bg\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-bg\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1081,23 +1081,6 @@
             "outputFile": "com.godot.game-merged_res-11:/values-it_values-it.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-it\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
-                    }
-                },
-                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-it\\values-it.xml",
                     "from": {
                         "startLines": "2",
@@ -1112,6 +1095,23 @@
                         "startOffsets": "122",
                         "endColumns": "100",
                         "endOffsets": "218"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-it\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
                     }
                 }
             ]
@@ -1137,7 +1137,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ja\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ja\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1159,7 +1159,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-cs_values-cs.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-cs\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-cs\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1213,7 +1213,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-pt_values-pt.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-pt\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-pt\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1267,7 +1267,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-in_values-in.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-in\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-in\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1338,7 +1338,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-tl\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-tl\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1377,7 +1377,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-zh-rHK\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-zh-rHK\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1414,6 +1414,23 @@
             "outputFile": "com.godot.game-merged_res-11:/values-sl_values-sl.arsc.flat",
             "map": [
                 {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-sl\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                },
+                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2",
@@ -1429,46 +1446,12 @@
                         "endColumns": "100",
                         "endOffsets": "218"
                     }
-                },
-                {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-sl\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
-                    }
                 }
             ]
         },
         {
             "outputFile": "com.godot.game-merged_res-11:/values-zh-rTW_values-zh-rTW.arsc.flat",
             "map": [
-                {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-zh-rTW\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
-                    }
-                },
                 {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
                     "from": {
@@ -1484,6 +1467,23 @@
                         "startOffsets": "122",
                         "endColumns": "100",
                         "endOffsets": "218"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-zh-rTW\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
                     }
                 }
             ]
@@ -1509,7 +1509,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-fi\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-fi\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1530,23 +1530,6 @@
         {
             "outputFile": "com.godot.game-merged_res-11:/values_values.arsc.flat",
             "map": [
-                {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "86",
-                        "startColumns": "4",
-                        "startOffsets": "5230",
-                        "endColumns": "66",
-                        "endOffsets": "5292"
-                    }
-                },
                 {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\189e80978ed2f28e12fcb892018fb934\\transformed\\fragment-1.3.6\\res\\values\\values.xml",
                     "from": {
@@ -1584,6 +1567,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "86",
+                        "startColumns": "4",
+                        "startOffsets": "5230",
+                        "endColumns": "66",
+                        "endOffsets": "5292"
+                    }
+                },
+                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\94b972ed44b18279006052b701b4135c\\transformed\\jetified-savedstate-1.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -1601,7 +1601,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values\\themes.xml",
                     "from": {
                         "startLines": "3,5",
                         "startColumns": "1,1",
@@ -1710,7 +1710,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-fr_values-fr.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-fr\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-fr\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1811,7 +1811,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-hr\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-hr\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1833,7 +1833,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-iw_values-iw.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-iw\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-iw\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1904,7 +1904,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ru\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ru\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -1956,7 +1956,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-hu_values-hu.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-hu\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-hu\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2025,7 +2025,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-sr_values-sr.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-sr\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-sr\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2064,7 +2064,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-es-rES_values-es-rES.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-es-rES\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-es-rES\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2086,7 +2086,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-da_values-da.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-da\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-da\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2188,7 +2188,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-lv\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-lv\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2255,7 +2255,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-sk_values-sk.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-sk\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-sk\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2294,7 +2294,7 @@
             "outputFile": "com.godot.game-merged_res-11:/values-hi_values-hi.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-hi\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-hi\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -2363,6 +2363,23 @@
             "outputFile": "com.godot.game-merged_res-11:/values-vi_values-vi.arsc.flat",
             "map": [
                 {
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-vi\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "63",
+                        "endOffsets": "174"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                },
+                {
                     "source": "C:\\Users\\reisa\\.gradle\\caches\\transforms-3\\9bcb1a65f5938aad264f4d73e9a06f28\\transformed\\core-1.2.0\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2",
@@ -2377,23 +2394,6 @@
                         "startOffsets": "122",
                         "endColumns": "100",
                         "endOffsets": "218"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-vi\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "63",
-                        "endOffsets": "174"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
                     }
                 }
             ]
@@ -2419,7 +2419,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\reisa\\Desktop\\Dreamblossom\\android\\build\\res\\values-ca\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\reisa\\Desktop\\DreamBlossom\\android\\build\\res\\values-ca\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
