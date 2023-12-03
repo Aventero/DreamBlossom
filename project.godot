@@ -23,6 +23,10 @@ XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [layer_names]
 
 3d_physics/layer_1="Static World"
@@ -33,6 +37,10 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addon
 3d_physics/layer_20="Player Body"
 3d_physics/layer_21="Pointable"
 3d_physics/layer_22="Hand Pose Area"
+
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
 
 [rendering]
 

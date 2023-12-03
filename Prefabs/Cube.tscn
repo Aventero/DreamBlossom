@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5dhedgdtnyl8"]
+[gd_scene load_steps=15 format=3 uid="uid://b5dhedgdtnyl8"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_vjapn"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_fc6fo"]
@@ -10,9 +10,13 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6ylf"]
 margin = 0.01
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.11, 0.11, 0.11)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnelf"]
+albedo_color = Color(0.666667, 0.411765, 0.372549, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rpb88"]
+material = SubResource("StandardMaterial3D_gnelf")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou0vi"]
@@ -33,9 +37,7 @@ script = ExtResource("5_xfc41")
 closed_pose = ExtResource("7_t8fej")
 
 [node name="Cube" instance=ExtResource("1_vjapn")]
-picked_up_layer = 0
-ranged_grab_method = 0
-second_hand_grab = 1
+ranged_grab_method = 2
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_q6ylf")
@@ -44,6 +46,7 @@ shape = SubResource("BoxShape3D_q6ylf")
 mesh = SubResource("BoxMesh_rpb88")
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
+visible = false
 script = ExtResource("2_fc6fo")
 
 [node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
