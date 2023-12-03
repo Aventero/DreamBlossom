@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dreamblossom"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/OlisTestScene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Textures/icon.svg"
 
@@ -22,6 +22,17 @@ XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg")
+
+[layer_names]
+
+3d_physics/layer_1="Static World"
+3d_physics/layer_2="Dynamic World"
+3d_physics/layer_3="Pickable Objects"
+3d_physics/layer_17="Held Objects"
+3d_physics/layer_18="Player Hand"
+3d_physics/layer_20="Player Body"
+3d_physics/layer_21="Pointable"
+3d_physics/layer_22="Hand Pose Area"
 
 [rendering]
 
