@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://we3876ravaxt"]
+
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="1_dacxt"]
+[ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="2_jqpsy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_or20d"]
+resource_local_to_scene = true
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnelf"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.537255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wug8r"]
+material = SubResource("StandardMaterial3D_gnelf")
+size = Vector3(0.08, 0.08, 0.08)
+
+[node name="CubeSnapZone" instance=ExtResource("1_dacxt")]
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "Cube"
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_or20d")
+
+[node name="HighlightRing" parent="." index="2" instance=ExtResource("2_jqpsy")]
+
+[node name="CubeShadow" type="MeshInstance3D" parent="." index="3"]
+mesh = SubResource("BoxMesh_wug8r")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6iog81gjrtfl"]
+[gd_scene load_steps=21 format=3 uid="uid://6iog81gjrtfl"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tdsmh"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_8cvx0"]
@@ -11,6 +11,8 @@
 [ext_resource type="Material" uid="uid://7ntpuco0fsgr" path="res://Materials/Table.tres" id="8_6emhx"]
 [ext_resource type="PackedScene" uid="uid://o6qvyboj53l8" path="res://Prefabs/Boy.tscn" id="9_4nnue"]
 [ext_resource type="PackedScene" uid="uid://bj7f3pb1oitpa" path="res://Models/Boy.blend" id="10_aqid6"]
+[ext_resource type="PackedScene" uid="uid://ba55ij6ib0p1d" path="res://Prefabs/ToolBoard.tscn" id="12_av6up"]
+[ext_resource type="PackedScene" uid="uid://booldou5k0h88" path="res://Prefabs/Slider.tscn" id="13_grchu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_chq8x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,6 +62,7 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="Player/Left Hand" instance=ExtResource("2_gitlf")]
 
 [node name="MovementDirect" parent="Player/Left Hand" instance=ExtResource("5_4xonq")]
+strafe = true
 
 [node name="FunctionPickup" parent="Player/Left Hand" instance=ExtResource("4_vxl0w")]
 grab_distance = 0.1
@@ -88,6 +91,9 @@ mesh = SubResource("PlaneMesh_g4j4t")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024939, 0)
 shape = SubResource("BoxShape3D_pd7gc")
+
+[node name="ToolBoard" parent="Environment" instance=ExtResource("12_av6up")]
+transform = Transform3D(0.519549, -0.158465, 0.839617, -7.45058e-09, 0.982652, 0.185461, -0.854441, -0.096356, 0.510536, -1.63174, 0, -0.016638)
 
 [node name="Table2" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0.25, 0.25)
@@ -163,3 +169,9 @@ transform = Transform3D(0.532842, 0, 0.789912, 0, 0.952828, 0, -0.789912, 0, 0.5
 
 [node name="Boy" parent="Environment" instance=ExtResource("10_aqid6")]
 transform = Transform3D(0.686745, 0, -0.726898, 0, 1, 0, 0.726898, 0, 0.686745, 3.87793, 0.000673831, -3.61954)
+
+[node name="Slider" parent="Environment" instance=ExtResource("13_grchu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.05756, 3.05121)
+
+[node name="Slider2" parent="Environment" instance=ExtResource("13_grchu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 7.74807e-08, 0.463157, -0.886276, 4.04905e-08, -0.886276, -0.463157, 0, 0.823683, 2.94707)

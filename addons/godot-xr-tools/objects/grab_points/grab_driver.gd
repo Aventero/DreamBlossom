@@ -162,6 +162,7 @@ static func create_lerp(
 	driver.state = State.LERP
 	driver.target = p_target
 	driver.primary = p_grab
+	# driver.global_transform = p_target.global_transform
 	driver.global_transform = p_target.global_transform
 
 	# Calculate the start and duration
@@ -172,7 +173,8 @@ static func create_lerp(
 
 	# Add the driver as a neighbor of the target as RemoteTransform3D nodes
 	# cannot be descendands of the targets they drive.
-	p_target.get_parent().add_child(driver)
+	# p_target.get_parent().add_child(driver)
+	p_target.get_tree().get_root().add_child(driver)
 	driver.remote_path = driver.get_path_to(p_target)
 
 	# Return the driver
@@ -194,16 +196,18 @@ static func create_snap(
 	driver.state = State.SNAP
 	driver.target = p_target
 	driver.primary = p_grab
-	driver.global_transform = p_grab.by.global_transform * p_grab.transform.inverse()
+	# driver.global_transform = p_grab.by.global_transform * p_grab.transform.inverse()
+	driver.global_transform = p_target.global_transform
 
 	# Snapped to grab-point so report arrived
 	p_grab.set_arrived()
 
 	# Add the driver as a neighbor of the target as RemoteTransform3D nodes
 	# cannot be descendands of the targets they drive.
-	p_target.get_parent().add_child(driver)
+	# p_target.get_parent().add_child(driver)
+	p_target.get_tree().get_root().add_child(driver)
 	driver.remote_path = driver.get_path_to(p_target)
-
+	
 	# Return the driver
 	return driver
 
