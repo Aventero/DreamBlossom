@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfjtxpaws0vq1"]
+[gd_scene load_steps=7 format=3 uid="uid://cfjtxpaws0vq1"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_3dtk1"]
+[ext_resource type="PackedScene" uid="uid://bkv43ec6chcf3" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand_left.tscn" id="1_eu6q1"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_cxmrd"]
+[ext_resource type="PackedScene" uid="uid://c3uoohvnshach" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand_right.tscn" id="3_gojer"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_yefoi"]
+[ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="4_v15jc"]
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
@@ -12,10 +16,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, 0)
 tracker = &"left_hand"
 
-[node name="LeftHand" parent="Left Hand" instance=ExtResource("1_3dtk1")]
+[node name="CollisionHandLeft" parent="Left Hand" instance=ExtResource("1_eu6q1")]
+collision_mask = 0
+
+[node name="LeftHand" parent="Left Hand/CollisionHandLeft" instance=ExtResource("1_3dtk1")]
+
+[node name="FunctionPickup" parent="Left Hand/CollisionHandLeft" instance=ExtResource("3_yefoi")]
+
+[node name="FunctionPoseDetector" parent="Left Hand" instance=ExtResource("4_v15jc")]
 
 [node name="Right Hand" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, 0)
 tracker = &"right_hand"
 
-[node name="RightHand" parent="Right Hand" instance=ExtResource("2_cxmrd")]
+[node name="CollisionHandRight" parent="Right Hand" instance=ExtResource("3_gojer")]
+collision_mask = 0
+
+[node name="RightHand" parent="Right Hand/CollisionHandRight" instance=ExtResource("2_cxmrd")]
+
+[node name="FunctionPickup" parent="Right Hand/CollisionHandRight" instance=ExtResource("3_yefoi")]
+grab_distance = 10.0
+
+[node name="FunctionPoseDetector" parent="Right Hand" instance=ExtResource("4_v15jc")]

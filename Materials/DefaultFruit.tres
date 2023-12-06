@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dw1vga231nl8s"]
+
+[resource]
+albedo_color = Color(0.513726, 0.121569, 0.215686, 1)
+roughness = 0.9
+emission = Color(1, 1, 1, 1)
+rim_enabled = true
+rim = 0.13
+rim_tint = 0.0
+anisotropy = -1.0
+refraction_scale = -0.14

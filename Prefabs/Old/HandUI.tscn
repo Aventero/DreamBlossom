@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfxll7ndyvev2"]
+
+[ext_resource type="Script" path="res://Scripts/HandUI.gd" id="1_udphj"]
+
+[node name="Root" type="PanelContainer"]
+offset_right = 200.0
+offset_bottom = 100.0
+script = ExtResource("1_udphj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.235294, 0.235294, 0.235294, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hunger"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Press me" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press me"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Press me" to="." method="_on_press_me_pressed"]

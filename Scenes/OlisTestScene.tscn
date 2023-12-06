@@ -1,18 +1,31 @@
-[gd_scene load_steps=21 format=3 uid="uid://6iog81gjrtfl"]
+[gd_scene load_steps=38 format=3 uid="uid://6iog81gjrtfl"]
 
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tdsmh"]
+[ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_tdsmh"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_8cvx0"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_gitlf"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_0ls8p"]
+[ext_resource type="PackedScene" uid="uid://bkv43ec6chcf3" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand_left.tscn" id="3_ysg1o"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_vxl0w"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_4xonq"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_ekks7"]
-[ext_resource type="PackedScene" uid="uid://b5dhedgdtnyl8" path="res://Prefabs/Cube.tscn" id="7_q3lgl"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="7_i4ffd"]
+[ext_resource type="PackedScene" uid="uid://b5dhedgdtnyl8" path="res://Prefabs/Old/Cube.tscn" id="7_q3lgl"]
+[ext_resource type="PackedScene" uid="uid://c3uoohvnshach" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand_right.tscn" id="7_qtajg"]
 [ext_resource type="Material" uid="uid://7ntpuco0fsgr" path="res://Materials/Table.tres" id="8_6emhx"]
-[ext_resource type="PackedScene" uid="uid://o6qvyboj53l8" path="res://Prefabs/Boy.tscn" id="9_4nnue"]
+[ext_resource type="PackedScene" uid="uid://bfxll7ndyvev2" path="res://Prefabs/Old/HandUI.tscn" id="8_p6sd0"]
+[ext_resource type="PackedScene" uid="uid://o6qvyboj53l8" path="res://Prefabs/Old/Boy.tscn" id="9_4nnue"]
+[ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="9_dxvn2"]
 [ext_resource type="PackedScene" uid="uid://bj7f3pb1oitpa" path="res://Models/Boy.blend" id="10_aqid6"]
-[ext_resource type="PackedScene" uid="uid://ba55ij6ib0p1d" path="res://Prefabs/ToolBoard.tscn" id="12_av6up"]
-[ext_resource type="PackedScene" uid="uid://booldou5k0h88" path="res://Prefabs/Slider.tscn" id="13_grchu"]
+[ext_resource type="PackedScene" uid="uid://ba55ij6ib0p1d" path="res://Prefabs/Old/ToolBoard.tscn" id="12_av6up"]
+[ext_resource type="PackedScene" uid="uid://booldou5k0h88" path="res://Prefabs/Old/Slider.tscn" id="13_grchu"]
+[ext_resource type="PackedScene" uid="uid://kmmmhejk432w" path="res://Prefabs/Old/Button.tscn" id="14_wtxi8"]
+[ext_resource type="Animation" uid="uid://c3isimdlxg54a" path="res://addons/godot-xr-tools/hands/animations/right/OK.res" id="24_yg8fy"]
+[ext_resource type="Animation" uid="uid://bxmc3vlfih764" path="res://addons/godot-xr-tools/hands/animations/right/Peace.res" id="25_x6i7e"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="55_30v22"]
+[ext_resource type="Animation" uid="uid://dfekure1r6q13" path="res://addons/godot-xr-tools/hands/animations/left/Metal.res" id="56_1g3ps"]
+[ext_resource type="Animation" uid="uid://dhjb0e334tfwl" path="res://addons/godot-xr-tools/hands/animations/left/Pinch Flat.res" id="57_kyks6"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="58_2uvh3"]
+[ext_resource type="PackedScene" uid="uid://byxfjxdacx0h7" path="res://Prefabs/DefaultFruit.tscn" id="60_tu6d0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_chq8x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,6 +50,22 @@ size = Vector3(2, 1.5, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_q37up"]
 size = Vector3(2, 1.5, 1)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u0nps"]
+radius = 0.1
+
+[sub_resource type="Resource" id="Resource_1lvc6"]
+script = ExtResource("58_2uvh3")
+open_pose = ExtResource("57_kyks6")
+closed_pose = ExtResource("56_1g3ps")
+
+[sub_resource type="Resource" id="Resource_ofuct"]
+script = ExtResource("58_2uvh3")
+open_pose = ExtResource("24_yg8fy")
+closed_pose = ExtResource("25_x6i7e")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bd36v"]
+radius = 0.2
+
 [node name="OlisTestScene" type="Node3D"]
 script = ExtResource("1_tdsmh")
 
@@ -48,7 +77,6 @@ shadow_enabled = true
 environment = SubResource("Environment_ttf1r")
 
 [node name="Player" type="XROrigin3D" parent="."]
-current = true
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -59,26 +87,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, 0)
 tracker = &"left_hand"
 
-[node name="LeftHand" parent="Player/Left Hand" instance=ExtResource("2_gitlf")]
+[node name="CollisionHandLeft" parent="Player/Left Hand" instance=ExtResource("3_ysg1o")]
+collision_mask = 0
+mode = 1
+push_bodies = false
 
-[node name="MovementDirect" parent="Player/Left Hand" instance=ExtResource("5_4xonq")]
+[node name="LeftHand" parent="Player/Left Hand/CollisionHandLeft" instance=ExtResource("2_gitlf")]
+
+[node name="MovementDirect" parent="Player/Left Hand/CollisionHandLeft" instance=ExtResource("5_4xonq")]
 strafe = true
 
-[node name="FunctionPickup" parent="Player/Left Hand" instance=ExtResource("4_vxl0w")]
+[node name="FunctionPickup" parent="Player/Left Hand/CollisionHandLeft" instance=ExtResource("4_vxl0w")]
 grab_distance = 0.1
 ranged_enable = false
+
+[node name="UI" parent="Player/Left Hand" instance=ExtResource("7_i4ffd")]
+transform = Transform3D(-4.37114e-08, -0.993387, -0.114816, 0, -0.114816, 0.993387, -1, 4.34223e-08, 5.01875e-09, -0.0282258, -0.0475876, 0.266726)
+screen_size = Vector2(0.16, 0.08)
+collision_layer = 4194304
+scene = ExtResource("8_p6sd0")
+viewport_size = Vector2(200, 100)
+update_mode = 2
+throttle_fps = 153.0
+transparent = 0
+unshaded = true
+
+[node name="FunctionPoseDetector" parent="Player/Left Hand" instance=ExtResource("9_dxvn2")]
 
 [node name="Right Hand" type="XRController3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, 0)
 tracker = &"right_hand"
 
-[node name="RightHand" parent="Player/Right Hand" instance=ExtResource("3_0ls8p")]
+[node name="CollisionHandRight" parent="Player/Right Hand" instance=ExtResource("7_qtajg")]
+collision_mask = 0
+mode = 1
+push_bodies = false
 
-[node name="MovementTurn" parent="Player/Right Hand" instance=ExtResource("6_ekks7")]
+[node name="RightHand" parent="Player/Right Hand/CollisionHandRight" instance=ExtResource("3_0ls8p")]
 
-[node name="FunctionPickup" parent="Player/Right Hand" instance=ExtResource("4_vxl0w")]
+[node name="MovementTurn" parent="Player/Right Hand/CollisionHandRight" instance=ExtResource("6_ekks7")]
+
+[node name="FunctionPickup" parent="Player/Right Hand/CollisionHandRight" instance=ExtResource("4_vxl0w")]
 grab_distance = 0.1
 ranged_angle = 30.839
+
+[node name="FunctionPoseDetector" parent="Player/Right Hand" instance=ExtResource("9_dxvn2")]
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -175,3 +228,41 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.0
 
 [node name="Slider2" parent="Environment" instance=ExtResource("13_grchu")]
 transform = Transform3D(-1, 0, -8.74228e-08, 7.74807e-08, 0.463157, -0.886276, 4.04905e-08, -0.886276, -0.463157, 0, 0.823683, 2.94707)
+
+[node name="Button" parent="Environment" instance=ExtResource("14_wtxi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280947, 1.53892, -0.643975)
+
+[node name="Button2" parent="Environment" instance=ExtResource("14_wtxi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.097581, 1.53892, -0.643975)
+
+[node name="Button3" parent="Environment" instance=ExtResource("14_wtxi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0874948, 1.53892, -0.643975)
+
+[node name="Button4" parent="Environment" instance=ExtResource("14_wtxi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253612, 1.53892, -0.643975)
+
+[node name="Pose Change" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87769, 0.747318, 1.93856)
+mesh = SubResource("CapsuleMesh_u0nps")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="Environment/Pose Change"]
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("55_30v22")
+left_pose = SubResource("Resource_1lvc6")
+right_pose = SubResource("Resource_ofuct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Pose Change/XRToolsHandPoseArea"]
+shape = SubResource("CapsuleShape3D_bd36v")
+
+[node name="DefaultFruit" parent="Environment" instance=ExtResource("60_tu6d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.704458, 1.66684, -0.625876)
+
+[connection signal="area_entered" from="Environment/Button" to="." method="_on_interactable_area_button_area_entered"]
+[connection signal="button_pressed" from="Environment/Button" to="." method="_on_interactable_area_button_button_pressed"]
+[connection signal="area_entered" from="Environment/Button2" to="." method="_on_interactable_area_button_area_entered"]
+[connection signal="button_pressed" from="Environment/Button2" to="." method="_on_interactable_area_button_button_pressed"]
+[connection signal="area_entered" from="Environment/Button3" to="." method="_on_interactable_area_button_area_entered"]
+[connection signal="button_pressed" from="Environment/Button3" to="." method="_on_interactable_area_button_button_pressed"]
+[connection signal="area_entered" from="Environment/Button4" to="." method="_on_interactable_area_button_area_entered"]
+[connection signal="button_pressed" from="Environment/Button4" to="." method="_on_interactable_area_button_button_pressed"]

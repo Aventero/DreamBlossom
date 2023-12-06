@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://ynaqcs3avlrn"]
+
+[ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_ivpg6"]
+[ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="1_lwbtv"]
+[ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_oidr1"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_2y3om"]
+[ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="4_2vpth"]
+[ext_resource type="PackedScene" uid="uid://cqii0lt66vbtm" path="res://Prefabs/UI/HungerDisplay.tscn" id="4_qalgc"]
+[ext_resource type="PackedScene" uid="uid://w0c40fto544n" path="res://Prefabs/Basket.tscn" id="5_552eb"]
+[ext_resource type="PackedScene" uid="uid://boiua4660clq6" path="res://Prefabs/PlantPot.tscn" id="6_g8e52"]
+[ext_resource type="PackedScene" uid="uid://b41mmhbw51rdr" path="res://Prefabs/Plant.tscn" id="7_m1xpk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mtyqn"]
+
+[sub_resource type="Sky" id="Sky_5ota8"]
+sky_material = SubResource("ProceduralSkyMaterial_mtyqn")
+
+[sub_resource type="Environment" id="Environment_r08um"]
+background_mode = 2
+sky = SubResource("Sky_5ota8")
+ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_bw8vp"]
+lightmap_size_hint = Vector2i(104, 58)
+material = ExtResource("1_lwbtv")
+add_uv2 = true
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y3vhb"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbtpx"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.568627)
+albedo_texture = ExtResource("4_2vpth")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gwbmg"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_pbtpx")
+add_uv2 = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_ivpg6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.135128, -0.858082, 0.495414, 0, 0.5, 0.866025, -0.990828, -0.117024, 0.0675638, 0, 1, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r08um")
+
+[node name="Player" parent="." instance=ExtResource("2_oidr1")]
+
+[node name="HungerUI" parent="Player/Left Hand" index="2" instance=ExtResource("3_2y3om")]
+transform = Transform3D(-0.00101805, 1.66103e-08, -0.189997, -8.90004e-11, -0.19, -1.66101e-08, -0.189997, 6.93889e-18, 0.00101805, -0.030644, -0.0500791, 0.268291)
+screen_size = Vector2(0.83, 0.5)
+collision_layer = 0
+scene = ExtResource("4_qalgc")
+viewport_size = Vector2(500, 300)
+throttle_fps = 15.0
+input_keyboard = false
+transparent = 0
+unshaded = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground"]
+cast_shadow = 0
+gi_lightmap_scale = 3
+mesh = SubResource("BoxMesh_bw8vp")
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Environment/Ground"]
+transform = Transform3D(1.00165, 0, 0, 0, 1.00165, 0, 0, 0, 1.00165, 0, 0, 0)
+shape = SubResource("BoxShape3D_y3vhb")
+
+[node name="GroundMiddleShadow" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125213, 0)
+mesh = SubResource("PlaneMesh_gwbmg")
+
+[node name="Game" type="Node3D" parent="."]
+
+[node name="Basket" parent="Game" instance=ExtResource("5_552eb")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 0, 0, 1.499)
+
+[node name="PlantPot" parent="Game" instance=ExtResource("6_g8e52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1752)
+
+[node name="Plant" parent="Game/PlantPot" instance=ExtResource("7_m1xpk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="PlantPot2" parent="Game" instance=ExtResource("6_g8e52")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.900146, -0.1, -0.828804)
+
+[node name="Plant" parent="Game/PlantPot2" instance=ExtResource("7_m1xpk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.298127, 0.4, -1.19209e-07)
+
+[node name="PlantPot3" parent="Game" instance=ExtResource("6_g8e52")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.884688, -0.1, -0.819982)
+
+[node name="Plant" parent="Game/PlantPot3" instance=ExtResource("7_m1xpk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264227, 0.4, 0)
+
+[editable path="Player"]
