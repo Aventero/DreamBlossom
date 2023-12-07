@@ -7,7 +7,7 @@ extends Node3D
 
 var spawnpoints : Array[SpawnPoint]
 
-func _ready():
+func _ready() -> void:
 	# Get all spawnpoints
 	var num_children = spawnpoint_parent.get_child_count()
 	
@@ -22,7 +22,7 @@ func _ready():
 	grow_timer.start()
 
 
-func _on_grow_timer():
+func _on_grow_timer() -> void:
 	# Spawn new fruits
 	for i in range(spawnpoints.size()):
 		if spawnpoints[i].has_grown == false:
@@ -41,7 +41,7 @@ func _on_grow_timer():
 			spawnpoints[i].has_grown = true
 
 
-func _on_fruit_pickup(pickable, spawnpoint : SpawnPoint):
+func _on_fruit_pickup(pickable, spawnpoint : SpawnPoint) -> void:
 	spawnpoint.has_grown = false
 
 

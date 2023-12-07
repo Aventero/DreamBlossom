@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://6iog81gjrtfl"]
+[gd_scene load_steps=39 format=3 uid="uid://6iog81gjrtfl"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_tdsmh"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_8cvx0"]
@@ -43,6 +43,10 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pd7gc"]
 size = Vector3(2, 0.0501221, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dj3um"]
+resource_local_to_scene = true
+radius = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_fw815"]
 size = Vector3(2, 1.5, 1)
@@ -147,6 +151,9 @@ shape = SubResource("BoxShape3D_pd7gc")
 
 [node name="ToolBoard" parent="Environment" instance=ExtResource("12_av6up")]
 transform = Transform3D(0.519549, -0.158465, 0.839617, -7.45058e-09, 0.982652, 0.185461, -0.854441, -0.096356, 0.510536, -1.63174, 0, -0.016638)
+
+[node name="CollisionShape3D" parent="Environment/ToolBoard/CubeSnapZone" index="0"]
+shape = SubResource("SphereShape3D_dj3um")
 
 [node name="Table2" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0.25, 0.25)
@@ -266,3 +273,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.704458, 1.66684, -0.625876)
 [connection signal="button_pressed" from="Environment/Button3" to="." method="_on_interactable_area_button_button_pressed"]
 [connection signal="area_entered" from="Environment/Button4" to="." method="_on_interactable_area_button_area_entered"]
 [connection signal="button_pressed" from="Environment/Button4" to="." method="_on_interactable_area_button_button_pressed"]
+
+[editable path="Environment/ToolBoard"]
+[editable path="Environment/ToolBoard/CubeSnapZone"]

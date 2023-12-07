@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqii0lt66vbtm"]
+[gd_scene load_steps=8 format=3 uid="uid://cqii0lt66vbtm"]
+
+[ext_resource type="Script" path="res://Scripts/HungerUI.gd" id="1_qdrpd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mdux8"]
 font_size = 75
@@ -39,6 +41,7 @@ expand_margin_bottom = 68.0
 [node name="HungerDisplay" type="Panel"]
 offset_right = 500.0
 offset_bottom = 300.0
+script = ExtResource("1_qdrpd")
 
 [node name="Layout" type="VBoxContainer" parent="."]
 layout_mode = 1

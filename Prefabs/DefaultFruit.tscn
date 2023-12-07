@@ -55,10 +55,8 @@ mesh = SubResource("SphereMesh_7p3d2")
 
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("6_c8er1")]
 transform = Transform3D(0.991595, 0.129384, 0, -0.129384, 0.991595, 0, 0, 0, 1, -0.0610916, 0.0673642, -0.0679596)
-visible = true
 hand_pose = SubResource("Resource_xvxkp")
 
 [node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("7_tdu4l")]
 transform = Transform3D(0.991671, -0.128796, 0, 0.128796, 0.991671, 0, 0, 0, 1, 0.061, 0.067, -0.068)
-visible = true
 hand_pose = SubResource("Resource_g3b5d")

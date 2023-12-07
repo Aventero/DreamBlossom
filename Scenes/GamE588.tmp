@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ynaqcs3avlrn"]
+[gd_scene load_steps=19 format=3 uid="uid://ynaqcs3avlrn"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_ivpg6"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="1_lwbtv"]
@@ -6,10 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_y7851"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_2y3om"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="4_2vpth"]
-[ext_resource type="Script" path="res://Scripts/FruitEat.gd" id="4_jf6o2"]
 [ext_resource type="PackedScene" uid="uid://cqii0lt66vbtm" path="res://Prefabs/UI/HungerDisplay.tscn" id="4_qalgc"]
 [ext_resource type="PackedScene" uid="uid://w0c40fto544n" path="res://Prefabs/Basket.tscn" id="5_552eb"]
-[ext_resource type="AudioStream" uid="uid://yqfrina0awrx" path="res://Audio/NomNom.mp3" id="5_rngfy"]
 [ext_resource type="PackedScene" uid="uid://boiua4660clq6" path="res://Prefabs/PlantPot.tscn" id="6_g8e52"]
 [ext_resource type="PackedScene" uid="uid://b41mmhbw51rdr" path="res://Prefabs/Plant.tscn" id="7_m1xpk"]
 
@@ -23,9 +21,6 @@ background_mode = 2
 sky = SubResource("Sky_5ota8")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_wjh57"]
-radius = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erkxu"]
 shading_mode = 0
@@ -56,7 +51,6 @@ script = ExtResource("1_ivpg6")
 
 [node name="Player" type="Node" parent="Game"]
 script = ExtResource("2_y7851")
-hunger_decrease_per_tick = 0.02
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.135128, -0.858082, 0.495414, 0, 0.5, 0.866025, -0.990828, -0.117024, 0.0675638, 0, 1, 0)
@@ -66,19 +60,6 @@ shadow_enabled = true
 environment = SubResource("Environment_r08um")
 
 [node name="Player" parent="." instance=ExtResource("2_oidr1")]
-
-[node name="FruitEatArea" type="Area3D" parent="Player/XRCamera3D" index="0"]
-collision_layer = 0
-collision_mask = 65540
-script = ExtResource("4_jf6o2")
-
-[node name="Collision" type="CollisionShape3D" parent="Player/XRCamera3D/FruitEatArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0407193, -0.0481268)
-shape = SubResource("SphereShape3D_wjh57")
-
-[node name="FruitEatAudio" type="AudioStreamPlayer3D" parent="Player/XRCamera3D/FruitEatArea"]
-stream = ExtResource("5_rngfy")
-area_mask = 0
 
 [node name="HungerUI" parent="Player/Left Hand" index="2" instance=ExtResource("3_2y3om")]
 transform = Transform3D(-0.00101805, 1.66103e-08, -0.189997, -8.90004e-11, -0.19, -1.66101e-08, -0.189997, 6.93889e-18, 0.00101805, -0.030644, -0.0500791, 0.268291)
@@ -132,7 +113,5 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 
 [node name="Plant" parent="GameEnvironment/PlantPot3" instance=ExtResource("7_m1xpk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264227, 0.4, 0)
-
-[connection signal="body_entered" from="Player/XRCamera3D/FruitEatArea" to="Player/XRCamera3D/FruitEatArea" method="_on_body_entered"]
 
 [editable path="Player"]
