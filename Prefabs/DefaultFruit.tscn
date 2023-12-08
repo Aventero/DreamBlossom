@@ -46,7 +46,6 @@ material_override = ExtResource("2_ga2io")
 mesh = SubResource("SphereMesh_mq4dh")
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
-visible = false
 script = ExtResource("4_w7g84")
 
 [node name="DefaultFruitHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]

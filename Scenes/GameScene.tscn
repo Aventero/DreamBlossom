@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ynaqcs3avlrn"]
+[gd_scene load_steps=24 format=3 uid="uid://ynaqcs3avlrn"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_ivpg6"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="1_lwbtv"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cqii0lt66vbtm" path="res://Prefabs/UI/HungerDisplay.tscn" id="4_qalgc"]
 [ext_resource type="PackedScene" uid="uid://w0c40fto544n" path="res://Prefabs/Basket.tscn" id="5_552eb"]
 [ext_resource type="AudioStream" uid="uid://yqfrina0awrx" path="res://Audio/NomNom.mp3" id="5_rngfy"]
-[ext_resource type="PackedScene" uid="uid://boiua4660clq6" path="res://Prefabs/PlantPot.tscn" id="6_g8e52"]
-[ext_resource type="PackedScene" uid="uid://b41mmhbw51rdr" path="res://Prefabs/Plant.tscn" id="7_m1xpk"]
+[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="13_cesqi"]
+[ext_resource type="PackedScene" uid="uid://c0mdrac0tfqiw" path="res://Prefabs/Table.tscn" id="14_67nfy"]
+[ext_resource type="PackedScene" uid="uid://bgbwonoy3chi7" path="res://Prefabs/DefaultSeed.tscn" id="15_hg3i4"]
+[ext_resource type="PackedScene" uid="uid://bbkuqelpm58tm" path="res://Prefabs/PlantPot.tscn" id="16_m6c4u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mtyqn"]
 
@@ -67,6 +69,8 @@ environment = SubResource("Environment_r08um")
 
 [node name="Player" parent="." instance=ExtResource("2_oidr1")]
 
+[node name="XRCamera3D" parent="Player" index="0" groups=["Player"]]
+
 [node name="FruitEatArea" type="Area3D" parent="Player/XRCamera3D" index="0"]
 collision_layer = 0
 collision_mask = 65540
@@ -112,26 +116,49 @@ mesh = SubResource("PlaneMesh_gwbmg")
 
 [node name="GameEnvironment" type="Node3D" parent="."]
 
+[node name="PlantPot" parent="GameEnvironment" instance=ExtResource("16_m6c4u")]
+
 [node name="Basket" parent="GameEnvironment" instance=ExtResource("5_552eb")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 0, 0, 1.499)
 
-[node name="PlantPot" parent="GameEnvironment" instance=ExtResource("6_g8e52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.39902)
+[node name="Table" parent="GameEnvironment" instance=ExtResource("14_67nfy")]
+transform = Transform3D(0.509402, 0, -0.860529, 0, 1, 0, 0.860529, 0, 0.509402, -1.42086, 1.19209e-07, 0.787261)
 
-[node name="Plant" parent="GameEnvironment/PlantPot" instance=ExtResource("7_m1xpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+[node name="Table2" parent="GameEnvironment" instance=ExtResource("14_67nfy")]
+transform = Transform3D(-0.531679, 0, -0.846946, 0, 1, 0, 0.846946, 0, -0.531679, 1.39454, 3.57628e-07, 0.830502)
 
-[node name="PlantPot2" parent="GameEnvironment" instance=ExtResource("6_g8e52")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.900146, -0.1, -1.05262)
+[node name="DefaultSeed" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(1, 0, 0, 0, 0.484993, -0.874518, 0, 0.874518, 0.484993, -1.00798, 0.880263, 0.979771)
 
-[node name="Plant" parent="GameEnvironment/PlantPot2" instance=ExtResource("7_m1xpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.298127, 0.4, -1.19209e-07)
+[node name="DefaultSeed2" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.03309, 0.880263, 0.938574)
 
-[node name="PlantPot3" parent="GameEnvironment" instance=ExtResource("6_g8e52")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.884688, -0.1, -1.0438)
+[node name="DefaultSeed3" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.06184, 0.880263, 0.974088)
 
-[node name="Plant" parent="GameEnvironment/PlantPot3" instance=ExtResource("7_m1xpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264227, 0.4, 0)
+[node name="DefaultSeed4" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.08965, 0.880263, 0.92884)
+
+[node name="DefaultSeed5" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.06049, 0.880263, 0.894377)
+
+[node name="DefaultSeed6" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -0.981694, 0.880263, 0.93438)
+
+[node name="DefaultSeed7" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.01243, 0.880263, 0.888222)
+
+[node name="DefaultSeed8" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.04135, 0.880263, 0.84609)
+
+[node name="DefaultSeed9" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.08939, 0.880263, 0.852109)
+
+[node name="DefaultSeed10" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.12072, 0.880263, 0.8857)
+
+[node name="Shovel" parent="GameEnvironment" groups=["Shovel"] instance=ExtResource("13_cesqi")]
+transform = Transform3D(-0.169745, 0, -0.985488, 0, 1, 0, 0.985488, 0, -0.169745, 1.50368, 1.07951, 0.378751)
 
 [connection signal="body_entered" from="Player/XRCamera3D/FruitEatArea" to="Player/XRCamera3D/FruitEatArea" method="_on_body_entered"]
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl2rlqbcgabw2"]
+
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="1_albs3"]
+[ext_resource type="Script" path="res://Scripts/Timer.gd" id="1_dmwct"]
+[ext_resource type="PackedScene" uid="uid://bijot5mjw6oj" path="res://Prefabs/UI/TimerUI.tscn" id="2_ydst1"]
+
+[node name="Timer" type="Node3D"]
+script = ExtResource("1_dmwct")
+
+[node name="TimerUI" parent="." instance=ExtResource("1_albs3")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+screen_size = Vector2(1.66, 1)
+collision_layer = 0
+scene = ExtResource("2_ydst1")
+viewport_size = Vector2(500, 300)
+update_mode = 2
+throttle_fps = 1.0
+input_keyboard = false
+unshaded = true
+
+[node name="InternalTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="InternalTimer" to="." method="_on_internal_timer_timeout"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=17 format=3 uid="uid://cq7rntr2jsnlp"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_ds8h5"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_lf87i"]
+[ext_resource type="Animation" uid="uid://dqa0h82y3qn1t" path="res://addons/godot-xr-tools/hands/animations/left/Grip 1.res" id="5_x7nrh"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mqylq"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_kdv8v"]
+[ext_resource type="Animation" uid="uid://daqddcrbpam0c" path="res://addons/godot-xr-tools/hands/animations/right/Grip 1.res" id="8_5mmx3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cypgd"]
+size = Vector3(0.0995789, 0.0518951, 0.420349)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bxi8o"]
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_bbxsm"]
+size = Vector3(0.145, 0.25, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1gl1l"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wcrm2"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.22
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrwfo"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_3nl2n"]
+size = Vector3(0.2, 0.29, 0.05)
+
+[sub_resource type="Resource" id="Resource_owvc0"]
+script = ExtResource("6_mqylq")
+closed_pose = ExtResource("5_x7nrh")
+
+[sub_resource type="Resource" id="Resource_wcc0c"]
+script = ExtResource("6_mqylq")
+closed_pose = ExtResource("8_5mmx3")
+
+[node name="Shovel" instance=ExtResource("1_ho1dq")]
+collision_mask = 7
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62939e-05, -0.000465393, -0.110321)
+shape = SubResource("BoxShape3D_cypgd")
+
+[node name="stalk" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3.61968e-05)
+mesh = SubResource("CylinderMesh_bxi8o")
+
+[node name="top" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.195658)
+mesh = SubResource("PrismMesh_bbxsm")
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="3"]
+visible = false
+script = ExtResource("2_ds8h5")
+
+[node name="stalk highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3.61968e-05)
+material_override = SubResource("StandardMaterial3D_1gl1l")
+mesh = SubResource("CylinderMesh_wcrm2")
+skeleton = NodePath("../..")
+
+[node name="top highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.203266)
+material_override = SubResource("StandardMaterial3D_qrwfo")
+mesh = SubResource("PrismMesh_3nl2n")
+skeleton = NodePath("../..")
+
+[node name="GrabPointHandLeft" parent="." index="4" instance=ExtResource("4_lf87i")]
+transform = Transform3D(0.995068, 0.0972864, -0.0193815, 0, 0.195381, 0.980727, 0.0991982, -0.97589, 0.194418, 0.00343552, -0.0730244, -0.0522017)
+hand_pose = SubResource("Resource_owvc0")
+
+[node name="GrabPointHandRight" parent="." index="5" instance=ExtResource("7_kdv8v")]
+transform = Transform3D(0.995056, -0.0973944, 0.0194613, 0, 0.195946, 0.980615, -0.0993197, -0.975766, 0.194977, 0.00343552, -0.0730244, -0.0522017)
+hand_pose = SubResource("Resource_wcc0c")

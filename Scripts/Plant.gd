@@ -41,7 +41,7 @@ func _on_grow_timer() -> void:
 			spawnpoints[i].has_grown = true
 
 
-func _on_fruit_pickup(pickable, spawnpoint : SpawnPoint) -> void:
+func _on_fruit_pickup(_pickable, spawnpoint : SpawnPoint) -> void:
 	spawnpoint.has_grown = false
 
 
