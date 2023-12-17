@@ -47,9 +47,10 @@ albedo_color = Color(1, 1, 1, 0.568627)
 albedo_texture = ExtResource("4_2vpth")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gwbmg"]
-lightmap_size_hint = Vector2i(12, 12)
+lightmap_size_hint = Vector2i(9, 9)
 material = SubResource("StandardMaterial3D_pbtpx")
 add_uv2 = true
+size = Vector2(1.5, 1.5)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_ivpg6")
@@ -127,35 +128,35 @@ transform = Transform3D(0.509402, 0, -0.860529, 0, 1, 0, 0.860529, 0, 0.509402, 
 [node name="Table2" parent="GameEnvironment" instance=ExtResource("14_67nfy")]
 transform = Transform3D(-0.531679, 0, -0.846946, 0, 1, 0, 0.846946, 0, -0.531679, 1.39454, 3.57628e-07, 0.830502)
 
-[node name="DefaultSeed" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(1, 0, 0, 0, 0.484993, -0.874518, 0, 0.874518, 0.484993, -1.00798, 0.880263, 0.979771)
+[node name="DefaultSeed1" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.21566, 0.880263, 0.631013)
 
 [node name="DefaultSeed2" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.03309, 0.880263, 0.938574)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.24088, 0.880263, 0.59286)
 
 [node name="DefaultSeed3" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.06184, 0.880263, 0.974088)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.26963, 0.880263, 0.628374)
 
 [node name="DefaultSeed4" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.08965, 0.880263, 0.92884)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.29744, 0.880263, 0.583126)
 
 [node name="DefaultSeed5" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.06049, 0.880263, 0.894377)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.26828, 0.880263, 0.548663)
 
 [node name="DefaultSeed6" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -0.981694, 0.880263, 0.93438)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.18948, 0.880263, 0.588666)
 
 [node name="DefaultSeed7" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.01243, 0.880263, 0.888222)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.22022, 0.880263, 0.542507)
 
 [node name="DefaultSeed8" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.04135, 0.880263, 0.84609)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.24914, 0.880263, 0.500376)
 
 [node name="DefaultSeed9" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.08939, 0.880263, 0.852109)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.29718, 0.880263, 0.506395)
 
 [node name="DefaultSeed10" parent="GameEnvironment" instance=ExtResource("15_hg3i4")]
-transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.12072, 0.880263, 0.8857)
+transform = Transform3D(0.283529, -0.766488, -0.576288, 0.659615, 0.592085, -0.462973, 0.696075, -0.248862, 0.67346, -1.32851, 0.880263, 0.539986)
 
 [node name="Shovel" parent="GameEnvironment" groups=["Shovel"] instance=ExtResource("13_cesqi")]
 transform = Transform3D(-0.169745, 0, -0.985488, 0, 1, 0, 0.985488, 0, -0.169745, 1.50368, 1.07951, 0.378751)
