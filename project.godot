@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dreamblossom"
-run/main_scene="res://Scenes/GameScene.tscn"
+run/main_scene="res://Scenes/Debug_Testing_Oli.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Textures/icon.svg"
 
@@ -43,6 +43,7 @@ import/fbx/enabled=false
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
+jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]
 

@@ -17,12 +17,12 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mtyqn"]
 
-[sub_resource type="Sky" id="Sky_5ota8"]
+[sub_resource type="Sky" id="Sky_wwh56"]
 sky_material = SubResource("ProceduralSkyMaterial_mtyqn")
 
 [sub_resource type="Environment" id="Environment_r08um"]
 background_mode = 2
-sky = SubResource("Sky_5ota8")
+sky = SubResource("Sky_wwh56")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
 
@@ -41,14 +41,14 @@ size = Vector3(10, 0.25, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_y3vhb"]
 size = Vector3(10, 0.25, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbtpx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffop5"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.568627)
 albedo_texture = ExtResource("4_2vpth")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gwbmg"]
 lightmap_size_hint = Vector2i(9, 9)
-material = SubResource("StandardMaterial3D_pbtpx")
+material = SubResource("StandardMaterial3D_ffop5")
 add_uv2 = true
 size = Vector2(1.5, 1.5)
 

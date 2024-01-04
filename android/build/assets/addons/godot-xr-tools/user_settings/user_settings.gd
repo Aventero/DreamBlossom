@@ -23,6 +23,8 @@ enum WebXRPrimary {
 ## User setting for y axis dead zone
 @export var x_axis_dead_zone : float = 0.2
 
+@export_range(0.0, 1.0, 0.05) var haptics_scale := 1.0
+
 @export_group("Player")
 
 ## User setting for player height
