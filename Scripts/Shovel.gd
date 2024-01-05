@@ -1,5 +1,5 @@
 class_name Shovel
-extends Node3D
+extends XRToolsPickable
 
 # Emitted when shovel is inserted into soil
 signal inserted(position: Vector3)
@@ -43,14 +43,13 @@ signal pull_completed
 ## Defines particles on complete shovel pull
 @export var pull_complete_particles : PackedScene
 
-@onready var pickable_shovel : XRToolsPickable = $".."
-@onready var pickable_pull : XRToolsPickable = $"../PullOrigin/PullPickup"
+@onready var pickable_pull : XRToolsPickable = $PullOrigin/PullPickup
 
-@onready var shovel_pickup_collider : CollisionShape3D = $"../CollisionShape3D"
-@onready var pull_pickup_collider : CollisionShape3D = $"../PullOrigin/PullPickup/CollisionShape3D"
+@onready var shovel_pickup_collider : CollisionShape3D = $CollisionShape3D
+@onready var pull_pickup_collider : CollisionShape3D = $"PullOrigin/PullPickup/CollisionShape3D"
 
-@onready var intersection_raycast : RayCast3D = $"../InsertionHitDetection"
-@onready var pull_origin : Node3D = $"../PullOrigin"
+@onready var intersection_raycast : RayCast3D = $"InsertionHitDetection"
+@onready var pull_origin : Node3D = $"PullOrigin"
 
 var pull_particle_instance : GPUParticles3D
 var soil_insertion_point : Vector3
@@ -116,16 +115,16 @@ func _process(delta):
 			pull_completed.emit()
 			
 			# Force player to pick up shovel again
-			controller_pickup._pick_up_object(pickable_shovel)
+			controller_pickup._pick_up_object(self)
 
 func _shovel_pull_animation(ratio):
-	pickable_shovel.position = inserted_shovel_position + Vector3(
+	position = inserted_shovel_position + Vector3(
 		sin(time * max_speed) * ratio * max_shake,
 		0,
 		cos(time * max_speed) * ratio * max_shake
 	)
 	
-	pickable_shovel.rotation = inserted_shovel_rotation + Vector3(
+	rotation = inserted_shovel_rotation + Vector3(
 		0,
 		sin(time * max_speed) * ratio * 0.1,
 		cos(time * max_speed) * ratio * 0.1
@@ -137,11 +136,11 @@ func _on_soil_trigger_body_entered(body):
 		return
 	
 	# Check if shovel is currently held
-	if not pickable_shovel.is_picked_up():
+	if not is_picked_up():
 		return
 	
 	# Haptic feedback for shovel insert
-	var controller : XRController3D = pickable_shovel.get_picked_up_by_controller()
+	var controller : XRController3D = get_picked_up_by_controller()
 	XRToolsRumbleManager.add(controller.name, put_rumble, [controller])
 	
 	# Get intersection point with soil
@@ -157,10 +156,10 @@ func _on_soil_trigger_body_entered(body):
 	particles.emitting = true
 	
 	# Save current transform of shovel for pull animation
-	inserted_shovel_position = pickable_shovel.position
-	inserted_shovel_rotation = pickable_shovel.rotation
+	inserted_shovel_position = position
+	inserted_shovel_rotation = rotation
 	
-	var controller_pickup : XRToolsFunctionPickup = pickable_shovel.get_picked_up_by()
+	var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
 	
 	# Disable Shovel and enable pull interactable
 	_shovel_soil_insert()
@@ -176,11 +175,11 @@ func _shovel_soil_insert():
 	shovel_pickup_collider.disabled = true
 	
 	# Make player to drop shovel
-	pickable_shovel.drop()
+	drop()
 
 	# Make shovel static while frozen so it stays at current position
-	pickable_shovel.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
-	pickable_shovel.freeze = true
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	freeze = true
 	
 	# Enable pull pickable
 	pickable_pull.enabled = true
@@ -196,8 +195,8 @@ func _shovel_soil_leave():
 	
 	# Reactivate shovel
 	shovel_pickup_collider.disabled = false
-	pickable_shovel.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
-	pickable_shovel.freeze = false
+	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	freeze = false
 
 func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 	# Add pull rumble haptic to correct controller
@@ -212,7 +211,7 @@ func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 	# Reset pull handle to origin
 	pickable_pull.position = Vector3.ZERO
-	pickable_pull.rotation = $"../PullOrigin".rotation
+	pickable_pull.rotation = pull_origin.rotation
 	
 	# Remove pull rumble haptic
 	XRToolsRumbleManager.clear("pull_rumble")
