@@ -1,3 +1,4 @@
+@icon("res://Textures/shovel.png")
 class_name Shovel
 extends XRToolsPickable
 
@@ -12,6 +13,10 @@ signal pull_stopped
 
 # Emitted when shovel pull is completed
 signal pull_completed
+
+@export_category("General")
+## Defines the minimum angle for inserting the shovel into the soil
+@export var min_insertion_angle : float
 
 @export_category("Rumble Haptics")
 ## This rumble plays when inserting the shovel into the soil
@@ -63,6 +68,13 @@ var time : float = 0
 
 func _process(delta):
 	time += delta
+	
+	# Check insertion angle
+	var angle : float = rad_to_deg(transform.basis.x.angle_to(Vector3.UP))
+	if angle < 90.0 + min_insertion_angle:
+		allow_insertion = false
+	else:
+		allow_insertion = true
 	
 	# Check if shovel pull is currently picked up
 	if pickable_pull.is_picked_up():
@@ -223,9 +235,3 @@ func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 		pull_particle_instance = null
 	
 	pull_stopped.emit()
-
-func _on_handle_trigger_body_entered(body):
-	allow_insertion = false
-
-func _on_handle_trigger_body_exited(body):
-	allow_insertion = true

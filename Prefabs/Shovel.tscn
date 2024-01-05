@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cq7rntr2jsnlp"]
+[gd_scene load_steps=29 format=3 uid="uid://cq7rntr2jsnlp"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
@@ -79,9 +79,6 @@ closed_pose = ExtResource("8_5mmx3")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wyfb4"]
 size = Vector3(0.038, 0.034, 0.1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a7sqd"]
-size = Vector3(0.06, 0.06, 0.18)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4a1q"]
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -98,13 +95,13 @@ script/source = "extends MeshInstance3D
 @export var offset : float 
 
 @onready var indicator_raycast : RayCast3D = $\"../InsertionHitDetection\"
-@onready var pickable_shovel : XRToolsPickable = $\"..\"
+@onready var pickable_shovel : Shovel = $\"..\"
 
 var previous_visibility : bool = false
 
 func _process(delta):
 	# Disable indicator if not currently hold
-	if not pickable_shovel.is_picked_up():
+	if not pickable_shovel.is_picked_up() or not pickable_shovel.allow_insertion:
 		_set_visibility(false)
 		return
 	
@@ -135,6 +132,7 @@ func _set_visibility(new_visibility : bool):
 
 [node name="Shovel" instance=ExtResource("1_ho1dq")]
 script = ExtResource("12_k2gu3")
+min_insertion_angle = 20.0
 put_rumble = SubResource("Resource_o2cdm")
 pull_rumble = SubResource("Resource_wttnc")
 max_shake = 0.01
@@ -184,14 +182,7 @@ collision_layer = 65536
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.05, 0.005, 0)
 shape = SubResource("BoxShape3D_wyfb4")
 
-[node name="HandleTrigger" type="Area3D" parent="." index="6"]
-collision_layer = 65536
-
-[node name="Trigger" type="CollisionShape3D" parent="HandleTrigger" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0925293, 0.00187915, -0.00031957)
-shape = SubResource("BoxShape3D_a7sqd")
-
-[node name="PullOrigin" type="Node3D" parent="." index="7"]
+[node name="PullOrigin" type="Node3D" parent="." index="6"]
 
 [node name="PullPickup" parent="PullOrigin" index="0" instance=ExtResource("1_ho1dq")]
 collision_mask = 131072
@@ -221,18 +212,16 @@ target = NodePath("../../../GrabPointHandRight")
 [node name="GrabPointRedirectLeft" parent="PullOrigin/PullPickup" index="3" node_paths=PackedStringArray("target") instance=ExtResource("13_gdu0i")]
 target = NodePath("../../../GrabPointHandLeft")
 
-[node name="InsertionHitDetection" type="RayCast3D" parent="." index="8"]
+[node name="InsertionHitDetection" type="RayCast3D" parent="." index="7"]
 target_position = Vector3(1, 0, 0)
 
-[node name="InsertionIndicator" type="MeshInstance3D" parent="." index="9"]
+[node name="InsertionIndicator" type="MeshInstance3D" parent="." index="8"]
 visible = false
 mesh = SubResource("PlaneMesh_5jx5t")
 script = SubResource("GDScript_gntc7")
 offset = 0.02
 
 [connection signal="body_entered" from="SoilTrigger" to="." method="_on_soil_trigger_body_entered"]
-[connection signal="body_entered" from="HandleTrigger" to="." method="_on_handle_trigger_body_entered"]
-[connection signal="body_exited" from="HandleTrigger" to="." method="_on_handle_trigger_body_exited"]
 [connection signal="dropped" from="PullOrigin/PullPickup" to="." method="_on_pull_pickup_dropped"]
 [connection signal="picked_up" from="PullOrigin/PullPickup" to="." method="_on_pull_pickup_picked_up"]
 
