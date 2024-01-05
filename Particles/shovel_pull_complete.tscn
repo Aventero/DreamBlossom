@@ -34,7 +34,6 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
-collision_base_size = 0.03
 visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
 process_material = SubResource("ParticleProcessMaterial_k1o2w")
 draw_pass_1 = SubResource("BoxMesh_k411m")

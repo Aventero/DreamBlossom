@@ -9,12 +9,12 @@
 [ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mqylq"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_kdv8v"]
 [ext_resource type="Animation" uid="uid://daqddcrbpam0c" path="res://addons/godot-xr-tools/hands/animations/right/Grip 1.res" id="8_5mmx3"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="11_d46uq"]
+[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/shovel_insert.tscn" id="12_h2gjw"]
 [ext_resource type="Script" path="res://Scripts/Shovel.gd" id="12_k2gu3"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="13_5o6nj"]
 [ext_resource type="PackedScene" uid="uid://ca3daqmpo0tua" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn" id="13_gdu0i"]
-[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/shovel_insert.tscn" id="14_arqa1"]
-[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/shovel_pull.tscn" id="15_qmp67"]
-[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="16_hv0rl"]
+[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/shovel_pull.tscn" id="13_luau2"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="14_6w1tt"]
 [ext_resource type="Texture2D" uid="uid://brgnqt1u01nt0" path="res://Textures/Indicator.png" id="16_savnn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x22t0"]
@@ -68,16 +68,16 @@ size = Vector3(0.038, 0.034, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a7sqd"]
 size = Vector3(0.06, 0.06, 0.18)
 
-[sub_resource type="Resource" id="Resource_frfjq"]
-script = ExtResource("13_5o6nj")
+[sub_resource type="Resource" id="Resource_qpksm"]
+script = ExtResource("11_d46uq")
 magnitude = 1.0
 active_during_pause = false
 indefinite = false
 duration_ms = 100
 
-[sub_resource type="Resource" id="Resource_184ap"]
-script = ExtResource("13_5o6nj")
-magnitude = 0.5
+[sub_resource type="Resource" id="Resource_t6am5"]
+script = ExtResource("11_d46uq")
+magnitude = 1.0
 active_during_pause = false
 indefinite = true
 duration_ms = 300
@@ -98,19 +98,44 @@ script/source = "extends MeshInstance3D
 @export var offset : float 
 
 @onready var indicator_raycast : RayCast3D = $\"../InsertionHitDetection\"
+@onready var pickable_shovel : XRToolsPickable = $\"..\"
+
+var previous_visibility : bool = false
 
 func _process(delta):
+	# Disable indicator if not currently hold
+	if not pickable_shovel.is_picked_up():
+		_set_visibility(false)
+		return
+	
+	# Check if raycast is currently hitting something
 	if indicator_raycast.is_colliding():
-		visible = true
-		global_position = indicator_raycast.get_collision_point() + Vector3(0, offset, 0)
-		global_rotation = Vector3.ZERO
+		# Check shovel angle. Must be facing downwards
+		var direction : Vector3 = pickable_shovel.to_global(indicator_raycast.target_position) - indicator_raycast.global_position
+		if direction.y > 0.0:
+			_set_visibility(false)
+			return
+		
+		# Check if hit object is soil
+		var hit_object : Object = indicator_raycast.get_collider()
+		if hit_object.is_in_group(\"Soil\"):
+			_set_visibility(true)
+			global_position = indicator_raycast.get_collision_point() + Vector3(0, offset, 0)
+			global_rotation = Vector3.ZERO
+		else:
+			_set_visibility(false)
 	else:
-		visible = false
+		_set_visibility(false)
+
+func _set_visibility(new_visibility : bool):
+	if new_visibility != previous_visibility:
+		visible = new_visibility
+		previous_visibility = new_visibility
 "
 
 [node name="Shovel" instance=ExtResource("1_ho1dq")]
 ranged_grab_method = 2
-ranged_grab_speed = 2.0
+ranged_grab_speed = 2.5
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0215826, 0.004, -9.43406e-10)
@@ -156,14 +181,17 @@ shape = SubResource("BoxShape3D_a7sqd")
 
 [node name="ShovelLogic" type="Node3D" parent="." index="7"]
 script = ExtResource("12_k2gu3")
-pull_distance = 0.4
-put_rumble = SubResource("Resource_frfjq")
-pull_rumble = SubResource("Resource_184ap")
-max_shake = 0.005
+put_rumble = SubResource("Resource_qpksm")
+pull_rumble = SubResource("Resource_t6am5")
+max_shake = 0.01
 max_speed = 20.0
-insert_particles = ExtResource("14_arqa1")
-pull_particles = ExtResource("15_qmp67")
-pull_complete_particles = ExtResource("16_hv0rl")
+min_pull_distance = 0.1
+target_pull_distance = 0.4
+pull_particle_offset = 0.1
+particles_height_offset = 0.02
+insert_particles = ExtResource("12_h2gjw")
+pull_particles = ExtResource("13_luau2")
+pull_complete_particles = ExtResource("14_6w1tt")
 
 [node name="PullOrigin" type="Node3D" parent="." index="8"]
 
@@ -197,7 +225,6 @@ target = NodePath("../../../GrabPointHandLeft")
 
 [node name="InsertionHitDetection" type="RayCast3D" parent="." index="9"]
 target_position = Vector3(1, 0, 0)
-debug_shape_custom_color = Color(0.435294, 0.47451, 0, 1)
 
 [node name="InsertionIndicator" type="MeshInstance3D" parent="." index="10"]
 visible = false

@@ -7,12 +7,15 @@ extends Node3D
 @export var max_shake : float
 @export var max_speed : float
 
+@export var particles_height_offset : float
+
 @export var insert_particles : PackedScene
 @export var pull_particles : PackedScene
 @export var pull_complete_particles : PackedScene
 
 @onready var pickable_shovel : XRToolsPickable = $".."
 @onready var pickable_pull : XRToolsPickable = $"../PullOrigin/PullPickup"
+@onready var intersection_raycast : RayCast3D = $"../InsertionHitDetection"
 
 @onready var shovel_pickup_collider : CollisionShape3D = $"../CollisionShape3D"
 @onready var pull_origin : Node3D = $"../PullOrigin"
@@ -23,6 +26,7 @@ var insert_rotation : Vector3
 var prev_position : Vector3
 var velocity : float
 var time : float = 0
+var allow_insertion = true
 
 var pull_particle_instance : GPUParticles3D
 
@@ -69,11 +73,14 @@ func _process(delta):
 			add_child(pull_complete_parts)
 			pull_complete_parts.emitting = true
 			
-			return
 			_shovel_soil_leave()
 			function_pickup._pick_up_object(pickable_shovel)
 
 func _on_soil_trigger_body_entered(body):
+	# Check if insertion is allowed
+	if not allow_insertion:
+		return
+	
 	# Check if shovel is currently held
 	if not pickable_shovel.is_picked_up():
 		return
@@ -82,9 +89,14 @@ func _on_soil_trigger_body_entered(body):
 	var controller : XRController3D = pickable_shovel.get_picked_up_by_controller()
 	XRToolsRumbleManager.add(controller.name, put_rumble, [controller])
 	
+	# Get intersection point
+	var insertion_point : Vector3 = intersection_raycast.get_collision_point()
+	print(insertion_point)
+	
 	# Spawn particles
-	var particles = insert_particles.instantiate()
+	var particles : GPUParticles3D = insert_particles.instantiate()
 	add_child(particles)
+	particles.global_position = insertion_point + Vector3(0, particles_height_offset, 0)
 	particles.emitting = true
 	
 	var function_pickup : XRToolsFunctionPickup = pickable_shovel.get_picked_up_by()
@@ -148,3 +160,9 @@ func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 	var pull_parts : GPUParticles3D = pull_particles.instantiate()
 	add_child(pull_parts)
 	pull_particle_instance = pull_parts
+
+func _on_handle_trigger_body_entered(body):
+	allow_insertion = false
+
+func _on_handle_trigger_body_exited(body):
+	allow_insertion = true
