@@ -48,6 +48,9 @@ signal pull_completed
 ## Defines particles on complete shovel pull
 @export var pull_complete_particles : PackedScene
 
+@export_category("Dig Spot")
+@export var dig_spot : PackedScene
+
 @onready var pickable_pull : XRToolsPickable = $PullOrigin/PullPickup
 
 @onready var shovel_pickup_collider : CollisionShape3D = $CollisionShape3D
@@ -63,18 +66,14 @@ var pull_pickup_position : Vector3
 var inserted_shovel_position : Vector3
 var inserted_shovel_rotation : Vector3
 
-var allow_insertion = true
+var angle : float
 var time : float = 0
 
 func _process(delta):
 	time += delta
 	
 	# Check insertion angle
-	var angle : float = rad_to_deg(transform.basis.x.angle_to(Vector3.UP))
-	if angle < 90.0 + min_insertion_angle:
-		allow_insertion = false
-	else:
-		allow_insertion = true
+	angle = rad_to_deg(transform.basis.x.angle_to(Vector3.UP))
 	
 	# Check if shovel pull is currently picked up
 	if pickable_pull.is_picked_up():
@@ -123,6 +122,11 @@ func _process(delta):
 			
 			_shovel_soil_leave()
 			
+			# Spawn dig spot
+			var dig_spot_instance = dig_spot.instantiate()
+			$"..".add_child(dig_spot_instance)
+			dig_spot_instance.global_position = soil_insertion_point
+			
 			# Emit completed pull
 			pull_completed.emit()
 			
@@ -144,7 +148,7 @@ func _shovel_pull_animation(ratio):
 
 func _on_soil_trigger_body_entered(body):
 	# Check if insertion is allowed
-	if not allow_insertion:
+	if not insertion_allowed():
 		return
 	
 	# Check if shovel is currently held
@@ -210,6 +214,11 @@ func _shovel_soil_leave():
 	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
 	freeze = false
 
+func insertion_allowed():
+	if angle < 90.0 + min_insertion_angle:
+		return false
+	return true
+
 func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 	# Add pull rumble haptic to correct controller
 	var controller : XRController3D = pickable.get_picked_up_by_controller()
@@ -235,3 +244,4 @@ func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 		pull_particle_instance = null
 	
 	pull_stopped.emit()
+

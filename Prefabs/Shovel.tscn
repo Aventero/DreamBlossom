@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cq7rntr2jsnlp"]
+[gd_scene load_steps=30 format=3 uid="uid://cq7rntr2jsnlp"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_tceuc"]
 [ext_resource type="Animation" uid="uid://dqa0h82y3qn1t" path="res://addons/godot-xr-tools/hands/animations/left/Grip 1.res" id="5_x7nrh"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mqylq"]
+[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="7_47ixi"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_kdv8v"]
 [ext_resource type="Animation" uid="uid://daqddcrbpam0c" path="res://addons/godot-xr-tools/hands/animations/right/Grip 1.res" id="8_5mmx3"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="11_d46uq"]
@@ -101,7 +102,7 @@ var previous_visibility : bool = false
 
 func _process(delta):
 	# Disable indicator if not currently hold
-	if not pickable_shovel.is_picked_up() or not pickable_shovel.allow_insertion:
+	if not pickable_shovel.is_picked_up() or not pickable_shovel.insertion_allowed():
 		_set_visibility(false)
 		return
 	
@@ -130,7 +131,7 @@ func _set_visibility(new_visibility : bool):
 		previous_visibility = new_visibility
 "
 
-[node name="Shovel" instance=ExtResource("1_ho1dq")]
+[node name="Shovel" groups=["Shovel"] instance=ExtResource("1_ho1dq")]
 script = ExtResource("12_k2gu3")
 min_insertion_angle = 20.0
 put_rumble = SubResource("Resource_o2cdm")
@@ -144,6 +145,7 @@ particles_height_offset = 0.02
 insert_particles = ExtResource("12_h2gjw")
 pull_particles = ExtResource("13_luau2")
 pull_complete_particles = ExtResource("14_6w1tt")
+dig_spot = ExtResource("7_47ixi")
 ranged_grab_method = 2
 ranged_grab_speed = 2.5
 
@@ -162,7 +164,7 @@ visible = false
 script = ExtResource("2_ds8h5")
 
 [node name="ShovelHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-transform = Transform3D(-0.000205265, 7.39012e-05, -0.0249991, 0.0235211, -0.00846812, -0.000218164, -0.00846844, -0.023522, -1.09274e-09, 0, 0.005, 0)
+transform = Transform3D(-0.000205265, 7.39012e-05, -0.0249991, 0.0235211, -0.00846812, -0.000218164, -0.00846844, -0.023522, -1.09274e-09, 0, 0, 0)
 material_override = ExtResource("4_tceuc")
 mesh = SubResource("ArrayMesh_flygy")
 skeleton = NodePath("")

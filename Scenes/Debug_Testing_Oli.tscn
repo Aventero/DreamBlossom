@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=18 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="Material" uid="uid://c5gtqohrx4r1n" path="res://Materials/Dirt.tres" id="8_lq56i"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
+[ext_resource type="PackedScene" uid="uid://3pnj4m3jvgej" path="res://Prefabs/SeedBag.tscn" id="8_rxdi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -110,5 +111,8 @@ transform = Transform3D(0.907851, 0, -0.419294, 0, 1, 0, 0.419294, 0, 0.907851, 
 
 [node name="Shovel2" parent="." instance=ExtResource("8_mo161")]
 transform = Transform3D(0.972105, 0, 0.234548, 0, 1, 0, -0.234548, 0, 0.972105, -0.218915, 0.933711, -0.560216)
+
+[node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
+transform = Transform3D(0.796055, 0, 0.605225, 0, 1, 0, -0.605225, 0, 0.796055, -0.597676, 1.08071, -0.634044)
 
 [editable path="Player"]

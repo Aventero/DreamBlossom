@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://3pnj4m3jvgej"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_enn3x"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_7i4j1"]
+[ext_resource type="Script" path="res://Scripts/SeedBag.gd" id="2_s5qvq"]
+[ext_resource type="PackedScene" uid="uid://df5udxryim133" path="res://Prefabs/Seed.tscn" id="3_xdi44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkdn3"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wri5k"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73os5"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_syd1n"]
+material = SubResource("StandardMaterial3D_73os5")
+size = Vector3(0.105, 0.105, 0.105)
+
+[node name="SeedBag" groups=["SeedBag"] instance=ExtResource("1_enn3x")]
+freeze = true
+freeze_mode = 0
+script = ExtResource("2_s5qvq")
+seed = ExtResource("3_xdi44")
+ranged_grab_method = 0
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_hkdn3")
+
+[node name="Bag" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_wri5k")
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
+visible = false
+script = ExtResource("2_7i4j1")
+
+[node name="BagHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+mesh = SubResource("BoxMesh_syd1n")
+
+[connection signal="picked_up" from="." to="." method="_on_picked_up"]
