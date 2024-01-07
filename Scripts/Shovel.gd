@@ -48,6 +48,9 @@ signal pull_completed
 ## Defines particles on complete shovel pull
 @export var pull_complete_particles : PackedScene
 
+@export_category("Dig Spot Indicators")
+@export var indicators : Array[PackedScene]
+
 @export_category("Dig Spot")
 @export var dig_spot : PackedScene
 
@@ -68,6 +71,16 @@ var inserted_shovel_rotation : Vector3
 
 var angle : float
 var time : float = 0
+
+var current_dig_spot_level : int = 0
+var indicator_instance : Area3D = null
+
+func _ready():
+	super()
+	
+	# Spawn first indicator
+	indicator_instance = indicators[current_dig_spot_level].instantiate()
+	add_child(indicator_instance)
 
 func _process(delta):
 	time += delta
@@ -153,6 +166,10 @@ func _on_soil_trigger_body_entered(body):
 	
 	# Check if shovel is currently held
 	if not is_picked_up():
+		return
+	
+	# Check if current location is valid
+	if indicator_instance.get_overlapping_bodies().size() > 0.0:
 		return
 	
 	# Haptic feedback for shovel insert
@@ -244,4 +261,37 @@ func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 		pull_particle_instance = null
 	
 	pull_stopped.emit()
+
+var controller : XRController3D
+
+func _on_picked_up(pickable : XRToolsPickable):
+	# Connect input change event from current controller
+	controller = pickable.get_picked_up_by_controller()
+	controller.input_vector2_changed.connect(Callable(_controller_input_change))
+
+func _on_dropped(pickable : XRToolsPickable):
+	# Remove input change event
+	controller.input_vector2_changed.disconnect(Callable(_controller_input_change))
+
+func _controller_input_change(name: String, value: Vector2):
+	if name == "primary":
+		# Check right movement of stick
+		if value.x == 1.0:
+			change_indicator(1)
+		
+		# Check left movement of stick
+		if value.x == -1.0:
+			change_indicator(-1)
+
+func change_indicator(offset : int):
+	# Change current dig spot level accordingly
+	current_dig_spot_level = (current_dig_spot_level + offset + indicators.size()) % indicators.size()
+	
+	# Despawn old indicator
+	if indicator_instance:
+		indicator_instance.queue_free()
+	
+	# Spawn new one
+	indicator_instance = indicators[current_dig_spot_level].instantiate()
+	add_child(indicator_instance)
 

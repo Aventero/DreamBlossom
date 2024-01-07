@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cq7rntr2jsnlp"]
+[gd_scene load_steps=29 format=3 uid="uid://cq7rntr2jsnlp"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
@@ -8,15 +8,17 @@
 [ext_resource type="Animation" uid="uid://dqa0h82y3qn1t" path="res://addons/godot-xr-tools/hands/animations/left/Grip 1.res" id="5_x7nrh"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mqylq"]
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="7_47ixi"]
+[ext_resource type="PackedScene" uid="uid://doimm837nnyew" path="res://Prefabs/DiggingIndicatorSmall.tscn" id="7_ibsco"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_kdv8v"]
 [ext_resource type="Animation" uid="uid://daqddcrbpam0c" path="res://addons/godot-xr-tools/hands/animations/right/Grip 1.res" id="8_5mmx3"]
+[ext_resource type="PackedScene" uid="uid://ckulb7rpdxh1v" path="res://Prefabs/DiggingIndicatorMedium.tscn" id="8_gp4mf"]
+[ext_resource type="PackedScene" uid="uid://c52mp3attv6ds" path="res://Prefabs/DiggingIndicatorLarge.tscn" id="9_nvuml"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="11_d46uq"]
 [ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/shovel_insert.tscn" id="12_h2gjw"]
 [ext_resource type="Script" path="res://Scripts/Shovel.gd" id="12_k2gu3"]
 [ext_resource type="PackedScene" uid="uid://ca3daqmpo0tua" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn" id="13_gdu0i"]
 [ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/shovel_pull.tscn" id="13_luau2"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="14_6w1tt"]
-[ext_resource type="Texture2D" uid="uid://brgnqt1u01nt0" path="res://Textures/Indicator.png" id="16_savnn"]
 
 [sub_resource type="Resource" id="Resource_o2cdm"]
 script = ExtResource("11_d46uq")
@@ -80,57 +82,6 @@ closed_pose = ExtResource("8_5mmx3")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wyfb4"]
 size = Vector3(0.038, 0.034, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4a1q"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("16_savnn")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_5jx5t"]
-material = SubResource("StandardMaterial3D_x4a1q")
-size = Vector2(0.2, 0.2)
-
-[sub_resource type="GDScript" id="GDScript_gntc7"]
-script/source = "extends MeshInstance3D
-
-@export var offset : float 
-
-@onready var indicator_raycast : RayCast3D = $\"../InsertionHitDetection\"
-@onready var pickable_shovel : Shovel = $\"..\"
-
-var previous_visibility : bool = false
-
-func _process(delta):
-	# Disable indicator if not currently hold
-	if not pickable_shovel.is_picked_up() or not pickable_shovel.insertion_allowed():
-		_set_visibility(false)
-		return
-	
-	# Check if raycast is currently hitting something
-	if indicator_raycast.is_colliding():
-		# Check shovel angle. Must be facing downwards
-		var direction : Vector3 = pickable_shovel.to_global(indicator_raycast.target_position) - indicator_raycast.global_position
-		if direction.y > 0.0:
-			_set_visibility(false)
-			return
-		
-		# Check if hit object is soil
-		var hit_object : Object = indicator_raycast.get_collider()
-		if hit_object.is_in_group(\"Soil\"):
-			_set_visibility(true)
-			global_position = indicator_raycast.get_collision_point() + Vector3(0, offset, 0)
-			global_rotation = Vector3.ZERO
-		else:
-			_set_visibility(false)
-	else:
-		_set_visibility(false)
-
-func _set_visibility(new_visibility : bool):
-	if new_visibility != previous_visibility:
-		visible = new_visibility
-		previous_visibility = new_visibility
-"
-
 [node name="Shovel" groups=["Shovel"] instance=ExtResource("1_ho1dq")]
 script = ExtResource("12_k2gu3")
 min_insertion_angle = 20.0
@@ -145,6 +96,7 @@ particles_height_offset = 0.02
 insert_particles = ExtResource("12_h2gjw")
 pull_particles = ExtResource("13_luau2")
 pull_complete_particles = ExtResource("14_6w1tt")
+indicators = Array[PackedScene]([ExtResource("7_ibsco"), ExtResource("8_gp4mf"), ExtResource("9_nvuml")])
 dig_spot = ExtResource("7_47ixi")
 ranged_grab_method = 2
 ranged_grab_speed = 2.5
@@ -217,12 +169,8 @@ target = NodePath("../../../GrabPointHandLeft")
 [node name="InsertionHitDetection" type="RayCast3D" parent="." index="7"]
 target_position = Vector3(1, 0, 0)
 
-[node name="InsertionIndicator" type="MeshInstance3D" parent="." index="8"]
-visible = false
-mesh = SubResource("PlaneMesh_5jx5t")
-script = SubResource("GDScript_gntc7")
-offset = 0.02
-
+[connection signal="dropped" from="." to="." method="_on_dropped"]
+[connection signal="picked_up" from="." to="." method="_on_picked_up"]
 [connection signal="body_entered" from="SoilTrigger" to="." method="_on_soil_trigger_body_entered"]
 [connection signal="dropped" from="PullOrigin/PullPickup" to="." method="_on_pull_pickup_dropped"]
 [connection signal="picked_up" from="PullOrigin/PullPickup" to="." method="_on_pull_pickup_picked_up"]

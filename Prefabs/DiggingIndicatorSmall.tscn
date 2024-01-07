@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://doimm837nnyew"]
+
+[ext_resource type="PackedScene" uid="uid://dyrjvfiya4jf5" path="res://Prefabs/DiggingIndicator.tscn" id="1_vsyhx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_clhsi"]
+radius = 0.0923454
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_741pt"]
+transparency = 1
+albedo_color = Color(0.835294, 0.839216, 0.960784, 0.0588235)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ugfip"]
+material = SubResource("StandardMaterial3D_741pt")
+top_radius = 0.09
+bottom_radius = 0.1
+height = 0.02
+radial_segments = 8
+rings = 1
+
+[node name="DiggingIndicator" instance=ExtResource("1_vsyhx")]
+
+[node name="Collision" parent="." index="0"]
+shape = SubResource("SphereShape3D_clhsi")
+
+[node name="Digging Spot" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("CylinderMesh_ugfip")
