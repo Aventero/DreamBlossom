@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnirrv7t15kbn"]
+
+[ext_resource type="Script" path="res://Scripts/Grid.gd" id="1_fvw82"]
+
+[node name="Grid" type="Node3D"]
+script = ExtResource("1_fvw82")
+flip_z = true

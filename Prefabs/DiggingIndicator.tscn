@@ -1,54 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyrjvfiya4jf5"]
-
-[sub_resource type="GDScript" id="GDScript_xeuag"]
-script/source = "extends Area3D
-
-@onready var indicator_raycast : RayCast3D = $\"../InsertionHitDetection\"
-@onready var pickable_shovel : Shovel = $\"..\"
-
-var previous_visibility : bool = false
-
-func _process(delta):
-	# Disable indicator if not currently hold
-	if not pickable_shovel.is_picked_up() or not pickable_shovel.insertion_allowed():
-		_set_visibility(false)
-		return
-	
-	# Check if currently colliding with others dig spots etc
-	if get_overlapping_bodies().size() > 0:
-		_set_visibility(false)
-		return
-	
-	# Check if raycast is currently hitting something
-	if indicator_raycast.is_colliding():
-		# Check shovel angle. Must be facing downwards
-		var direction : Vector3 = pickable_shovel.to_global(indicator_raycast.target_position) - indicator_raycast.global_position
-		if direction.y > 0.0:
-			_set_visibility(false)
-			return
-		
-		# Check if hit object is soil
-		var hit_object : Object = indicator_raycast.get_collider()
-		if hit_object.is_in_group(\"Soil\"):
-			_set_visibility(true)
-			global_position = indicator_raycast.get_collision_point()
-			global_rotation = Vector3.ZERO
-		else:
-			_set_visibility(false)
-	else:
-		_set_visibility(false)
-
-func _set_visibility(new_visibility : bool):
-	if new_visibility != previous_visibility:
-		visible = new_visibility
-		previous_visibility = new_visibility
-"
+[gd_scene format=3 uid="uid://dyrjvfiya4jf5"]
 
 [node name="DiggingIndicator" type="Area3D"]
 visible = false
 collision_layer = 0
-collision_mask = 128
-script = SubResource("GDScript_xeuag")
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 

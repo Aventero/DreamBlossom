@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1erk7h5ynw83"]
+
+[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="1_nrc0v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jm34j"]
+size = Vector3(0.188, 0.02, 0.188)
+
+[node name="DigSpot" instance=ExtResource("1_nrc0v")]
+
+[node name="Mesh" parent="StaticBody3D" index="1"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
+mesh = SubResource("BoxMesh_jm34j")

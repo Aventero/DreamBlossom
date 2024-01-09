@@ -5,17 +5,13 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_88spj"]
 radius = 0.138689
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_741pt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhe88"]
 transparency = 1
 albedo_color = Color(0.835294, 0.839216, 0.960784, 0.0588235)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_dk5mt"]
-material = SubResource("StandardMaterial3D_741pt")
-top_radius = 0.14
-bottom_radius = 0.15
-height = 0.02
-radial_segments = 8
-rings = 1
+[sub_resource type="BoxMesh" id="BoxMesh_umswk"]
+material = SubResource("StandardMaterial3D_qhe88")
+size = Vector3(0.376, 0.02, 0.376)
 
 [node name="DiggingIndicator" instance=ExtResource("1_oovq2")]
 
@@ -24,4 +20,4 @@ shape = SubResource("SphereShape3D_88spj")
 
 [node name="Digging Spot" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
-mesh = SubResource("CylinderMesh_dk5mt")
+mesh = SubResource("BoxMesh_umswk")

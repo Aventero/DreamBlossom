@@ -1,17 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=2 format=3 uid="uid://k1ig4nxq85cm"]
 
-[ext_resource type="Material" uid="uid://c5gtqohrx4r1n" path="res://Materials/Dirt.tres" id="1_fiy7u"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ncu7"]
-height = 0.04
-radius = 0.0907419
-
-[sub_resource type="TorusMesh" id="TorusMesh_63tcr"]
-material = ExtResource("1_fiy7u")
-inner_radius = 0.01
-outer_radius = 0.125
-rings = 8
-ring_segments = 3
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqaor"]
+margin = 0.0
+radius = 0.1
 
 [node name="DigSpot" type="Node3D"]
 
@@ -20,8 +11,8 @@ collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("CylinderShape3D_1ncu7")
+shape = SubResource("SphereShape3D_pqaor")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("TorusMesh_63tcr")
+skeleton = NodePath("../..")

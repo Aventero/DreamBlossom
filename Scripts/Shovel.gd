@@ -48,11 +48,8 @@ signal pull_completed
 ## Defines particles on complete shovel pull
 @export var pull_complete_particles : PackedScene
 
-@export_category("Dig Spot Indicators")
-@export var indicators : Array[PackedScene]
-
-@export_category("Dig Spot")
-@export var dig_spot : PackedScene
+@export_category("Shovel Settings")
+@export var shovel_settings : Array[ShovelSetting]
 
 @onready var pickable_pull : XRToolsPickable = $PullOrigin/PullPickup
 
@@ -72,14 +69,20 @@ var inserted_shovel_rotation : Vector3
 var angle : float
 var time : float = 0
 
-var current_dig_spot_level : int = 0
+# Defines current shovel setting (Indicator, Digspot and size)
+var current_setting_index : int = 0
+
+# Hold current indicator instance
 var indicator_instance : Area3D = null
+
+# Hold currently selected cell
+var current_cell : GridCell = null
 
 func _ready():
 	super()
 	
 	# Spawn first indicator
-	indicator_instance = indicators[current_dig_spot_level].instantiate()
+	indicator_instance = shovel_settings[current_setting_index].indicator.instantiate()
 	add_child(indicator_instance)
 
 func _process(delta):
@@ -87,6 +90,44 @@ func _process(delta):
 	
 	# Check insertion angle
 	angle = rad_to_deg(transform.basis.x.angle_to(Vector3.UP))
+	
+	# Check if shovel is currently hold
+	if is_picked_up():
+		if intersection_raycast.is_colliding():
+			var hit : Node3D = intersection_raycast.get_collider()
+			
+			# Check if soil was hit
+			if hit.is_in_group("Soil"):
+				var grid : PlantGrid = hit.get_child(0)
+				var cell : GridCell = grid.get_cell(intersection_raycast.get_collision_point())
+				
+				# If current cell is not occupied => Look for indicator placement
+				if cell and not cell.occupied:
+					# Check if placement is allowed on current cell
+					if grid.is_placement_allowed(cell, shovel_settings[current_setting_index].cell_width):
+						current_cell = cell
+					else:
+						# Find other allowed space in surrounding area
+						var nearby_cell = grid.find_allowed_space(cell, shovel_settings[current_setting_index].cell_width)
+						
+						if nearby_cell:
+							current_cell = nearby_cell
+						else:
+							current_cell = null
+					
+					if current_cell:
+						var cell_pos : Vector3 = grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+						indicator_instance.visible = true
+						indicator_instance.global_position = cell_pos
+						indicator_instance.global_rotation = Vector3.ZERO
+					else:
+						indicator_instance.visible = false
+				else:
+					indicator_instance.visible = false
+			else:
+				indicator_instance.visible = false
+		else:
+			indicator_instance.visible = false
 	
 	# Check if shovel pull is currently picked up
 	if pickable_pull.is_picked_up():
@@ -136,9 +177,12 @@ func _process(delta):
 			_shovel_soil_leave()
 			
 			# Spawn dig spot
-			var dig_spot_instance = dig_spot.instantiate()
+			var dig_spot_instance = shovel_settings[current_setting_index].dig_spot.instantiate()
 			$"..".add_child(dig_spot_instance)
-			dig_spot_instance.global_position = soil_insertion_point
+			dig_spot_instance.global_position = current_cell.grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+			
+			# Occupy space on grid
+			current_cell.grid.set_state(current_cell, shovel_settings[current_setting_index].cell_width, true)
 			
 			# Emit completed pull
 			pull_completed.emit()
@@ -168,8 +212,8 @@ func _on_soil_trigger_body_entered(body):
 	if not is_picked_up():
 		return
 	
-	# Check if current location is valid
-	if indicator_instance.get_overlapping_bodies().size() > 0.0:
+	# Check if current cell is valid
+	if not current_cell:
 		return
 	
 	# Haptic feedback for shovel insert
@@ -191,6 +235,9 @@ func _on_soil_trigger_body_entered(body):
 	# Save current transform of shovel for pull animation
 	inserted_shovel_position = position
 	inserted_shovel_rotation = rotation
+	
+	# Disable current indicator
+	indicator_instance.visible = false
 	
 	var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
 	
@@ -272,6 +319,9 @@ func _on_picked_up(pickable : XRToolsPickable):
 func _on_dropped(pickable : XRToolsPickable):
 	# Remove input change event
 	controller.input_vector2_changed.disconnect(Callable(_controller_input_change))
+	
+	if indicator_instance:
+		indicator_instance.visible = false
 
 func _controller_input_change(name: String, value: Vector2):
 	if name == "primary":
@@ -285,13 +335,13 @@ func _controller_input_change(name: String, value: Vector2):
 
 func change_indicator(offset : int):
 	# Change current dig spot level accordingly
-	current_dig_spot_level = (current_dig_spot_level + offset + indicators.size()) % indicators.size()
+	current_setting_index = (current_setting_index + offset + shovel_settings.size()) % shovel_settings.size()
 	
 	# Despawn old indicator
 	if indicator_instance:
 		indicator_instance.queue_free()
 	
 	# Spawn new one
-	indicator_instance = indicators[current_dig_spot_level].instantiate()
+	indicator_instance = shovel_settings[current_setting_index].indicator.instantiate()
 	add_child(indicator_instance)
 
