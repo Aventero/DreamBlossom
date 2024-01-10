@@ -1,14 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=16 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
-[ext_resource type="Material" uid="uid://c5gtqohrx4r1n" path="res://Materials/Dirt.tres" id="8_lq56i"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
 [ext_resource type="PackedScene" uid="uid://3pnj4m3jvgej" path="res://Prefabs/SeedBag.tscn" id="8_rxdi4"]
-[ext_resource type="PackedScene" uid="uid://dnirrv7t15kbn" path="res://Prefabs/Grid.tscn" id="9_v6ueb"]
+[ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Plot.tscn" id="10_tfn6c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -40,24 +39,6 @@ lightmap_size_hint = Vector2i(9, 9)
 material = SubResource("StandardMaterial3D_pbtpx")
 add_uv2 = true
 size = Vector2(1.5, 1.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_htddw"]
-size = Vector3(1.7, 0.1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xpp8t"]
-size = Vector3(1.7, 0.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_d6pii"]
-size = Vector3(0.1, 0.1, 0.75)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m0rxf"]
-size = Vector3(0.1, 0.1, 0.75)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_p3lsu"]
-size = Vector2(1.5, 0.75)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8t2m3"]
-size = Vector3(1.5, 0.555469, 0.897583)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_qcfmw")
@@ -103,75 +84,6 @@ shape = SubResource("BoxShape3D_7yi6c")
 transform = Transform3D(0.999998, 0.00122001, -0.00142788, -0.00121978, 0.999999, 0.00016148, 0.00142807, -0.000159727, 0.999999, 0, 0.0125213, 0)
 mesh = SubResource("PlaneMesh_xbxci")
 
-[node name="Frame" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792295, -0.266995)
-visible = false
-collision_layer = 129
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Frame"]
-mesh = SubResource("BoxMesh_htddw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Frame"]
-shape = SubResource("BoxShape3D_xpp8t")
-
-[node name="Frame2" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792295, -1.11699)
-visible = false
-collision_layer = 129
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Frame2"]
-mesh = SubResource("BoxMesh_htddw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Frame2"]
-shape = SubResource("BoxShape3D_xpp8t")
-
-[node name="Frame3" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.792295, -0.691995)
-visible = false
-collision_layer = 129
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Frame3"]
-mesh = SubResource("BoxMesh_d6pii")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Frame3"]
-shape = SubResource("BoxShape3D_m0rxf")
-
-[node name="Frame4" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.792295, -0.691995)
-visible = false
-collision_layer = 129
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Frame4"]
-mesh = SubResource("BoxMesh_d6pii")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Frame4"]
-shape = SubResource("BoxShape3D_m0rxf")
-
-[node name="Soil" type="StaticBody3D" parent="." groups=["Soil"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.818, -0.691995)
-collision_mask = 65536
-
-[node name="Grid" parent="Soil" instance=ExtResource("9_v6ueb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.000801086, 0.374995)
-width = 1.5
-height = 0.75
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Soil"]
-material_override = ExtResource("8_lq56i")
-mesh = SubResource("PlaneMesh_p3lsu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Soil"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277734, 0.0737915)
-shape = SubResource("BoxShape3D_8t2m3")
-
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Soil"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
-size = Vector3(1.5, 0.05, 0.75)
-
 [node name="Shovel" parent="." instance=ExtResource("8_mo161")]
 transform = Transform3D(0.907851, 0, -0.419294, 0, 1, 0, 0.419294, 0, 0.907851, 0.245143, 0.933711, -0.635764)
 
@@ -180,5 +92,8 @@ transform = Transform3D(0.972105, 0, 0.234548, 0, 1, 0, -0.234548, 0, 0.972105, 
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.796055, 0, 0.605225, 0, 1, 0, -0.605225, 0, 0.796055, -0.597676, 1.08071, -0.634044)
+
+[node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
 [editable path="Player"]

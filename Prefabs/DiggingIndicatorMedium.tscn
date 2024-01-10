@@ -1,23 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckulb7rpdxh1v"]
+[gd_scene load_steps=7 format=3 uid="uid://ckulb7rpdxh1v"]
 
 [ext_resource type="PackedScene" uid="uid://dyrjvfiya4jf5" path="res://Prefabs/DiggingIndicator.tscn" id="1_oovq2"]
+[ext_resource type="Material" uid="uid://b1mxod0y353id" path="res://Materials/IndicatorAllowed.tres" id="2_0cpc7"]
+[ext_resource type="Material" uid="uid://cskatl02lpgwd" path="res://Materials/IndicatorRestricted.tres" id="3_lixxo"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_88spj"]
-radius = 0.138689
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujkl4"]
+size = Vector3(0.376, 0.02, 0.376)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhe88"]
-transparency = 1
-albedo_color = Color(0.835294, 0.839216, 0.960784, 0.0588235)
+[sub_resource type="BoxMesh" id="BoxMesh_cgayl"]
+material = ExtResource("2_0cpc7")
+size = Vector3(0.376, 0.02, 0.376)
 
-[sub_resource type="BoxMesh" id="BoxMesh_umswk"]
-material = SubResource("StandardMaterial3D_qhe88")
+[sub_resource type="BoxMesh" id="BoxMesh_yqic5"]
+material = ExtResource("3_lixxo")
 size = Vector3(0.376, 0.02, 0.376)
 
 [node name="DiggingIndicator" instance=ExtResource("1_oovq2")]
 
 [node name="Collision" parent="." index="0"]
-shape = SubResource("SphereShape3D_88spj")
+shape = SubResource("BoxShape3D_ujkl4")
 
-[node name="Digging Spot" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
-mesh = SubResource("BoxMesh_umswk")
+[node name="Digging Spot Allowed" parent="." index="1"]
+mesh = SubResource("BoxMesh_cgayl")
+
+[node name="Digging Spot Restricted" parent="." index="2"]
+mesh = SubResource("BoxMesh_yqic5")

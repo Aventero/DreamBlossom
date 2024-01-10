@@ -109,6 +109,7 @@ size = Vector3(0.038, 0.034, 0.1)
 [node name="Shovel" groups=["Shovel"] instance=ExtResource("1_ho1dq")]
 script = ExtResource("12_k2gu3")
 min_insertion_angle = 20.0
+lerp_speed = 0.075
 put_rumble = SubResource("Resource_o2cdm")
 pull_rumble = SubResource("Resource_wttnc")
 max_shake = 0.01
@@ -191,6 +192,10 @@ target = NodePath("../../../GrabPointHandLeft")
 
 [node name="InsertionHitDetection" type="RayCast3D" parent="." index="7"]
 target_position = Vector3(1, 0, 0)
+
+[node name="Snapping" type="RayCast3D" parent="." index="8"]
+collision_mask = 256
+collide_with_areas = true
 
 [connection signal="dropped" from="." to="." method="_on_dropped"]
 [connection signal="picked_up" from="." to="." method="_on_picked_up"]

@@ -1,8 +1,10 @@
+@icon("res://Textures/Grid.png")
 class_name PlantGrid
-extends Node3D
+extends StaticBody3D
 
 @export var debug_grid : bool
 @export var flip_z : bool
+@export var centered : bool
 @export var width : float
 @export var height : float
 @export var cellsize : float = 0.1875
@@ -10,6 +12,8 @@ extends Node3D
 var width_cells : int
 var height_cells : int
 var data : Array[GridCell]
+
+var center_offset : Vector3
 
 func _ready():
 	# Flip z axis
@@ -20,6 +24,8 @@ func _ready():
 	width_cells = width / cellsize
 	height_cells = height / cellsize
 	data.resize(width_cells * height_cells)
+	
+	center_offset = Vector3(width / 2.0, 0.0, height / 2.0)
 	
 	# Set data for each cell
 	for i in data.size():
@@ -42,10 +48,17 @@ func _draw_debug_grid():
 		cube_mesh.size = Vector3(cellsize * 0.9, 0.05, cellsize * 0.9)
 		cube.mesh = cube_mesh
 		add_child(cube)
-		cube.position = Vector3(float(pos.x) * cellsize, 0, float(pos.y) * cellsize) + Vector3(cellsize/2.0, 0, cellsize/2.0)
+		
+		if centered:
+			cube.position = Vector3(float(pos.x) * cellsize, 0, float(pos.y) * cellsize) + Vector3(cellsize/2.0, 0, cellsize/2.0) - center_offset
+		else:
+			cube.position = Vector3(float(pos.x) * cellsize, 0, float(pos.y) * cellsize) + Vector3(cellsize/2.0, 0, cellsize/2.0)
 
 func get_cell(position : Vector3) -> GridCell:
 	position = to_local(position)
+	
+	if centered:
+		position += center_offset
 	
 	var column : int = floor(position.x / cellsize)
 	var row : int = floor(position.z / cellsize)
@@ -65,6 +78,9 @@ func get_placement_position(cell : GridCell, width : int) -> Vector3:
 										float(cell.position.x) * cellsize,
 										0,
 										float(cell.position.y) * cellsize)
+	
+	if centered:
+		local_position -= center_offset
 	
 	if width % 2 == 0:
 		local_position += Vector3(cellsize, 0, cellsize)
@@ -145,33 +161,25 @@ func _get_cell_position(index : int):
 	
 	return Vector2i(x, y)
 
-func find_allowed_space(cell : GridCell, width : int) -> GridCell:
-	# Get all surrounding grids
-	var surrounding_cells : Array[GridCell] = _get_cells(cell, 3, false)
+func find_inbound_cell(cell : GridCell, width : int) -> GridCell:
+	# Get all surrounding cells inside of bounds
+	var surrounding_cells : Array[GridCell] = _get_cells(cell, 5, false)
 	
-	var free_cells : Array[GridCell] = []
-	
-	for s_cell in surrounding_cells:
-		# Check if current cell is occupied
-		if s_cell.occupied:
-			continue
-		
-		# Check if placement would be possible
-		if is_placement_allowed(s_cell, width):
-			free_cells.push_back(s_cell)
-	
-	# Find closest free sapce
 	var min_dist : float = INF
 	var min_index : int = -1
 	
-	for i in free_cells.size():
-		var dir : Vector2i = cell.position - free_cells[i].position
+	for i in surrounding_cells.size():
+		var nearby : Array[GridCell] = _get_cells(surrounding_cells[i], width, true)
 		
-		if dir.length() < min_dist:
-			min_dist = dir.length()
-			min_index = i
+		# This is the case if all found cells are in bounds
+		if nearby.size() > 0:
+			var dir : Vector2i = cell.position - surrounding_cells[i].position
+			
+			if dir.length() < min_dist:
+				min_dist = dir.length()
+				min_index = i
 	
 	if min_index != -1:
-		return free_cells[min_index]
+		return surrounding_cells[min_index]
 	
 	return null
