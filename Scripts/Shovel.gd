@@ -213,7 +213,7 @@ func _handle_complete_pull():
 	add_child(pull_complete_parts)
 	
 	# Move particles to correct position and rotation
-	pull_complete_parts.global_position = soil_insertion_point + Vector3(0, particles_height_offset, 0)
+	pull_complete_parts.global_position = soil_insertion_point + Vector3(0, 0.1, 0)
 	pull_complete_parts.global_rotation = Vector3.UP
 	pull_complete_parts.emitting = true
 	
@@ -224,6 +224,8 @@ func _handle_complete_pull():
 	var dig_spot_instance = shovel_settings[current_setting_index].dig_spot.instantiate()
 	$"..".add_child(dig_spot_instance)
 	dig_spot_instance.global_position = current_cell.grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+	dig_spot_instance.anchor_cell = current_cell
+	dig_spot_instance.cell_width = shovel_settings[current_setting_index].cell_width
 	
 	# Occupy space on grid
 	current_cell.grid.set_state(current_cell, shovel_settings[current_setting_index].cell_width, true)

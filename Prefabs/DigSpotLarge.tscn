@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkxvwepyk4plc"]
+[gd_scene load_steps=4 format=3 uid="uid://dkxvwepyk4plc"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="1_wqs72"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_3bsdb"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_on85t"]
-size = Vector3(0.564, 0.02, 0.564)
+[sub_resource type="BoxShape3D" id="BoxShape3D_wy2mn"]
+size = Vector3(0.564, 0.04, 0.564)
 
 [node name="DigSpot" instance=ExtResource("1_wqs72")]
 
-[node name="Mesh" parent="StaticBody3D" index="1"]
-transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
-mesh = SubResource("BoxMesh_on85t")
+[node name="Dig Spot Model" parent="." index="0" instance=ExtResource("2_3bsdb")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Trigger Shape" parent="Trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("BoxShape3D_wy2mn")

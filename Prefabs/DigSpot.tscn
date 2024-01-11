@@ -1,18 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=3 format=3 uid="uid://k1ig4nxq85cm"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_pqaor"]
-margin = 0.0
-radius = 0.1
+[ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_4e6wi"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="2_pw0ei"]
 
 [node name="DigSpot" type="Node3D"]
+script = ExtResource("1_4e6wi")
+remove_amount = 2.0
+max_jiggle = 10.0
+max_jiggle_speed = 40.0
+particles = ExtResource("2_pw0ei")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 128
-collision_mask = 0
+[node name="Trigger" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 131072
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("SphereShape3D_pqaor")
+[node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]
 
-[node name="Mesh" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 0, 0)
-skeleton = NodePath("../..")
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]

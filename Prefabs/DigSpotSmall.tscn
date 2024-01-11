@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1erk7h5ynw83"]
+[gd_scene load_steps=4 format=3 uid="uid://d1erk7h5ynw83"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="1_nrc0v"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_mpyk8"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jm34j"]
-size = Vector3(0.188, 0.02, 0.188)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jffax"]
+size = Vector3(0.188, 0.0397656, 0.188)
 
 [node name="DigSpot" instance=ExtResource("1_nrc0v")]
 
-[node name="Mesh" parent="StaticBody3D" index="1"]
-transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
-mesh = SubResource("BoxMesh_jm34j")
+[node name="Dig Spot Model" parent="." index="0" instance=ExtResource("2_mpyk8")]
+
+[node name="Trigger Shape" parent="Trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("BoxShape3D_jffax")
+
+[node name="Particle Collision" type="GPUParticlesCollisionBox3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)
+size = Vector3(0.19, 0.01875, 0.19)
