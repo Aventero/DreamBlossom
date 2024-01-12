@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://df5udxryim133"]
+[gd_scene load_steps=10 format=3 uid="uid://df5udxryim133"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_sra33"]
 [ext_resource type="Script" path="res://Scripts/Seed.gd" id="2_e5jje"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_h6ta1"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_yqhm7"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="5_16ya0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rotf0"]
 size = Vector3(0.02, 0.02, 0.04)
@@ -36,3 +38,9 @@ script = ExtResource("3_h6ta1")
 [node name="SeedHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
 mesh = SubResource("BoxMesh_2a7kr")
 skeleton = NodePath("../..")
+
+[node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("4_yqhm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227661, 0.00427888, -0.0828818)
+
+[node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("5_16ya0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227661, 0.00427888, -0.0828818)

@@ -106,7 +106,7 @@ closed_pose = ExtResource("8_5mmx3")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wyfb4"]
 size = Vector3(0.038, 0.034, 0.1)
 
-[node name="Shovel" groups=["Shovel"] instance=ExtResource("1_ho1dq")]
+[node name="Shovel" groups=["Returnable", "Shovel"] instance=ExtResource("1_ho1dq")]
 script = ExtResource("12_k2gu3")
 min_insertion_angle = 20.0
 lerp_speed = 0.075

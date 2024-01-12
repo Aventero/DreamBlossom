@@ -1,20 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=4 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_4e6wi"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="2_pw0ei"]
+[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/shovel_insert.tscn" id="3_mjdw8"]
 
 [node name="DigSpot" type="Node3D"]
 script = ExtResource("1_4e6wi")
 remove_amount = 2.0
 max_jiggle = 10.0
 max_jiggle_speed = 40.0
-particles = ExtResource("2_pw0ei")
+remove_particles = ExtResource("2_pw0ei")
+seed_insert_particles = ExtResource("3_mjdw8")
 
 [node name="Trigger" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 196612
 
 [node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]
+
+[node name="Particle Collision" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)
+size = Vector3(0.19, 0.01875, 0.19)
+
+[node name="Seed Snap Point" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]

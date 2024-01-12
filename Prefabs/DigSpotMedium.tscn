@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="1_oflii"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_fx3h5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mtitv"]
-size = Vector3(0.376, 0.04, 0.376)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qquq1"]
+size = Vector3(0.376, 0.08, 0.376)
 
 [node name="DigSpot" instance=ExtResource("1_oflii")]
 
@@ -12,5 +12,12 @@ size = Vector3(0.376, 0.04, 0.376)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Trigger Shape" parent="Trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+shape = SubResource("BoxShape3D_qquq1")
+
+[node name="Particle Collision" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
-shape = SubResource("BoxShape3D_mtitv")
+size = Vector3(0.38, 0.04, 0.38)
+
+[node name="Seed Snap Point" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
