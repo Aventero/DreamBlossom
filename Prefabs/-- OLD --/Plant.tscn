@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b41mmhbw51rdr"]
 
-[ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_3wd1d"]
-[ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_tlxku"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/Plant.gd" id="1_smlle"]
+[ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_ohjnd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ah5s"]
 size = Vector3(0.1, 1, 0.1)
@@ -10,26 +10,26 @@ size = Vector3(0.1, 1, 0.1)
 size = Vector3(0.1, 0.685, 0.1)
 
 [node name="Plant" type="Node3D"]
-script = ExtResource("1_3wd1d")
+script = ExtResource("1_smlle")
 
 [node name="GrowTimer" type="Timer" parent="."]
 wait_time = 10.0
 
 [node name="Stem" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = ExtResource("1_tlxku")
+material_override = ExtResource("2_ohjnd")
 mesh = SubResource("BoxMesh_6ah5s")
 skeleton = NodePath("")
 
 [node name="Stem2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.256611, 1.19848, 0)
-material_override = ExtResource("1_tlxku")
+material_override = ExtResource("2_ohjnd")
 mesh = SubResource("BoxMesh_uhovd")
 skeleton = NodePath("")
 
 [node name="Stem3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.255946, 1.1968, 0)
-material_override = ExtResource("1_tlxku")
+material_override = ExtResource("2_ohjnd")
 mesh = SubResource("BoxMesh_uhovd")
 skeleton = NodePath("")
 

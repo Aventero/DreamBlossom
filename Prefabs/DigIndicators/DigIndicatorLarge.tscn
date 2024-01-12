@@ -1,21 +1,21 @@
 [gd_scene load_steps=7 format=3 uid="uid://c52mp3attv6ds"]
 
-[ext_resource type="PackedScene" uid="uid://dyrjvfiya4jf5" path="res://Prefabs/DiggingIndicator.tscn" id="1_l4160"]
-[ext_resource type="Material" uid="uid://b1mxod0y353id" path="res://Materials/IndicatorAllowed.tres" id="2_x8214"]
-[ext_resource type="Material" uid="uid://cskatl02lpgwd" path="res://Materials/IndicatorRestricted.tres" id="3_c42cs"]
+[ext_resource type="PackedScene" uid="uid://dyrjvfiya4jf5" path="res://Prefabs/DigIndicators/DigIndicator.tscn" id="1_58mrs"]
+[ext_resource type="Material" uid="uid://b1mxod0y353id" path="res://Materials/IndicatorAllowed.tres" id="2_ketc8"]
+[ext_resource type="Material" uid="uid://cskatl02lpgwd" path="res://Materials/IndicatorRestricted.tres" id="3_10a02"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_87p32"]
 size = Vector3(0.564, 0.02, 0.564)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o20yg"]
-material = ExtResource("2_x8214")
+material = ExtResource("2_ketc8")
 size = Vector3(0.564, 0.02, 0.564)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tf1so"]
-material = ExtResource("3_c42cs")
+material = ExtResource("3_10a02")
 size = Vector3(0.564, 0.02, 0.564)
 
-[node name="DiggingIndicator" instance=ExtResource("1_l4160")]
+[node name="DiggingIndicator" instance=ExtResource("1_58mrs")]
 
 [node name="Collision" parent="." index="0"]
 shape = SubResource("BoxShape3D_87p32")

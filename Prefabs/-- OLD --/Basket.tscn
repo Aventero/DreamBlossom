@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://cdjge3h14b8xr" path="res://Materials/Basket.tres" id="1_ocj0m"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_jd2wo"]
-[ext_resource type="PackedScene" uid="uid://1de1tibuj5lf" path="res://Prefabs/UI/FruitScoreUI.tscn" id="3_s07ip"]
-[ext_resource type="Script" path="res://Scripts/BasketFruitDropZone.gd" id="4_idsy5"]
+[ext_resource type="PackedScene" uid="uid://1de1tibuj5lf" path="res://Prefabs/-- OLD --/FruitScoreUI.tscn" id="3_s07ip"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/BasketFruitDropZone.gd" id="4_idsy5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5wbfh"]
 lightmap_size_hint = Vector2i(14, 12)

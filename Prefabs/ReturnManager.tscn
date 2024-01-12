@@ -4,6 +4,5 @@
 
 [node name="ReturnManager" type="Area3D"]
 script = ExtResource("1_vq3sv")
-debug_draw = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

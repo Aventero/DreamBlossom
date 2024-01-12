@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqii0lt66vbtm"]
 
-[ext_resource type="Script" path="res://Scripts/HungerUI.gd" id="1_qdrpd"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/HungerUI.gd" id="1_qdrpd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mdux8"]
 font_size = 75

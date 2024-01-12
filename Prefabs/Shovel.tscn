@@ -4,24 +4,24 @@
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_ds8h5"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_lf87i"]
+[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/ShovelInsert.tscn" id="4_smo6c"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_tceuc"]
 [ext_resource type="Animation" uid="uid://dqa0h82y3qn1t" path="res://addons/godot-xr-tools/hands/animations/left/Grip 1.res" id="5_x7nrh"]
+[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="5_ydn4m"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="6_7tbpl"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mqylq"]
-[ext_resource type="PackedScene" uid="uid://doimm837nnyew" path="res://Prefabs/DiggingIndicatorSmall.tscn" id="7_ibsco"]
+[ext_resource type="PackedScene" uid="uid://d1erk7h5ynw83" path="res://Prefabs/DigSpots/DigSpotSmall.tscn" id="7_idem5"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_kdv8v"]
 [ext_resource type="Animation" uid="uid://daqddcrbpam0c" path="res://addons/godot-xr-tools/hands/animations/right/Grip 1.res" id="8_5mmx3"]
-[ext_resource type="PackedScene" uid="uid://ckulb7rpdxh1v" path="res://Prefabs/DiggingIndicatorMedium.tscn" id="8_gp4mf"]
-[ext_resource type="PackedScene" uid="uid://c52mp3attv6ds" path="res://Prefabs/DiggingIndicatorLarge.tscn" id="9_nvuml"]
-[ext_resource type="PackedScene" uid="uid://d1erk7h5ynw83" path="res://Prefabs/DigSpotSmall.tscn" id="10_5daom"]
+[ext_resource type="PackedScene" uid="uid://doimm837nnyew" path="res://Prefabs/DigIndicators/DigIndicatorSmall.tscn" id="8_d4wbi"]
+[ext_resource type="PackedScene" uid="uid://b82hongws0y4" path="res://Prefabs/DigSpots/DigSpotMedium.tscn" id="10_vwie3"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="11_d46uq"]
-[ext_resource type="PackedScene" uid="uid://b82hongws0y4" path="res://Prefabs/DigSpotMedium.tscn" id="11_jlswe"]
-[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/shovel_insert.tscn" id="12_h2gjw"]
+[ext_resource type="PackedScene" uid="uid://ckulb7rpdxh1v" path="res://Prefabs/DigIndicators/DigIndicatorMedium.tscn" id="11_j7vde"]
+[ext_resource type="PackedScene" uid="uid://dkxvwepyk4plc" path="res://Prefabs/DigSpots/DigSpotLarge.tscn" id="12_1ajy8"]
 [ext_resource type="Script" path="res://Scripts/Shovel.gd" id="12_k2gu3"]
-[ext_resource type="PackedScene" uid="uid://dkxvwepyk4plc" path="res://Prefabs/DigSpotLarge.tscn" id="12_n0r2o"]
+[ext_resource type="PackedScene" uid="uid://c52mp3attv6ds" path="res://Prefabs/DigIndicators/DigIndicatorLarge.tscn" id="13_0tarp"]
 [ext_resource type="PackedScene" uid="uid://ca3daqmpo0tua" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn" id="13_gdu0i"]
-[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/shovel_pull.tscn" id="13_luau2"]
 [ext_resource type="Script" path="res://Scripts/ShovelSetting.gd" id="13_viqha"]
-[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/shovel_pull_complete.tscn" id="14_6w1tt"]
 
 [sub_resource type="Resource" id="Resource_o2cdm"]
 script = ExtResource("11_d46uq")
@@ -40,22 +40,22 @@ duration_ms = 300
 [sub_resource type="Resource" id="Resource_fjwsw"]
 script = ExtResource("13_viqha")
 name = "Small"
-indicator = ExtResource("7_ibsco")
-dig_spot = ExtResource("10_5daom")
+indicator = ExtResource("8_d4wbi")
+dig_spot = ExtResource("7_idem5")
 cell_width = 1
 
 [sub_resource type="Resource" id="Resource_kpcut"]
 script = ExtResource("13_viqha")
 name = "Medium"
-indicator = ExtResource("8_gp4mf")
-dig_spot = ExtResource("11_jlswe")
+indicator = ExtResource("11_j7vde")
+dig_spot = ExtResource("10_vwie3")
 cell_width = 2
 
 [sub_resource type="Resource" id="Resource_ltrai"]
 script = ExtResource("13_viqha")
 name = "Large"
-indicator = ExtResource("9_nvuml")
-dig_spot = ExtResource("12_n0r2o")
+indicator = ExtResource("13_0tarp")
+dig_spot = ExtResource("12_1ajy8")
 cell_width = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x22t0"]
@@ -118,9 +118,9 @@ min_pull_distance = 0.1
 target_pull_distance = 0.4
 pull_particle_offset = 0.1
 particles_height_offset = 0.02
-insert_particles = ExtResource("12_h2gjw")
-pull_particles = ExtResource("13_luau2")
-pull_complete_particles = ExtResource("14_6w1tt")
+insert_particles = ExtResource("4_smo6c")
+pull_particles = ExtResource("5_ydn4m")
+pull_complete_particles = ExtResource("6_7tbpl")
 shovel_settings = Array[ExtResource("13_viqha")]([SubResource("Resource_fjwsw"), SubResource("Resource_kpcut"), SubResource("Resource_ltrai")])
 ranged_grab_method = 2
 ranged_grab_speed = 2.5

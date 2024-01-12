@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwh147sbovcye"]
 
-[ext_resource type="Script" path="res://Scripts/DiggingSpot.gd" id="1_iibpp"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/DiggingSpot.gd" id="1_iibpp"]
 [ext_resource type="PackedScene" uid="uid://y1ntu84hi8ql" path="res://Models/DirtHill.blend" id="1_xrkiu"]
 [ext_resource type="PackedScene" uid="uid://duv8p7yyxt748" path="res://Models/DirtHillDug.blend" id="2_a3202"]
-[ext_resource type="PackedScene" uid="uid://dl2rlqbcgabw2" path="res://Prefabs/Timer.tscn" id="4_p4hqr"]
+[ext_resource type="PackedScene" uid="uid://dl2rlqbcgabw2" path="res://Prefabs/-- OLD --/Timer.tscn" id="4_p4hqr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_68vr1"]
 size = Vector3(0.2, 0.017, 0.2)

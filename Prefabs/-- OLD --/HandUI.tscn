@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfxll7ndyvev2"]
 
-[ext_resource type="Script" path="res://Scripts/HandUI.gd" id="1_udphj"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/HandUI.gd" id="1_udphj"]
 
 [node name="Root" type="PanelContainer"]
 offset_right = 200.0

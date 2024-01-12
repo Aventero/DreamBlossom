@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkxvwepyk4plc"]
 
-[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpot.tscn" id="1_wqs72"]
+[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpots/DigSpot.tscn" id="1_wqs72"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_3bsdb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wy2mn"]

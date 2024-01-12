@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl2rlqbcgabw2"]
 
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="1_albs3"]
-[ext_resource type="Script" path="res://Scripts/Timer.gd" id="1_dmwct"]
-[ext_resource type="PackedScene" uid="uid://bijot5mjw6oj" path="res://Prefabs/UI/TimerUI.tscn" id="2_ydst1"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/Timer.gd" id="1_mr8mo"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_2qoti"]
+[ext_resource type="PackedScene" uid="uid://bijot5mjw6oj" path="res://Prefabs/-- OLD --/TimerUI.tscn" id="3_vdl5u"]
 
 [node name="Timer" type="Node3D"]
-script = ExtResource("1_dmwct")
+script = ExtResource("1_mr8mo")
 
-[node name="TimerUI" parent="." instance=ExtResource("1_albs3")]
+[node name="TimerUI" parent="." instance=ExtResource("2_2qoti")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 screen_size = Vector2(1.66, 1)
 collision_layer = 0
-scene = ExtResource("2_ydst1")
+scene = ExtResource("3_vdl5u")
 viewport_size = Vector2(500, 300)
 update_mode = 2
 throttle_fps = 1.0
