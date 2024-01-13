@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=19 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
 [ext_resource type="PackedScene" uid="uid://3pnj4m3jvgej" path="res://Prefabs/SeedBag.tscn" id="8_rxdi4"]
+[ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Plot.tscn" id="10_tfn6c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
@@ -73,7 +74,6 @@ script = ExtResource("3_4slt7")
 [node name="ReturnManager" parent="." instance=ExtResource("4_yyuga")]
 collision_layer = 0
 collision_mask = 4
-debug_draw = false
 range = 3.0
 range_origin = Vector3(0, 1.5, 0)
 
@@ -99,7 +99,7 @@ transform = Transform3D(0.999998, 0.00122001, -0.00142788, -0.00121978, 0.999999
 mesh = SubResource("PlaneMesh_xbxci")
 
 [node name="Shovel" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.907851, 0, -0.419294, 0, 1, 0, 0.419294, 0, 0.907851, 0.245143, 0.933711, -0.635764)
+transform = Transform3D(0.907851, 0, -0.419294, 0, 1, 0, 0.419294, 0, 0.907851, -0.391244, 0.933711, -0.836185)
 
 [node name="Shovel2" parent="." instance=ExtResource("8_mo161")]
 transform = Transform3D(0.972105, 0, 0.234548, 0, 1, 0, -0.234548, 0, 0.972105, -0.218915, 0.933711, -0.560216)
@@ -109,5 +109,8 @@ transform = Transform3D(0.796055, 0, 0.605225, 0, 1, 0, -0.605225, 0, 0.796055, 
 
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
+
+[node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
+transform = Transform3D(0.439939, 0, 0.898028, 0, 1, 0, -0.898028, 0, 0.439939, 0.510325, 0.842, -0.625534)
 
 [editable path="Player"]

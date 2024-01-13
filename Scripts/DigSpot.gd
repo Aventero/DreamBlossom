@@ -3,6 +3,7 @@ class_name DigSpot
 extends Node3D
 
 @export var remove_amount : float
+@export var watering_amount : int
 
 @export_category("Jiggel Settings")
 @export var max_jiggle : float
@@ -24,6 +25,9 @@ var previous_hand_position : Vector3
 
 # Seed
 var seed : Seed
+
+# Watering
+var current_water : int = 0
 
 var time : float = 0.0
 var to_be_deleted : bool = false
@@ -78,45 +82,54 @@ func _free_callback():
 func _on_trigger_body_entered(body):
 	# Check if body is hand
 	if body is XRToolsCollisionHand:
-		# Check if hand is currently holding a object
-		var function_pickup : XRToolsFunctionPickup = body.get_node("FunctionPickup")
-		
-		if not function_pickup or function_pickup.picked_up_object:
-			return
-		
-		# Save current hand
-		hand = body
-		previous_hand_position = body.global_position
+		_handle_hand_movement(body)
 	
 	# Check if body is seed
 	if not seed and body is Seed:
 		seed = body
-		
-		# Force player to drop seed
-		seed.drop()
-		
-		# Disable pickable from seed
-		seed.enabled = false
-		seed.freeze = true
-		
-		# Reset rotation and place seed to snap point
-		var tween : Tween = create_tween()
-		tween.set_parallel(true)
-		tween.tween_property(seed, "rotation", Vector3.ZERO, 0.05)
-		tween.tween_property(seed, "global_position", seed_snap_point.global_position, 0.05)
-		
-		# Play jiggle animation for dig spot
-		tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
-		tween.chain().tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
-		
-		# Spawn particles
-		var particles : GPUParticles3D = seed_insert_particles.instantiate()
-		add_child(particles)
-		particles.position = seed_snap_point.position + Vector3(0, 0.1, 0)
-		particles.emitting = true
-		
-		# Reparent seed after tween
-		tween.tween_callback(Callable(_reparent_seed_callback))
+		_handle_seed_insert()
+	
+	# Check if body is waterdrop
+	if body is WaterDrop:
+		print("Water detected")
+
+func _handle_hand_movement(body : Node3D):
+	# Check if hand is currently holding a object
+	var function_pickup : XRToolsFunctionPickup = body.get_node("FunctionPickup")
+	
+	if not function_pickup or function_pickup.picked_up_object:
+		return
+	
+	# Save current hand
+	hand = body
+	previous_hand_position = body.global_position
+
+func _handle_seed_insert():
+	# Force player to drop seed
+	seed.drop()
+	
+	# Disable pickable from seed
+	seed.enabled = false
+	seed.freeze = true
+	
+	# Reset rotation and place seed to snap point
+	var tween : Tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(seed, "rotation", Vector3.ZERO, 0.05)
+	tween.tween_property(seed, "global_position", seed_snap_point.global_position, 0.05)
+	
+	# Play jiggle animation for dig spot
+	tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
+	tween.chain().tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
+	
+	# Spawn particles
+	var particles : GPUParticles3D = seed_insert_particles.instantiate()
+	add_child(particles)
+	particles.position = seed_snap_point.position + Vector3(0, 0.1, 0)
+	particles.emitting = true
+	
+	# Reparent seed after tween
+	tween.tween_callback(Callable(_reparent_seed_callback))
 
 func _reparent_seed_callback():
 	seed.get_parent().remove_child(seed)

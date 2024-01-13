@@ -7,6 +7,7 @@
 [node name="DigSpot" type="Node3D"]
 script = ExtResource("1_lp3ox")
 remove_amount = 2.0
+watering_amount = 5
 max_jiggle = 10.0
 max_jiggle_speed = 40.0
 remove_particles = ExtResource("2_nlffj")
@@ -14,7 +15,7 @@ seed_insert_particles = ExtResource("3_suh21")
 
 [node name="Trigger" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 196612
+collision_mask = 197124
 
 [node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]
 

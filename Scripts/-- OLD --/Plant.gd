@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var spawnpoint_parent : Node3D = $Spawnpoints
 @onready var grow_timer : Timer = $GrowTimer
-@onready var fruit : PackedScene = preload("res://Prefabs/DefaultFruit.tscn")
+@onready var fruit : PackedScene = preload("res://Prefabs/-- OLD --/DefaultFruit.tscn")
 @onready var grown_fruits : Node3D = $GrownFruits
 
 var spawnpoints : Array[SpawnPoint]

@@ -4,7 +4,7 @@ extends Node3D
 @onready var digging_spot_dug : Node3D = $DirtHillDug
 @onready var seed_slot : Node3D = $DirtHillDug/Seed
 @onready var timer : Custom_Timer = $GrowTimer
-@onready var plant : PackedScene = preload("res://Prefabs/Plant.tscn")
+@onready var plant : PackedScene = preload("res://Prefabs/-- OLD --/Plant.tscn")
 
 # Current state of digging spot
 var state : DigSpotState

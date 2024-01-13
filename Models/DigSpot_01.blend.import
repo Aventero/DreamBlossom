@@ -30,6 +30,12 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
+"materials": {
+"Leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://Materials/Leaves.tres"
+}
+},
 "nodes": {
 "PATH:Plane_026": {
 "generate/physics": true,

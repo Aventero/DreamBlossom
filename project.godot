@@ -34,6 +34,7 @@ import/fbx/enabled=false
 3d_physics/layer_3="Pickable Objects"
 3d_physics/layer_8="Dig Spot Block"
 3d_physics/layer_9="Indicator"
+3d_physics/layer_10="WaterDrop"
 3d_physics/layer_17="Held Objects"
 3d_physics/layer_18="Player Hand"
 3d_physics/layer_19="Grab Handles"

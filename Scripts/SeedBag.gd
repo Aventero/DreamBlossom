@@ -12,9 +12,14 @@ func _on_picked_up(pickable):
 	# Instantly drop seed bag so it stays in place
 	drop()
 	
+	# Play jiggle animation
+	var tween : Tween = create_tween()
+	tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
+	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
+	
 	# Instantiate new seed
 	var seed_instance : XRToolsPickable = seed.instantiate()
-	$"..".add_child(seed_instance)
+	add_sibling(seed_instance)
 	seed_instance.global_position = player_hand.global_position
 	
 	# Force seed into players hand

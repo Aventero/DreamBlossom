@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://u1lj0ge0eu0v"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_f78l7"]
+[ext_resource type="PackedScene" uid="uid://bu5d6l1aow4tv" path="res://Models/WateringCan.tscn" id="2_h1qta"]
+[ext_resource type="Script" path="res://Scripts/WateringCan.gd" id="2_ngscu"]
+[ext_resource type="PackedScene" uid="uid://dqg63xo3abxvn" path="res://Prefabs/WaterDrop.tscn" id="3_3bmx2"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_gb2ho"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_mbsu1"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_1qjvm"]
+[ext_resource type="Material" uid="uid://yskd5jdqu2th" path="res://Materials/Water.tres" id="8_g1rv5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4miq6"]
+height = 0.2
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqdty"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow = true
+grow_amount = 0.005
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k0v60"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 35.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.75
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_elwn8"]
+material = ExtResource("8_g1rv5")
+size = Vector3(0.02, 0.02, 0.02)
+
+[node name="WateringCan" groups=["Returnable"] instance=ExtResource("1_f78l7")]
+script = ExtResource("2_ngscu")
+water_drop = ExtResource("3_3bmx2")
+checks_per_second = 6
+water_angle = 110.0
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000488281, 0.0983276, -0.00399017)
+shape = SubResource("CylinderShape3D_4miq6")
+
+[node name="WateringCan" parent="." index="1" instance=ExtResource("2_h1qta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00513349)
+
+[node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("3_gb2ho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0198326, 0.154632, 0.10098)
+
+[node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("4_mbsu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.154632, 0.101331)
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="4"]
+visible = false
+script = ExtResource("6_1qjvm")
+
+[node name="WateringCanHighlight" parent="XRToolsHighlightVisible" index="0" instance=ExtResource("2_h1qta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00513349)
+
+[node name="Base" parent="XRToolsHighlightVisible/WateringCanHighlight" index="0"]
+material_override = SubResource("StandardMaterial3D_qqdty")
+
+[node name="Grip" parent="XRToolsHighlightVisible/WateringCanHighlight" index="1"]
+material_override = SubResource("StandardMaterial3D_qqdty")
+
+[node name="Shaft" parent="XRToolsHighlightVisible/WateringCanHighlight" index="2"]
+material_override = SubResource("StandardMaterial3D_qqdty")
+
+[node name="Head" parent="XRToolsHighlightVisible/WateringCanHighlight" index="3"]
+material_override = SubResource("StandardMaterial3D_qqdty")
+
+[node name="Water Particles" type="GPUParticles3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.913531, -0.406769, 0, 0.406769, 0.913531, 0, 0.187306, -0.198001)
+emitting = false
+amount = 64
+lifetime = 2.0
+fixed_fps = 60
+collision_base_size = 0.02
+process_material = SubResource("ParticleProcessMaterial_k0v60")
+draw_pass_1 = SubResource("BoxMesh_elwn8")
+
+[editable path="XRToolsHighlightVisible/WateringCanHighlight"]

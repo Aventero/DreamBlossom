@@ -40,7 +40,7 @@ mesh = SubResource("BoxMesh_2a7kr")
 skeleton = NodePath("../..")
 
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("4_yqhm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227661, 0.00427888, -0.0828818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, -0.083)
 
 [node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("5_16ya0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227661, 0.00427888, -0.0828818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, -0.083)

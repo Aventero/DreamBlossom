@@ -136,7 +136,6 @@ mesh = SubResource("ArrayMesh_flygy")
 skeleton = NodePath("")
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
-visible = false
 script = ExtResource("2_ds8h5")
 
 [node name="ShovelHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
