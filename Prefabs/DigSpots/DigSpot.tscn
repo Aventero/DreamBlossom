@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=5 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_lp3ox"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
 [ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
+[ext_resource type="Script" path="res://Scripts/MaterialChanger.gd" id="4_f013i"]
 
 [node name="DigSpot" type="Node3D"]
 script = ExtResource("1_lp3ox")
@@ -24,6 +25,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)
 size = Vector3(0.19, 0.01875, 0.19)
 
 [node name="Seed Snap Point" type="Node3D" parent="."]
+
+[node name="MaterialChanger" type="Node3D" parent="."]
+script = ExtResource("4_f013i")
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]

@@ -37,7 +37,7 @@ size = Vector3(0.02, 0.02, 0.02)
 [node name="WateringCan" groups=["Returnable"] instance=ExtResource("1_f78l7")]
 script = ExtResource("2_ngscu")
 water_drop = ExtResource("3_3bmx2")
-checks_per_second = 6
+checks_per_second = 3
 water_angle = 110.0
 
 [node name="CollisionShape3D" parent="." index="0"]

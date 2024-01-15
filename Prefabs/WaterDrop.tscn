@@ -26,6 +26,7 @@ shape = SubResource("SphereShape3D_u1mok")
 one_shot = true
 
 [node name="Debug Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_b3vd2")
 
 [connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

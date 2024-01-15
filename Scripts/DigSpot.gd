@@ -14,6 +14,7 @@ extends Node3D
 @export var seed_insert_particles : PackedScene
 
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
+@onready var material_changer : MaterialChanger = $MaterialChanger
 
 var anchor_cell : GridCell
 var cell_width : int
@@ -90,8 +91,11 @@ func _on_trigger_body_entered(body):
 		_handle_seed_insert()
 	
 	# Check if body is waterdrop
-	if body is WaterDrop:
-		print("Water detected")
+	if current_water < watering_amount and body is WaterDrop:
+		current_water = current_water + 1
+		
+		# Change material to next state
+		material_changer.next_state()
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
