@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=6 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_lp3ox"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
 [ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
 [ext_resource type="Script" path="res://Scripts/MaterialChanger.gd" id="4_f013i"]
+
+[sub_resource type="GDScript" id="GDScript_ceeo6"]
+script/source = "extends Timer
+
+@onready var dig_spot : DigSpot = $\"..\"
+
+func _on_timeout():
+	# Reduce water amount by one
+	dig_spot.current_water -= 1
+	
+	dig_spot.material_changer.previous_state()
+	
+	# Stop timer if completly dry
+	if dig_spot.current_water == 0:
+		stop()
+"
 
 [node name="DigSpot" type="Node3D"]
 script = ExtResource("1_lp3ox")
@@ -29,5 +45,10 @@ size = Vector3(0.19, 0.01875, 0.19)
 [node name="MaterialChanger" type="Node3D" parent="."]
 script = ExtResource("4_f013i")
 
+[node name="DryTimer" type="Timer" parent="."]
+wait_time = 5.0
+script = SubResource("GDScript_ceeo6")
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]
+[connection signal="timeout" from="DryTimer" to="DryTimer" method="_on_timeout"]

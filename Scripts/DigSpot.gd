@@ -15,6 +15,7 @@ extends Node3D
 
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
 @onready var material_changer : MaterialChanger = $MaterialChanger
+@onready var dry_timer : Timer = $DryTimer
 
 var anchor_cell : GridCell
 var cell_width : int
@@ -92,10 +93,7 @@ func _on_trigger_body_entered(body):
 	
 	# Check if body is waterdrop
 	if current_water < watering_amount and body is WaterDrop:
-		current_water = current_water + 1
-		
-		# Change material to next state
-		material_changer.next_state()
+		_handle_water_drop()
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
@@ -134,6 +132,15 @@ func _handle_seed_insert():
 	
 	# Reparent seed after tween
 	tween.tween_callback(Callable(_reparent_seed_callback))
+
+func _handle_water_drop():
+	current_water = current_water + 1
+	
+	# Change material to next state
+	material_changer.next_state()
+	
+	# Start dry timer if not already started
+	dry_timer.start()
 
 func _reparent_seed_callback():
 	seed.get_parent().remove_child(seed)
