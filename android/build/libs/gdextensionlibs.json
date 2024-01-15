@@ -1,3 +1,4 @@
 [
+	"res://android/build/libs/debug/arm64-v8a/libdd3d.android.template_debug.arm64.so",
 	"res://android/build/libs/debug/arm64-v8a/libgodot-jolt_android-arm64_editor.so"
 ]

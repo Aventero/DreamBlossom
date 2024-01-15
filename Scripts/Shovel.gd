@@ -227,9 +227,6 @@ func _handle_complete_pull():
 	dig_spot_instance.anchor_cell = current_cell
 	dig_spot_instance.cell_width = shovel_settings[current_setting_index].cell_width
 	
-	# Occupy space on grid
-	current_cell.grid.set_state(current_cell, shovel_settings[current_setting_index].cell_width, true)
-	
 	# Emit completed pull
 	pull_completed.emit()
 	
@@ -286,6 +283,9 @@ func _on_soil_trigger_body_entered(body):
 	
 	# Disable Shovel and enable pull interactable
 	_shovel_soil_insert()
+	
+	# Occupy space on grid
+	current_cell.grid.set_state(current_cell, shovel_settings[current_setting_index].cell_width, true)
 	
 	# Emit insert signal
 	inserted.emit()

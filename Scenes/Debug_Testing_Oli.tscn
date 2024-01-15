@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=22 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/ReturnManager.tscn" id="4_yyuga"]
+[ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/WeedManager.tscn" id="5_rchdc"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
@@ -45,6 +46,12 @@ material = SubResource("StandardMaterial3D_pbtpx")
 add_uv2 = true
 size = Vector2(1.5, 1.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_axmly"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_neeav"]
+size = Vector3(0.5, 1, 0.5)
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_qcfmw")
 
@@ -80,6 +87,9 @@ range_origin = Vector3(0, 1.5, 0)
 [node name="Collision" type="CollisionShape3D" parent="ReturnManager"]
 shape = SubResource("BoxShape3D_v1xlr")
 
+[node name="WeedManager" parent="." node_paths=PackedStringArray("plots") instance=ExtResource("5_rchdc")]
+plots = [NodePath("../Plot")]
+
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Ground" type="StaticBody3D" parent="Environment"]
@@ -98,19 +108,28 @@ shape = SubResource("BoxShape3D_7yi6c")
 transform = Transform3D(0.999998, 0.00122001, -0.00142788, -0.00121978, 0.999999, 0.00016148, 0.00142807, -0.000159727, 0.999999, 0, 0.0125213, 0)
 mesh = SubResource("PlaneMesh_xbxci")
 
+[node name="Table" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88911, 0.348511, 0.0218657)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Table"]
+shape = SubResource("BoxShape3D_axmly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Table"]
+mesh = SubResource("BoxMesh_neeav")
+
 [node name="Shovel" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.907851, 0, -0.419294, 0, 1, 0, 0.419294, 0, 0.907851, -0.391244, 0.933711, -0.836185)
+transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.740942, 0.872308, -0.0869218)
 
 [node name="Shovel2" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.972105, 0, 0.234548, 0, 1, 0, -0.234548, 0, 0.972105, -0.218915, 0.933711, -0.560216)
+transform = Transform3D(0.697516, 0, 0.71657, 0, 1, 0, -0.71657, 0, 0.697516, 0.740203, 0.872308, 0.136785)
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(0.796055, 0, 0.605225, 0, 1, 0, -0.605225, 0, 0.796055, -0.597676, 1.08071, -0.634044)
+transform = Transform3D(0.796055, 0, 0.605225, 0, 1, 0, -0.605225, 0, 0.796055, 0.883041, 1.08071, -0.36248)
+
+[node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
+transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 1.0382, 0.852544, 0.112716)
 
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
-
-[node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
-transform = Transform3D(0.439939, 0, 0.898028, 0, 1, 0, -0.898028, 0, 0.439939, 0.510325, 0.842, -0.625534)
 
 [editable path="Player"]

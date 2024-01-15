@@ -1,124 +1,308 @@
-extends Node3D
+@icon("res://Textures/shovel.png")
+class_name Shovel
+extends XRToolsPickable
 
-@export var pull_distance : float
+# Emitted when shovel is inserted into soil
+signal inserted(position: Vector3)
+
+# Emitted when shovel pull started
+signal pull_started
+
+# Emitted when shovel pull ended
+signal pull_stopped
+
+# Emitted when shovel pull is completed
+signal pull_completed
+
+@export_category("General")
+## Defines the minimum angle for inserting the shovel into the soil
+@export var min_insertion_angle : float
+@export var lerp_speed : float
+
+@export_category("Rumble Haptics")
+## This rumble plays when inserting the shovel into the soil
 @export var put_rumble : XRToolsRumbleEvent
+## This rumble plays when pulling the shovel out of the soil
 @export var pull_rumble : XRToolsRumbleEvent
 
+@export_category("Pull Animation")
+## Defines how strong the shovel can shake during pull
 @export var max_shake : float
+## Defines how fast the shovel can shake during pull
 @export var max_speed : float
 
-@export var particles_height_offset : float
+@export_category("Pull Settings")
+## Defines the minimum pull distance for rumble effect to occur
+@export var min_pull_distance : float 
+## Defines the pull distance to complete the shovel pull
+@export var target_pull_distance : float
+## Defines at which pull distance the pull particles are spawned. Given in % of pull distance.
+@export_range(0, 1) var pull_particle_offset : float
 
+@export_category("Particles")
+## Defines the spawnpoint height offset to the soil intersection point
+@export var particles_height_offset : float
+## Defines particles on shovel insertion
 @export var insert_particles : PackedScene
+## Defines particles on shovel pull
 @export var pull_particles : PackedScene
+## Defines particles on complete shovel pull
 @export var pull_complete_particles : PackedScene
 
-@onready var pickable_shovel : XRToolsPickable = $".."
-@onready var pickable_pull : XRToolsPickable = $"../PullOrigin/PullPickup"
-@onready var intersection_raycast : RayCast3D = $"../InsertionHitDetection"
+@export_category("Shovel Settings")
+@export var shovel_settings : Array[ShovelSetting]
 
-@onready var shovel_pickup_collider : CollisionShape3D = $"../CollisionShape3D"
-@onready var pull_origin : Node3D = $"../PullOrigin"
-@onready var pull_pickup_collider : CollisionShape3D = $"../PullOrigin/PullPickup/CollisionShape3D"
+@onready var pickable_pull : XRToolsPickable = $PullOrigin/PullPickup
 
-var insert_position : Vector3
-var insert_rotation : Vector3
-var prev_position : Vector3
-var velocity : float
-var time : float = 0
-var allow_insertion = true
+@onready var shovel_pickup_collider : CollisionShape3D = $CollisionShape3D
+@onready var pull_pickup_collider : CollisionShape3D = $"PullOrigin/PullPickup/CollisionShape3D"
+
+@onready var intersection_raycast : RayCast3D = $"InsertionHitDetection"
+@onready var pull_origin : Node3D = $"PullOrigin"
+
+@onready var snapping_raycast : RayCast3D = $Snapping
 
 var pull_particle_instance : GPUParticles3D
+var soil_insertion_point : Vector3
+var pull_pickup_position : Vector3
+
+var inserted_shovel_position : Vector3
+var inserted_shovel_rotation : Vector3
+
+var angle : float
+var time : float = 0
+
+var controller : XRController3D
+
+# Defines current shovel setting (Indicator, Digspot and size)
+var current_setting_index : int = 0
+
+# Hold current indicator instance
+var indicator_instance : Indicator = null
+
+# Hold currently selected cell
+var current_cell : GridCell = null
+var allowed_insertion : bool = false
 
 func _ready():
-	prev_position = global_position
+	super()
+	
+	# Spawn first indicator
+	indicator_instance = shovel_settings[current_setting_index].indicator.instantiate()
+	add_child(indicator_instance)
 
 func _process(delta):
 	time += delta
 	
-	# Skip calculates if not picked up
-	if pickable_shovel.is_picked_up():
-		# Calculate current velocity of shovel
-		var current_position : Vector3 = global_position
-		var delta_position : Vector3 = current_position - prev_position
-		velocity = (delta_position / delta).x
-		prev_position = current_position
+	# Check insertion angle
+	angle = rad_to_deg(transform.basis.x.angle_to(Vector3.UP))
 	
+	# Check if shovel is currently hold
+	if is_picked_up():
+		_handle_shovel()
+	
+	# Check if shovel pull is currently hold
 	if pickable_pull.is_picked_up():
-		# Calculate distance to origin
-		var distance : float = (pickable_pull.global_position - pull_origin.global_position).length()
-		
-		# Adjust pull rumble haptics according to distance
-		var ratio : float = distance / pull_distance
-		pull_rumble.magnitude = ratio
-		
-		# Shake shovel depending on distance
-		pickable_shovel.position = insert_position + Vector3(
-			sin(time * max_speed) * ratio * max_shake,
-			0,
-			cos(time * max_speed) * ratio * max_shake
-		)
-		
-		pickable_shovel.rotation = insert_rotation + Vector3(
-			0,
-			sin(time * max_speed) * ratio * 0.1,
-			cos(time * max_speed) * ratio * 0.1
-		)
-		
-		if distance > pull_distance:
-			var function_pickup : XRToolsFunctionPickup = pickable_pull.get_picked_up_by()
+		_handle_shovel_pull()
+
+func _handle_shovel():
+	if not intersection_raycast.is_colliding():
+		# Reset previously selected cell
+		current_cell = null
+		allowed_insertion = false
+		indicator_instance.set_state(Indicator.STATE.HIDDEN)
+		indicator_instance.ignore_lerp = true
+		return
+	
+	var hit : Node3D = intersection_raycast.get_collider()
+	
+	if not hit.is_in_group("Soil"):
+		# Reset previously selected cell
+		current_cell = null
+		allowed_insertion = false
+		indicator_instance.set_state(Indicator.STATE.HIDDEN)
+		indicator_instance.ignore_lerp = true
+		return
+	
+	# Convert hit to plant grid
+	var grid : PlantGrid = hit
+	
+	# Find cell which is closest to intersection point
+	var cell : GridCell = grid.get_cell(intersection_raycast.get_collision_point())
+	
+	if not cell:
+		return
+	
+	# Find closest cell which is inbound. Only applies to border cells
+	var inbound_cell : GridCell = grid.find_inbound_cell(cell, shovel_settings[current_setting_index].cell_width)
+	
+	# If current placement is allowed => Place indicator & Update cell
+	if grid.is_placement_allowed(inbound_cell, shovel_settings[current_setting_index].cell_width):
+		current_cell = inbound_cell
+		allowed_insertion = true
+		indicator_instance.set_state(Indicator.STATE.ALLOWED)
+	else:
+		# Update indicator position if new cell is occupied or indicator is restricted / hidden
+		if cell.occupied or indicator_instance.state == Indicator.STATE.RESTRICTED or indicator_instance.state == Indicator.STATE.HIDDEN:
+			current_cell = inbound_cell
+			allowed_insertion = false
+			indicator_instance.set_state(Indicator.STATE.RESTRICTED)
+		else:
+			# Move snapping raycast to correct position / rotation
+			snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
+			snapping_raycast.global_rotation = Vector3.ZERO
 			
-			# Spawn particles
-			var pull_complete_parts : GPUParticles3D = pull_complete_particles.instantiate()
-			add_child(pull_complete_parts)
-			pull_complete_parts.emitting = true
-			
-			_shovel_soil_leave()
-			function_pickup._pick_up_object(pickable_shovel)
+			# Shovel leaves snapped indicator -> Move snapped cell
+			if not snapping_raycast.is_colliding():
+				current_cell = inbound_cell
+				allowed_insertion = false
+				indicator_instance.set_state(Indicator.STATE.RESTRICTED)
+	
+	# Move indicator to correct cell position
+	var cell_pos = grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+	
+	# Ignore lerp if indicator is not currently spawned in
+	if indicator_instance.ignore_lerp:
+		indicator_instance.global_position = cell_pos
+		indicator_instance.ignore_lerp = false
+	else:
+		var position_lerp = create_tween()
+		position_lerp.tween_property(indicator_instance, "global_position", cell_pos, lerp_speed)
+	
+	indicator_instance.global_rotation = Vector3.ZERO
+
+func _handle_shovel_pull():
+	# Calculate current pull distance to pull pickup position
+	var distance : float = (pickable_pull.global_position - pull_pickup_position).length()
+	
+	# Calculate current ratio of pulled distance minus min_pull_distance and target distance
+	var ratio : float = max(0, (distance - min_pull_distance) / target_pull_distance)
+	
+	# Adjust pull rumble haptics according to ratio
+	pull_rumble.magnitude = ratio
+	
+	# Animate shovel shake on pull
+	_shovel_pull_animation(ratio)
+	
+	# Spawn pull particles
+	if ratio > pull_particle_offset and pull_particle_instance == null:
+		var pull_parts : GPUParticles3D = pull_particles.instantiate()
+		add_child(pull_parts)
+		
+		# Move particles to correct position and rotation
+		pull_parts.global_position = soil_insertion_point + Vector3(0, particles_height_offset, 0)
+		pull_parts.global_rotation = Vector3.UP
+		
+		pull_particle_instance = pull_parts
+	else:
+		# Despawn particles if there is one
+		if not pull_particle_instance == null:
+			pull_particle_instance.one_shot = true
+			pull_particle_instance.emitting = false
+			pull_particle_instance = null
+	
+	# Check if pull distance reached target distance
+	if distance > target_pull_distance:
+		_handle_complete_pull()
+
+func _handle_complete_pull():
+	var controller_pickup : XRToolsFunctionPickup = pickable_pull.get_picked_up_by()
+	
+	# Spawn pull complete particles
+	var pull_complete_parts : GPUParticles3D = pull_complete_particles.instantiate()
+	add_child(pull_complete_parts)
+	
+	# Move particles to correct position and rotation
+	pull_complete_parts.global_position = soil_insertion_point + Vector3(0, 0.1, 0)
+	pull_complete_parts.global_rotation = Vector3.UP
+	pull_complete_parts.emitting = true
+	
+	# Reenable shovel
+	_shovel_soil_leave()
+	
+	# Spawn dig spot
+	var dig_spot_instance = shovel_settings[current_setting_index].dig_spot.instantiate()
+	$"..".add_child(dig_spot_instance)
+	dig_spot_instance.global_position = current_cell.grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+	dig_spot_instance.anchor_cell = current_cell
+	dig_spot_instance.cell_width = shovel_settings[current_setting_index].cell_width
+	
+	# Emit completed pull
+	pull_completed.emit()
+	
+	# Force player to pick up shovel again
+	controller_pickup._pick_up_object(self)
+
+func _shovel_pull_animation(ratio):
+	position = inserted_shovel_position + Vector3(
+		sin(time * max_speed) * ratio * max_shake,
+		0,
+		cos(time * max_speed) * ratio * max_shake
+	)
+	
+	rotation = inserted_shovel_rotation + Vector3(
+		0,
+		sin(time * max_speed) * ratio * 0.1,
+		cos(time * max_speed) * ratio * 0.1
+	)
 
 func _on_soil_trigger_body_entered(body):
-	# Check if insertion is allowed
-	if not allow_insertion:
+	# Check if current angle of shovel is allowed for insertion
+	if not _insertion_angle_allowed():
 		return
 	
 	# Check if shovel is currently held
-	if not pickable_shovel.is_picked_up():
+	if not is_picked_up():
+		return
+	
+	# Check if current cell is valid
+	if not allowed_insertion:
 		return
 	
 	# Haptic feedback for shovel insert
-	var controller : XRController3D = pickable_shovel.get_picked_up_by_controller()
+	var controller : XRController3D = get_picked_up_by_controller()
 	XRToolsRumbleManager.add(controller.name, put_rumble, [controller])
 	
-	# Get intersection point
-	var insertion_point : Vector3 = intersection_raycast.get_collision_point()
-	print(insertion_point)
+	# Get intersection point with soil
+	soil_insertion_point = intersection_raycast.get_collision_point()
 	
-	# Spawn particles
+	# Spawn insertion particles
 	var particles : GPUParticles3D = insert_particles.instantiate()
 	add_child(particles)
-	particles.global_position = insertion_point + Vector3(0, particles_height_offset, 0)
+	
+	# Move particles to correct position and rotation
+	particles.global_position = soil_insertion_point + Vector3(0, particles_height_offset, 0)
+	particles.global_rotation = Vector3.UP
 	particles.emitting = true
 	
-	var function_pickup : XRToolsFunctionPickup = pickable_shovel.get_picked_up_by()
+	# Save current transform of shovel for pull animation
+	inserted_shovel_position = position
+	inserted_shovel_rotation = rotation
+	
+	var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
 	
 	# Disable Shovel and enable pull interactable
-	insert_position = pickable_shovel.position
-	insert_rotation = pickable_shovel.rotation
 	_shovel_soil_insert()
 	
+	# Occupy space on grid
+	current_cell.grid.set_state(current_cell, shovel_settings[current_setting_index].cell_width, true)
+	
+	# Emit insert signal
+	inserted.emit()
+	
 	# Make player hold new pull object
-	function_pickup._pick_up_object(pickable_pull)
+	controller_pickup._pick_up_object(pickable_pull)
 
 func _shovel_soil_insert():
 	# Disable pickup collider
 	shovel_pickup_collider.disabled = true
 	
 	# Make player to drop shovel
-	pickable_shovel.drop()
+	drop()
 
 	# Make shovel static while frozen so it stays at current position
-	pickable_shovel.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
-	pickable_shovel.freeze = true
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	freeze = true
 	
 	# Enable pull pickable
 	pickable_pull.enabled = true
@@ -134,13 +318,28 @@ func _shovel_soil_leave():
 	
 	# Reactivate shovel
 	shovel_pickup_collider.disabled = false
-	pickable_shovel.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
-	pickable_shovel.freeze = false
+	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	freeze = false
+
+func _insertion_angle_allowed():
+	if angle < 90.0 + min_insertion_angle:
+		return false
+	return true
+
+func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
+	# Add pull rumble haptic to correct controller
+	var controller : XRController3D = pickable.get_picked_up_by_controller()
+	XRToolsRumbleManager.add("pull_rumble", pull_rumble, [controller])
+	
+	# Save current controller position as pull origin
+	pull_pickup_position = controller.global_position
+	
+	pull_started.emit()
 
 func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 	# Reset pull handle to origin
 	pickable_pull.position = Vector3.ZERO
-	pickable_pull.rotation = $"../PullOrigin".rotation
+	pickable_pull.rotation = pull_origin.rotation
 	
 	# Remove pull rumble haptic
 	XRToolsRumbleManager.clear("pull_rumble")
@@ -150,19 +349,38 @@ func _on_pull_pickup_dropped(pickable: XRToolsPickable):
 		pull_particle_instance.one_shot = true
 		pull_particle_instance.emitting = false
 		pull_particle_instance = null
-
-func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
-	# Add pull rumble haptic to correct controller
-	var controller : XRController3D = pickable.get_picked_up_by_controller()
-	XRToolsRumbleManager.add("pull_rumble", pull_rumble, [controller])
 	
-	# Spawn particle system
-	var pull_parts : GPUParticles3D = pull_particles.instantiate()
-	add_child(pull_parts)
-	pull_particle_instance = pull_parts
+	pull_stopped.emit()
 
-func _on_handle_trigger_body_entered(body):
-	allow_insertion = false
+func _on_picked_up(pickable : XRToolsPickable):
+	# Connect input change event from current controller
+	controller = pickable.get_picked_up_by_controller()
+	controller.input_vector2_changed.connect(Callable(_controller_input_change))
 
-func _on_handle_trigger_body_exited(body):
-	allow_insertion = true
+func _on_dropped(pickable : XRToolsPickable):
+	# Remove input change event
+	controller.input_vector2_changed.disconnect(Callable(_controller_input_change))
+	
+	indicator_instance.set_state(Indicator.STATE.HIDDEN)
+
+func _controller_input_change(name: String, value: Vector2):
+	if name == "primary":
+		# Check right movement of stick
+		if value.x == 1.0:
+			change_setting(1)
+		
+		# Check left movement of stick
+		if value.x == -1.0:
+			change_setting(-1)
+
+func change_setting(offset : int):
+	# Change current dig spot level accordingly
+	current_setting_index = (current_setting_index + offset + shovel_settings.size()) % shovel_settings.size()
+	
+	# Despawn old indicator
+	if indicator_instance:
+		indicator_instance.queue_free()
+	
+	# Spawn new one
+	indicator_instance = shovel_settings[current_setting_index].indicator.instantiate()
+	add_child(indicator_instance)
