@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://m5xsccaiggpj"]
+
+[ext_resource type="PackedScene" uid="uid://bqifats4m7udl" path="res://Models/SoilWatering.blend" id="1_aasdl"]
+[ext_resource type="Texture2D" uid="uid://xd1ymemrdirq" path="res://Asesprite/Soil_2.png" id="2_83yey"]
+[ext_resource type="Texture2D" uid="uid://w6e6qw52n4nt" path="res://Asesprite/Soil_0.png" id="2_g3ryj"]
+[ext_resource type="Texture2D" uid="uid://ct3vtqde3a0r4" path="res://Asesprite/Soil_1.png" id="3_yp2os"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beq46"]
+albedo_texture = ExtResource("2_g3ryj")
+texture_filter = 0
+
+[sub_resource type="GDScript" id="GDScript_nmprp"]
+script/source = "extends MeshInstance3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var image = load(\"res://Asesprite/Soil_0.png\")
+	var material : Material = get_surface_override_material(0)
+	material.set_texture(image)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ty636"]
+albedo_texture = ExtResource("3_yp2os")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sx74v"]
+albedo_texture = ExtResource("2_83yey")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_gm4t1"]
+resource_name = "Watering"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soil:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_beq46"), SubResource("StandardMaterial3D_ty636"), SubResource("StandardMaterial3D_sx74v")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1wt2j"]
+_data = {
+"Watering": SubResource("Animation_gm4t1")
+}
+
+[node name="SoilWatering" instance=ExtResource("1_aasdl")]
+
+[node name="Soil" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_beq46")
+script = SubResource("GDScript_nmprp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_1wt2j")
+}

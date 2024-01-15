@@ -12,6 +12,7 @@ extends Node3D
 @export_category("Particles")
 @export var remove_particles : PackedScene
 @export var seed_insert_particles : PackedScene
+@export var growing_plant : PackedScene
 
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
 @onready var material_changer : MaterialChanger = $MaterialChanger
@@ -33,6 +34,7 @@ var current_water : int = 0
 
 var time : float = 0.0
 var to_be_deleted : bool = false
+var plant_planted : bool = false
 
 func _process(delta):
 	# Skip update if spot is currently in remove tween / animation
@@ -91,9 +93,17 @@ func _on_trigger_body_entered(body):
 		seed = body
 		_handle_seed_insert()
 	
+	
+	# Check if fully watered
+	if (current_water == watering_amount and body is WaterDrop and plant_planted == false):
+		_spawn_plant(Vector3(0, 0, 0))
+		plant_planted = true
+		
+	
 	# Check if body is waterdrop
-	if current_water < watering_amount and body is WaterDrop:
+	if current_water < watering_amount and body is WaterDrop and plant_planted == false:
 		_handle_water_drop()
+	
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
@@ -132,6 +142,11 @@ func _handle_seed_insert():
 	
 	# Reparent seed after tween
 	tween.tween_callback(Callable(_reparent_seed_callback))
+	
+func _spawn_plant(spawning_position : Vector3):
+	var growingPlant = growing_plant.instantiate()
+	growingPlant.initialize(Vector3(spawning_position))
+	add_child(growingPlant)
 
 func _handle_water_drop():
 	current_water += 1

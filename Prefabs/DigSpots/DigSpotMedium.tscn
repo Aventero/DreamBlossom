@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b82hongws0y4"]
+[gd_scene load_steps=15 format=3 uid="uid://b82hongws0y4"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpots/DigSpot.tscn" id="1_oflii"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_fx3h5"]
-[ext_resource type="Material" uid="uid://v7a83dplkh2h" path="res://Materials/Leaves.tres" id="3_rxx2g"]
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/GrowingPlant.tscn" id="2_ojxdc"]
+[ext_resource type="Material" path="res://Materials/Leaves.tres" id="3_rxx2g"]
 [ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="4_2357s"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_ijxpq"]
 
@@ -60,6 +61,7 @@ name = "Wet_2"
 material = SubResource("StandardMaterial3D_01xln")
 
 [node name="DigSpot" instance=ExtResource("1_oflii")]
+growing_plant = ExtResource("2_ojxdc")
 
 [node name="Dig Spot Model" parent="." index="0" instance=ExtResource("2_fx3h5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
