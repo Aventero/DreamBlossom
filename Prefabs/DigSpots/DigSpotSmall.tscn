@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://d1erk7h5ynw83"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpots/DigSpot.tscn" id="1_nrc0v"]
-[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/GrowingPlant.tscn" id="2_mmpaf"]
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Plant.tscn" id="2_mmpaf"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_mpyk8"]
 [ext_resource type="Material" path="res://Materials/Leaves.tres" id="3_0ygyb"]
 [ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="3_ywljb"]

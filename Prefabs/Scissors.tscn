@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3atgcxkd78m4"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_vpipe"]
+[ext_resource type="Script" path="res://Scripts/Scissors.gd" id="2_2idro"]
+
+[node name="Scissors" instance=ExtResource("1_vpipe")]
+script = ExtResource("2_2idro")

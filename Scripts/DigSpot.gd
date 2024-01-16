@@ -2,6 +2,8 @@
 class_name DigSpot
 extends Node3D
 
+signal water_added
+
 @export var remove_amount : float
 @export var watering_amount : int
 
@@ -92,18 +94,12 @@ func _on_trigger_body_entered(body):
 	if not seed and body is Seed:
 		seed = body
 		_handle_seed_insert()
-	
-	
-	# Check if fully watered
-	if (current_water == watering_amount and body is WaterDrop and plant_planted == false):
-		_spawn_plant(Vector3(0, 0, 0))
-		plant_planted = true
-		
-	
+
 	# Check if body is waterdrop
-	if current_water < watering_amount and body is WaterDrop and plant_planted == false:
-		_handle_water_drop()
-	
+	if body is WaterDrop:
+		water_added.emit()
+		if current_water < watering_amount:
+			_handle_water_drop()
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
@@ -145,11 +141,18 @@ func _handle_seed_insert():
 	
 func _spawn_plant(spawning_position : Vector3):
 	var growingPlant = growing_plant.instantiate()
-	growingPlant.initialize(Vector3(spawning_position))
+	growingPlant.position = Vector3(spawning_position)
 	add_child(growingPlant)
 
 func _handle_water_drop():
+	# Added a drop of water
 	current_water += 1
+	
+	# Check if fully watered
+	if current_water == watering_amount:
+		if plant_planted == false:
+			_spawn_plant(Vector3(0, 0, 0))
+			plant_planted = true
 	
 	# Change material to next state
 	material_changer.next_state()

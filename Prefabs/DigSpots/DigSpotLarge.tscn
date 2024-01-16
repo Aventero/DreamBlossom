@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpots/DigSpot.tscn" id="1_wqs72"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_3bsdb"]
-[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/GrowingPlant.tscn" id="2_wh2ug"]
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Plant.tscn" id="2_wh2ug"]
 [ext_resource type="Material" path="res://Materials/Leaves.tres" id="3_rxc8u"]
 [ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="4_gntnw"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_805yh"]
