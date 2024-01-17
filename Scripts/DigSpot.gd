@@ -14,7 +14,6 @@ signal water_added
 @export_category("Particles")
 @export var remove_particles : PackedScene
 @export var seed_insert_particles : PackedScene
-@export var growing_plant : PackedScene
 
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
 @onready var material_changer : MaterialChanger = $MaterialChanger
@@ -28,15 +27,14 @@ var progress : float
 var hand : XRToolsCollisionHand
 var previous_hand_position : Vector3
 
-# Seed
-var seed : Seed
+# Seed / Plant
+var seed : Seed = null
 
 # Watering
 var current_water : int = 0
 
 var time : float = 0.0
 var to_be_deleted : bool = false
-var plant_planted : bool = false
 
 func _process(delta):
 	# Skip update if spot is currently in remove tween / animation
@@ -98,6 +96,7 @@ func _on_trigger_body_entered(body):
 	# Check if body is waterdrop
 	if body is WaterDrop:
 		water_added.emit()
+		
 		if current_water < watering_amount:
 			_handle_water_drop()
 
@@ -138,27 +137,26 @@ func _handle_seed_insert():
 	
 	# Reparent seed after tween
 	tween.tween_callback(Callable(_reparent_seed_callback))
-	
-func _spawn_plant(spawning_position : Vector3):
-	var growingPlant = growing_plant.instantiate()
-	growingPlant.position = Vector3(spawning_position)
-	add_child(growingPlant)
 
 func _handle_water_drop():
 	# Added a drop of water
 	current_water += 1
 	
 	# Check if fully watered
-	if current_water == watering_amount:
-		if plant_planted == false:
-			_spawn_plant(Vector3(0, 0, 0))
-			plant_planted = true
+	if current_water == watering_amount and seed != null and not seed.grown:
+		_spawn_plant(Vector3(0, 0, 0))
+		seed.grown = true
 	
 	# Change material to next state
 	material_changer.next_state()
 	
 	# Start dry timer if not already started
 	dry_timer.start()
+
+func _spawn_plant(spawning_position : Vector3):
+	var plant_instance : Node3D = seed.plant.instantiate()
+	plant_instance.position = Vector3(spawning_position)
+	add_child(plant_instance)
 
 func _reparent_seed_callback():
 	seed.get_parent().remove_child(seed)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=66 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=67 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
 [ext_resource type="Script" path="res://Scripts/Stage.gd" id="3_r51xa"]
 [ext_resource type="Script" path="res://Scripts/WateringEvent.gd" id="4_gpqma"]
 [ext_resource type="Script" path="res://Prefabs/PruneEvent.gd" id="5_2obkr"]
+[ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/DeadLeaf.tscn" id="6_074ke"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h2q2"]
 resource_name = "Leaves"
@@ -3276,17 +3277,17 @@ mesh = SubResource("ArrayMesh_ikx56")
 skeleton = NodePath("")
 
 [node name="Stick" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.00913444, 0.0134394, -0.00645632, -0.0148323, 0.00741994, -0.00553957, -0.00151801, 0.00837058, 0.0152764, 0.00374061, 0.193991, 0.00265682)
+transform = Transform3D(0.00913444, 0.0134394, -0.00645631, -0.0148323, 0.00741994, -0.00553957, -0.00151801, 0.00837057, 0.0152764, 0.00374061, 0.193991, 0.00265682)
 mesh = SubResource("ArrayMesh_1nfv5")
 skeleton = NodePath("")
 
 [node name="Stick_001" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.00510871, -0.0132951, -0.0017855, 0.0134144, 0.00506649, 0.000655786, 2.28165e-05, -0.00190199, 0.0142277, 0.00190812, 0.217569, 0.00278274)
+transform = Transform3D(0.00510872, -0.0132951, -0.0017855, 0.0134144, 0.00506651, 0.000655788, 2.28165e-05, -0.00190199, 0.0142277, 0.00190812, 0.217569, 0.00278274)
 mesh = SubResource("ArrayMesh_73g62")
 skeleton = NodePath("")
 
 [node name="Stick_002" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.0126122, 0.0104483, 0.000791323, -0.00628737, 0.0065556, 0.0136512, 0.00838229, -0.0108036, 0.0090488, 0.00585938, 0.234375, -0.00585938)
+transform = Transform3D(0.0126122, 0.0104483, 0.000791318, -0.00628737, 0.00655561, 0.0136512, 0.00838229, -0.0108036, 0.00904881, 0.00585938, 0.234375, -0.00585938)
 mesh = SubResource("ArrayMesh_lecka")
 skeleton = NodePath("")
 
@@ -3346,7 +3347,7 @@ mesh = SubResource("ArrayMesh_2ihke")
 skeleton = NodePath("")
 
 [node name="Leaf_017" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.795641, 0.376295, -0.086125, 0.347286, 0.7839, 0.216688, 0.168546, 0.161132, -0.853047, -0.0528135, 0.243002, -0.00128438)
+transform = Transform3D(-0.795641, 0.376295, -0.0861254, 0.347286, 0.7839, 0.216688, 0.168546, 0.161132, -0.853047, -0.0528135, 0.243002, -0.00128438)
 mesh = SubResource("ArrayMesh_egmil")
 skeleton = NodePath("")
 
@@ -3418,12 +3419,12 @@ libraries = {
 [node name="StageTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Stage" type="Node3D" parent="." groups=["Stage"]]
+[node name="Stage1" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
 
-[node name="WateringEvent" type="Node3D" parent="Stage"]
+[node name="WateringEvent" type="Node3D" parent="Stage1"]
 script = ExtResource("4_gpqma")
 
 [node name="Stage2" type="Node3D" parent="." groups=["Stage"]]
@@ -3433,8 +3434,9 @@ animation_name = "Grow"
 
 [node name="PruneEvent" type="Node3D" parent="Stage2"]
 script = ExtResource("5_2obkr")
+dead_leaf = ExtResource("6_074ke")
 
-[node name="Spawnpoint" type="Node3D" parent="Stage2/PruneEvent"]
+[node name="Spawnpoint1" type="Node3D" parent="Stage2/PruneEvent"]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0.00978064, 0.140928, 0.00144776)
 
 [node name="Spawnpoint2" type="Node3D" parent="Stage2/PruneEvent"]
@@ -3444,5 +3446,5 @@ transform = Transform3D(0.824936, 0, -0.565226, 0, 1, 0, 0.565226, 0, 0.824936, 
 transform = Transform3D(0.489702, 0, 0.87189, 0, 1, 0, -0.87189, 0, 0.489702, 0.0111423, 0.241329, 0.00632555)
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
-[connection signal="stage_completed" from="Stage" to="." method="_on_stage_stage_completed"]
-[connection signal="stage_completed" from="Stage2" to="." method="_on_stage_stage_completed"]
+[connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]

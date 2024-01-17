@@ -1,27 +1,37 @@
 @icon("res://Textures/GrowingPlant.png")
+class_name Plant
 extends Node3D
-
+ 
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+
 var stages : Array[Stage] = []
-var stage_counter : int = 0
+var current_stage : int = 0
 
 func _ready():
+	# Search for stages in plant
 	for child in get_children():
 		if child.is_in_group("Stage"):
 			stages.append(child)
 	
-	stage_timer.start(stages[0].run_time)
-	animation_player.play(stages[0].animation_name)
+	# Start first stage
+	start_stage(current_stage)
 
-func _process(delta):
-	pass
+func start_stage(index : int):
+	var stage : Stage = stages[index]
+	
+	stage_timer.start(stage.run_time)
+	animation_player.play(stage.animation_name)
 
 func _on_stage_timer_timeout():
-	stages[stage_counter].start_event()
-	pass
+	# Start stage events
+	stages[current_stage].start_events()
 
-
-func _on_stage_stage_completed():
+func _on_stage_complete():
 	print("STAGE COMPLETED!")
-	pass 
+	
+	current_stage += 1
+	
+	if current_stage < stages.size():
+		start_stage(current_stage)
+
