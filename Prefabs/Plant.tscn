@@ -1,11 +1,17 @@
-[gd_scene load_steps=67 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=75 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
+[ext_resource type="Script" path="res://Scripts/IconDisplay.gd" id="3_5eqqh"]
 [ext_resource type="Script" path="res://Scripts/Stage.gd" id="3_r51xa"]
 [ext_resource type="Script" path="res://Scripts/WateringEvent.gd" id="4_gpqma"]
 [ext_resource type="Script" path="res://Prefabs/PruneEvent.gd" id="5_2obkr"]
+[ext_resource type="Script" path="res://Scripts/FertilizeEvent.gd" id="5_t8t8x"]
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/DeadLeaf.tscn" id="6_074ke"]
+[ext_resource type="Texture2D" uid="uid://cg8fnuygb4byn" path="res://Textures/Fertilizer.png" id="6_sdd15"]
+[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="7_s1xj8"]
+[ext_resource type="PackedScene" uid="uid://8ecc2uq3sg6u" path="res://Prefabs/-- OLD --/WaterEventIcon.tscn" id="9_33sjg"]
+[ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="12_o8imm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h2q2"]
 resource_name = "Leaves"
@@ -3266,6 +3272,17 @@ _data = {
 "RESET": SubResource("Animation_ddu0b")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjk1"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_urccy"]
+size = Vector2(0.075, 0.075)
+
 [node name="Plant" type="Node3D"]
 script = ExtResource("1_hmowl")
 
@@ -3419,32 +3436,58 @@ libraries = {
 [node name="StageTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Stage1" type="Node3D" parent="." groups=["Stage"]]
+[node name="IconDisplay" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.338, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_pnjk1")
+mesh = SubResource("PlaneMesh_urccy")
+script = ExtResource("3_5eqqh")
+
+[node name="IconViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(64, 83)
+
+[node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
+
+[node name="Stage 2" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
 
-[node name="WateringEvent" type="Node3D" parent="Stage1"]
+[node name="FertilizeEvent" type="Node3D" parent="Stage 2"]
+script = ExtResource("5_t8t8x")
+icon_texture = ExtResource("6_sdd15")
+
+[node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
+script = ExtResource("3_r51xa")
+run_time = 10.0
+animation_name = "Grow"
+
+[node name="WateringEvent" type="Node3D" parent="Stage 1"]
 script = ExtResource("4_gpqma")
+icon_texture = ExtResource("7_s1xj8")
 
-[node name="Stage2" type="Node3D" parent="." groups=["Stage"]]
+[node name="Stage 3" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
 
-[node name="PruneEvent" type="Node3D" parent="Stage2"]
+[node name="PruneEvent" type="Node3D" parent="Stage 3"]
 script = ExtResource("5_2obkr")
 dead_leaf = ExtResource("6_074ke")
+icon_texture = ExtResource("12_o8imm")
 
-[node name="Spawnpoint1" type="Node3D" parent="Stage2/PruneEvent"]
+[node name="Spawnpoint1" type="Node3D" parent="Stage 3/PruneEvent"]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0.00978064, 0.140928, 0.00144776)
 
-[node name="Spawnpoint2" type="Node3D" parent="Stage2/PruneEvent"]
+[node name="Spawnpoint2" type="Node3D" parent="Stage 3/PruneEvent"]
 transform = Transform3D(0.824936, 0, -0.565226, 0, 1, 0, 0.565226, 0, 0.824936, -0.0141923, 0.241329, -0.000521692)
 
-[node name="Spawnpoint3" type="Node3D" parent="Stage2/PruneEvent"]
+[node name="Spawnpoint3" type="Node3D" parent="Stage 3/PruneEvent"]
 transform = Transform3D(0.489702, 0, 0.87189, 0, 1, 0, -0.87189, 0, 0.489702, 0.0111423, 0.241329, 0.00632555)
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
-[connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
-[connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage 2" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage 1" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage 3" to="." method="_on_stage_complete"]

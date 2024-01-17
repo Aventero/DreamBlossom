@@ -50,6 +50,7 @@ jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 lights_and_shadows/directional_shadow/size.mobile=4096

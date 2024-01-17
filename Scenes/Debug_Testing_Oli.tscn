@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=25 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/ItemBags/SeedBag.tscn" id="8_rxdi4"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Plot.tscn" id="10_tfn6c"]
+[ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
+[ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
+[ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -118,10 +121,7 @@ shape = SubResource("BoxShape3D_axmly")
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="Shovel" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.740942, 0.872308, -0.0869218)
-
-[node name="Shovel2" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.697516, 0, 0.71657, 0, 1, 0, -0.71657, 0, 0.697516, 0.740203, 0.872308, 0.136785)
+transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.958005, 0.872308, -0.0710085)
 
 [node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
 transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 1.0382, 0.852544, 0.112716)
@@ -131,5 +131,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.846265, 0.987084, -0.320027)
+ranged_grab_method = 1
+
+[node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
+transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.730515, 0.848191, -0.13663)
+ranged_grab_method = 1
+
+[node name="YellowFertilizerBag" parent="." instance=ExtResource("13_5hnma")]
+transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676, 0.731276, 0.847415, 0.0268056)
+
+[node name="GreenFertilizerBag" parent="." instance=ExtResource("14_8orm1")]
+transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.737108, 0.849216, 0.182532)
 
 [editable path="Player"]

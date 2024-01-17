@@ -25,8 +25,8 @@ func _on_picked_up(pickable):
 	
 	# Instantiate new item
 	var item_instance : XRToolsPickable = item.instantiate()
-	add_sibling(item_instance)
 	item_instance.global_position = player_hand.global_position
+	add_sibling(item_instance)
 	
 	# Force item into players hand
 	player_hand._pick_up_object(item_instance)

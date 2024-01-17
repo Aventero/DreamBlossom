@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cq7rntr2jsnlp"]
+[gd_scene load_steps=36 format=3 uid="uid://cq7rntr2jsnlp"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
@@ -95,6 +95,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s3kbb")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2li0l"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow = true
+grow_amount = 0.2
+
 [sub_resource type="Resource" id="Resource_owvc0"]
 script = ExtResource("6_mqylq")
 closed_pose = ExtResource("5_x7nrh")
@@ -141,7 +148,7 @@ script = ExtResource("2_ds8h5")
 
 [node name="ShovelHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
 transform = Transform3D(-0.000205265, 7.39012e-05, -0.0249991, 0.0235211, -0.00846812, -0.000218164, -0.00846844, -0.023522, -1.09274e-09, 0, 0, 0)
-material_override = ExtResource("4_tceuc")
+material_override = SubResource("StandardMaterial3D_2li0l")
 mesh = SubResource("ArrayMesh_flygy")
 skeleton = NodePath("")
 

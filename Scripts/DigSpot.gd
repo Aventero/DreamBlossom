@@ -4,6 +4,8 @@ extends Node3D
 
 signal water_added
 
+signal fertilizer_added(type : Fertilizer.Type)
+
 @export var remove_amount : float
 @export var watering_amount : int
 
@@ -92,13 +94,25 @@ func _on_trigger_body_entered(body):
 	if not seed and body is Seed:
 		seed = body
 		_handle_seed_insert()
-
+	
 	# Check if body is waterdrop
 	if body is WaterDrop:
 		water_added.emit()
 		
 		if current_water < watering_amount:
 			_handle_water_drop()
+	
+	# Check if body is fertilizer
+	if body is Fertilizer and fertilizer_added.get_connections().size() > 0:
+		# Play jiggle
+		_play_jiggle()
+		
+		# Despawn fertilizer
+		body.drop()
+		body.queue_free()
+		
+		# Emit fertilizer signal
+		fertilizer_added.emit(body.type)
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
@@ -126,8 +140,7 @@ func _handle_seed_insert():
 	tween.tween_property(seed, "global_position", seed_snap_point.global_position, 0.05)
 	
 	# Play jiggle animation for dig spot
-	tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
-	tween.chain().tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
+	_play_jiggle()
 	
 	# Spawn particles
 	var particles : GPUParticles3D = seed_insert_particles.instantiate()
@@ -164,6 +177,12 @@ func _reparent_seed_callback():
 	
 	# Reset position to ZERO because of the reparenting
 	seed.position = Vector3.ZERO
+
+func _play_jiggle():
+	# Play jiggle animation for dig spot
+	var tween : Tween = create_tween()
+	tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
+	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
 
 func _on_trigger_body_exited(body):
 	hand = null
