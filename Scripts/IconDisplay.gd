@@ -5,11 +5,19 @@ extends MeshInstance3D
 @onready var icon_rect : TextureRect = $"../IconViewport/Icon"
 
 var original_scale : Vector3
+@onready var player_camera : XRCamera3D = get_viewport().get_camera_3d()
 
 func _ready():
 	original_scale = scale
 
-func show_icon(icon : Texture2D):
+func _process(delta):
+	look_at(player_camera.global_position, Vector3.UP)
+	rotation = Vector3(PI / 2.0, rotation.y + PI, 0.0)
+
+func show_icon(icon : Texture2D, icon_position : Vector3):
+	set_process(true)
+	
+	position = icon_position
 	visible = true
 	scale = Vector3.ZERO
 	
@@ -21,7 +29,9 @@ func show_icon(icon : Texture2D):
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	
 	# Set viewport texture as override
-	material_override.albedo_texture = viewport.get_texture()
+	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
+	material_dup.albedo_texture = viewport.get_texture()
+	material_override = material_dup
 	
 	# Tween to correct size
 	var tween : Tween = create_tween()
@@ -35,3 +45,4 @@ func hide_icon():
 
 func _tween_callback_hide():
 	visible = false
+	set_process(false)

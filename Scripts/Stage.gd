@@ -6,6 +6,7 @@ signal stage_complete
 
 @export var run_time : float
 @export var animation_name : String
+@export var icon_position : Vector3
 
 @onready var icon_display : IconDisplay = $"../IconDisplay"
 
@@ -18,7 +19,7 @@ func start_events():
 	# Initalize event
 	current_event.initialize()
 	current_event.event_completed.connect(Callable(_on_event_completed))
-	icon_display.show_icon(current_event.icon_texture)
+	icon_display.show_icon(current_event.icon_texture, icon_position)
 
 func _on_event_completed():
 	print("Event ", current_event.name, " completed!")
