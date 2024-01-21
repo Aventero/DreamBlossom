@@ -25,6 +25,7 @@ func start_stage(index : int):
 
 func _on_stage_timer_timeout():
 	# Start stage events
+	animation_player.pause()
 	stages[current_stage].start_events()
 
 func _on_stage_complete():
