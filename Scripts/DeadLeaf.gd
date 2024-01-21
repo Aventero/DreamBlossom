@@ -11,13 +11,13 @@ func _ready():
 	pass 
 
 func prune():
-	# event
+	# Emit that is cut
 	prune_event.pruned_leaf.emit()
 	
-	# add particle to parent
+	# Add falling particle to parent
 	var falling_leaf : GPUParticles3D = falling_leaf_particle.instantiate()
 	get_parent().add_child(falling_leaf)
 	falling_leaf.restart()
 	
-	# remove
+	# Remove it
 	queue_free()

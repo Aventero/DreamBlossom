@@ -27,6 +27,7 @@ extends Node3D
 var pull_particle_instance : GPUParticles3D
 var cell : GridCell
 var time : float = 0.0
+var initial_scale
 
 func _process(delta):
 	time += delta
@@ -126,9 +127,13 @@ func _on_spread_timer_timeout():
 	WeedManager.get_instance().spawn_weed(random_cell, random_cell.grid)
 
 func _on_pull_pickup_picked_up(pickable):
+	# Squish on first pickup
+	_grab_squish()
 	# Add pull rumble haptic to correct controller
 	var controller : XRController3D = pickable.get_picked_up_by_controller()
 	XRToolsRumbleManager.add("pull_rumble", pull_rumble, [controller])
+
+
 
 func _on_pull_pickup_dropped(pickable):
 	pickable.position = Vector3.ZERO
@@ -144,3 +149,18 @@ func _on_pull_pickup_dropped(pickable):
 		pull_particle_instance.one_shot = true
 		pull_particle_instance.emitting = false
 		pull_particle_instance = null
+
+
+func _grab_squish():
+	var dig_spot = $"Dig Spot Model"
+	initial_scale = dig_spot.scale
+	var tween : Tween = create_tween()
+	
+	var shrinked_scale = Vector3(initial_scale.x * 0.9, initial_scale.y * 0.9, initial_scale.z * 0.9)
+	tween.tween_property(dig_spot, "scale", shrinked_scale, 0.05)
+	
+
+func _on_pull_pickup_released(pickable, by):
+	var dig_spot = $"Dig Spot Model"
+	var tween : Tween = create_tween()
+	tween.tween_property(dig_spot, "scale", initial_scale, 0.1)

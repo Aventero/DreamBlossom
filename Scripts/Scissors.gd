@@ -21,22 +21,26 @@ func _on_action_pressed(pickable : Scissors):
 		inside_dead_leaf = null
 
 func _squish():
-	var closed_mesh : MeshInstance3D = $Closed
-	var initial_scale = closed_mesh.scale
+	# Get the mesh
+	var initial_scale = self.scale
 	var tween : Tween = create_tween()
+	
 	# Longate (increase length)
 	var longated_scale = Vector3(initial_scale.x, initial_scale.y, initial_scale.z  * 1.25)
-	tween.tween_property(closed_mesh, "scale", longated_scale, 0.05)
+	tween.tween_property(self, "scale", longated_scale, 0.05)
 
 	# Widen (increase width)
 	var widened_scale = Vector3(initial_scale.x * 1.1, initial_scale.y, initial_scale.z)
-	tween.tween_property(closed_mesh, "scale", widened_scale, 0.025)
+	tween.tween_property(self, "scale", widened_scale, 0.025)
 
 	# Return to normal
-	tween.tween_property(closed_mesh, "scale", initial_scale, 0.025)
+	tween.tween_property(self, "scale", initial_scale, 0.025)
 
 func _on_action_released(pickable : Scissors):
-	# also add squish to water finished
+	open_scissors.show()
+	closed_scissors.hide()
+
+func _on_dropped(pickable):
 	open_scissors.show()
 	closed_scissors.hide()
 
@@ -45,3 +49,6 @@ func _on_area_3d_area_entered(area : Area3D):
 	
 func _on_area_3d_area_exited(area):
 	inside_dead_leaf = null
+
+
+

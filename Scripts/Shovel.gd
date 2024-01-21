@@ -263,6 +263,9 @@ func _on_soil_trigger_body_entered(body):
 	var controller : XRController3D = get_picked_up_by_controller()
 	XRToolsRumbleManager.add(controller.name, put_rumble, [controller])
 	
+	# Squish feedback of insertion
+	_insertion_squish()
+	
 	# Get intersection point with soil
 	soil_insertion_point = intersection_raycast.get_collision_point()
 	
@@ -384,3 +387,20 @@ func change_setting(offset : int):
 	# Spawn new one
 	indicator_instance = shovel_settings[current_setting_index].indicator.instantiate()
 	add_child(indicator_instance)
+
+func _insertion_squish():
+	# Get the mesh
+	var shovel_mesh : MeshInstance3D = $Shovel
+	var initial_scale = shovel_mesh.scale
+	var tween : Tween = create_tween()
+	
+	# Longate (increase length)
+	var longated_scale = Vector3(initial_scale.x, initial_scale.y, initial_scale.z  * 1.1)
+	tween.tween_property(shovel_mesh, "scale", longated_scale, 0.05)
+
+	# Widen (increase width)
+	var widened_scale = Vector3(initial_scale.x * 1.1, initial_scale.y * 1.1, initial_scale.z)
+	tween.tween_property(shovel_mesh, "scale", widened_scale, 0.05)
+
+	# Return to normal
+	tween.tween_property(shovel_mesh, "scale", initial_scale, 0.05)

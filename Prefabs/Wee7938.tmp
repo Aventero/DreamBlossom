@@ -261,7 +261,6 @@ size = Vector3(0.19, 0.01875, 0.19)
 [connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
 [connection signal="dropped" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_dropped"]
 [connection signal="picked_up" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_picked_up"]
-[connection signal="released" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_released"]
 
 [editable path="Dig Spot Model"]
 [editable path="Pull Origin/Pull Pickup"]
