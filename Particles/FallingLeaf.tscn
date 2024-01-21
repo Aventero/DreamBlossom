@@ -60,11 +60,13 @@ func _on_finished():
 "
 
 [node name="FallingLeaf" type="GPUParticles3D"]
+transform = Transform3D(1, 9.42825e-05, -0.000544509, -9.4232e-05, 1, 8.09585e-05, 0.000544517, -8.08996e-05, 1, 0, 0, 0)
 emitting = false
 amount = 1
 lifetime = 5.0
 one_shot = true
 interpolate = false
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_oref6")
 draw_pass_1 = ExtResource("1_i31mk")
 script = SubResource("GDScript_snyhf")
