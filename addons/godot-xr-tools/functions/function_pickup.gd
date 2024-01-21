@@ -417,7 +417,9 @@ func _on_button_pressed(p_button) -> void:
 
 
 func _on_button_released(_p_button) -> void:
-	pass
+	if _p_button == action_button_action:
+		if is_instance_valid(picked_up_object) and picked_up_object.has_method("action_was_released"):
+			picked_up_object.action_was_released()
 
 
 func _on_grip_pressed() -> void:

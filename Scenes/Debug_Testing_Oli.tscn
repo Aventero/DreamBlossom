@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=26 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
-[ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/ReturnManager.tscn" id="4_yyuga"]
-[ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/WeedManager.tscn" id="5_rchdc"]
+[ext_resource type="PackedScene" path="res://Prefabs/ReturnManager.tscn" id="4_yyuga"]
+[ext_resource type="PackedScene" path="res://Prefabs/WeedManager.tscn" id="5_rchdc"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
+[ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Scissors.tscn" id="15_76tl2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -50,7 +51,7 @@ add_uv2 = true
 size = Vector2(1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_axmly"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.5, 1, 0.930908)
 
 [sub_resource type="BoxMesh" id="BoxMesh_neeav"]
 size = Vector3(0.5, 1, 0.5)
@@ -112,35 +113,51 @@ transform = Transform3D(0.999998, 0.00122001, -0.00142788, -0.00121978, 0.999999
 mesh = SubResource("PlaneMesh_xbxci")
 
 [node name="Table" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88911, 0.348511, 0.0218657)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572155, 0.348511, 0.0218657)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
 shape = SubResource("BoxShape3D_axmly")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.136943, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="Shovel" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.958005, 0.872308, -0.0710085)
+transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.506037, 0.872308, 0.234858)
 
 [node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
-transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 1.0382, 0.852544, 0.112716)
+transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 0.606496, 0.852544, 0.492049)
 
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.846265, 0.987084, -0.320027)
+transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.681173, 0.987084, -0.320027)
 ranged_grab_method = 1
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
-transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.730515, 0.848191, -0.13663)
+transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.565423, 0.848191, -0.13663)
 ranged_grab_method = 1
 
 [node name="YellowFertilizerBag" parent="." instance=ExtResource("13_5hnma")]
-transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676, 0.731276, 0.847415, 0.0268056)
+transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676, 0.566184, 0.847415, 0.0268056)
 
 [node name="GreenFertilizerBag" parent="." instance=ExtResource("14_8orm1")]
-transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.737108, 0.849216, 0.182532)
+transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.572016, 0.849216, 0.182532)
+
+[node name="Scissors" parent="." instance=ExtResource("15_76tl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645422, 0.890719, 0.117099)
+
+[node name="Table" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
+shape = SubResource("BoxShape3D_axmly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.114716, 0, 0.189688)
+mesh = SubResource("BoxMesh_neeav")
 
 [editable path="Player"]

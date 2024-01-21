@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_lp3ox"]
-[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
-[ext_resource type="PackedScene" uid="uid://dvloin3ysimjp" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
+[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
+[ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
 [ext_resource type="Script" path="res://Scripts/MaterialChanger.gd" id="4_f013i"]
 
 [sub_resource type="GDScript" id="GDScript_ceeo6"]

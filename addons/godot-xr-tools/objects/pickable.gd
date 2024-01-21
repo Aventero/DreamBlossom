@@ -30,6 +30,9 @@ signal released(pickable, by)
 # Signal emitted when the user presses the action button while holding this object
 signal action_pressed(pickable)
 
+# Signal emitted when the user presses the action button while holding this object
+signal action_released(pickable)
+
 # Signal emitted when the highlight state changes
 signal highlight_updated(pickable, enable)
 
@@ -173,6 +176,11 @@ func is_picked_up() -> bool:
 func action():
 	# let interested parties know
 	emit_signal("action_pressed", self)
+
+# action is called when user releases the action button while holding this object
+func action_was_released():
+	# let interested parties know
+	emit_signal("action_released", self)
 
 
 ## This method requests highlighting of the [XRToolsPickable].

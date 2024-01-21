@@ -29,9 +29,7 @@ func _on_stage_timer_timeout():
 
 func _on_stage_complete():
 	print("STAGE COMPLETED!")
-	
 	current_stage += 1
-	
 	if current_stage < stages.size():
 		start_stage(current_stage)
 

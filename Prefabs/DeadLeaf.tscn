@@ -1,61 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://cttivc1gdbb5y"]
+[gd_scene load_steps=5 format=3 uid="uid://cttivc1gdbb5y"]
 
 [ext_resource type="Script" path="res://Scripts/DeadLeaf.gd" id="1_5aubd"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="1_fs8m7"]
+[ext_resource type="ArrayMesh" uid="uid://xcn2qrfgwakm" path="res://Models/DeadLeaf.res" id="2_5rlju"]
+[ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgxdl"]
-resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_color = Color(0.537255, 0.337255, 0.160784, 1)
-albedo_texture = ExtResource("1_fs8m7")
-texture_filter = 2
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ojhhh"]
-_surfaces = [{
-"aabb": AABB(-0.0428796, 0, -0.00624789, 0.0564266, 0.0126731, 0.0769554),
-"format": 34896613377,
-"index_count": 24,
-"index_data": PackedByteArray(8, 0, 3, 0, 6, 0, 8, 0, 7, 0, 3, 0, 4, 0, 7, 0, 8, 0, 4, 0, 2, 0, 7, 0, 0, 0, 8, 0, 5, 0, 0, 0, 4, 0, 8, 0, 5, 0, 6, 0, 1, 0, 5, 0, 8, 0, 6, 0),
-"name": "Leaves",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 9,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 246, 255, 0, 0, 243, 167, 0, 0, 53, 196, 0, 0, 10, 35, 0, 0, 200, 20, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 119, 0, 0, 209, 69, 0, 0, 246, 255, 0, 0, 255, 255, 0, 0, 251, 127, 0, 0, 22, 93, 0, 0, 0, 0, 0, 0, 201, 114, 255, 255, 61, 118, 0, 0)
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_aenjp"]
-resource_name = "PlantGrowing_Plane_252"
-_surfaces = [{
-"aabb": AABB(-0.0428796, 0, -0.00624789, 0.0564266, 0.0126731, 0.0769554),
-"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
-"format": 34896613399,
-"index_count": 24,
-"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
-"material": SubResource("StandardMaterial3D_dgxdl"),
-"name": "Leaves",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 16,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 246, 255, 74, 188, 243, 167, 0, 0, 53, 196, 227, 180, 10, 35, 0, 0, 200, 20, 73, 200, 255, 255, 0, 0, 0, 0, 158, 199, 0, 0, 0, 0, 115, 119, 242, 200, 0, 0, 0, 0, 115, 119, 160, 188, 209, 69, 0, 0, 246, 255, 110, 188, 209, 69, 0, 0, 246, 255, 161, 181, 255, 255, 0, 0, 251, 127, 133, 199, 255, 255, 0, 0, 251, 127, 252, 179, 22, 93, 0, 0, 0, 0, 18, 200, 22, 93, 0, 0, 0, 0, 184, 199, 201, 114, 255, 255, 61, 118, 157, 200, 201, 114, 255, 255, 61, 118, 186, 188, 201, 114, 255, 255, 61, 118, 155, 199, 201, 114, 255, 255, 61, 118, 157, 180, 150, 239, 4, 159, 44, 218, 47, 117, 56, 231, 198, 160, 156, 236, 212, 117, 79, 238, 130, 159, 41, 242, 37, 159, 188, 240, 18, 159, 138, 217, 253, 119, 89, 236, 32, 116, 25, 219, 27, 113, 38, 227, 129, 161, 214, 236, 74, 119, 47, 235, 17, 160, 218, 242, 46, 159, 149, 236, 160, 117, 111, 218, 11, 116)
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ojhhh")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_jqgy3"]
-radius = 0.02
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmqhr"]
+size = Vector3(0.0453491, 0.0131836, 0.0597534)
 
 [node name="DeadLeaf" type="Node3D"]
 script = ExtResource("1_5aubd")
+falling_leaf_particle = ExtResource("2_jm6qf")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_aenjp")
-skeleton = NodePath("")
+[node name="DeadLeaf" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_5rlju")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="PruneTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027172, 0, 0.0382819)
+collision_layer = 16
+collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_jqgy3")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PruneTrigger"]
+transform = Transform3D(0.744906, 0, -0.382616, 0, 0.837425, 0, 0.382616, 0, 0.744906, 0.0123901, 0.00622556, -0.013906)
+shape = SubResource("BoxShape3D_rmqhr")
+
+[connection signal="body_entered" from="PruneTrigger" to="." method="_on_prune_trigger_body_entered"]
+[connection signal="body_exited" from="PruneTrigger" to="." method="_on_prune_trigger_body_exited"]

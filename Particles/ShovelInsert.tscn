@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvloin3ysimjp"]
+[gd_scene load_steps=5 format=3 uid="uid://20gwkcyaa0l2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdix1"]
 lifetime_randomness = 0.1
