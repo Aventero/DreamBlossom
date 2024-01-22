@@ -62,22 +62,23 @@ func spawn_weed(cell : GridCell, grid : PlantGrid):
 	grid.current_weed_amount += 1
 	
 	# Spawn new weed
-	var weed_instance = weed.instantiate()
-	grid.add_sibling(weed_instance)
-	weed_instance.global_position = grid.get_placement_position(cell, 1)
-	weed_instance.scale = Vector3(0.0, 0.0, 0.0)
+	var weed_digspot = weed.instantiate()
+	grid.add_sibling(weed_digspot)
+	weed_digspot.global_position = grid.get_placement_position(cell, 1)
+	weed_digspot.scale = Vector3(0.0, 0.0, 0.0)
 	
-	# Set data
-	weed_instance.cell = cell
+	# Set data in weed plant (Must be first child!)
+	weed_digspot.get_child(0).cell = cell
+	DigSpotLookup.add(weed_digspot, weed_digspot.get_child(0))
 	
 	# Move particles to correct position and rotation
-	grow_parts.global_position = weed_instance.global_position + Vector3(0, 0.2, 0)
+	grow_parts.global_position = weed_digspot.global_position + Vector3(0, 0.2, 0)
 	grow_parts.global_rotation = Vector3.UP
 	grow_parts.emitting = true
 	
 	# Tween scale back to normal
 	var tween : Tween = create_tween()
-	tween.tween_property(weed_instance, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
+	tween.tween_property(weed_digspot, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
 
 func remove_weed(cell : GridCell, grid : PlantGrid):
 	# Free occupied space on soil

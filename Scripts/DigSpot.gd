@@ -6,6 +6,13 @@ signal watering_completed
 
 signal fertilizer_added(type : Fertilizer.Type)
 
+@export_category("Interaction")
+@export var hand_removal : bool = true
+@export var seed_insertion : bool = true
+@export var watering : bool = true
+@export var fertilizing : bool = true
+
+@export_category("General")
 @export var remove_amount : float
 @export var watering_amount : int
 
@@ -95,11 +102,11 @@ func _free_callback():
 
 func _on_trigger_body_entered(body):
 	# Check if body is hand
-	if body is XRToolsCollisionHand:
+	if hand_removal and body is XRToolsCollisionHand:
 		_handle_hand_movement(body)
 	
 	# Check if body is seed
-	if not seed and body is Seed and body.planted == false:
+	if seed_insertion and not seed and body is Seed and body.planted == false:
 		# Ensure that seed is only planted once
 		seed = body
 		seed.planted = true
@@ -107,11 +114,11 @@ func _on_trigger_body_entered(body):
 		_handle_seed_insert()
 	
 	# Check if body is waterdrop
-	if body is WaterDrop and current_water < watering_amount:
+	if watering and body is WaterDrop and current_water < watering_amount:
 		_handle_water_drop()
 	
 	# Check if body is fertilizer
-	if body is Fertilizer and fertilizer_added.get_connections().size() > 0:
+	if fertilizing and body is Fertilizer and fertilizer_added.get_connections().size() > 0:
 		# Play jiggle
 		_play_jiggle()
 		

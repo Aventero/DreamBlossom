@@ -16,7 +16,3 @@ func _ready():
 		get_viewport().use_xr = true
 	else:
 		print("OpenXR not initialized, please check if your headset is connected")
-
-
-func _on_timer_timeout():
-	get_node("Player/Left Hand/HungerUI/Viewport/HungerDisplay/Layout/HungerLabel").text = str(Engine.get_frames_per_second())
