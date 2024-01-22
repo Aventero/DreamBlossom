@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
-[ext_resource type="PackedScene" path="res://Prefabs/ReturnManager.tscn" id="4_yyuga"]
-[ext_resource type="PackedScene" path="res://Prefabs/WeedManager.tscn" id="5_rchdc"]
+[ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/ReturnManager.tscn" id="4_yyuga"]
+[ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/WeedManager.tscn" id="5_rchdc"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="8_mo161"]
@@ -72,11 +72,11 @@ environment = SubResource("Environment_88j2n")
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
 
 [node name="FunctionPickup" parent="Player/Left Hand/CollisionHandLeft" index="2"]
-grab_distance = 0.2
+grab_distance = 0.05
 ranged_enable = false
 
 [node name="FunctionPickup" parent="Player/Right Hand/CollisionHandRight" index="2"]
-grab_distance = 0.2
+grab_distance = 0.05
 ranged_enable = false
 
 [node name="XRToolsRumbleManager" type="Node" parent="Player"]
@@ -161,3 +161,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.114716, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
 [editable path="Player"]
+[editable path="Shovel"]
+[editable path="Shovel/PullOrigin/PullPickup"]

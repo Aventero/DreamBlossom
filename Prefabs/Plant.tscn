@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=93 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://cg8fnuygb4byn" path="res://Textures/Fertilizer.png" id="6_sdd15"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="7_s1xj8"]
 [ext_resource type="PackedScene" uid="uid://8ecc2uq3sg6u" path="res://Prefabs/-- OLD --/WaterEventIcon.tscn" id="9_33sjg"]
+[ext_resource type="Texture2D" uid="uid://b285rd770k4ej" path="res://Textures/FertilizerBlueIcon.png" id="10_jih3p"]
+[ext_resource type="Texture2D" uid="uid://xuheen3agtpj" path="res://Textures/FertilizerYellowIcon.png" id="11_81v4p"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="12_o8imm"]
+[ext_resource type="Texture2D" uid="uid://xm6fskfgf42h" path="res://Textures/FertilizerGreenIcon.png" id="12_wis8f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n15l"]
 resource_name = "Leaves.001"
@@ -1142,429 +1145,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1j8et")
 
-[sub_resource type="Animation" id="Animation_ddu0b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model/MainStem_003:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Model/Leaf_001:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Model/Leaf_006:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Model/Leaf_015:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Model/Leaf_003:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Model/Leaf_019:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Model/Leaf_004:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Model/Leaf_005:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Model/Leaf_002:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Model/Leaf_017:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Model/Leaf_018:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Model/Leaf_020:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Model/Leaf_029:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Model/Leaf_268:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Model/Leaf_263:scale")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("Model/Orangies_005:scale")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("Model/Stick_072:scale")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("Model/Stick_004:scale")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("Model/Stick_001:scale")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("Model/Leaf_023:scale")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/20/type = "value"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Model/Orangies_002:scale")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("Model/Leaf_021:scale")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/22/type = "value"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("Model/Leaf_266:scale")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/23/type = "value"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("Model/Stick_073:scale")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Model/Leaf_027:scale")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Model/Stick_003:scale")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/26/type = "value"
-tracks/26/imported = false
-tracks/26/enabled = true
-tracks/26/path = NodePath("Model/Leaf_264:scale")
-tracks/26/interp = 1
-tracks/26/loop_wrap = true
-tracks/26/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/27/type = "value"
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/path = NodePath("Model/Leaf_262:scale")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/28/type = "value"
-tracks/28/imported = false
-tracks/28/enabled = true
-tracks/28/path = NodePath("Model/Leaf_269:scale")
-tracks/28/interp = 1
-tracks/28/loop_wrap = true
-tracks/28/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/29/type = "value"
-tracks/29/imported = false
-tracks/29/enabled = true
-tracks/29/path = NodePath("Model/Leaf_267:scale")
-tracks/29/interp = 1
-tracks/29/loop_wrap = true
-tracks/29/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/30/type = "value"
-tracks/30/imported = false
-tracks/30/enabled = true
-tracks/30/path = NodePath("Model/Leaf_024:scale")
-tracks/30/interp = 1
-tracks/30/loop_wrap = true
-tracks/30/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/31/type = "value"
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/path = NodePath("Model/Orangies_004:scale")
-tracks/31/interp = 1
-tracks/31/loop_wrap = true
-tracks/31/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/32/type = "value"
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/path = NodePath("Model/Leaf_154:scale")
-tracks/32/interp = 1
-tracks/32/loop_wrap = true
-tracks/32/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Model/Leaf_265:scale")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("Model/Stick_005:scale")
-tracks/34/interp = 1
-tracks/34/loop_wrap = true
-tracks/34/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_wqmdx"]
 resource_name = "Grow_Stage_1"
 length = 30.0
@@ -1989,6 +1569,429 @@ tracks/34/keys = {
 "values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ddu0b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/MainStem_003:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Leaf_001:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Leaf_006:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Leaf_015:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Leaf_003:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Leaf_019:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Leaf_004:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Leaf_005:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Leaf_002:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/Leaf_017:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/Leaf_018:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/Leaf_020:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model/Leaf_029:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/Leaf_268:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/Leaf_263:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Model/Orangies_005:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Model/Stick_072:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Model/Stick_004:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Model/Stick_001:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Model/Leaf_023:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Model/Orangies_002:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Model/Leaf_021:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Model/Leaf_266:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Model/Stick_073:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Model/Leaf_027:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Model/Stick_003:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Model/Leaf_264:scale")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Model/Leaf_262:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Model/Leaf_269:scale")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Model/Leaf_267:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/Leaf_024:scale")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Model/Orangies_004:scale")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Model/Leaf_154:scale")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Model/Leaf_265:scale")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Model/Stick_005:scale")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3kxaw"]
 _data = {
 "Grow": SubResource("Animation_wqmdx"),
@@ -2004,6 +2007,12 @@ shading_mode = 0
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nty6"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("10_jih3p")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_urccy"]
 material = SubResource("StandardMaterial3D_2nty6")
@@ -2015,32 +2024,32 @@ script = ExtResource("1_hmowl")
 [node name="Model" type="Node3D" parent="."]
 
 [node name="Stick_073" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.782605, -0.0133417, -0.622376, 0.00640656, -0.99989, 0.0133785, -0.622486, 0.0064828, 0.782604, -0.0340784, 0.157393, 0.0430476)
+transform = Transform3D(-0.782605, -0.0133417, -0.622376, 0.00640656, -0.99989, 0.0133785, -0.622486, 0.00648278, 0.782604, -0.0340784, 0.157393, 0.0430476)
 mesh = SubResource("ArrayMesh_ojnhr")
 skeleton = NodePath("")
 
 [node name="Stick_072" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.82627, 1.67771e-07, -0.563275, -1.50996e-07, -1, -7.63526e-08, -0.563275, 2.19643e-08, 0.82627, -0.0424094, 0.178927, -0.0256336)
+transform = Transform3D(-0.82627, 1.67771e-07, -0.563275, -1.50996e-07, -1, -7.63527e-08, -0.563275, 2.19642e-08, 0.82627, -0.0424094, 0.178927, -0.0256336)
 mesh = SubResource("ArrayMesh_yij4q")
 skeleton = NodePath("")
 
 [node name="Stick_005" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.635652, -0.0177006, -0.771773, 0.00094215, -0.999754, 0.0221533, -0.771975, 0.0133547, 0.635512, 0.0471069, 0.182787, -0.0239692)
+transform = Transform3D(-0.635652, -0.0177006, -0.771773, 0.00094215, -0.999754, 0.0221534, -0.771975, 0.0133547, 0.635512, 0.0471069, 0.182787, -0.0239692)
 mesh = SubResource("ArrayMesh_x1i51")
 skeleton = NodePath("")
 
 [node name="Stick_004" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.28219, -0.754469, 0.592575, -0.931439, 0.363394, 0.0191157, -0.229761, -0.546553, -0.805288, -0.00678313, 0.16491, 0.000793106)
+transform = Transform3D(-0.28219, -0.754469, 0.592575, -0.931439, 0.363395, 0.0191158, -0.229761, -0.546553, -0.805288, -0.00678313, 0.16491, 0.000793106)
 mesh = SubResource("ArrayMesh_bcg2d")
 skeleton = NodePath("")
 
 [node name="Stick_003" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.149141, -0.600972, -0.785232, -0.971615, 0.23654, 0.00350653, 0.183632, 0.763467, -0.619192, -0.00568247, 0.149729, 0.00725937)
+transform = Transform3D(-0.149141, -0.600972, -0.785232, -0.971615, 0.236541, 0.00350653, 0.183632, 0.763467, -0.619191, -0.00568247, 0.149729, 0.00725937)
 mesh = SubResource("ArrayMesh_xvfn6")
 skeleton = NodePath("")
 
 [node name="Stick_001" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.192069, 0.825627, 0.530518, -0.973101, 0.230299, -0.00610527, -0.127219, -0.515075, 0.847652, 0.00785284, 0.175629, 0.000576267)
+transform = Transform3D(0.192069, 0.825627, 0.530518, -0.973101, 0.2303, -0.00610551, -0.127219, -0.515075, 0.847651, 0.00785284, 0.175629, 0.000576267)
 mesh = SubResource("ArrayMesh_5hh3k")
 skeleton = NodePath("")
 
@@ -2064,37 +2073,37 @@ mesh = SubResource("ArrayMesh_ccee8")
 skeleton = NodePath("")
 
 [node name="Leaf_269" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.804436, 0.455263, 0.3816, -0.524327, 0.846102, 0.0958821, -0.279221, -0.277214, 0.919341, -0.020933, 0.17863, -0.0133947)
+transform = Transform3D(0.804436, 0.455263, 0.3816, -0.524327, 0.846102, 0.0958819, -0.279221, -0.277214, 0.919341, -0.020933, 0.17863, -0.0133947)
 mesh = SubResource("ArrayMesh_4llc5")
 skeleton = NodePath("")
 
 [node name="Leaf_268" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.635345, 0.14288, 0.758895, -0.433339, 0.879386, 0.197225, -0.639183, -0.454164, 0.620629, 0.000563296, 0.198844, -0.00859039)
+transform = Transform3D(0.635345, 0.14288, 0.758895, -0.433339, 0.879386, 0.197224, -0.639183, -0.454164, 0.620629, 0.000563296, 0.198844, -0.00859039)
 mesh = SubResource("ArrayMesh_sybc0")
 skeleton = NodePath("")
 
 [node name="Leaf_267" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.53827, -0.0770236, -0.839245, -0.433339, 0.879386, 0.197224, 0.72283, 0.469837, -0.506724, -0.000292803, 0.192823, 0.00886965)
+transform = Transform3D(-0.53827, -0.0770239, -0.839245, -0.433339, 0.879386, 0.197224, 0.72283, 0.469838, -0.506724, -0.000292803, 0.192823, 0.00886965)
 mesh = SubResource("ArrayMesh_0lb6r")
 skeleton = NodePath("")
 
 [node name="Leaf_266" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.0532063, 0.100518, -0.993511, -0.167863, 0.981663, 0.09033, 0.984374, 0.161968, 0.0691039, -0.0376279, 0.136965, 0.0435859)
+transform = Transform3D(0.0532062, 0.100518, -0.993512, -0.167863, 0.981663, 0.0903296, 0.984374, 0.161968, 0.0691038, -0.0376279, 0.136965, 0.0435859)
 mesh = SubResource("ArrayMesh_fcg8b")
 skeleton = NodePath("")
 
 [node name="Leaf_265" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.988589, 0.150581, 0.00419222, -0.150571, 0.988595, -0.00279532, -0.00456533, 0.0021322, 0.999987, 0.0460423, 0.166555, -0.0213877)
+transform = Transform3D(0.988589, 0.150582, 0.00419222, -0.150571, 0.988595, -0.00279532, -0.00456533, 0.0021322, 0.999987, 0.0460423, 0.166555, -0.0213877)
 mesh = SubResource("ArrayMesh_d3u8g")
 skeleton = NodePath("")
 
 [node name="Leaf_264" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.00970887, -0.168271, 0.985693, 0.57122, 0.810007, 0.132652, -0.82074, 0.56176, 0.103984, -0.0313174, 0.181167, -0.0132142)
+transform = Transform3D(0.00970889, -0.168271, 0.985693, 0.57122, 0.810007, 0.132653, -0.82074, 0.561759, 0.103984, -0.0313174, 0.181167, -0.0132142)
 mesh = SubResource("ArrayMesh_nooir")
 skeleton = NodePath("")
 
 [node name="Leaf_263" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.795233, -0.32622, 0.511062, -0.241108, 0.94355, 0.227111, -0.556301, 0.0573845, -0.828997, -0.0429415, 0.157749, -0.0269571)
+transform = Transform3D(-0.795233, -0.32622, 0.511062, -0.241108, 0.943551, 0.227111, -0.556301, 0.0573848, -0.828997, -0.0429415, 0.157749, -0.0269571)
 mesh = SubResource("ArrayMesh_leoxd")
 skeleton = NodePath("")
 
@@ -2104,17 +2113,17 @@ mesh = SubResource("ArrayMesh_ur1dp")
 skeleton = NodePath("")
 
 [node name="Leaf_154" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.150067, 0.247326, -0.957241, -0.437219, 0.851785, 0.288622, 0.886747, 0.461836, -0.0196895, 0.0304779, 0.188046, -0.0103533)
+transform = Transform3D(-0.150067, 0.247326, -0.957241, -0.437219, 0.851785, 0.288622, 0.886747, 0.461836, -0.0196892, 0.0304779, 0.188046, -0.0103533)
 mesh = SubResource("ArrayMesh_61xxb")
 skeleton = NodePath("")
 
 [node name="Leaf_029" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.910882, -0.0298275, 0.411588, -0.0697231, 0.971922, 0.224738, -0.406734, -0.233407, 0.883226, 0.031296, 0.186441, -0.0219026)
+transform = Transform3D(0.910882, -0.0298273, 0.411587, -0.0697231, 0.971922, 0.224738, -0.406734, -0.233407, 0.883226, 0.031296, 0.186441, -0.0219026)
 mesh = SubResource("ArrayMesh_6cbhb")
 skeleton = NodePath("")
 
 [node name="Leaf_027" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.372909, -0.481766, 0.792995, -0.230697, 0.875945, 0.423673, -0.898731, -0.0249504, -0.43779, -0.029809, 0.164186, 0.0333133)
+transform = Transform3D(-0.372909, -0.481766, 0.792995, -0.230697, 0.875945, 0.423674, -0.898731, -0.0249497, -0.43779, -0.029809, 0.164186, 0.0333133)
 mesh = SubResource("ArrayMesh_hhlu8")
 skeleton = NodePath("")
 
@@ -2124,62 +2133,62 @@ mesh = SubResource("ArrayMesh_j656b")
 skeleton = NodePath("")
 
 [node name="Leaf_023" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.221733, -0.395534, 0.891284, 0.0750428, 0.918248, 0.388831, -0.972216, -0.0193323, 0.233288, -0.00848735, 0.154513, 0.00291936)
+transform = Transform3D(0.221733, -0.395534, 0.891284, 0.0750428, 0.918248, 0.388831, -0.972216, -0.0193322, 0.233288, -0.00848735, 0.154513, 0.00291936)
 mesh = SubResource("ArrayMesh_d2b0x")
 skeleton = NodePath("")
 
 [node name="Leaf_021" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.967835, -0.208561, -0.140706, -0.228273, 0.963096, 0.142611, 0.10577, 0.170144, -0.979726, -0.00760396, 0.133427, 0.0126742)
+transform = Transform3D(-0.967835, -0.208561, -0.140706, -0.228273, 0.963096, 0.142612, 0.10577, 0.170144, -0.979726, -0.00760396, 0.133427, 0.0126742)
 mesh = SubResource("ArrayMesh_glgj1")
 skeleton = NodePath("")
 
 [node name="Leaf_020" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.995996, 0.0807343, 0.0383857, 0.0470688, 0.838664, -0.542612, -0.076, -0.538632, -0.839106, 0.00889366, 0.139001, -0.00679145)
+transform = Transform3D(-0.995996, 0.0807342, 0.0383857, 0.0470688, 0.838664, -0.542611, -0.076, -0.538632, -0.839106, 0.00889366, 0.139001, -0.00679145)
 mesh = SubResource("ArrayMesh_mop6m")
 skeleton = NodePath("")
 
 [node name="Leaf_019" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.58202, 0.132035, -0.802384, -0.333797, 0.860974, 0.383801, 0.741507, 0.491212, -0.457031, 0.00581008, 0.114689, 0.0130252)
+transform = Transform3D(-0.58202, 0.132035, -0.802384, -0.333797, 0.860974, 0.3838, 0.741507, 0.491213, -0.457031, 0.00581008, 0.114689, 0.0130252)
 mesh = SubResource("ArrayMesh_1s71u")
 skeleton = NodePath("")
 
 [node name="Leaf_018" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.761142, -0.632022, 0.145639, -0.573073, 0.760505, 0.305317, -0.303726, 0.148927, -0.941047, -0.00854681, 0.106209, 0.00463977)
+transform = Transform3D(-0.761142, -0.632022, 0.145639, -0.573073, 0.760506, 0.305316, -0.303726, 0.148927, -0.941048, -0.00854681, 0.106209, 0.00463977)
 mesh = SubResource("ArrayMesh_5tmj8")
 skeleton = NodePath("")
 
 [node name="Leaf_017" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.332851, -0.488751, -0.806432, 0.433742, 0.680005, -0.591153, 0.837304, -0.546549, -0.0143491, -0.0035155, 0.124522, -0.00872276)
+transform = Transform3D(-0.332851, -0.488751, -0.806432, 0.433742, 0.680005, -0.591153, 0.837304, -0.546549, -0.0143485, -0.0035155, 0.124522, -0.00872276)
 mesh = SubResource("ArrayMesh_3100u")
 skeleton = NodePath("")
 
 [node name="Leaf_015" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.511904, 0.541763, -0.666669, -0.376259, 0.839061, 0.392945, 0.772259, 0.0496898, 0.633362, 0.00830443, 0.0835563, 0.00764529)
+transform = Transform3D(0.511904, 0.541763, -0.666669, -0.376259, 0.839061, 0.392945, 0.772259, 0.04969, 0.633362, 0.00830443, 0.0835563, 0.00764529)
 mesh = SubResource("ArrayMesh_50dex")
 skeleton = NodePath("")
 
 [node name="Leaf_006" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.973058, -0.0839748, -0.214725, -0.0743066, 0.995841, -0.0527227, 0.218259, -0.0353468, -0.97525, -0.00632641, 0.0294755, 0.0179636)
+transform = Transform3D(-0.973058, -0.0839748, -0.214725, -0.0743066, 0.995841, -0.0527227, 0.218259, -0.0353468, -0.975251, -0.00632641, 0.0294755, 0.0179636)
 mesh = SubResource("ArrayMesh_ydbnp")
 skeleton = NodePath("")
 
 [node name="Leaf_005" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.353411, -0.373582, 0.857634, 0.159861, 0.92743, 0.33811, -0.921708, 0.0176108, 0.387485, -0.00661705, 0.0655851, 0.0042613)
+transform = Transform3D(0.353411, -0.373582, 0.857635, 0.159861, 0.92743, 0.33811, -0.921708, 0.0176107, 0.387485, -0.00661705, 0.0655851, 0.0042613)
 mesh = SubResource("ArrayMesh_l5qwc")
 skeleton = NodePath("")
 
 [node name="Leaf_004" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.928921, 0.368489, 0.0363415, -0.368261, 0.909176, 0.194379, 0.0385856, -0.193946, 0.980253, 0.0031677, 0.0492866, 0.00590961)
+transform = Transform3D(0.928921, 0.368489, 0.0363417, -0.368261, 0.909176, 0.194379, 0.0385856, -0.193946, 0.980253, 0.0031677, 0.0492866, 0.00590961)
 mesh = SubResource("ArrayMesh_3e5ey")
 skeleton = NodePath("")
 
 [node name="Leaf_003" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-0.913777, -0.0402414, 0.404217, 0.134679, 0.908786, 0.39493, -0.383239, 0.415317, -0.825008, -0.00656852, 0.0772609, 0.0168388)
+transform = Transform3D(-0.913777, -0.040241, 0.404217, 0.134679, 0.908786, 0.394929, -0.383239, 0.415317, -0.825009, -0.00656852, 0.0772609, 0.0168388)
 mesh = SubResource("ArrayMesh_bfqfs")
 skeleton = NodePath("")
 
 [node name="Leaf_002" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.887577, 0.0688089, 0.455491, -0.1105, 0.991715, 0.0655088, -0.44721, -0.108476, 0.887827, -0.00508642, 0.0316103, 0.00556096)
+transform = Transform3D(0.887577, 0.0688087, 0.455491, -0.1105, 0.991715, 0.0655088, -0.44721, -0.108476, 0.887827, -0.00508642, 0.0316103, 0.00556096)
 mesh = SubResource("ArrayMesh_wkoyc")
 skeleton = NodePath("")
 
@@ -2214,6 +2223,7 @@ size = Vector2i(64, 83)
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
+icon_position = Vector3(0, 0.338, 0)
 
 [node name="PruneEvent" type="Node3D" parent="Stage 3"]
 script = ExtResource("5_2obkr")
@@ -2233,15 +2243,18 @@ transform = Transform3D(0.489702, 0, 0.87189, 0, 1, 0, -0.87189, 0, 0.489702, 0.
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
+icon_position = Vector3(0, 0.338, 0)
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage 2"]
 script = ExtResource("5_t8t8x")
+icon_texture_override = Array[Texture2D]([ExtResource("10_jih3p"), ExtResource("11_81v4p"), ExtResource("12_wis8f")])
 icon_texture = ExtResource("6_sdd15")
 
 [node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 run_time = 10.0
 animation_name = "Grow"
+icon_position = Vector3(0, 0.338, 0)
 
 [node name="WateringEvent" type="Node3D" parent="Stage 1"]
 script = ExtResource("4_gpqma")
