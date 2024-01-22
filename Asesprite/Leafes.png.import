@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbevkhfnbxgpp"
-path.s3tc="res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.s3tc.ctex"
-path.etc2="res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.etc2.ctex"
+path="res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Asesprite/Leafes.png"
-dest_files=["res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.s3tc.ctex", "res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.etc2.ctex"]
+dest_files=["res://.godot/imported/Leafes.png-0cbc25ec8f814928371396fa1d3b3c4c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
