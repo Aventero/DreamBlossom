@@ -1,267 +1,90 @@
-[gd_scene load_steps=17 format=3 uid="uid://deb64i8ja40es"]
+[gd_scene load_steps=16 format=3 uid="uid://mvx45djeopmk"]
 
-[ext_resource type="Script" path="res://Scripts/WeedSpot.gd" id="1_oggtu"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_bt57a"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="2_ffw2b"]
-[ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="3_8ynfa"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_cetee"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPull.tscn" id="3_eqjfr"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="4_ip5ap"]
-[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="5_yabys"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_p2xl2"]
+[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/DigSpots/DigSpot.tscn" id="1_4e4g3"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_cihps"]
+[ext_resource type="PackedScene" uid="uid://w53as41wqyrb" path="res://Prefabs/Weed.tscn" id="3_48lbs"]
+[ext_resource type="Material" uid="uid://v7a83dplkh2h" path="res://Materials/Leaves.tres" id="5_aama0"]
+[ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="6_2xyoj"]
+[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="7_sytm2"]
 
-[sub_resource type="Resource" id="Resource_y6uqb"]
-script = ExtResource("2_ffw2b")
-magnitude = 1.0
-active_during_pause = false
-indefinite = true
-duration_ms = 300
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbbmq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12v80"]
 resource_name = "Leaves"
 cull_mode = 2
-albedo_texture = ExtResource("3_cetee")
+albedo_texture = ExtResource("7_sytm2")
 texture_filter = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_rq3iu"]
-material = ExtResource("3_8ynfa")
-size = Vector3(0.01, 0.06, 0.01)
+[sub_resource type="BoxShape3D" id="BoxShape3D_eq554"]
+size = Vector3(0.188, 0.0397656, 0.188)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3w86l"]
-material = ExtResource("3_8ynfa")
-size = Vector3(0.01, 0.03, 0.01)
+[sub_resource type="Resource" id="Resource_qvnrg"]
+script = ExtResource("6_2xyoj")
+name = "Dry"
+material = ExtResource("5_aama0")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xbxbs"]
-radius = 0.05
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flgii"]
+resource_name = "Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.882353, 0.882353, 0.882353, 1)
+albedo_texture = ExtResource("7_sytm2")
+texture_filter = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6682"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
-grow_amount = 0.2
+[sub_resource type="Resource" id="Resource_8ab8t"]
+script = ExtResource("6_2xyoj")
+name = "Wet_0"
+material = SubResource("StandardMaterial3D_flgii")
 
-[sub_resource type="BoxMesh" id="BoxMesh_3y7ha"]
-material = SubResource("StandardMaterial3D_x6682")
-size = Vector3(0.015, 0.065, 0.015)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wy37h"]
+resource_name = "Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.764706, 0.764706, 0.764706, 0.843137)
+albedo_texture = ExtResource("7_sytm2")
+texture_filter = 2
 
-[node name="WeedSpot" type="Node3D"]
-script = ExtResource("1_oggtu")
-spread_chance = 0.5
-pull_rumble = SubResource("Resource_y6uqb")
-min_pull_distance = 0.1
-target_pull_distance = 0.4
-pull_particle_offset = 0.1
-max_shake = 0.01
-max_speed = 20.0
-particles_height_offset = 0.06
-pull_particles = ExtResource("3_eqjfr")
-pull_complete_particles = ExtResource("4_ip5ap")
+[sub_resource type="Resource" id="Resource_x7328"]
+script = ExtResource("6_2xyoj")
+name = "Wet_1"
+material = SubResource("StandardMaterial3D_wy37h")
 
-[node name="Dig Spot Model" parent="." instance=ExtResource("2_bt57a")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01xln"]
+resource_name = "Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
+albedo_texture = ExtResource("7_sytm2")
+texture_filter = 2
+
+[sub_resource type="Resource" id="Resource_c7nmr"]
+script = ExtResource("6_2xyoj")
+name = "Wet_2"
+material = SubResource("StandardMaterial3D_01xln")
+
+[node name="DigSpot" instance=ExtResource("1_4e4g3")]
+hand_removal = false
+seed_insertion = false
+fertilizing = false
+
+[node name="Weed" parent="." index="0" instance=ExtResource("3_48lbs")]
+
+[node name="Dig Spot Model" parent="." index="1" instance=ExtResource("2_cihps")]
 
 [node name="Plane_026" parent="Dig Spot Model" index="0"]
 cast_shadow = 0
-surface_material_override/0 = SubResource("StandardMaterial3D_sbbmq")
+surface_material_override/0 = SubResource("StandardMaterial3D_12v80")
 
-[node name="Weed Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00792636, 0)
+[node name="Trigger Shape" parent="Trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("BoxShape3D_eq554")
 
-[node name="Weed" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0455722, 0)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed2" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00804219, 0.0385353, 0.0201054)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed3" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00804213, 0.0331739, -0.0167545)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed4" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0234563, 0.040881, 0.00368599)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed5" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0294879, 0.0314984, -0.0184299)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed6" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160844, 0.0378651, -0.0140738)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed7" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0201055, 0.0301581, 0.0127334)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_rq3iu")
-skeleton = NodePath("../..")
-
-[node name="Weed8" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304933, 0.0247966, 0.0321686)
-material_override = ExtResource("3_8ynfa")
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed9" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0459074, 0.0247966, 0.0147439)
-material_override = ExtResource("3_8ynfa")
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed10" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0331739, 0.0247966, -0.00167544)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed11" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479179, 0.0247966, -0.0214457)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed12" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0314985, 0.0247966, -0.029823)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed13" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00569663, 0.0247966, -0.0304932)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed14" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134035, 0.0247966, -0.0418862)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed15" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418861, 0.0247966, -0.0338441)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed16" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418861, 0.0247966, -0.000335094)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed17" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0244614, 0.0247966, 0.0241265)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed18" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00837713, 0.0247966, 0.0442318)
-material_override = ExtResource("3_8ynfa")
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed19" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00837713, 0.0247966, 0.0442318)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="Weed20" type="MeshInstance3D" parent="Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113932, 0.0247966, 0.0311633)
-material_override = ExtResource("3_8ynfa")
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3w86l")
-skeleton = NodePath("../..")
-
-[node name="SpreadTimer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
-
-[node name="Pull Origin" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0446218, 0)
-
-[node name="Pull Pickup" parent="Pull Origin" instance=ExtResource("5_yabys")]
-freeze = true
-freeze_mode = 0
-ranged_grab_method = 0
-
-[node name="CollisionShape3D" parent="Pull Origin/Pull Pickup" index="0"]
-shape = SubResource("SphereShape3D_xbxbs")
-
-[node name="XRToolsHighlightVisible" type="Node3D" parent="Pull Origin/Pull Pickup"]
-visible = false
-script = ExtResource("6_p2xl2")
-
-[node name="Weed Model" type="Node3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0372785, 0)
-
-[node name="Weed" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0455722, 0)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed2" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00804219, 0.0385353, 0.0201054)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed3" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00804213, 0.0331739, -0.0167545)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed4" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0234563, 0.040881, 0.00368599)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed5" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0294879, 0.0314984, -0.0184299)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed6" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160844, 0.0378651, -0.0140738)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Weed7" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible/Weed Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0201055, 0.0301581, 0.0127334)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_3y7ha")
-skeleton = NodePath("../..")
-
-[node name="Particle Collision" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)
-size = Vector3(0.19, 0.01875, 0.19)
-
-[connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
-[connection signal="dropped" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_dropped"]
-[connection signal="picked_up" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_picked_up"]
-[connection signal="released" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_released"]
+[node name="MaterialChanger" parent="." index="5" node_paths=PackedStringArray("meshes")]
+meshes = [NodePath("../Dig Spot Model/Plane_026")]
+material_states = Array[ExtResource("6_2xyoj")]([SubResource("Resource_qvnrg"), SubResource("Resource_8ab8t"), SubResource("Resource_x7328"), SubResource("Resource_c7nmr")])
 
 [editable path="Dig Spot Model"]
-[editable path="Pull Origin/Pull Pickup"]

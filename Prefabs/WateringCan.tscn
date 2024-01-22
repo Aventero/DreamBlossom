@@ -52,9 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0198326, 0.154632, 0.10098)
 
 [node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("4_mbsu1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.154632, 0.101331)
-visible = true
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="4"]
+visible = false
 script = ExtResource("6_1qjvm")
 
 [node name="WateringCanHighlight" parent="XRToolsHighlightVisible" index="0" instance=ExtResource("2_h1qta")]
