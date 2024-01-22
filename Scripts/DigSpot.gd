@@ -2,7 +2,7 @@
 class_name DigSpot
 extends Node3D
 
-signal water_added
+signal watering_completed
 
 signal fertilizer_added(type : Fertilizer.Type)
 
@@ -96,11 +96,8 @@ func _on_trigger_body_entered(body):
 		_handle_seed_insert()
 	
 	# Check if body is waterdrop
-	if body is WaterDrop:
-		water_added.emit()
-		
-		if current_water < watering_amount:
-			_handle_water_drop()
+	if body is WaterDrop and current_water < watering_amount:
+		_handle_water_drop()
 	
 	# Check if body is fertilizer
 	if body is Fertilizer and fertilizer_added.get_connections().size() > 0:
@@ -133,6 +130,9 @@ func _handle_seed_insert():
 	seed.enabled = false
 	seed.freeze = true
 	
+	# Stop watering timer
+	dry_timer.stop()
+	
 	# Reset rotation and place seed to snap point
 	var tween : Tween = create_tween()
 	tween.set_parallel(true)
@@ -155,16 +155,30 @@ func _handle_water_drop():
 	# Added a drop of water
 	current_water += 1
 	
-	# Check if fully watered
-	if current_water == watering_amount and seed != null and not seed.grown:
-		_spawn_plant(Vector3(0, 0, 0))
-		seed.grown = true
-	
 	# Change material to next state
+	_play_jiggle(0.05)
 	material_changer.next_state()
 	
-	# Start dry timer if not already started
-	dry_timer.start()
+	# Check if fully watered
+	if current_water != watering_amount:
+		# Start dry timer if not already started
+		dry_timer.start()
+		return
+	
+	# Watering amount was reached
+	watering_completed.emit()
+	
+	if seed == null:
+		# Start dry timer if not already started
+		dry_timer.start()
+		return
+	
+	if not seed.grown:
+		# Grow plant
+		_spawn_plant(Vector3(0, 0, 0))
+		seed.grown = true
+		
+		dry_timer.stop()
 
 func _spawn_plant(spawning_position : Vector3):
 	var plant_instance : Node3D = seed.plant.instantiate()
@@ -178,10 +192,10 @@ func _reparent_seed_callback():
 	# Reset position to ZERO because of the reparenting
 	seed.position = Vector3.ZERO
 
-func _play_jiggle():
+func _play_jiggle(strength : float = 0.1):
 	# Play jiggle animation for dig spot
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
+	tween.tween_property(self, "scale", Vector3(1.0 - strength, 1.0 - strength, 1.0 - strength), 0.05)
 	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
 
 func _on_trigger_body_exited(body):
@@ -191,3 +205,12 @@ func _on_trigger_body_exited(body):
 	# Lerp progress to zero
 	var tween = create_tween()
 	tween.tween_property(self, "progress", 0, 0.2)
+
+func reset_watering(new_watering_amount : int):
+	# Reset to dry state
+	_play_jiggle(0.05)
+	material_changer.set_state_by_index(0)
+	
+	# Reset watering amount and set new value
+	current_water = 0
+	watering_amount = new_watering_amount

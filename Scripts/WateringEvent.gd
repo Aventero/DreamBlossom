@@ -4,16 +4,15 @@ extends PlantEvent
 
 @onready var digspot : DigSpot = $"../../.."
 @export var water_needed : int = 5
-var current_water_level : int
 
 func initialize():
-	# look at dig spot if watering complete
-	digspot.water_added.connect(Callable(_increase_water_level))
+	# Reset watering state on digspot
+	digspot.reset_watering(water_needed)
 	
+	digspot.watering_completed.connect(Callable(_increase_water_level))
+
 func cleanup():
-	digspot.water_added.disconnect(Callable(_increase_water_level))
+	digspot.watering_completed.disconnect(Callable(_increase_water_level))
 
 func _increase_water_level():
-	current_water_level += 1
-	if current_water_level >= water_needed:
-		event_completed.emit()
+	event_completed.emit()

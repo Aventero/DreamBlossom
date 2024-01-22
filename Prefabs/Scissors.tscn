@@ -94,7 +94,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l7ma5")
 
-[node name="Scissors" node_paths=PackedStringArray("open_scissors", "closed_scissors") instance=ExtResource("1_vpipe")]
+[node name="Scissors" node_paths=PackedStringArray("open_scissors", "closed_scissors") groups=["Returnable"] instance=ExtResource("1_vpipe")]
 script = ExtResource("2_2idro")
 open_scissors = NodePath("Open")
 closed_scissors = NodePath("Closed")

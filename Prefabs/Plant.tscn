@@ -2219,6 +2219,16 @@ size = Vector2i(64, 83)
 
 [node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
 
+[node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
+script = ExtResource("3_r51xa")
+run_time = 10.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.338, 0)
+
+[node name="WateringEvent" type="Node3D" parent="Stage 1"]
+script = ExtResource("4_gpqma")
+icon_texture = ExtResource("7_s1xj8")
+
 [node name="Stage 3" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 run_time = 10.0
@@ -2250,17 +2260,7 @@ script = ExtResource("5_t8t8x")
 icon_texture_override = Array[Texture2D]([ExtResource("10_jih3p"), ExtResource("11_81v4p"), ExtResource("12_wis8f")])
 icon_texture = ExtResource("6_sdd15")
 
-[node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
-run_time = 10.0
-animation_name = "Grow"
-icon_position = Vector3(0, 0.338, 0)
-
-[node name="WateringEvent" type="Node3D" parent="Stage 1"]
-script = ExtResource("4_gpqma")
-icon_texture = ExtResource("7_s1xj8")
-
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
+[connection signal="stage_complete" from="Stage 1" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 3" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 2" to="." method="_on_stage_complete"]
-[connection signal="stage_complete" from="Stage 1" to="." method="_on_stage_complete"]
