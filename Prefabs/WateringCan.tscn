@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://u1lj0ge0eu0v"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_f78l7"]
-[ext_resource type="PackedScene" path="res://Models/WateringCan.tscn" id="2_h1qta"]
+[ext_resource type="PackedScene" uid="uid://bu5d6l1aow4tv" path="res://Models/WateringCan.tscn" id="2_h1qta"]
 [ext_resource type="Script" path="res://Scripts/WateringCan.gd" id="2_ngscu"]
-[ext_resource type="PackedScene" path="res://Prefabs/WaterDrop.tscn" id="3_3bmx2"]
+[ext_resource type="PackedScene" uid="uid://dqg63xo3abxvn" path="res://Prefabs/WaterDrop.tscn" id="3_3bmx2"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_gb2ho"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_mbsu1"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_1qjvm"]
-[ext_resource type="Material" path="res://Materials/Water.tres" id="8_g1rv5"]
+[ext_resource type="Material" uid="uid://yskd5jdqu2th" path="res://Materials/Water.tres" id="8_g1rv5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4miq6"]
 height = 0.2

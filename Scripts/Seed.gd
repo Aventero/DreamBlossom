@@ -4,4 +4,5 @@ extends XRToolsPickable
 
 @export var plant : PackedScene
 
-var grown : bool = false
+# Ensures that seed is only planted once
+var planted : bool = false

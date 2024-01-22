@@ -31,12 +31,17 @@ var previous_hand_position : Vector3
 
 # Seed / Plant
 var seed : Seed = null
+var plant : Node3D = null
 
 # Watering
 var current_water : int = 0
 
 var time : float = 0.0
 var to_be_deleted : bool = false
+
+func _ready():
+	# Add self to lookup
+	DigSpotLookup.add(self)
 
 func _process(delta):
 	# Skip update if spot is currently in remove tween / animation
@@ -80,6 +85,9 @@ func _process(delta):
 		remove_tween.tween_property(self, "global_position", global_position + Vector3(0, -0.2, 0), 2.0)
 		remove_tween.tween_callback(Callable(_free_callback))
 		
+		# Update Lookup
+		DigSpotLookup.remove(self)
+		
 		to_be_deleted = true
 
 func _free_callback():
@@ -91,8 +99,11 @@ func _on_trigger_body_entered(body):
 		_handle_hand_movement(body)
 	
 	# Check if body is seed
-	if not seed and body is Seed:
+	if not seed and body is Seed and body.planted == false:
+		# Ensure that seed is only planted once
 		seed = body
+		seed.planted = true
+		
 		_handle_seed_insert()
 	
 	# Check if body is waterdrop
@@ -173,17 +184,19 @@ func _handle_water_drop():
 		dry_timer.start()
 		return
 	
-	if not seed.grown:
+	if not plant:
 		# Grow plant
 		_spawn_plant(Vector3(0, 0, 0))
-		seed.grown = true
 		
 		dry_timer.stop()
 
 func _spawn_plant(spawning_position : Vector3):
-	var plant_instance : Node3D = seed.plant.instantiate()
-	plant_instance.position = Vector3(spawning_position)
-	add_child(plant_instance)
+	plant = seed.plant.instantiate()
+	plant.position = spawning_position
+	add_child(plant)
+	
+	# Update Lookup
+	DigSpotLookup.add(self, plant)
 
 func _reparent_seed_callback():
 	seed.get_parent().remove_child(seed)

@@ -2,10 +2,14 @@
 class_name WateringEvent
 extends PlantEvent
 
-@onready var digspot : DigSpot = $"../../.."
 @export var water_needed : int = 5
 
+var digspot : DigSpot
+
 func initialize():
+	# Get digspot
+	digspot = DigSpotLookup.get_dig_spot(self.owner)
+	
 	# Reset watering state on digspot
 	digspot.reset_watering(water_needed)
 	
