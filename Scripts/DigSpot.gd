@@ -191,9 +191,14 @@ func _handle_water_drop():
 		dry_timer.stop()
 
 func _spawn_plant(spawning_position : Vector3):
+	# Spawn plant
 	plant = seed.plant.instantiate()
 	plant.position = spawning_position
 	add_child(plant)
+	
+	# Remove seed
+	var tween : Tween = create_tween()
+	tween.tween_property(seed, "scale", Vector3.ZERO, 0.5)
 	
 	# Update Lookup
 	DigSpotLookup.add(self, plant)

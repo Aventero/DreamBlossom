@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlmbh3servo83"]
+[gd_scene load_steps=5 format=3 uid="uid://dlmbh3servo83"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_t2yly"]
 [ext_resource type="Script" path="res://Scripts/Fertilizer.gd" id="2_jm5qm"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_dp1he"]
+[ext_resource type="Script" path="res://Scripts/InactivityManager.gd" id="4_hxy0e"]
 
 [node name="Fertilizer" instance=ExtResource("1_t2yly")]
 script = ExtResource("2_jm5qm")
@@ -12,3 +13,6 @@ ranged_grab_method = 0
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="1"]
 visible = false
 script = ExtResource("3_dp1he")
+
+[node name="InactivityManager" type="Timer" parent="." index="2"]
+script = ExtResource("4_hxy0e")
