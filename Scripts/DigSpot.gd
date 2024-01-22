@@ -141,6 +141,11 @@ func _handle_seed_insert():
 	seed.enabled = false
 	seed.freeze = true
 	
+	# Disable inactivity manager
+	for child in seed.get_children():
+		if child is InactivityManager:
+			child.queue_free()
+	
 	# Stop watering timer
 	dry_timer.stop()
 	
@@ -161,6 +166,10 @@ func _handle_seed_insert():
 	
 	# Reparent seed after tween
 	tween.tween_callback(Callable(_reparent_seed_callback))
+	
+	# Spawn plant if water is enough
+	if current_water >= watering_amount:
+		_spawn_plant(Vector3(0, 0, 0))
 
 func _handle_water_drop():
 	# Added a drop of water
@@ -187,8 +196,8 @@ func _handle_water_drop():
 	if not plant:
 		# Grow plant
 		_spawn_plant(Vector3(0, 0, 0))
-		
-		dry_timer.stop()
+	
+	dry_timer.stop()
 
 func _spawn_plant(spawning_position : Vector3):
 	# Spawn plant
@@ -230,5 +239,5 @@ func reset_watering(new_watering_amount : int):
 	material_changer.set_state_by_index(0)
 	
 	# Reset watering amount and set new value
-	current_water = 0
 	watering_amount = new_watering_amount
+	current_water = 0
