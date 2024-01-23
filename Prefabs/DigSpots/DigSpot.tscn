@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/DigSpot.gd" id="1_lp3ox"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
 [ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
 [ext_resource type="Script" path="res://Scripts/MaterialChanger.gd" id="4_f013i"]
 
@@ -33,7 +33,7 @@ remove_particles = ExtResource("2_nlffj")
 seed_insert_particles = ExtResource("3_suh21")
 
 [node name="Trigger" type="Area3D" parent="."]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 197124
 
 [node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]

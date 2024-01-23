@@ -13,10 +13,10 @@ func initialize():
 	# Reset watering state on digspot
 	digspot.reset_watering(water_needed)
 	
-	digspot.watering_completed.connect(Callable(_increase_water_level))
+	digspot.watering_completed.connect(Callable(_watering_complete))
 
 func cleanup():
-	digspot.watering_completed.disconnect(Callable(_increase_water_level))
+	digspot.watering_completed.disconnect(Callable(_watering_complete))
 
-func _increase_water_level():
+func _watering_complete():
 	event_completed.emit()

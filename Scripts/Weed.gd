@@ -8,6 +8,7 @@ extends Node3D
 @export var pull_rumble : XRToolsRumbleEvent
 
 @export_category("Pull Settings")
+@export_range(1, 5.0) var max_stretch : float
 @export var min_pull_distance : float
 @export var target_pull_distance : float
 @export_range(0, 1) var pull_particle_offset : float
@@ -28,7 +29,7 @@ var digspot : DigSpot
 var pull_particle_instance : GPUParticles3D
 var cell : GridCell
 var time : float = 0.0
-var initial_scale
+var initial_scale : Vector3
 
 func _ready():
 	initial_scale = get_parent().scale
@@ -51,6 +52,9 @@ func _handle_pull():
 	
 	# Play jiggle animation
 	_weed_pull_animation(ratio)
+	
+	# Stretch
+	weed.scale.y = (ratio * (max_stretch - 1.0)) + 1.0
 	
 	# Spawn pull particles
 	if ratio > pull_particle_offset and pull_particle_instance == null:
@@ -167,4 +171,6 @@ func _on_pull_pickup_dropped(pickable):
 
 func _on_pull_pickup_released(pickable, by):
 	var tween : Tween = create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(digspot, "scale", initial_scale, 0.1)
+	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)
