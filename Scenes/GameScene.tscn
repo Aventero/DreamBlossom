@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cqii0lt66vbtm" path="res://Prefabs/-- OLD --/HungerDisplay.tscn" id="4_qalgc"]
 [ext_resource type="PackedScene" uid="uid://w0c40fto544n" path="res://Prefabs/-- OLD --/Basket.tscn" id="5_552eb"]
 [ext_resource type="AudioStream" uid="uid://yqfrina0awrx" path="res://Audio/NomNom.mp3" id="5_rngfy"]
-[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Shovel.tscn" id="13_cesqi"]
+[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="13_cesqi"]
 [ext_resource type="PackedScene" uid="uid://c0mdrac0tfqiw" path="res://Prefabs/-- OLD --/Table.tscn" id="14_67nfy"]
 [ext_resource type="PackedScene" uid="uid://bgbwonoy3chi7" path="res://Prefabs/-- OLD --/DefaultSeed.tscn" id="15_hg3i4"]
 [ext_resource type="PackedScene" uid="uid://bbkuqelpm58tm" path="res://Prefabs/-- OLD --/PlantPot.tscn" id="16_m6c4u"]

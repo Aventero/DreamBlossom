@@ -78,24 +78,27 @@ func _process(delta):
 	
 	# Check if "remove motion" is complete
 	if progress > remove_amount:
-		# Free occupied cells in grid
-		anchor_cell.grid.set_state(anchor_cell, cell_width, false)
-		
-		# Spawn remove particles
-		var particles : GPUParticles3D = remove_particles.instantiate()
-		add_child(particles)
-		particles.position = Vector3(0, 0.2, 0)
-		particles.emitting = true
-		
-		# Start remove animation
-		var remove_tween = create_tween()
-		remove_tween.tween_property(self, "global_position", global_position + Vector3(0, -0.2, 0), 2.0)
-		remove_tween.tween_callback(Callable(_free_callback))
-		
-		# Update Lookup
-		DigSpotLookup.remove(self)
-		
-		to_be_deleted = true
+		remove_self()
+
+func remove_self():
+	# Free occupied cells in grid
+	anchor_cell.grid.set_state(anchor_cell, cell_width, false)
+	
+	# Spawn remove particles
+	var particles : GPUParticles3D = remove_particles.instantiate()
+	add_child(particles)
+	particles.position = Vector3(0, 0.2, 0)
+	particles.emitting = true
+	
+	# Start remove animation
+	var remove_tween = create_tween()
+	remove_tween.tween_property(self, "global_position", global_position + Vector3(0, -0.2, 0), 2.0)
+	remove_tween.tween_callback(Callable(_free_callback))
+	
+	# Update Lookup
+	DigSpotLookup.remove(self)
+	
+	to_be_deleted = true
 
 func _free_callback():
 	queue_free()

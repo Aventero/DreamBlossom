@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://co8puxnetmkkg"]
+
+[ext_resource type="PackedScene" uid="uid://dlmbh3servo83" path="res://Prefabs/PlantEvents/Fertilizer/Fertilizer.tscn" id="1_6hvpi"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="2_55a1m"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_dfw6q"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_siv2q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k56v4"]
+margin = 0.0
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bto6i"]
+albedo_color = Color(0.486275, 0.482353, 0.917647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bs4l"]
+material = SubResource("StandardMaterial3D_bto6i")
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i0l6n"]
+material = ExtResource("2_55a1m")
+size = Vector3(0.055, 0.055, 0.055)
+
+[node name="Fertilizer" instance=ExtResource("1_6hvpi")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_k56v4")
+
+[node name="Model" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_1bs4l")
+
+[node name="Model Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+mesh = SubResource("BoxMesh_i0l6n")
+
+[node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("3_dfw6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0203912, -0.0932411)
+
+[node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("4_siv2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0203912, -0.0932411)

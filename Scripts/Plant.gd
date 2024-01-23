@@ -4,7 +4,6 @@ extends Node3D
  
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-
 var stages : Array[Stage] = []
 var current_stage : int = 0
 
@@ -20,12 +19,19 @@ func _ready():
 func start_stage(index : int):
 	var stage : Stage = stages[index]
 	
-	stage_timer.start(stage.run_time)
-	animation_player.play(stage.animation_name)
+	if stage.should_play_animation:
+		# Play the animation
+		stage_timer.start(stage.animation_time)
+		animation_player.play(stage.animation_name)
+	else:
+		# Start events immediatly
+		stages[current_stage].start_events()
 
 func _on_stage_timer_timeout():
+	if animation_player.is_playing():
+		animation_player.pause()
+	
 	# Start stage events
-	animation_player.pause()
 	stages[current_stage].start_events()
 
 func _on_stage_complete():

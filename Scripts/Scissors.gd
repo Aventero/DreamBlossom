@@ -49,6 +49,3 @@ func _on_area_3d_area_entered(area : Area3D):
 	
 func _on_area_3d_area_exited(area):
 	inside_dead_leaf = null
-
-
-

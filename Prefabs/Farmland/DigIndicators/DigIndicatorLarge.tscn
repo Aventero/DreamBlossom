@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://c52mp3attv6ds"]
+
+[ext_resource type="PackedScene" uid="uid://dyrjvfiya4jf5" path="res://Prefabs/Farmland/DigIndicators/DigIndicator.tscn" id="1_58mrs"]
+[ext_resource type="Material" path="res://Materials/IndicatorAllowed.tres" id="2_ketc8"]
+[ext_resource type="Material" path="res://Materials/IndicatorRestricted.tres" id="3_10a02"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87p32"]
+size = Vector3(0.564, 0.02, 0.564)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o20yg"]
+material = ExtResource("2_ketc8")
+size = Vector3(0.564, 0.02, 0.564)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tf1so"]
+material = ExtResource("3_10a02")
+size = Vector3(0.564, 0.02, 0.564)
+
+[node name="DiggingIndicator" instance=ExtResource("1_58mrs")]
+
+[node name="Collision" parent="." index="0"]
+shape = SubResource("BoxShape3D_87p32")
+
+[node name="Digging Spot Allowed" parent="." index="1"]
+mesh = SubResource("BoxMesh_o20yg")
+
+[node name="Digging Spot Restricted" parent="." index="2"]
+mesh = SubResource("BoxMesh_tf1so")
