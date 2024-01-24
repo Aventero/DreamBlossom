@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="5_rchdc"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
-[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="8_mo161"]
 [ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/SeedBag.tscn" id="8_rxdi4"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
@@ -15,7 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
-[ext_resource type="PackedScene" path="res://Prefabs/MusicBox.tscn" id="16_12g1g"]
+[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
+[ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="16_12g1g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -126,9 +126,6 @@ shape = SubResource("BoxShape3D_axmly")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.136943, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
-[node name="Shovel" parent="." instance=ExtResource("8_mo161")]
-transform = Transform3D(0.68498, 0, 0.728562, 0, 1, 0, -0.728562, 0, 0.68498, 0.506037, 0.872308, 0.234858)
-
 [node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
 transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 0.606496, 0.852544, 0.492049)
 
@@ -169,7 +166,8 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -0.624198,
 [node name="MusicBoxHighlight" parent="MusicBox/XRToolsHighlightVisible" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
+[node name="Shovel" parent="." instance=ExtResource("16_2sp45")]
+transform = Transform3D(0.0034383, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034383, 0.418428, 0.848511, 0.31324)
+
 [editable path="Player"]
-[editable path="Shovel"]
-[editable path="Shovel/PullOrigin/PullPickup"]
 [editable path="MusicBox"]
