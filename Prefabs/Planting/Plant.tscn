@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=90 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/FertilizeEvent.gd" id="5_t8t8x"]
 [ext_resource type="Texture2D" uid="uid://cg8fnuygb4byn" path="res://Textures/Fertilizer.png" id="6_sdd15"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="7_s1xj8"]
+[ext_resource type="Script" path="res://Scripts/MusicEvent.gd" id="8_dwnx8"]
 [ext_resource type="PackedScene" uid="uid://8ecc2uq3sg6u" path="res://Prefabs/-- OLD --/WaterEventIcon.tscn" id="9_33sjg"]
+[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="9_a1xro"]
 [ext_resource type="Texture2D" uid="uid://b285rd770k4ej" path="res://Textures/FertilizerBlueIcon.png" id="10_jih3p"]
 [ext_resource type="Texture2D" uid="uid://xuheen3agtpj" path="res://Textures/FertilizerYellowIcon.png" id="11_81v4p"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="12_o8imm"]
@@ -2513,15 +2515,20 @@ animation_time = 2.5
 animation_name = "Grow"
 icon_position = Vector3(0, 0.25, 0)
 
-[node name="WateringEvent" type="Node3D" parent="Stage 1"]
-script = ExtResource("4_gpqma")
-icon_texture = ExtResource("7_s1xj8")
+[node name="MusicEvent" type="Node3D" parent="Stage 1"]
+script = ExtResource("8_dwnx8")
+target_time = 5.0
+icon_texture = ExtResource("9_a1xro")
 
 [node name="Stage 2" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 animation_time = 2.5
 animation_name = "Grow"
 icon_position = Vector3(0, 0.35, 0)
+
+[node name="WateringEvent" type="Node3D" parent="Stage 2"]
+script = ExtResource("4_gpqma")
+icon_texture = ExtResource("7_s1xj8")
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage 2"]
 script = ExtResource("5_t8t8x")

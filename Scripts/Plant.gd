@@ -4,8 +4,11 @@ extends Node3D
  
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+
 var stages : Array[Stage] = []
 var current_stage : int = 0
+
+var tween : Tween
 
 func _ready():
 	# Search for stages in plant
@@ -39,3 +42,13 @@ func _on_stage_complete():
 	current_stage += 1
 	if current_stage < stages.size():
 		start_stage(current_stage)
+
+func request_tween(force : bool = false) -> Tween:
+	if not tween or force or not tween.is_valid():
+		if tween:
+			tween.kill()
+		
+		tween = create_tween()
+		return tween
+	
+	return null
