@@ -39,4 +39,3 @@ func _on_stage_complete():
 	current_stage += 1
 	if current_stage < stages.size():
 		start_stage(current_stage)
-

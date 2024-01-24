@@ -73,11 +73,9 @@ environment = SubResource("Environment_88j2n")
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
 
 [node name="FunctionPickup" parent="Player/Left Hand/CollisionHandLeft" index="2"]
-grab_distance = 0.05
 ranged_enable = false
 
 [node name="FunctionPickup" parent="Player/Right Hand/CollisionHandRight" index="2"]
-grab_distance = 0.05
 ranged_enable = false
 
 [node name="XRToolsRumbleManager" type="Node" parent="Player"]

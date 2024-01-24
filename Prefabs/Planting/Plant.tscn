@@ -2488,6 +2488,25 @@ size = Vector2i(64, 83)
 
 [node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
 
+[node name="Stage 4" type="Node3D" parent="." groups=["Stage"]]
+script = ExtResource("3_r51xa")
+icon_position = Vector3(0, 0.5, 0)
+should_play_animation = false
+
+[node name="FruitEvent" type="Node3D" parent="Stage 4"]
+script = ExtResource("16_btk6m")
+fruit = ExtResource("17_3rg25")
+icon_texture = ExtResource("18_jyjcy")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage 4/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046027, 0.303008, -0.0417318)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage 4/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.038541)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage 4/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
+
 [node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 animation_time = 2.5
@@ -2537,25 +2556,6 @@ transform = Transform3D(0.750274, 0.0465611, -0.659486, -0.0687883, 0.997601, -0
 [node name="Spawnpoint5" type="Node3D" parent="Stage 3/PruneEvent"]
 transform = Transform3D(-0.964614, -0.0152713, 0.263225, -0.0324778, 0.997601, -0.0611414, -0.26166, -0.0675268, -0.962795, -0.0094645, 0.348302, -0.0153508)
 
-[node name="Stage 4" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
-icon_position = Vector3(0, 0.5, 0)
-should_play_animation = false
-
-[node name="FruitEvent" type="Node3D" parent="Stage 4"]
-script = ExtResource("16_btk6m")
-fruit = ExtResource("17_3rg25")
-icon_texture = ExtResource("18_jyjcy")
-
-[node name="Spawnpoint1" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046027, 0.303008, -0.0417318)
-
-[node name="Spawnpoint2" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.038541)
-
-[node name="Spawnpoint3" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
-
 [node name="Stage 5" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 icon_position = Vector3(0, 0.5, 0)
@@ -2571,8 +2571,8 @@ visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="Stage 5/DeathEvent" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
+[connection signal="stage_complete" from="Stage 4" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 1" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 2" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 3" to="." method="_on_stage_complete"]
-[connection signal="stage_complete" from="Stage 4" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 5" to="." method="_on_stage_complete"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx83sgte1vf7i"]
+[gd_scene load_steps=9 format=3 uid="uid://bx83sgte1vf7i"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/PlantEvents/Fruit/Fruit.tscn" id="1_pnyro"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="2_jm6f8"]
+[ext_resource type="Script" path="res://Scripts/Orangie.gd" id="2_pi4se"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_niuta"]
 size = Vector3(0.0380859, 0.0373535, 0.0380859)
@@ -64,15 +65,18 @@ shadow_mesh = SubResource("ArrayMesh_ieijh")
 
 [node name="Orangie" instance=ExtResource("1_pnyro")]
 freeze_mode = 0
+script = ExtResource("2_pi4se")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_niuta")
 
 [node name="GrabPointHandLeft" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041832, -0.103481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00765866, 0.00197195)
+visible = true
 
 [node name="GrabPointHandRight" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041832, -0.103481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00765866, 0.00197195)
+visible = true
 
 [node name="XRToolsHighlightVisible" parent="." index="3"]
 visible = true

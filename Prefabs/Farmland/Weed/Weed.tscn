@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/Weed.gd" id="1_660jb"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="1_bq2ug"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="2_dyeqp"]
-[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="2_medp6"]
+[ext_resource type="PackedScene" path="res://Particles/ShovelPull.tscn" id="2_medp6"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="2_nqta3"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_e6pp6"]
-[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="3_eejvq"]
+[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="3_eejvq"]
 
 [sub_resource type="Resource" id="Resource_emsrk"]
 script = ExtResource("2_dyeqp")
