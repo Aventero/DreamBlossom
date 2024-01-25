@@ -1,11 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://mvx45djeopmk"]
+[gd_scene load_steps=20 format=3 uid="uid://mvx45djeopmk"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_4e4g3"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_cihps"]
 [ext_resource type="PackedScene" uid="uid://w53as41wqyrb" path="res://Prefabs/Farmland/Weed/Weed.tscn" id="2_sxg6l"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="3_pfue3"]
+[ext_resource type="PackedScene" path="res://Particles/ShovelPull.tscn" id="4_lmesj"]
+[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="5_78u8c"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="5_aama0"]
 [ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="6_2xyoj"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="7_sytm2"]
+
+[sub_resource type="Resource" id="Resource_o5e5o"]
+script = ExtResource("3_pfue3")
+magnitude = 1.0
+active_during_pause = false
+indefinite = true
+duration_ms = 300
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12v80"]
 resource_name = "Leaves"
@@ -73,9 +83,17 @@ fertilizing = false
 
 [node name="Weed" parent="." index="0" instance=ExtResource("2_sxg6l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182831, 0)
-max_stretch = 5.0
+spread_chance = 1.0
+pull_rumble = SubResource("Resource_o5e5o")
+max_stretch = 3.0
+min_pull_distance = 0.1
+target_pull_distance = 0.4
+pull_particle_offset = 0.1
 max_shake = 0.005
-max_speed = 15.0
+max_speed = 20.0
+particles_height_offset = 0.06
+pull_particles = ExtResource("4_lmesj")
+pull_complete_particles = ExtResource("5_78u8c")
 
 [node name="Dig Spot Model" parent="." index="1" instance=ExtResource("2_cihps")]
 

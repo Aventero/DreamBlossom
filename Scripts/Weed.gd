@@ -2,8 +2,6 @@
 class_name Weed
 extends Node3D
 
-@export_range(0.0, 1.0, 0.01) var spread_chance : float 
-
 @export_category("Rumble")
 @export var pull_rumble : XRToolsRumbleEvent
 
@@ -25,9 +23,7 @@ extends Node3D
 @onready var weed : Node3D = $"Weed Model"
 @onready var pickable_pull : XRToolsPickable = $"Pull Origin/Pull Pickup"
 
-var digspot : DigSpot
 var pull_particle_instance : GPUParticles3D
-var cell : GridCell
 var time : float = 0.0
 var initial_scale : Vector3
 
@@ -87,23 +83,10 @@ func _handle_pull():
 		# Drop pull
 		pickable_pull.drop()
 		pickable_pull.enabled = false
+		_on_pull_completed()
 		
-		weed.queue_free()
-		
-		# Remove weed from soil logically
-		WeedManager.get_instance().remove_weed(cell, cell.grid)
-		
-		# Get current digspot
-		if not digspot:
-			digspot = DigSpotLookup.get_dig_spot(self)
-		
-		# Start remove animation
-		var remove_tween = create_tween()
-		remove_tween.tween_property(digspot, "global_position", global_position + Vector3(0, -0.2, 0), 1.0)
-		remove_tween.tween_callback(Callable(_free_callback))
-
-func _free_callback():
-	digspot.queue_free()
+func _on_pull_completed():
+	weed.queue_free()
 
 func _weed_pull_animation(ratio):
 	weed.position = Vector3(
@@ -117,41 +100,6 @@ func _weed_pull_animation(ratio):
 		sin(time * max_speed) * ratio * 0.1,
 		cos(time * max_speed) * ratio * 0.1
 	)
-
-func _on_spread_timer_timeout():
-	if not randf() < spread_chance:
-		return
-	
-	# Get all surrounding cells
-	var surrounding_cells : Array[GridCell] = cell.grid.get_cells(cell, 3, false)
-	var possible_cells : Array[GridCell]
-	
-	for s_cell in surrounding_cells:
-		if not s_cell.occupied:
-			possible_cells.append(s_cell)
-	
-	# Get random cell
-	if possible_cells.size() == 0:
-		return
-	
-	var random_cell : GridCell = possible_cells[randi_range(0, possible_cells.size() - 1)]
-	
-	WeedManager.get_instance().spawn_weed(random_cell, random_cell.grid)
-
-func _on_pull_pickup_picked_up(pickable):
-	# Squish on first pickup
-	_grab_squish()
-	
-	# Add pull rumble haptic to correct controller
-	var controller : XRController3D = pickable.get_picked_up_by_controller()
-	XRToolsRumbleManager.add("pull_rumble", pull_rumble, [controller])
-
-func _grab_squish():
-	if not digspot:
-		digspot = DigSpotLookup.get_dig_spot(self)
-	
-	var tween : Tween = create_tween()
-	tween.tween_property(digspot, "scale", initial_scale * 0.9, 0.05)
 
 func _on_pull_pickup_dropped(pickable):
 	pickable.scale = Vector3.ONE
@@ -172,5 +120,4 @@ func _on_pull_pickup_dropped(pickable):
 func _on_pull_pickup_released(pickable, by):
 	var tween : Tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(digspot, "scale", initial_scale, 0.1)
 	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)

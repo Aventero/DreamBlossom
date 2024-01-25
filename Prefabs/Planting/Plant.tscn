@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=93 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
@@ -14,9 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="9_a1xro"]
 [ext_resource type="Texture2D" uid="uid://b285rd770k4ej" path="res://Textures/FertilizerBlueIcon.png" id="10_jih3p"]
 [ext_resource type="Texture2D" uid="uid://xuheen3agtpj" path="res://Textures/FertilizerYellowIcon.png" id="11_81v4p"]
+[ext_resource type="Script" path="res://Prefabs/Planting/WeedEvent.gd" id="11_r0fet"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="12_o8imm"]
+[ext_resource type="PackedScene" uid="uid://bhy6ptcwgu343" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="12_p0hjl"]
 [ext_resource type="Texture2D" uid="uid://xm6fskfgf42h" path="res://Textures/FertilizerGreenIcon.png" id="12_wis8f"]
 [ext_resource type="Script" path="res://Scripts/PruneEvent.gd" id="13_780mv"]
+[ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="13_qxuyb"]
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/PlantEvents/Prune/DeadLeaf.tscn" id="14_7ru82"]
 [ext_resource type="Script" path="res://Scripts/FruitEvent.gd" id="16_btk6m"]
 [ext_resource type="PackedScene" uid="uid://bx83sgte1vf7i" path="res://Prefabs/PlantEvents/Fruit/Orangie/Orangie.tscn" id="17_3rg25"]
@@ -976,7 +979,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 10, 20, 30),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 0, 1), Vector3(0.921914, 0.5, 1.13525), Vector3(1.20023, 1, 0.914148), Vector3(1, 1.5, 1)]
+"values": [Vector3(1, 0, 1), Vector3(0.921914, 0.5, 1.13525), Vector3(1.20023, 1, 0.914148), Vector3(1, 1.31962, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1165,7 +1168,7 @@ tracks/16/path = NodePath("Model/Stick_03:scale")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(24.5, 25.5, 27.5),
+"times": PackedFloat32Array(25.75, 26, 27.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(1, 0, 1), Vector3(1, 1, 1)]
@@ -1597,7 +1600,7 @@ tracks/52/path = NodePath("Model/Stick_03:rotation")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/keys = {
-"times": PackedFloat32Array(26, 28),
+"times": PackedFloat32Array(26.5, 28),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.428965, 0.473758, -1.33898), Vector3(0.00610555, 0.559223, -1.33841)]
@@ -2490,25 +2493,6 @@ size = Vector2i(64, 83)
 
 [node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
 
-[node name="Stage 4" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
-icon_position = Vector3(0, 0.5, 0)
-should_play_animation = false
-
-[node name="FruitEvent" type="Node3D" parent="Stage 4"]
-script = ExtResource("16_btk6m")
-fruit = ExtResource("17_3rg25")
-icon_texture = ExtResource("18_jyjcy")
-
-[node name="Spawnpoint1" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046027, 0.303008, -0.0417318)
-
-[node name="Spawnpoint2" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.038541)
-
-[node name="Spawnpoint3" type="Node3D" parent="Stage 4/FruitEvent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
-
 [node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 animation_time = 2.5
@@ -2563,12 +2547,50 @@ transform = Transform3D(0.750274, 0.0465611, -0.659486, -0.0687883, 0.997601, -0
 [node name="Spawnpoint5" type="Node3D" parent="Stage 3/PruneEvent"]
 transform = Transform3D(-0.964614, -0.0152713, 0.263225, -0.0324778, 0.997601, -0.0611414, -0.26166, -0.0675268, -0.962795, -0.0094645, 0.348302, -0.0153508)
 
+[node name="Stage 4" type="Node3D" parent="." groups=["Stage"]]
+script = ExtResource("3_r51xa")
+icon_position = Vector3(0, 0.5, 0)
+should_play_animation = false
+
+[node name="WeedEvent" type="Node3D" parent="Stage 4"]
+script = ExtResource("11_r0fet")
+event_weed = ExtResource("12_p0hjl")
+icon_texture = ExtResource("13_qxuyb")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage 4/WeedEvent"]
+transform = Transform3D(0.998111, 0.0280982, 0.0546407, -0.0336288, 0.994104, 0.103088, -0.051422, -0.104731, 0.99317, 0.0132016, 0.0183632, -0.053562)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage 4/WeedEvent"]
+transform = Transform3D(0.985828, 0.155084, -0.0639649, -0.138685, 0.967948, 0.209388, 0.0943875, -0.19755, 0.975738, 0.0579302, 0.0116578, 0.0216489)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage 4/WeedEvent"]
+transform = Transform3D(0.987169, -0.103571, 0.121535, 0.0941971, 0.992293, 0.0805033, -0.128936, -0.068022, 0.989317, -0.0570849, 0.0168413, 0.0119888)
+
 [node name="Stage 5" type="Node3D" parent="." groups=["Stage"]]
 script = ExtResource("3_r51xa")
 icon_position = Vector3(0, 0.5, 0)
 should_play_animation = false
 
-[node name="DeathEvent" type="Node3D" parent="Stage 5" node_paths=PackedStringArray("plant_model")]
+[node name="FruitEvent" type="Node3D" parent="Stage 5"]
+script = ExtResource("16_btk6m")
+fruit = ExtResource("17_3rg25")
+icon_texture = ExtResource("18_jyjcy")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage 5/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046027, 0.303008, -0.0417318)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage 5/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.038541)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage 5/FruitEvent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
+
+[node name="Stage 6" type="Node3D" parent="." groups=["Stage"]]
+script = ExtResource("3_r51xa")
+icon_position = Vector3(0, 0.5, 0)
+should_play_animation = false
+
+[node name="DeathEvent" type="Node3D" parent="Stage 6" node_paths=PackedStringArray("plant_model")]
 script = ExtResource("17_bsfhx")
 plant_model = NodePath("../../Model")
 death_material = ExtResource("18_y0wx3")
@@ -2576,10 +2598,11 @@ death_material = ExtResource("18_y0wx3")
 [node name="DigSpotForTestingPurposesAndStuffMeMarvinUff" parent="." instance=ExtResource("17_wy2f3")]
 visible = false
 
-[connection signal="animation_finished" from="AnimationPlayer" to="Stage 5/DeathEvent" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Stage 6/DeathEvent" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
-[connection signal="stage_complete" from="Stage 4" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 1" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 2" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 3" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage 4" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage 5" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage 6" to="." method="_on_stage_complete"]
