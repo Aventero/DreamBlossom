@@ -53,6 +53,10 @@ func _free_callback():
 	digspot.queue_free()
 
 func _on_pull_pickup_dropped(pickable):
+	var tween : Tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)
+	tween.tween_property(digspot, "scale", initial_scale, 0.1)
 	super(pickable)
 
 func _on_pull_pickup_picked_up(pickable):
@@ -69,9 +73,3 @@ func _grab_squish():
 	
 	var tween : Tween = create_tween()
 	tween.tween_property(digspot, "scale", initial_scale * 0.9, 0.05)
-
-func _on_pull_pickup_released(pickable, by):
-	var tween : Tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)
-	tween.tween_property(digspot, "scale", initial_scale, 0.1)

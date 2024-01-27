@@ -54,7 +54,7 @@ add_uv2 = true
 size = Vector2(1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_axmly"]
-size = Vector3(0.5, 1, 0.930908)
+size = Vector3(0.480469, 1, 0.930908)
 
 [sub_resource type="BoxMesh" id="BoxMesh_neeav"]
 size = Vector3(0.5, 1, 0.5)
@@ -119,11 +119,11 @@ mesh = SubResource("PlaneMesh_xbxci")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572155, 0.348511, 0.0218657)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00976563, 0, 0.191284)
 shape = SubResource("BoxShape3D_axmly")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.136943, 0, 0.189688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.0214857, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
@@ -154,7 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
 shape = SubResource("BoxShape3D_axmly")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.114716, 0, 0.189688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.0102562, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="MusicBox" parent="." instance=ExtResource("16_12g1g")]

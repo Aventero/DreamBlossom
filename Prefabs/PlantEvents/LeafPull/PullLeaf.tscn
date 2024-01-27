@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpo28usqu411"]
+
+[ext_resource type="PackedScene" uid="uid://b0cysrtduxqfb" path="res://Models/PullEventLeaf.blend" id="1_53xl1"]
+[ext_resource type="Script" path="res://Prefabs/PlantEvents/LeafPull/PullLeaf.gd" id="1_hlh5c"]
+
+[node name="PullLeaf" type="Node3D"]
+script = ExtResource("1_hlh5c")
+
+[node name="PullEventLeaf" parent="." instance=ExtResource("1_53xl1")]

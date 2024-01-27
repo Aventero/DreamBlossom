@@ -102,7 +102,9 @@ func _weed_pull_animation(ratio):
 	)
 
 func _on_pull_pickup_dropped(pickable):
-	pickable.scale = Vector3.ONE
+	var tween : Tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)
 	pickable.position = Vector3.ZERO
 	pickable.rotation = Vector3.ZERO
 	
@@ -117,7 +119,3 @@ func _on_pull_pickup_dropped(pickable):
 		pull_particle_instance.emitting = false
 		pull_particle_instance = null
 
-func _on_pull_pickup_released(pickable, by):
-	var tween : Tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(weed, "scale", Vector3.ONE, 0.1)
