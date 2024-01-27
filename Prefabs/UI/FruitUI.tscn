@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvxcjsv6bix6w"]
+
+[ext_resource type="Script" path="res://Scripts/UI/FruitUI.gd" id="1_ftqti"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcg8y"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u1oj3"]
+
+[node name="Fruit" type="Panel"]
+custom_minimum_size = Vector2(60, 90)
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcg8y")
+script = ExtResource("1_ftqti")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fruit Content" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Fruit Icon" type="TextureRect" parent="CenterContainer/Fruit Content"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_u1oj3")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Fruit Content"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Amount" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Slash" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
+custom_minimum_size = Vector2(4.9, 0)
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Target" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

@@ -1,13 +1,21 @@
 class_name Fruit
 extends XRToolsPickable
 
+enum Type
+{
+	DEFAULT,
+	ORANGIE
+}
+
+@export var type : Type
+
 @onready var fruit_event : FruitEvent = $"../.."
 var _first_pickup : bool = false
 
 func _ready():
 	print("FRUIT READY!")
 	super()
-	
+
 func _process(delta):
 	pass
 

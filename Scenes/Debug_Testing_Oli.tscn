@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=29 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="16_12g1g"]
+[ext_resource type="PackedScene" uid="uid://b0k0khhx1v345" path="res://Prefabs/Basket.tscn" id="17_2egwi"]
+[ext_resource type="Script" path="res://Scripts/QuestManager.gd" id="18_drpy2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -124,9 +126,6 @@ shape = SubResource("BoxShape3D_axmly")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.136943, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
-[node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
-transform = Transform3D(0.878367, 0, -0.477987, 0, 1, 0, 0.477987, 0, 0.878367, 0.606496, 0.852544, 0.492049)
-
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
@@ -145,7 +144,7 @@ transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676
 transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.572016, 0.849216, 0.182532)
 
 [node name="Scissors" parent="." instance=ExtResource("15_76tl2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645422, 0.890719, 0.117099)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645422, 0.890719, 0.278426)
 
 [node name="Table" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
@@ -159,13 +158,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.114716, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="MusicBox" parent="." instance=ExtResource("16_12g1g")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -0.624198, 0.897504, 0.32443)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -0.543534, 0.897504, 0.464143)
 
 [node name="MusicBoxHighlight" parent="MusicBox/XRToolsHighlightVisible" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Shovel" parent="." instance=ExtResource("16_2sp45")]
 transform = Transform3D(0.0034383, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034383, 0.418428, 0.848511, 0.31324)
+
+[node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
+transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 0.686403, 0.848511, 0.46639)
+
+[node name="Basket" parent="." instance=ExtResource("17_2egwi")]
+transform = Transform3D(0.213559, 0, 0.97693, 0, 1, 0, -0.97693, 0, 0.213559, -0.689302, 0.876299, -0.142575)
+
+[node name="QuestManager" type="Node3D" parent="."]
+script = ExtResource("18_drpy2")
 
 [editable path="Player"]
 [editable path="MusicBox"]

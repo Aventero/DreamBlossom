@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_6hpwn"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_40m3o"]
 
-[node name="Fruit" instance=ExtResource("1_7iwb0")]
+[node name="Fruit" groups=["Fruit"] instance=ExtResource("1_7iwb0")]
+collision_layer = 68
 freeze = true
 script = ExtResource("2_v0qbs")
+type = 0
 release_mode = 0
 
 [node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("3_0gljk")]
