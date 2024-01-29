@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/FruitUI.gd" id="1_ftqti"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcg8y"]
-bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+bg_color = Color(0.0509804, 0.105882, 0.164706, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -12,7 +12,9 @@ corner_radius_bottom_left = 5
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u1oj3"]
 
 [node name="Fruit" type="Panel"]
-custom_minimum_size = Vector2(60, 90)
+custom_minimum_size = Vector2(140, 190)
+offset_right = 140.0
+offset_bottom = 190.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fcg8y")
 script = ExtResource("1_ftqti")
 
@@ -25,12 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Fruit Content" type="VBoxContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 alignment = 1
 
 [node name="Fruit Icon" type="TextureRect" parent="CenterContainer/Fruit Content"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_u1oj3")
 expand_mode = 4
@@ -39,27 +40,30 @@ stretch_mode = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Fruit Content"]
 layout_mode = 2
 theme_override_constants/separation = 1
-alignment = 2
+alignment = 1
 
 [node name="Amount" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+clip_contents = true
+custom_minimum_size = Vector2(37, 0)
 layout_mode = 2
-text = "-"
+theme_override_font_sizes/font_size = 30
+text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = true
 
 [node name="Slash" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
 custom_minimum_size = Vector2(4.9, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "/"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Target" type="Label" parent="CenterContainer/Fruit Content/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(37, 0)
 layout_mode = 2
-text = "-"
+theme_override_font_sizes/font_size = 30
+text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

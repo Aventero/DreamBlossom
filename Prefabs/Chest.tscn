@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0k0khhx1v345"]
+[gd_scene load_steps=26 format=3 uid="uid://b0k0khhx1v345"]
 
-[ext_resource type="Script" path="res://Scripts/Basket.gd" id="1_h3t3n"]
+[ext_resource type="Script" path="res://Scripts/Chest.gd" id="1_h3t3n"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_si5ux"]
+[ext_resource type="Texture2D" uid="uid://brhpq1c1gqwkj" path="res://Textures/Failed_Small.png" id="3_8w7p2"]
 [ext_resource type="PackedScene" uid="uid://clenmajnv4km5" path="res://Prefabs/UI/QuestDisplayUI.tscn" id="3_rctg1"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/QuestSubmit.tscn" id="4_yxlxb"]
 
@@ -29,14 +30,53 @@ size = Vector3(0.01, 0.1, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gwgr0"]
 size = Vector3(0.01, 0.1, 0.2)
 
+[sub_resource type="BoxMesh" id="BoxMesh_hjops"]
+size = Vector3(0.5, 0.01, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_blkq2"]
+size = Vector3(0.5, 0.01, 0.2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_tac6v"]
 size = Vector3(0.5, 0.1, 0.2)
 
+[sub_resource type="Curve" id="Curve_3lauv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0301887, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xemxo"]
+curve = SubResource("Curve_3lauv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kr4lb"]
+emission_shape = 3
+emission_box_extents = Vector3(0.265, 0.1, 0.19)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.3
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xemxo")
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tfks"]
+transparency = 2
+alpha_scissor_threshold = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("3_8w7p2")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ese1y"]
+material = SubResource("StandardMaterial3D_5tfks")
+size = Vector2(0.05, 0.05)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l654"]
+transparency = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_14pw1"]
 material = SubResource("StandardMaterial3D_4l654")
-size = Vector2(0.5, 0.31)
+size = Vector2(0.5, 0.349)
 
 [sub_resource type="GDScript" id="GDScript_4c5yf"]
 script/source = "extends MeshInstance3D
@@ -51,7 +91,7 @@ func _process(delta):
 [sub_resource type="BoxMesh" id="BoxMesh_75pr3"]
 size = Vector3(0.15, 0.05, 0.15)
 
-[node name="Basket" type="Node3D"]
+[node name="Chest" type="Node3D"]
 script = ExtResource("1_h3t3n")
 
 [node name="Model" type="Node3D" parent="."]
@@ -110,6 +150,19 @@ skeleton = NodePath("../..")
 [node name="Collision" type="CollisionShape3D" parent="Model/Wall4"]
 shape = SubResource("BoxShape3D_gwgr0")
 
+[node name="Anchor" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
+
+[node name="Lid" type="StaticBody3D" parent="Model/Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="Lid" type="MeshInstance3D" parent="Model/Anchor/Lid"]
+material_override = ExtResource("1_si5ux")
+mesh = SubResource("BoxMesh_hjops")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Anchor/Lid"]
+shape = SubResource("BoxShape3D_blkq2")
+
 [node name="Trigger" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -118,13 +171,25 @@ collision_mask = 64
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("BoxShape3D_tac6v")
 
+[node name="Failed" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102204, 0)
+emitting = false
+amount = 32
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-4.84167, -4, -4, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_kr4lb")
+draw_pass_1 = SubResource("QuadMesh_ese1y")
+
 [node name="Quest Display" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.29137, -0.121365)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.418337, -0.285192)
 mesh = SubResource("PlaneMesh_14pw1")
 script = SubResource("GDScript_4c5yf")
 
 [node name="Quest Viewport" type="SubViewport" parent="."]
-size = Vector2i(200, 127)
+transparent_bg = true
+size = Vector2i(430, 300)
 
 [node name="Quest Display" parent="Quest Viewport" instance=ExtResource("3_rctg1")]
 offset_right = 0.0
@@ -139,12 +204,12 @@ autostart = true
 wait_time = 10.0
 one_shot = true
 
-[node name="Button" type="MeshInstance3D" parent="."]
+[node name="Submit Button" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.362921, 0.289014, -0.12152)
 mesh = SubResource("BoxMesh_75pr3")
 skeleton = NodePath("QuestSubmit")
 
-[node name="QuestSubmit" parent="Button" instance=ExtResource("4_yxlxb")]
+[node name="QuestSubmit" parent="Submit Button" instance=ExtResource("4_yxlxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
@@ -152,4 +217,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
 [connection signal="quest_handled" from="Quest Viewport/Quest Display" to="." method="_on_quest_display_quest_handled"]
 [connection signal="timeout" from="First Quest Offset" to="." method="_on_first_quest_offset_timeout"]
 [connection signal="timeout" from="Time Between Quests" to="." method="_on_time_between_quests_timeout"]
-[connection signal="button_pressed" from="Button/QuestSubmit" to="." method="_on_quest_submit_button_pressed"]
+[connection signal="button_pressed" from="Submit Button/QuestSubmit" to="." method="_on_quest_submit_button_pressed"]

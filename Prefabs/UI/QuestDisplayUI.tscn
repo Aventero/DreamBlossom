@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://clenmajnv4km5"]
+[gd_scene load_steps=12 format=3 uid="uid://clenmajnv4km5"]
 
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="1_frnog"]
 [ext_resource type="Script" path="res://Scripts/UI/QuestDisplayUI.gd" id="1_phbas"]
 [ext_resource type="Script" path="res://Scripts/QuestIcon.gd" id="2_eo4yy"]
 [ext_resource type="Texture2D" uid="uid://cbkw1vgjycdk0" path="res://Textures/WeedSpot.png" id="3_nomw7"]
-[ext_resource type="Texture2D" uid="uid://bdxg4e0ahak3y" path="res://Textures/Failed.png" id="5_1nsqb"]
-[ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="6_j8pwn"]
 
 [sub_resource type="Resource" id="Resource_xcdxx"]
 script = ExtResource("2_eo4yy")
@@ -17,43 +15,51 @@ script = ExtResource("2_eo4yy")
 type = 2
 icon = ExtResource("3_nomw7")
 
-[sub_resource type="Texture2DRD" id="Texture2DRD_ondlc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8evq"]
+bg_color = Color(0.0509804, 0.105882, 0.164706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aygua"]
-bg_color = Color(0.278431, 0.423529, 0.211765, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1iqn"]
+bg_color = Color(0.109804, 0.192157, 0.282353, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s108d"]
-bg_color = Color(0.458824, 0.666667, 0.360784, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
+[sub_resource type="Texture2DRD" id="Texture2DRD_l8aw8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7wtv"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51piw"]
+bg_color = Color(0.109804, 0.192157, 0.282353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2s57"]
+bg_color = Color(0.878431, 0.882353, 0.866667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
 
 [node name="Quest Display" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -952.0
-offset_bottom = -524.0
+offset_right = -722.0
+offset_bottom = -348.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_phbas")
 fruit_icons = Array[ExtResource("2_eo4yy")]([SubResource("Resource_xcdxx"), SubResource("Resource_ahdjb")])
 fade_duration = 0.5
 
-[node name="Background" type="Panel" parent="."]
+[node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,156 +67,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Background"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+[node name="Recipe" type="Panel" parent="Container"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8evq")
 
-[node name="Fruits" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Container/Recipe"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Recipe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="Panel" parent="Container/Recipe"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -21.0
+offset_right = 82.0
+offset_bottom = 90.0
+rotation = 0.545772
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1iqn")
+
+[node name="Highlight2" type="Panel" parent="Container/Recipe"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = -23.0
+offset_right = 397.0
+offset_bottom = 88.0
+rotation = 0.545772
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1iqn")
+
+[node name="Fruits" type="HBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="Timer" type="HSlider" parent="Container"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-
-[node name="Time" type="Label" parent="Background/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(28, 0)
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-visible_characters = 3
-visible_ratio = 3.0
-
-[node name="Timer" type="HSlider" parent="Background/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_icons/grabber = SubResource("Texture2DRD_ondlc")
-theme_override_styles/slider = SubResource("StyleBoxFlat_aygua")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_s108d")
+theme_override_icons/grabber = SubResource("Texture2DRD_l8aw8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_51piw")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l2s57")
 value = 100.0
 
-[node name="Timer" type="Timer" parent="Background/MarginContainer/VBoxContainer/HBoxContainer/Timer"]
-autostart = true
+[node name="Timer" type="Timer" parent="Container/Timer"]
 
-[node name="Failed Screen" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="Label" type="Label" parent="Container/Timer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n7wtv")
-
-[node name="MarginContainer" type="MarginContainer" parent="Failed Screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Failed Screen/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Failed Screen/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = -10
-
-[node name="Failed" type="TextureRect" parent="Failed Screen/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("5_1nsqb")
-stretch_mode = 5
-
-[node name="Failed Text" type="Label" parent="Failed Screen/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.988235, 0.498039, 0.498039, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-text = "Failed"
+text = "--"
 horizontal_alignment = 1
-vertical_alignment = 2
-uppercase = true
+vertical_alignment = 1
 
-[node name="Completed Screen" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n7wtv")
-
-[node name="MarginContainer" type="MarginContainer" parent="Completed Screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Completed Screen/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Completed Screen/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 0
-
-[node name="Failed" type="TextureRect" parent="Completed Screen/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("6_j8pwn")
-stretch_mode = 5
-
-[node name="Failed Text" type="Label" parent="Completed Screen/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.988235, 0.498039, 0.498039, 1)
-theme_override_font_sizes/font_size = 25
-text = "CompleteD"
-horizontal_alignment = 1
-vertical_alignment = 2
-uppercase = true
-
-[node name="New Recipe" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n7wtv")
-
-[node name="MarginContainer" type="MarginContainer" parent="New Recipe"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="New Recipe/MarginContainer"]
-layout_mode = 2
-
-[node name="New Recipe" type="Label" parent="New Recipe/MarginContainer/CenterContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "New Recipe"
-
-[connection signal="timeout" from="Background/MarginContainer/VBoxContainer/HBoxContainer/Timer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Container/Timer/Timer" to="." method="_on_timer_timeout"]

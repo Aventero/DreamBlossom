@@ -2,9 +2,8 @@
 class_name Quest
 extends Timer
 
-signal success;
-signal failed;
-signal completed;
+signal completed(success)
+signal request_completion_check
 
 var quest_name : String
 var time : int
@@ -17,6 +16,9 @@ func _init():
 	
 	# Connect time exceeded
 	timeout.connect(Callable(_on_quest_timeout))
+	
+	# Free self if quest is completed
+	completed.connect(queue_free)
 
 func add_requirement(type : Fruit.Type, amount : int) -> void:
 	requirements[type] = amount
@@ -42,18 +44,19 @@ func check_completion(current_state : Dictionary) -> bool:
 	for key in keys:
 		# Check if required fruit is there
 		if not current_state.has(key):
+			completed.emit(false)
 			return false
 		
 		# Check if required fruit amount is reached
 		if current_state[key] < requirements[key]:
+			completed.emit(false)
 			return false
 	
 	# Stop quest timer
 	stop()
 	
 	# Emit completed event
-	success.emit()
-	completed.emit()
+	completed.emit(true)
 	return true
 
 func start_quest():
@@ -61,10 +64,8 @@ func start_quest():
 	running = true
 
 func _on_quest_timeout():
-	# Delete quest node
-	failed.emit()
-	completed.emit()
-	queue_free()
+	# Request completion check
+	request_completion_check.emit()
 
 func is_running() -> bool:
 	return running

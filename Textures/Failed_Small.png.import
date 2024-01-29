@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdxg4e0ahak3y"
-path.s3tc="res://.godot/imported/Failed.png-7ecb4c98100898201e51535ca862f87e.s3tc.ctex"
-path.etc2="res://.godot/imported/Failed.png-7ecb4c98100898201e51535ca862f87e.etc2.ctex"
+uid="uid://brhpq1c1gqwkj"
+path.s3tc="res://.godot/imported/Failed_Small.png-994f6659a92e6d9e51219c9b444dbaa3.s3tc.ctex"
+path.etc2="res://.godot/imported/Failed_Small.png-994f6659a92e6d9e51219c9b444dbaa3.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Failed.png"
-dest_files=["res://.godot/imported/Failed.png-7ecb4c98100898201e51535ca862f87e.s3tc.ctex", "res://.godot/imported/Failed.png-7ecb4c98100898201e51535ca862f87e.etc2.ctex"]
+source_file="res://Textures/Failed_Small.png"
+dest_files=["res://.godot/imported/Failed_Small.png-994f6659a92e6d9e51219c9b444dbaa3.s3tc.ctex", "res://.godot/imported/Failed_Small.png-994f6659a92e6d9e51219c9b444dbaa3.etc2.ctex"]
 
 [params]
 

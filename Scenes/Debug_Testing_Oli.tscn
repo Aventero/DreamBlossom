@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="16_12g1g"]
-[ext_resource type="PackedScene" uid="uid://b0k0khhx1v345" path="res://Prefabs/Basket.tscn" id="17_2egwi"]
+[ext_resource type="PackedScene" uid="uid://b0k0khhx1v345" path="res://Prefabs/Chest.tscn" id="17_2egwi"]
 [ext_resource type="Script" path="res://Scripts/QuestManager.gd" id="18_drpy2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]

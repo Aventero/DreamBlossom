@@ -2,9 +2,8 @@
 class_name QuestManager
 extends Node3D
 
-var active_quests : Array[Quest]
-
 static var instance : QuestManager
+static var quest : Quest
 
 func _ready():
 	# Setup Singelton
@@ -16,9 +15,9 @@ func _ready():
 static func get_instance() -> QuestManager:
 	return instance
 
-func generate_quest() -> Quest:
+func generate_quest() -> void:
 	# Generate new quest - DEBUG # 
-	var quest : Quest = Quest.new()
+	quest = Quest.new()
 	quest.quest_name = "Debug Quest"
 	quest.time = 10
 	quest.add_requirement(Fruit.Type.ORANGIE, 3)
@@ -27,10 +26,11 @@ func generate_quest() -> Quest:
 	# Setup quest object
 	quest.name = quest.quest_name
 	
+	quest.completed.connect(_on_quest_completed)
+	
 	# Add quest
 	add_child(quest)
-	active_quests.append(quest)
-	
-	#quest.start(quest.time)
-	
-	return quest
+
+func _on_quest_completed(success : bool):
+	quest.queue_free()
+	quest = null
