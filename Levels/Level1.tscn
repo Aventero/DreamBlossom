@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://7fsfa0uiemfr"]
+
+[ext_resource type="Script" path="res://Scripts/Quest.gd" id="1_6v35p"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_l34ll"]
+[ext_resource type="Script" path="res://Scripts/QuestRequirement.gd" id="2_0wgeb"]
+
+[sub_resource type="Resource" id="Resource_ytmbv"]
+script = ExtResource("2_0wgeb")
+type = 1
+amount = 3
+
+[sub_resource type="Resource" id="Resource_swvg4"]
+script = ExtResource("2_0wgeb")
+type = 1
+amount = 6
+
+[sub_resource type="Resource" id="Resource_huowu"]
+script = ExtResource("2_0wgeb")
+type = 1
+amount = 9
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_l34ll")
+unlocked = 0
+
+[node name="Quest1" type="Timer" parent="."]
+script = ExtResource("1_6v35p")
+quest_name = "Debug Quest #1"
+time = 60
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_ytmbv")])
+
+[node name="Quest2" type="Timer" parent="."]
+script = ExtResource("1_6v35p")
+quest_name = "Debug Quest #2"
+time = 60
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_swvg4")])
+
+[node name="Quest3" type="Timer" parent="."]
+script = ExtResource("1_6v35p")
+quest_name = "Debug Quest #3"
+time = 60
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_huowu")])

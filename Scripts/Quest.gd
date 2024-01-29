@@ -5,12 +5,13 @@ extends Timer
 signal completed(success)
 signal request_completion_check
 
-var quest_name : String
-var time : int
-var requirements : Dictionary
-var running : bool = false
+@export var quest_name : String
+@export var time : int
+@export var requirements : Array[QuestRequirement]
 
-func _init():
+var _requirements_lookup : Dictionary
+
+func _ready():
 	autostart = false
 	one_shot = true
 	
@@ -19,27 +20,24 @@ func _init():
 	
 	# Free self if quest is completed
 	completed.connect(queue_free)
-
-func add_requirement(type : Fruit.Type, amount : int) -> void:
-	requirements[type] = amount
-
-func remove_requirement(type : Fruit.Type) -> void:
-	if requirements.has(type):
-		requirements.erase(type)
+	
+	# Fill lookup
+	for requirement in requirements:
+		_requirements_lookup[requirement.type] = requirement.amount
 
 func is_fruit_required(type : Fruit.Type) -> bool:
 	return requirements.has(type)
 
 func get_fruit_amount(type : Fruit.Type) -> int:
-	if requirements.has(type):
-		return requirements[type]
+	if _requirements_lookup.has(type):
+		return _requirements_lookup[type]
 	return -1
 
 func get_required_fruits() -> Array:
-	return requirements.keys()
+	return _requirements_lookup.keys()
 
 func check_completion(current_state : Dictionary) -> bool:
-	var keys : Array = requirements.keys()
+	var keys : Array = _requirements_lookup.keys()
 	
 	for key in keys:
 		# Check if required fruit is there
@@ -48,7 +46,7 @@ func check_completion(current_state : Dictionary) -> bool:
 			return false
 		
 		# Check if required fruit amount is reached
-		if current_state[key] < requirements[key]:
+		if current_state[key] < _requirements_lookup[key]:
 			completed.emit(false)
 			return false
 	
@@ -61,11 +59,7 @@ func check_completion(current_state : Dictionary) -> bool:
 
 func start_quest():
 	start(time)
-	running = true
 
 func _on_quest_timeout():
 	# Request completion check
 	request_completion_check.emit()
-
-func is_running() -> bool:
-	return running

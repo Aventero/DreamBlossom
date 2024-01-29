@@ -24,7 +24,7 @@ func _ready():
 
 func setup_quest(content : Dictionary):
 	# Setup Quest
-	QuestManager.quest.completed.connect(_hide_quest_screen)
+	LevelManager.quest.completed.connect(_hide_quest_screen)
 	
 	# Setup Quest UI
 	_setup_quest_ui()
@@ -37,7 +37,7 @@ func setup_quest(content : Dictionary):
 	_start_quest_timers()
 
 func _setup_quest_ui():
-	var quest : Quest = QuestManager.quest
+	var quest : Quest = LevelManager.quest
 	
 	# Setup time / timer
 	quest_timer.max_value = quest.time
@@ -62,13 +62,13 @@ func _start_quest_timers():
 	quest_timer.get_child(0).start()
 	
 	# Actual Quest Timer
-	QuestManager.quest.start_quest()
+	LevelManager.quest.start_quest()
 
 func update_quest(content : Dictionary):
-	if not QuestManager.quest:
+	if not LevelManager.quest:
 		return
 	
-	for fruit in QuestManager.quest.get_required_fruits():
+	for fruit in LevelManager.quest.get_required_fruits():
 		if content.has(fruit):
 			fruit_ui_lookup[fruit].set_amount(content[fruit])
 		else:

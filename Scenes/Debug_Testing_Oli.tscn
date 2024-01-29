@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="16_12g1g"]
 [ext_resource type="PackedScene" uid="uid://b0k0khhx1v345" path="res://Prefabs/Chest.tscn" id="17_2egwi"]
-[ext_resource type="Script" path="res://Scripts/QuestManager.gd" id="18_drpy2"]
+[ext_resource type="Script" path="res://Scripts/LevelManager.gd" id="18_drpy2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -172,7 +172,7 @@ transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 
 [node name="Basket" parent="." instance=ExtResource("17_2egwi")]
 transform = Transform3D(0.213559, 0, 0.97693, 0, 1, 0, -0.97693, 0, 0.213559, -0.689302, 0.876299, -0.142575)
 
-[node name="QuestManager" type="Node3D" parent="."]
+[node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
 
 [editable path="Player"]

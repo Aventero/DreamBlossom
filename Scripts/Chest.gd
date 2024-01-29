@@ -49,16 +49,17 @@ func _on_first_quest_offset_timeout():
 	start_quest()
 
 func start_quest():
+	# Get quest
+	if not LevelManager.get_instance().new_quest():
+		return
+	
 	# Open chest lid
 	var tween : Tween = create_tween()
 	tween.tween_property(chest_lid, "rotation", Vector3(-2.44, 0, 0), 0.5)
 	
-	# Get quest
-	QuestManager.get_instance().generate_quest()
-	
 	# Connect events
-	QuestManager.quest.completed.connect(_handle_quest_completion)
-	QuestManager.quest.request_completion_check.connect(QuestManager.quest.check_completion.bind(content))
+	LevelManager.quest.completed.connect(_handle_quest_completion)
+	LevelManager.quest.request_completion_check.connect(LevelManager.quest.check_completion.bind(content))
 	
 	# Setup quest ui
 	quest_ui.setup_quest(content)
@@ -119,5 +120,5 @@ func _on_time_between_quests_timeout():
 	start_quest()
 
 func _on_quest_submit_button_pressed(button):
-	if QuestManager.quest and QuestManager.quest.is_running():
-		QuestManager.quest.check_completion(content)
+	if LevelManager.quest:
+		LevelManager.quest.check_completion(content)
