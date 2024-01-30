@@ -2,6 +2,8 @@
 class_name LevelManager
 extends Node3D
 
+signal got_new_quest
+
 @export var debug_level : int = 1
 
 static var instance : LevelManager
@@ -39,7 +41,8 @@ func new_quest() -> bool:
 	if new_quest != quest:
 		quest = new_quest
 		quest.completed.connect(_on_quest_completed)
-	
+		got_new_quest.emit()
+		
 	return true
 
 func _on_quest_completed(success : bool):
