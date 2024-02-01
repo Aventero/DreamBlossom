@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3fsieu2raumu"]
 
-[ext_resource type="Script" path="res://Scripts/WeedManager.gd" id="1_ht5d1"]
+[ext_resource type="Script" path="res://Scripts/Utility/WeedManager.gd" id="1_ht5d1"]
 [ext_resource type="PackedScene" uid="uid://mvx45djeopmk" path="res://Prefabs/Farmland/Weed/WeedSpot.tscn" id="2_6pen1"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="3_umuig"]
 

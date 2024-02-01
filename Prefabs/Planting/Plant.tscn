@@ -1,34 +1,34 @@
 [gd_scene load_steps=95 format=3 uid="uid://c0jc6djndpovy"]
 
-[ext_resource type="Script" path="res://Scripts/Plant.gd" id="1_hmowl"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
-[ext_resource type="Script" path="res://Scripts/IconDisplay.gd" id="3_5eqqh"]
 [ext_resource type="Texture2D" uid="uid://vfyqsrmmfese" path="res://Asesprite/NormalMaps/LeafesNormalMap.png" id="3_kd587"]
-[ext_resource type="Script" path="res://Scripts/Stage.gd" id="3_r51xa"]
-[ext_resource type="Script" path="res://Scripts/WateringEvent.gd" id="4_gpqma"]
-[ext_resource type="Script" path="res://Scripts/FertilizeEvent.gd" id="5_t8t8x"]
+[ext_resource type="Script" path="res://Scripts/Farmland/IconDisplay.gd" id="6_fcbyu"]
 [ext_resource type="Texture2D" uid="uid://cg8fnuygb4byn" path="res://Textures/Fertilizer.png" id="6_sdd15"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="7_s1xj8"]
-[ext_resource type="Script" path="res://Scripts/MusicEvent.gd" id="8_dwnx8"]
-[ext_resource type="Script" path="res://Prefabs/Planting/LeafPullEvent.gd" id="8_uoxgh"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="8_xuyg4"]
 [ext_resource type="PackedScene" uid="uid://1l3kj571mj3c" path="res://Prefabs/PlantEvents/LeafPull/LeafPullPoint.tscn" id="9_4or0e"]
 [ext_resource type="PackedScene" uid="uid://8ecc2uq3sg6u" path="res://Prefabs/-- OLD --/WaterEventIcon.tscn" id="9_33sjg"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="9_a1xro"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="9_bs78m"]
 [ext_resource type="Texture2D" uid="uid://b285rd770k4ej" path="res://Textures/FertilizerBlueIcon.png" id="10_jih3p"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="10_ovt3f"]
 [ext_resource type="Texture2D" uid="uid://xuheen3agtpj" path="res://Textures/FertilizerYellowIcon.png" id="11_81v4p"]
-[ext_resource type="Script" path="res://Prefabs/Planting/WeedEvent.gd" id="11_r0fet"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="11_dt16k"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="12_o8imm"]
 [ext_resource type="PackedScene" uid="uid://bhy6ptcwgu343" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="12_p0hjl"]
 [ext_resource type="Texture2D" uid="uid://xm6fskfgf42h" path="res://Textures/FertilizerGreenIcon.png" id="12_wis8f"]
-[ext_resource type="Script" path="res://Scripts/PruneEvent.gd" id="13_780mv"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="13_qxuyb"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FertilizeEvent.gd" id="13_rfbty"]
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/PlantEvents/Prune/DeadLeaf.tscn" id="14_7ru82"]
-[ext_resource type="Script" path="res://Scripts/FruitEvent.gd" id="16_btk6m"]
 [ext_resource type="PackedScene" uid="uid://bx83sgte1vf7i" path="res://Prefabs/PlantEvents/Fruit/Orangie/Orangie.tscn" id="17_3rg25"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/PruneEvent.gd" id="17_gfs4q"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="17_wy2f3"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="18_jyjcy"]
 [ext_resource type="Material" uid="uid://brxaxhr3t05fu" path="res://Materials/DeadLeaves.tres" id="18_y0wx3"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="20_rqvem"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/LeafPullEvent.gd" id="23_64m2m"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="26_ha2yd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n15l"]
 resource_name = "Leaves.001"
@@ -2323,7 +2323,7 @@ material = SubResource("StandardMaterial3D_2nty6")
 size = Vector2(0.075, 0.075)
 
 [node name="Plant" type="Node3D" node_paths=PackedStringArray("plant_model")]
-script = ExtResource("1_hmowl")
+script = ExtResource("1_unpe5")
 plant_model = NodePath("Model")
 death_material = ExtResource("18_y0wx3")
 
@@ -2488,7 +2488,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 
 visible = false
 material_override = SubResource("StandardMaterial3D_pnjk1")
 mesh = SubResource("PlaneMesh_urccy")
-script = ExtResource("3_5eqqh")
+script = ExtResource("6_fcbyu")
 
 [node name="IconViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -2498,40 +2498,40 @@ size = Vector2i(64, 83)
 [node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
 
 [node name="Stage 1" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 animation_time = 2.5
 animation_name = "Grow"
 icon_position = Vector3(0, 0.25, 0)
 
 [node name="MusicEvent" type="Node3D" parent="Stage 1"]
-script = ExtResource("8_dwnx8")
+script = ExtResource("9_bs78m")
 target_time = 5.0
 icon_texture = ExtResource("9_a1xro")
 
 [node name="Stage 2" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 animation_time = 2.5
 animation_name = "Grow"
 icon_position = Vector3(0, 0.35, 0)
 
 [node name="WateringEvent" type="Node3D" parent="Stage 2"]
-script = ExtResource("4_gpqma")
+script = ExtResource("11_dt16k")
 icon_texture = ExtResource("7_s1xj8")
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage 2"]
-script = ExtResource("5_t8t8x")
+script = ExtResource("13_rfbty")
 icon_texture_override = Array[Texture2D]([ExtResource("10_jih3p"), ExtResource("11_81v4p"), ExtResource("12_wis8f")])
 icon_texture = ExtResource("6_sdd15")
 
 [node name="Stage 3" type="Node3D" parent="." groups=["Stage"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0044505, -0.00125605, -0.00610253)
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 animation_time = 2.5
 animation_name = "Grow"
 icon_position = Vector3(0, 0.5, 0)
 
 [node name="PruneEvent" type="Node3D" parent="Stage 3"]
-script = ExtResource("13_780mv")
+script = ExtResource("17_gfs4q")
 dead_leaf = ExtResource("14_7ru82")
 max_prune_count = 3
 icon_texture = ExtResource("12_o8imm")
@@ -2552,12 +2552,12 @@ transform = Transform3D(0.750274, 0.0465611, -0.659486, -0.0687883, 0.997601, -0
 transform = Transform3D(-0.964614, -0.0152713, 0.263225, -0.0324778, 0.997601, -0.0611414, -0.26166, -0.0675268, -0.962795, -0.0094645, 0.348302, -0.0153508)
 
 [node name="Stage 4" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 icon_position = Vector3(0, 0.5, 0)
 should_play_animation = false
 
 [node name="WeedEvent" type="Node3D" parent="Stage 4"]
-script = ExtResource("11_r0fet")
+script = ExtResource("20_rqvem")
 event_weed = ExtResource("12_p0hjl")
 icon_texture = ExtResource("13_qxuyb")
 
@@ -2571,12 +2571,12 @@ transform = Transform3D(0.985828, 0.155084, -0.0639649, -0.138685, 0.967948, 0.2
 transform = Transform3D(0.987169, -0.103571, 0.121535, 0.0941971, 0.992293, 0.0805033, -0.128936, -0.068022, 0.989317, -0.0570849, 0.0168413, 0.0119888)
 
 [node name="Stage 5" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 icon_position = Vector3(0, 0.5, 0)
 should_play_animation = false
 
 [node name="LeafPullEvent" type="Node3D" parent="Stage 5"]
-script = ExtResource("8_uoxgh")
+script = ExtResource("23_64m2m")
 leaf_pull_point = ExtResource("9_4or0e")
 max_pull_count = 3
 icon_texture = ExtResource("10_ovt3f")
@@ -2591,12 +2591,12 @@ transform = Transform3D(-0.073523, -0.98193, 0.174378, -0.995423, 0.0829609, 0.0
 transform = Transform3D(-0.00979083, 0.997893, -0.064147, -0.997298, -0.00507353, 0.0732945, 0.0728147, 0.0646912, 0.995245, 0.0113614, 0.278254, -0.000232253)
 
 [node name="Stage 6" type="Node3D" parent="." groups=["Stage"]]
-script = ExtResource("3_r51xa")
+script = ExtResource("8_xuyg4")
 icon_position = Vector3(0, 0.5, 0)
 should_play_animation = false
 
 [node name="FruitEvent" type="Node3D" parent="Stage 6"]
-script = ExtResource("16_btk6m")
+script = ExtResource("26_ha2yd")
 fruit = ExtResource("17_3rg25")
 icon_texture = ExtResource("18_jyjcy")
 

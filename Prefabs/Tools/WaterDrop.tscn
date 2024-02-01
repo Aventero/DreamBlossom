@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqg63xo3abxvn"]
 
-[ext_resource type="Script" path="res://Scripts/WaterDrop.gd" id="1_x01p1"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Watering/WaterDrop.gd" id="1_x01p1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u1mok"]
 radius = 0.05

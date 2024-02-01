@@ -1,14 +1,10 @@
-extends PruneAble
 class_name DeadLeaf
+extends Node3D
 
 @onready var prune_event : PruneEvent = $"../.."
 @export var falling_leaf_particle : PackedScene
 var _scissors_inside_leaf : bool = false
 var _scissors : Scissors
-
-
-func _ready():
-	pass 
 
 func prune():
 	# Emit that is cut

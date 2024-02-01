@@ -3,9 +3,8 @@ extends Control
 
 signal quest_handled
 
-@export var fruit_icons : Array[QuestIconData]
-@export var failed_duration : float = 3.0
 @export var fade_duration : float = 0.2
+@export var fruit_icons : Array[QuestIconData]
 
 @onready var fruit_displays : Control = $Container/Fruits
 @onready var quest_timer : Slider = $Container/Timer

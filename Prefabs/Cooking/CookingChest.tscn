@@ -1,0 +1,136 @@
+[gd_scene load_steps=16 format=3 uid="uid://f2tflbsm5sd7"]
+
+[ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_icbq4"]
+[ext_resource type="Script" path="res://Scripts/Cooking/CookingChest.gd" id="1_t40mx"]
+[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="3_c4ffi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vc8x"]
+size = Vector3(0.5, 0.01, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4esd"]
+size = Vector3(0.5, 0.01, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4eum"]
+size = Vector3(0.5, 0.15, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k6sjw"]
+size = Vector3(0.5, 0.15, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p44ub"]
+size = Vector3(0.5, 0.15, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_esk5r"]
+size = Vector3(0.01, 0.15, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g04kd"]
+size = Vector3(0.01, 0.15, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ttmi"]
+size = Vector3(0.01, 0.15, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_chbtq"]
+size = Vector3(0.5, 0.01, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6f4fr"]
+size = Vector3(0.5, 0.01, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqov5"]
+size = Vector3(0.5, 0.126, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6r7os"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[node name="CookingChest" type="Node3D"]
+script = ExtResource("1_t40mx")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Model"]
+
+[node name="Floor" type="MeshInstance3D" parent="Model/Floor"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_5vc8x")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Floor"]
+shape = SubResource("BoxShape3D_k4esd")
+
+[node name="Wall" type="StaticBody3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, -0.15)
+
+[node name="Wall" type="MeshInstance3D" parent="Model/Wall"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_a4eum")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Wall"]
+shape = SubResource("BoxShape3D_k6sjw")
+
+[node name="Wall2" type="StaticBody3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0.15)
+
+[node name="Wall2" type="MeshInstance3D" parent="Model/Wall2"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_a4eum")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Wall2"]
+shape = SubResource("BoxShape3D_p44ub")
+
+[node name="Wall3" type="StaticBody3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.075, 0)
+
+[node name="Wall3" type="MeshInstance3D" parent="Model/Wall3"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_esk5r")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Wall3"]
+shape = SubResource("BoxShape3D_g04kd")
+
+[node name="Wall4" type="StaticBody3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.075, 0)
+
+[node name="Wall4" type="MeshInstance3D" parent="Model/Wall4"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_esk5r")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Wall4"]
+shape = SubResource("BoxShape3D_7ttmi")
+
+[node name="Anchor" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.15)
+
+[node name="Lid" type="StaticBody3D" parent="Model/Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15)
+
+[node name="Lid" type="MeshInstance3D" parent="Model/Anchor/Lid"]
+material_override = ExtResource("1_icbq4")
+mesh = SubResource("BoxMesh_chbtq")
+
+[node name="Collision" type="CollisionShape3D" parent="Model/Anchor/Lid"]
+shape = SubResource("BoxShape3D_6f4fr")
+
+[node name="Trigger" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Trigger" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0632416, 0)
+shape = SubResource("BoxShape3D_kqov5")
+
+[node name="Cook Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.933048, 0, -0.359752, 0, 1, 0, 0.359753, 0, 0.933048, 0.401875, 0.025, 0.17024)
+mesh = SubResource("BoxMesh_6r7os")
+skeleton = NodePath("Cook")
+
+[node name="Cook" parent="Cook Button" instance=ExtResource("3_c4ffi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+
+[node name="Cooked Spawnpoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]
+[connection signal="button_pressed" from="Cook Button/Cook" to="." method="_on_cook_button_pressed"]

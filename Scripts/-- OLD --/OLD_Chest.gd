@@ -8,40 +8,40 @@ extends Node3D
 @export var jiggle_strength : float = 0.1
 
 var content : Dictionary = {}
-var fruit_instances : Dictionary = {}
+var ingredient_instances : Dictionary = {}
 
 func _on_trigger_body_entered(body):
-	if body.is_in_group("Fruit"):
+	if body.is_in_group("Ingredient"):
 		# Get type of fruit
-		var fruit : Fruit = body
+		var ingredient : Ingredient = body
 		
 		# Add fruit to content
-		if content.has(fruit.type):
-			content[fruit.type] = content[fruit.type] + 1
+		if content.has(ingredient.type):
+			content[ingredient.type] = content[ingredient.type] + 1
 		else:
-			content[fruit.type] = 1
+			content[ingredient.type] = 1
 		
 		# Append current fruit to instances. Using dictionary for fast lookup
-		fruit_instances[body] = null
+		ingredient_instances[body] = null
 		
 		quest_ui.update_quest(content)
 
 func _on_trigger_body_exited(body):
-	if body.is_in_group("Fruit"):
+	if body.is_in_group("Ingredient"):
 		# Get type of fruit
-		var fruit : Fruit = body
+		var ingredient : Ingredient = body
 		
 		# Remove current fruit from instances
-		fruit_instances.erase(body)
+		ingredient_instances.erase(body)
 		
 		# Add fruit to content
-		if content.has(fruit.type):
-			var new_amount : int = content[fruit.type] - 1
+		if content.has(ingredient.type):
+			var new_amount : int = content[ingredient.type] - 1
 			
 			if new_amount > 0:
-				content[fruit.type] = new_amount
+				content[ingredient.type] = new_amount
 			else:
-				content.erase(fruit.type)
+				content.erase(ingredient.type)
 			
 			quest_ui.update_quest(content)
 
@@ -110,10 +110,10 @@ func _chest_shake():
 	return tween
 
 func _remove_fruits():
-	for fruit in fruit_instances.keys():
-		fruit.queue_free()
+	for ingredient in ingredient_instances.keys():
+		ingredient.queue_free()
 	
-	fruit_instances.clear()
+	ingredient_instances.clear()
 
 func _on_time_between_quests_timeout():
 	# Start new quest

@@ -1,10 +1,10 @@
 [gd_scene load_steps=26 format=3 uid="uid://b0k0khhx1v345"]
 
-[ext_resource type="Script" path="res://Scripts/Chest.gd" id="1_h3t3n"]
+[ext_resource type="Script" path="res://Scripts/-- OLD --/OLD_Chest.gd" id="1_h3t3n"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_si5ux"]
 [ext_resource type="Texture2D" uid="uid://brhpq1c1gqwkj" path="res://Textures/Failed_Small.png" id="3_8w7p2"]
 [ext_resource type="PackedScene" uid="uid://clenmajnv4km5" path="res://Prefabs/UI/QuestDisplayUI.tscn" id="3_rctg1"]
-[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/QuestSubmit.tscn" id="4_yxlxb"]
+[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="4_yxlxb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_10a45"]
 size = Vector3(0.5, 0.01, 0.2)
@@ -71,11 +71,11 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_5tfks")
 size = Vector2(0.05, 0.05)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l654"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcq8u"]
 transparency = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_14pw1"]
-material = SubResource("StandardMaterial3D_4l654")
+material = SubResource("StandardMaterial3D_xcq8u")
 size = Vector2(0.5, 0.349)
 
 [sub_resource type="GDScript" id="GDScript_4c5yf"]
@@ -165,7 +165,7 @@ shape = SubResource("BoxShape3D_blkq2")
 
 [node name="Trigger" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 64
+collision_mask = 4
 
 [node name="Trigger" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -198,7 +198,6 @@ offset_bottom = 0.0
 [node name="First Quest Offset" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
-autostart = true
 
 [node name="Time Between Quests" type="Timer" parent="."]
 wait_time = 10.0

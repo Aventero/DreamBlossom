@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="1_frnog"]
 [ext_resource type="Script" path="res://Scripts/UI/QuestDisplayUI.gd" id="1_phbas"]
-[ext_resource type="Script" path="res://Scripts/QuestIcon.gd" id="2_eo4yy"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/QuestIcon.gd" id="2_eo4yy"]
 [ext_resource type="Texture2D" uid="uid://cbkw1vgjycdk0" path="res://Textures/WeedSpot.png" id="3_nomw7"]
 
 [sub_resource type="Resource" id="Resource_xcdxx"]
@@ -56,8 +56,8 @@ offset_bottom = -348.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_phbas")
-fruit_icons = Array[ExtResource("2_eo4yy")]([SubResource("Resource_xcdxx"), SubResource("Resource_ahdjb")])
 fade_duration = 0.5
+fruit_icons = Array[ExtResource("2_eo4yy")]([SubResource("Resource_xcdxx"), SubResource("Resource_ahdjb")])
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 1

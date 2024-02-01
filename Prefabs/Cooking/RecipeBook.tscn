@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://doufuc3rcvke"]
+
+[ext_resource type="PackedScene" uid="uid://1eextyvtp7en" path="res://Prefabs/UI/PageUI.tscn" id="1_gh2q6"]
+[ext_resource type="Script" path="res://Scripts/Cooking/RecipeBook.gd" id="1_kir1n"]
+[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="3_yereh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osq7s"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_trbqm"]
+material = SubResource("StandardMaterial3D_osq7s")
+size = Vector2(0.2, 0.266)
+
+[sub_resource type="GDScript" id="GDScript_0422u"]
+script/source = "extends MeshInstance3D
+
+func _process(delta):
+	# Update quest display
+	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
+	material_dup.albedo_texture = $\"../Book Viewport\".get_texture()
+	material_override = material_dup
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbgog"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[node name="RecipeBook" type="Node3D"]
+script = ExtResource("1_kir1n")
+
+[node name="Book" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_trbqm")
+script = SubResource("GDScript_0422u")
+
+[node name="Book Viewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(500, 666)
+
+[node name="Page" parent="Book Viewport" instance=ExtResource("1_gh2q6")]
+
+[node name="Previous Page Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, -0.17, 0, 0)
+mesh = SubResource("BoxMesh_sbgog")
+skeleton = NodePath("PrevPage")
+
+[node name="PrevPage" parent="Previous Page Button" instance=ExtResource("3_yereh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+
+[node name="Next Page Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0.17, 0, 0)
+mesh = SubResource("BoxMesh_sbgog")
+skeleton = NodePath("NextPage")
+
+[node name="NextPage" parent="Next Page Button" instance=ExtResource("3_yereh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+
+[connection signal="button_pressed" from="Previous Page Button/PrevPage" to="." method="_on_prev_page_button_pressed"]
+[connection signal="button_pressed" from="Next Page Button/NextPage" to="." method="_on_next_page_button_pressed"]

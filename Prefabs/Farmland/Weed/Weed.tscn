@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://w53as41wqyrb"]
 
-[ext_resource type="Script" path="res://CellWeed.gd" id="1_squ6y"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Weed/CellWeed.gd" id="1_squ6y"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="2_nqta3"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_e6pp6"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_juglk"]

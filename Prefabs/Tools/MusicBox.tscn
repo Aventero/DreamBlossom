@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://b8s3i47fse05c"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_qrvtc"]
-[ext_resource type="Script" path="res://Scripts/MusicBox.gd" id="2_jkbs3"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Tools/MusicBox.gd" id="2_jkbs3"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="3_cfuf2"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="5_liusm"]

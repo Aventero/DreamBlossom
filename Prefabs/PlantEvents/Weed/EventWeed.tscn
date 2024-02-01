@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://bhy6ptcwgu343"]
 
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_52vyb"]
-[ext_resource type="Script" path="res://Scripts/EventWeed.gd" id="2_yy5cd"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Weed/EventWeed.gd" id="2_yy5cd"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="3_7ni6w"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPull.tscn" id="4_kh03q"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="5_8o5gh"]
+[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="4_kh03q"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="5_8o5gh"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="7_01agw"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="8_iqhfe"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_1cpbv"]

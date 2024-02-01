@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://220bkpw1ji3f"]
 
-[ext_resource type="Script" path="res://Scripts/WeedSpot.gd" id="1_lxjrd"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Weed/WeedSpot.gd" id="1_lxjrd"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="2_lc2qq"]
 [ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="3_1xwi4"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="4_hdkyg"]

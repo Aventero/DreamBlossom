@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_nrc0v"]
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_mpyk8"]
-[ext_resource type="Material" path="res://Materials/Leaves.tres" id="3_0ygyb"]
-[ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="3_ywljb"]
+[ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="3_0ygyb"]
+[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="3_ywljb"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_25e22"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jffax"]

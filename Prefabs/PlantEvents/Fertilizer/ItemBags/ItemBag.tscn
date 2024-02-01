@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3x1opqidmf7s"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_mjm3g"]
-[ext_resource type="Script" path="res://Scripts/FertilizerBag.gd" id="2_3nut5"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Fertilizer/FertilizerBag.gd" id="2_3nut5"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_hqpad"]
 
 [node name="ItemBag" instance=ExtResource("1_mjm3g")]

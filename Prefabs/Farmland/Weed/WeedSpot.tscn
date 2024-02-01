@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_cihps"]
 [ext_resource type="PackedScene" uid="uid://w53as41wqyrb" path="res://Prefabs/Farmland/Weed/Weed.tscn" id="2_sxg6l"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="3_pfue3"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPull.tscn" id="4_lmesj"]
-[ext_resource type="PackedScene" path="res://Particles/ShovelPullComplete.tscn" id="5_78u8c"]
+[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="4_lmesj"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="5_78u8c"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="5_aama0"]
-[ext_resource type="Script" path="res://Scripts/MaterialState.gd" id="6_2xyoj"]
+[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_2xyoj"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="7_sytm2"]
 
 [sub_resource type="Resource" id="Resource_o5e5o"]

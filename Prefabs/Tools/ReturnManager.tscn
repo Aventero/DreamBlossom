@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckgm33aev62y8"]
 
-[ext_resource type="Script" path="res://Scripts/ReturnManager.gd" id="1_vq3sv"]
+[ext_resource type="Script" path="res://Scripts/Utility/ReturnManager.gd" id="1_vq3sv"]
 
 [node name="ReturnManager" type="Area3D"]
 script = ExtResource("1_vq3sv")

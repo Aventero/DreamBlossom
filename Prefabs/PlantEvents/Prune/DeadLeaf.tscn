@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cttivc1gdbb5y"]
 
-[ext_resource type="Script" path="res://Scripts/DeadLeaf.gd" id="1_5aubd"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/DeadLeaf.gd" id="1_5aubd"]
 [ext_resource type="ArrayMesh" uid="uid://xcn2qrfgwakm" path="res://Models/DeadLeaf.res" id="2_5rlju"]
 [ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
 

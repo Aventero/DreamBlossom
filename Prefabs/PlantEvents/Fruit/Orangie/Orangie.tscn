@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx83sgte1vf7i"]
+[gd_scene load_steps=10 format=3 uid="uid://bx83sgte1vf7i"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/PlantEvents/Fruit/Fruit.tscn" id="1_pnyro"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/Orangie.gd" id="2_eftxm"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="2_jm6f8"]
-[ext_resource type="Script" path="res://Scripts/Orangie.gd" id="2_pi4se"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_niuta"]
 size = Vector3(0.0380859, 0.0373535, 0.0380859)
@@ -45,6 +45,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ieijh")
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_kj6dx"]
+_surfaces = [{
+"aabb": AABB(-0.0104513, -0.0104513, -0.0104513, 0.0209026, 0.0209026, 0.0209126),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 223, 255, 0, 0, 0, 0, 255, 255, 223, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 223, 255, 0, 0, 255, 255, 255, 255, 223, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_cu7ge"]
 resource_name = "Stage_03_Cube_031"
 _surfaces = [{
@@ -61,12 +75,11 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 0, 223, 255, 255, 191, 0, 0, 0, 0, 223, 255, 84, 213, 0, 0, 0, 0, 223, 255, 255, 127, 0, 0, 255, 255, 223, 255, 255, 191, 0, 0, 255, 255, 223, 255, 255, 127, 0, 0, 255, 255, 223, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 191, 255, 255, 0, 0, 223, 255, 84, 213, 255, 255, 0, 0, 223, 255, 255, 127, 255, 255, 0, 0, 223, 255, 255, 191, 255, 255, 255, 255, 223, 255, 255, 127, 255, 255, 255, 255, 223, 255, 255, 191, 255, 255, 255, 255, 223, 255, 255, 191, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 255, 84, 85, 84, 85, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 84, 85, 84, 85, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 84, 85, 84, 85, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 0, 0, 84, 85, 84, 85, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 0, 0)
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ieijh")
+shadow_mesh = SubResource("ArrayMesh_kj6dx")
 
 [node name="Orangie" instance=ExtResource("1_pnyro")]
 freeze_mode = 0
-script = ExtResource("2_pi4se")
-type = 1
+script = ExtResource("2_eftxm")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_niuta")
