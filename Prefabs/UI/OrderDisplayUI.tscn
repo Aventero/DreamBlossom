@@ -1,0 +1,735 @@
+[gd_scene load_steps=63 format=3 uid="uid://dbigenword6yp"]
+
+[ext_resource type="Texture2D" uid="uid://bvwmsx32yfcm5" path="res://Textures/Bobo_White.png" id="1_5ix4g"]
+[ext_resource type="Script" path="res://Scripts/UI/OrderDisplayUI.gd" id="1_y016w"]
+[ext_resource type="Texture2D" uid="uid://blfu0agb4dhju" path="res://Textures/Bobo_Angry.png" id="2_4jo1n"]
+[ext_resource type="Texture2D" uid="uid://1jo5uujn33do" path="res://Asesprite/Bobo_Waiting.png" id="3_xrtdy"]
+[ext_resource type="Texture2D" uid="uid://cc84w1x7eq2f1" path="res://Textures/Bobo_Incoming_Order.png" id="5_s38yx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6gms"]
+bg_color = Color(0.027451, 0.0705882, 0.117647, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j05jx"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(0, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upstx"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(106, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by5nm"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(212, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb75t"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(318, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx116"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(424, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8hqp"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(530, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hgxf"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(636, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15spp"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(742, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg5o2"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(848, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wsdb"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(954, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qvms"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1060, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dbel"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1166, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k05i"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1272, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4iyc"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1378, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klm6g"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1484, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0fue"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1590, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_867ig"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1696, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yskc1"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1802, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1nh6"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(1908, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kdpu"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2014, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1sar"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2120, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ierq4"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2226, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vomq8"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2332, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abrr6"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2438, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n177d"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2544, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngiyk"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2650, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glddk"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2756, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7c7s"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2862, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruv7s"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(2968, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdmks"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(3074, 0, 106, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1437r"]
+atlas = ExtResource("3_xrtdy")
+region = Rect2(3180, 0, 106, 106)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvepu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j05jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upstx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by5nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb75t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx116")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8hqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hgxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15spp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg5o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wsdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qvms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dbel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k05i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4iyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klm6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0fue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_867ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yskc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1nh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kdpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1sar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ierq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vomq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abrr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n177d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngiyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glddk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7c7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruv7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdmks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1437r")
+}],
+"loop": true,
+"name": &"Waiting",
+"speed": 10.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_k0u2w"]
+script/source = "extends AnimatedSprite2D
+
+func _ready():
+	play(\"Waiting\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o83oi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kck06"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(0, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5riff"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(107, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbm3o"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(214, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hrbu"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(321, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ail"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(428, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85pc3"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(535, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnl34"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(642, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7yqx"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(749, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g4y6"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(856, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pn1s"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(963, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y08t"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1070, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsw0o"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1177, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riqu8"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1284, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyv6j"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1391, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7qdf"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1498, 0, 107, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e71mx"]
+atlas = ExtResource("5_s38yx")
+region = Rect2(1605, 0, 107, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cixd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kck06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5riff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbm3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hrbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ail")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85pc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnl34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7yqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g4y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pn1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y08t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsw0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_riqu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyv6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7qdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e71mx")
+}],
+"loop": true,
+"name": &"Incoming",
+"speed": 15.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_s85si"]
+script/source = "extends AnimatedSprite2D
+
+func _ready():
+	play(\"Incoming\")
+"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wk7yb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p623p"]
+bg_color = Color(0.109804, 0.192157, 0.282353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 40.0
+expand_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fd05"]
+bg_color = Color(0.878431, 0.882353, 0.866667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 40.0
+expand_margin_bottom = 40.0
+
+[sub_resource type="GDScript" id="GDScript_na60p"]
+script/source = "@tool
+extends TextureRect
+
+func _ready():
+	var tween : Tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(self, \"rotation\", 0.1, 1.0)
+	tween.tween_property(self, \"rotation\", -0.1, 1.0)
+"
+
+[node name="Order Display" type="Panel"]
+offset_right = 800.0
+offset_bottom = 503.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_m6gms")
+script = ExtResource("1_y016w")
+
+[node name="Awaiting Screen" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Awaiting Screen"]
+layout_mode = 2
+
+[node name="Bobo" type="Control" parent="Awaiting Screen/VBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+
+[node name="Bobo" type="AnimatedSprite2D" parent="Awaiting Screen/VBoxContainer/Bobo"]
+position = Vector2(282, 141.47)
+scale = Vector2(2.6, 2.6)
+sprite_frames = SubResource("SpriteFrames_jvepu")
+animation = &"Waiting"
+frame_progress = 0.999776
+script = SubResource("GDScript_k0u2w")
+
+[node name="Line Margin" type="MarginContainer" parent="Awaiting Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Awaiting Screen/VBoxContainer/Line Margin"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Awaiting" type="Label" parent="Awaiting Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "AWAITING ORDER..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Incoming Screen" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Incoming Screen"]
+layout_mode = 2
+
+[node name="Bobo" type="Control" parent="Incoming Screen/VBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+
+[node name="Bobo" type="AnimatedSprite2D" parent="Incoming Screen/VBoxContainer/Bobo"]
+position = Vector2(274, 114.625)
+scale = Vector2(2.4, 2.4)
+sprite_frames = SubResource("SpriteFrames_5cixd")
+animation = &"Incoming"
+frame_progress = 0.47232
+script = SubResource("GDScript_s85si")
+
+[node name="Line Margin" type="MarginContainer" parent="Incoming Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Incoming Screen/VBoxContainer/Line Margin"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Incoming" type="Label" parent="Incoming Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "INCOMING ORDER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Order Screen" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Order Name" type="Label" parent="Order Screen"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "<Order Name>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line Margin" type="MarginContainer" parent="Order Screen"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Order Screen/Line Margin"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Ingredients" type="HBoxContainer" parent="Order Screen"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+alignment = 1
+
+[node name="Line Margin2" type="MarginContainer" parent="Order Screen"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="Line" type="Panel" parent="Order Screen/Line Margin2"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="MarginContainer" type="MarginContainer" parent="Order Screen"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Timer Row" type="HBoxContainer" parent="Order Screen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Timer" type="HSlider" parent="Order Screen/MarginContainer/Timer Row"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = SubResource("CanvasTexture_wk7yb")
+theme_override_styles/slider = SubResource("StyleBoxFlat_p623p")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8fd05")
+
+[node name="Time" type="Label" parent="Order Screen/MarginContainer/Timer Row"]
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "--"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Seconds" type="Timer" parent="Order Screen/MarginContainer/Timer Row"]
+
+[node name="Complete Screen" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Complete Screen"]
+layout_mode = 2
+
+[node name="Line Margin" type="MarginContainer" parent="Complete Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Complete Screen/VBoxContainer/Line Margin"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Complete Line" type="HBoxContainer" parent="Complete Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Bobo Pivot" type="Control" parent="Complete Screen/VBoxContainer/Complete Line"]
+custom_minimum_size = Vector2(169, 169)
+layout_mode = 2
+
+[node name="Bobo" type="TextureRect" parent="Complete Screen/VBoxContainer/Complete Line/Bobo Pivot"]
+layout_mode = 2
+offset_right = 169.0
+offset_bottom = 169.0
+rotation = -0.0590539
+pivot_offset = Vector2(84, 84)
+texture = ExtResource("1_5ix4g")
+expand_mode = 2
+stretch_mode = 5
+script = SubResource("GDScript_na60p")
+
+[node name="Complete" type="Label" parent="Complete Screen/VBoxContainer/Complete Line"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "ORDER
+COMPLETE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bobo Pivot2" type="Control" parent="Complete Screen/VBoxContainer/Complete Line"]
+custom_minimum_size = Vector2(169, 169)
+layout_mode = 2
+
+[node name="Bobo" type="TextureRect" parent="Complete Screen/VBoxContainer/Complete Line/Bobo Pivot2"]
+layout_mode = 2
+offset_right = 169.0
+offset_bottom = 169.0
+rotation = -0.0590539
+pivot_offset = Vector2(84, 84)
+texture = ExtResource("1_5ix4g")
+expand_mode = 2
+stretch_mode = 5
+script = SubResource("GDScript_na60p")
+
+[node name="Line Margin2" type="MarginContainer" parent="Complete Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Complete Screen/VBoxContainer/Line Margin2"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Failed Screen" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Failed Screen"]
+layout_mode = 2
+
+[node name="Line Margin" type="MarginContainer" parent="Failed Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Failed Screen/VBoxContainer/Line Margin"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[node name="Complete Line" type="HBoxContainer" parent="Failed Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Bobo Pivot" type="Control" parent="Failed Screen/VBoxContainer/Complete Line"]
+custom_minimum_size = Vector2(169, 169)
+layout_mode = 2
+
+[node name="Bobo" type="TextureRect" parent="Failed Screen/VBoxContainer/Complete Line/Bobo Pivot"]
+layout_mode = 2
+offset_right = 169.0
+offset_bottom = 169.0
+rotation = -0.0590539
+pivot_offset = Vector2(84, 84)
+texture = ExtResource("2_4jo1n")
+expand_mode = 2
+stretch_mode = 5
+script = SubResource("GDScript_na60p")
+
+[node name="Failed" type="Label" parent="Failed Screen/VBoxContainer/Complete Line"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "ORDER
+FAILED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bobo Pivot2" type="Control" parent="Failed Screen/VBoxContainer/Complete Line"]
+custom_minimum_size = Vector2(169, 169)
+layout_mode = 2
+
+[node name="Bobo" type="TextureRect" parent="Failed Screen/VBoxContainer/Complete Line/Bobo Pivot2"]
+layout_mode = 2
+offset_right = 169.0
+offset_bottom = 169.0
+rotation = -0.0590539
+pivot_offset = Vector2(84, 84)
+texture = ExtResource("2_4jo1n")
+expand_mode = 2
+stretch_mode = 5
+script = SubResource("GDScript_na60p")
+
+[node name="Line Margin2" type="MarginContainer" parent="Failed Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Line" type="Panel" parent="Failed Screen/VBoxContainer/Line Margin2"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
+
+[connection signal="timeout" from="Order Screen/MarginContainer/Timer Row/Seconds" to="." method="_on_seconds_timeout"]

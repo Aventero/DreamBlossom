@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://joqp3jp4vecn"]
+
+[ext_resource type="PackedScene" uid="uid://dbigenword6yp" path="res://Prefabs/UI/OrderDisplayUI.tscn" id="1_cslj7"]
+[ext_resource type="Script" path="res://Scripts/UI/OrderDisplay.gd" id="1_k262u"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_em5d3"]
+viewport_path = NodePath("Order Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdgki"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_em5d3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t286i"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_114af"]
+material = SubResource("StandardMaterial3D_t286i")
+size = Vector2(1, 0.628)
+
+[sub_resource type="GDScript" id="GDScript_8tygm"]
+script/source = "extends MeshInstance3D
+
+func _process(delta):
+	# Update quest display
+	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
+	material_dup.albedo_texture = $\"../Order Viewport\".get_texture()
+	material_override = material_dup
+"
+
+[node name="OrderDisplay" type="Node3D"]
+script = ExtResource("1_k262u")
+time_between_orders = 10.0
+
+[node name="Display" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_bdgki")
+mesh = SubResource("QuadMesh_114af")
+script = SubResource("GDScript_8tygm")
+
+[node name="Order Viewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(800, 503)
+
+[node name="Order Display" parent="Order Viewport" instance=ExtResource("1_cslj7")]
+
+[node name="Inital Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Between Orders Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="order_completed" from="Order Viewport/Order Display" to="." method="_on_order_display_order_completed"]
+[connection signal="timeout" from="Inital Timer" to="." method="start_order"]
+[connection signal="timeout" from="Between Orders Timer" to="." method="start_order"]

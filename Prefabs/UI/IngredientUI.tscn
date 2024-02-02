@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvxcjsv6bix6w"]
+[gd_scene load_steps=6 format=3 uid="uid://bvxcjsv6bix6w"]
 
 [ext_resource type="Script" path="res://Scripts/UI/IngredientUI.gd" id="1_m2yrw"]
+[ext_resource type="Texture2D" uid="uid://dmx7jw6ffyl5t" path="res://Textures/Complete.png" id="2_3xg8w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcg8y"]
 bg_color = Color(0.0509804, 0.105882, 0.164706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u1oj3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq7ie"]
+bg_color = Color(0, 0, 0, 0.752941)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Ingredient" type="Panel"]
 custom_minimum_size = Vector2(140, 190)
@@ -45,3 +57,34 @@ theme_override_font_sizes/font_size = 30
 text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Complete" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Complete"]
+custom_minimum_size = Vector2(140, 190)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rq7ie")
+
+[node name="Completed" type="TextureRect" parent="Complete/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -61.0
+offset_right = 58.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(58, 61)
+texture = ExtResource("2_3xg8w")
+stretch_mode = 5

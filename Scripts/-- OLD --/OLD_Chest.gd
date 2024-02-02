@@ -58,8 +58,8 @@ func start_quest():
 	tween.tween_property(chest_lid, "rotation", Vector3(-2.44, 0, 0), 0.5)
 	
 	# Connect events
-	LevelManager.quest.completed.connect(_handle_quest_completion)
-	LevelManager.quest.request_completion_check.connect(LevelManager.quest.check_completion.bind(content))
+	#LevelManager.quest.completed.connect(_handle_quest_completion)
+	#LevelManager.quest.request_completion_check.connect(LevelManager.quest.check_completion.bind(content))
 	
 	# Setup quest ui
 	quest_ui.setup_quest(content)
@@ -120,5 +120,6 @@ func _on_time_between_quests_timeout():
 	start_quest()
 
 func _on_quest_submit_button_pressed(button):
-	if LevelManager.quest:
-		LevelManager.quest.check_completion(content)
+	#if LevelManager.quest:
+		#LevelManager.quest.check_completion(content)
+	pass

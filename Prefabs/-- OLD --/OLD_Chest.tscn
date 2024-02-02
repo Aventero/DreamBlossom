@@ -213,7 +213,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]
-[connection signal="quest_handled" from="Quest Viewport/Quest Display" to="." method="_on_quest_display_quest_handled"]
 [connection signal="timeout" from="First Quest Offset" to="." method="_on_first_quest_offset_timeout"]
 [connection signal="timeout" from="Time Between Quests" to="." method="_on_time_between_quests_timeout"]
 [connection signal="button_pressed" from="Submit Button/QuestSubmit" to="." method="_on_quest_submit_button_pressed"]

@@ -2,13 +2,11 @@
 class_name LevelManager
 extends Node3D
 
-signal got_new_quest
-
 @export var debug_level : int = 1
 
 static var instance : LevelManager
 static var level : Level
-static var quest : Quest
+static var order : Order
 
 func _ready():
 	# Setup Singelton
@@ -30,21 +28,20 @@ func _load_level(level : int):
 	self.level = load("res://Levels/Level" + str(level) + ".tscn").instantiate()
 	add_child(self.level)
 
-func new_quest() -> bool:
+func next_order() -> bool:
 	# Get current quest from level
-	var new_quest = level.get_quest()
+	var new_order = level.get_order()
 	
 	# Break if there are no quests left
-	if not new_quest:
+	if not new_order:
 		return false
 	
-	if new_quest != quest:
-		quest = new_quest
-		quest.completed.connect(_on_quest_completed)
-		got_new_quest.emit()
-		
+	if new_order != order:
+		order = new_order
+		order.completed.connect(_on_order_completed)
+	
 	return true
 
-func _on_quest_completed(success : bool):
-	quest.queue_free()
-	quest = null
+func _on_order_completed(success : bool):
+	order.queue_free()
+	order = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=46 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -8,10 +8,11 @@
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/SeedBag.tscn" id="8_rxdi4"]
-[ext_resource type="Texture2D" uid="uid://nt8kuccxrh0n" path="res://Textures/Debug1.png" id="9_5axp2"]
+[ext_resource type="Texture2D" uid="uid://cfbtuqoudc0un" path="res://Textures/Square.png" id="9_88uxn"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
-[ext_resource type="Texture2D" uid="uid://d4j7q56866pb7" path="res://Textures/Debug2.png" id="10_rvqch"]
+[ext_resource type="Texture2D" uid="uid://47oviyb53h83" path="res://Textures/Prism.png" id="10_qlpq7"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
+[ext_resource type="Texture2D" uid="uid://d1dy33lf5tn8u" path="res://Textures/Cylinder.png" id="11_7xuar"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
@@ -27,8 +28,9 @@
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
 [ext_resource type="Texture2D" uid="uid://cjbnhsm7jlxgo" path="res://Textures/Orangie.png" id="23_vxa8t"]
-[ext_resource type="PackedScene" uid="uid://p3b5yq3emnmr" path="res://Prefabs/PlantEvents/Fruit/DebugFruit1.tscn" id="25_nxtwr"]
-[ext_resource type="PackedScene" uid="uid://buwvncpc2hqi1" path="res://Prefabs/PlantEvents/Fruit/DebugFruit2.tscn" id="26_evbx1"]
+[ext_resource type="PackedScene" uid="uid://cm66xusomnodc" path="res://Debug/Cube_Ingredient.tscn" id="29_tx4fl"]
+[ext_resource type="PackedScene" uid="uid://ms8ifj2u4csu" path="res://Debug/Prism_Ingredient.tscn" id="30_0y6wq"]
+[ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -52,12 +54,17 @@ texture = ExtResource("23_vxa8t")
 [sub_resource type="Resource" id="Resource_dd8f5"]
 script = ExtResource("23_sn5yw")
 type = 1
-texture = ExtResource("9_5axp2")
+texture = ExtResource("9_88uxn")
 
 [sub_resource type="Resource" id="Resource_0svfo"]
 script = ExtResource("23_sn5yw")
 type = 2
-texture = ExtResource("10_rvqch")
+texture = ExtResource("10_qlpq7")
+
+[sub_resource type="Resource" id="Resource_c8ew7"]
+script = ExtResource("23_sn5yw")
+type = 3
+texture = ExtResource("11_7xuar")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3skh4"]
 lightmap_size_hint = Vector2i(104, 58)
@@ -123,7 +130,7 @@ plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
-ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_jpwjg"), SubResource("Resource_dd8f5"), SubResource("Resource_0svfo")])
+ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_jpwjg"), SubResource("Resource_dd8f5"), SubResource("Resource_0svfo"), SubResource("Resource_c8ew7")])
 
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
@@ -161,6 +168,9 @@ mesh = SubResource("BoxMesh_neeav")
 
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
+
+[node name="OrderDisplay" parent="." instance=ExtResource("30_4a1h8")]
+transform = Transform3D(0.625951, 0, 0.779863, 0, 1, 0, -0.779863, 0, 0.625951, -1.40856, 1.47332, -0.902506)
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.681173, 0.987084, -0.320027)
@@ -203,7 +213,7 @@ transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 
 transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 0.686403, 0.848511, 0.46639)
 
 [node name="Bobo" parent="." instance=ExtResource("19_cdyvb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69597, 1.01206, 0.222634)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.24385, -0.00775862, 0.253526)
 
 [node name="CookingChest" parent="." instance=ExtResource("19_splt0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666211, 0.848511, 0.354077)
@@ -223,29 +233,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.513826
 [node name="Orangie4" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.470193)
 
-[node name="DebugFruit1" parent="." instance=ExtResource("25_nxtwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393329, 0.881719, 0.406497)
+[node name="Cube" parent="." instance=ExtResource("29_tx4fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.41787)
 
-[node name="DebugFruit2" parent="." instance=ExtResource("25_nxtwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393329, 0.881719, 0.365191)
+[node name="Cube2" parent="." instance=ExtResource("29_tx4fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.356169)
 
-[node name="DebugFruit3" parent="." instance=ExtResource("25_nxtwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393329, 0.881719, 0.322051)
+[node name="Cube3" parent="." instance=ExtResource("29_tx4fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.291908)
 
-[node name="DebugFruit4" parent="." instance=ExtResource("25_nxtwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393329, 0.881719, 0.279744)
+[node name="Cube4" parent="." instance=ExtResource("29_tx4fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.229271)
 
-[node name="DebugFruit5" parent="." instance=ExtResource("26_evbx1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.463758, 0.875899, 0.300831)
+[node name="Prism" parent="." instance=ExtResource("30_0y6wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.425986)
 
-[node name="DebugFruit6" parent="." instance=ExtResource("26_evbx1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.463758, 0.875899, 0.256997)
+[node name="Prism2" parent="." instance=ExtResource("30_0y6wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.363263)
 
-[node name="DebugFruit7" parent="." instance=ExtResource("26_evbx1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.463758, 0.875899, 0.212058)
+[node name="Prism3" parent="." instance=ExtResource("30_0y6wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.297483)
 
-[node name="DebugFruit8" parent="." instance=ExtResource("26_evbx1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.463758, 0.875899, 0.165928)
+[node name="Prism4" parent="." instance=ExtResource("30_0y6wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632)
 
 [editable path="Player"]
 [editable path="MusicBox"]

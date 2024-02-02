@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkbtd57bq0w7d"
-path="res://.godot/imported/Quest.png-7be2e078490b0032eeede456c3953d95.ctex"
+uid="uid://47oviyb53h83"
+path="res://.godot/imported/Prism.png-218c1fa8ccce3adec3daff7dcfab3100.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Quest.png"
-dest_files=["res://.godot/imported/Quest.png-7be2e078490b0032eeede456c3953d95.ctex"]
+source_file="res://Textures/Prism.png"
+dest_files=["res://.godot/imported/Prism.png-218c1fa8ccce3adec3daff7dcfab3100.ctex"]
 
 [params]
 

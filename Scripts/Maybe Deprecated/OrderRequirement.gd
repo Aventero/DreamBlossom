@@ -1,4 +1,4 @@
-class_name QuestRequirement
+class_name OrderRequirement
 extends Resource
 
 @export var type : Fruit.Type

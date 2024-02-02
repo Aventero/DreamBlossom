@@ -1,57 +1,77 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1nll5jy2q080"]
+[gd_scene load_steps=18 format=3 uid="uid://c1nll5jy2q080"]
 
-[ext_resource type="Script" path="res://Scripts/Cooking/Recipe.gd" id="1_agmwl"]
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeManager.gd" id="1_qwyvi"]
-[ext_resource type="Script" path="res://Scripts/Cooking/RecipeOutputData.gd" id="2_lch0t"]
-[ext_resource type="Script" path="res://Scripts/Cooking/RecipeInputData.gd" id="2_qx43t"]
-[ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seed.tscn" id="2_sxxxm"]
-[ext_resource type="PackedScene" uid="uid://deffjb87sn3ni" path="res://Prefabs/PlantEvents/Fertilizer/GreenFertilizer.tscn" id="6_vhn7f"]
-[ext_resource type="PackedScene" uid="uid://027s2g2d1y3l" path="res://Prefabs/PlantEvents/Fertilizer/YellowFertilizer.tscn" id="7_osiqa"]
+[ext_resource type="Script" path="res://Scripts/Cooking/Recipe.gd" id="2_kt12l"]
+[ext_resource type="Script" path="res://Scripts/Cooking/RecipeInputData.gd" id="3_qxj82"]
+[ext_resource type="PackedScene" uid="uid://cm66xusomnodc" path="res://Debug/Cube_Ingredient.tscn" id="4_fswxf"]
+[ext_resource type="Script" path="res://Scripts/Cooking/RecipeOutputData.gd" id="5_ndad3"]
+[ext_resource type="PackedScene" uid="uid://bx83sgte1vf7i" path="res://Prefabs/PlantEvents/Fruit/Orangie/Orangie.tscn" id="6_qtgcw"]
+[ext_resource type="PackedScene" uid="uid://d2fhp56xlvjox" path="res://Debug/Cylinder_Ingredient.tscn" id="7_k5w81"]
 
-[sub_resource type="Resource" id="Resource_lj310"]
-script = ExtResource("2_qx43t")
+[sub_resource type="Resource" id="Resource_krudg"]
+script = ExtResource("3_qxj82")
+ingredient = 0
+amount = 2
+
+[sub_resource type="Resource" id="Resource_ovqev"]
+script = ExtResource("3_qxj82")
+ingredient = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_tiqs8"]
+script = ExtResource("5_ndad3")
+ingredient = 1
+object = ExtResource("4_fswxf")
+
+[sub_resource type="Resource" id="Resource_gn170"]
+script = ExtResource("3_qxj82")
 ingredient = 0
 amount = 1
 
-[sub_resource type="Resource" id="Resource_sv6wd"]
-script = ExtResource("2_lch0t")
-ingredient = 0
-object = ExtResource("2_sxxxm")
-
-[sub_resource type="Resource" id="Resource_4hhnq"]
-script = ExtResource("2_qx43t")
+[sub_resource type="Resource" id="Resource_kv7ri"]
+script = ExtResource("3_qxj82")
 ingredient = 1
-amount = 3
+amount = 1
 
-[sub_resource type="Resource" id="Resource_ex28m"]
-script = ExtResource("2_lch0t")
+[sub_resource type="Resource" id="Resource_8xd78"]
+script = ExtResource("5_ndad3")
 ingredient = 0
-object = ExtResource("6_vhn7f")
+object = ExtResource("6_qtgcw")
 
-[sub_resource type="Resource" id="Resource_67ycl"]
-script = ExtResource("2_qx43t")
+[sub_resource type="Resource" id="Resource_dq2go"]
+script = ExtResource("3_qxj82")
+ingredient = 0
+amount = 1
+
+[sub_resource type="Resource" id="Resource_myavf"]
+script = ExtResource("3_qxj82")
+ingredient = 1
+amount = 1
+
+[sub_resource type="Resource" id="Resource_jvqxs"]
+script = ExtResource("3_qxj82")
 ingredient = 2
 amount = 2
 
-[sub_resource type="Resource" id="Resource_trkrc"]
-script = ExtResource("2_lch0t")
-ingredient = 2
-object = ExtResource("7_osiqa")
+[sub_resource type="Resource" id="Resource_rey5k"]
+script = ExtResource("5_ndad3")
+ingredient = 3
+object = ExtResource("7_k5w81")
 
 [node name="RecipeManager" type="Node3D"]
 script = ExtResource("1_qwyvi")
 
-[node name="Orangie Juice" type="Node" parent="."]
-script = ExtResource("1_agmwl")
-input = Array[ExtResource("2_qx43t")]([SubResource("Resource_lj310")])
-output = SubResource("Resource_sv6wd")
+[node name="Square" type="Node" parent="."]
+script = ExtResource("2_kt12l")
+input = Array[ExtResource("3_qxj82")]([SubResource("Resource_krudg"), SubResource("Resource_ovqev")])
+output = SubResource("Resource_tiqs8")
 
-[node name="Red Juice" type="Node" parent="."]
-script = ExtResource("1_agmwl")
-input = Array[ExtResource("2_qx43t")]([SubResource("Resource_4hhnq")])
-output = SubResource("Resource_ex28m")
+[node name="Orangie" type="Node" parent="."]
+script = ExtResource("2_kt12l")
+input = Array[ExtResource("3_qxj82")]([SubResource("Resource_gn170"), SubResource("Resource_kv7ri")])
+output = SubResource("Resource_8xd78")
 
-[node name="Blue Juice" type="Node" parent="."]
-script = ExtResource("1_agmwl")
-input = Array[ExtResource("2_qx43t")]([SubResource("Resource_67ycl")])
-output = SubResource("Resource_trkrc")
+[node name="Cylinder" type="Node" parent="."]
+script = ExtResource("2_kt12l")
+input = Array[ExtResource("3_qxj82")]([SubResource("Resource_dq2go"), SubResource("Resource_myavf"), SubResource("Resource_jvqxs")])
+output = SubResource("Resource_rey5k")

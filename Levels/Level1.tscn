@@ -1,42 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://7fsfa0uiemfr"]
+[gd_scene load_steps=10 format=3 uid="uid://7fsfa0uiemfr"]
 
-[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Quest.gd" id="1_6v35p"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="1_6v35p"]
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_l34ll"]
-[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/QuestRequirement.gd" id="2_0wgeb"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="2_0wgeb"]
 
-[sub_resource type="Resource" id="Resource_ytmbv"]
+[sub_resource type="Resource" id="Resource_5tluc"]
+script = ExtResource("2_0wgeb")
+type = 0
+amount = 2
+
+[sub_resource type="Resource" id="Resource_qcx0j"]
+script = ExtResource("2_0wgeb")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ni2nd"]
+script = ExtResource("2_0wgeb")
+type = 0
+amount = 1
+
+[sub_resource type="Resource" id="Resource_52m77"]
 script = ExtResource("2_0wgeb")
 type = 1
 amount = 3
 
-[sub_resource type="Resource" id="Resource_swvg4"]
+[sub_resource type="Resource" id="Resource_jhi6v"]
 script = ExtResource("2_0wgeb")
-type = 1
-amount = 6
+type = 2
+amount = 1
 
-[sub_resource type="Resource" id="Resource_huowu"]
+[sub_resource type="Resource" id="Resource_5rskn"]
 script = ExtResource("2_0wgeb")
-type = 1
-amount = 10
+type = 3
+amount = 1
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
 unlocked = 0
 
-[node name="Quest1" type="Timer" parent="."]
+[node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-quest_name = "Debug Quest #1"
-time = 60
-requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_ytmbv")])
+time = 30
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_5tluc"), SubResource("Resource_qcx0j")])
 
-[node name="Quest2" type="Timer" parent="."]
+[node name="Order #2" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-quest_name = "Debug Quest #2"
-time = 60
-requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_swvg4")])
+time = 30
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_ni2nd"), SubResource("Resource_52m77"), SubResource("Resource_jhi6v")])
 
-[node name="Quest3" type="Timer" parent="."]
+[node name="Order #3" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-quest_name = "Debug Quest #3"
-time = 60
-requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_huowu")])
+time = 30
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_5rskn")])

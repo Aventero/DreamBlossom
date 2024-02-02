@@ -22,8 +22,6 @@ func _ready():
 	# Fill lookup
 	for ingredient in ingredients_textures:
 		_ingredients_texture_lookup[ingredient.type] = ingredient.texture
-	
-	print(_ingredients_texture_lookup)
 
 func get_ingredient_icon(type : Ingredient.Type):
 	return _ingredients_texture_lookup[type]

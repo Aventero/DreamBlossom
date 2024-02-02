@@ -15,7 +15,7 @@ enum Flags {
 }
 
 # Get most current quest from this level
-func get_quest() -> Quest:
+func get_order() -> Order:
 	if get_child_count() > 0:
 		return get_child(0)
 	
