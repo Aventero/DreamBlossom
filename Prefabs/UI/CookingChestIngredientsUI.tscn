@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwhg0ocohenfe"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CookingChestIngredientsUI.gd" id="1_338yn"]
+
+[node name="Cooking Chest Ingredients" type="HBoxContainer"]
+offset_right = 950.0
+offset_bottom = 190.0
+alignment = 1
+script = ExtResource("1_338yn")

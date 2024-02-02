@@ -203,9 +203,6 @@ mesh = SubResource("BoxMesh_neeav")
 [node name="MusicBox" parent="." instance=ExtResource("16_12g1g")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 0.897504, 0.428377)
 
-[node name="MusicBoxHighlight" parent="MusicBox/XRToolsHighlightVisible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
 [node name="Shovel" parent="." instance=ExtResource("16_2sp45")]
 transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 0.502734, 0.848511, -0.0648582)
 
@@ -258,4 +255,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.297483
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632)
 
 [editable path="Player"]
-[editable path="MusicBox"]

@@ -2,6 +2,7 @@ class_name CookingChest
 extends Node3D
 
 @onready var chest_lid : Node3D = $Model/Anchor
+@onready var ingredient_ui : CookingChestIngredientsUI = $"Display Viewport/Cooking Chest Ingredients"
 
 var ingredients : Dictionary = {}
 var ingredient_instances : Dictionary = {}
@@ -13,27 +14,29 @@ func _ready():
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group("Ingredient"):
-		# Get type of fruit
+		# Get type of ingredient
 		var ingredient : Ingredient = body
 		
-		# Add fruit to content
+		# Add ingredient to content
 		if ingredients.has(ingredient.type):
 			ingredients[ingredient.type] = ingredients[ingredient.type] + 1
 		else:
 			ingredients[ingredient.type] = 1
 		
-		# Append current fruit to instances. Using dictionary for fast lookup
+		# Append current ingredient to instances. Using dictionary for fast lookup
 		ingredient_instances[body] = null
+		
+		ingredient_ui.update(ingredients)
 
 func _on_trigger_body_exited(body):
 	if body.is_in_group("Ingredient"):
-		# Get type of fruit
+		# Get type of ingredient
 		var ingredient : Ingredient = body
 		
-		# Remove current fruit from instances
+		# Remove current ingredient from instances
 		ingredient_instances.erase(body)
 		
-		# Add fruit to content
+		# Add ingredient to content
 		if ingredients.has(ingredient.type):
 			var new_amount : int = ingredients[ingredient.type] - 1
 			
@@ -41,6 +44,8 @@ func _on_trigger_body_exited(body):
 				ingredients[ingredient.type] = new_amount
 			else:
 				ingredients.erase(ingredient.type)
+		
+		ingredient_ui.update(ingredients)
 
 func _on_cook_button_pressed(button):
 	if _is_cooking:
