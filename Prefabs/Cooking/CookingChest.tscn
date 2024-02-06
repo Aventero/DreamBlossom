@@ -41,15 +41,15 @@ size = Vector3(0.5, 0.126, 0.3)
 [sub_resource type="BoxMesh" id="BoxMesh_6r7os"]
 size = Vector3(0.15, 0.05, 0.15)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_aax0o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rrime"]
 viewport_path = NodePath("Display Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i7cf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v32t"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_aax0o")
+albedo_texture = SubResource("ViewportTexture_rrime")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hc3c"]
 transparency = 2
@@ -165,7 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Display" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.0885971, 0.157852)
-material_override = SubResource("StandardMaterial3D_8i7cf")
+material_override = SubResource("StandardMaterial3D_8v32t")
 mesh = SubResource("QuadMesh_tv7xr")
 script = SubResource("GDScript_pr1w6")
 

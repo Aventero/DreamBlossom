@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=47 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1dy33lf5tn8u" path="res://Textures/Cylinder.png" id="11_7xuar"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
+[ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
@@ -104,6 +105,9 @@ environment = SubResource("Environment_88j2n")
 
 [node name="Player" parent="." instance=ExtResource("1_rip8e")]
 
+[node name="XRCamera3D" parent="Player" index="0"]
+current = true
+
 [node name="Left Hand" parent="Player" index="1"]
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
 
@@ -136,6 +140,36 @@ ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_jpw
 script = ExtResource("18_drpy2")
 
 [node name="RecipeManager" parent="." instance=ExtResource("19_xucyt")]
+
+[node name="KorikoManager" parent="." instance=ExtResource("14_3g5ad")]
+
+[node name="Spawnpoint1" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(0.8617, 0, -0.507418, 0, 1, 0, 0.507418, 0, 0.8617, 0.765556, 0.888436, -1.20646)
+aabb = AABB(-0.1, -0.1, -0.1, 0.2, 0.2, 0.2)
+
+[node name="Spawnpoint2" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(0.934036, 0, 0.357178, 0, 1, 0, -0.357178, 0, 0.934036, -0.750648, 0.888436, -1.20646)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="Spawnpoint3" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(0.371951, 0, 0.928252, 0, 1, 0, -0.928252, 0, 0.371951, -0.800991, 0.888436, -0.364364)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="Spawnpoint4" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(-0.565874, 0, -0.824492, 0, 1, 0, 0.824492, 0, -0.565874, 0.732507, 0.888436, 0.514984)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="Spawnpoint5" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(-0.630608, 0, 0.776102, 0, 1, 0, -0.776102, 0, -0.630608, -0.467366, 0.888436, 0.646782)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="Spawnpoint6" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(-0.431078, 0, 0.902315, 0, 1, 0, -0.902315, 0, -0.431078, -0.737307, 0.888436, 0.00853191)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="Spawnpoint7" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
+transform = Transform3D(0.998763, 0, 0.0497214, 0, 1, 0, -0.0497214, 0, 0.998763, 0.00448477, 0.888436, -0.35562)
+aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -187,7 +221,7 @@ transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676
 transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.718342, 0.849216, 0.195436)
 
 [node name="Scissors" parent="." instance=ExtResource("15_76tl2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.534857, 0.890719, 0.204339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569539, 0.890719, 0.0531206)
 
 [node name="Table" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
@@ -201,13 +235,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.0102562, 0, 0.189688
 mesh = SubResource("BoxMesh_neeav")
 
 [node name="MusicBox" parent="." instance=ExtResource("16_12g1g")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 0.897504, 0.428377)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 0.897504, 0.235771)
 
 [node name="Shovel" parent="." instance=ExtResource("16_2sp45")]
 transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 0.502734, 0.848511, -0.0648582)
 
 [node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
-transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 0.686403, 0.848511, 0.46639)
+transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 0.493522, 0.848511, 0.477011)
 
 [node name="Bobo" parent="." instance=ExtResource("19_cdyvb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.24385, -0.00775862, 0.253526)
@@ -219,10 +253,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666
 transform = Transform3D(0.480438, -0.339411, 0.80869, -1.49012e-08, 0.922079, 0.387001, -0.877029, -0.18593, 0.443002, -0.631728, 1.13668, -0.139854)
 
 [node name="Orangie" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.597852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.511695)
 
 [node name="Orangie2" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.556986)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.470829)
 
 [node name="Orangie3" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.513826)

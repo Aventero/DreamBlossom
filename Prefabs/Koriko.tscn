@@ -1,0 +1,129 @@
+[gd_scene load_steps=20 format=3 uid="uid://babjqrl366pkk"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_pgw36"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_c3ab7"]
+[ext_resource type="Script" path="res://Scripts/Koriko.gd" id="2_crsb1"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_vyl5u"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_4hwhu"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_ulggp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdrmm"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ck4k"]
+albedo_color = Color(0.239216, 0.427451, 0.180392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkbmx"]
+material = SubResource("StandardMaterial3D_1ck4k")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8mcj"]
+albedo_color = Color(0.388235, 0.184314, 0.117647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_513lk"]
+material = SubResource("StandardMaterial3D_d8mcj")
+size = Vector3(0.048, 0.02, 0.075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jw6k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bt2ae"]
+material = SubResource("StandardMaterial3D_4jw6k")
+size = Vector3(0.03, 0.045, 0.025)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fguf"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u7e2n"]
+material = SubResource("StandardMaterial3D_3fguf")
+size = Vector3(0.018, 0.018, 0.025)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwgey"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6p17w"]
+material = SubResource("StandardMaterial3D_hwgey")
+size = Vector3(0.06, 0.01, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ltdky"]
+material = ExtResource("3_ulggp")
+size = Vector3(0.11, 0.11, 0.11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_okvc6"]
+size = Vector3(0.12, 0.12, 0.12)
+
+[node name="Koriko" instance=ExtResource("1_pgw36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+gravity_scale = 1.5
+freeze = true
+script = ExtResource("2_crsb1")
+release_mode = 0
+ranged_grab_method = 0
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0136748, 0)
+shape = SubResource("BoxShape3D_gdrmm")
+
+[node name="Model" type="Node3D" parent="." index="1"]
+
+[node name="Body" type="MeshInstance3D" parent="Model" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131437, 0)
+mesh = SubResource("BoxMesh_nkbmx")
+
+[node name="Leg1" type="MeshInstance3D" parent="Model" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0349193, -0.0368961, 0.0218122)
+mesh = SubResource("BoxMesh_513lk")
+
+[node name="Leg2" type="MeshInstance3D" parent="Model" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, -0.0372993, 0.022)
+mesh = SubResource("BoxMesh_513lk")
+
+[node name="Eye" type="MeshInstance3D" parent="Model" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289188, 0.0352395, 0.0400643)
+mesh = SubResource("BoxMesh_bt2ae")
+
+[node name="Pupil" type="MeshInstance3D" parent="Model/Eye" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0080596, 0.00423911)
+mesh = SubResource("BoxMesh_u7e2n")
+skeleton = NodePath("../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="Model" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029, 0.0357007, 0.0396737)
+mesh = SubResource("BoxMesh_bt2ae")
+
+[node name="Pupil" type="MeshInstance3D" parent="Model/Eye2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00117353, -0.0082588, 0.00462976)
+mesh = SubResource("BoxMesh_u7e2n")
+skeleton = NodePath("../..")
+
+[node name="Mouth" type="MeshInstance3D" parent="Model" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00842614, 0.0485995)
+mesh = SubResource("BoxMesh_6p17w")
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
+visible = false
+script = ExtResource("2_vyl5u")
+
+[node name="Model Highlight" type="Node3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0963693, 0)
+
+[node name="Body" type="MeshInstance3D" parent="XRToolsHighlightVisible/Model Highlight" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109901, 0)
+mesh = SubResource("BoxMesh_ltdky")
+
+[node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("2_c3ab7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0.0301747, -0.0148978)
+
+[node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("3_4hwhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0939741, 0.0301687, -0.0144103)
+
+[node name="FeedArea" type="Area3D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 65540
+
+[node name="Trigger" type="CollisionShape3D" parent="FeedArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01182, 0)
+shape = SubResource("BoxShape3D_okvc6")
+
+[connection signal="dropped" from="." to="." method="_on_dropped"]
+[connection signal="picked_up" from="." to="." method="_on_picked_up"]
+[connection signal="body_entered" from="FeedArea" to="." method="_on_feed_area_body_entered"]
