@@ -2610,7 +2610,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.0385
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
 
 [node name="DigSpotForTestingPurposesAndStuffMeMarvinUff" parent="." instance=ExtResource("17_wy2f3")]
-visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

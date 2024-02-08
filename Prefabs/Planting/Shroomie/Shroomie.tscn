@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b58jdx7y2w4sl"]
+
+[ext_resource type="PackedScene" uid="uid://dwatqs3wldhe0" path="res://Models/Plants/Mushroomie/FruitShroomie.blend" id="1_6u4wj"]
+
+[node name="FruitShroomie" instance=ExtResource("1_6u4wj")]
+
+[node name="Cube_031" parent="." index="10"]
+transform = Transform3D(0.592995, 0.00444574, 0.154139, 0.153424, 0.0296225, -0.591833, -0.0160245, 0.448132, 0.0375923, -0.00272998, 0.11421, 0.0285672)
