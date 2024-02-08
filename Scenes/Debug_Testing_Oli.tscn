@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=60 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -45,6 +45,111 @@ sky = SubResource("Sky_5ota8")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
 
+[sub_resource type="Shader" id="Shader_qi2x7"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D left_eye;
+uniform sampler2D right_eye;
+
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+}
+
+void fragment() {
+	if (VIEW_INDEX == 0)
+	{
+		ALBEDO = texture(left_eye, SCREEN_UV).rgb;
+		ALPHA = step(0.1, texture(left_eye, SCREEN_UV).r);
+	}
+	else
+	{
+		ALBEDO = texture(right_eye, SCREEN_UV).rgb;
+		ALPHA = step(0.1, texture(right_eye, SCREEN_UV).r);
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0yds"]
+render_priority = 0
+shader = SubResource("Shader_qi2x7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_occ43"]
+material = SubResource("ShaderMaterial_i0yds")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="GDScript" id="GDScript_7navj"]
+script/source = "extends Node3D
+
+@export var left_camera : Camera3D
+@export var right_camera : Camera3D
+@export var origin : XROrigin3D
+@export var leftvp : SubViewport
+@export var rightvp : SubViewport
+
+var nbasis : Basis
+var ibasis : Basis
+var w_scale : float
+
+class Test extends XRInterfaceExtension:
+	func _init():
+		print(\"Init\")
+
+func _ready():
+	var m = $\"../MeshInstance3D\".mesh.surface_get_material(0)
+	m.set(\"shader_parameter/left_eye\", leftvp.get_texture())
+	m.set(\"shader_parameter/right_eye\", rightvp.get_texture())
+	$\"../MeshInstance3D\".mesh.surface_set_material(0, m);
+
+func _process(delta):
+	
+	left_camera.global_transform = XRServer.get_hmd_transform()
+	right_camera.global_transform = XRServer.get_hmd_transform()
+	left_camera.global_transform = XRServer.primary_interface.get_transform_for_view(0, origin.global_transform)
+	right_camera.global_transform = XRServer.primary_interface.get_transform_for_view(1, origin.global_transform)
+"
+
+[sub_resource type="Shader" id="Shader_hiv4g"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
+
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+}
+
+void fragment() {
+	ALBEDO = vec3(1.0, 1.0, 1.0) * (1.0 - step(0.999, texture(DEPTH_TEXTURE, SCREEN_UV).r));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofck8"]
+render_priority = 0
+shader = SubResource("Shader_hiv4g")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yygxa"]
+material = SubResource("ShaderMaterial_ofck8")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="GDScript" id="GDScript_kmdk2"]
+script/source = "@tool
+extends Camera3D
+
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_rqt45"]
+script/source = "@tool
+extends Camera3D
+
+func _process(delta):
+	pass
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t27nq"]
 render_priority = 0
 shader = ExtResource("2_0fnsu")
@@ -64,6 +169,16 @@ shader_parameter/grazing_angle_modulation_factor = 50.0
 material = SubResource("ShaderMaterial_t27nq")
 flip_faces = true
 size = Vector2(2, 2)
+
+[sub_resource type="GDScript" id="GDScript_mmpyk"]
+script/source = "extends XRCamera3D
+
+func _ready():
+	pass
+
+func _process(delta):
+	pass
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v1xlr"]
 size = Vector3(20, 0.1, 20)
@@ -124,6 +239,48 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_88j2n")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37379, -1.63949)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_occ43")
+skeleton = NodePath("../Stereo Outlines/LeftViewport/MeshInstance3D")
+
+[node name="Stereo Outlines" type="Node3D" parent="." node_paths=PackedStringArray("left_camera", "right_camera", "origin", "leftvp", "rightvp")]
+script = SubResource("GDScript_7navj")
+left_camera = NodePath("LeftViewport/Camera3D")
+right_camera = NodePath("RightViewport/Camera3D")
+origin = NodePath("../Player")
+leftvp = NodePath("LeftViewport")
+rightvp = NodePath("RightViewport")
+
+[node name="LeftViewport" type="SubViewport" parent="Stereo Outlines"]
+size = Vector2i(2048, 2048)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stereo Outlines/LeftViewport"]
+layers = 4
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_yygxa")
+
+[node name="Camera3D" type="Camera3D" parent="Stereo Outlines/LeftViewport"]
+cull_mask = 12
+fov = 104.0
+script = SubResource("GDScript_kmdk2")
+
+[node name="RightViewport" type="SubViewport" parent="Stereo Outlines"]
+size = Vector2i(2048, 2048)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stereo Outlines/RightViewport"]
+layers = 4
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_yygxa")
+
+[node name="Camera3D" type="Camera3D" parent="Stereo Outlines/RightViewport"]
+cull_mask = 12
+fov = 104.0
+script = SubResource("GDScript_rqt45")
+
 [node name="Outline Shader" type="MeshInstance3D" parent="."]
 visible = false
 extra_cull_margin = 16384.0
@@ -132,8 +289,9 @@ mesh = SubResource("QuadMesh_clf7f")
 [node name="Player" parent="." instance=ExtResource("1_rip8e")]
 
 [node name="XRCamera3D" parent="Player" index="0"]
+cull_mask = 1
 current = true
-fov = 37.8493
+script = SubResource("GDScript_mmpyk")
 
 [node name="Left Hand" parent="Player" index="1"]
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
@@ -250,6 +408,9 @@ transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.
 [node name="Scissors" parent="." instance=ExtResource("15_76tl2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569539, 0.890719, 0.0531206)
 
+[node name="Open" parent="Scissors" index="2"]
+layers = 9
+
 [node name="Table" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
 
@@ -316,3 +477,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.297483
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632)
 
 [editable path="Player"]
+[editable path="Scissors"]
