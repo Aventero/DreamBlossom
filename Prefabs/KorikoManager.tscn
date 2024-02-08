@@ -3,5 +3,4 @@
 [ext_resource type="Script" path="res://Scripts/KorikoManager.gd" id="1_f211d"]
 
 [node name="KorikoManager" type="Timer"]
-autostart = true
 script = ExtResource("1_f211d")

@@ -2,6 +2,7 @@
 class_name KorikoManager
 extends Timer
 
+@export var time_before_first_spawn : float = 10.0
 @export var inital_spawn_chance : float = 0.1
 @export var stack_spawn_chance : float = 0.05
 
@@ -25,6 +26,9 @@ func _ready():
 	
 	# Connect timeout
 	timeout.connect(_on_spawn_timer_timeout)
+	
+	# Start graceful timer at start
+	get_tree().create_timer(time_before_first_spawn).timeout.connect(start)
 
 func _process(delta):
 	# Do nothing if no korikos need to be spawned

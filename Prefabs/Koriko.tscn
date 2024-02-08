@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_ulggp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gdrmm"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.118018, 0.111182, 0.10957)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ck4k"]
 albedo_color = Color(0.239216, 0.427451, 0.180392, 1)
@@ -52,15 +52,16 @@ size = Vector3(0.11, 0.11, 0.11)
 size = Vector3(0.12, 0.12, 0.12)
 
 [node name="Koriko" instance=ExtResource("1_pgw36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-gravity_scale = 1.5
+collision_mask = 65543
 freeze = true
 script = ExtResource("2_crsb1")
+time_between_teleport = 1.0
+time_until_death = 1.0
 release_mode = 0
 ranged_grab_method = 0
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0136748, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32392e-05, 0.00808398, 0.00478515)
 shape = SubResource("BoxShape3D_gdrmm")
 
 [node name="Model" type="Node3D" parent="." index="1"]
@@ -111,10 +112,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109901, 0)
 mesh = SubResource("BoxMesh_ltdky")
 
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("2_c3ab7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0.0301747, -0.0148978)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0391021, 0.0301747, -0.0461405)
 
 [node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("3_4hwhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0939741, 0.0301687, -0.0144103)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039, 0.03, -0.046)
 
 [node name="FeedArea" type="Area3D" parent="." index="5"]
 collision_layer = 0
@@ -125,5 +126,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01182, 0)
 shape = SubResource("BoxShape3D_okvc6")
 
 [connection signal="dropped" from="." to="." method="_on_dropped"]
-[connection signal="picked_up" from="." to="." method="_on_picked_up"]
 [connection signal="body_entered" from="FeedArea" to="." method="_on_feed_area_body_entered"]
