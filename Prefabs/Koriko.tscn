@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://Scripts/Koriko.gd" id="2_crsb1"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_vyl5u"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_4hwhu"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_ulggp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gdrmm"]
 size = Vector3(0.118018, 0.111182, 0.10957)
@@ -44,8 +43,14 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_hwgey")
 size = Vector3(0.06, 0.01, 0.005)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fib8x"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.02
+
 [sub_resource type="BoxMesh" id="BoxMesh_ltdky"]
-material = ExtResource("3_ulggp")
+material = SubResource("StandardMaterial3D_fib8x")
 size = Vector3(0.11, 0.11, 0.11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okvc6"]

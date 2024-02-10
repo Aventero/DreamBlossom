@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=51 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -65,6 +65,20 @@ material = SubResource("ShaderMaterial_t27nq")
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="GDScript" id="GDScript_mo61k"]
+script/source = "extends XROrigin3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_v1xlr"]
 size = Vector3(20, 0.1, 20)
 
@@ -130,10 +144,10 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_clf7f")
 
 [node name="Player" parent="." instance=ExtResource("1_rip8e")]
+script = SubResource("GDScript_mo61k")
 
 [node name="XRCamera3D" parent="Player" index="0"]
 current = true
-fov = 37.8493
 
 [node name="Left Hand" parent="Player" index="1"]
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)

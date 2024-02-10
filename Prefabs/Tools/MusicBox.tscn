@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Tools/MusicBox.gd" id="2_jkbs3"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="3_cfuf2"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="5_liusm"]
 [ext_resource type="Texture2D" uid="uid://cfvy1nmdhb3jv" path="res://Textures/Range.png" id="7_0a8fx"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="7_6rsry"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="8_ummhs"]
@@ -17,8 +16,14 @@ size = Vector3(0.1, 0.1, 0.1)
 material = ExtResource("3_cfuf2")
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_310va"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.2
+
 [sub_resource type="BoxMesh" id="BoxMesh_2ls1p"]
-material = ExtResource("5_liusm")
+material = SubResource("StandardMaterial3D_310va")
 size = Vector3(0.11, 0.11, 0.11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriak"]
