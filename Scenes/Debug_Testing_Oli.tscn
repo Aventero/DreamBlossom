@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=47 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -9,11 +9,9 @@
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/SeedBag.tscn" id="8_rxdi4"]
-[ext_resource type="Texture2D" uid="uid://cfbtuqoudc0un" path="res://Textures/Square.png" id="9_88uxn"]
+[ext_resource type="Texture2D" uid="uid://twuxehna0wa8" path="res://Textures/Fruits/Shroomie.png" id="9_m7hmw"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
-[ext_resource type="Texture2D" uid="uid://47oviyb53h83" path="res://Textures/Prism.png" id="10_qlpq7"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
-[ext_resource type="Texture2D" uid="uid://d1dy33lf5tn8u" path="res://Textures/Cylinder.png" id="11_7xuar"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
@@ -29,10 +27,11 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="21_ifxkr"]
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
-[ext_resource type="Texture2D" uid="uid://cjbnhsm7jlxgo" path="res://Textures/Orangie.png" id="23_vxa8t"]
 [ext_resource type="PackedScene" uid="uid://cm66xusomnodc" path="res://Debug/Cube_Ingredient.tscn" id="29_tx4fl"]
 [ext_resource type="PackedScene" uid="uid://ms8ifj2u4csu" path="res://Debug/Prism_Ingredient.tscn" id="30_0y6wq"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
+[ext_resource type="PackedScene" uid="uid://dvbvlknvdq0dx" path="res://Prefabs/Fruits/Shroomie.tscn" id="34_37cwu"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/Fruit.gd" id="35_1kg8n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -82,25 +81,10 @@ func _process(delta):
 [sub_resource type="BoxShape3D" id="BoxShape3D_v1xlr"]
 size = Vector3(20, 0.1, 20)
 
-[sub_resource type="Resource" id="Resource_jpwjg"]
+[sub_resource type="Resource" id="Resource_rhegm"]
 script = ExtResource("23_sn5yw")
 type = 0
-texture = ExtResource("23_vxa8t")
-
-[sub_resource type="Resource" id="Resource_dd8f5"]
-script = ExtResource("23_sn5yw")
-type = 1
-texture = ExtResource("9_88uxn")
-
-[sub_resource type="Resource" id="Resource_0svfo"]
-script = ExtResource("23_sn5yw")
-type = 2
-texture = ExtResource("10_qlpq7")
-
-[sub_resource type="Resource" id="Resource_c8ew7"]
-script = ExtResource("23_sn5yw")
-type = 3
-texture = ExtResource("11_7xuar")
+texture = ExtResource("9_m7hmw")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3skh4"]
 lightmap_size_hint = Vector2i(1004, 508)
@@ -175,7 +159,7 @@ plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
-ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_jpwjg"), SubResource("Resource_dd8f5"), SubResource("Resource_0svfo"), SubResource("Resource_c8ew7")])
+ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm")])
 
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
@@ -295,15 +279,19 @@ transform = Transform3D(0.480438, -0.339411, 0.80869, -1.49012e-08, 0.922079, 0.
 
 [node name="Orangie" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.511695)
+release_mode = 0
 
 [node name="Orangie2" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.470829)
+release_mode = 0
 
 [node name="Orangie3" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.513826)
+release_mode = 0
 
 [node name="Orangie4" parent="." instance=ExtResource("20_dk3w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.470193)
+release_mode = 0
 
 [node name="Cube" parent="." instance=ExtResource("29_tx4fl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.41787)
@@ -328,5 +316,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.297483
 
 [node name="Prism4" parent="." instance=ExtResource("30_0y6wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632)
+
+[node name="Shroomie" parent="." instance=ExtResource("34_37cwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.342577, 0.817766, -0.512595)
+script = ExtResource("35_1kg8n")
+release_mode = 0
+
+[node name="Shroomie2" parent="." instance=ExtResource("34_37cwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.158923, 0.817766, -0.512595)
+script = ExtResource("35_1kg8n")
+release_mode = 0
+
+[node name="Shroomie3" parent="." instance=ExtResource("34_37cwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0083808, 0.817766, -0.512595)
+script = ExtResource("35_1kg8n")
+release_mode = 0
+
+[node name="Shroomie4" parent="." instance=ExtResource("34_37cwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18194, 0.817766, -0.512595)
+script = ExtResource("35_1kg8n")
+release_mode = 0
 
 [editable path="Player"]

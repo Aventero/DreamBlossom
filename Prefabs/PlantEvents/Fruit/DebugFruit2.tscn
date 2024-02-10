@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://buwvncpc2hqi1"]
 
-[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/PlantEvents/Fruit/Fruit.tscn" id="1_4h7x6"]
+[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Fruits/Fruit.tscn" id="1_4h7x6"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3kwwf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw3up"]

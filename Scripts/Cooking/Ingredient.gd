@@ -3,10 +3,7 @@ extends XRToolsPickable
 
 enum Type
 {
-	ORANGIE,
-	CUBE,
-	PRISM,
-	CYLINDER
+	SHROOMIE
 }
 
 @export var type : Type

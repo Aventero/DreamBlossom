@@ -36,6 +36,7 @@ script = SubResource("GDScript_0422u")
 
 [node name="Book Viewport" type="SubViewport" parent="."]
 transparent_bg = true
+canvas_item_default_texture_filter = 0
 size = Vector2i(500, 666)
 
 [node name="Page" parent="Book Viewport" instance=ExtResource("1_gh2q6")]
