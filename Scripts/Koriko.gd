@@ -29,6 +29,7 @@ func _on_feed_area_body_entered(body):
 		return
 	
 	_is_fed = true
+	enabled = false
 	
 	# Despawn ingredient
 	var ingredient : XRToolsPickable = body

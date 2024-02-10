@@ -61,6 +61,7 @@ signal pull_completed
 @onready var pull_origin : Node3D = $"PullOrigin"
 
 @onready var snapping_raycast : RayCast3D = $Snapping
+@onready var shovel_intersection_indicator : MeshInstance3D = $"Intersection Point"
 
 var pull_particle_instance : GPUParticles3D
 var soil_insertion_point : Vector3
@@ -83,6 +84,7 @@ var indicator_instance : Indicator = null
 # Hold currently selected cell
 var current_cell : GridCell = null
 var allowed_insertion : bool = false
+var holding_position : bool = false
 
 func _ready():
 	super()
@@ -112,6 +114,7 @@ func _handle_shovel():
 		allowed_insertion = false
 		indicator_instance.set_state(Indicator.STATE.HIDDEN)
 		indicator_instance.ignore_lerp = true
+		shovel_intersection_indicator.visible = false
 		return
 	
 	var hit : Node3D = intersection_raycast.get_collider()
@@ -122,7 +125,13 @@ func _handle_shovel():
 		allowed_insertion = false
 		indicator_instance.set_state(Indicator.STATE.HIDDEN)
 		indicator_instance.ignore_lerp = true
+		shovel_intersection_indicator.visible = false
 		return
+	
+	# Update intersection indicator
+	shovel_intersection_indicator.visible = true
+	shovel_intersection_indicator.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.02, 0.0)
+	shovel_intersection_indicator.global_rotation = Vector3(-PI/2, 0.0, 0.0)
 	
 	# Convert hit to plant grid
 	var grid : PlantGrid = hit
@@ -136,29 +145,48 @@ func _handle_shovel():
 	# Find closest cell which is inbound. Only applies to border cells
 	var inbound_cell : GridCell = grid.find_inbound_cell(cell, shovel_settings[current_setting_index].cell_width)
 	
-	# If current placement is allowed => Place indicator & Update cell
-	if grid.is_placement_allowed(inbound_cell, shovel_settings[current_setting_index].cell_width):
-		current_cell = inbound_cell
-		allowed_insertion = true
-		indicator_instance.set_state(Indicator.STATE.ALLOWED)
-	else:
-		# Update indicator position if new cell is occupied or indicator is restricted / hidden
-		if cell.occupied or indicator_instance.state == Indicator.STATE.RESTRICTED or indicator_instance.state == Indicator.STATE.HIDDEN:
-			current_cell = inbound_cell
+	if holding_position and current_cell:
+		# If current placement is allowed => Place indicator & Update cell
+		if not grid.is_placement_allowed(current_cell, shovel_settings[current_setting_index].cell_width):
+			holding_position = false
 			allowed_insertion = false
 			indicator_instance.set_state(Indicator.STATE.RESTRICTED)
+		
+		# Move snapping raycast to correct position / rotation
+		snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
+		snapping_raycast.global_rotation = Vector3.ZERO
+		
+		# Shovel leaves snapped indicator -> Release snap
+		if not snapping_raycast.is_colliding():
+			holding_position = false
+			allowed_insertion = false
+	else:
+		# If current placement is allowed => Place indicator & Update cell
+		if grid.is_placement_allowed(inbound_cell, shovel_settings[current_setting_index].cell_width):
+			current_cell = inbound_cell
+			allowed_insertion = true
+			indicator_instance.set_state(Indicator.STATE.ALLOWED)
 		else:
-			# Move snapping raycast to correct position / rotation
-			snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
-			snapping_raycast.global_rotation = Vector3.ZERO
-			
-			# Shovel leaves snapped indicator -> Move snapped cell
-			if not snapping_raycast.is_colliding():
+			# Update indicator position if new cell is occupied or indicator is restricted / hidden
+			if cell.occupied or indicator_instance.state == Indicator.STATE.RESTRICTED or indicator_instance.state == Indicator.STATE.HIDDEN:
 				current_cell = inbound_cell
 				allowed_insertion = false
 				indicator_instance.set_state(Indicator.STATE.RESTRICTED)
+			else:
+				# Move snapping raycast to correct position / rotation
+				snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
+				snapping_raycast.global_rotation = Vector3.ZERO
+				
+				# Shovel leaves snapped indicator -> Move snapped cell
+				if not snapping_raycast.is_colliding():
+					current_cell = inbound_cell
+					allowed_insertion = false
+					indicator_instance.set_state(Indicator.STATE.RESTRICTED)
 	
 	# Move indicator to correct cell position
+	#if not current_cell:
+		#return
+	
 	var cell_pos = grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
 	
 	# Ignore lerp if indicator is not currently spawned in
@@ -365,6 +393,7 @@ func _on_dropped(pickable : XRToolsPickable):
 	controller.input_vector2_changed.disconnect(Callable(_controller_input_change))
 	
 	indicator_instance.set_state(Indicator.STATE.HIDDEN)
+	shovel_intersection_indicator.visible = false
 
 func _controller_input_change(name: String, value: Vector2):
 	if name == "primary":
@@ -404,3 +433,9 @@ func _insertion_squish():
 
 	# Return to normal
 	tween.tween_property(shovel_mesh, "scale", initial_scale, 0.05)
+
+func _on_action_pressed(pickable):
+	holding_position = true
+
+func _on_action_released(pickable):
+	holding_position = false
