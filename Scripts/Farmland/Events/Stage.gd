@@ -14,7 +14,7 @@ var current_event : PlantEvent
 
 # started once the timer runs out
 func start_events():
-	print("Start events!")
+	print("[Stage] Start events!")
 	
 	# Pick random event
 	current_event = get_children().pick_random()
@@ -27,12 +27,11 @@ func start_events():
 		icon_display.show_icon(current_event.icon_texture, icon_position)
 
 func _on_event_completed():
-	print("Event ", current_event.name, " completed!")
+	print("[Stage] Event ", current_event.name, " completed!")
 	
 	# Events cleanup
 	current_event.event_completed.disconnect(Callable(_on_event_completed))
 	current_event.cleanup()
 	icon_display.hide_icon()
 	
-	# TODO - Check if stage is completed
 	stage_complete.emit()

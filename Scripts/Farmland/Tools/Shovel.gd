@@ -247,7 +247,7 @@ func _handle_complete_pull():
 	
 	# Move digspot out of soil
 	var tween : Tween = create_tween()
-	tween.tween_property(dig_spot_instance, "global_position", current_cell_pos, 0.2)
+	tween.tween_property(dig_spot_instance, "global_position", current_cell_pos, 0.1)
 	
 	# Emit completed pull
 	pull_completed.emit()

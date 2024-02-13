@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://djdx4mo1onrb7"]
 
 [ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/ItemBag.tscn" id="1_duici"]
-[ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seed.tscn" id="3_xdi44"]
+[ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="3_xdi44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8hy5u"]
 radius = 0.05

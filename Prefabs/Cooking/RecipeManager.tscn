@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeManager.gd" id="1_qwyvi"]
 [ext_resource type="Script" path="res://Scripts/Cooking/Recipe.gd" id="2_kt12l"]
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeInputData.gd" id="3_qxj82"]
-[ext_resource type="PackedScene" uid="uid://dvbvlknvdq0dx" path="res://Prefabs/Fruits/Shroomie.tscn" id="4_lw0gc"]
+[ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Fruits/ShroomieFruit.tscn" id="4_lw0gc"]
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeOutputData.gd" id="5_ndad3"]
 
 [sub_resource type="Resource" id="Resource_ldv1e"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=43 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -19,19 +19,15 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="16_2sp45"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="16_12g1g"]
+[ext_resource type="PackedScene" uid="uid://c1c64vnq06pxm" path="res://Prefabs/Planting/Seeds/ShroomieSeed.tscn" id="18_8doel"]
 [ext_resource type="Script" path="res://Scripts/Utility/LevelManager.gd" id="18_drpy2"]
 [ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="19_cdyvb"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="19_splt0"]
 [ext_resource type="PackedScene" uid="uid://c1nll5jy2q080" path="res://Prefabs/Cooking/RecipeManager.tscn" id="19_xucyt"]
-[ext_resource type="PackedScene" uid="uid://bx83sgte1vf7i" path="res://Prefabs/PlantEvents/Fruit/Orangie/Orangie.tscn" id="20_dk3w2"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="21_ifxkr"]
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
-[ext_resource type="PackedScene" uid="uid://cm66xusomnodc" path="res://Debug/Cube_Ingredient.tscn" id="29_tx4fl"]
-[ext_resource type="PackedScene" uid="uid://ms8ifj2u4csu" path="res://Debug/Prism_Ingredient.tscn" id="30_0y6wq"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
-[ext_resource type="PackedScene" uid="uid://dvbvlknvdq0dx" path="res://Prefabs/Fruits/Shroomie.tscn" id="34_37cwu"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/Fruit.gd" id="35_1kg8n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -146,6 +142,7 @@ ranged_enable = false
 script = ExtResource("3_4slt7")
 
 [node name="ReturnManager" parent="." instance=ExtResource("4_yyuga")]
+visible = false
 collision_layer = 0
 collision_mask = 4
 range = 3.0
@@ -234,6 +231,7 @@ transform = Transform3D(0.625951, 0, 0.779863, 0, 1, 0, -0.779863, 0, 0.625951, 
 
 [node name="SeedBag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.681173, 0.987084, -0.320027)
+item = ExtResource("18_8doel")
 ranged_grab_method = 1
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
@@ -277,69 +275,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666
 
 [node name="RecipeBook" parent="." instance=ExtResource("21_ifxkr")]
 transform = Transform3D(0.480438, -0.339411, 0.80869, -1.49012e-08, 0.922079, 0.387001, -0.877029, -0.18593, 0.443002, -0.631728, 1.13668, -0.139854)
-
-[node name="Orangie" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.511695)
-release_mode = 0
-
-[node name="Orangie2" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.382896, 0.883721, 0.470829)
-release_mode = 0
-
-[node name="Orangie3" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.513826)
-release_mode = 0
-
-[node name="Orangie4" parent="." instance=ExtResource("20_dk3w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421296, 0.883721, 0.470193)
-release_mode = 0
-
-[node name="Cube" parent="." instance=ExtResource("29_tx4fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.41787)
-
-[node name="Cube2" parent="." instance=ExtResource("29_tx4fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.356169)
-
-[node name="Cube3" parent="." instance=ExtResource("29_tx4fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.291908)
-
-[node name="Cube4" parent="." instance=ExtResource("29_tx4fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.452902, 0.887665, 0.229271)
-
-[node name="Prism" parent="." instance=ExtResource("30_0y6wq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.425986)
-
-[node name="Prism2" parent="." instance=ExtResource("30_0y6wq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.363263)
-
-[node name="Prism3" parent="." instance=ExtResource("30_0y6wq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.297483)
-
-[node name="Prism4" parent="." instance=ExtResource("30_0y6wq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632)
-
-[node name="Shroomie" parent="." instance=ExtResource("34_37cwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.342577, 0.817766, -0.512595)
-visible = false
-script = ExtResource("35_1kg8n")
-release_mode = 0
-
-[node name="Shroomie2" parent="." instance=ExtResource("34_37cwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.158923, 0.817766, -0.512595)
-visible = false
-script = ExtResource("35_1kg8n")
-release_mode = 0
-
-[node name="Shroomie3" parent="." instance=ExtResource("34_37cwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0083808, 0.817766, -0.512595)
-visible = false
-script = ExtResource("35_1kg8n")
-release_mode = 0
-
-[node name="Shroomie4" parent="." instance=ExtResource("34_37cwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18194, 0.817766, -0.512595)
-visible = false
-script = ExtResource("35_1kg8n")
-release_mode = 0
 
 [editable path="Player"]

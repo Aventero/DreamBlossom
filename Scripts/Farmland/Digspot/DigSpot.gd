@@ -179,7 +179,7 @@ func _handle_seed_insert():
 	
 	# Spawn plant if water is enough
 	if current_water >= watering_amount:
-		_spawn_plant(Vector3(0, 0, 0))
+		_spawn_plant()
 
 func _handle_water_drop():
 	# Added a drop of water
@@ -205,14 +205,14 @@ func _handle_water_drop():
 	
 	if not plant:
 		# Grow plant
-		_spawn_plant(Vector3(0, 0, 0))
+		_spawn_plant()
 	
 	dry_timer.stop()
 
-func _spawn_plant(spawning_position : Vector3):
+func _spawn_plant():
 	# Spawn plant
 	plant = seed.plant.instantiate()
-	plant.position = spawning_position
+	plant.position = Vector3.ZERO
 	add_child(plant)
 	
 	# Remove seed

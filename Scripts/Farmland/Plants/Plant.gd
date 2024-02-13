@@ -5,7 +5,6 @@ extends Node3D
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @export var plant_model : Node3D
-@export var death_material : Material
 
 signal dying
 
@@ -41,12 +40,11 @@ func _on_stage_timer_timeout():
 	stages[current_stage].start_events()
 
 func _on_stage_complete():
-	print("STAGE COMPLETED!")
+	print("[Plant] Stage completed")
 	current_stage += 1
+	
 	if current_stage < stages.size():
 		start_stage(current_stage)
-	else:
-		_die()
 
 func request_tween(force : bool = false) -> Tween:
 	if not tween or force or not tween.is_valid():
@@ -58,17 +56,7 @@ func request_tween(force : bool = false) -> Tween:
 	
 	return null
 
-func _die():
-	dying.emit()
-	# change material to the one thats exported 
-	assign_material_to_all_meshes(plant_model, death_material)
-	
-	# Quickly Play the animation backwards
-	animation_player.speed_scale = 10
-	animation_player.play_backwards()
-
 func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material):
-	
 	# Set the material on each mesh
 	for child in node.get_children():
 		if child is MeshInstance3D:
@@ -76,6 +64,5 @@ func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material)
 		assign_material_to_all_meshes(child, material_to_assign)
 
 func _on_animation_player_animation_finished(anim_name):
-	
 	# Die once the animation is back at the start
 	DigSpotLookup.get_dig_spot(self).remove_self()

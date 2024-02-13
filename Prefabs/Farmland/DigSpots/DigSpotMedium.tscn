@@ -122,8 +122,8 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_shs5x")
 
 [node name="Particle Collision" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
-size = Vector3(0.38, 0.04, 0.38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125024, 0)
+size = Vector3(0.38, 0.0250049, 0.38)
 
 [node name="Seed Snap Point" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0265316, 0)

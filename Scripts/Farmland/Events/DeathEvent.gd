@@ -7,17 +7,15 @@ extends PlantEvent
 @onready var animation_player = $"../../AnimationPlayer"
 
 func initialize():
-	
 	# change material to the one thats exported 
 	assign_material_to_all_meshes(plant_model, death_material)
 	
 	# Quickly Play the animation backwards
 	var stage : Stage = get_parent_node_3d()
 	animation_player.speed_scale = 10
-	animation_player.play_backwards()
+	animation_player.play_backwards("Grow")
 
 func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material):
-	
 	# Set the material on each mesh
 	for child in node.get_children():
 		if child is MeshInstance3D:
@@ -25,6 +23,5 @@ func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material)
 		assign_material_to_all_meshes(child, material_to_assign)
 
 func _on_animation_player_animation_finished(anim_name):
-	
 	# Die once the animation is back at the start
 	DigSpotLookup.get_dig_spot(self.owner).remove_self()
