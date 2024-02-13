@@ -1,9 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://k1ig4nxq85cm"]
+[gd_scene load_steps=16 format=3 uid="uid://k1ig4nxq85cm"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpot.gd" id="1_lp3ox"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="2_nlffj"]
 [ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/ShovelInsert.tscn" id="3_suh21"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="4_f013i"]
+[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="5_jaky1"]
+[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_djxba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1311s"]
+albedo_texture = ExtResource("5_jaky1")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_qvnrg"]
+script = ExtResource("6_djxba")
+name = "Dry"
+material = SubResource("StandardMaterial3D_1311s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orm6g"]
+albedo_color = Color(0.882353, 0.882353, 0.882353, 1)
+albedo_texture = ExtResource("5_jaky1")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_2qm22"]
+script = ExtResource("6_djxba")
+name = "Wet_0"
+material = SubResource("StandardMaterial3D_orm6g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0xf6"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+albedo_texture = ExtResource("5_jaky1")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_ah4j5"]
+script = ExtResource("6_djxba")
+name = "Wet_1"
+material = SubResource("StandardMaterial3D_n0xf6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tbwd"]
+albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
+albedo_texture = ExtResource("5_jaky1")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_tca8r"]
+script = ExtResource("6_djxba")
+name = "Wet_2"
+material = SubResource("StandardMaterial3D_1tbwd")
 
 [sub_resource type="GDScript" id="GDScript_ceeo6"]
 script/source = "extends Timer
@@ -46,6 +87,7 @@ size = Vector3(0.19, 0.01875, 0.19)
 
 [node name="MaterialChanger" type="Node3D" parent="."]
 script = ExtResource("4_f013i")
+material_states = Array[ExtResource("6_djxba")]([SubResource("Resource_qvnrg"), SubResource("Resource_2qm22"), SubResource("Resource_ah4j5"), SubResource("Resource_tca8r")])
 
 [node name="DryTimer" type="Timer" parent="."]
 wait_time = 5.0

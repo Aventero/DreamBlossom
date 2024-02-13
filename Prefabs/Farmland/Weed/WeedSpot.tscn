@@ -1,14 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://mvx45djeopmk"]
+[gd_scene load_steps=22 format=3 uid="uid://mvx45djeopmk"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_4e4g3"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_cihps"]
 [ext_resource type="PackedScene" uid="uid://w53as41wqyrb" path="res://Prefabs/Farmland/Weed/Weed.tscn" id="2_sxg6l"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="3_pfue3"]
 [ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="4_lmesj"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="5_78u8c"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="5_aama0"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_2xyoj"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="7_sytm2"]
+[ext_resource type="Texture2D" uid="uid://cui4qkyonsu5h" path="res://Textures/Models/DigSpot.png" id="8_6gsn4"]
 
 [sub_resource type="Resource" id="Resource_o5e5o"]
 script = ExtResource("3_pfue3")
@@ -17,72 +16,94 @@ active_during_pause = false
 indefinite = true
 duration_ms = 300
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12v80"]
-resource_name = "Leaves"
-cull_mode = 2
-albedo_texture = ExtResource("7_sytm2")
-texture_filter = 2
+[sub_resource type="ArrayMesh" id="ArrayMesh_5bw0i"]
+_surfaces = [{
+"aabb": AABB(-0.09375, 0, -0.09375, 0.1875, 0.01875, 0.18751),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray(12, 0, 14, 0, 13, 0, 12, 0, 18, 0, 14, 0, 16, 0, 19, 0, 17, 0, 16, 0, 15, 0, 19, 0, 11, 0, 15, 0, 16, 0, 11, 0, 10, 0, 15, 0, 17, 0, 18, 0, 12, 0, 17, 0, 19, 0, 18, 0, 11, 0, 2, 0, 10, 0, 11, 0, 0, 0, 2, 0, 13, 0, 8, 0, 12, 0, 13, 0, 1, 0, 8, 0, 14, 0, 1, 0, 13, 0, 14, 0, 3, 0, 1, 0, 10, 0, 6, 0, 15, 0, 10, 0, 2, 0, 6, 0, 17, 0, 7, 0, 16, 0, 17, 0, 4, 0, 7, 0, 19, 0, 9, 0, 18, 0, 19, 0, 5, 0, 9, 0, 15, 0, 5, 0, 19, 0, 15, 0, 6, 0, 5, 0, 16, 0, 0, 0, 11, 0, 16, 0, 7, 0, 0, 0, 12, 0, 4, 0, 17, 0, 12, 0, 8, 0, 4, 0, 18, 0, 3, 0, 14, 0, 18, 0, 9, 0, 3, 0),
+"lods": [0.00463625, PackedByteArray(11, 0, 15, 0, 16, 0, 11, 0, 10, 0, 15, 0, 16, 0, 0, 0, 11, 0, 16, 0, 7, 0, 0, 0, 16, 0, 4, 0, 7, 0, 13, 0, 4, 0, 16, 0, 13, 0, 8, 0, 4, 0, 13, 0, 1, 0, 8, 0, 16, 0, 14, 0, 13, 0, 16, 0, 15, 0, 14, 0, 14, 0, 1, 0, 13, 0, 14, 0, 3, 0, 1, 0, 15, 0, 9, 0, 14, 0, 14, 0, 9, 0, 3, 0, 15, 0, 5, 0, 9, 0, 15, 0, 6, 0, 5, 0, 10, 0, 6, 0, 15, 0, 10, 0, 2, 0, 6, 0, 11, 0, 2, 0, 10, 0, 11, 0, 0, 0, 2, 0)],
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 251, 255, 0, 0, 255, 255, 0, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 127, 0, 0, 251, 255, 0, 0, 255, 127, 0, 0, 0, 0, 0, 0, 255, 63, 0, 0, 0, 0, 0, 0, 255, 63, 0, 0, 251, 255, 0, 0, 255, 191, 0, 0, 251, 255, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 23, 25, 255, 255, 23, 25, 0, 0, 23, 25, 255, 255, 228, 230, 0, 0, 88, 185, 112, 212, 228, 230, 0, 0, 231, 230, 255, 255, 228, 230, 0, 0, 231, 230, 255, 255, 23, 25, 0, 0, 166, 70, 112, 212, 23, 25, 0, 0, 166, 70, 112, 212, 228, 230, 0, 0, 255, 127, 255, 255, 228, 230, 0, 0, 88, 185, 112, 212, 23, 25, 0, 0, 255, 127, 255, 255, 23, 25, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uu47m"]
+resource_name = "DigSpotSmall_Plane_008"
+_surfaces = [{
+"aabb": AABB(-0.09375, 0, -0.09375, 0.1875, 0.01875, 0.18751),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 0, 0, 255, 63, 0, 0, 255, 63, 0, 0, 255, 63, 255, 255, 255, 63, 255, 255, 255, 191, 255, 255, 255, 191, 255, 255, 255, 191, 0, 0, 255, 191, 0, 0, 255, 23, 255, 23, 255, 23, 255, 23, 255, 23, 255, 23, 255, 23, 255, 231, 255, 23, 255, 231, 255, 23, 255, 231, 255, 183, 255, 231, 255, 183, 255, 231, 255, 183, 255, 231, 255, 183, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 23, 255, 231, 255, 23, 255, 231, 255, 23, 255, 71, 255, 23, 255, 71, 255, 23, 255, 71, 255, 23, 255, 71, 255, 23, 255, 71, 255, 231, 255, 71, 255, 231, 255, 71, 255, 231, 255, 71, 255, 231, 255, 127, 255, 231, 255, 127, 255, 231, 255, 127, 255, 231, 255, 127, 255, 231, 255, 183, 255, 23, 255, 183, 255, 23, 255, 183, 255, 23, 255, 183, 255, 23, 255, 127, 255, 23, 255, 127, 255, 23, 255, 127, 255, 23, 255, 127, 255, 23, 255, 23, 255, 23, 255, 23, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 231, 255, 23, 255, 71, 255, 23, 255, 71, 255, 231),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray(26, 0, 33, 0, 30, 0, 26, 0, 48, 0, 33, 0, 40, 0, 52, 0, 44, 0, 40, 0, 36, 0, 52, 0, 25, 0, 39, 0, 43, 0, 25, 0, 22, 0, 39, 0, 47, 0, 51, 0, 29, 0, 47, 0, 55, 0, 51, 0, 23, 0, 4, 0, 20, 0, 23, 0, 0, 0, 4, 0, 31, 0, 16, 0, 27, 0, 31, 0, 2, 0, 16, 0, 35, 0, 3, 0, 32, 0, 35, 0, 7, 0, 3, 0, 21, 0, 13, 0, 38, 0, 21, 0, 5, 0, 13, 0, 45, 0, 14, 0, 41, 0, 45, 0, 8, 0, 14, 0, 54, 0, 19, 0, 50, 0, 54, 0, 11, 0, 19, 0, 37, 0, 10, 0, 53, 0, 37, 0, 12, 0, 10, 0, 42, 0, 1, 0, 24, 0, 42, 0, 15, 0, 1, 0, 28, 0, 9, 0, 46, 0, 28, 0, 17, 0, 9, 0, 49, 0, 6, 0, 34, 0, 49, 0, 18, 0, 6, 0),
+"lods": [0.00463625, PackedByteArray(57, 0, 61, 0, 62, 0, 57, 0, 56, 0, 61, 0, 62, 0, 1, 0, 24, 0, 62, 0, 14, 0, 1, 0, 62, 0, 8, 0, 14, 0, 58, 0, 8, 0, 62, 0, 58, 0, 16, 0, 8, 0, 58, 0, 2, 0, 16, 0, 62, 0, 60, 0, 58, 0, 62, 0, 61, 0, 60, 0, 60, 0, 3, 0, 59, 0, 60, 0, 7, 0, 3, 0, 61, 0, 18, 0, 60, 0, 60, 0, 18, 0, 6, 0, 61, 0, 10, 0, 18, 0, 61, 0, 12, 0, 10, 0, 21, 0, 12, 0, 61, 0, 21, 0, 5, 0, 12, 0, 23, 0, 4, 0, 20, 0, 23, 0, 0, 0, 4, 0)],
+"material": ExtResource("5_aama0"),
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 63,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 251, 255, 149, 198, 0, 0, 0, 0, 251, 255, 225, 160, 255, 255, 0, 0, 251, 255, 225, 160, 255, 255, 0, 0, 251, 255, 135, 198, 0, 0, 0, 0, 0, 0, 191, 197, 0, 0, 0, 0, 0, 0, 35, 223, 255, 255, 0, 0, 0, 0, 35, 223, 255, 255, 0, 0, 0, 0, 176, 197, 255, 127, 0, 0, 251, 255, 144, 161, 255, 127, 0, 0, 251, 255, 144, 161, 255, 127, 0, 0, 0, 0, 123, 222, 255, 127, 0, 0, 0, 0, 123, 222, 255, 63, 0, 0, 0, 0, 126, 222, 255, 63, 0, 0, 0, 0, 31, 223, 255, 63, 0, 0, 251, 255, 132, 161, 255, 63, 0, 0, 251, 255, 239, 160, 255, 191, 0, 0, 251, 255, 239, 160, 255, 191, 0, 0, 251, 255, 132, 161, 255, 191, 0, 0, 0, 0, 31, 223, 255, 191, 0, 0, 0, 0, 126, 222, 23, 25, 255, 255, 23, 25, 151, 197, 23, 25, 255, 255, 23, 25, 32, 223, 23, 25, 255, 255, 23, 25, 22, 192, 23, 25, 255, 255, 228, 230, 131, 198, 23, 25, 255, 255, 228, 230, 230, 160, 23, 25, 255, 255, 228, 230, 22, 192, 88, 185, 112, 212, 228, 230, 22, 192, 88, 185, 112, 212, 228, 230, 5, 161, 88, 185, 112, 212, 228, 230, 136, 161, 88, 185, 112, 212, 228, 230, 14, 192, 231, 230, 255, 255, 228, 230, 22, 192, 231, 230, 255, 255, 228, 230, 230, 160, 231, 230, 255, 255, 228, 230, 177, 198, 231, 230, 255, 255, 23, 25, 22, 192, 231, 230, 255, 255, 23, 25, 32, 223, 231, 230, 255, 255, 23, 25, 194, 197, 166, 70, 112, 212, 23, 25, 14, 192, 166, 70, 112, 212, 23, 25, 124, 222, 166, 70, 112, 212, 23, 25, 30, 223, 166, 70, 112, 212, 23, 25, 22, 192, 166, 70, 112, 212, 228, 230, 14, 192, 166, 70, 112, 212, 228, 230, 136, 161, 166, 70, 112, 212, 228, 230, 5, 161, 166, 70, 112, 212, 228, 230, 22, 192, 255, 127, 255, 255, 228, 230, 14, 192, 255, 127, 255, 255, 228, 230, 155, 161, 255, 127, 255, 255, 228, 230, 155, 161, 255, 127, 255, 255, 228, 230, 14, 192, 88, 185, 112, 212, 23, 25, 22, 192, 88, 185, 112, 212, 23, 25, 30, 223, 88, 185, 112, 212, 23, 25, 124, 222, 88, 185, 112, 212, 23, 25, 14, 192, 255, 127, 255, 255, 23, 25, 14, 192, 255, 127, 255, 255, 23, 25, 122, 222, 255, 127, 255, 255, 23, 25, 122, 222, 255, 127, 255, 255, 23, 25, 14, 192, 23, 25, 255, 255, 23, 25, 66, 198, 23, 25, 255, 255, 228, 230, 14, 198, 231, 230, 255, 255, 228, 230, 172, 168, 231, 230, 255, 255, 228, 230, 22, 192, 231, 230, 255, 255, 23, 25, 146, 202, 166, 70, 112, 212, 23, 25, 139, 209, 166, 70, 112, 212, 228, 230, 79, 174, 237, 227, 60, 186, 34, 250, 226, 123, 226, 251, 219, 133, 187, 197, 201, 99, 194, 225, 158, 186, 109, 253, 59, 127, 59, 255, 144, 130, 89, 197, 157, 97, 114, 254, 223, 135, 31, 248, 114, 126, 34, 253, 143, 131, 111, 252, 34, 125, 70, 255, 95, 130, 23, 252, 220, 124, 75, 252, 80, 133, 54, 247, 69, 126, 69, 254, 200, 136, 173, 250, 76, 124, 219, 252, 230, 131, 159, 253, 71, 127, 86, 225, 177, 186, 176, 252, 234, 125, 216, 244, 108, 122, 192, 227, 68, 186, 130, 248, 55, 125, 216, 244, 108, 122, 107, 250, 37, 139, 236, 255, 206, 138, 118, 249, 82, 125, 249, 246, 124, 123, 107, 250, 37, 139, 55, 253, 124, 135, 205, 197, 51, 100, 107, 250, 37, 139, 234, 253, 78, 131, 98, 197, 203, 97, 124, 251, 4, 137, 67, 254, 238, 130, 36, 251, 45, 123, 216, 244, 108, 122, 124, 251, 4, 137, 81, 253, 135, 134, 47, 245, 236, 127, 216, 244, 108, 122, 124, 251, 4, 137, 122, 255, 26, 137, 227, 246, 122, 127, 249, 246, 124, 123, 107, 250, 37, 139, 44, 251, 217, 132, 15, 253, 68, 126, 249, 246, 124, 123, 124, 251, 4, 137, 23, 252, 35, 132, 218, 251, 23, 124, 249, 246, 124, 123, 68, 253, 80, 94, 154, 250, 244, 88, 100, 254, 205, 139, 145, 219, 182, 86, 11, 241, 5, 109, 107, 254, 109, 123, 58, 255, 23, 120)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_5bw0i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q00g"]
+albedo_texture = ExtResource("8_6gsn4")
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eq554"]
 size = Vector3(0.188, 0.0397656, 0.188)
 
-[sub_resource type="Resource" id="Resource_qvnrg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb8mk"]
+albedo_texture = ExtResource("8_6gsn4")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_swyla"]
 script = ExtResource("6_2xyoj")
 name = "Dry"
-material = ExtResource("5_aama0")
+material = SubResource("StandardMaterial3D_rb8mk")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flgii"]
-resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k8id"]
 albedo_color = Color(0.882353, 0.882353, 0.882353, 1)
-albedo_texture = ExtResource("7_sytm2")
-texture_filter = 2
+albedo_texture = ExtResource("8_6gsn4")
+texture_filter = 0
 
-[sub_resource type="Resource" id="Resource_8ab8t"]
+[sub_resource type="Resource" id="Resource_x60ep"]
 script = ExtResource("6_2xyoj")
 name = "Wet_0"
-material = SubResource("StandardMaterial3D_flgii")
+material = SubResource("StandardMaterial3D_7k8id")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wy37h"]
-resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_color = Color(0.764706, 0.764706, 0.764706, 0.843137)
-albedo_texture = ExtResource("7_sytm2")
-texture_filter = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxhgk"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+albedo_texture = ExtResource("8_6gsn4")
+texture_filter = 0
 
-[sub_resource type="Resource" id="Resource_x7328"]
+[sub_resource type="Resource" id="Resource_w4oe7"]
 script = ExtResource("6_2xyoj")
 name = "Wet_1"
-material = SubResource("StandardMaterial3D_wy37h")
+material = SubResource("StandardMaterial3D_kxhgk")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01xln"]
-resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sskm3"]
 albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
-albedo_texture = ExtResource("7_sytm2")
-texture_filter = 2
+albedo_texture = ExtResource("8_6gsn4")
+texture_filter = 0
 
-[sub_resource type="Resource" id="Resource_c7nmr"]
+[sub_resource type="Resource" id="Resource_r6np7"]
 script = ExtResource("6_2xyoj")
 name = "Wet_2"
-material = SubResource("StandardMaterial3D_01xln")
+material = SubResource("StandardMaterial3D_sskm3")
 
 [node name="DigSpot" instance=ExtResource("1_4e4g3")]
 hand_removal = false
 seed_insertion = false
 fertilizing = false
+watering_amount = 3
 
 [node name="Weed" parent="." index="0" instance=ExtResource("2_sxg6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182831, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0138998, 0)
 spread_chance = 1.0
 pull_rumble = SubResource("Resource_o5e5o")
 max_stretch = 3.0
@@ -95,18 +116,17 @@ particles_height_offset = 0.06
 pull_particles = ExtResource("4_lmesj")
 pull_complete_particles = ExtResource("5_78u8c")
 
-[node name="Dig Spot Model" parent="." index="1" instance=ExtResource("2_cihps")]
+[node name="Model" type="Node3D" parent="." index="1"]
 
-[node name="Plane_026" parent="Dig Spot Model" index="0"]
-cast_shadow = 0
-surface_material_override/0 = SubResource("StandardMaterial3D_12v80")
+[node name="DigSpotSmall" type="MeshInstance3D" parent="Model" index="0"]
+mesh = SubResource("ArrayMesh_uu47m")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_2q00g")
 
 [node name="Trigger Shape" parent="Trigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
 shape = SubResource("BoxShape3D_eq554")
 
 [node name="MaterialChanger" parent="." index="5" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../Dig Spot Model/Plane_026")]
-material_states = Array[ExtResource("6_2xyoj")]([SubResource("Resource_qvnrg"), SubResource("Resource_8ab8t"), SubResource("Resource_x7328"), SubResource("Resource_c7nmr")])
-
-[editable path="Dig Spot Model"]
+meshes = [NodePath("../Model/DigSpotSmall")]
+material_states = Array[ExtResource("6_2xyoj")]([SubResource("Resource_swyla"), SubResource("Resource_x60ep"), SubResource("Resource_w4oe7"), SubResource("Resource_r6np7")])

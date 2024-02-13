@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://d1erk7h5ynw83"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_nrc0v"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="2_mpyk8"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpotSmall.blend" id="2_mpyk8"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="3_0ygyb"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="3_ywljb"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_25e22"]
@@ -72,7 +72,7 @@ shape = SubResource("BoxShape3D_jffax")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
 
 [node name="MaterialChanger" parent="." index="4" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../Dig Spot Model/Plane_026")]
+meshes = [NodePath("")]
 material_states = Array[ExtResource("3_ywljb")]([SubResource("Resource_qvnrg"), SubResource("Resource_8ab8t"), SubResource("Resource_x7328"), SubResource("Resource_c7nmr")])
 
 [editable path="Dig Spot Model"]

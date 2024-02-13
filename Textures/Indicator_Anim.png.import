@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi2xxy12wn6ys"
-path="res://.godot/imported/shovel.png-b629e63b12dfe6490539daa6da34eb4d.ctex"
+uid="uid://bjlu17awvmumv"
+path="res://.godot/imported/Indicator_Anim.png-14db3443ecc59568d5a7a88e21d32719.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/shovel.png"
-dest_files=["res://.godot/imported/shovel.png-b629e63b12dfe6490539daa6da34eb4d.ctex"]
+source_file="res://Textures/Indicator_Anim.png"
+dest_files=["res://.godot/imported/Indicator_Anim.png-14db3443ecc59568d5a7a88e21d32719.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

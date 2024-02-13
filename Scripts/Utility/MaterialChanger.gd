@@ -37,6 +37,9 @@ func set_state_by_index(index : int):
 	
 	# Get Material
 	for mesh in meshes:
+		if not is_instance_valid(mesh):
+			continue
+		
 		mesh.set_surface_override_material(0, material_states[index].material)
 
 func set_state_by_name(name : String):

@@ -83,8 +83,9 @@ var indicator_instance : Indicator = null
 
 # Hold currently selected cell
 var current_cell : GridCell = null
+var current_cell_pos : Vector3
 var allowed_insertion : bool = false
-var holding_position : bool = false
+var previous_cell_pos : Vector3
 
 func _ready():
 	super()
@@ -145,59 +146,48 @@ func _handle_shovel():
 	# Find closest cell which is inbound. Only applies to border cells
 	var inbound_cell : GridCell = grid.find_inbound_cell(cell, shovel_settings[current_setting_index].cell_width)
 	
-	if holding_position and current_cell:
-		# If current placement is allowed => Place indicator & Update cell
-		if not grid.is_placement_allowed(current_cell, shovel_settings[current_setting_index].cell_width):
-			holding_position = false
+	# If current placement is allowed => Place indicator & Update cell
+	if grid.is_placement_allowed(inbound_cell, shovel_settings[current_setting_index].cell_width):
+		current_cell = inbound_cell
+		allowed_insertion = true
+		indicator_instance.set_state(Indicator.STATE.ALLOWED)
+	else:
+		# Update indicator position if new cell is occupied or indicator is restricted / hidden
+		if cell.occupied or indicator_instance.state == Indicator.STATE.RESTRICTED or indicator_instance.state == Indicator.STATE.HIDDEN:
+			current_cell = inbound_cell
 			allowed_insertion = false
 			indicator_instance.set_state(Indicator.STATE.RESTRICTED)
-		
-		# Move snapping raycast to correct position / rotation
-		snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
-		snapping_raycast.global_rotation = Vector3.ZERO
-		
-		# Shovel leaves snapped indicator -> Release snap
-		if not snapping_raycast.is_colliding():
-			holding_position = false
-			allowed_insertion = false
-	else:
-		# If current placement is allowed => Place indicator & Update cell
-		if grid.is_placement_allowed(inbound_cell, shovel_settings[current_setting_index].cell_width):
-			current_cell = inbound_cell
-			allowed_insertion = true
-			indicator_instance.set_state(Indicator.STATE.ALLOWED)
 		else:
-			# Update indicator position if new cell is occupied or indicator is restricted / hidden
-			if cell.occupied or indicator_instance.state == Indicator.STATE.RESTRICTED or indicator_instance.state == Indicator.STATE.HIDDEN:
+			# Move snapping raycast to correct position / rotation
+			snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
+			snapping_raycast.global_rotation = Vector3.ZERO
+			
+			# Shovel leaves snapped indicator -> Move snapped cell
+			if not snapping_raycast.is_colliding():
 				current_cell = inbound_cell
 				allowed_insertion = false
 				indicator_instance.set_state(Indicator.STATE.RESTRICTED)
-			else:
-				# Move snapping raycast to correct position / rotation
-				snapping_raycast.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.5, 0.0)
-				snapping_raycast.global_rotation = Vector3.ZERO
-				
-				# Shovel leaves snapped indicator -> Move snapped cell
-				if not snapping_raycast.is_colliding():
-					current_cell = inbound_cell
-					allowed_insertion = false
-					indicator_instance.set_state(Indicator.STATE.RESTRICTED)
 	
 	# Move indicator to correct cell position
-	#if not current_cell:
-		#return
-	
-	var cell_pos = grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+	current_cell_pos = grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
 	
 	# Ignore lerp if indicator is not currently spawned in
 	if indicator_instance.ignore_lerp:
-		indicator_instance.global_position = cell_pos
+		indicator_instance.global_position = current_cell_pos
 		indicator_instance.ignore_lerp = false
 	else:
-		var position_lerp = create_tween()
-		position_lerp.tween_property(indicator_instance, "global_position", cell_pos, lerp_speed)
+		var movement_lerp : Tween = create_tween()
+		movement_lerp.tween_property(indicator_instance, "global_position", current_cell_pos, lerp_speed)
 	
 	indicator_instance.global_rotation = Vector3.ZERO
+	
+	# Play scale jiggle if new cell selected
+	if current_cell_pos != previous_cell_pos:
+		var scale_lerp : Tween = create_tween()
+		scale_lerp.tween_property(indicator_instance, "scale", Vector3(0.9, 0.9, 0.9), 0.1)
+		scale_lerp.tween_property(indicator_instance, "scale", Vector3(1.0, 1.0, 1.0), 0.1)
+		
+		previous_cell_pos = current_cell_pos
 
 func _handle_shovel_pull():
 	# Calculate current pull distance to pull pickup position
@@ -218,8 +208,8 @@ func _handle_shovel_pull():
 		add_child(pull_parts)
 		
 		# Move particles to correct position and rotation
-		pull_parts.global_position = soil_insertion_point + Vector3(0, particles_height_offset, 0)
-		pull_parts.global_rotation = Vector3.UP
+		pull_parts.global_position = current_cell_pos + Vector3(0, particles_height_offset, 0)
+		pull_parts.global_rotation = Vector3.ZERO
 		
 		pull_particle_instance = pull_parts
 	else:
@@ -251,9 +241,13 @@ func _handle_complete_pull():
 	# Spawn dig spot
 	var dig_spot_instance = shovel_settings[current_setting_index].dig_spot.instantiate()
 	$"..".add_child(dig_spot_instance)
-	dig_spot_instance.global_position = current_cell.grid.get_placement_position(current_cell, shovel_settings[current_setting_index].cell_width)
+	dig_spot_instance.global_position = current_cell_pos - Vector3(0.0, 0.1, 0.0)
 	dig_spot_instance.anchor_cell = current_cell
 	dig_spot_instance.cell_width = shovel_settings[current_setting_index].cell_width
+	
+	# Move digspot out of soil
+	var tween : Tween = create_tween()
+	tween.tween_property(dig_spot_instance, "global_position", current_cell_pos, 0.2)
 	
 	# Emit completed pull
 	pull_completed.emit()
@@ -434,8 +428,3 @@ func _insertion_squish():
 	# Return to normal
 	tween.tween_property(shovel_mesh, "scale", initial_scale, 0.05)
 
-func _on_action_pressed(pickable):
-	holding_position = true
-
-func _on_action_released(pickable):
-	holding_position = false

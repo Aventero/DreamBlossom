@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi2xxy12wn6ys"
-path="res://.godot/imported/shovel.png-b629e63b12dfe6490539daa6da34eb4d.ctex"
+uid="uid://cui4qkyonsu5h"
+path="res://.godot/imported/DigSpot.png-1c186eec328da6ff821b521950e9ff26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/shovel.png"
-dest_files=["res://.godot/imported/shovel.png-b629e63b12dfe6490539daa6da34eb4d.ctex"]
+source_file="res://Textures/Models/DigSpot.png"
+dest_files=["res://.godot/imported/DigSpot.png-1c186eec328da6ff821b521950e9ff26.ctex"]
 
 [params]
 

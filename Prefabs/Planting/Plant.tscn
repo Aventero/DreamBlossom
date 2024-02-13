@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=94 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_3od7x"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/PlantEvents/Prune/DeadLeaf.tscn" id="14_7ru82"]
 [ext_resource type="PackedScene" uid="uid://bx83sgte1vf7i" path="res://Prefabs/PlantEvents/Fruit/Orangie/Orangie.tscn" id="17_3rg25"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/PruneEvent.gd" id="17_gfs4q"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="17_wy2f3"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="18_jyjcy"]
 [ext_resource type="Material" uid="uid://brxaxhr3t05fu" path="res://Materials/DeadLeaves.tres" id="18_y0wx3"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="20_rqvem"]
@@ -2608,8 +2607,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0523542, 0.279129, -0.0385
 
 [node name="Spawnpoint3" type="Node3D" parent="Stage 6/FruitEvent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430457, 0.238959, 0.0547881)
-
-[node name="DigSpotForTestingPurposesAndStuffMeMarvinUff" parent="." instance=ExtResource("17_wy2f3")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

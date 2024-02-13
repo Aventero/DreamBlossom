@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://mdh8at7rvbcy"
-path="res://.godot/imported/DigSpot_01.blend-4c1fcaf254bb2cee0888b8d69acc6755.scn"
+uid="uid://bnn014sr7aa4n"
+path="res://.godot/imported/DigSpotMedium.blend-a225fb47cd4953172b0f34de94cf12b6.scn"
 
 [deps]
 
-source_file="res://Models/DigSpot_01.blend"
-dest_files=["res://.godot/imported/DigSpot_01.blend-4c1fcaf254bb2cee0888b8d69acc6755.scn"]
+source_file="res://Models/DigSpotMedium.blend"
+dest_files=["res://.godot/imported/DigSpotMedium.blend-a225fb47cd4953172b0f34de94cf12b6.scn"]
 
 [params]
 

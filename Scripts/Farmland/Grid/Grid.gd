@@ -63,8 +63,13 @@ func get_cell(position : Vector3) -> GridCell:
 	if centered:
 		position += center_offset
 	
-	var column : int = floor(position.x / cellsize)
-	var row : int = floor(position.z / cellsize)
+	var column : int = int(floor(position.x / cellsize))
+	var row : int = int(floor(position.z / cellsize))
+	
+	# 2x2 Snapping
+	column = floor(column / 2.0) * 2.0
+	row = floor(row / 2.0) * 2.0
+	
 	var index : int = row * width_cells + column
 	
 	if _is_index_valid(index):

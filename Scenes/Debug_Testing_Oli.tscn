@@ -155,6 +155,7 @@ range_origin = Vector3(0, 1.5, 0)
 shape = SubResource("BoxShape3D_v1xlr")
 
 [node name="WeedManager" parent="." node_paths=PackedStringArray("plots") instance=ExtResource("5_rchdc")]
+transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
 plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
@@ -319,21 +320,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.394886, 0.890191, 0.234632
 
 [node name="Shroomie" parent="." instance=ExtResource("34_37cwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.342577, 0.817766, -0.512595)
+visible = false
 script = ExtResource("35_1kg8n")
 release_mode = 0
 
 [node name="Shroomie2" parent="." instance=ExtResource("34_37cwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.158923, 0.817766, -0.512595)
+visible = false
 script = ExtResource("35_1kg8n")
 release_mode = 0
 
 [node name="Shroomie3" parent="." instance=ExtResource("34_37cwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0083808, 0.817766, -0.512595)
+visible = false
 script = ExtResource("35_1kg8n")
 release_mode = 0
 
 [node name="Shroomie4" parent="." instance=ExtResource("34_37cwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18194, 0.817766, -0.512595)
+visible = false
 script = ExtResource("35_1kg8n")
 release_mode = 0
 

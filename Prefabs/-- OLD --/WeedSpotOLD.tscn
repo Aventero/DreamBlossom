@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://220bkpw1ji3f"]
+[gd_scene load_steps=15 format=3 uid="uid://220bkpw1ji3f"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Weed/WeedSpot.gd" id="1_lxjrd"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="2_lc2qq"]
 [ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="3_1xwi4"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="4_hdkyg"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpot_01.blend" id="5_f2dvs"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="6_mv0ki"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpotSmall.blend" id="5_f2dvs"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="7_efar7"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="8_tgkli"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="9_awitf"]
@@ -16,12 +15,6 @@ magnitude = 1.0
 active_during_pause = false
 indefinite = true
 duration_ms = 300
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbbmq"]
-resource_name = "Leaves"
-cull_mode = 2
-albedo_texture = ExtResource("6_mv0ki")
-texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_rq3iu"]
 material = ExtResource("7_efar7")
@@ -58,10 +51,6 @@ pull_particles = ExtResource("3_1xwi4")
 pull_complete_particles = ExtResource("4_hdkyg")
 
 [node name="Dig Spot Model" parent="." instance=ExtResource("5_f2dvs")]
-
-[node name="Plane_026" parent="Dig Spot Model" index="0"]
-cast_shadow = 0
-surface_material_override/0 = SubResource("StandardMaterial3D_sbbmq")
 
 [node name="Weed Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00792636, 0)
