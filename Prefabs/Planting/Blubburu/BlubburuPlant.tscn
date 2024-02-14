@@ -3661,6 +3661,21 @@ _data = {
 "RESET": SubResource("Animation_uiok0")
 }
 
+[sub_resource type="Animation" id="Animation_jsk8m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.25, 1.25, 1.25)]
+}
+
 [sub_resource type="Animation" id="Animation_3kyul"]
 resource_name = "Wobble"
 length = 5.0
@@ -3677,21 +3692,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(1.25, 1.25, 1.25), Vector3(1.25, 1.32346, 1.25), Vector3(1.25, 1.25, 1.25)]
-}
-
-[sub_resource type="Animation" id="Animation_jsk8m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.25, 1.25, 1.25)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g65m0"]
@@ -3723,7 +3723,7 @@ mesh = SubResource("ArrayMesh_nf2rs")
 skeleton = NodePath("")
 
 [node name="Stick_002" type="MeshInstance3D" parent="Model" index="4"]
-transform = Transform3D(-0.953029, -0.250444, -0.170335, -0.297652, 0.878476, 0.373742, 0.0560338, 0.406887, -0.911758, 0.0462513, 0.284527, 0.0221556)
+transform = Transform3D(-0.953029, -0.250444, -0.170336, -0.297652, 0.878476, 0.373742, 0.0560351, 0.406888, -0.911758, 0.0462513, 0.284527, 0.0221556)
 mesh = SubResource("ArrayMesh_p2ub2")
 skeleton = NodePath("")
 
@@ -3928,13 +3928,13 @@ mesh = SubResource("ArrayMesh_hce8l")
 skeleton = NodePath("")
 
 [node name="Blubburu2" parent="Model" index="45" instance=ExtResource("3_rgm2t")]
-transform = Transform3D(-0.844169, 0.114115, 0.52379, 0.0871182, 0.993295, -0.0759995, -0.528951, -0.0185247, -0.84845, -0.121996, 0.182529, -0.08408)
+transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185243, -0.848448, -0.121996, 0.182529, -0.08408)
 
 [node name="Blubburu3" parent="Model" index="46" instance=ExtResource("3_rgm2t")]
-transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354138, 0.999371, 0.00162425, -0.726841, -0.0268718, 0.68628, 0.108397, 0.278461, -0.0956674)
+transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354139, 0.999371, 0.00162425, -0.726841, -0.0268718, 0.68628, 0.108397, 0.278461, -0.0956674)
 
 [node name="Blubburu" parent="Model" index="47" instance=ExtResource("3_rgm2t")]
-transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.0266167, 0.785365, 0.186767, 0.590187, 0.0897533, 0.17558, 0.113272)
+transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.0266168, 0.785365, 0.186766, 0.590187, 0.0897533, 0.17558, 0.113272)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
