@@ -2,8 +2,6 @@
 class_name WeedEvent
 extends PlantEvent
 
-signal pulled_weed
-
 @export var event_weed : PackedScene
 
 var _max_pulled : int = 0
@@ -25,8 +23,8 @@ func initialize():
 		tween.tween_property(event_weed_instance, "scale", initial_scale, 0.5)
 		
 		await get_tree().create_timer(randf_range(0.1, 1.0)).timeout
-	
-func _pulled_weed():
+
+func pulled_weed():
 	_pulled += 1
 	
 	if _pulled >= _max_pulled:

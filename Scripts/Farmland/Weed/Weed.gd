@@ -55,7 +55,5 @@ func _on_grab():
 	if not digspot:
 		digspot = DigSpotLookup.get_dig_spot(self)
 	
-	var tween : Tween = create_tween()
-	tween.tween_property(digspot, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
-	
-	super()
+	_grab_tween = create_tween()
+	_grab_tween.tween_property(digspot, "scale", Vector3(0.9, 0.9, 0.9), 0.05)

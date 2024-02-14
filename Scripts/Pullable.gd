@@ -33,6 +33,9 @@ var pull_particle_instance : ParticleCombiner
 var picked_by : XRController3D = null
 var time : float = 0.0
 
+var _completed_pull : bool = false
+var _grab_tween : Tween
+
 func _process(delta):
 	time += delta
 	
@@ -56,7 +59,8 @@ func _handle_pull():
 	_pull_animation(ratio)
 	
 	# Stretch
-	model.scale.y = (ratio * (max_stretch - 1.0)) + 1.0
+	if not _grab_tween or not _grab_tween.is_running():
+		model.scale.y = (ratio * (max_stretch - 1.0)) + 0.9 # 0.9 because of the grab scale
 	
 	# Spawn pull particles
 	if ratio > pull_particle_offset:
@@ -91,6 +95,8 @@ func _handle_pull():
 		pickable_pull.drop()
 		pickable_pull.enabled = false
 		
+		_completed_pull = true
+		
 		completed.emit()
 		_on_pull_completed()
 
@@ -115,9 +121,10 @@ func _pull_animation(ratio):
 func _on_pull_pickup_dropped(pickable):
 	pickable_pull.enabled = false
 	
-	var tween : Tween = create_tween()
+	var tween : Tween = create_tween().set_parallel(true)
 	tween.tween_property(model, "scale", Vector3.ONE, 0.1)
-	tween.tween_callback(func(): pickable_pull.enabled = true)
+	tween.tween_property(model, "rotation", Vector3.ZERO, 0.1)
+	tween.tween_callback(func(): pickable_pull.enabled = !_completed_pull)
 	
 	pickable_pull.scale = Vector3.ONE
 	pickable_pull.position = Vector3.ZERO
@@ -151,7 +158,7 @@ func _on_pull_pickup_picked_up(pickable):
 	
 	started.emit()
 
-# Override with custom function
+# Override with custom function. Need to use _grab_tween!
 func _on_grab():
-	var tween : Tween = create_tween()
-	tween.tween_property(model, "scale", Vector3(0.9, 0.9, 0.9), 0.05)
+	_grab_tween = create_tween()
+	_grab_tween.tween_property(model, "scale", Vector3(0.9, 0.9, 0.9), 0.1)

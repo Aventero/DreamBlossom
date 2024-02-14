@@ -24,4 +24,6 @@ func _ready():
 		_ingredients_texture_lookup[ingredient.type] = ingredient.texture
 
 func get_ingredient_icon(type : Ingredient.Type):
-	return _ingredients_texture_lookup[type]
+	if _ingredients_texture_lookup.has(type):
+		return _ingredients_texture_lookup[type]
+	return null

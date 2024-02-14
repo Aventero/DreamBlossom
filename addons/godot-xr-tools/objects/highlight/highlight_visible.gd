@@ -2,6 +2,7 @@
 class_name XRToolsHighlightVisible
 extends Node3D
 
+signal visibility_change(visible)
 
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
@@ -21,6 +22,8 @@ func _ready():
 # Called when the pickable highlight changes
 func _on_highlight_updated(_pickable, enable: bool) -> void:
 	visible = enable
+	
+	visibility_change.emit(enable)
 
 
 # This method verifies the node

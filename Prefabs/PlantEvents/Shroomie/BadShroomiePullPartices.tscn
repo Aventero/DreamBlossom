@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://dm872tjj58u6u"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_x7kad"]
+[ext_resource type="Texture2D" uid="uid://c4feema514xoq" path="res://Textures/BadShroomieParticles.png" id="2_1kgwi"]
+
+[sub_resource type="Curve" id="Curve_xoygx"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.164671, 0.420991), -1.32353, -1.32353, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5p78e"]
+curve = SubResource("Curve_xoygx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ccd8d"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_5p78e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_co18y"]
+transparency = 2
+alpha_scissor_threshold = 0.068
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_1kgwi")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_0qban"]
+material = SubResource("StandardMaterial3D_co18y")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="GDScript" id="GDScript_65msi"]
+script/source = "extends GPUParticles3D
+
+func _ready():
+	emitting = true
+
+func _on_finished():
+	queue_free()
+"
+
+[node name="ParticleCombiner" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_x7kad")
+
+[node name="Dust" type="GPUParticles3D" parent="."]
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ccd8d")
+draw_pass_1 = SubResource("QuadMesh_0qban")
+script = SubResource("GDScript_65msi")
+
+[connection signal="finished" from="Dust" to="Dust" method="_on_finished"]
