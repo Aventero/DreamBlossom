@@ -22,6 +22,8 @@ func initialize():
 		
 		var tween : Tween = create_tween()
 		tween.tween_property(added_fruit, "scale", initial_scale, 1)
+		
+		await get_tree().create_timer(randf_range(0.1, 2.0)).timeout
 
 # check when a fruit is picked
 func first_fruit_pickup(picked_fruit : Fruit):

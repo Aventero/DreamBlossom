@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=3 uid="uid://bhlcenkafo3d1"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_a07j7"]
+[ext_resource type="Texture2D" uid="uid://v2r5d120efo0" path="res://Textures/LeafParticle.png" id="2_vin1v"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k1o2w"]
+lifetime_randomness = 0.1
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+hue_variation_min = -0.56
+hue_variation_max = 0.33
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gpst"]
+albedo_color = Color(0.423529, 0.223529, 0.211765, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k411m"]
+material = SubResource("StandardMaterial3D_3gpst")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="GDScript" id="GDScript_cqyne"]
+script/source = "extends GPUParticles3D
+
+func _ready():
+	emitting = true
+
+func _on_finished():
+	queue_free()
+"
+
+[sub_resource type="Curve" id="Curve_jyt3r"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.176647, 0.420991), -1.32353, -1.32353, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vyd8d"]
+curve = SubResource("Curve_jyt3r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1o2he"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_vyd8d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4y0c"]
+transparency = 2
+alpha_scissor_threshold = 0.068
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_vin1v")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ehkjd"]
+material = SubResource("StandardMaterial3D_o4y0c")
+size = Vector2(0.06, 0.1)
+
+[sub_resource type="GDScript" id="GDScript_g73ky"]
+script/source = "extends GPUParticles3D
+
+func _ready():
+	emitting = true
+
+func _on_finished():
+	queue_free()
+"
+
+[node name="Weed Pull Complete Particles" type="Node3D"]
+script = ExtResource("1_a07j7")
+
+[node name="Pull Complete" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+process_material = SubResource("ParticleProcessMaterial_k1o2w")
+draw_pass_1 = SubResource("BoxMesh_k411m")
+script = SubResource("GDScript_cqyne")
+
+[node name="Leafs" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0226616, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1o2he")
+draw_pass_1 = SubResource("QuadMesh_ehkjd")
+script = SubResource("GDScript_g73ky")
+
+[connection signal="finished" from="Pull Complete" to="Pull Complete" method="_on_finished"]
+[connection signal="finished" from="Leafs" to="Leafs" method="_on_finished"]

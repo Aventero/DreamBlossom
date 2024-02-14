@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqnourgpa1x8h"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_urbd3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c7n57"]
+lifetime_randomness = 0.1
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(0.05, 0, 0.05)
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_max = 0.5
+hue_variation_min = -0.56
+hue_variation_max = 0.33
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gpst"]
+albedo_color = Color(0.423529, 0.223529, 0.211765, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k411m"]
+material = SubResource("StandardMaterial3D_3gpst")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="GDScript" id="GDScript_cqyne"]
+script/source = "extends GPUParticles3D
+
+func _on_finished():
+	queue_free()
+"
+
+[node name="Weed Pull Particles" type="Node3D"]
+script = ExtResource("1_urbd3")
+
+[node name="Pull" type="GPUParticles3D" parent="."]
+amount = 16
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+process_material = SubResource("ParticleProcessMaterial_c7n57")
+draw_pass_1 = SubResource("BoxMesh_k411m")
+script = SubResource("GDScript_cqyne")
+
+[connection signal="finished" from="Pull" to="Pull" method="_on_finished"]

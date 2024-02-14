@@ -2,13 +2,13 @@
 class_name LeafPullEvent
 extends PlantEvent
 
+signal pulled_leaf
+
 @export var leaf_pull_point : PackedScene
 @export var max_pull_count : int
 var pull_count = 0
-signal pulled_leaf
 
 func initialize():
-	
 	# safety net
 	if max_pull_count > get_child_count():
 		max_pull_count = get_child_count()
@@ -31,7 +31,7 @@ func initialize():
 		child.add_child(added_pull_point)
 	
 	pulled_leaf.connect(Callable(_increase_pull_count))
-	
+
 func _increase_pull_count():
 	pull_count += 1
 	print("_increase_pull_count: ", pull_count)

@@ -24,6 +24,8 @@ signal pull_completed
 @export var put_rumble : XRToolsRumbleEvent
 ## This rumble plays when pulling the shovel out of the soil
 @export var pull_rumble : XRToolsRumbleEvent
+## This rumble plays when pull is completed
+@export var complete_rumble : XRToolsRumbleEvent
 
 @export_category("Pull Animation")
 ## Defines how strong the shovel can shake during pull
@@ -234,6 +236,9 @@ func _handle_complete_pull():
 	pull_complete_parts.global_position = soil_insertion_point + Vector3(0, 0.1, 0)
 	pull_complete_parts.global_rotation = Vector3.UP
 	pull_complete_parts.emitting = true
+	
+	# Play complete rumble
+	XRToolsRumbleManager.add("complete_rumble", complete_rumble, [controller])
 	
 	# Reenable shovel
 	_shovel_soil_leave()

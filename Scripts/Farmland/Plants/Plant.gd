@@ -6,8 +6,6 @@ extends Node3D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @export var plant_model : Node3D
 
-signal dying
-
 var stages : Array[Stage] = []
 var current_stage : int = 0
 var tween : Tween

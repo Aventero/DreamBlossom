@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cq7rntr2jsnlp"]
+[gd_scene load_steps=37 format=3 uid="uid://cq7rntr2jsnlp"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ho1dq"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="2_c2k7b"]
@@ -33,6 +33,13 @@ magnitude = 1.0
 active_during_pause = false
 indefinite = true
 duration_ms = 300
+
+[sub_resource type="Resource" id="Resource_c8wq8"]
+script = ExtResource("11_d46uq")
+magnitude = 1.0
+active_during_pause = false
+indefinite = false
+duration_ms = 50
 
 [sub_resource type="Resource" id="Resource_kpcut"]
 script = ExtResource("13_viqha")
@@ -148,6 +155,7 @@ min_insertion_angle = 20.0
 lerp_speed = 0.075
 put_rumble = SubResource("Resource_o2cdm")
 pull_rumble = SubResource("Resource_wttnc")
+complete_rumble = SubResource("Resource_c8wq8")
 max_shake = 0.01
 max_speed = 20.0
 min_pull_distance = 0.1

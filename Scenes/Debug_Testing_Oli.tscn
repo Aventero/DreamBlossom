@@ -154,6 +154,8 @@ shape = SubResource("BoxShape3D_v1xlr")
 [node name="WeedManager" parent="." node_paths=PackedStringArray("plots") instance=ExtResource("5_rchdc")]
 transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
 plots = [NodePath("../Plot")]
+new_weed_chance = 1.0
+new_weed_empty_chance = 1.0
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
