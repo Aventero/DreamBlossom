@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
-[ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/YellowFertilizerBag.tscn" id="13_5hnma"]
+[ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
@@ -39,6 +39,7 @@ background_mode = 2
 sky = SubResource("Sky_5ota8")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t27nq"]
 render_priority = 0
@@ -240,7 +241,7 @@ ranged_grab_method = 1
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)
 ranged_grab_method = 1
 
-[node name="YellowFertilizerBag" parent="." instance=ExtResource("13_5hnma")]
+[node name="OrangeFertilizerBag" parent="." instance=ExtResource("13_5hnma")]
 transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676, 0.714343, 0.847415, 0.0256355)
 
 [node name="GreenFertilizerBag" parent="." instance=ExtResource("14_8orm1")]

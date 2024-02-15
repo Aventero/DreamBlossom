@@ -4,7 +4,7 @@ extends XRToolsPickable
 
 enum Type {
 	BLUE,
-	YELLOW,
+	ORANGE,
 	GREEN
 }
 

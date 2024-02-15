@@ -1,16 +1,16 @@
 [gd_scene load_steps=8 format=3 uid="uid://cotpcplp04kvf"]
 
 [ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/ItemBag.tscn" id="1_a1cgy"]
-[ext_resource type="PackedScene" uid="uid://027s2g2d1y3l" path="res://Prefabs/PlantEvents/Fertilizer/YellowFertilizer.tscn" id="2_u2yrf"]
+[ext_resource type="PackedScene" uid="uid://027s2g2d1y3l" path="res://Prefabs/PlantEvents/Fertilizer/OrangeFertilizer.tscn" id="2_u2yrf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6iclr"]
 radius = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8wj7"]
-albedo_color = Color(0.623529, 0.854902, 0.176471, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuyg1"]
+albedo_color = Color(0.854902, 0.52549, 0.243137, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1tlv1"]
-material = SubResource("StandardMaterial3D_n8wj7")
+material = SubResource("StandardMaterial3D_cuyg1")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlqth"]
@@ -23,7 +23,7 @@ grow_amount = 0.01
 material = SubResource("StandardMaterial3D_mlqth")
 size = Vector3(0.105, 0.105, 0.105)
 
-[node name="YellowFertilizerBag" instance=ExtResource("1_a1cgy")]
+[node name="OrangeFertilizerBag" instance=ExtResource("1_a1cgy")]
 item = ExtResource("2_u2yrf")
 
 [node name="CollisionShape3D" parent="." index="0"]
