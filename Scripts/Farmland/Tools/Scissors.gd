@@ -4,21 +4,19 @@ extends XRToolsPickable
 
 @export var open_scissors : MeshInstance3D
 @export var closed_scissors : MeshInstance3D
-var inside_dead_leaf : DeadLeaf 
 
-func _ready():
-	super()
-
-func _process(delta):
-	pass
+var inside_dead_leaf : Array[DeadLeaf] 
 
 func _on_action_pressed(pickable : Scissors):
 	open_scissors.hide()
 	closed_scissors.show()
-	_squish()	
+	
+	_squish()
+	
 	if inside_dead_leaf != null:
-		inside_dead_leaf.prune()
-		inside_dead_leaf = null
+		for leaf in inside_dead_leaf:
+			leaf.prune()
+		inside_dead_leaf.clear()
 
 func _squish():
 	# Get the mesh
@@ -45,7 +43,13 @@ func _on_dropped(pickable):
 	closed_scissors.hide()
 
 func _on_area_3d_area_entered(area : Area3D):
-	inside_dead_leaf = area.get_parent_node_3d()
+	var leaf = area.get_parent_node_3d()
 	
+	if not inside_dead_leaf.has(leaf):
+		inside_dead_leaf.append(leaf)
+
 func _on_area_3d_area_exited(area):
-	inside_dead_leaf = null
+	var leaf = area.get_parent_node_3d()
+	
+	if inside_dead_leaf.has(leaf):
+		inside_dead_leaf.erase(leaf)

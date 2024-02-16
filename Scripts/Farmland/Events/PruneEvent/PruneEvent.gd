@@ -4,11 +4,10 @@ extends PlantEvent
 
 @export var dead_leaf : PackedScene
 @export var max_prune_count : int
-var prune_count = 0
-signal pruned_leaf
+
+var _prune_count = 0
 
 func initialize():
-	
 	# safety net
 	if max_prune_count > get_child_count():
 		max_prune_count = get_child_count()
@@ -24,19 +23,20 @@ func initialize():
 	
 	# instantiate the leafs
 	for child in picked_children:
-		var instantiaded_leaf = dead_leaf.instantiate()
-		instantiaded_leaf.scale = Vector3.ZERO
+		var leaf_instance = dead_leaf.instantiate()
+		child.add_child(leaf_instance)
+		
+		var initial_scale = leaf_instance.scale
+		leaf_instance.scale = Vector3.ZERO
+		leaf_instance.prune_event = self
+		
 		var tween : Tween = create_tween()
-		tween.tween_property(instantiaded_leaf, "scale", Vector3.ONE, 1)
-		child.add_child(instantiaded_leaf)
-	
-	pruned_leaf.connect(Callable(_increase_prune_count))
-	
-func _increase_prune_count():
-	prune_count += 1
-	print("_increase_prune_count: ", prune_count)
-	if prune_count >= max_prune_count:
-		event_completed.emit()
+		tween.tween_property(leaf_instance, "scale", initial_scale, 1)
+		
+		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
 
-func cleanup():
-	pass
+func pruned_leaf():
+	_prune_count += 1
+	
+	if _prune_count >= max_prune_count:
+		event_completed.emit()

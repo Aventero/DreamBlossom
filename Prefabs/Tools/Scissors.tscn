@@ -132,7 +132,6 @@ visible = false
 script = ExtResource("6_v7xbm")
 
 [node name="Open Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_66vg3")
 skeleton = NodePath("../../Open")
 surface_material_override/0 = ExtResource("7_2xj1y")

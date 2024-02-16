@@ -1,8 +1,104 @@
-[gd_scene load_steps=5 format=3 uid="uid://cttivc1gdbb5y"]
+[gd_scene load_steps=14 format=3 uid="uid://cttivc1gdbb5y"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/DeadLeaf.gd" id="1_5aubd"]
-[ext_resource type="ArrayMesh" uid="uid://xcn2qrfgwakm" path="res://Models/DeadLeaf.res" id="2_5rlju"]
 [ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
+[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_eag8s"]
+[ext_resource type="Shader" path="res://Shader/Outline_Inverted.gdshader" id="4_14rwj"]
+[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_jtq4t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jx4s6"]
+resource_name = "Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.435294, 0.329412, 0.211765, 1)
+albedo_texture = ExtResource("3_eag8s")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6lg7x"]
+_surfaces = [{
+"aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray(8, 0, 3, 0, 6, 0, 8, 0, 7, 0, 3, 0, 4, 0, 7, 0, 8, 0, 4, 0, 2, 0, 7, 0, 0, 0, 8, 0, 5, 0, 0, 0, 4, 0, 8, 0, 5, 0, 6, 0, 1, 0, 5, 0, 8, 0, 6, 0),
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 0, 0, 243, 167, 205, 28, 53, 196, 0, 0, 99, 48, 0, 0, 239, 35, 0, 0, 255, 255, 205, 28, 0, 0, 0, 0, 0, 0, 205, 28, 115, 119, 0, 0, 209, 69, 205, 28, 246, 255, 0, 0, 255, 255, 205, 28, 251, 127, 0, 0, 22, 93, 205, 28, 0, 0, 0, 0, 25, 122, 255, 255, 3, 103, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xep0a"]
+resource_name = "DeadLeaf_Plane_252"
+_surfaces = [{
+"aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
+"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"material": SubResource("StandardMaterial3D_jx4s6"),
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6lg7x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h42cf"]
+render_priority = 0
+shader = ExtResource("4_jtq4t")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color_difference = 0.4
+shader_parameter/speed = 4.0
+shader_parameter/mask = ExtResource("3_eag8s")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_acmop"]
+resource_name = "DeadLeaf_Plane_252"
+_surfaces = [{
+"aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
+"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"material": SubResource("ShaderMaterial_h42cf"),
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6lg7x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loev0"]
+render_priority = 0
+shader = ExtResource("4_14rwj")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color_difference = 0.4
+shader_parameter/speed = 4.0
+shader_parameter/mask = ExtResource("3_eag8s")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_scjps"]
+resource_name = "DeadLeaf_Plane_252"
+_surfaces = [{
+"aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
+"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"material": SubResource("ShaderMaterial_loev0"),
+"name": "Leaves",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6lg7x")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmqhr"]
 size = Vector3(0.0453491, 0.0131836, 0.0597534)
@@ -12,7 +108,19 @@ script = ExtResource("1_5aubd")
 falling_leaf_particle = ExtResource("2_jm6qf")
 
 [node name="DeadLeaf" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_5rlju")
+mesh = SubResource("ArrayMesh_xep0a")
+
+[node name="Outline" type="Node3D" parent="."]
+
+[node name="DeadLeaf2" type="MeshInstance3D" parent="Outline"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.00208189, -0.002, -0.00226772)
+mesh = SubResource("ArrayMesh_acmop")
+skeleton = NodePath("../..")
+
+[node name="DeadLeaf3" type="MeshInstance3D" parent="Outline"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.00208189, -8.63334e-05, -0.00226772)
+mesh = SubResource("ArrayMesh_scjps")
+skeleton = NodePath("../..")
 
 [node name="PruneTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027172, 0, 0.0382819)
@@ -22,6 +130,3 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PruneTrigger"]
 transform = Transform3D(0.744906, 0, -0.382616, 0, 0.837425, 0, 0.382616, 0, 0.744906, 0.0123901, 0.00622556, -0.013906)
 shape = SubResource("BoxShape3D_rmqhr")
-
-[connection signal="body_entered" from="PruneTrigger" to="." method="_on_prune_trigger_body_entered"]
-[connection signal="body_exited" from="PruneTrigger" to="." method="_on_prune_trigger_body_exited"]

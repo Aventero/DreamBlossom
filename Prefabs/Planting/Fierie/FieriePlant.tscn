@@ -1,9 +1,11 @@
-[gd_scene load_steps=73 format=3 uid="uid://dxhccbbkp1ghs"]
+[gd_scene load_steps=75 format=3 uid="uid://dxhccbbkp1ghs"]
 
-[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_d1uvm"]
-[ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Fierie/FierieFruit.blend" id="2_ocqqf"]
-[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="2_waura"]
-[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Fierie/Fierie.png" id="3_koiaw"]
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_31xqu"]
+[ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Fierie/FierieFruit.blend" id="2_1vhyr"]
+[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="3_e47uy"]
+[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Fierie/Fierie.png" id="4_2vl3x"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="5_3ntiq"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="6_dopkx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0ek6"]
 resource_name = "Soil"
@@ -11,7 +13,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("2_waura")
+albedo_texture = ExtResource("3_e47uy")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1uanb"]
@@ -54,7 +56,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("3_koiaw")
+albedo_texture = ExtResource("4_2vl3x")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yuko3"]
@@ -981,7 +983,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("3_koiaw")
+albedo_texture = ExtResource("4_2vl3x")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j85xv"]
@@ -2578,12 +2580,12 @@ _data = {
 "RESET": SubResource("Animation_tmuyj")
 }
 
-[node name="Fierie" instance=ExtResource("1_d1uvm")]
+[node name="Fierie" instance=ExtResource("1_31xqu")]
 
 [node name="Model" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182204, 0)
 
-[node name="FierieFruit" parent="Model" index="0" instance=ExtResource("2_ocqqf")]
+[node name="FierieFruit" parent="Model" index="0" instance=ExtResource("2_1vhyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.214325, 0.0501802)
 
 [node name="DigSpot" type="MeshInstance3D" parent="Model" index="1"]
@@ -2593,156 +2595,164 @@ skeleton = NodePath("")
 metadata/_edit_lock_ = true
 
 [node name="Blossom_026" type="MeshInstance3D" parent="Model" index="2"]
-transform = Transform3D(-0.579655, 0.738198, -0.345056, -0.222704, 0.263815, 0.938512, 0.783839, 0.620858, 0.0114786, -0.0706334, 0.138057, 0.0571824)
+transform = Transform3D(-0.579652, 0.738199, -0.34506, -0.222707, 0.263818, 0.93851, 0.78384, 0.620857, 0.0114797, -0.0706334, 0.138057, 0.0571824)
 mesh = SubResource("ArrayMesh_o3mwt")
 skeleton = NodePath("")
 
 [node name="Blossom_028" type="MeshInstance3D" parent="Model" index="3"]
-transform = Transform3D(-0.879717, 0.149893, -0.451253, -0.385479, 0.330814, 0.861376, 0.278395, 0.931716, -0.233242, 0.00561653, 0.14661, -0.0155226)
+transform = Transform3D(-0.879716, 0.149895, -0.451256, -0.38548, 0.330815, 0.861375, 0.278398, 0.931715, -0.233241, 0.00561653, 0.14661, -0.0155226)
 mesh = SubResource("ArrayMesh_7jsk7")
 skeleton = NodePath("")
 
 [node name="Blossom_029" type="MeshInstance3D" parent="Model" index="4"]
-transform = Transform3D(-0.464095, -0.876907, 0.125098, -0.382716, 0.325875, 0.864484, -0.798839, 0.353326, -0.486844, 0.0769347, 0.140662, 0.0575555)
+transform = Transform3D(-0.464098, -0.876906, 0.125097, -0.382719, 0.325877, 0.864483, -0.798836, 0.353328, -0.486848, 0.0769347, 0.140662, 0.0575555)
 mesh = SubResource("ArrayMesh_kohbi")
 skeleton = NodePath("")
 
 [node name="Stick_016" type="MeshInstance3D" parent="Model" index="5"]
-transform = Transform3D(0.0519665, -0.738655, -0.672078, -0.20864, -0.666166, 0.716025, -0.976611, 0.103013, -0.188731, -0.074147, 0.133994, 0.0593846)
+transform = Transform3D(0.0519602, -0.738654, -0.672079, -0.208643, -0.666166, 0.716025, -0.97661, 0.10302, -0.188729, -0.074147, 0.133994, 0.0593846)
 mesh = SubResource("ArrayMesh_4m2v8")
 skeleton = NodePath("")
 
 [node name="Stick_018" type="MeshInstance3D" parent="Model" index="6"]
-transform = Transform3D(0.906039, 0.0152334, -0.42292, 0.271506, -0.787497, 0.553293, -0.32462, -0.61613, -0.717639, 0.0037562, 0.118743, -0.0304317)
+transform = Transform3D(0.906038, 0.0152358, -0.422922, 0.271509, -0.787496, 0.553293, -0.324619, -0.616131, -0.717638, 0.0037562, 0.118743, -0.0304317)
 mesh = SubResource("ArrayMesh_oa3so")
 skeleton = NodePath("")
 
 [node name="Stick_020" type="MeshInstance3D" parent="Model" index="7"]
-transform = Transform3D(-0.120516, 0.751502, 0.648629, 0.0488274, -0.648113, 0.759977, 0.99151, 0.12326, 0.041414, 0.100661, 0.123652, 0.0608898)
+transform = Transform3D(-0.120518, 0.751503, 0.648629, 0.0488254, -0.648113, 0.759977, 0.99151, 0.12326, 0.0414168, 0.100661, 0.123652, 0.0608898)
 mesh = SubResource("ArrayMesh_gssjb")
 skeleton = NodePath("")
 
 [node name="Stick_021" type="MeshInstance3D" parent="Model" index="8"]
-transform = Transform3D(0.634337, -0.162756, -0.755729, -0.113428, -0.986601, 0.117269, -0.764689, 0.0113329, -0.644299, 0.0814296, 0.0104188, 0.0556514)
+transform = Transform3D(0.634337, -0.162754, -0.755729, -0.113425, -0.986602, 0.11727, -0.76469, 0.0113301, -0.644299, 0.0814296, 0.0104188, 0.0556514)
 mesh = SubResource("ArrayMesh_6qtmo")
 skeleton = NodePath("")
 
 [node name="Stick_019" type="MeshInstance3D" parent="Model" index="9"]
-transform = Transform3D(-0.660354, -0.0409196, -0.749839, -0.181959, -0.96004, 0.212635, -0.728576, 0.276854, 0.62652, -0.000295188, -0.000906294, -0.00456834)
+transform = Transform3D(-0.660354, -0.0409186, -0.749839, -0.181961, -0.96004, 0.212635, -0.728576, 0.276856, 0.626521, -0.000295188, -0.000906294, -0.00456834)
 mesh = SubResource("ArrayMesh_a7a8q")
 skeleton = NodePath("")
 
 [node name="Stick_013" type="MeshInstance3D" parent="Model" index="10"]
-transform = Transform3D(-0.677425, 0.135991, 0.722912, -0.113428, -0.99032, 0.0800026, 0.726794, -0.027803, 0.686293, -0.0708239, 0.000122596, 0.0360236)
+transform = Transform3D(-0.677425, 0.135992, 0.722912, -0.113431, -0.99032, 0.0800026, 0.726794, -0.0278048, 0.686293, -0.0708239, 0.000122596, 0.0360236)
 mesh = SubResource("ArrayMesh_tugwg")
 skeleton = NodePath("")
 
 [node name="Blossom_023" type="MeshInstance3D" parent="Model" index="11"]
-transform = Transform3D(0.356116, -0.136457, -0.924425, 0.000109665, 0.989286, -0.145989, 0.934442, 0.0518876, 0.352316, -0.126711, 0.364508, 0.0452411)
+transform = Transform3D(0.356118, -0.136456, -0.924424, 0.000109665, 0.989286, -0.145988, 0.934441, 0.0518877, 0.352317, -0.126711, 0.364508, 0.0452411)
 mesh = SubResource("ArrayMesh_kknn3")
 skeleton = NodePath("")
 
 [node name="Blossom_024" type="MeshInstance3D" parent="Model" index="12"]
-transform = Transform3D(-0.656735, 0.0451451, 0.752769, -0.203579, 0.950533, -0.234613, -0.726123, -0.307326, -0.615057, 0.0212855, 0.40874, -0.122027)
+transform = Transform3D(-0.656732, 0.045146, 0.752771, -0.203579, 0.950533, -0.234613, -0.726125, -0.307326, -0.615055, 0.0212855, 0.40874, -0.122027)
 mesh = SubResource("ArrayMesh_raiba")
 skeleton = NodePath("")
 
 [node name="Blossom_025" type="MeshInstance3D" parent="Model" index="13"]
-transform = Transform3D(-0.0605293, 0.146774, -0.987316, 0.0161926, 0.989144, 0.146053, 0.998035, -0.00714679, -0.0622489, 0.13026, 0.315936, 0.0502326)
+transform = Transform3D(-0.0605277, 0.146774, -0.987316, 0.0161927, 0.989144, 0.146053, 0.998035, -0.00714703, -0.0622473, 0.13026, 0.315936, 0.0502326)
 mesh = SubResource("ArrayMesh_q8hve")
 skeleton = NodePath("")
 
 [node name="Blossom_011" type="MeshInstance3D" parent="Model" index="14"]
-transform = Transform3D(-0.964075, -0.16102, -0.211262, -0.20895, 0.950769, 0.228864, 0.164009, 0.264785, -0.950258, 0.0854144, 0.394156, 0.0919719)
+transform = Transform3D(-0.964075, -0.16102, -0.211262, -0.20895, 0.950769, 0.228863, 0.164009, 0.264785, -0.950258, 0.0854144, 0.394156, 0.0919719)
 mesh = SubResource("ArrayMesh_60qj5")
 skeleton = NodePath("")
 
 [node name="Stick_014" type="MeshInstance3D" parent="Model" index="15"]
-transform = Transform3D(0.853124, 0.19874, 0.482371, 0.0541238, -0.953326, 0.297054, 0.518893, -0.227316, -0.824062, 0.111927, 0.273685, 0.0627559)
+transform = Transform3D(0.853125, 0.19874, 0.48237, 0.0541235, -0.953326, 0.297054, 0.518892, -0.227317, -0.824062, 0.111927, 0.273685, 0.0627559)
 mesh = SubResource("ArrayMesh_le0m5")
 skeleton = NodePath("")
 
 [node name="Blossom_013" type="MeshInstance3D" parent="Model" index="16"]
-transform = Transform3D(-0.340662, 0.262945, -0.902668, 0.062555, 0.964307, 0.257292, 0.938103, 0.0311831, -0.344951, -0.067651, 0.453293, 0.0611964)
+transform = Transform3D(-0.340664, 0.262945, -0.902667, 0.062555, 0.964307, 0.257292, 0.938102, 0.0311839, -0.344953, -0.067651, 0.453293, 0.0611964)
 mesh = SubResource("ArrayMesh_1xahy")
 skeleton = NodePath("")
 
 [node name="Stick_015" type="MeshInstance3D" parent="Model" index="17"]
-transform = Transform3D(0.919918, -0.297997, 0.254849, -0.293602, -0.954283, -0.0560481, 0.2599, -0.0232644, -0.965355, -0.102612, 0.327968, 0.0568309)
+transform = Transform3D(0.919921, -0.297994, 0.254845, -0.293598, -0.954284, -0.0560481, 0.259897, -0.0232623, -0.965356, -0.102612, 0.327968, 0.0568309)
 mesh = SubResource("ArrayMesh_m4x6h")
 skeleton = NodePath("")
 
 [node name="Blossom_021" type="MeshInstance3D" parent="Model" index="18"]
-transform = Transform3D(-0.73531, 0.0423855, -0.676404, -0.302229, 0.872802, 0.383242, 0.606611, 0.48623, -0.62897, 0.0130518, 0.506348, -0.00695341)
+transform = Transform3D(-0.735308, 0.0423867, -0.676406, -0.302229, 0.872802, 0.383241, 0.606613, 0.48623, -0.628968, 0.0130518, 0.506348, -0.00695341)
 mesh = SubResource("ArrayMesh_n8wn0")
 skeleton = NodePath("")
 
 [node name="Stick_017" type="MeshInstance3D" parent="Model" index="19"]
-transform = Transform3D(0.999749, 0.0093719, -0.0203275, 0.0179136, -0.879517, 0.47553, -0.0134217, -0.475775, -0.879465, 0.0159315, 0.356161, -0.0900294)
+transform = Transform3D(0.999749, 0.00936841, -0.0203304, 0.0179119, -0.879517, 0.47553, -0.013426, -0.475775, -0.879465, 0.0159315, 0.356161, -0.0900294)
 mesh = SubResource("ArrayMesh_hjhuc")
 skeleton = NodePath("")
 
 [node name="Leaf_025" type="MeshInstance3D" parent="Model" index="20"]
-transform = Transform3D(-0.813456, -0.579753, 0.0466477, -0.478227, 0.712336, 0.513689, -0.331041, 0.395555, -0.856708, 0.108282, 0.276104, 0.060318)
+transform = Transform3D(-0.813457, -0.579752, 0.0466447, -0.478227, 0.712336, 0.513689, -0.331039, 0.395557, -0.856708, 0.108282, 0.276104, 0.060318)
 mesh = SubResource("ArrayMesh_yapkp")
 skeleton = NodePath("")
 
 [node name="Leaf_027" type="MeshInstance3D" parent="Model" index="21"]
-transform = Transform3D(0.0376582, -0.596049, 0.802065, -0.0456642, 0.800769, 0.59723, -0.998247, -0.0591163, 0.00293742, -0.00900609, 0.220624, -0.0761441)
+transform = Transform3D(0.0376623, -0.596049, 0.802065, -0.0456643, 0.800769, 0.59723, -0.998247, -0.0591187, 0.00294067, -0.00900609, 0.220624, -0.0761441)
 mesh = SubResource("ArrayMesh_rff0h")
 skeleton = NodePath("")
 
 [node name="Leaf_028" type="MeshInstance3D" parent="Model" index="22"]
-transform = Transform3D(-0.848258, 0.319837, -0.422094, -0.00557284, 0.791594, 0.611022, 0.529554, 0.520656, -0.669694, -0.0984178, 0.334739, 0.0562602)
+transform = Transform3D(-0.84826, 0.319835, -0.422091, -0.00557284, 0.791594, 0.611022, 0.529551, 0.520658, -0.669695, -0.0984178, 0.334739, 0.0562602)
 mesh = SubResource("ArrayMesh_l55a7")
 skeleton = NodePath("")
 
 [node name="Leaf_031" type="MeshInstance3D" parent="Model" index="23"]
-transform = Transform3D(-0.537393, -0.526521, 0.658775, 0.180839, 0.691041, 0.699829, -0.823715, 0.495215, -0.276145, -0.128094, 0.249375, 0.0402488)
+transform = Transform3D(-0.537396, -0.526519, 0.658774, 0.180839, 0.691041, 0.699828, -0.823713, 0.495217, -0.276147, -0.128094, 0.249375, 0.0402488)
 mesh = SubResource("ArrayMesh_hh2i5")
 skeleton = NodePath("")
 
 [node name="Leaf_034" type="MeshInstance3D" parent="Model" index="24"]
-transform = Transform3D(-0.354213, 0.397053, -0.846689, -0.318337, 0.800123, 0.508393, 0.879315, 0.449612, -0.157017, 0.019052, 0.36108, -0.0844574)
+transform = Transform3D(-0.354211, 0.397054, -0.846689, -0.318337, 0.800124, 0.508393, 0.879316, 0.449611, -0.157016, 0.019052, 0.36108, -0.0844574)
 mesh = SubResource("ArrayMesh_k5o1q")
 skeleton = NodePath("")
 
 [node name="Blossom" type="MeshInstance3D" parent="Model" index="25"]
-transform = Transform3D(0.457097, 0.0202152, -0.889187, -0.0148416, 0.999776, 0.0150999, 0.889293, 0.00629491, 0.457294, 0.00513073, 0.208926, 0.0410657)
+transform = Transform3D(0.457094, 0.0202152, -0.889188, -0.0148417, 0.999776, 0.0150998, 0.889294, 0.00629499, 0.457292, 0.00513073, 0.208926, 0.0410657)
 mesh = SubResource("ArrayMesh_5bnnr")
 skeleton = NodePath("")
 
 [node name="Blossom_022" type="MeshInstance3D" parent="Model" index="26"]
-transform = Transform3D(0.706982, -0.00530918, -0.707211, -0.0114544, 0.999755, -0.0189561, 0.707139, 0.0215023, 0.706748, 0.00478356, 0.211292, 0.0482844)
+transform = Transform3D(0.706982, -0.0053092, -0.707211, -0.0114544, 0.999755, -0.0189561, 0.707139, 0.0215023, 0.706748, 0.00478356, 0.211292, 0.0482844)
 mesh = SubResource("ArrayMesh_2b8b0")
 skeleton = NodePath("")
 
 [node name="Leaf_032" type="MeshInstance3D" parent="Model" index="27"]
-transform = Transform3D(-0.184401, -0.732974, 0.654787, 0.0843242, 0.651957, 0.753553, -0.979227, 0.19417, -0.0584141, -0.123486, 0.160739, 0.0427309)
+transform = Transform3D(-0.184399, -0.732974, 0.654787, 0.0843241, 0.651957, 0.753553, -0.979227, 0.194169, -0.058413, -0.123486, 0.160739, 0.0427309)
 mesh = SubResource("ArrayMesh_2pjwn")
 skeleton = NodePath("")
 
 [node name="Leaf_033" type="MeshInstance3D" parent="Model" index="28"]
-transform = Transform3D(-0.920749, 0.206797, -0.330842, -0.13471, 0.627323, 0.76702, 0.366162, 0.750801, -0.549749, 0.11101, 0.153459, 0.0863382)
+transform = Transform3D(-0.92075, 0.206794, -0.33084, -0.13471, 0.627322, 0.76702, 0.366159, 0.750802, -0.54975, 0.11101, 0.153459, 0.0863382)
 mesh = SubResource("ArrayMesh_qerns")
 skeleton = NodePath("")
 
 [node name="Blossom_009" type="MeshInstance3D" parent="Model" index="29"]
-transform = Transform3D(-0.512636, -0.0114145, -0.292242, -0.00676036, 0.590051, -0.0111878, 0.292386, -0.0063701, -0.512641, 0.00322615, 0.0215668, -0.00785992)
+transform = Transform3D(-0.512636, -0.0114145, -0.292242, -0.00676034, 0.590051, -0.0111878, 0.292387, -0.0063701, -0.512641, 0.00322615, 0.0215668, -0.00785992)
 mesh = SubResource("ArrayMesh_ko5v8")
 skeleton = NodePath("")
 
 [node name="Leaf_029" type="MeshInstance3D" parent="Model" index="30"]
-transform = Transform3D(0.117055, -0.0926585, 0.988793, 0.0364235, 0.995369, 0.0889628, -0.992457, 0.0256018, 0.119888, -0.0696236, 0.0159551, 0.0388049)
+transform = Transform3D(0.117054, -0.0926584, 0.988794, 0.0364235, 0.995369, 0.0889627, -0.992457, 0.025602, 0.119887, -0.0696236, 0.0159551, 0.0388049)
 mesh = SubResource("ArrayMesh_g0wi1")
 skeleton = NodePath("")
 
 [node name="Leaf_030" type="MeshInstance3D" parent="Model" index="31"]
-transform = Transform3D(0.962509, -0.057586, 0.265067, 0.0550487, 0.998339, 0.0169974, -0.265606, -0.00176857, 0.96408, 0.0847547, 0.0161041, 0.058304)
+transform = Transform3D(0.962509, -0.057586, 0.265067, 0.0550487, 0.998339, 0.0169975, -0.265605, -0.00176864, 0.96408, 0.0847547, 0.0161041, 0.058304)
 mesh = SubResource("ArrayMesh_ubdyu")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_rr21y")
 }
+
+[node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
+script = ExtResource("5_3ntiq")
+animation_time = 30.0
+animation_name = "Grow"
+
+[node name="WateringEvent" type="Node3D" parent="Stage1" index="0"]
+script = ExtResource("6_dopkx")

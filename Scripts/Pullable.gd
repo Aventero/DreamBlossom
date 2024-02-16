@@ -29,11 +29,12 @@ signal completed;
 @export_category("Debug")
 @export var draw_debug : bool = false
 
+var distance : float = 0.0
 var pull_particle_instance : ParticleCombiner
 var picked_by : XRController3D = null
 var time : float = 0.0
 
-var _completed_pull : bool = false
+var completed_pull : bool = false
 var _grab_tween : Tween
 
 func _process(delta):
@@ -47,7 +48,7 @@ func _process(delta):
 
 func _handle_pull():
 	# Calculate current pull distance to origin (Vector Zero)
-	var distance : float = pickable_pull.position.length()
+	distance = pickable_pull.position.length()
 	
 	# Calculate current ratio of pulled distance minus min_pull_distance and target distance
 	var ratio : float = max(0, (distance - min_pull_distance) / target_pull_distance)
@@ -64,7 +65,7 @@ func _handle_pull():
 	
 	# Spawn pull particles
 	if ratio > pull_particle_offset:
-		if pull_particle_instance == null:
+		if pull_particle_instance == null and pull_particles != null:
 			var pull_parts : ParticleCombiner = pull_particles.instantiate()
 			add_child(pull_parts)
 			
@@ -82,11 +83,12 @@ func _handle_pull():
 	# Check if target distance is reached
 	if distance > target_pull_distance:
 		# Spawn pull complete particles
-		var pull_complete_parts : ParticleCombiner = pull_complete_particles.instantiate()
-		add_sibling(pull_complete_parts)
-		
-		# Move particles to correct position
-		pull_complete_parts.position = pull_complete_particles_offset
+		if pull_complete_particles != null:
+			var pull_complete_parts : ParticleCombiner = pull_complete_particles.instantiate()
+			add_sibling(pull_complete_parts)
+			
+			# Move particles to correct position
+			pull_complete_parts.position = pull_complete_particles_offset
 		
 		# Complete rumble
 		XRToolsRumbleManager.add("pull_complete", complete_rumble, [picked_by])
@@ -95,7 +97,7 @@ func _handle_pull():
 		pickable_pull.drop()
 		pickable_pull.enabled = false
 		
-		_completed_pull = true
+		completed_pull = true
 		
 		completed.emit()
 		_on_pull_completed()
@@ -124,7 +126,7 @@ func _on_pull_pickup_dropped(pickable):
 	var tween : Tween = create_tween().set_parallel(true)
 	tween.tween_property(model, "scale", Vector3.ONE, 0.1)
 	tween.tween_property(model, "rotation", Vector3.ZERO, 0.1)
-	tween.tween_callback(func(): pickable_pull.enabled = !_completed_pull)
+	tween.tween_callback(func(): pickable_pull.enabled = !completed_pull)
 	
 	pickable_pull.scale = Vector3.ONE
 	pickable_pull.position = Vector3.ZERO

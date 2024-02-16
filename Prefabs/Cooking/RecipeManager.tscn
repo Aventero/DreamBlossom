@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1nll5jy2q080"]
+[gd_scene load_steps=11 format=3 uid="uid://c1nll5jy2q080"]
 
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeManager.gd" id="1_qwyvi"]
 [ext_resource type="Script" path="res://Scripts/Cooking/Recipe.gd" id="2_kt12l"]
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeInputData.gd" id="3_qxj82"]
 [ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Fruits/ShroomieFruit.tscn" id="4_lw0gc"]
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeOutputData.gd" id="5_ndad3"]
+[ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Fruits/BlubburuFruit.tscn" id="6_sung6"]
 
 [sub_resource type="Resource" id="Resource_ldv1e"]
 script = ExtResource("3_qxj82")
@@ -16,6 +17,16 @@ script = ExtResource("5_ndad3")
 ingredient = 0
 object = ExtResource("4_lw0gc")
 
+[sub_resource type="Resource" id="Resource_hv1mo"]
+script = ExtResource("3_qxj82")
+ingredient = 1
+amount = 2
+
+[sub_resource type="Resource" id="Resource_pumkk"]
+script = ExtResource("5_ndad3")
+ingredient = 1
+object = ExtResource("6_sung6")
+
 [node name="RecipeManager" type="Node3D"]
 script = ExtResource("1_qwyvi")
 
@@ -23,3 +34,8 @@ script = ExtResource("1_qwyvi")
 script = ExtResource("2_kt12l")
 input = Array[ExtResource("3_qxj82")]([SubResource("Resource_ldv1e")])
 output = SubResource("Resource_f3xfo")
+
+[node name="Blubburu" type="Node" parent="."]
+script = ExtResource("2_kt12l")
+input = Array[ExtResource("3_qxj82")]([SubResource("Resource_hv1mo")])
+output = SubResource("Resource_pumkk")

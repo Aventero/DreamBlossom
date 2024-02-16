@@ -1,14 +1,14 @@
 class_name DeadLeaf
 extends Node3D
 
-@onready var prune_event : PruneEvent = $"../.."
 @export var falling_leaf_particle : PackedScene
+
+var prune_event : PruneEvent 
 var _scissors_inside_leaf : bool = false
 var _scissors : Scissors
 
 func prune():
-	# Emit that is cut
-	prune_event.pruned_leaf.emit()
+	prune_event.pruned_leaf()
 	
 	# Add falling particle to parent
 	var falling_leaf : GPUParticles3D = falling_leaf_particle.instantiate()

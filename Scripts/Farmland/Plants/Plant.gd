@@ -2,6 +2,8 @@
 class_name Plant
 extends Node3D
  
+signal dying
+
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @export var plant_model : Node3D

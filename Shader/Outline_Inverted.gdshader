@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, cull_front;
 
 uniform vec3 base_color : source_color;
 uniform float color_difference = 1.0;

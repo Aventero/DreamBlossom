@@ -3,7 +3,8 @@ extends XRToolsPickable
 
 enum Type
 {
-	SHROOMIE
+	SHROOMIE,
+	BLUBBURU
 }
 
 @export var type : Type
