@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="16_o1o87"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent.gd" id="17_g7vyr"]
-[ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
+[ext_resource type="PackedScene" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="18_v0q0r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="20_1l3hj"]
@@ -1520,10 +1520,10 @@ tracks/8/path = NodePath("Model/Stick:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(1.5, 1.75, 5.75, 9.5, 30),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(2, 5.75, 9.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1, 0, 1), Vector3(1, 0.5, 1), Vector3(1, 1, 1), Vector3(1, 1.1, 1)]
+"values": [Vector3(0, 0, 0), Vector3(1, 0.5, 1), Vector3(1, 1, 1), Vector3(1, 1.1, 1)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1628,7 +1628,7 @@ tracks/17/path = NodePath("Model/Stick_011:scale")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(11.75, 12, 19.75),
+"times": PackedFloat32Array(11.75, 12, 20),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(1, 0, 1), Vector3(1, 1, 1)]
@@ -2324,7 +2324,7 @@ tracks/75/path = NodePath("Model/Blossom:rotation")
 tracks/75/interp = 1
 tracks/75/loop_wrap = true
 tracks/75/keys = {
-"times": PackedFloat32Array(2.75, 14.25),
+"times": PackedFloat32Array(3, 14.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0.393397, 0), Vector3(0, 0, 0)]
@@ -2544,6 +2544,30 @@ tracks/93/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0760728, 2.58851, 0.0874825), Vector3(0.106099, 2.14696, 0.0466547), Vector3(0.0760728, 2.58851, 0.0874825), Vector3(0.106099, 2.14696, 0.0466547), Vector3(0.0760728, 2.58851, 0.0874825)]
+}
+tracks/94/type = "value"
+tracks/94/imported = false
+tracks/94/enabled = true
+tracks/94/path = NodePath("Model/Stick_003:rotation")
+tracks/94/interp = 1
+tracks/94/loop_wrap = true
+tracks/94/keys = {
+"times": PackedFloat32Array(14, 19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.493434, -1.04981, -0.334418), Vector3(0.573957, -0.665076, -0.13673)]
+}
+tracks/95/type = "value"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("Model/Stick_011:rotation")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(13, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0979615, 0.400999, -0.530559), Vector3(-0.248243, 0.128194, -0.483153)]
 }
 
 [sub_resource type="Animation" id="Animation_uiok0"]
@@ -3676,6 +3700,30 @@ tracks/93/keys = {
 "update": 0,
 "values": [Vector3(0.0760728, 2.58851, 0.0874825)]
 }
+tracks/94/type = "value"
+tracks/94/imported = false
+tracks/94/enabled = true
+tracks/94/path = NodePath("Model/Stick_003:rotation")
+tracks/94/interp = 1
+tracks/94/loop_wrap = true
+tracks/94/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.573957, -0.665076, -0.13673)]
+}
+tracks/95/type = "value"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("Model/Stick_011:rotation")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.248243, 0.128194, -0.483153)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kh5o2"]
 _data = {
@@ -3739,12 +3787,12 @@ mesh = SubResource("ArrayMesh_2eahj")
 skeleton = NodePath("")
 
 [node name="Stick_003" type="MeshInstance3D" parent="Model" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0586298, 0.282854, -0.0308525)
+transform = Transform3D(0.825198, -0.224689, -0.518231, -0.114463, 0.831922, -0.542959, 0.553125, 0.507367, 0.660781, -0.0586298, 0.282854, -0.0308525)
 mesh = SubResource("ArrayMesh_yftnw")
 skeleton = NodePath("")
 
 [node name="Stick_011" type="MeshInstance3D" parent="Model" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0413633, 0.243052, -0.0347662)
+transform = Transform3D(0.892861, 0.432946, 0.123924, -0.450332, 0.858389, 0.245701, 1.04308e-07, -0.275184, 0.961392, -0.0413633, 0.243052, -0.0347662)
 mesh = SubResource("ArrayMesh_aulpq")
 skeleton = NodePath("")
 
