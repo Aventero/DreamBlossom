@@ -38,7 +38,8 @@ func _on_pull_completed():
 	knosp_closed.visible = false
 	knosp_open.visible = true
 	
-	knosp_event.knosp_open()
+	if knosp_event:
+		knosp_event.knosp_open()
 
 func _pull_animation(ratio):
 	model.rotation = Vector3(

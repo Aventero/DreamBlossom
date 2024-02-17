@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="16_o1o87"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent.gd" id="17_g7vyr"]
-[ext_resource type="PackedScene" uid="uid://duw82wm8y0n5s" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="18_moxfd"]
+[ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="18_v0q0r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="20_1l3hj"]
@@ -4007,18 +4007,18 @@ icon_position = Vector3(0, 0.694, 0)
 
 [node name="KnospEvent" type="Node3D" parent="Stage2" index="0"]
 script = ExtResource("17_g7vyr")
-knosp = ExtResource("18_moxfd")
+knosp = ExtResource("18_phwou")
 max_knosp_amount = 3
 icon_texture = ExtResource("20_1l3hj")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage2/KnospEvent" index="0"]
-transform = Transform3D(0.151244, -0.130342, -0.979866, -0.988497, -0.0199427, -0.149923, 6.61211e-09, 0.991269, -0.131858, -0.0329965, 0.130881, -0.00343304)
+transform = Transform3D(0.47741, -0.156369, -0.864656, -0.85036, 0.165602, -0.499464, 0.22129, 0.973717, -0.0539091, -0.0311643, 0.131031, -0.0025531)
 
 [node name="Spawnpoint 2" type="Node3D" parent="Stage2/KnospEvent" index="1"]
-transform = Transform3D(-0.369609, 0.89682, 0.243111, -0.927612, -0.3409, -0.15272, -0.0540854, -0.28196, 0.957901, 0.0940265, 0.342526, 0.0202247)
+transform = Transform3D(-0.124809, 0.939389, 0.31933, -0.946724, -0.209057, 0.244968, 0.296879, -0.271744, 0.915434, 0.0923553, 0.343232, 0.0172218)
 
 [node name="Spawnpoint 3" type="Node3D" parent="Stage2/KnospEvent" index="2"]
-transform = Transform3D(-0.31668, -0.942213, -0.109315, -0.923151, 0.279671, 0.263773, -0.217958, 0.184445, -0.958371, 0.0501718, 0.38279, -0.0181783)
+transform = Transform3D(-0.234907, -0.959528, -0.155328, -0.943694, 0.186836, 0.27301, -0.232939, 0.210713, -0.949389, 0.0537768, 0.38188, -0.01884)
 
 [node name="PruneEvent" type="Node3D" parent="Stage2" index="1"]
 script = ExtResource("11_nb6qv")
@@ -4089,7 +4089,7 @@ despawn_models = [NodePath("../../Model/Blubburu2"), NodePath("../../Model/Blubb
 icon_texture = ExtResource("21_g8rrp")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
-transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185242, -0.848448, -0.121996, 0.178478, -0.08408)
+transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185242, -0.848448, -0.11376, 0.179817, -0.07513)
 
 [node name="Spawnpoint 2" type="Node3D" parent="Stage Fruit/FruitEvent" index="1"]
 transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354139, 0.999371, 0.00162425, -0.726841, -0.0268718, 0.68628, 0.108397, 0.27441, -0.0956674)

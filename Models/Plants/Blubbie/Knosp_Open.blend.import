@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cepurmtajhpau"
-path="res://.godot/imported/Bulb.blend-8fd5de3cd5f21748d461356b7762edb0.scn"
+uid="uid://dmmn77vrqo3a2"
+path="res://.godot/imported/Knosp_Open.blend-689789e76e6240b05f36cb87d5ef3057.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Blubbie/Bulb.blend"
-dest_files=["res://.godot/imported/Bulb.blend-8fd5de3cd5f21748d461356b7762edb0.scn"]
+source_file="res://Models/Plants/Blubbie/Knosp_Open.blend"
+dest_files=["res://.godot/imported/Knosp_Open.blend-689789e76e6240b05f36cb87d5ef3057.scn"]
 
 [params]
 

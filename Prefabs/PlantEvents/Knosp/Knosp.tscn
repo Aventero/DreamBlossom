@@ -1,13 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://duw82wm8y0n5s"]
+[gd_scene load_steps=9 format=3 uid="uid://crotm5abg7yvn"]
 
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_bcasd"]
 [ext_resource type="Script" path="res://Scripts/Knosp.gd" id="2_wjc8j"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="3_s7ro5"]
-[ext_resource type="PackedScene" uid="uid://dcvslll66eqru" path="res://Particles/KnospCompleteParticles.tscn" id="4_auu8j"]
-[ext_resource type="PackedScene" uid="uid://cepurmtajhpau" path="res://Models/Plants/Blubbie/Bulb.blend" id="4_kwplo"]
-[ext_resource type="PackedScene" uid="uid://dmmn77vrqo3a2" path="res://Models/Plants/Blubbie/BulbOpen.blend" id="5_elpyd"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="6_eybhg"]
-[ext_resource type="PackedScene" uid="uid://b5tiv84oqowi5" path="res://Particles/KnospPullParticles.tscn" id="7_bdw47"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mwmmq"]
 _surfaces = [{
@@ -51,20 +47,17 @@ script = ExtResource("2_wjc8j")
 max_stretch = 3.0
 min_pull_distance = 0.1
 target_pull_distance = 0.4
-pull_particles = ExtResource("7_bdw47")
 pull_particles_offset = Vector3(0, 0.025, 0)
-pull_complete_particles = ExtResource("4_auu8j")
 pull_complete_particles_offset = Vector3(0, 0.025, 0)
 
 [node name="Outline" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_mwmmq")
-skeleton = NodePath("../Knosp Closed/Bulb")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_ucyo5")
 
-[node name="Knosp Closed" parent="Model" index="1" instance=ExtResource("4_kwplo")]
+[node name="Knosp Closed" type="Node3D" parent="Model" index="1"]
 
-[node name="Knosp Open" parent="Model" index="2" instance=ExtResource("5_elpyd")]
-visible = false
+[node name="Knosp Open" type="Node3D" parent="Model" index="2"]
 
 [node name="Pull Origin" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0148183, 0)
@@ -75,7 +68,7 @@ shape = SubResource("SphereShape3D_m0286")
 [node name="Highlight" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0148183, 0)
 mesh = SubResource("ArrayMesh_oc8dy")
-skeleton = NodePath("../../../../Model/Knosp Closed/Bulb")
+skeleton = NodePath("")
 
 [connection signal="visibility_change" from="Pull Origin/Pull Pickup/XRToolsHighlightVisible" to="." method="_on_xr_tools_highlight_visible_visibility_change"]
 
