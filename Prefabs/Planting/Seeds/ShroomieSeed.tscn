@@ -71,9 +71,6 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.0155373, 0)
 mesh = SubResource("ArrayMesh_4ge1t")
 skeleton = NodePath("")
 
-[node name="XRToolsHighlightVisible" parent="." index="2"]
-visible = true
-
 [node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.0155373, 0)
 mesh = SubResource("ArrayMesh_wo2ye")
