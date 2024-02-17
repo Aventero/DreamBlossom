@@ -10,7 +10,7 @@ func initialize():
 	# change material to the one thats exported 
 	assign_material_to_all_meshes(plant_model, death_material)
 	
-	owner.dying.emit()
+	owner.emit_dying()
 	
 	# Quickly Play the animation backwards
 	var stage : Stage = get_parent_node_3d()

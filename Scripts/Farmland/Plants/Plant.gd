@@ -56,13 +56,5 @@ func request_tween(force : bool = false) -> Tween:
 	
 	return null
 
-func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material):
-	# Set the material on each mesh
-	for child in node.get_children():
-		if child is MeshInstance3D:
-			child.material_override = material_to_assign
-		assign_material_to_all_meshes(child, material_to_assign)
-
-func _on_animation_player_animation_finished(anim_name):
-	# Die once the animation is back at the start
-	DigSpotLookup.get_dig_spot(self).remove_self()
+func emit_dying():
+	dying.emit()
