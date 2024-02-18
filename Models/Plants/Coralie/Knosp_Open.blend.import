@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dmmn77vrqo3a2"
-path="res://.godot/imported/Knosp_Open.blend-689789e76e6240b05f36cb87d5ef3057.scn"
+path="res://.godot/imported/Knosp_Open.blend-179f6d66860e1e5002b7e0f5b36cb344.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Blubbie/Knosp_Open.blend"
-dest_files=["res://.godot/imported/Knosp_Open.blend-689789e76e6240b05f36cb87d5ef3057.scn"]
+source_file="res://Models/Plants/Coralie/Knosp_Open.blend"
+dest_files=["res://.godot/imported/Knosp_Open.blend-179f6d66860e1e5002b7e0f5b36cb344.scn"]
 
 [params]
 
