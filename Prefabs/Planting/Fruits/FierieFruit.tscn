@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cl4tndyms65rq"]
 
-[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Fruits/Fruit.tscn" id="1_oy10e"]
+[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_oy10e"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Fierie/Fierie.png" id="2_6ruov"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_o5rqn"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_72urs"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dou3g7gi5ly7k"
-path="res://.godot/imported/Shellie.blend-cea7b59f844b238e2633e7516d7994ba.scn"
+uid="uid://c2cfj0dq1ohow"
+path="res://.godot/imported/ShelliePlant.blend-3b59730c38604fe4cadff75ed41f7190.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Coralie/Shellie.blend"
-dest_files=["res://.godot/imported/Shellie.blend-cea7b59f844b238e2633e7516d7994ba.scn"]
+source_file="res://Models/Plants/Shellie/ShelliePlant.blend"
+dest_files=["res://.godot/imported/ShelliePlant.blend-3b59730c38604fe4cadff75ed41f7190.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ import_script/path=""
 _subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
-blender/nodes/visible=0
+blender/nodes/visible=1
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://mfpdeks8empd"]
 
-[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Fruits/Fruit.tscn" id="1_x7ukq"]
+[ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_x7ukq"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_1jy5l"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="5_q1f25"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_2rp10"]

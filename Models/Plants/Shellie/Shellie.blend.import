@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cepurmtajhpau"
-path="res://.godot/imported/Knosp_Closed.blend-f63e9587620ae2835f0eb8292b245794.scn"
+uid="uid://dou3g7gi5ly7k"
+path="res://.godot/imported/Shellie.blend-3ab56304c8015e86abd6e4cf0194cb01.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Coralie/Knosp_Closed.blend"
-dest_files=["res://.godot/imported/Knosp_Closed.blend-f63e9587620ae2835f0eb8292b245794.scn"]
+source_file="res://Models/Plants/Shellie/Shellie.blend"
+dest_files=["res://.godot/imported/Shellie.blend-3ab56304c8015e86abd6e4cf0194cb01.scn"]
 
 [params]
 

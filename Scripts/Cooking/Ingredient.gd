@@ -5,7 +5,8 @@ enum Type
 {
 	SHROOMIE,
 	BLUBBURU,
-	FIERIE
+	FIERIE,
+	SHELLIE
 }
 
 @export var type : Type

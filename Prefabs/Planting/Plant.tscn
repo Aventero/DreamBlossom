@@ -30,7 +30,7 @@ script = ExtResource("1_unpe5")
 plant_model = NodePath("Model")
 
 [node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0.0182204, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182204, 0)
 
 [node name="StageTimer" type="Timer" parent="."]
 one_shot = true

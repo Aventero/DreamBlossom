@@ -2,9 +2,7 @@
 class_name FertilizeEvent
 extends PlantEvent
 
-# Order in array is defined by Fertilizer Type Enum order
-@export var icon_texture_override : Array[Texture2D]
-
+var icon_texture_override : Array[Texture2D] = [preload("res://Textures/FertilizerBlueIcon.png"), preload("res://Textures/FertilizerOrangeIcon.png"), preload("res://Textures/FertilizerGreenIcon.png")]
 var target_fertilizer_type : Fertilizer.Type
 var digspot : DigSpot
 
@@ -26,8 +24,6 @@ func initialize():
 func _on_fertilizer_added(type : Fertilizer.Type):
 	if type == target_fertilizer_type:
 		event_completed.emit()
-	
-	# TODO - Add consequence for wrong fertilizer
 
 func cleanup():
 	digspot.fertilizer_added.disconnect(Callable(_on_fertilizer_added))

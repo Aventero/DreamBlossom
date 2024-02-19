@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=52 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
 [ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/Fierie.png" id="11_kghc3"]
+[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie.png" id="12_gjvfb"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
@@ -31,6 +32,7 @@
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
 [ext_resource type="PackedScene" uid="uid://1mvsxfjgnyns" path="res://Prefabs/Planting/Seeds/FierieSeed.tscn" id="22_d0ce8"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
+[ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="24_1u2lc"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
@@ -96,6 +98,11 @@ texture = ExtResource("10_e8ehe")
 script = ExtResource("23_sn5yw")
 type = 2
 texture = ExtResource("11_kghc3")
+
+[sub_resource type="Resource" id="Resource_3ihew"]
+script = ExtResource("23_sn5yw")
+type = 3
+texture = ExtResource("12_gjvfb")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3skh4"]
 lightmap_size_hint = Vector2i(1004, 508)
@@ -174,7 +181,7 @@ new_weed_empty_chance = 1.0
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
-ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k")])
+ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew")])
 
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
@@ -278,6 +285,17 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("11_kghc3")
+
+[node name="Shellie Bag" parent="." instance=ExtResource("8_rxdi4")]
+transform = Transform3D(-0.134937, 0, -0.990854, 0, 1, 0, 0.990854, 0, -0.134937, 0.943622, 0.987084, 0.080605)
+item = ExtResource("24_1u2lc")
+ranged_grab_method = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="Shellie Bag"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("12_gjvfb")
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)
