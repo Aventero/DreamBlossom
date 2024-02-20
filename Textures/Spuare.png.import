@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfbtuqoudc0un"
-path.s3tc="res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.s3tc.ctex"
-path.etc2="res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.etc2.ctex"
+uid="uid://ctn71eky1wrve"
+path.s3tc="res://.godot/imported/Spuare.png-b095c8023bb0336c06e795ba4a58e2cc.s3tc.ctex"
+path.etc2="res://.godot/imported/Spuare.png-b095c8023bb0336c06e795ba4a58e2cc.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Square.png"
-dest_files=["res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.s3tc.ctex", "res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.etc2.ctex"]
+source_file="res://Textures/Spuare.png"
+dest_files=["res://.godot/imported/Spuare.png-b095c8023bb0336c06e795ba4a58e2cc.s3tc.ctex", "res://.godot/imported/Spuare.png-b095c8023bb0336c06e795ba4a58e2cc.etc2.ctex"]
 
 [params]
 

@@ -58,6 +58,7 @@ signal pull_completed
 
 @onready var shovel_pickup_collider : CollisionShape3D = $CollisionShape3D
 @onready var pull_pickup_collider : CollisionShape3D = $"PullOrigin/PullPickup/CollisionShape3D"
+@onready var soil_trigger : CollisionShape3D = $SoilTrigger/Trigger
 
 @onready var intersection_raycast : RayCast3D = $"InsertionHitDetection"
 @onready var pull_origin : Node3D = $"PullOrigin"
@@ -345,6 +346,12 @@ func _shovel_soil_leave():
 	pickable_pull.enabled = false
 	pull_pickup_collider.disabled = true
 	pull_origin.visible = false
+	
+	# Disable soil trigger for a set amount of time
+	var soil_trigger_tween : Tween = create_tween()
+	soil_trigger_tween.tween_callback(func(): soil_trigger.disabled = true)
+	soil_trigger_tween.tween_interval(0.2)
+	soil_trigger_tween.tween_callback(func(): soil_trigger.disabled = false)
 	
 	# Reactivate shovel
 	shovel_pickup_collider.disabled = false

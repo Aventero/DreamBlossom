@@ -28,11 +28,20 @@ func _on_feed_area_body_entered(body):
 	if not body is Ingredient or _is_fed:
 		return
 	
+	# Make sure to notify FruitEvent if fruit is currently hanging
+	if body is Fruit:
+		body._on_picked_up(body)
+	
 	_is_fed = true
 	enabled = false
 	
-	# Despawn ingredient
 	var ingredient : XRToolsPickable = body
+	
+	# Despawn ingredient
+	var tween : Tween = create_tween()
+	tween.tween_property(ingredient, "scale", Vector3.ZERO, 0.1)
+	await tween.finished
+	
 	ingredient.drop()
 	ingredient.queue_free()
 	

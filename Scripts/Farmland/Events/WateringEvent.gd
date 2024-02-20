@@ -10,6 +10,8 @@ func initialize():
 	# Get digspot
 	digspot = DigSpotLookup.get_dig_spot(self.owner)
 	
+	digspot.set_outline(true)
+	
 	# Reset watering state on digspot
 	digspot.reset_watering(water_needed)
 	
@@ -19,4 +21,6 @@ func cleanup():
 	digspot.watering_completed.disconnect(Callable(_watering_complete))
 
 func _watering_complete():
+	digspot.set_outline(false)
+	
 	event_completed.emit()

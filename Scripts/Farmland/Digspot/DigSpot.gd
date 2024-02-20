@@ -27,6 +27,7 @@ signal fertilizer_added(type : Fertilizer.Type)
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
 @onready var material_changer : MaterialChanger = $MaterialChanger
 @onready var dry_timer : Timer = $DryTimer
+@onready var outline_mesh : MeshInstance3D = $Outline
 
 var anchor_cell : GridCell
 var cell_width : int
@@ -251,3 +252,6 @@ func reset_watering(new_watering_amount : int):
 	# Reset watering amount and set new value
 	watering_amount = new_watering_amount
 	current_water = 0
+
+func set_outline(visibility : bool):
+	outline_mesh.visible = visibility
