@@ -377,6 +377,7 @@ func drop_object() -> void:
 		_velocity_averager.linear_velocity() * impulse_factor,
 		_velocity_averager.angular_velocity())
 	picked_up_object = null
+	
 	emit_signal("has_dropped")
 
 

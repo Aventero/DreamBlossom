@@ -10,11 +10,11 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/PruneEvent.gd" id="11_nb6qv"]
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/PlantEvents/Prune/DeadLeaf.tscn" id="12_sjvyj"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/PruneEvent.png" id="13_ofqrx"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="14_erlvj"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="14_ty8pd"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="15_n3esw"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="16_o1o87"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="17_g7vyr"]
 [ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="18_v0q0r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
@@ -4146,7 +4146,7 @@ animation_name = "Grow"
 icon_position = Vector3(0, 0.694, 0)
 
 [node name="KnospEvent" type="Node3D" parent="Stage2" index="0"]
-script = ExtResource("17_g7vyr")
+script = ExtResource("14_erlvj")
 knosp = ExtResource("18_phwou")
 max_knosp_amount = 3
 icon_texture = ExtResource("20_1l3hj")
@@ -4218,13 +4218,12 @@ animation_time = 8.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.694, 0)
 
-[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0"]
 script = ExtResource("19_af8bs")
 fruit = ExtResource("20_3dg6d")
 delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
-despawn_models = [NodePath("../../Model/Blubburu2"), NodePath("../../Model/Blubburu3"), NodePath("../../Model/Blubburu")]
 icon_texture = ExtResource("21_g8rrp")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]

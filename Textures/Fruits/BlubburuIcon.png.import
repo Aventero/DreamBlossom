@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cweq5i3iwlebt"
-path="res://.godot/imported/Blubburu.png-4f8a230dea5082ca03d29c575bbb4380.ctex"
+path="res://.godot/imported/BlubburuIcon.png-44018b00eaf6186b52e8d5dd181211de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Fruits/Blubburu.png"
-dest_files=["res://.godot/imported/Blubburu.png-4f8a230dea5082ca03d29c575bbb4380.ctex"]
+source_file="res://Textures/Fruits/BlubburuIcon.png"
+dest_files=["res://.godot/imported/BlubburuIcon.png-44018b00eaf6186b52e8d5dd181211de.ctex"]
 
 [params]
 

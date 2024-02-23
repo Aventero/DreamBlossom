@@ -6,7 +6,7 @@ extends Node3D
 @export var drop_distance : float = 0.3
 
 @onready var path : Path3D = $ItemBelt
-@onready var item_belt_slot : PackedScene = preload("res://Prefabs/ItemBeltSlot.tscn")
+@onready var item_belt_slot : PackedScene = preload("res://Prefabs/Tools/ItemBeltSlot.tscn")
 
 var _left_controller_pickup : XRToolsFunctionPickup
 var _right_controller_pickup : XRToolsFunctionPickup

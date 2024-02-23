@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://Scripts/Utility/InactivityManager.gd" id="4_hxy0e"]
 
 [node name="Fertilizer" instance=ExtResource("1_t2yly")]
+collision_mask = 7
 script = ExtResource("2_jm5qm")
 type = 0
 ranged_grab_method = 0
+second_hand_grab = 1
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="1"]
 visible = false

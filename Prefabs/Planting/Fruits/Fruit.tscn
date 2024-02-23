@@ -7,13 +7,14 @@
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_16fea"]
 
 [node name="Fruit" groups=["Fruit", "Ingredient"] instance=ExtResource("1_0k27w")]
-collision_layer = 68
+collision_mask = 131079
 freeze = true
 freeze_mode = 0
 script = ExtResource("2_h05vf")
 type = 0
 release_mode = 0
 ranged_grab_method = 0
+second_hand_grab = 1
 
 [node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("3_uwq2k")]
 

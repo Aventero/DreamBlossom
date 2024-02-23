@@ -150,6 +150,7 @@ material = SubResource("StandardMaterial3D_u0gi4")
 size = Vector2(0.05, 0.05)
 
 [node name="Shovel" groups=["Returnable", "Shovel"] instance=ExtResource("1_ho1dq")]
+collision_mask = 131079
 script = ExtResource("12_k2gu3")
 min_insertion_angle = 20.0
 lerp_speed = 0.075
@@ -168,6 +169,7 @@ pull_complete_particles = ExtResource("6_7tbpl")
 shovel_settings = Array[ExtResource("13_viqha")]([SubResource("Resource_kpcut")])
 release_mode = 0
 ranged_grab_method = 0
+second_hand_grab = 1
 ranged_grab_speed = 2.5
 
 [node name="CollisionShape3D" parent="." index="0"]

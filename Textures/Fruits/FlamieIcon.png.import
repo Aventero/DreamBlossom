@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfcg6mjs0u2fo"
-path="res://.godot/imported/Fierie.png-de9d9f9425e3a5d6d3e6bad93437497f.ctex"
+uid="uid://bgq736ou4kxmi"
+path="res://.godot/imported/FlamieIcon.png-279be930eff52c5bb295b155404915e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asesprite/Fierie/Fierie.png"
-dest_files=["res://.godot/imported/Fierie.png-de9d9f9425e3a5d6d3e6bad93437497f.ctex"]
+source_file="res://Textures/Fruits/FlamieIcon.png"
+dest_files=["res://.godot/imported/FlamieIcon.png-279be930eff52c5bb295b155404915e8.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

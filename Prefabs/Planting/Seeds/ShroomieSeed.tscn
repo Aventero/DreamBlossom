@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_dyrry"]
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Asesprite/Shroomie/Shroomie.png" id="2_7uue6"]
-[ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/ShroomiePlant.tscn" id="2_unfkv"]
+[ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="2_unfkv"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_sl1ta"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2u0tf"]

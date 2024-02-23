@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=53 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -9,11 +9,12 @@
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
 [ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="7_7l8kt"]
 [ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/SeedBag.tscn" id="8_rxdi4"]
-[ext_resource type="Texture2D" uid="uid://cweq5i3iwlebt" path="res://Textures/Fruits/BlubburuIcon.png" id="10_e8ehe"]
+[ext_resource type="Texture2D" uid="uid://twuxehna0wa8" path="res://Textures/Fruits/Shroomie.png" id="9_m7hmw"]
+[ext_resource type="Texture2D" uid="uid://cweq5i3iwlebt" path="res://Textures/Fruits/Blubburu.png" id="10_e8ehe"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="10_evryj"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="10_tfn6c"]
-[ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/FlamieIcon.png" id="11_kghc3"]
-[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/ShellieIcon.png" id="12_gjvfb"]
+[ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/Fierie.png" id="11_kghc3"]
+[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie.png" id="12_gjvfb"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
@@ -28,14 +29,12 @@
 [ext_resource type="PackedScene" uid="uid://c1nll5jy2q080" path="res://Prefabs/Cooking/RecipeManager.tscn" id="19_xucyt"]
 [ext_resource type="PackedScene" uid="uid://4qvb4piv61b4" path="res://Prefabs/Planting/Seeds/BlubburuSeed.tscn" id="20_m5lr0"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="21_ifxkr"]
-[ext_resource type="Texture2D" uid="uid://bbg826soj8ajf" path="res://Textures/Fruits/ShroomieIcon.png" id="21_jjy14"]
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
-[ext_resource type="PackedScene" uid="uid://1mvsxfjgnyns" path="res://Prefabs/Planting/Seeds/FlamieSeed.tscn" id="22_d0ce8"]
+[ext_resource type="PackedScene" uid="uid://1mvsxfjgnyns" path="res://Prefabs/Planting/Seeds/FierieSeed.tscn" id="22_d0ce8"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
 [ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="24_1u2lc"]
-[ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
-[ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/PumkieIcon.png" id="26_rpomn"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
+[ext_resource type="PackedScene" uid="uid://bt6qpprarxhif" path="res://Prefabs/Planting/Fruits/PumkieFruit.tscn" id="35_4p0bn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -89,7 +88,7 @@ size = Vector3(20, 0.1, 20)
 [sub_resource type="Resource" id="Resource_rhegm"]
 script = ExtResource("23_sn5yw")
 type = 0
-texture = ExtResource("21_jjy14")
+texture = ExtResource("9_m7hmw")
 
 [sub_resource type="Resource" id="Resource_apqrx"]
 script = ExtResource("23_sn5yw")
@@ -105,11 +104,6 @@ texture = ExtResource("11_kghc3")
 script = ExtResource("23_sn5yw")
 type = 3
 texture = ExtResource("12_gjvfb")
-
-[sub_resource type="Resource" id="Resource_8mku3"]
-script = ExtResource("23_sn5yw")
-type = 4
-texture = ExtResource("26_rpomn")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3skh4"]
 lightmap_size_hint = Vector2i(1004, 508)
@@ -186,7 +180,7 @@ plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
-ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew"), SubResource("Resource_8mku3")])
+ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew")])
 
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
@@ -267,7 +261,7 @@ ranged_grab_method = 1
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
 billboard = 2
 texture_filter = 0
-texture = ExtResource("21_jjy14")
+texture = ExtResource("9_m7hmw")
 
 [node name="Blubburu Bag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.23005, 0, -0.973179, 0, 1, 0, 0.973179, 0, 0.23005, 0.936092, 0.987084, -0.204054)
@@ -301,17 +295,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("12_gjvfb")
-
-[node name="Pumkie Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(-0.278354, 0, -0.960478, 0, 1, 0, 0.960478, 0, -0.278354, 0.917431, 0.987084, 0.214472)
-item = ExtResource("25_ju50c")
-ranged_grab_method = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="Pumkie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("26_rpomn")
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)
@@ -354,5 +337,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666
 
 [node name="RecipeBook" parent="." instance=ExtResource("21_ifxkr")]
 transform = Transform3D(0.480438, -0.339411, 0.80869, -1.49012e-08, 0.922079, 0.387001, -0.877029, -0.18593, 0.443002, -0.631728, 1.13668, -0.139854)
+
+[node name="Pumkie" parent="." instance=ExtResource("35_4p0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178484, 1.0651, -0.785793)
+
+[node name="Pumkie2" parent="." instance=ExtResource("35_4p0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103227, 1.0651, -0.785793)
+
+[node name="Pumkie3" parent="." instance=ExtResource("35_4p0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38983, 1.0651, -0.785793)
 
 [editable path="Player"]

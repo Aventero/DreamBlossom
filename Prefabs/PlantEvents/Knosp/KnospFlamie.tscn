@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://d7httil120fm"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_jujtq"]
-[ext_resource type="PackedScene" uid="uid://uxwpev8kx63e" path="res://Particles/FierieKnospPullParticles.tscn" id="2_b7hp0"]
-[ext_resource type="Texture2D" uid="uid://bb05qsnqhdp07" path="res://Asesprite/Knosp/Knosp_Fierie.png" id="2_pw4ox"]
-[ext_resource type="PackedScene" uid="uid://cydtvc434h833" path="res://Particles/FierieKnospCompleteParticles.tscn" id="3_f2afs"]
+[ext_resource type="PackedScene" uid="uid://uxwpev8kx63e" path="res://Particles/FlamieKnospPullParticles.tscn" id="2_b7hp0"]
+[ext_resource type="Texture2D" uid="uid://bb05qsnqhdp07" path="res://Asesprite/Knosp/Knosp_Flamie.png" id="2_pw4ox"]
+[ext_resource type="PackedScene" uid="uid://cydtvc434h833" path="res://Particles/FlamieKnospCompleteParticles.tscn" id="3_f2afs"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="8_ukxpr"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vyyss"]

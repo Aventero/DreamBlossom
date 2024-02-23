@@ -76,9 +76,11 @@ margin = 0.0
 radius = 0.25
 
 [node name="MusicBox" groups=["Returnable"] instance=ExtResource("1_qrvtc")]
+collision_mask = 131079
 script = ExtResource("2_jkbs3")
 release_mode = 0
 ranged_grab_method = 0
+second_hand_grab = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_7xspe")

@@ -3383,13 +3383,12 @@ animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.699, 0)
 
-[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0"]
 script = ExtResource("10_lu1cx")
 fruit = ExtResource("11_ta57h")
 delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
-despawn_models = [NodePath("../../Model/Shellie"), NodePath("../../Model/Shellie2"), NodePath("../../Model/Shellie7"), NodePath("../../Model/Shellie3"), NodePath("../../Model/Shellie4"), NodePath("../../Model/Shellie5"), NodePath("../../Model/Shellie6")]
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
 transform = Transform3D(0.932559, -0.236017, -0.273183, 0.230381, 0.971655, -0.0530149, 0.277952, -0.0134966, 0.9605, -0.0688437, 0.174686, 0.0936562)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgq736ou4kxmi"
-path="res://.godot/imported/Fierie.png-f143453c142980f857cc0e17a6b85533.ctex"
+uid="uid://j7wkydhbu5uy"
+path="res://.godot/imported/PumkieIcon.png-b8a6d4218ed31dcfb105fcaf4c58d7c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Fruits/Fierie.png"
-dest_files=["res://.godot/imported/Fierie.png-f143453c142980f857cc0e17a6b85533.ctex"]
+source_file="res://Textures/Fruits/PumkieIcon.png"
+dest_files=["res://.godot/imported/PumkieIcon.png-b8a6d4218ed31dcfb105fcaf4c58d7c6.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

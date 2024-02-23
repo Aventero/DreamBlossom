@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bad6a5tgvl2h3"
-path="res://.godot/imported/Fierie.blend-6fdf0e679ea7cc8b5ed288cb5bf5a7e0.scn"
+uid="uid://c0tptbra7fl7l"
+path="res://.godot/imported/FlamieFruit.blend-f731bcaa48b498b55d6e5db273af508b.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Fierie/Fierie.blend"
-dest_files=["res://.godot/imported/Fierie.blend-6fdf0e679ea7cc8b5ed288cb5bf5a7e0.scn"]
+source_file="res://Models/Plants/Flamie/FlamieFruit.blend"
+dest_files=["res://.godot/imported/FlamieFruit.blend-f731bcaa48b498b55d6e5db273af508b.scn"]
 
 [params]
 
@@ -29,17 +29,10 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"materials": {
-"Leaves.003": {
-"use_external/enabled": true,
-"use_external/path": "res://Models/Plants/Fierie/Leaves.003.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
-blender/nodes/visible=1
+blender/nodes/visible=0
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true

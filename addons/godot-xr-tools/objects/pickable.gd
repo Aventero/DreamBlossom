@@ -56,16 +56,17 @@ enum SecondHandGrab {
 	SECOND,				## Second hand grab
 }
 
-
 # Default layer for held objects is 17:held-object
 const DEFAULT_LAYER := 0b0000_0000_0000_0001_0000_0000_0000_0000
-
 
 ## If true, the pickable supports being picked up
 @export var enabled : bool = true
 
 ## If true, the grip control must be held to keep the object picked up
 @export var press_to_hold : bool = true
+
+## Are two hands required for holding this item
+@export var two_handed_grab : bool = false
 
 ## Layer for this object while picked up
 @export_flags_3d_physics var picked_up_layer : int = DEFAULT_LAYER
@@ -88,7 +89,6 @@ const DEFAULT_LAYER := 0b0000_0000_0000_0001_0000_0000_0000_0000
 ## Require pick-by to be in the specified group
 @export var picked_by_require : String = ""
 
-
 ## If true, the object can be picked up at range
 var can_ranged_grab: bool = true
 
@@ -110,11 +110,11 @@ var _highlight_requests : Dictionary = {}
 # Is this node highlighted
 var _highlighted : bool = false
 
+var two_handed_complete : bool = false
 
 # Remember some state so we can return to it when the user drops the object
 @onready var original_collision_mask : int = collision_mask
 @onready var original_collision_layer : int = collision_layer
-
 
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
@@ -210,14 +210,14 @@ func drop():
 	# Skip if not picked up
 	if not is_picked_up():
 		return
-
+	
 	# Request secondary grabber to drop
 	if _grab_driver.secondary:
 		_grab_driver.secondary.by.drop_object()
-
+	
 	# Request primary grabber to drop
-	_grab_driver.primary.by.drop_object()
-
+	if _grab_driver.primary and _grab_driver.primary.by:
+		_grab_driver.primary.by.drop_object()
 
 func drop_and_free():
 	drop()
@@ -249,16 +249,27 @@ func pick_up(by: Node3D) -> void:
 			# Grab the object
 			var by_grab_point := _get_grab_point(by, _grab_driver.primary.point)
 			var grab := Grab.new(grabber, self, by_grab_point, true)
+			grab.hand.visible = false
 			_grab_driver.add_grab(grab)
-
+			
+			# turn off physics on our pickable object
+			freeze = true
+			collision_layer = picked_up_layer
+			collision_mask = 0
+			
 			# Report the secondary grab
+			two_handed_complete = true
 			grabbed.emit(self, by)
+			picked_up.emit(self)
 			return
-
+		
+		# Update picked_up_object in primary grabber correctly
+		_grab_driver.primary.pickup.picked_up_object = null
+		
 		# Swapping hands, let go with the primary grab
 		print_verbose("%s> letting go to swap hands" % name)
 		let_go(_grab_driver.primary.by, Vector3.ZERO, Vector3.ZERO)
-
+	
 	# Remember the mode before pickup
 	match release_mode:
 		ReleaseMode.UNFROZEN:
@@ -269,34 +280,55 @@ func pick_up(by: Node3D) -> void:
 
 		_:
 			restore_freeze = freeze
-
-	# turn off physics on our pickable object
-	freeze = true
-	collision_layer = picked_up_layer
-	collision_mask = 0
-
-	# Find a suitable primary hand grab
-	var by_grab_point := _get_grab_point(by, null)
-
-	# Construct the grab driver
-	if by.picked_up_ranged:
-		if ranged_grab_method == RangedMethod.LERP:
-			var grab := Grab.new(grabber, self, by_grab_point, false)
-			_grab_driver = XRToolsGrabDriver.create_lerp(self, grab, ranged_grab_speed)
-			grab.hand.visible = false
+	
+	if two_handed_grab:
+		# Find a suitable primary hand grab
+		var by_grab_point := _get_grab_point(by, null)
+	
+		# Construct the grab driver
+		if by.picked_up_ranged:
+			if ranged_grab_method == RangedMethod.LERP:
+				var grab := Grab.new(grabber, self, by_grab_point, false)
+				_grab_driver = XRToolsGrabDriver.create_lerp(self, grab, ranged_grab_speed)
+				_grab_driver.two_handed = true
+				grab.hand.visible = false
+			else:
+				var grab := Grab.new(grabber, self, by_grab_point, false)
+				_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
+				_grab_driver.two_handed = true
+				grab.hand.visible = false
 		else:
-			var grab := Grab.new(grabber, self, by_grab_point, false)
+			var grab := Grab.new(grabber, self, by_grab_point, true)
 			_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
+			_grab_driver.two_handed = true
 			grab.hand.visible = false
 	else:
-		var grab := Grab.new(grabber, self, by_grab_point, true)
-		_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
-		grab.hand.visible = false
-	
-	# Report picked up and grabbed
-	picked_up.emit(self)
-	grabbed.emit(self, by)
-
+		# turn off physics on our pickable object
+		freeze = true
+		collision_layer = picked_up_layer
+		collision_mask = 0
+		
+		# Find a suitable primary hand grab
+		var by_grab_point := _get_grab_point(by, null)
+		
+		# Construct the grab driver
+		if by.picked_up_ranged:
+			if ranged_grab_method == RangedMethod.LERP:
+				var grab := Grab.new(grabber, self, by_grab_point, false)
+				_grab_driver = XRToolsGrabDriver.create_lerp(self, grab, ranged_grab_speed)
+				grab.hand.visible = false
+			else:
+				var grab := Grab.new(grabber, self, by_grab_point, false)
+				_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
+				grab.hand.visible = false
+		else:
+			var grab := Grab.new(grabber, self, by_grab_point, true)
+			_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
+			grab.hand.visible = false
+		
+		# Report picked up and grabbed
+		picked_up.emit(self)
+		grabbed.emit(self, by)
 
 # Called when this object is dropped
 func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3) -> void:
@@ -309,12 +341,19 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 	if not grab:
 		return
 
-	grab.hand.visible = true
+	grab.hand.visibility_change = true
 
 	# Remove the grab from the driver and release the grab
 	_grab_driver.remove_grab(grab)
 	grab.release()
-
+	
+	# If two hands are required and another grab is active -> Release second grab
+	if two_handed_grab and _grab_driver.primary:
+		_grab_driver.primary.pickup.picked_up_object = null
+		_grab_driver.primary.hand.visibility_change = true
+		_grab_driver.primary.release()
+		_grab_driver.remove_grab(_grab_driver.primary)
+	
 	# Test if still grabbing
 	if _grab_driver.primary:
 		# Test if we need to swap grab-points
@@ -327,7 +366,7 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 			var new_grab_point := _get_grab_point(_grab_driver.primary.by, null)
 			print_verbose("%s> held only by secondary, swapping grab points" % name)
 			switch_active_grab_point(new_grab_point)
-
+		
 		# Grab is still good
 		return
 
@@ -335,6 +374,10 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 	print_verbose("%s> dropping" % name)
 	_grab_driver.discard()
 	_grab_driver = null
+
+	if two_handed_grab and not two_handed_complete:
+		return
+	two_handed_complete = false
 
 	# Restore RigidBody mode
 	freeze = restore_freeze
@@ -347,7 +390,6 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 
 	# let interested parties know
 	dropped.emit(self)
-
 
 ## Get the node currently holding this object
 func get_picked_up_by() -> Node3D:

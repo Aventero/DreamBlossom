@@ -35,11 +35,13 @@ material = ExtResource("8_g1rv5")
 size = Vector3(0.02, 0.02, 0.02)
 
 [node name="WateringCan" groups=["Returnable"] instance=ExtResource("1_f78l7")]
+collision_mask = 131079
 script = ExtResource("2_ngscu")
 water_drop = ExtResource("3_3bmx2")
 checks_per_second = 3
 water_angle = 110.0
 release_mode = 0
+second_hand_grab = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000488281, 0.0983276, -0.00399017)

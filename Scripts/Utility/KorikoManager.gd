@@ -7,7 +7,7 @@ extends Timer
 @export var stack_spawn_chance : float = 0.05
 
 @onready var koriko : PackedScene = preload("res://Prefabs/Koriko.tscn")
-@onready var smoke : PackedScene = preload("res://Prefabs/Smoke.tscn")
+@onready var smoke : PackedScene = preload("res://Prefabs/Particles/Smoke.tscn")
 
 var _current_spawn_chance : float
 var _korikos_to_spawn : int = 0

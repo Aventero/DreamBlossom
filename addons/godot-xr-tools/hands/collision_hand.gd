@@ -53,6 +53,8 @@ var _target_overrides := []
 # Current target (controller or override)
 var _target : Node3D
 
+var _left_controller_pickup : XRToolsFunctionPickup
+var _right_controller_pickup : XRToolsFunctionPickup
 
 ## Target-override class
 class TargetOverride:
@@ -78,7 +80,13 @@ func _ready():
 	# Do not initialise if in the editor
 	if Engine.is_editor_hint():
 		return
-
+	
+	_left_controller_pickup = XRToolsFunctionPickup.find_left($"/root/World/Player")
+	_left_controller_pickup.has_picked_up.connect(_picked_up_item)
+	
+	_right_controller_pickup = XRToolsFunctionPickup.find_right($"/root/World/Player")
+	_right_controller_pickup.has_picked_up.connect(_picked_up_item)
+	
 	# Disconnect from parent transform as we move to it in the physics step,
 	# and boost the physics priority above any grab-drivers or hands.
 	top_level = true
@@ -90,6 +98,21 @@ func _ready():
 	# Update the target
 	_update_target()
 
+func _picked_up_item(item : XRToolsPickable):
+	item.dropped.connect(_dropped_item)
+	
+	if item.picked_up.is_connected(_picked_up_item):
+		item.picked_up.disconnect(_picked_up_item)
+	
+	# Disable collision
+	get_child(0).disabled = true
+
+func _dropped_item(item : XRToolsPickable):
+	# Reenable collision
+	get_child(0).disabled = false
+	
+	if item.picked_up.is_connected(_dropped_item):
+		item.picked_up.disconnect(_dropped_item)
 
 # Handle physics processing
 func _physics_process(_delta):

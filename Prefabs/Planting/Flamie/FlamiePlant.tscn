@@ -1,22 +1,22 @@
 [gd_scene load_steps=86 format=3 uid="uid://dxhccbbkp1ghs"]
 
-[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_31xqu"]
-[ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Fierie/FierieFruit.blend" id="2_1vhyr"]
-[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Fierie/Fierie.png" id="4_2vl3x"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="5_3ntiq"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FertilizeEvent.gd" id="6_s4iaq"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="10_3llur"]
-[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="11_tejm3"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="12_vpf6h"]
-[ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="13_n5hae"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="14_iufqd"]
-[ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="14_u4e5w"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="15_dt23y"]
-[ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="15_jmq6w"]
-[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="16_c6vro"]
-[ext_resource type="PackedScene" uid="uid://cl4tndyms65rq" path="res://Prefabs/Planting/Fruits/FierieFruit.tscn" id="16_k01kl"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_7dhn3"]
-[ext_resource type="PackedScene" uid="uid://d7httil120fm" path="res://Prefabs/PlantEvents/Knosp/KnospFierie.tscn" id="20_oppo3"]
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_xrug7"]
+[ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Flamie/FlamieFruit.blend" id="2_kawg3"]
+[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Flamie/Flamie.png" id="3_5ptct"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_cqu8f"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FertilizeEvent.gd" id="5_d4ng8"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_glrd6"]
+[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="7_6pry3"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
+[ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="9_5c5wj"]
+[ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="10_xwg07"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="11_gjqbd"]
+[ext_resource type="PackedScene" uid="uid://d7httil120fm" path="res://Prefabs/PlantEvents/Knosp/KnospFlamie.tscn" id="12_reiha"]
+[ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="13_0tla4"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="14_h10hx"]
+[ext_resource type="PackedScene" uid="uid://cl4tndyms65rq" path="res://Prefabs/Planting/Fruits/FlamieFruit.tscn" id="15_8ppun"]
+[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="16_8x7s2"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_2bt31"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_esutq"]
 resource_name = "Fierie"
@@ -24,7 +24,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("4_2vl3x")
+albedo_texture = ExtResource("3_5ptct")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yuko3"]
@@ -118,7 +118,7 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("4_2vl3x")
+shader_parameter/texture_albedo = ExtResource("3_5ptct")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bpf4y"]
 _surfaces = [{
@@ -1010,7 +1010,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("4_2vl3x")
+albedo_texture = ExtResource("3_5ptct")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j85xv"]
@@ -1808,7 +1808,7 @@ tracks/59/keys = {
 tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
-tracks/60/path = NodePath("Model/FierieFruit:scale")
+tracks/60/path = NodePath("Model/FlamieFruit:scale")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
@@ -1820,7 +1820,7 @@ tracks/60/keys = {
 tracks/61/type = "value"
 tracks/61/imported = false
 tracks/61/enabled = true
-tracks/61/path = NodePath("Model/FierieFruit:rotation")
+tracks/61/path = NodePath("Model/FlamieFruit:rotation")
 tracks/61/interp = 2
 tracks/61/loop_wrap = true
 tracks/61/keys = {
@@ -1832,7 +1832,7 @@ tracks/61/keys = {
 tracks/62/type = "value"
 tracks/62/imported = false
 tracks/62/enabled = true
-tracks/62/path = NodePath("Model/FierieFruit:position")
+tracks/62/path = NodePath("Model/FlamieFruit:position")
 tracks/62/interp = 2
 tracks/62/loop_wrap = true
 tracks/62/keys = {
@@ -2567,7 +2567,7 @@ tracks/59/keys = {
 tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
-tracks/60/path = NodePath("Model/FierieFruit:scale")
+tracks/60/path = NodePath("Model/FlamieFruit:scale")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
@@ -2579,7 +2579,7 @@ tracks/60/keys = {
 tracks/61/type = "value"
 tracks/61/imported = false
 tracks/61/enabled = true
-tracks/61/path = NodePath("Model/FierieFruit:rotation")
+tracks/61/path = NodePath("Model/FlamieFruit:rotation")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
 tracks/61/keys = {
@@ -2591,7 +2591,7 @@ tracks/61/keys = {
 tracks/62/type = "value"
 tracks/62/imported = false
 tracks/62/enabled = true
-tracks/62/path = NodePath("Model/FierieFruit:position")
+tracks/62/path = NodePath("Model/FlamieFruit:position")
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/keys = {
@@ -2614,15 +2614,15 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.509804, 0.345098, 0.521569, 1)
-albedo_texture = ExtResource("4_2vl3x")
+albedo_texture = ExtResource("3_5ptct")
 texture_filter = 2
 
-[node name="Fierie" instance=ExtResource("1_31xqu")]
+[node name="Flamie" instance=ExtResource("1_xrug7")]
 
 [node name="Model" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0163294, 0)
 
-[node name="FierieFruit" parent="Model" index="0" instance=ExtResource("2_1vhyr")]
+[node name="FlamieFruit" parent="Model" index="0" instance=ExtResource("2_kawg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.214325, 0.0501802)
 
 [node name="Blossom_026" type="MeshInstance3D" parent="Model" index="1"]
@@ -2826,23 +2826,23 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.62323, 6.43461e-09)
 
 [node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
-script = ExtResource("5_3ntiq")
+script = ExtResource("4_cqu8f")
 animation_time = 6.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.283, 0)
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage1" index="0"]
-script = ExtResource("6_s4iaq")
+script = ExtResource("5_d4ng8")
 
 [node name="MusicEvent" type="Node3D" parent="Stage1" index="1"]
-script = ExtResource("10_3llur")
+script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("11_tejm3")
+icon_texture = ExtResource("7_6pry3")
 
 [node name="WeedEvent" type="Node3D" parent="Stage1" index="2"]
-script = ExtResource("12_vpf6h")
-event_weed = ExtResource("13_n5hae")
-icon_texture = ExtResource("14_u4e5w")
+script = ExtResource("8_4a6pc")
+event_weed = ExtResource("9_5c5wj")
+icon_texture = ExtResource("10_xwg07")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage1/WeedEvent" index="0"]
 transform = Transform3D(0.611232, -0.087837, -0.786562, -0.057111, 0.986337, -0.154527, 0.789388, 0.139373, 0.597864, -0.0118018, 0, 0.103418)
@@ -2857,16 +2857,16 @@ transform = Transform3D(0.721464, -0.0641114, 0.689477, -0.0757967, 0.98241, 0.1
 transform = Transform3D(0.979297, 0.202428, 0, -0.20071, 0.970984, 0.130024, 0.0263206, -0.127332, 0.991511, 0.104627, 0.0162301, -0.0431781)
 
 [node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
-script = ExtResource("5_3ntiq")
+script = ExtResource("4_cqu8f")
 animation_time = 9.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.43, 0)
 
 [node name="KnospEvent" type="Node3D" parent="Stage2" index="0"]
-script = ExtResource("14_iufqd")
-knosp = ExtResource("20_oppo3")
+script = ExtResource("11_gjqbd")
+knosp = ExtResource("12_reiha")
 max_knosp_amount = 4
-icon_texture = ExtResource("15_jmq6w")
+icon_texture = ExtResource("13_0tla4")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage2/KnospEvent" index="0"]
 transform = Transform3D(0.710342, -0.674223, -0.202084, -0.37546, -0.120117, -0.919022, 0.595352, 0.728695, -0.338468, -0.12387, 0.301186, 0.057191)
@@ -2881,31 +2881,31 @@ transform = Transform3D(0.541692, 0.659362, 0.521355, 0.508037, 0.237321, -0.827
 transform = Transform3D(-0.618767, -0.749987, -0.233768, -0.57755, 0.232592, 0.78252, -0.532507, 0.61921, -0.577075, -0.0021644, 0.34059, -0.08558)
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage2" index="1"]
-script = ExtResource("6_s4iaq")
+script = ExtResource("5_d4ng8")
 
 [node name="MusicEvent" type="Node3D" parent="Stage2" index="2"]
-script = ExtResource("10_3llur")
+script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("11_tejm3")
+icon_texture = ExtResource("7_6pry3")
 
 [node name="Stage3" type="Node3D" parent="." index="7" groups=["Stage"]]
-script = ExtResource("5_3ntiq")
+script = ExtResource("4_cqu8f")
 animation_time = 5.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.43, 0)
 
 [node name="FertilizeEvent" type="Node3D" parent="Stage3" index="0"]
-script = ExtResource("6_s4iaq")
+script = ExtResource("5_d4ng8")
 
 [node name="MusicEvent" type="Node3D" parent="Stage3" index="1"]
-script = ExtResource("10_3llur")
+script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("11_tejm3")
+icon_texture = ExtResource("7_6pry3")
 
 [node name="WeedEvent" type="Node3D" parent="Stage3" index="2"]
-script = ExtResource("12_vpf6h")
-event_weed = ExtResource("13_n5hae")
-icon_texture = ExtResource("14_u4e5w")
+script = ExtResource("8_4a6pc")
+event_weed = ExtResource("9_5c5wj")
+icon_texture = ExtResource("10_xwg07")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage3/WeedEvent" index="0"]
 transform = Transform3D(-0.213072, 0.195678, -0.957241, -0.0966415, 0.970714, 0.219943, 0.972245, 0.139373, -0.187922, -0.0142303, 0.0168455, 0.11419)
@@ -2917,29 +2917,28 @@ transform = Transform3D(0.479479, -0.181363, 0.858608, 0.181912, 0.9777, 0.10493
 transform = Transform3D(0.553227, -0.011382, 0.832953, -0.193803, 0.970711, 0.141984, -0.810173, -0.239978, 0.534818, 0.0858139, 0.0158016, -0.076354)
 
 [node name="Stage Fruit" type="Node3D" parent="." index="8" groups=["Stage"]]
-script = ExtResource("5_3ntiq")
+script = ExtResource("4_cqu8f")
 animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.623, 0)
 
-[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
-script = ExtResource("15_dt23y")
-fruit = ExtResource("16_k01kl")
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0"]
+script = ExtResource("14_h10hx")
+fruit = ExtResource("15_8ppun")
 delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
-despawn_models = [NodePath("../../Model/FierieFruit")]
-icon_texture = ExtResource("16_c6vro")
+icon_texture = ExtResource("16_8x7s2")
 
 [node name="Spawnpoint" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.232545, 0.0501802)
 
 [node name="Stage Death" type="Node3D" parent="." index="9" groups=["Stage"]]
-script = ExtResource("5_3ntiq")
+script = ExtResource("4_cqu8f")
 should_play_animation = false
 
 [node name="DeathEvent" type="Node3D" parent="Stage Death" index="0" node_paths=PackedStringArray("plant_model")]
-script = ExtResource("17_7dhn3")
+script = ExtResource("17_2bt31")
 plant_model = NodePath("../../Model")
 death_material = SubResource("StandardMaterial3D_e0rfn")
 

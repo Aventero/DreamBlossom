@@ -8,9 +8,11 @@
 [ext_resource type="Script" path="res://Scripts/Utility/InactivityManager.gd" id="6_t60xs"]
 
 [node name="Seed" instance=ExtResource("1_kbcdh")]
+collision_mask = 7
 script = ExtResource("2_nytjd")
 plant = null
 ranged_grab_method = 0
+second_hand_grab = 1
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="1"]
 visible = false

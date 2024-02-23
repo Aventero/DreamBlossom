@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb05qsnqhdp07"
-path.s3tc="res://.godot/imported/Knosp_Fierie.png-183125790c8ea2aae969780a3eab8f12.s3tc.ctex"
-path.etc2="res://.godot/imported/Knosp_Fierie.png-183125790c8ea2aae969780a3eab8f12.etc2.ctex"
+uid="uid://bfkhda820dl3e"
+path.s3tc="res://.godot/imported/ShellieIcon.png-272dbf1d02a94b6d7cdbabd746b8b299.s3tc.ctex"
+path.etc2="res://.godot/imported/ShellieIcon.png-272dbf1d02a94b6d7cdbabd746b8b299.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Asesprite/Knosp/Knosp_Fierie.png"
-dest_files=["res://.godot/imported/Knosp_Fierie.png-183125790c8ea2aae969780a3eab8f12.s3tc.ctex", "res://.godot/imported/Knosp_Fierie.png-183125790c8ea2aae969780a3eab8f12.etc2.ctex"]
+source_file="res://Textures/Fruits/ShellieIcon.png"
+dest_files=["res://.godot/imported/ShellieIcon.png-272dbf1d02a94b6d7cdbabd746b8b299.s3tc.ctex", "res://.godot/imported/ShellieIcon.png-272dbf1d02a94b6d7cdbabd746b8b299.etc2.ctex"]
 
 [params]
 
