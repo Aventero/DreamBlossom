@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4m57yud1hkbm"]
+
+[ext_resource type="PackedScene" uid="uid://10r75pigc5g1" path="res://Models/Plants/Pumkie/PumkieFruit.blend" id="1_tkjfo"]
+
+[node name="PumkieFruit" instance=ExtResource("1_tkjfo")]

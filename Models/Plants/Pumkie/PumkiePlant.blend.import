@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dfxrugrku7g1v"
-path="res://.godot/imported/Pumkie.blend-ea00895e50ecf01258f51c17d121ec47.scn"
+path="res://.godot/imported/PumkiePlant.blend-389fbcefd55ac94b65947e58cced26dc.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Pumkie/Pumkie.blend"
-dest_files=["res://.godot/imported/Pumkie.blend-ea00895e50ecf01258f51c17d121ec47.scn"]
+source_file="res://Models/Plants/Pumkie/PumkiePlant.blend"
+dest_files=["res://.godot/imported/PumkiePlant.blend-389fbcefd55ac94b65947e58cced26dc.scn"]
 
 [params]
 
