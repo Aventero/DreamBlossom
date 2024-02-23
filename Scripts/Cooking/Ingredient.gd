@@ -5,7 +5,7 @@ enum Type
 {
 	SHROOMIE,
 	BLUBBURU,
-	FIERIE,
+	FLAMIE,
 	SHELLIE,
 	PUMKIE
 }

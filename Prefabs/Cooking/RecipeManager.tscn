@@ -203,7 +203,7 @@ script = ExtResource("2_kt12l")
 input = Array[ExtResource("3_qxj82")]([SubResource("Resource_hv1mo")])
 output = SubResource("Resource_pumkk")
 
-[node name="Fierie" type="Node" parent="."]
+[node name="Flamie" type="Node" parent="."]
 script = ExtResource("2_kt12l")
 input = Array[ExtResource("3_qxj82")]([SubResource("Resource_ol077")])
 output = SubResource("Resource_4ktsk")
