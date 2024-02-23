@@ -166,7 +166,8 @@ insert_particles = ExtResource("4_smo6c")
 pull_particles = ExtResource("5_ydn4m")
 pull_complete_particles = ExtResource("6_7tbpl")
 shovel_settings = Array[ExtResource("13_viqha")]([SubResource("Resource_kpcut")])
-ranged_grab_method = 2
+release_mode = 0
+ranged_grab_method = 0
 ranged_grab_speed = 2.5
 
 [node name="CollisionShape3D" parent="." index="0"]

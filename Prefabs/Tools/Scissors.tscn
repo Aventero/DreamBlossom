@@ -93,6 +93,7 @@ _surfaces = [{
 script = ExtResource("2_2idro")
 open_scissors = NodePath("Open")
 closed_scissors = NodePath("Closed")
+release_mode = 0
 ranged_grab_method = 0
 
 [node name="CollisionShape3D" parent="." index="0"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drynbtcx7drpc"]
 
-[ext_resource type="Script" path="res://Scripts/KorikoManager.gd" id="1_f211d"]
+[ext_resource type="Script" path="res://Scripts/Utility/KorikoManager.gd" id="1_f211d"]
 
 [node name="KorikoManager" type="Timer"]
 script = ExtResource("1_f211d")

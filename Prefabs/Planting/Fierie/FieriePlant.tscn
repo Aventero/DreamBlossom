@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="11_tejm3"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="12_vpf6h"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="13_n5hae"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent.gd" id="14_iufqd"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="14_iufqd"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="14_u4e5w"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="15_dt23y"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="15_jmq6w"]
