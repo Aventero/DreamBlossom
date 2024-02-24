@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://deixlqjk2x6ue"]
+
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceCube.gd" id="1_brro3"]
+[ext_resource type="PackedScene" uid="uid://dmk73oyqrbga1" path="res://Particles/IceHit.tscn" id="2_jia4v"]
+[ext_resource type="PackedScene" uid="uid://df6dujdwnq7sb" path="res://Particles/IceDestroy.tscn" id="3_81b5c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_77u0t"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irfs6"]
+transparency = 1
+albedo_color = Color(0.87451, 0.886275, 1, 0.309804)
+metallic_specular = 1.0
+roughness = 0.26
+rim_enabled = true
+rim = 0.79
+rim_tint = 1.0
+clearcoat_enabled = true
+clearcoat = 0.0
+clearcoat_roughness = 0.98
+refraction_scale = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ur3bf"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_ri57d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iey44"]
+curve = SubResource("Curve_ri57d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q8ggi"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iey44")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6r3w"]
+shading_mode = 0
+albedo_color = Color(0.878431, 0.901961, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d03pn"]
+material = SubResource("StandardMaterial3D_i6r3w")
+size = Vector2(0.01, 0.01)
+orientation = 2
+
+[node name="IceCube" type="Node3D"]
+script = ExtResource("1_brro3")
+velocity_threshold = 2.0
+hit_particles = ExtResource("2_jia4v")
+complete_particles = ExtResource("3_81b5c")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="IceCube" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("BoxMesh_77u0t")
+surface_material_override/0 = SubResource("StandardMaterial3D_irfs6")
+
+[node name="Pickaxe Trigger" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="Shape" type="CollisionShape3D" parent="Pickaxe Trigger"]
+shape = SubResource("BoxShape3D_ur3bf")
+
+[node name="Ice Dust" type="GPUParticles3D" parent="."]
+amount = 4
+lifetime = 2.0
+explosiveness = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_q8ggi")
+draw_pass_1 = SubResource("PlaneMesh_d03pn")
+
+[connection signal="area_entered" from="Pickaxe Trigger" to="." method="_on_pickaxe_trigger_body_entered"]
+[connection signal="body_entered" from="Pickaxe Trigger" to="." method="_on_pickaxe_trigger_body_entered"]

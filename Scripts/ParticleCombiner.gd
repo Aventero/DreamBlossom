@@ -2,6 +2,8 @@
 class_name ParticleCombiner
 extends Node3D
 
+signal complete
+
 @export var start_on_ready : bool = true
 
 func _ready():
@@ -21,4 +23,5 @@ func _change_state(state : bool):
 
 func _process(delta):
 	if get_child_count() == 0:
+		complete.emit()
 		queue_free()

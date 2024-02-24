@@ -16,14 +16,14 @@ size = Vector3(0.1, 0.1, 0.1)
 material = ExtResource("3_cfuf2")
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_310va"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cacld"]
 cull_mode = 1
 shading_mode = 0
 albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
 grow_amount = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ls1p"]
-material = SubResource("StandardMaterial3D_310va")
+material = SubResource("StandardMaterial3D_cacld")
 size = Vector3(0.11, 0.11, 0.11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriak"]

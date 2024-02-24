@@ -1,8 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=53 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
-[ext_resource type="Shader" path="res://Shader/Outline_Deprecated.gdshader" id="2_0fnsu"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="4_yyuga"]
 [ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="5_rchdc"]
@@ -36,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
 [ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/PumkieIcon.png" id="26_rpomn"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
+[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -48,26 +48,6 @@ sky = SubResource("Sky_5ota8")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t27nq"]
-render_priority = 0
-shader = ExtResource("2_0fnsu")
-shader_parameter/outlineColor = Color(0, 0, 0, 0.78)
-shader_parameter/depth_threshold = 0.025
-shader_parameter/normal_threshold = 0.5
-shader_parameter/normal_smoothing = 0.25
-shader_parameter/max_thickness = 0.5
-shader_parameter/min_thickness = 0.5
-shader_parameter/max_distance = 75.0
-shader_parameter/min_distance = 2.0
-shader_parameter/grazing_fresnel_power = 5.0
-shader_parameter/grazing_angle_mask_power = 1.0
-shader_parameter/grazing_angle_modulation_factor = 50.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_clf7f"]
-material = SubResource("ShaderMaterial_t27nq")
-flip_faces = true
-size = Vector2(2, 2)
 
 [sub_resource type="GDScript" id="GDScript_mo61k"]
 script/source = "extends XROrigin3D
@@ -146,11 +126,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_88j2n")
-
-[node name="Outline Shader" type="MeshInstance3D" parent="."]
-visible = false
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_clf7f")
 
 [node name="Player" parent="." instance=ExtResource("1_rip8e")]
 script = SubResource("GDScript_mo61k")
@@ -252,6 +227,18 @@ shape = SubResource("BoxShape3D_axmly")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, 0.0214857, 0, 0.189688)
 mesh = SubResource("BoxMesh_neeav")
 
+[node name="Table2" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Table2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
+shape = SubResource("BoxShape3D_axmly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Table2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.0102562, 0, 0.189688)
+mesh = SubResource("BoxMesh_neeav")
+skeleton = NodePath("../../Table2")
+
 [node name="Plot" parent="." instance=ExtResource("10_tfn6c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
@@ -326,17 +313,6 @@ transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.
 [node name="Scissors" parent="." instance=ExtResource("15_76tl2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569539, 0.890719, 0.0531206)
 
-[node name="Table" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.191284)
-shape = SubResource("BoxShape3D_axmly")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.86909, -0.0102562, 0, 0.189688)
-mesh = SubResource("BoxMesh_neeav")
-
 [node name="MusicBox" parent="." instance=ExtResource("16_12g1g")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 0.897504, 0.235771)
 
@@ -344,7 +320,10 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 
 transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 0.502734, 0.848511, -0.0648582)
 
 [node name="WateringCan" parent="." instance=ExtResource("10_evryj")]
-transform = Transform3D(0.846584, 0, -0.532256, 0, 1, 0, 0.532256, 0, 0.846584, 0.493522, 0.848511, 0.477011)
+transform = Transform3D(0.651437, 0, -0.758703, 0, 1, 0, 0.758703, 0, 0.651437, 0.721337, 0.896471, 0.538949)
+
+[node name="Pickaxe" parent="." instance=ExtResource("33_3a8ur")]
+transform = Transform3D(-4.02728e-08, 0.921335, 0.38877, -1, -4.37114e-08, 0, 1.69937e-08, -0.38877, 0.921335, 0.532731, 0.870547, 0.382237)
 
 [node name="Bobo" parent="." instance=ExtResource("19_cdyvb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.24385, -0.00775862, 0.253526)

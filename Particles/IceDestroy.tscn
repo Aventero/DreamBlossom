@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://df6dujdwnq7sb"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_dwtew"]
+
+[sub_resource type="Curve" id="Curve_452dq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0179641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8uqwi"]
+curve = SubResource("Curve_452dq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8t76u"]
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.5
+gravity = Vector3(0, -9.81, 0)
+scale_curve = SubResource("CurveTexture_8uqwi")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6r3w"]
+shading_mode = 0
+albedo_color = Color(0.878431, 0.901961, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d03pn"]
+material = SubResource("StandardMaterial3D_i6r3w")
+size = Vector2(0.01, 0.01)
+orientation = 2
+
+[sub_resource type="GDScript" id="GDScript_2u0sw"]
+script/source = "extends GPUParticles3D
+
+
+func _on_finished():
+	queue_free()
+"
+
+[sub_resource type="Curve" id="Curve_etjeh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0988024, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iuact"]
+curve = SubResource("Curve_etjeh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bx1oh"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.05
+initial_velocity_max = 0.1
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0.01, 0)
+scale_curve = SubResource("CurveTexture_iuact")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ttl"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.933333, 0.945098, 1, 1)
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vggh7"]
+material = SubResource("StandardMaterial3D_j2ttl")
+size = Vector2(0.01, 0.01)
+orientation = 2
+
+[sub_resource type="GDScript" id="GDScript_3y284"]
+script/source = "extends GPUParticles3D
+
+
+func _on_finished():
+	queue_free()
+"
+
+[node name="ParticleCombiner" type="Node3D"]
+script = ExtResource("1_dwtew")
+
+[node name="Ice Destroy" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0444283, 0)
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8t76u")
+draw_pass_1 = SubResource("PlaneMesh_d03pn")
+script = SubResource("GDScript_2u0sw")
+
+[node name="Ice Dust" type="GPUParticles3D" parent="."]
+emitting = false
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bx1oh")
+draw_pass_1 = SubResource("PlaneMesh_vggh7")
+script = SubResource("GDScript_3y284")
+
+[connection signal="finished" from="Ice Destroy" to="Ice Destroy" method="_on_finished"]
+[connection signal="finished" from="Ice Dust" to="Ice Dust" method="_on_finished"]

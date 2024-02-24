@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://2x5g6x5e1k7"]
+[gd_scene load_steps=119 format=3 uid="uid://2x5g6x5e1k7"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_pse6x"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_2fcmw"]
@@ -14,12 +14,15 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="14_ty8pd"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="15_n3esw"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/WeedEvent.png" id="16_o1o87"]
+[ext_resource type="Texture2D" uid="uid://cfbtuqoudc0un" path="res://Textures/Square.png" id="16_ulwmh"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
 [ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="18_v0q0r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="19_anm5m"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/LeafPullEvent.png" id="20_1l3hj"]
 [ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Planting/Fruits/BlubburuFruit.tscn" id="20_3dg6d"]
+[ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="20_d7qg2"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="21_g8rrp"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="22_asydb"]
 
@@ -4212,18 +4215,33 @@ transform = Transform3D(-0.931845, -0.0950858, 0.350177, -0.0180959, 0.976032, 0
 [node name="Spawnpoint 3" type="Node3D" parent="Stage2/WeedEvent" index="2"]
 transform = Transform3D(0.00831927, -0.279625, 0.960073, -0.130919, 0.951538, 0.278274, -0.991359, -0.128007, -0.0286919, 0.065962, 0.010263, -0.131882)
 
+[node name="IceFairyEvent" type="Node3D" parent="Stage2" index="5"]
+script = ExtResource("19_anm5m")
+ice_cube = ExtResource("20_d7qg2")
+icon_texture = ExtResource("16_ulwmh")
+
+[node name="Spawnpoint 1" type="Node3D" parent="Stage2/IceFairyEvent" index="0"]
+transform = Transform3D(-0.5065, 0.0684694, 0.314276, 0.052271, 0.595977, -0.0455998, -0.317372, -0.0111146, -0.509069, -0.11376, 0.198479, -0.07513)
+
+[node name="Spawnpoint 2" type="Node3D" parent="Stage2/IceFairyEvent" index="1"]
+transform = Transform3D(0.14232, 0.00461412, 0.264052, -0.0106242, 0.299811, 0.000487279, -0.263879, -0.00958229, 0.142394, 0.108397, 0.284294, -0.0956674)
+
+[node name="Spawnpoint 3" type="Node3D" parent="Stage2/IceFairyEvent" index="2"]
+transform = Transform3D(0.375061, 0.0673329, -0.520404, -0.136933, 0.630063, -0.0171678, 0.506561, 0.120464, 0.38067, 0.0921338, 0.193805, 0.117531)
+
 [node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_icewp")
 animation_time = 8.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.694, 0)
 
-[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0"]
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
 script = ExtResource("19_af8bs")
 fruit = ExtResource("20_3dg6d")
 delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
+despawn_models = [NodePath("../../Model/Blubburu2"), NodePath("../../Model/Blubburu3"), NodePath("../../Model/Blubburu")]
 icon_texture = ExtResource("21_g8rrp")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
