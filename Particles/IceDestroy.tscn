@@ -44,21 +44,20 @@ func _on_finished():
 "
 
 [sub_resource type="Curve" id="Curve_etjeh"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0988024, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0479042, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_iuact"]
 curve = SubResource("Curve_etjeh")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bx1oh"]
-emission_shape = 1
-emission_sphere_radius = 0.05
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_sphere_radius = 0.08
 angle_min = -180.0
 angle_max = 180.0
 direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_min = 0.05
-initial_velocity_max = 0.1
 angular_velocity_min = -180.0
 angular_velocity_max = 180.0
 gravity = Vector3(0, 0.01, 0)
@@ -113,7 +112,7 @@ script = SubResource("GDScript_2u0sw")
 
 [node name="Ice Dust" type="GPUParticles3D" parent="."]
 emitting = false
-lifetime = 4.0
+lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60

@@ -35,8 +35,9 @@ func _on_pickaxe_trigger_body_entered(pickaxe_end):
 	if _total_hits >= hits_required:
 		# Report destroyed cube
 		ice_fairy_event.ice_cube_destroyed()
-		
 		pickaxe_trigger.queue_free()
+		
+		$"Ice Dust".emitting = false
 		
 		# Complete particles
 		var complete_particles_instance : ParticleCombiner = complete_particles.instantiate()

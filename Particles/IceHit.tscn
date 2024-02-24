@@ -44,7 +44,7 @@ func _on_finished():
 "
 
 [sub_resource type="Curve" id="Curve_f3dmw"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.176647, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.101796, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_q2s6n"]

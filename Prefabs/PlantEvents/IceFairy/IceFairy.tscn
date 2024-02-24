@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://veqkxhrjmuum"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iabxc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qo2r"]
+material = SubResource("StandardMaterial3D_iabxc")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="Curve" id="Curve_jrqwc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.182635, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ceob3"]
+curve = SubResource("Curve_jrqwc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyxg0"]
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, -0.05, 0)
+scale_curve = SubResource("CurveTexture_ceob3")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edmux"]
+shading_mode = 0
+albedo_color = Color(0.996078, 0.701961, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8yiic"]
+material = SubResource("StandardMaterial3D_edmux")
+size = Vector2(0.005, 0.005)
+
+[node name="IceFairy" type="Node3D"]
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="TMP" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("BoxMesh_3qo2r")
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+amount = 20
+lifetime = 5.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_iyxg0")
+draw_pass_1 = SubResource("QuadMesh_8yiic")

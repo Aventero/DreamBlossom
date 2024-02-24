@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://o5roe0nubwuy"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_yoger"]
+
+[sub_resource type="Curve" id="Curve_f3dmw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.101796, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q2s6n"]
+curve = SubResource("Curve_f3dmw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vfke8"]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_sphere_radius = 0.05
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0.01, 0)
+scale_curve = SubResource("CurveTexture_q2s6n")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lybj8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.933333, 0.945098, 1, 1)
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m544g"]
+material = SubResource("StandardMaterial3D_lybj8")
+size = Vector2(0.01, 0.01)
+orientation = 2
+
+[sub_resource type="GDScript" id="GDScript_2u0sw"]
+script/source = "extends GPUParticles3D
+
+
+func _on_finished():
+	queue_free()
+"
+
+[node name="ParticleCombiner" type="Node3D"]
+script = ExtResource("1_yoger")
+
+[node name="Ice Dust" type="GPUParticles3D" parent="."]
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_vfke8")
+draw_pass_1 = SubResource("PlaneMesh_m544g")
+script = SubResource("GDScript_2u0sw")
+
+[connection signal="finished" from="Ice Dust" to="Ice Dust" method="_on_finished"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciajs30hmedpn"]
+
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FairySpawn.gd" id="1_fldel"]
+
+[node name="FairySpawn" type="Node3D"]
+script = ExtResource("1_fldel")
+vertical_movement_frequency = 5.0
+
+[node name="Fairy" type="Node3D" parent="."]
+transform = Transform3D(0.98036, 0, 0.197215, 0, 1, 0, -0.197215, 0, 0.98036, 0.49018, -0.0837439, -0.0986074)
