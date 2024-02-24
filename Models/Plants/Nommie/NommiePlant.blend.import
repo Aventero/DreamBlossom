@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cc6su7427d6o2"
-path="res://.godot/imported/Nommie.blend-3a0610e9cb653cf5e963cafebdc7d7e6.scn"
+path="res://.godot/imported/NommiePlant.blend-5e6e585a2ffb171cff6c1e458edcbb9d.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Nommie/Nommie.blend"
-dest_files=["res://.godot/imported/Nommie.blend-3a0610e9cb653cf5e963cafebdc7d7e6.scn"]
+source_file="res://Models/Plants/Nommie/NommiePlant.blend"
+dest_files=["res://.godot/imported/NommiePlant.blend-5e6e585a2ffb171cff6c1e458edcbb9d.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ import_script/path=""
 _subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
-blender/nodes/visible=0
+blender/nodes/visible=1
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true

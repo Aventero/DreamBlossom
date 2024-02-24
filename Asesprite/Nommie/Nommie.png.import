@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6ngrnol8f3vu"
-path.s3tc="res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.s3tc.ctex"
-path.etc2="res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.etc2.ctex"
+path="res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Asesprite/Nommie/Nommie.png"
-dest_files=["res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.s3tc.ctex", "res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.etc2.ctex"]
+dest_files=["res://.godot/imported/Nommie.png-351d59d111abe31aa3c86b3f400e0f25.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
