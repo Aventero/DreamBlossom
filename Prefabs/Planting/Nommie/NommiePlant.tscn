@@ -1,9 +1,16 @@
-[gd_scene load_steps=56 format=3 uid="uid://4exhe7q8f0pk"]
+[gd_scene load_steps=65 format=3 uid="uid://4exhe7q8f0pk"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_g352r"]
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Asesprite/Nommie/Nommie.png" id="2_eky44"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_eu8ea"]
-[ext_resource type="PackedScene" uid="uid://d3nen6x7rrgq6" path="res://Prefabs/Planting/Nommie/NommieFruit_OLD.tscn" id="3_x11i0"]
+[ext_resource type="PackedScene" uid="uid://x383puql3qqj" path="res://Models/Plants/Nommie/NommieFruit.blend" id="3_iyxgf"]
+[ext_resource type="PackedScene" uid="uid://ciqjbmc6kj1vk" path="res://Prefabs/Planting/Fruits/NommieFruit.tscn" id="3_x11i0"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_47ol3"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="5_4reld"]
+[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="6_suqks"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="7_eknbp"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="9_esdep"]
+[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/FruitEvent.png" id="9_gjg3d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1r3w"]
 resource_name = "Nommie"
@@ -47,6 +54,66 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7w1be")
+
+[sub_resource type="Shader" id="Shader_6gfda"]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform float alpha_scissor_threshold;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+instance uniform float strength = 1.0;
+instance uniform float speed_scale = 2.0;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	// Foliage
+	VERTEX.x += sin(TIME * speed_scale + VERTEX.y * 40.0) * 0.075 * length(VERTEX) * strength;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqrjr"]
+resource_name = "Nommie"
+render_priority = 0
+shader = SubResource("Shader_6gfda")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_eky44")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e3gij"]
 _surfaces = [{
@@ -1265,7 +1332,7 @@ tracks/43/keys = {
 tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("Model/NommieFruit:scale")
+tracks/44/path = NodePath("Model/NommieFruit1:scale")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
@@ -1277,7 +1344,7 @@ tracks/44/keys = {
 tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("Model/NommieFruit:rotation")
+tracks/45/path = NodePath("Model/NommieFruit1:rotation")
 tracks/45/interp = 2
 tracks/45/loop_wrap = true
 tracks/45/keys = {
@@ -1865,78 +1932,6 @@ tracks/43/keys = {
 "update": 0,
 "values": [Vector3(1.41228, -2.0064, -2.06149)]
 }
-tracks/44/type = "value"
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/path = NodePath("Model/NommieFruit:scale")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/45/type = "value"
-tracks/45/imported = false
-tracks/45/enabled = true
-tracks/45/path = NodePath("Model/NommieFruit:rotation")
-tracks/45/interp = 1
-tracks/45/loop_wrap = true
-tracks/45/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/46/type = "value"
-tracks/46/imported = false
-tracks/46/enabled = true
-tracks/46/path = NodePath("Model/NommieFruit2:scale")
-tracks/46/interp = 1
-tracks/46/loop_wrap = true
-tracks/46/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/47/type = "value"
-tracks/47/imported = false
-tracks/47/enabled = true
-tracks/47/path = NodePath("Model/NommieFruit2:rotation")
-tracks/47/interp = 1
-tracks/47/loop_wrap = true
-tracks/47/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/48/type = "value"
-tracks/48/imported = false
-tracks/48/enabled = true
-tracks/48/path = NodePath("Model/NommieFruit3:scale")
-tracks/48/interp = 1
-tracks/48/loop_wrap = true
-tracks/48/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/49/type = "value"
-tracks/49/imported = false
-tracks/49/enabled = true
-tracks/49/path = NodePath("Model/NommieFruit3:rotation")
-tracks/49/interp = 1
-tracks/49/loop_wrap = true
-tracks/49/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.72604e-09, 0.181933, -0.102608)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ptuwf"]
 _data = {
@@ -1991,68 +1986,86 @@ shadow_mesh = SubResource("ArrayMesh_n3tnc")
 
 [node name="Leaf_010" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(0.994957, -0.0749936, 0.0666066, 0.0612751, -0.0712802, -0.995572, 0.0794092, 0.994633, -0.0663255, 0.0632936, 0.336569, -0.0693082)
+instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_vdwal")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_005" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(0.988458, 0.0497057, -0.143112, -0.139228, -0.0743865, -0.987463, -0.0597281, 0.99599, -0.0666075, 0.00130753, 0.523494, -0.0486093)
+instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_mmc6t")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_012" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.984233, 0.172936, 0.0371224, 0.034795, 0.0164717, -0.999259, -0.173419, 0.984795, 0.0101947, -0.0626815, 0.196412, -0.0269553)
+instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_5n2kq")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_013" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(0.709258, 0, -0.704949, 0, 1, 0, 0.704949, 0, 0.709258, 0.00061755, 0.0194438, -0.00797604)
+instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_fqf88")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_014" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(-0.0166701, -0.00544853, -0.999846, 0.0343709, 0.999391, -0.0060191, 0.99927, -0.034466, -0.0164727, -0.00255073, 0.0231606, -0.0238403)
 mesh = SubResource("ArrayMesh_6ienx")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_015" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(-0.597232, 0.456918, 0.659196, 0.802041, 0.333436, 0.49553, 0.00661698, 0.824649, -0.565606, 0.0766046, 0.164639, -0.0300661)
 mesh = SubResource("ArrayMesh_ekuai")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_016" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(-0.953101, 0.300989, -0.0316789, 0.0231257, 0.176792, 0.983977, 0.301767, 0.937097, -0.175461, 0.0649762, 0.279132, -0.093075)
 mesh = SubResource("ArrayMesh_tojo5")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_017" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(-0.310688, 0.422207, -0.851595, -0.393014, 0.758699, 0.519534, 0.865455, 0.496102, -0.0697851, 0.0297573, 0.10258, -0.0672724)
 mesh = SubResource("ArrayMesh_dcls7")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_018" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(0.24617, 0.0333184, -0.968654, 0.120729, 0.990571, 0.0647539, 0.961678, -0.132885, 0.239826, 0.0161673, 0.171113, -0.0820998)
 mesh = SubResource("ArrayMesh_blscb")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(0.543153, -0.142264, -0.827493, -0.00627239, 0.984826, -0.17343, 0.83961, 0.0993892, 0.534019, -0.0211225, 0.339369, -0.0657728)
 mesh = SubResource("ArrayMesh_6jhd6")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_011" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.941545, -0.268874, 0.202979, 0.290077, 0.953431, -0.082607, -0.171315, 0.136658, 0.975692, -0.0905404, 0.480566, -0.0496108)
+instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_sivhb")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_004" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(-0.666363, -0.589606, 0.456426, 0.312761, 0.334657, 0.888924, -0.676861, 0.735098, -0.0385974, -0.0910493, 0.381049, -0.0718774)
 mesh = SubResource("ArrayMesh_bgtus")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_009" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(-0.985975, 0.163916, 0.0313737, 0.132878, 0.657288, 0.741833, 0.100977, 0.735597, -0.669851, -0.078549, 0.436581, -0.0435127)
 mesh = SubResource("ArrayMesh_hno5j")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_027" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(0.999974, 0.0071993, -0.000258603, -0.00591701, 0.841283, 0.540562, 0.00410922, -0.540546, 0.841304, 0.00160307, -0.00920491, -0.00666186)
@@ -2099,21 +2112,105 @@ transform = Transform3D(0.840681, 0.541528, -0.00169087, -0.453012, 0.701549, -0
 mesh = SubResource("ArrayMesh_7ch32")
 skeleton = NodePath("")
 
-[node name="NommieFruit" parent="Model" index="22" instance=ExtResource("3_x11i0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0595729, 0.218215, 0.0146779)
+[node name="NommieFruit1" parent="Model" index="22" instance=ExtResource("3_iyxgf")]
+transform = Transform3D(0.995161, 0.0982603, 0, -0.0982603, 0.995161, 0, 0, 0, 1, -0.0595729, 0.218215, 0.0146779)
 
-[node name="NommieFruit2" parent="Model" index="23" instance=ExtResource("3_x11i0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639237, 0.3583, -0.032154)
+[node name="Bottom_004" parent="Model/NommieFruit1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0.00146484, 0, 0.0146484)
 
-[node name="NommieFruit3" parent="Model" index="24" instance=ExtResource("3_x11i0")]
-transform = Transform3D(0.978323, 0.100738, 0.180931, -0.102428, 0.99474, 2.72604e-09, -0.179979, -0.0185324, 0.983496, 0.00544426, 0.531364, -0.0152283)
+[node name="Top_008" parent="Model/NommieFruit1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0.00146484, 0, 0.0146484)
+
+[node name="NommieFruit2" parent="Model" index="23" instance=ExtResource("3_iyxgf")]
+transform = Transform3D(1, 0, 0, 0, 0.999243, -0.038911, 0, 0.038911, 0.999243, 0.0639237, 0.3583, -0.032154)
+
+[node name="Bottom_004" parent="Model/NommieFruit2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0.00146484, 0, 0.0146484)
+
+[node name="Top_008" parent="Model/NommieFruit2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.632029, 0.774944, 0, -0.774944, 0.632029, 0.00146484, 0, 0.0146484)
+
+[node name="NommieFruit3" parent="Model" index="24" instance=ExtResource("3_iyxgf")]
+transform = Transform3D(0.995546, -0.0810478, -0.0481565, 0.0754719, 0.991273, -0.10808, 0.0564959, 0.103965, 0.992975, 0.00544426, 0.531364, -0.0152283)
+
+[node name="Bottom_004" parent="Model/NommieFruit3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0.00146484, 0, 0.0146484)
+
+[node name="Top_008" parent="Model/NommieFruit3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.632029, 0.774944, 0, -0.774944, 0.632029, 0.00146484, 0, 0.0146484)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_ptuwf")
 }
 
-[node name="DigSpot" type="MeshInstance3D" parent="." index="5"]
+[node name="IconDisplay" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.700844, 1.53359e-08)
+
+[node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
+script = ExtResource("4_47ol3")
+animation_time = 10.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.35, 0)
+
+[node name="WateringEvent" type="Node3D" parent="Stage1" index="0"]
+script = ExtResource("5_4reld")
+icon_texture = ExtResource("6_suqks")
+
+[node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
+script = ExtResource("4_47ol3")
+animation_time = 10.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.604, 0)
+
+[node name="WateringEvent" type="Node3D" parent="Stage2" index="0"]
+script = ExtResource("5_4reld")
+icon_texture = ExtResource("6_suqks")
+
+[node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
+script = ExtResource("4_47ol3")
+animation_time = 10.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.701, 0)
+
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
+script = ExtResource("7_eknbp")
+fruit = ExtResource("3_x11i0")
+delayed_spawn = false
+start_scale = Vector3(1.1, 1.1, 1.1)
+scale_length = 0.1
+despawn_models = [NodePath("../../Model/NommieFruit1"), NodePath("../../Model/NommieFruit2"), NodePath("../../Model/NommieFruit3")]
+icon_texture = ExtResource("9_gjg3d")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
+transform = Transform3D(0.995161, 0.0982603, 0, -0.0982603, 0.995161, 0, 0, 0, 1, -0.0595729, 0.236435, 0.0146779)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage Fruit/FruitEvent" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.999243, -0.038911, 0, 0.038911, 0.999243, 0.0639237, 0.37652, -0.032154)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage Fruit/FruitEvent" index="2"]
+transform = Transform3D(0.995546, -0.0810478, -0.0481565, 0.0754719, 0.991273, -0.10808, 0.0564959, 0.103965, 0.992975, 0.00544426, 0.549584, -0.0152283)
+
+[node name="Stage Death" type="Node3D" parent="." index="8" groups=["Stage"]]
+script = ExtResource("4_47ol3")
+should_play_animation = false
+
+[node name="DeathEvent" type="Node3D" parent="Stage Death" index="0" node_paths=PackedStringArray("plant_model")]
+script = ExtResource("9_esdep")
+plant_model = NodePath("../../Model")
+
+[node name="DigSpot" type="MeshInstance3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0289763, 0)
+visible = false
 mesh = SubResource("ArrayMesh_3mllb")
 skeleton = NodePath("")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="Stage Death/DeathEvent" method="_on_animation_player_animation_finished"]
+[connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage Fruit" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage Death" to="." method="_on_stage_complete"]
+
+[editable path="Model/NommieFruit1"]
+[editable path="Model/NommieFruit2"]
+[editable path="Model/NommieFruit3"]

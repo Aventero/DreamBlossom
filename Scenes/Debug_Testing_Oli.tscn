@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=54 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
 [ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="24_1u2lc"]
 [ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
+[ext_resource type="PackedScene" uid="uid://oclhfpcij31g" path="res://Prefabs/Planting/Seeds/NommieSeed.tscn" id="26_2ncgd"]
 [ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/PumkieIcon.png" id="26_rpomn"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
 [ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
@@ -246,7 +247,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 transform = Transform3D(0.625951, 0, 0.779863, 0, 1, 0, -0.779863, 0, 0.625951, -1.40856, 1.47332, -0.902506)
 
 [node name="Shroomie Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(0.506681, 0, -0.862134, 0, 1, 0, 0.862134, 0, 0.506681, 0.877565, 0.987084, -0.337105)
+transform = Transform3D(0.567168, 0, -0.823602, 0, 1, 0, 0.823602, 0, 0.567168, 0.834377, 0.987084, -0.542417)
 item = ExtResource("18_8doel")
 ranged_grab_method = 1
 
@@ -257,7 +258,7 @@ texture_filter = 0
 texture = ExtResource("21_jjy14")
 
 [node name="Blubburu Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(0.23005, 0, -0.973179, 0, 1, 0, 0.973179, 0, 0.23005, 0.936092, 0.987084, -0.204054)
+transform = Transform3D(0.378859, 0, -0.925455, 0, 1, 0, 0.925455, 0, 0.378859, 0.903381, 0.987084, -0.414907)
 item = ExtResource("20_m5lr0")
 ranged_grab_method = 1
 
@@ -268,7 +269,7 @@ texture_filter = 0
 texture = ExtResource("10_e8ehe")
 
 [node name="Fierie Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(-0.00633529, 0, -0.99998, 0, 1, 0, 0.99998, 0, -0.00633529, 0.952207, 0.987084, -0.0610525)
+transform = Transform3D(0.149536, 0, -0.988756, 0, 1, 0, 0.988756, 0, 0.149536, 0.941578, 0.987084, -0.276162)
 item = ExtResource("22_d0ce8")
 ranged_grab_method = 1
 
@@ -279,7 +280,7 @@ texture_filter = 0
 texture = ExtResource("11_kghc3")
 
 [node name="Shellie Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(-0.134937, 0, -0.990854, 0, 1, 0, 0.990854, 0, -0.134937, 0.943622, 0.987084, 0.080605)
+transform = Transform3D(0.0210824, 0, -0.999778, 0, 1, 0, 0.999778, 0, 0.0210824, 0.955167, 0.987084, -0.134897)
 item = ExtResource("24_1u2lc")
 ranged_grab_method = 1
 
@@ -290,7 +291,7 @@ texture_filter = 0
 texture = ExtResource("12_gjvfb")
 
 [node name="Pumkie Bag" parent="." instance=ExtResource("8_rxdi4")]
-transform = Transform3D(-0.278354, 0, -0.960478, 0, 1, 0, 0.960478, 0, -0.278354, 0.917431, 0.987084, 0.214472)
+transform = Transform3D(-0.125316, 0, -0.992116, 0, 1, 0, 0.992116, 0, -0.125316, 0.950152, 0.987084, 0.00141571)
 item = ExtResource("25_ju50c")
 ranged_grab_method = 1
 
@@ -299,6 +300,16 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("26_rpomn")
+
+[node name="Nommie Bag" parent="." instance=ExtResource("8_rxdi4")]
+transform = Transform3D(-0.287193, 0, -0.957872, 0, 1, 0, 0.957872, 0, -0.287193, 0.922409, 0.987084, 0.131635)
+item = ExtResource("26_2ncgd")
+ranged_grab_method = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="Nommie Bag"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)

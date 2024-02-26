@@ -83,14 +83,14 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
-instance uniform float stength = 1.0;
+instance uniform float strength = 1.0;
 instance uniform float speed_scale = 2.0;
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
 	
 	// Foliage
-	VERTEX.x += sin(TIME * speed_scale + VERTEX.y * 40.0) * 0.075 * length(VERTEX) * stength;
+	VERTEX.x += sin(TIME * speed_scale + VERTEX.y * 40.0) * 0.075 * length(VERTEX) * strength;
 }
 
 void fragment() {
@@ -2104,7 +2104,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401626, 0)
 
 [node name="Blossom_004" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(-0.100665, 0.146338, -0.984099, -0.877044, 0.453956, 0.157219, 0.469745, 0.878925, 0.0826476, -0.0930292, 0.504086, 0.0293276)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_dl11u")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
@@ -2112,14 +2111,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 [node name="Blossom_003" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(-0.389172, 0.256407, -0.88476, -0.866741, 0.223326, 0.445967, 0.311939, 0.940415, 0.135326, -0.0437455, 0.635291, 0.033108)
 instance_shader_parameters/speed_scale = 2.0
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_r557q")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 
 [node name="Blossom" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(-0.434029, 0.850225, 0.297886, 0.635907, 0.0549105, 0.76981, 0.638155, 0.523547, -0.564497, 0.0521, 0.549425, -0.0720467)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_0w5ao")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
@@ -2156,14 +2153,12 @@ skeleton = NodePath("")
 
 [node name="Leaf_014" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.58484, -0.258899, -1.01535, -0.0722935, 1.15005, -0.334888, 1.04534, 0.224383, 0.544901, 0.0358495, 0.188802, -0.018179)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_gjf0s")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 
 [node name="Leaf_015" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(-0.805788, 0.168077, -0.567852, 0.186335, 0.982135, 0.026288, 0.562126, -0.0846282, -0.822711, 0.0280381, 0.166339, 0.0288217)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_r87so")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
@@ -2180,28 +2175,24 @@ skeleton = NodePath("")
 
 [node name="Leaf" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(-0.719166, 0.142915, 0.679982, 0.253675, 0.965072, 0.0654593, -0.646876, 0.21957, -0.730301, -0.0352043, 0.171738, 0.0219988)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_ii482")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 
 [node name="Leaf_009" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(0.184495, -0.625843, -0.757814, 0.0250274, 0.773792, -0.632945, 0.982515, 0.0978093, 0.158424, 0.0183964, 0.02887, -0.0148829)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_ds3gg")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 
 [node name="Leaf_012" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(-0.881836, 0.249317, 0.400258, -0.0216113, 0.826543, -0.562459, -0.47106, -0.504647, -0.723487, -0.0118469, 0.0314466, 0.0258317)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_wcajl")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
 
 [node name="Leaf_013" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(0.662834, 0.408451, 0.62755, 0.0167838, 0.829797, -0.557814, -0.748579, 0.38027, 0.543162, -0.00229253, 0.0330149, -0.0208175)
-instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_vphgc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qgqlj")
