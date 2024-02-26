@@ -41,15 +41,15 @@ size = Vector3(0.5, 0.126, 0.3)
 [sub_resource type="BoxMesh" id="BoxMesh_6r7os"]
 size = Vector3(0.15, 0.05, 0.15)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lr68h"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_fpxu4"]
 viewport_path = NodePath("Display Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45cfr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0nx4"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_lr68h")
+albedo_texture = SubResource("ViewportTexture_fpxu4")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hc3c"]
 transparency = 2
@@ -165,12 +165,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Display" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.0885971, 0.157852)
-material_override = SubResource("StandardMaterial3D_45cfr")
+material_override = SubResource("StandardMaterial3D_x0nx4")
 mesh = SubResource("QuadMesh_tv7xr")
 script = SubResource("GDScript_pr1w6")
 
 [node name="Display Viewport" type="SubViewport" parent="."]
 transparent_bg = true
+canvas_item_default_texture_filter = 0
 size = Vector2i(1004, 190)
 
 [node name="Cooking Chest Ingredients" parent="Display Viewport" instance=ExtResource("4_e6d0s")]

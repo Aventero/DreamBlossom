@@ -1,7 +1,7 @@
 class_name Fruit
 extends Ingredient
 
-@onready var outline_mesh : MeshInstance3D = $Model/Outline
+@onready var outline_mesh : Node3D = $Model/Outline
 
 var fruit_event : FruitEvent
 
@@ -22,3 +22,15 @@ func _on_xr_tools_highlight_visible_visibility_change(visible):
 		return
 	
 	outline_mesh.visible = !visible
+
+# Override with custom class / function
+func _on_action_pressed(pickable):
+	pass
+
+# Override with custom class / function
+func _on_action_released(pickable):
+	pass
+
+func _on_dropped(pickable):
+	# Make sure to remove trigger animation if applied
+	_on_action_released(pickable)

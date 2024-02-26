@@ -24,4 +24,7 @@ second_hand_grab = 1
 visible = false
 script = ExtResource("5_16fea")
 
+[connection signal="action_pressed" from="." to="." method="_on_action_pressed"]
+[connection signal="action_released" from="." to="." method="_on_action_released"]
+[connection signal="dropped" from="." to="." method="_on_dropped"]
 [connection signal="picked_up" from="." to="." method="_on_picked_up"]

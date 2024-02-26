@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_g352r"]
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Asesprite/Nommie/Nommie.png" id="2_eky44"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_eu8ea"]
-[ext_resource type="PackedScene" uid="uid://d3nen6x7rrgq6" path="res://Prefabs/Planting/Nommie/NommieFruit.tscn" id="3_x11i0"]
+[ext_resource type="PackedScene" uid="uid://d3nen6x7rrgq6" path="res://Prefabs/Planting/Nommie/NommieFruit_OLD.tscn" id="3_x11i0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1r3w"]
 resource_name = "Nommie"
@@ -2106,9 +2106,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0595729, 0.218215, 0.01467
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639237, 0.3583, -0.032154)
 
 [node name="NommieFruit3" parent="Model" index="24" instance=ExtResource("3_x11i0")]
-transform = Transform3D(0.978323, 0.100737, 0.180931, -0.102428, 0.99474, 2.72604e-09, -0.179979, -0.0185324, 0.983496, 0.00544426, 0.531364, -0.0152283)
+transform = Transform3D(0.978323, 0.100738, 0.180931, -0.102428, 0.99474, 2.72604e-09, -0.179979, -0.0185324, 0.983496, 0.00544426, 0.531364, -0.0152283)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_ptuwf")
 }

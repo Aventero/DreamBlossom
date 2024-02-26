@@ -3,11 +3,13 @@ extends XRToolsPickable
 
 enum Type
 {
+	# BASE FRUITS
 	SHROOMIE,
 	BLUBBURU,
 	FLAMIE,
 	SHELLIE,
-	PUMKIE
+	PUMKIE,
+	NOMMIE,
 }
 
 @export var type : Type

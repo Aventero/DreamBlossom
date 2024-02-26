@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bt6qpprarxhif"]
+[gd_scene load_steps=25 format=3 uid="uid://bt6qpprarxhif"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_kevwj"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_117t0"]
 [ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Asesprite/Pumkie/Pumkie.png" id="2_e57hv"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/PumkieFruit.gd" id="2_png0j"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_l1ruv"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_kbiwd"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="5_tfvfq"]
@@ -228,6 +229,7 @@ _surfaces = [{
 
 [node name="Pumkie" instance=ExtResource("1_kevwj")]
 collision_mask = 7
+script = ExtResource("2_png0j")
 type = 4
 two_handed_grab = true
 second_hand_grab = 2
@@ -245,6 +247,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_kmm14")
 [node name="Pumkie" type="MeshInstance3D" parent="Model" index="1"]
 mesh = SubResource("ArrayMesh_ama5o")
 skeleton = NodePath("")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Model/Pumkie" index="0"]
+remote_path = NodePath("../../../XRToolsHighlightVisible/Highlight")
 
 [node name="Eyes" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.0861155, -0.996285, 0, 0.996285, 0.0861155, 0, 0, 0)

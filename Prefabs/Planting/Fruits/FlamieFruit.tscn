@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://cl4tndyms65rq"]
+[gd_scene load_steps=19 format=3 uid="uid://cl4tndyms65rq"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_yci0m"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/FlamieFruit.gd" id="2_sk0ts"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_spvjf"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Flamie/Flamie.png" id="3_ytckv"]
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="4_k74at"]
@@ -161,6 +162,7 @@ _surfaces = [{
 }]
 
 [node name="Flamie" instance=ExtResource("1_yci0m")]
+script = ExtResource("2_sk0ts")
 type = 2
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -176,6 +178,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_k7c8a")
 [node name="Body" type="MeshInstance3D" parent="Model" index="1"]
 mesh = SubResource("ArrayMesh_35saq")
 skeleton = NodePath("")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Model/Body" index="0"]
+remote_path = NodePath("../../../XRToolsHighlightVisible/Highlight")
 
 [node name="Hair" type="MeshInstance3D" parent="Model" index="2"]
 mesh = SubResource("ArrayMesh_0ouuh")

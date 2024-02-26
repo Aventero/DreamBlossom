@@ -10,6 +10,8 @@ func initialize():
 	# Get digspot
 	digspot = DigSpotLookup.get_dig_spot(self.owner)
 	
+	digspot.set_outline(true)
+	
 	# Pick random fertilizer
 	var type_index : int = randi() % Fertilizer.Type.size()
 	var type_name : String = Fertilizer.Type.keys()[type_index]
@@ -23,6 +25,8 @@ func initialize():
 
 func _on_fertilizer_added(type : Fertilizer.Type):
 	if type == target_fertilizer_type:
+		digspot.set_outline(false)
+		
 		event_completed.emit()
 
 func cleanup():
