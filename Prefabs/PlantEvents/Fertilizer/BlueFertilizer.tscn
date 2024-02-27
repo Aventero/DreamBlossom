@@ -18,6 +18,7 @@ size = Vector3(0.05, 0.05, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i0l6n"]
 material = ExtResource("2_55a1m")
+flip_faces = true
 size = Vector3(0.055, 0.055, 0.055)
 
 [node name="Fertilizer" instance=ExtResource("1_6hvpi")]

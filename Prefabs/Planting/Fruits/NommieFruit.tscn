@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ciqjbmc6kj1vk"]
+[gd_scene load_steps=23 format=3 uid="uid://df1c66umw8kot"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_5qoqe"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Fruits/NommieFruit.gd" id="2_rejio"]
@@ -210,7 +210,7 @@ shape = SubResource("ConvexPolygonShape3D_fcl5a")
 [node name="Model" type="Node3D" parent="." index="2"]
 
 [node name="Upper_Head" type="MeshInstance3D" parent="Model" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_oarqc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_11nqq")
@@ -224,7 +224,7 @@ skeleton = NodePath("")
 remote_path = NodePath("../../../XRToolsHighlightVisible/Highlight1")
 
 [node name="Lower_Head" type="MeshInstance3D" parent="Model" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_ulkpa")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_5y6ak")
@@ -235,13 +235,13 @@ remote_path = NodePath("../../../XRToolsHighlightVisible/Highlight2")
 [node name="Outline" type="Node3D" parent="Model" index="2"]
 
 [node name="Outline_Top" type="MeshInstance3D" parent="Model/Outline" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_ccsh8")
 skeleton = NodePath("../../Upper_Head")
 surface_material_override/0 = SubResource("ShaderMaterial_0ch4c")
 
 [node name="Outline_Bottom" type="MeshInstance3D" parent="Model/Outline" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.992512, -0.122147, 0, 0.122147, 0.992512, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.992512, -0.122147, 0, 0.122147, 0.992512, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_06dyq")
 skeleton = NodePath("../../Lower_Head")
 surface_material_override/0 = SubResource("ShaderMaterial_t4che")
@@ -253,13 +253,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0410503, 0.0474741, -0.039
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041, 0.047, -0.04)
 
 [node name="Highlight1" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.631664, 0.775242, 0, -0.775242, 0.631664, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_402k7")
 skeleton = NodePath("../../Model/Upper_Head")
 surface_material_override/0 = ExtResource("4_aqrxv")
 
 [node name="Highlight2" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 0, 0.015)
 mesh = SubResource("ArrayMesh_ea7xs")
 skeleton = NodePath("../../Model/Lower_Head")
 surface_material_override/0 = ExtResource("4_aqrxv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c1nll5jy2q080"]
+[gd_scene load_steps=33 format=3 uid="uid://c1nll5jy2q080"]
 
 [ext_resource type="Script" path="res://Scripts/Cooking/RecipeManager.gd" id="1_qwyvi"]
 [ext_resource type="Script" path="res://Scripts/Cooking/Recipe.gd" id="2_kt12l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="8_1dg8r"]
 [ext_resource type="PackedScene" uid="uid://bjpxcuhfxy4br" path="res://Prefabs/Planting/Fruits/ShellieFruit.tscn" id="8_wed1j"]
 [ext_resource type="PackedScene" uid="uid://bt6qpprarxhif" path="res://Prefabs/Planting/Fruits/PumkieFruit.tscn" id="9_ykr2g"]
+[ext_resource type="PackedScene" uid="uid://df1c66umw8kot" path="res://Prefabs/Planting/Fruits/NommieFruit.tscn" id="11_38p0w"]
 
 [sub_resource type="Resource" id="Resource_ldv1e"]
 script = ExtResource("3_qxj82")
@@ -190,6 +191,16 @@ script = ExtResource("5_ndad3")
 ingredient = 4
 object = ExtResource("9_ykr2g")
 
+[sub_resource type="Resource" id="Resource_bmkfs"]
+script = ExtResource("3_qxj82")
+ingredient = 5
+amount = 2
+
+[sub_resource type="Resource" id="Resource_ubmnm"]
+script = ExtResource("5_ndad3")
+ingredient = 5
+object = ExtResource("11_38p0w")
+
 [node name="RecipeManager" type="Node3D"]
 script = ExtResource("1_qwyvi")
 
@@ -217,3 +228,8 @@ output = SubResource("Resource_nsvj0")
 script = ExtResource("2_kt12l")
 input = Array[ExtResource("3_qxj82")]([SubResource("Resource_2c67f")])
 output = SubResource("Resource_cas8f")
+
+[node name="Nommie" type="Node" parent="."]
+script = ExtResource("2_kt12l")
+input = Array[ExtResource("3_qxj82")]([SubResource("Resource_bmkfs")])
+output = SubResource("Resource_ubmnm")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=56 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
 [ext_resource type="PackedScene" uid="uid://oclhfpcij31g" path="res://Prefabs/Planting/Seeds/NommieSeed.tscn" id="26_2ncgd"]
 [ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/PumkieIcon.png" id="26_rpomn"]
+[ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/NommieIcon.png" id="27_nrjkk"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
 [ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
 
@@ -91,6 +92,11 @@ texture = ExtResource("12_gjvfb")
 script = ExtResource("23_sn5yw")
 type = 4
 texture = ExtResource("26_rpomn")
+
+[sub_resource type="Resource" id="Resource_4g8gd"]
+script = ExtResource("23_sn5yw")
+type = 5
+texture = ExtResource("27_nrjkk")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3skh4"]
 lightmap_size_hint = Vector2i(1004, 508)
@@ -162,7 +168,7 @@ plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("22_2d7uo")
-ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew"), SubResource("Resource_8mku3")])
+ingredients_textures = Array[ExtResource("23_sn5yw")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew"), SubResource("Resource_8mku3"), SubResource("Resource_4g8gd")])
 
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("18_drpy2")
@@ -310,6 +316,7 @@ ranged_grab_method = 1
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
 billboard = 2
 texture_filter = 0
+texture = ExtResource("27_nrjkk")
 
 [node name="BlueFertilizerBag" parent="." instance=ExtResource("12_w62ws")]
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)
