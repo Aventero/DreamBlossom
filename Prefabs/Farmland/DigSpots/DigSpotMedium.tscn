@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://b82hongws0y4"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_oflii"]
-[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="3_7sw7e"]
+[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="3_7sw7e"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="3_rxx2g"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_dv1u3"]
 [ext_resource type="Texture2D" uid="uid://ctn71eky1wrve" path="res://Textures/Square.png" id="5_5v40f"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgm7dyn5upwue"
-path="res://.godot/imported/DigSpotHole.png-5a6b868ac3eb86458db151bba87f16ef.ctex"
+uid="uid://cui4qkyonsu5h"
+path="res://.godot/imported/DigSpot.png-af82e8544e7985ed5d1ab15d4a4f32bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Models/DigSpotHole.png"
-dest_files=["res://.godot/imported/DigSpotHole.png-5a6b868ac3eb86458db151bba87f16ef.ctex"]
+source_file="res://Textures/Farmland/DigSpot.png"
+dest_files=["res://.godot/imported/DigSpot.png-af82e8544e7985ed5d1ab15d4a4f32bc.ctex"]
 
 [params]
 

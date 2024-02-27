@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/Shovel/ShovelPullComplete.tscn" id="2_nlffj"]
 [ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/Shovel/ShovelInsert.tscn" id="3_suh21"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="4_f013i"]
-[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="5_jaky1"]
+[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="5_jaky1"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_djxba"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1311s"]
