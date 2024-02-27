@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://8ecc2uq3sg6u"]
 
-[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="1_2i14t"]
+[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="1_2i14t"]
 
 [node name="Icon" type="TextureRect"]
 anchors_preset = 15

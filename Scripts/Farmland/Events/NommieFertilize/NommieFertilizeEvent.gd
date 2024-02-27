@@ -1,10 +1,10 @@
-@icon("res://Textures/Fertilizer.png")
+@icon("res://Textures/EditorIcons/Fertilizer.png")
 class_name NommieFertilizeEvent
 extends PlantEvent
 
 @export var nommies : Array[NommieGrowingFruit]
 
-var icon_texture_override : Array[Texture2D] = [preload("res://Textures/FertilizerBlueIcon.png"), preload("res://Textures/FertilizerOrangeIcon.png"), preload("res://Textures/FertilizerGreenIcon.png")]
+var icon_texture_override : Array[Texture2D] = [preload("res://Textures/EventIcons/FertilizerBlueIcon.png"), preload("res://Textures/EventIcons/FertilizerOrangeIcon.png"), preload("res://Textures/EventIcons/FertilizerGreenIcon.png")]
 var target_fertilizer_type : Fertilizer.Type
 
 var _target_amount : int = 1

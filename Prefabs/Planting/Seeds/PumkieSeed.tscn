@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_bjvkp"]
 [ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="2_t5tpc"]
-[ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Asesprite/Pumkie/Pumkie.png" id="3_0ijwc"]
+[ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Textures/Fruits/Pumkie/Pumkie.png" id="3_0ijwc"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_f7vcu"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s80rb"]

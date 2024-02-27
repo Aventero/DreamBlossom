@@ -1,4 +1,4 @@
-@icon("res://Textures/Stage.png")
+@icon("res://Textures/EditorIcons/Stage.png")
 class_name Stage
 extends Node3D
 

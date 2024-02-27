@@ -1,4 +1,4 @@
-@icon("res://Textures/LeafPullEvent.png")
+@icon("res://Textures/EditorIcons/LeafPullEvent.png")
 class_name KnospEvent
 extends PlantEvent
 

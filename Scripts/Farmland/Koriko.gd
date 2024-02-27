@@ -1,4 +1,4 @@
-@icon("res://Textures/Koriko.png")
+@icon("res://Textures/EditorIcons/Koriko.png")
 class_name Koriko
 extends XRToolsPickable
 

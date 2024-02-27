@@ -1,19 +1,19 @@
 [gd_scene load_steps=105 format=3 uid="uid://v4beiflx1jg0"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_w6w67"]
-[ext_resource type="Texture2D" uid="uid://cyel2u8q7cbpu" path="res://Asesprite/Blubbie/Blubbie.png" id="2_gvx52"]
-[ext_resource type="Texture2D" uid="uid://bqgc238nmfn4u" path="res://Textures/AirBubble.png" id="3_14f48"]
+[ext_resource type="Texture2D" uid="uid://54voijuwx3tf" path="res://Textures/Fruits/Shellie/Shellie.png" id="2_vdyeh"]
+[ext_resource type="Texture2D" uid="uid://bqgc238nmfn4u" path="res://Textures/Particles/AirBubble.png" id="3_14f48"]
 [ext_resource type="PackedScene" uid="uid://dou3g7gi5ly7k" path="res://Models/Plants/Shellie/Shellie.blend" id="4_6kqr7"]
 [ext_resource type="PackedScene" uid="uid://b8css0km2tm8c" path="res://Prefabs/PlantEvents/Shellie/ShellieWatering.tscn" id="4_jnajs"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="5_annfc"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FertilizeEvent.gd" id="5_lntr0"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_bjhe2"]
-[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="7_27n7s"]
+[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="7_27n7s"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="8_8lnms"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/ShellieWateringEvent.gd" id="9_gvlgp"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="10_lu1cx"]
 [ext_resource type="PackedScene" uid="uid://bjpxcuhfxy4br" path="res://Prefabs/Planting/Fruits/ShellieFruit.tscn" id="11_ta57h"]
-[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/WaterIcon.png" id="12_cjc1v"]
+[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="12_cjc1v"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="12_tc71c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27nfy"]
@@ -22,7 +22,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("2_gvx52")
+albedo_texture = ExtResource("2_vdyeh")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ic6cx"]
@@ -719,7 +719,7 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_gvx52")
+shader_parameter/texture_albedo = ExtResource("2_vdyeh")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_siqnk"]
 _surfaces = [{
@@ -3030,7 +3030,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.509804, 0.345098, 0.521569, 1)
-albedo_texture = ExtResource("2_gvx52")
+albedo_texture = ExtResource("2_vdyeh")
 texture_filter = 2
 
 [node name="Shellie" instance=ExtResource("1_w6w67")]

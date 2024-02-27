@@ -1,4 +1,4 @@
-@icon("res://Textures/WeedEvent.png")
+@icon("res://Textures/EditorIcons/WeedEvent.png")
 class_name EventWeed
 extends Pullable
 

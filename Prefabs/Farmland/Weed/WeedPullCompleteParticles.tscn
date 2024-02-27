@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bhlcenkafo3d1"]
 
 [ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_a07j7"]
-[ext_resource type="Texture2D" uid="uid://v2r5d120efo0" path="res://Textures/LeafParticle.png" id="2_vin1v"]
+[ext_resource type="Texture2D" uid="uid://v2r5d120efo0" path="res://Textures/Particles/LeafParticle.png" id="2_vin1v"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k1o2w"]
 lifetime_randomness = 0.1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq5jxbtrgx7fu"]
 
 [ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_x0xif"]
-[ext_resource type="Texture2D" uid="uid://c4feema514xoq" path="res://Textures/BadShroomieParticles.png" id="2_c5ih7"]
+[ext_resource type="Texture2D" uid="uid://c4feema514xoq" path="res://Textures/Particles/BadShroomieParticles.png" id="2_c5ih7"]
 
 [sub_resource type="Curve" id="Curve_b8y74"]
 max_value = 2.0

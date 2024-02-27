@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/DeadLeaf.gd" id="1_5aubd"]
 [ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_eag8s"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="3_aenkw"]
 [ext_resource type="Shader" path="res://Shader/Outline_Inverted.gdshader" id="4_14rwj"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_jtq4t"]
 
@@ -13,7 +13,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.435294, 0.329412, 0.211765, 1)
-albedo_texture = ExtResource("3_eag8s")
+albedo_texture = ExtResource("3_aenkw")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6lg7x"]
@@ -54,7 +54,9 @@ shader = ExtResource("4_jtq4t")
 shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/color_difference = 0.4
 shader_parameter/speed = 4.0
-shader_parameter/mask = ExtResource("3_eag8s")
+shader_parameter/UV_multiplier = 1.0
+shader_parameter/UV_offset = Vector2(0, 0)
+shader_parameter/mask = ExtResource("3_aenkw")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_acmop"]
 resource_name = "DeadLeaf_Plane_252"
@@ -80,7 +82,7 @@ shader = ExtResource("4_14rwj")
 shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/color_difference = 0.4
 shader_parameter/speed = 4.0
-shader_parameter/mask = ExtResource("3_eag8s")
+shader_parameter/mask = ExtResource("3_aenkw")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_scjps"]
 resource_name = "DeadLeaf_Plane_252"

@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b82hongws0y4"]
+[gd_scene load_steps=17 format=3 uid="uid://b82hongws0y4"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_oflii"]
 [ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Models/DigSpotHole.png" id="3_7sw7e"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="3_rxx2g"]
-[ext_resource type="Material" uid="uid://dpaax4ixvdosq" path="res://Materials/Outline.tres" id="5_5ahpr"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_ijxpq"]
+[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_dv1u3"]
+[ext_resource type="Texture2D" uid="uid://ctn71eky1wrve" path="res://Textures/Square.png" id="5_5v40f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qquq1"]
 size = Vector3(0.376, 0.0404883, 0.376)
@@ -61,7 +61,6 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("5_ijxpq")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_km242"]
@@ -104,6 +103,16 @@ texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_atl0b"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqyy2"]
+render_priority = 0
+shader = ExtResource("4_dv1u3")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color_difference = 0.4
+shader_parameter/speed = 4.0
+shader_parameter/UV_multiplier = 0.89
+shader_parameter/UV_offset = Vector2(0.055, 0.055)
+shader_parameter/mask = ExtResource("5_5v40f")
+
 [node name="DigSpot" instance=ExtResource("1_oflii")]
 watering_amount = 3
 
@@ -138,4 +147,4 @@ meshes = [NodePath("../Model/DigSpotMiddle_03"), NodePath("../Model/DigSpotMiddl
 transform = Transform3D(0.334305, 0, 0, 0, -1.4613e-08, 0.334305, 0, -0.334305, -1.4613e-08, 0, 0.0295847, -1.29319e-09)
 visible = false
 mesh = SubResource("QuadMesh_atl0b")
-surface_material_override/0 = ExtResource("5_5ahpr")
+surface_material_override/0 = SubResource("ShaderMaterial_gqyy2")

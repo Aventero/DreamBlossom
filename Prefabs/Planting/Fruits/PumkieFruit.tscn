@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_kevwj"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_117t0"]
-[ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Asesprite/Pumkie/Pumkie.png" id="2_e57hv"]
+[ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Textures/Fruits/Pumkie/Pumkie.png" id="2_e57hv"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Fruits/PumkieFruit.gd" id="2_png0j"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="3_l1ruv"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_kbiwd"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_p6a85"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="5_tfvfq"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="6_og3cw"]
 
@@ -83,7 +83,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("3_l1ruv")
+albedo_texture = ExtResource("5_p6a85")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_knqs2"]

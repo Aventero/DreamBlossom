@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Weed/WeedSpot.gd" id="1_lxjrd"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="2_lc2qq"]
-[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/ShovelPull.tscn" id="3_1xwi4"]
-[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/ShovelPullComplete.tscn" id="4_hdkyg"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpotSmall.blend" id="5_f2dvs"]
+[ext_resource type="PackedScene" uid="uid://cse2q63g86yqa" path="res://Particles/Shovel/ShovelPull.tscn" id="3_1xwi4"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/Shovel/ShovelPullComplete.tscn" id="4_hdkyg"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpots/DigSpotSmall.blend" id="5_f2dvs"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="7_efar7"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="8_tgkli"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="9_awitf"]

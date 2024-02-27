@@ -1,4 +1,4 @@
-@icon("res://Textures/MaterialChanger.png")
+@icon("res://Textures/EditorIcons/MaterialChanger.png")
 class_name MaterialChanger
 extends Node3D
 

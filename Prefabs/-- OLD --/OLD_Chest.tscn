@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/-- OLD --/OLD_Chest.gd" id="1_h3t3n"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_si5ux"]
-[ext_resource type="Texture2D" uid="uid://brhpq1c1gqwkj" path="res://Textures/Failed_Small.png" id="3_8w7p2"]
-[ext_resource type="PackedScene" uid="uid://clenmajnv4km5" path="res://Prefabs/UI/QuestDisplayUI.tscn" id="3_rctg1"]
+[ext_resource type="Texture2D" uid="uid://brhpq1c1gqwkj" path="res://Textures/DEPRECATED/Failed_Small.png" id="3_8w7p2"]
+[ext_resource type="PackedScene" path="res://Prefabs/UI/QuestDisplayUI.tscn" id="3_rctg1"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="4_yxlxb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_10a45"]

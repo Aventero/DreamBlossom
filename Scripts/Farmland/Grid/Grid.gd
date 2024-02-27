@@ -1,4 +1,4 @@
-@icon("res://Textures/Grid.png")
+@icon("res://Textures/EditorIcons/Grid.png")
 class_name PlantGrid
 extends StaticBody3D
 

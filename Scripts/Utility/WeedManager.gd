@@ -1,4 +1,4 @@
-@icon("res://Textures/WeedManager.png")
+@icon("res://Textures/EditorIcons/WeedManager.png")
 class_name WeedManager
 extends Node3D
 

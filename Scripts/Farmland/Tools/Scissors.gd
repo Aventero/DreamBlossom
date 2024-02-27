@@ -1,4 +1,4 @@
-@icon("res://Textures/Scissors.png")
+@icon("res://Textures/EditorIcons/Scissors.png")
 class_name Scissors
 extends XRToolsPickable
 

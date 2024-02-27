@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfbtuqoudc0un"
-path.s3tc="res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.s3tc.ctex"
-path.etc2="res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.etc2.ctex"
+uid="uid://ctn71eky1wrve"
+path="res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/Square.png"
-dest_files=["res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.s3tc.ctex", "res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.etc2.ctex"]
+dest_files=["res://.godot/imported/Square.png-4b807c7de6ec6d1469bef4321f3435cc.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

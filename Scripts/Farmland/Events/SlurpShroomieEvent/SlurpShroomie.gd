@@ -1,4 +1,4 @@
-@icon("res://Textures/SlurpShroomieEvent.png")
+@icon("res://Textures/EditorIcons/SlurpShroomieEvent.png")
 class_name SlurpShroomie
 extends Node3D
 

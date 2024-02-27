@@ -1,4 +1,4 @@
-@icon("res://Textures/DigSpot.png")
+@icon("res://Textures/EditorIcons/DigSpot.png")
 class_name DigSpot
 extends Node3D
 

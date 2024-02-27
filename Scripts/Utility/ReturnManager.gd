@@ -1,4 +1,4 @@
-@icon("res://Textures/ReturnManager.png")
+@icon("res://Textures/EditorIcons/ReturnManager.png")
 @tool
 class_name ReturnManager
 extends Area3D

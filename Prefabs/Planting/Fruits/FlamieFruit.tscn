@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_yci0m"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Fruits/FlamieFruit.gd" id="2_sk0ts"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_spvjf"]
-[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Asesprite/Flamie/Flamie.png" id="3_ytckv"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="4_k74at"]
+[ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Textures/Fruits/Flamie/Flamie.png" id="3_ytckv"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="5_l50jw"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_taxtm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uofs0"]
 points = PackedVector3Array(-0.0450219, 0.0602415, -0.0781938, -0.0367251, 0.0292798, -0.0637315, -0.0735386, 0.0292798, 1.59368e-05, -0.0901852, 0.0602415, 6.18994e-05, -0.0807739, 0.100259, 4.6581e-05, -0.0403163, 0.100259, -0.0700281, 0.0405991, 0.100232, -0.0700435, 0.0453401, 0.0602012, -0.0781938, 0.0368841, 0.0292663, -0.0637468, -0.0267301, 0.00737377, -0.0462971, -0.0534425, 0.00737377, -1.47e-05, -0.0367428, 0.0292663, 0.0637787, -0.0450219, 0.0602146, 0.0783176, -0.040334, 0.100232, 0.0701213, -0.0549815, 0.133024, 7.72178e-05, -0.0273847, 0.13301, -0.0477219, 0.0277913, 0.132943, -0.0477066, 0.0810744, 0.100192, 4.6581e-05, 0.0905387, 0.0601742, 6.18994e-05, 0.0737153, 0.0292529, 1.59368e-05, 0.0267122, 0.00736031, -0.0462971, -1.78143e-05, 0, -1.47e-05, -0.0267301, 0.00736031, 0.0462677, 0.0369018, 0.0292529, 0.063794, 0.0453401, 0.0601877, 0.0783176, 0.0405991, 0.100205, 0.0701366, -0.0273847, 0.13297, 0.047861, 0.000159092, 0.137464, 4.6581e-05, 0.0553704, 0.132889, 7.72178e-05, 0.0277913, 0.132903, 0.0478457, 0.0267122, 0.00734686, 0.0462677, 0.0534245, 0.00734686, -1.47e-05)
@@ -113,7 +113,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("4_k74at")
+albedo_texture = ExtResource("5_taxtm")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6yy37"]

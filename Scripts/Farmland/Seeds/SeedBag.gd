@@ -1,4 +1,4 @@
-@icon("res://Textures/SeedBag.png")
+@icon("res://Textures/EditorIcons/SeedBag.png")
 class_name SeedBag
 extends XRToolsPickable
 

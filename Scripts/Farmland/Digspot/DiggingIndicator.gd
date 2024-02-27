@@ -1,4 +1,4 @@
-@icon("res://Textures/Indicator.png")
+@icon("res://Textures/EditorIcons/Indicator.png")
 class_name Indicator
 extends Area3D
 

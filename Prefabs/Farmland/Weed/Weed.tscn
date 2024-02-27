@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Weed/Weed.gd" id="2_fejng"]
 [ext_resource type="PackedScene" uid="uid://dqnourgpa1x8h" path="res://Prefabs/Farmland/Weed/WeedPullParticles.tscn" id="3_mqtlj"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_huomt"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_juglk"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_680ay"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_ewdmr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jug17"]
@@ -13,7 +13,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("5_juglk")
+albedo_texture = ExtResource("5_680ay")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6lhd5"]

@@ -1,4 +1,4 @@
-@icon("res://Textures/shovel.png")
+@icon("res://Textures/EditorIcons/Shovel.png")
 class_name Shovel
 extends XRToolsPickable
 

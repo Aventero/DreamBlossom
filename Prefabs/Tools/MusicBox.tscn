@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Tools/MusicBox.gd" id="2_jkbs3"]
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="3_cfuf2"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
-[ext_resource type="Texture2D" uid="uid://cfvy1nmdhb3jv" path="res://Textures/Range.png" id="7_0a8fx"]
+[ext_resource type="Texture2D" uid="uid://cfvy1nmdhb3jv" path="res://Textures/Tools/Range.png" id="7_0a8fx"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="7_6rsry"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="8_ummhs"]
-[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/MusicBox.png" id="9_1n7hs"]
+[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="9_1n7hs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xspe"]
 size = Vector3(0.1, 0.1, 0.1)

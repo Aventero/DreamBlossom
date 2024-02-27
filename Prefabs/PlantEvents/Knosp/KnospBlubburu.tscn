@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://ck1g5nye5nmn8"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_a7gqo"]
-[ext_resource type="PackedScene" uid="uid://b5tiv84oqowi5" path="res://Particles/BlubburuKnospPullParticles.tscn" id="2_4f11l"]
-[ext_resource type="PackedScene" uid="uid://dcvslll66eqru" path="res://Particles/BlubburuKnospCompleteParticles.tscn" id="3_4sh5k"]
-[ext_resource type="Texture2D" uid="uid://we364gmry2ah" path="res://Asesprite/Knosp/Knosp.png" id="4_d8wxa"]
+[ext_resource type="PackedScene" uid="uid://b5tiv84oqowi5" path="res://Particles/Knosp/BlubburuKnospPullParticles.tscn" id="2_4f11l"]
+[ext_resource type="PackedScene" uid="uid://dcvslll66eqru" path="res://Particles/Knosp/BlubburuKnospCompleteParticles.tscn" id="3_4sh5k"]
+[ext_resource type="Texture2D" uid="uid://we364gmry2ah" path="res://Textures/Knosps/Knosp_Blubburu.png" id="4_d8wxa"]
 
 [sub_resource type="Shader" id="Shader_b1ryy"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.

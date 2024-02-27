@@ -1,4 +1,4 @@
-@icon("res://Textures/WeedSpot.png")
+@icon("res://Textures/EditorIcons/WeedSpot.png")
 class_name WeedSpot
 extends Node3D
 

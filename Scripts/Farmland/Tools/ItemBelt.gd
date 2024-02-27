@@ -1,4 +1,4 @@
-@icon("res://Textures/ItemBelt.png")
+@icon("res://Textures/EditorIcons/ItemBelt.png")
 class_name ItemBelt
 extends Node3D
 

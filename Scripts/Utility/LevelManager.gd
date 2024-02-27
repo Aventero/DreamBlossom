@@ -1,4 +1,4 @@
-@icon("res://Textures/Cog.png")
+@icon("res://Textures/EditorIcons/Cog.png")
 class_name LevelManager
 extends Node3D
 

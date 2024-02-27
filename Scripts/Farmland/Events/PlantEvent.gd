@@ -1,4 +1,4 @@
-@icon("res://Textures/PlantEvent.png")
+@icon("res://Textures/EditorIcons/PlantEvent.png")
 class_name PlantEvent
 extends Node3D
 

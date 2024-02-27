@@ -1,4 +1,4 @@
-@icon("res://Textures/Bobo.png")
+@icon("res://Textures/Bobo/Bobo.png")
 class_name Bobo
 extends Node3D
 

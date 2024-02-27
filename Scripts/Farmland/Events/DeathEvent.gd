@@ -1,4 +1,4 @@
-@icon("res://Textures/DeathEvent.png")
+@icon("res://Textures/EditorIcons/DeathEvent.png")
 class_name DeathEvent
 extends PlantEvent
 

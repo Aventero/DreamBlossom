@@ -1,4 +1,4 @@
-@icon("res://Textures/BadShroomieEvent.png")
+@icon("res://Textures/EditorIcons/BadShroomieEvent.png")
 class_name BadShroomieEvent
 extends PlantEvent
 

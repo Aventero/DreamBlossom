@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="1_3ep5w"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/ShellieWatering/ShellieWatering.gd" id="1_uitot"]
+[ext_resource type="Texture2D" uid="uid://54voijuwx3tf" path="res://Textures/Fruits/Shellie/Shellie.png" id="3_aggbd"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="3_xkqos"]
-[ext_resource type="Texture2D" uid="uid://cyel2u8q7cbpu" path="res://Asesprite/Blubbie/Blubbie.png" id="4_4bbkw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsdsy"]
 resource_name = "Blubbie"
@@ -11,7 +11,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_mdjkr"]
@@ -26,7 +26,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.976471, 0.811765, 0.788235, 1)
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_kn7vq"]
@@ -41,7 +41,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.952941, 0.639216, 0.603922, 1)
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_bt5nd"]
@@ -56,7 +56,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.839216, 0.34902, 0.313726, 1)
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_xl5br"]
@@ -71,7 +71,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.694118, 0.258824, 0.227451, 1)
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_pakwg"]
@@ -86,7 +86,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_color = Color(0.439216, 0.145098, 0.12549, 1)
-albedo_texture = ExtResource("4_4bbkw")
+albedo_texture = ExtResource("3_aggbd")
 texture_filter = 2
 
 [sub_resource type="Resource" id="Resource_0ou6p"]

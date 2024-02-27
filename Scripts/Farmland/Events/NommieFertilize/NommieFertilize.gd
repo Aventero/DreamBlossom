@@ -1,4 +1,4 @@
-@icon("res://Textures/Fertilizer.png")
+@icon("res://Textures/EditorIcons/Fertilizer.png")
 class_name NommieFertilize
 extends Area3D
 

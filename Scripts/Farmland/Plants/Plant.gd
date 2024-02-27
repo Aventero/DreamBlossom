@@ -1,4 +1,4 @@
-@icon("res://Textures/GrowingPlant.png")
+@icon("res://Textures/EditorIcons/GrowingPlant.png")
 class_name Plant
 extends Node3D
  

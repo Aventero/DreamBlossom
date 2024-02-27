@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bfxll7ndyvev2" path="res://Prefabs/-- OLD --/HandUI.tscn" id="8_p6sd0"]
 [ext_resource type="PackedScene" uid="uid://o6qvyboj53l8" path="res://Prefabs/-- OLD --/Boy.tscn" id="9_4nnue"]
 [ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="9_dxvn2"]
-[ext_resource type="PackedScene" uid="uid://bj7f3pb1oitpa" path="res://Models/Boy.blend" id="10_aqid6"]
+[ext_resource type="PackedScene" uid="uid://bj7f3pb1oitpa" path="res://Models/DEPRECATED/Boy.blend" id="10_aqid6"]
 [ext_resource type="PackedScene" uid="uid://ba55ij6ib0p1d" path="res://Prefabs/-- OLD --/ToolBoard.tscn" id="12_av6up"]
 [ext_resource type="PackedScene" uid="uid://booldou5k0h88" path="res://Prefabs/-- OLD --/Slider.tscn" id="13_grchu"]
 [ext_resource type="PackedScene" uid="uid://kmmmhejk432w" path="res://Prefabs/-- OLD --/Button.tscn" id="14_wtxi8"]

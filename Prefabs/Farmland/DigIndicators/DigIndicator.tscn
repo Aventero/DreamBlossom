@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DiggingIndicator.gd" id="1_xlvc4"]
 [ext_resource type="Shader" path="res://Shader/Halo_01.gdshader" id="4_pc3ig"]
-[ext_resource type="Texture2D" uid="uid://dl1rkendj3xas" path="res://Textures/Lines.png" id="4_u463x"]
-[ext_resource type="Texture2D" uid="uid://crsh885652ill" path="res://Textures/Halo_01.png" id="5_mgom7"]
+[ext_resource type="Texture2D" uid="uid://dl1rkendj3xas" path="res://Textures/Shader/Lines.png" id="4_u463x"]
+[ext_resource type="Texture2D" uid="uid://crsh885652ill" path="res://Textures/Shader/Halo_01.png" id="5_mgom7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awuac"]
 

@@ -1,4 +1,4 @@
-@icon("res://Textures/IceCube.png")
+@icon("res://Textures/EditorIcons/IceCube.png")
 class_name IceCube
 extends Node3D
 

@@ -13,7 +13,6 @@ config_version=5
 config/name="Dreamblossom"
 run/main_scene="res://Scenes/Debug_Testing_Oli.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://Textures/icon.svg"
 
 [autoload]
 

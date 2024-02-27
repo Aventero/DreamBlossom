@@ -1,4 +1,4 @@
-@icon("res://Textures/PruneEvent.png")
+@icon("res://Textures/EditorIcons/PruneEvent.png")
 class_name PruneEvent
 extends PlantEvent
 

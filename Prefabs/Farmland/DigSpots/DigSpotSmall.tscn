@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://d1erk7h5ynw83"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_nrc0v"]
-[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpotSmall.blend" id="2_mpyk8"]
+[ext_resource type="PackedScene" uid="uid://mdh8at7rvbcy" path="res://Models/DigSpots/DigSpotSmall.blend" id="2_mpyk8"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="3_0ygyb"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="3_ywljb"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="5_25e22"]
+[ext_resource type="Texture2D" path="res://Asesprite/Leafes.png" id="5_25e22"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jffax"]
 size = Vector3(0.188, 0.0397656, 0.188)

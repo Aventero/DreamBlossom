@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ouplreo2af4r"]
 
-[ext_resource type="Texture2D" uid="uid://dfv5b3kl763lm" path="res://Textures/Smoke.png" id="1_quwkb"]
+[ext_resource type="Texture2D" uid="uid://dfv5b3kl763lm" path="res://Textures/Particles/Smoke.png" id="1_quwkb"]
 
 [sub_resource type="Curve" id="Curve_5xaih"]
 max_value = 2.0

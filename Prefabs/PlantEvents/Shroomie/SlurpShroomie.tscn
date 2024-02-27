@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/SlurpShroomieEvent/SlurpShroomie.gd" id="1_wjceu"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_tf38i"]
-[ext_resource type="Texture2D" uid="uid://cijrwi6wgne84" path="res://Textures/SlurpParticle.png" id="3_g2d2u"]
+[ext_resource type="Texture2D" uid="uid://cijrwi6wgne84" path="res://Textures/Particles/SlurpParticle.png" id="3_g2d2u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4mh8p"]
 load_path = "res://.godot/imported/Shroomie.png-f8b738eaacf6bff6821cf46619e3a189.ctex"

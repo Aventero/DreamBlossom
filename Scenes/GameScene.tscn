@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_oidr1"]
 [ext_resource type="Script" path="res://Scripts/-- OLD --/Player.gd" id="2_y7851"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_2y3om"]
-[ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/Shadow.png" id="4_2vpth"]
+[ext_resource type="Texture2D" uid="uid://dl4stn7hi3ayc" path="res://Textures/DEPRECATED/Shadow.png" id="4_2vpth"]
 [ext_resource type="Script" path="res://Scripts/-- OLD --/FruitEat.gd" id="4_jf6o2"]
 [ext_resource type="PackedScene" uid="uid://cqii0lt66vbtm" path="res://Prefabs/-- OLD --/HungerDisplay.tscn" id="4_qalgc"]
 [ext_resource type="PackedScene" uid="uid://w0c40fto544n" path="res://Prefabs/-- OLD --/Basket.tscn" id="5_552eb"]

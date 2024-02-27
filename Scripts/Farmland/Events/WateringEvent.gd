@@ -1,4 +1,4 @@
-@icon("res://Textures/WaterDrop.png")
+@icon("res://Textures/EditorIcons/WaterDrop.png")
 class_name WateringEvent
 extends PlantEvent
 

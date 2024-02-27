@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://c3w0gho2ujed7"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_lnot5"]
-[ext_resource type="Texture2D" uid="uid://bya6cbcjjpk6a" path="res://Asesprite/Knosp/Knosp_Nommie.png" id="2_qego7"]
-[ext_resource type="PackedScene" uid="uid://b5rd0p831wcpb" path="res://Particles/NommieKnospPullParticles.tscn" id="2_wqt41"]
-[ext_resource type="PackedScene" uid="uid://dguwjyjxha2dp" path="res://Particles/NommieKnospCompleteParticles.tscn" id="3_xkw0a"]
+[ext_resource type="Texture2D" uid="uid://bya6cbcjjpk6a" path="res://Textures/Knosps/Knosp_Nommie.png" id="2_qego7"]
+[ext_resource type="PackedScene" uid="uid://b5rd0p831wcpb" path="res://Particles/Knosp/NommieKnospPullParticles.tscn" id="2_wqt41"]
+[ext_resource type="PackedScene" uid="uid://dguwjyjxha2dp" path="res://Particles/Knosp/NommieKnospCompleteParticles.tscn" id="3_xkw0a"]
 
 [sub_resource type="Shader" id="Shader_w8877"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.

@@ -1,4 +1,4 @@
-@icon("res://Textures/WateringCan.png")
+@icon("res://Textures/EditorIcons/WateringCan.png")
 class_name WateringCan
 extends XRToolsPickable
 

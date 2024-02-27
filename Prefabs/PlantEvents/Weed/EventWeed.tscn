@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://bdx7y6tgfx10"]
 
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_ggb8v"]
-[ext_resource type="Texture2D" uid="uid://dbevkhfnbxgpp" path="res://Asesprite/Leafes.png" id="2_52vyb"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Weed/EventWeed.gd" id="2_yy5cd"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_befj4"]
 [ext_resource type="PackedScene" uid="uid://5bul7ayyv75b" path="res://Prefabs/PlantEvents/Weed/EventWeedPullParticles.tscn" id="4_duxw7"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_wi6of"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="6_yak84"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_1cpbv"]
 
@@ -14,7 +14,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("2_52vyb")
+albedo_texture = ExtResource("5_wi6of")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1gv1k"]
@@ -68,6 +68,8 @@ shader = ExtResource("6_yak84")
 shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/color_difference = 0.4
 shader_parameter/speed = 4.0
+shader_parameter/UV_multiplier = 1.0
+shader_parameter/UV_offset = Vector2(0, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5pi5l"]
 radius = 0.035

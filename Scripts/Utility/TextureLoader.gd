@@ -1,4 +1,4 @@
-@icon("res://Textures/TextureLoader.png")
+@icon("res://Textures/EditorIcons/TextureLoader.png")
 class_name TextureLoader
 extends Node
 
