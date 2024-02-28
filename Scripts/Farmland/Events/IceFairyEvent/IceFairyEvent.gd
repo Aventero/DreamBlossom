@@ -38,9 +38,6 @@ func initialize():
 		
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
 
-func cleanup():
-	pass
-
 func ice_cube_destroyed():
 	_destroyed_cubes += 1
 	

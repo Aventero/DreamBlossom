@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://dxhccbbkp1ghs"]
+[gd_scene load_steps=96 format=3 uid="uid://dxhccbbkp1ghs"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_xrug7"]
 [ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Flamie/FlamieFruit.blend" id="2_kawg3"]
@@ -10,19 +10,23 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="9_5c5wj"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="10_xwg07"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="11_5ym1y"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="11_gjqbd"]
 [ext_resource type="PackedScene" uid="uid://d7httil120fm" path="res://Prefabs/PlantEvents/Knosp/KnospFlamie.tscn" id="12_reiha"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="13_0tla4"]
+[ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="13_6y87b"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="14_h2h2n"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="14_h10hx"]
 [ext_resource type="PackedScene" uid="uid://cl4tndyms65rq" path="res://Prefabs/Planting/Fruits/FlamieFruit.tscn" id="15_8ppun"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="15_mb15r"]
+[ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="15_u1al2"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="16_3yl4r"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="16_8x7s2"]
 [ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="16_ku3pk"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_2bt31"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_qbu5y"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_n20ja"]
+[ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="24_5ielf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_esutq"]
 resource_name = "Fierie"
@@ -2633,6 +2637,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.214325, 0.05018
 
 [node name="Blossom_026" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(-0.579652, 0.738199, -0.34506, -0.222707, 0.263818, 0.93851, 0.78384, 0.620857, 0.0114797, -0.0706334, 0.138057, 0.0571824)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_o3mwt")
 skeleton = NodePath("")
@@ -2640,6 +2645,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_028" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(-0.879716, 0.149895, -0.451256, -0.38548, 0.330815, 0.861375, 0.278398, 0.931715, -0.233241, 0.00561653, 0.14661, -0.0155226)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_7jsk7")
 skeleton = NodePath("")
@@ -2647,6 +2653,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_029" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(-0.464098, -0.876906, 0.125097, -0.382719, 0.325877, 0.864483, -0.798836, 0.353328, -0.486848, 0.0769347, 0.140662, 0.0575555)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_kohbi")
 skeleton = NodePath("")
@@ -2654,36 +2661,43 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Stick_016" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(0.0519602, -0.738654, -0.672079, -0.208643, -0.666166, 0.716025, -0.97661, 0.10302, -0.188729, -0.074147, 0.133994, 0.0593846)
+layers = 5
 mesh = SubResource("ArrayMesh_4m2v8")
 skeleton = NodePath("")
 
 [node name="Stick_018" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(0.906038, 0.0152358, -0.422922, 0.271509, -0.787496, 0.553293, -0.324619, -0.616131, -0.717638, 0.0037562, 0.118743, -0.0304317)
+layers = 5
 mesh = SubResource("ArrayMesh_oa3so")
 skeleton = NodePath("")
 
 [node name="Stick_020" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(-0.120518, 0.751503, 0.648629, 0.0488254, -0.648113, 0.759977, 0.99151, 0.12326, 0.0414168, 0.100661, 0.123652, 0.0608898)
+layers = 5
 mesh = SubResource("ArrayMesh_gssjb")
 skeleton = NodePath("")
 
 [node name="Stick_021" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(0.634337, -0.162754, -0.755729, -0.113425, -0.986602, 0.11727, -0.76469, 0.0113301, -0.644299, 0.0814296, 0.0104188, 0.0556514)
+layers = 5
 mesh = SubResource("ArrayMesh_6qtmo")
 skeleton = NodePath("")
 
 [node name="Stick_019" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(-0.660354, -0.0409186, -0.749839, -0.181961, -0.96004, 0.212635, -0.728576, 0.276856, 0.626521, -0.000295188, -0.000906294, -0.00456834)
+layers = 5
 mesh = SubResource("ArrayMesh_a7a8q")
 skeleton = NodePath("")
 
 [node name="Stick_013" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(-0.677425, 0.135992, 0.722912, -0.113431, -0.99032, 0.0800026, 0.726794, -0.0278048, 0.686293, -0.0708239, 0.000122596, 0.0360236)
+layers = 5
 mesh = SubResource("ArrayMesh_tugwg")
 skeleton = NodePath("")
 
 [node name="Blossom_023" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.356118, -0.136456, -0.924424, 0.000109665, 0.989286, -0.145988, 0.934441, 0.0518877, 0.352317, -0.126711, 0.364508, 0.0452411)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_kknn3")
 skeleton = NodePath("")
@@ -2691,6 +2705,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_024" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(-0.656732, 0.045146, 0.752771, -0.203579, 0.950533, -0.234613, -0.726125, -0.307326, -0.615055, 0.0212855, 0.40874, -0.122027)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_raiba")
 skeleton = NodePath("")
@@ -2698,6 +2713,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_025" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(-0.0605277, 0.146774, -0.987316, 0.0161927, 0.989144, 0.146053, 0.998035, -0.00714703, -0.0622473, 0.13026, 0.315936, 0.0502326)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_q8hve")
 skeleton = NodePath("")
@@ -2705,6 +2721,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_011" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(-0.964075, -0.16102, -0.211262, -0.20895, 0.950769, 0.228863, 0.164009, 0.264785, -0.950258, 0.0854144, 0.394156, 0.0919719)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_60qj5")
 skeleton = NodePath("")
@@ -2712,11 +2729,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Stick_014" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(0.853125, 0.19874, 0.48237, 0.0541235, -0.953326, 0.297054, 0.518892, -0.227317, -0.824062, 0.111927, 0.273685, 0.0627559)
+layers = 5
 mesh = SubResource("ArrayMesh_le0m5")
 skeleton = NodePath("")
 
 [node name="Blossom_013" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(-0.340664, 0.262945, -0.902667, 0.062555, 0.964307, 0.257292, 0.938102, 0.0311839, -0.344953, -0.067651, 0.453293, 0.0611964)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_1xahy")
 skeleton = NodePath("")
@@ -2724,11 +2743,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Stick_015" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(0.919921, -0.297994, 0.254845, -0.293598, -0.954284, -0.0560481, 0.259897, -0.0232623, -0.965356, -0.102612, 0.327968, 0.0568309)
+layers = 5
 mesh = SubResource("ArrayMesh_m4x6h")
 skeleton = NodePath("")
 
 [node name="Blossom_021" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(-0.735308, 0.0423867, -0.676406, -0.302229, 0.872802, 0.383241, 0.606613, 0.48623, -0.628968, 0.0130518, 0.506348, -0.00695341)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_n8wn0")
 skeleton = NodePath("")
@@ -2736,11 +2757,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Stick_017" type="MeshInstance3D" parent="Model" index="18"]
 transform = Transform3D(0.999749, 0.00936841, -0.0203304, 0.0179119, -0.879517, 0.47553, -0.013426, -0.475775, -0.879465, 0.0159315, 0.356161, -0.0900294)
+layers = 5
 mesh = SubResource("ArrayMesh_hjhuc")
 skeleton = NodePath("")
 
 [node name="Leaf_025" type="MeshInstance3D" parent="Model" index="19"]
 transform = Transform3D(-0.813457, -0.579752, 0.0466447, -0.478227, 0.712336, 0.513689, -0.331039, 0.395557, -0.856708, 0.108282, 0.276104, 0.060318)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_yapkp")
 skeleton = NodePath("")
@@ -2748,6 +2771,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_027" type="MeshInstance3D" parent="Model" index="20"]
 transform = Transform3D(0.0376623, -0.596049, 0.802065, -0.0456643, 0.800769, 0.59723, -0.998247, -0.0591187, 0.00294067, -0.00900609, 0.220624, -0.0761441)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_rff0h")
 skeleton = NodePath("")
@@ -2755,6 +2779,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_028" type="MeshInstance3D" parent="Model" index="21"]
 transform = Transform3D(-0.84826, 0.319835, -0.422091, -0.00557284, 0.791594, 0.611022, 0.529551, 0.520658, -0.669695, -0.0984178, 0.334739, 0.0562602)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_l55a7")
 skeleton = NodePath("")
@@ -2762,6 +2787,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_031" type="MeshInstance3D" parent="Model" index="22"]
 transform = Transform3D(-0.537396, -0.526519, 0.658774, 0.180839, 0.691041, 0.699828, -0.823713, 0.495217, -0.276147, -0.128094, 0.249375, 0.0402488)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_hh2i5")
 skeleton = NodePath("")
@@ -2769,6 +2795,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_034" type="MeshInstance3D" parent="Model" index="23"]
 transform = Transform3D(-0.354211, 0.397054, -0.846689, -0.318337, 0.800124, 0.508393, 0.879316, 0.449611, -0.157016, 0.019052, 0.36108, -0.0844574)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_k5o1q")
 skeleton = NodePath("")
@@ -2776,6 +2803,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom" type="MeshInstance3D" parent="Model" index="24"]
 transform = Transform3D(0.457094, 0.0202152, -0.889188, -0.0148417, 0.999776, 0.0150998, 0.889294, 0.00629499, 0.457292, 0.00513073, 0.208926, 0.0410657)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_5bnnr")
 skeleton = NodePath("")
@@ -2783,6 +2811,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_022" type="MeshInstance3D" parent="Model" index="25"]
 transform = Transform3D(0.706982, -0.0053092, -0.707211, -0.0114544, 0.999755, -0.0189561, 0.707139, 0.0215023, 0.706748, 0.00478356, 0.211292, 0.0482844)
+layers = 5
 instance_shader_parameters/stength = 0.5
 mesh = SubResource("ArrayMesh_2b8b0")
 skeleton = NodePath("")
@@ -2790,6 +2819,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_032" type="MeshInstance3D" parent="Model" index="26"]
 transform = Transform3D(-0.184399, -0.732974, 0.654787, 0.0843241, 0.651957, 0.753553, -0.979227, 0.194169, -0.058413, -0.123486, 0.160739, 0.0427309)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_2pjwn")
 skeleton = NodePath("")
@@ -2797,6 +2827,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_033" type="MeshInstance3D" parent="Model" index="27"]
 transform = Transform3D(-0.92075, 0.206794, -0.33084, -0.13471, 0.627322, 0.76702, 0.366159, 0.750802, -0.54975, 0.11101, 0.153459, 0.0863382)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_qerns")
 skeleton = NodePath("")
@@ -2804,6 +2835,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Blossom_009" type="MeshInstance3D" parent="Model" index="28"]
 transform = Transform3D(-0.512636, -0.0114145, -0.292242, -0.00676034, 0.590051, -0.0111878, 0.292387, -0.0063701, -0.512641, 0.00322615, 0.0215668, -0.00785992)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_ko5v8")
 skeleton = NodePath("")
@@ -2811,6 +2843,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_029" type="MeshInstance3D" parent="Model" index="29"]
 transform = Transform3D(0.117054, -0.0926584, 0.988794, 0.0364235, 0.995369, 0.0889627, -0.992457, 0.025602, 0.119887, -0.0696236, 0.0159551, 0.0388049)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_g0wi1")
 skeleton = NodePath("")
@@ -2818,6 +2851,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
 [node name="Leaf_030" type="MeshInstance3D" parent="Model" index="30"]
 transform = Transform3D(0.962509, -0.057586, 0.265067, 0.0550487, 0.998339, 0.0169975, -0.265605, -0.00176864, 0.96408, 0.0847547, 0.0161041, 0.058304)
+layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_ubdyu")
 skeleton = NodePath("")
@@ -2861,6 +2895,27 @@ transform = Transform3D(0.721464, -0.0641114, 0.689477, -0.0757967, 0.98241, 0.1
 
 [node name="Spawnpoint4" type="Node3D" parent="Stage1/WeedEvent" index="3"]
 transform = Transform3D(0.979297, 0.202428, 0, -0.20071, 0.970984, 0.130024, 0.0263206, -0.127332, 0.991511, 0.104627, 0.0162301, -0.0431781)
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage1" index="3" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("11_5ym1y")
+fire = ExtResource("24_5ielf")
+fairy_spawns = [NodePath("FairySpawn")]
+icon_texture = ExtResource("13_6y87b")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage1/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.945399, 0, -0.325915, 0, 1, 0, 0.325915, 0, 0.945399, -0.090717, 0.161926, 0.041283)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage1/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.570771, 0, -0.821109, 0, 1, 0, 0.821109, 0, 0.570771, 0.00214548, 0.180899, -0.0423178)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage1/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.880246, 0, -0.474518, 0, 1, 0, 0.474518, 0, 0.880246, 0.10087, 0.146761, 0.0540472)
+
+[node name="FairySpawn" parent="Stage1/FireFairyEvent" index="3" instance=ExtResource("17_qbu5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320906, 0)
+radius = 0.12
+max_vertical_movement = 0.02
+fairy = ExtResource("15_u1al2")
 
 [node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
@@ -2919,6 +2974,36 @@ movement_speed = -0.8
 max_vertical_movement = 0.04
 vertical_movement_frequency = 2.0
 fairy = ExtResource("18_n20ja")
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage2" index="4" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("11_5ym1y")
+fire = ExtResource("24_5ielf")
+fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
+icon_texture = ExtResource("13_6y87b")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage2/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.938083, 0.0636569, -0.340511, -0.180727, 0.928527, -0.324308, 0.295529, 0.365768, 0.88254, 0.112392, 0.170454, 0.0850994)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage2/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.967533, 0, -0.252745, 0, 1, 0, 0.252745, 0, 0.967533, 0.018877, 0.421771, -0.122139)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage2/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.961871, -0.198059, -0.18862, 0.181972, 0.97828, -0.0992693, 0.204184, 0.0611607, 0.97702, -0.0415897, 0.187433, 0.0534761)
+
+[node name="FairySpawn" parent="Stage2/FireFairyEvent" index="3" instance=ExtResource("17_qbu5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.327686, 0.0435533)
+radius = 0.06
+movement_speed = -0.8
+max_vertical_movement = 0.01
+fairy = ExtResource("15_u1al2")
+
+[node name="FairySpawn2" parent="Stage2/FireFairyEvent" index="4" instance=ExtResource("17_qbu5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456984, 0.00855944)
+radius = 0.15
+movement_speed = 0.5
+max_vertical_movement = 0.03
+vertical_movement_frequency = 2.0
+fairy = ExtResource("15_u1al2")
 
 [node name="Stage3" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
@@ -2983,6 +3068,37 @@ movement_speed = -1.22
 max_vertical_movement = 0.04
 vertical_movement_frequency = 2.0
 fairy = ExtResource("18_n20ja")
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage3" index="4" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("11_5ym1y")
+fire = ExtResource("24_5ielf")
+fairy_spawns = [NodePath("../../Stage2/FireFairyEvent/FairySpawn"), NodePath("../../Stage2/FireFairyEvent/FairySpawn2")]
+icon_texture = ExtResource("13_6y87b")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage3/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.476405, -0.374581, -0.795442, -0.00817692, 0.90278, -0.430025, 0.879188, 0.21137, 0.427026, 0.112667, 0.291182, 0.0768482)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage3/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.313011, 0.230107, -0.921453, -0.207131, 0.963391, 0.170219, 0.926888, 0.137581, 0.349214, -0.0988506, 0.347836, 0.0635723)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage3/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.919378, 0.221618, -0.325009, -0.265199, 0.959404, -0.095988, 0.290542, 0.174441, 0.940827, 0.0312766, 0.371713, -0.0783889)
+
+[node name="FairySpawn" parent="Stage3/FireFairyEvent" index="3" instance=ExtResource("17_qbu5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409534, 0.0435533)
+radius = 0.07
+movement_speed = 0.6
+max_vertical_movement = 0.03
+vertical_movement_frequency = 2.0
+fairy = ExtResource("15_u1al2")
+
+[node name="FairySpawn2" parent="Stage3/FireFairyEvent" index="4" instance=ExtResource("17_qbu5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46331, 0.00855944)
+radius = 0.13
+movement_speed = -0.6
+max_vertical_movement = 0.03
+vertical_movement_frequency = 2.0
+fairy = ExtResource("15_u1al2")
 
 [node name="Stage Fruit" type="Node3D" parent="." index="8" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
