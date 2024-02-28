@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://v4beiflx1jg0"]
+[gd_scene load_steps=114 format=3 uid="uid://v4beiflx1jg0"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_w6w67"]
 [ext_resource type="Texture2D" uid="uid://54voijuwx3tf" path="res://Textures/Fruits/Shellie/Shellie.png" id="2_vdyeh"]
@@ -15,6 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://bjpxcuhfxy4br" path="res://Prefabs/Planting/Fruits/ShellieFruit.tscn" id="11_ta57h"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="12_cjc1v"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="12_tc71c"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="13_6kgdc"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="13_s0ayg"]
+[ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="14_7ev1t"]
+[ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="14_i1sx4"]
+[ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="15_gewcc"]
+[ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="15_q8yuy"]
+[ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="16_aq8ww"]
+[ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="17_fxq7n"]
+[ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_oxw2q"]
+[ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_wqwdf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27nfy"]
 resource_name = "Blubbie"
@@ -550,16 +560,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mqy8e")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nustk"]
-lifetime_randomness = 0.09
-angular_velocity_min = -10.0
-angular_velocity_max = 10.0
-gravity = Vector3(0, 0.1, 0)
-scale_curve = SubResource("CurveTexture_6ag0j")
-turbulence_enabled = true
-turbulence_influence_min = 0.0
-turbulence_influence_max = 0.01
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_25ftt"]
 _surfaces = [{
@@ -3040,6 +3040,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131386, 0)
 
 [node name="Coral" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(0.697908, -0.618463, -0.361148, 0.252506, 0.68437, -0.684017, 0.670198, 0.386189, 0.633793, -0.0535379, 0.107621, -0.0392764)
+layers = 13
 mesh = SubResource("ArrayMesh_n1au4")
 skeleton = NodePath("")
 
@@ -3055,6 +3056,7 @@ draw_pass_1 = SubResource("QuadMesh_sghgi")
 
 [node name="Coral_001" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96714e-05, 0.00729419, -0.00226501)
+layers = 13
 mesh = SubResource("ArrayMesh_1uwaw")
 skeleton = NodePath("")
 
@@ -3070,6 +3072,7 @@ draw_pass_1 = SubResource("QuadMesh_sghgi")
 
 [node name="Coral_002" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.8924, 0.391369, 0.224617, -0.359465, 0.917464, -0.170424, -0.272777, 0.0713442, 0.959428, 0.0171755, 0.0191862, 0.0261382)
+layers = 13
 mesh = SubResource("ArrayMesh_6awfe")
 skeleton = NodePath("")
 
@@ -3099,6 +3102,7 @@ shape = SubResource("BoxShape3D_s2vcq")
 
 [node name="Coral_003" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(-0.56998, -0.183297, 0.800953, -0.396589, 0.915105, -0.072803, -0.719611, -0.359145, -0.594285, -0.0182524, 0.00535095, -0.0147622)
+layers = 13
 mesh = SubResource("ArrayMesh_0bbek")
 skeleton = NodePath("")
 
@@ -3127,6 +3131,7 @@ shape = SubResource("BoxShape3D_m2a1a")
 
 [node name="Coral_004" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(-0.998454, 0.0555556, -0.00166277, 0.0469484, 0.859021, 0.509783, 0.0297496, 0.508916, -0.860302, -0.000989471, 0.189002, 0.0151143)
+layers = 13
 mesh = SubResource("ArrayMesh_cq3ij")
 skeleton = NodePath("")
 
@@ -3155,6 +3160,7 @@ shape = SubResource("BoxShape3D_3s7xi")
 
 [node name="Coral_005" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(0.961408, 0.192108, -0.196949, -0.019221, 0.761, 0.648467, 0.274454, -0.619656, 0.735324, 0.00301522, 0.242098, -0.0240608)
+layers = 13
 mesh = SubResource("ArrayMesh_tqcqh")
 skeleton = NodePath("")
 
@@ -3183,11 +3189,13 @@ shape = SubResource("BoxShape3D_pr23r")
 
 [node name="Coral_006" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(0.929261, -0.342098, -0.139439, 0.248188, 0.857701, -0.450279, 0.273637, 0.38382, 0.881933, -0.00851212, 0.028618, 0.0127262)
+layers = 13
 mesh = SubResource("ArrayMesh_goq4d")
 skeleton = NodePath("")
 
 [node name="Coral_007" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(0.0528504, 0.534431, 0.843558, -0.226791, 0.829089, -0.511055, -0.972508, -0.164302, 0.165022, 0.0147735, 0.268906, 0.0597818)
+layers = 13
 mesh = SubResource("ArrayMesh_vulqg")
 skeleton = NodePath("")
 
@@ -3203,11 +3211,13 @@ draw_pass_1 = SubResource("QuadMesh_sghgi")
 
 [node name="Coral_008" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(0.0893643, -0.443837, 0.89164, -0.0733083, 0.889863, 0.4503, -0.993297, -0.105605, 0.046985, -0.0165299, 0.240095, -0.000875839)
+layers = 13
 mesh = SubResource("ArrayMesh_xvxfs")
 skeleton = NodePath("")
 
 [node name="Coral_009" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(0.922076, -0.0717987, 0.38029, 0.311344, 0.721277, -0.618728, -0.229871, 0.688915, 0.687427, -0.0647213, 0.329143, -0.00524056)
+layers = 13
 mesh = SubResource("ArrayMesh_xegc4")
 skeleton = NodePath("")
 
@@ -3223,127 +3233,137 @@ draw_pass_1 = SubResource("QuadMesh_sghgi")
 
 [node name="Coral_010" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.0512163, -0.729558, 0.681999, -0.553509, 0.547678, 0.627437, -0.831267, -0.409627, -0.375766, 0.0011889, 0.279702, -0.055315)
+layers = 13
 mesh = SubResource("ArrayMesh_htct2")
 skeleton = NodePath("")
 
-[node name="Bubbles4" type="GPUParticles3D" parent="Model/Coral_010" index="0"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-amount = 4
-lifetime = 5.0
-explosiveness = 0.84
-randomness = 0.5
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_nustk")
-draw_pass_1 = SubResource("QuadMesh_sghgi")
-
 [node name="Coral_011" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(0.52566, 0.302426, 0.795123, -0.50211, 0.864799, 0.00301932, -0.686708, -0.400826, 0.606441, 0.0272811, 0.0186275, -0.0213855)
+layers = 13
 mesh = SubResource("ArrayMesh_oxmxi")
 skeleton = NodePath("")
 
 [node name="Coral_012" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(-0.778071, 0.575841, -0.251024, 0.570162, 0.815105, 0.102558, 0.263668, -0.0633266, -0.962533, 0.00852149, 0.187553, 0.00217594)
+layers = 13
 mesh = SubResource("ArrayMesh_w50x3")
 skeleton = NodePath("")
 
 [node name="Weed" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(0.998646, -0.0336576, -0.0396753, -0.0498997, -0.403698, -0.91353, 0.0147304, 0.914273, -0.404831, 0.00304163, 0.0261024, 0.0534351)
+layers = 13
 mesh = SubResource("ArrayMesh_sbpbv")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_001" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(0.157224, 0.861009, -0.483678, -0.0526016, -0.481772, -0.874716, -0.986161, 0.162968, -0.0304556, 0.042779, 0.0178449, 0.0126091)
+layers = 13
 mesh = SubResource("ArrayMesh_36ts6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_002" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(0.247867, -0.913723, 0.321983, 0.0163634, -0.328358, -0.944412, 0.968656, 0.239358, -0.0664377, -0.0440894, 0.0200511, 0.00480074)
+layers = 13
 mesh = SubResource("ArrayMesh_6yl80")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_003" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(-0.999355, -0.0263302, -0.0244099, 0.0310225, -0.290952, -0.956234, 0.0180757, -0.956375, 0.291582, 0.012787, 0.0160708, -0.061221)
+layers = 13
 mesh = SubResource("ArrayMesh_udfa1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_004" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(0.856838, -0.0447171, -0.513642, -0.314552, 0.74401, -0.589496, 0.408516, 0.66667, 0.623431, 0.0773017, 0.149974, 0.0364251)
+layers = 13
 mesh = SubResource("ArrayMesh_tx6nk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_005" type="MeshInstance3D" parent="Model" index="18"]
 transform = Transform3D(0.834287, 0.551244, -0.00980287, -0.438966, 0.65339, -0.616758, -0.333579, 0.518856, 0.787092, 0.0593729, 0.269863, 0.000752955)
+layers = 13
 mesh = SubResource("ArrayMesh_43duh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_006" type="MeshInstance3D" parent="Model" index="19"]
 transform = Transform3D(0.918125, -0.243933, -0.312319, 0.0919756, 0.89775, -0.430796, 0.38547, 0.366799, 0.846683, 0.0204903, 0.312444, -0.0877036)
+layers = 13
 mesh = SubResource("ArrayMesh_14s8m")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_007" type="MeshInstance3D" parent="Model" index="20"]
 transform = Transform3D(-0.768482, -0.607357, 0.201376, -0.0144378, -0.298175, -0.954402, 0.639708, -0.736348, 0.220373, -0.026365, 0.127744, -0.0519278)
+layers = 13
 mesh = SubResource("ArrayMesh_ukond")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_008" type="MeshInstance3D" parent="Model" index="21"]
 transform = Transform3D(0.963103, -0.228401, 0.14236, 0.0746331, -0.281558, -0.956637, 0.258579, 0.931965, -0.254123, -0.057546, 0.160229, 0.049334)
+layers = 13
 mesh = SubResource("ArrayMesh_larkc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_009" type="MeshInstance3D" parent="Model" index="22"]
 transform = Transform3D(-0.245514, 0.949133, -0.197153, -0.00755699, -0.205245, -0.978681, -0.969363, -0.23879, 0.0575632, 0.0629517, 0.281879, -0.000394686)
+layers = 13
 mesh = SubResource("ArrayMesh_6il2r")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_010" type="MeshInstance3D" parent="Model" index="23"]
 transform = Transform3D(-0.760851, 0.635873, -0.129502, -0.0046421, -0.204891, -0.978774, -0.64891, -0.7441, 0.158844, 0.0534442, 0.115336, -0.0549193)
+layers = 13
 mesh = SubResource("ArrayMesh_2abt7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_011" type="MeshInstance3D" parent="Model" index="24"]
 transform = Transform3D(-0.979357, -0.125109, -0.158771, 0.143437, 0.123317, -0.981946, 0.142429, -0.98445, -0.102826, 0.0148347, 0.313532, 0.0136534)
+layers = 13
 mesh = SubResource("ArrayMesh_q5yxh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_012" type="MeshInstance3D" parent="Model" index="25"]
 transform = Transform3D(-0.859262, -0.389397, -0.33172, -0.356681, 0.920919, -0.157123, 0.366671, -0.0166917, -0.930201, -0.0633986, 0.325003, 0.0105562)
+layers = 13
 mesh = SubResource("ArrayMesh_0b0nt")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_013" type="MeshInstance3D" parent="Model" index="26"]
 transform = Transform3D(-0.142163, 0.102342, -0.984538, 0.19983, 0.977129, 0.0727168, 0.969463, -0.186403, -0.159363, 0.0259764, 0.268221, 0.062606)
+layers = 13
 mesh = SubResource("ArrayMesh_fu2ec")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_014" type="MeshInstance3D" parent="Model" index="27"]
 transform = Transform3D(-0.124297, 0.0493478, 0.991017, 0.117917, 0.992419, -0.0346281, -0.985214, 0.112553, -0.129174, -0.0288302, 0.229034, -0.00474308)
+layers = 13
 mesh = SubResource("ArrayMesh_0bvsv")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_015" type="MeshInstance3D" parent="Model" index="28"]
 transform = Transform3D(-0.966854, -0.147065, 0.208721, -0.254176, 0.476795, -0.841463, 0.0242327, -0.866624, -0.498372, -0.0773291, 0.363214, -0.00760913)
+layers = 13
 mesh = SubResource("ArrayMesh_kry4j")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
 
 [node name="Weed_016" type="MeshInstance3D" parent="Model" index="29"]
 transform = Transform3D(0.987772, 0.0434067, 0.14974, 0.143437, 0.123317, -0.981946, -0.0610885, 0.991418, 0.115583, -0.0142921, 0.313338, -0.0188331)
+layers = 13
 mesh = SubResource("ArrayMesh_jxysr")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_pdch8")
@@ -3395,6 +3415,28 @@ script = ExtResource("9_gvlgp")
 impacted_corals = [NodePath("../../Model/Coral_002/ShellieWatering"), NodePath("../../Model/Coral_003/ShellieWatering")]
 icon_texture = ExtResource("12_cjc1v")
 
+[node name="FireFairyEvent" type="Node3D" parent="Stage1" index="3" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("13_6kgdc")
+fire = ExtResource("14_i1sx4")
+fairy_spawns = [NodePath("FairySpawn")]
+icon_texture = ExtResource("15_q8yuy")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage1/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.782991, 0.188574, -0.59276, -0.145996, 0.982033, 0.119564, 0.604657, -0.0070768, 0.796455, 0.080669, 0.168499, 0.0375428)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage1/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.281415, -0.0746398, 0.956679, -0.195695, 0.971554, 0.133366, -0.93942, -0.224748, 0.258803, -0.0399286, 0.137283, -0.065359)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage1/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.703754, 0.206401, 0.679801, -0.260445, 0.965204, -0.0234342, -0.660984, -0.160559, 0.733022, 0.0305925, 0.352638, -0.0324976)
+
+[node name="FairySpawn" parent="Stage1/FireFairyEvent" index="3" instance=ExtResource("17_oxw2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396587, 0)
+radius = 0.1
+max_vertical_movement = 0.05
+vertical_movement_frequency = 1.0
+fairy = ExtResource("17_fxq7n")
+
 [node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("8_8lnms")
 animation_time = 10.0
@@ -3413,6 +3455,76 @@ icon_texture = ExtResource("7_27n7s")
 script = ExtResource("9_gvlgp")
 impacted_corals = [NodePath("../../Model/Coral_004/ShellieWatering"), NodePath("../../Model/Coral_005/ShellieWatering")]
 icon_texture = ExtResource("12_cjc1v")
+
+[node name="IceFairyEvent" type="Node3D" parent="Stage2" index="3" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("13_s0ayg")
+ice_cube = ExtResource("14_7ev1t")
+min_cube_hits = 1
+max_cube_hits = 3
+fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
+appear_particles = ExtResource("15_gewcc")
+icon_texture = ExtResource("16_aq8ww")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage2/IceFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.395433, 0.0451867, 0.0476778, -0.0394646, 0.396006, -0.0480014, -0.0525124, 0.0426585, 0.395101, -0.0677791, 0.163078, -0.0993255)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage2/IceFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.377297, 0.0355241, 0.147721, -0.0122316, 0.401283, -0.0652601, -0.151439, 0.0560939, 0.373305, 0.0838045, 0.140653, -0.094661)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage2/IceFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.481503, 0.0727891, 0.0493012, -0.0846411, 0.458021, 0.150423, -0.0237644, -0.156503, 0.463159, -0.0751963, 0.188654, 0.09862)
+
+[node name="Spawnpoint4" type="Node3D" parent="Stage2/IceFairyEvent" index="3" groups=["Spawnpoint"]]
+transform = Transform3D(0.517264, -0.149953, 0.0523061, 0.151116, 0.519542, -0.00496617, -0.0488463, 0.0193554, 0.538538, 0.0947572, 0.196105, 0.0581843)
+
+[node name="FairySpawn" parent="Stage2/IceFairyEvent" index="4" instance=ExtResource("17_oxw2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45686, 0)
+radius = 0.1
+max_vertical_movement = 0.05
+vertical_movement_frequency = 3.0
+fairy = ExtResource("18_wqwdf")
+
+[node name="FairySpawn2" parent="Stage2/IceFairyEvent" index="5" instance=ExtResource("17_oxw2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317155, 0)
+radius = 0.188
+movement_speed = -0.81
+max_vertical_movement = 0.02
+vertical_movement_frequency = 2.0
+fairy = ExtResource("18_wqwdf")
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage2" index="4" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("13_6kgdc")
+fire = ExtResource("14_i1sx4")
+fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
+icon_texture = ExtResource("15_q8yuy")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage2/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.939676, 0.242402, -0.241352, -0.290434, 0.938134, -0.188555, 0.180715, 0.247278, 0.951943, 0.0740312, 0.174579, 0.0329087)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage2/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(-0.942093, -0.101669, -0.319569, -0.162183, 0.972213, 0.168814, 0.293526, 0.210867, -0.932404, -0.0638742, 0.174144, 0.0754369)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage2/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.499536, 0.348735, 0.792999, -0.328078, 0.923366, -0.199399, -0.801767, -0.160559, 0.575667, 0.0754545, 0.288687, -0.00514838)
+
+[node name="Spawnpoint4" type="Node3D" parent="Stage2/FireFairyEvent" index="3" groups=["Spawnpoint"]]
+transform = Transform3D(0.661893, -0.188523, 0.725504, 0.130277, 0.98206, 0.136335, -0.738191, 0.00427787, 0.674578, -0.0865745, 0.381063, -0.018077)
+
+[node name="FairySpawn" parent="Stage2/FireFairyEvent" index="4" instance=ExtResource("17_oxw2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460113, 0)
+radius = 0.1
+movement_speed = -0.7
+max_vertical_movement = 0.05
+vertical_movement_frequency = 1.0
+fairy = ExtResource("17_fxq7n")
+
+[node name="FairySpawn2" parent="Stage2/FireFairyEvent" index="5" instance=ExtResource("17_oxw2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.434644, 0)
+radius = 0.05
+movement_speed = -0.9
+max_vertical_movement = 0.05
+vertical_movement_frequency = 1.0
+fairy = ExtResource("17_fxq7n")
 
 [node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("8_8lnms")

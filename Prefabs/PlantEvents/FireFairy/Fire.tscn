@@ -253,8 +253,8 @@ material = SubResource("StandardMaterial3D_xtvto")
 size = Vector2(0.02, 0.02)
 
 [sub_resource type="Gradient" id="Gradient_as50g"]
-offsets = PackedFloat32Array(0.387574, 0.64497)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.387574, 0.819527)
+colors = PackedColorArray(0, 0, 0, 0.807843, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l0cqy"]
 gradient = SubResource("Gradient_as50g")
