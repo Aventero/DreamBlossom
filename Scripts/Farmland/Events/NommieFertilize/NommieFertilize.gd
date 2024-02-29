@@ -14,8 +14,7 @@ func setup(event : NommieFertilizeEvent) -> void:
 	tween.tween_property($"../Model/Upper_Head", "rotation", Vector3(-1.239184, 0, 0), 0.5)
 	
 	# Enable trigger
-	monitorable = true
-	monitoring = true
+	get_child(0).disabled = false
 	
 	_accept_food = true
 
@@ -91,8 +90,7 @@ func _cleanup() -> void:
 	owner.set_outline(false)
 	
 	# Disable trigger
-	monitorable = false
-	monitoring = false
+	get_child(0).disabled = true
 	
 	# Reset event reference
 	_event = null

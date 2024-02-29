@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/Fairy.png")
 @tool
 class_name FairySpawn
 extends Node3D

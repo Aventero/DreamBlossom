@@ -1,11 +1,10 @@
-[gd_scene load_steps=77 format=3 uid="uid://4exhe7q8f0pk"]
+[gd_scene load_steps=83 format=3 uid="uid://4exhe7q8f0pk"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_g352r"]
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="2_eky44"]
 [ext_resource type="PackedScene" uid="uid://ti35e4tpy6hx" path="res://Prefabs/Planting/Nommie/NommieGrowingFruit.tscn" id="3_3nw5c"]
 [ext_resource type="PackedScene" uid="uid://df1c66umw8kot" path="res://Prefabs/Planting/Fruits/NommieFruit.tscn" id="3_x11i0"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_47ol3"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="5_4reld"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="6_suqks"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="7_eknbp"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="7_h8b0q"]
@@ -23,8 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="17_gbdlc"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="18_fqt52"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="19_hsbs3"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieWatering/NommieWateringEvent.gd" id="20_dbgk5"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="20_nq6kw"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommieFertilizeEvent.gd" id="21_efj4t"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeedingEvent.gd" id="23_wguxe"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="24_gfvoo"]
+[ext_resource type="Texture2D" uid="uid://b0j2pyrhms3mm" path="res://Textures/EditorIcons/SlurpShroomieEvent.png" id="24_vkyfw"]
+[ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="25_l47ll"]
+[ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="26_sonoo"]
+[ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="27_rti0y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1r3w"]
 resource_name = "Nommie"
@@ -1970,6 +1976,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0100602, 0)
 
 [node name="Leaf_010" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(0.994957, -0.0749936, 0.0666066, 0.0612751, -0.0712802, -0.995572, 0.0794092, 0.994633, -0.0663255, 0.0632936, 0.336569, -0.0693082)
+layers = 13
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_vdwal")
 skeleton = NodePath("")
@@ -1977,6 +1984,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_005" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(0.988458, 0.0497057, -0.143112, -0.139228, -0.0743865, -0.987463, -0.0597281, 0.99599, -0.0666075, 0.00130753, 0.523494, -0.0486093)
+layers = 13
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_mmc6t")
 skeleton = NodePath("")
@@ -1984,6 +1992,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_012" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.984233, 0.172936, 0.0371224, 0.034795, 0.0164717, -0.999259, -0.173419, 0.984795, 0.0101947, -0.0626815, 0.196412, -0.0269553)
+layers = 13
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_5n2kq")
 skeleton = NodePath("")
@@ -1991,6 +2000,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_013" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(0.709258, 0, -0.704949, 0, 1, 0, 0.704949, 0, 0.709258, 0.00061755, 0.0194438, -0.00797604)
+layers = 13
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_fqf88")
 skeleton = NodePath("")
@@ -1998,42 +2008,49 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_014" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(-0.0166701, -0.00544853, -0.999846, 0.0343709, 0.999391, -0.0060191, 0.99927, -0.034466, -0.0164727, -0.00255073, 0.0231606, -0.0238403)
+layers = 13
 mesh = SubResource("ArrayMesh_6ienx")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_015" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(-0.597232, 0.456918, 0.659196, 0.802041, 0.333436, 0.49553, 0.00661698, 0.824649, -0.565606, 0.0766046, 0.164639, -0.0300661)
+layers = 13
 mesh = SubResource("ArrayMesh_ekuai")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_016" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(-0.953101, 0.300989, -0.0316789, 0.0231257, 0.176792, 0.983977, 0.301767, 0.937097, -0.175461, 0.0649762, 0.279132, -0.093075)
+layers = 13
 mesh = SubResource("ArrayMesh_tojo5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_017" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(-0.310688, 0.422207, -0.851595, -0.393014, 0.758699, 0.519534, 0.865455, 0.496102, -0.0697851, 0.0297573, 0.10258, -0.0672724)
+layers = 13
 mesh = SubResource("ArrayMesh_dcls7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_018" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(0.24617, 0.0333184, -0.968654, 0.120729, 0.990571, 0.0647539, 0.961678, -0.132885, 0.239826, 0.0161673, 0.171113, -0.0820998)
+layers = 13
 mesh = SubResource("ArrayMesh_blscb")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(0.543153, -0.142264, -0.827493, -0.00627239, 0.984826, -0.17343, 0.83961, 0.0993892, 0.534019, -0.0211225, 0.339369, -0.0657728)
+layers = 13
 mesh = SubResource("ArrayMesh_6jhd6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_011" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.941545, -0.268874, 0.202979, 0.290077, 0.953431, -0.082607, -0.171315, 0.136658, 0.975692, -0.0905404, 0.480566, -0.0496108)
+layers = 13
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_sivhb")
 skeleton = NodePath("")
@@ -2041,69 +2058,80 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_004" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(-0.666363, -0.589606, 0.456426, 0.312761, 0.334657, 0.888924, -0.676861, 0.735098, -0.0385974, -0.0910493, 0.381049, -0.0718774)
+layers = 13
 mesh = SubResource("ArrayMesh_bgtus")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Leaf_009" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(-0.985975, 0.163916, 0.0313737, 0.132878, 0.657288, 0.741833, 0.100977, 0.735597, -0.669851, -0.078549, 0.436581, -0.0435127)
+layers = 13
 mesh = SubResource("ArrayMesh_hno5j")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_027" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(0.999974, 0.0071993, -0.000258603, -0.00591701, 0.841283, 0.540562, 0.00410922, -0.540546, 0.841304, 0.00160307, -0.00920491, -0.00666186)
+layers = 13
 mesh = SubResource("ArrayMesh_tmvhq")
 skeleton = NodePath("")
 
 [node name="Stick_028" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(-0.0212414, -0.484573, 0.874493, -0.246646, 0.850195, 0.465118, -0.968873, -0.205811, -0.137578, -0.00693581, 0.0617067, -0.0629007)
+layers = 13
 mesh = SubResource("ArrayMesh_a18ql")
 skeleton = NodePath("")
 
 [node name="Stick_029" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(-0.398553, 0.239506, 0.88532, -0.162991, 0.931438, -0.325358, -0.902546, -0.273972, -0.33219, -0.0435652, 0.335307, -0.0682088)
+layers = 13
 mesh = SubResource("ArrayMesh_cykhn")
 skeleton = NodePath("")
 
 [node name="Stick_030" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(0.340125, 0.433399, -0.834554, -0.0295358, 0.89195, 0.451168, 0.939916, -0.128804, 0.316175, -0.00565244, 0.177123, -0.0928072)
+layers = 13
 mesh = SubResource("ArrayMesh_1fkw1")
 skeleton = NodePath("")
 
 [node name="Stick_031" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(0.943769, -0.268518, 0.192868, 0.288794, 0.953558, -0.0855897, -0.160928, 0.136476, 0.977485, 0.00776322, 0.12543, -0.103377)
+layers = 13
 mesh = SubResource("ArrayMesh_b48wh")
 skeleton = NodePath("")
 
 [node name="Stick_032" type="MeshInstance3D" parent="Model" index="18"]
 transform = Transform3D(0.883276, 0.0716162, -0.463352, -0.41062, 0.595178, -0.690763, 0.226307, 0.800396, 0.555114, 0.0558496, 0.295504, -0.116672)
+layers = 13
 mesh = SubResource("ArrayMesh_qwts4")
 skeleton = NodePath("")
 
 [node name="Stick_033" type="MeshInstance3D" parent="Model" index="19"]
 transform = Transform3D(0.827498, 0.0577699, 0.558488, 0.424416, 0.58685, -0.68955, -0.367584, 0.807632, 0.461099, -0.0616638, 0.159651, -0.0793729)
+layers = 13
 mesh = SubResource("ArrayMesh_3p505")
 skeleton = NodePath("")
 
 [node name="Stick_034" type="MeshInstance3D" parent="Model" index="20"]
 transform = Transform3D(0.988756, 0.142725, -0.0446132, -0.138714, 0.763999, -0.63013, -0.055851, 0.629234, 0.775207, -0.0121634, 0.44347, -0.0946563)
+layers = 13
 mesh = SubResource("ArrayMesh_7pf34")
 skeleton = NodePath("")
 
 [node name="Stick_019" type="MeshInstance3D" parent="Model" index="21"]
 transform = Transform3D(0.840681, 0.541528, -0.00169087, -0.453012, 0.701549, -0.550099, -0.296708, 0.463224, 0.835098, 0.0198656, 0.0969914, -0.0881881)
+layers = 13
 mesh = SubResource("ArrayMesh_7ch32")
 skeleton = NodePath("")
 
 [node name="NommieGrowingFruit1" parent="Model" index="22" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.995161, 0.0982603, 0, -0.0982603, 0.995161, 0, 0, 0, 1, -0.0595729, 0.218215, 0.0146779)
+transform = Transform3D(0.749094, 0.0368596, 0, -0.0368596, 0.749094, 0, 0, 0, 0.75, -0.0595729, 0.218215, 0.0146779)
 
 [node name="NommieGrowingFruit2" parent="Model" index="23" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(1, 0, 0, 0, 0.999243, -0.038911, 0, 0.038911, 0.999243, 0.0639237, 0.3583, -0.032154)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0639237, 0.3583, -0.032154)
 
 [node name="NommieGrowingFruit3" parent="Model" index="24" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.995546, -0.0810478, -0.0481564, 0.0754719, 0.991273, -0.108081, 0.0564959, 0.103965, 0.992975, 0.00544426, 0.531364, -0.0152283)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00544426, 0.531364, -0.0152283)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -2119,36 +2147,25 @@ animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.35, 0)
 
-[node name="NommieFertilizeEvent" type="Node3D" parent="Stage1" index="0" node_paths=PackedStringArray("nommies")]
+[node name="NommieFeedingEvent" type="Node3D" parent="Stage1" index="0" node_paths=PackedStringArray("nommies")]
+script = ExtResource("23_wguxe")
+nommies = [NodePath("../../Model/NommieGrowingFruit1")]
+icon_texture = ExtResource("24_vkyfw")
+
+[node name="NommieFertilizeEvent" type="Node3D" parent="Stage1" index="1" node_paths=PackedStringArray("nommies")]
 script = ExtResource("21_efj4t")
 nommies = [NodePath("../../Model/NommieGrowingFruit1")]
 
-[node name="WateringEvent" type="Node3D" parent="Stage1" index="1"]
-script = ExtResource("5_4reld")
+[node name="NommieWateringEvent" type="Node3D" parent="Stage1" index="2" node_paths=PackedStringArray("nommies")]
+script = ExtResource("20_dbgk5")
+target_water_amount = 5
+nommies = [NodePath("../../Model/NommieGrowingFruit1")]
 icon_texture = ExtResource("6_suqks")
 
-[node name="MusicEvent" type="Node3D" parent="Stage1" index="2"]
+[node name="MusicEvent" type="Node3D" parent="Stage1" index="3"]
 script = ExtResource("7_h8b0q")
 target_time = 3.0
 icon_texture = ExtResource("8_2vmdq")
-
-[node name="IceFairyEvent" type="Node3D" parent="Stage1" index="3" node_paths=PackedStringArray("fairy_spawns")]
-script = ExtResource("9_fqocv")
-ice_cube = ExtResource("10_uagbi")
-max_cube_hits = 4
-fairy_spawns = [null]
-appear_particles = ExtResource("11_b7ely")
-icon_texture = ExtResource("12_4rnbl")
-
-[node name="Spawnpoint" type="Node3D" parent="Stage1/IceFairyEvent" index="0" groups=["Spawnpoint"]]
-transform = Transform3D(0.807324, -0.0714318, -0.0778071, 0.0830303, 0.799918, 0.127145, 0.0652872, -0.134005, 0.800443, -0.0595729, 0.245292, 0.0297754)
-
-[node name="FairySpawn" parent="Stage1/IceFairyEvent" index="1" instance=ExtResource("13_t7fw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393464, 0)
-radius = 0.13
-max_vertical_movement = 0.01
-vertical_movement_frequency = 3.0
-fairy = ExtResource("14_vfqbr")
 
 [node name="KnospEvent" type="Node3D" parent="Stage1" index="4"]
 script = ExtResource("15_w1l62")
@@ -2179,26 +2196,71 @@ transform = Transform3D(-0.762904, 0.179914, 0.620974, 0.172978, 0.982284, -0.07
 [node name="Spawnpoint3" type="Node3D" parent="Stage1/WeedEvent" index="2"]
 transform = Transform3D(0.836827, -0.18517, -0.515201, 0.172978, 0.982284, -0.0720827, 0.519421, -0.0287975, 0.854033, -0.118913, 0.0210242, -0.00524729)
 
+[node name="IceFairyEvent" type="Node3D" parent="Stage1" index="6" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("9_fqocv")
+ice_cube = ExtResource("10_uagbi")
+max_cube_hits = 4
+fairy_spawns = [null]
+appear_particles = ExtResource("11_b7ely")
+icon_texture = ExtResource("12_4rnbl")
+
+[node name="Spawnpoint" type="Node3D" parent="Stage1/IceFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.807324, -0.0714318, -0.0778071, 0.0830303, 0.799918, 0.127145, 0.0652872, -0.134005, 0.800443, -0.0595729, 0.245292, 0.0297754)
+
+[node name="FairySpawn" parent="Stage1/IceFairyEvent" index="1" instance=ExtResource("13_t7fw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393464, 0)
+radius = 0.13
+max_vertical_movement = 0.01
+vertical_movement_frequency = 3.0
+fairy = ExtResource("14_vfqbr")
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage1" index="7" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("24_gfvoo")
+fire = ExtResource("25_l47ll")
+fairy_spawns = [NodePath("FairySpawn")]
+icon_texture = ExtResource("26_sonoo")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage1/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.298494, -0.0368531, 0.9537, 0.158538, 0.987287, -0.0114691, -0.941152, 0.154621, 0.300542, -0.0687438, 0.232912, -0.0175829)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage1/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.868501, 0.230139, 0.439025, -0.120518, 0.95715, -0.263327, -0.480814, 0.175789, 0.85902, 0.106596, 0.207788, -0.0175829)
+
+[node name="FairySpawn" parent="Stage1/FireFairyEvent" index="2" instance=ExtResource("13_t7fw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.282374, -0.026737)
+radius = 0.16
+movement_speed = 2.0
+vertical_movement_frequency = 0.9
+fairy = ExtResource("27_rti0y")
+
 [node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("4_47ol3")
 animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.604, 0)
 
-[node name="NommieFertilizeEvent" type="Node3D" parent="Stage2" index="0" node_paths=PackedStringArray("nommies")]
+[node name="NommieFeedingEvent" type="Node3D" parent="Stage2" index="0" node_paths=PackedStringArray("nommies")]
+script = ExtResource("23_wguxe")
+nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
+icon_texture = ExtResource("24_vkyfw")
+
+[node name="NommieWateringEvent" type="Node3D" parent="Stage2" index="1" node_paths=PackedStringArray("nommies")]
+script = ExtResource("20_dbgk5")
+target_water_amount = 5
+nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
+icon_texture = ExtResource("6_suqks")
+
+[node name="NommieFertilizeEvent" type="Node3D" parent="Stage2" index="2" node_paths=PackedStringArray("nommies")]
+visible = false
 script = ExtResource("21_efj4t")
 nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
 
-[node name="WateringEvent" type="Node3D" parent="Stage2" index="1"]
-script = ExtResource("5_4reld")
-icon_texture = ExtResource("6_suqks")
-
-[node name="MusicEvent" type="Node3D" parent="Stage2" index="2"]
+[node name="MusicEvent" type="Node3D" parent="Stage2" index="3"]
 script = ExtResource("7_h8b0q")
 target_time = 3.0
 icon_texture = ExtResource("8_2vmdq")
 
-[node name="IceFairyEvent" type="Node3D" parent="Stage2" index="3" node_paths=PackedStringArray("fairy_spawns")]
+[node name="IceFairyEvent" type="Node3D" parent="Stage2" index="4" node_paths=PackedStringArray("fairy_spawns")]
 script = ExtResource("9_fqocv")
 ice_cube = ExtResource("10_uagbi")
 max_cube_hits = 4
@@ -2228,7 +2290,7 @@ max_vertical_movement = 0.03
 vertical_movement_frequency = 3.0
 fairy = ExtResource("14_vfqbr")
 
-[node name="KnospEvent" type="Node3D" parent="Stage2" index="4"]
+[node name="KnospEvent" type="Node3D" parent="Stage2" index="5"]
 script = ExtResource("15_w1l62")
 knosp = ExtResource("16_qw1bo")
 max_knosp_amount = 3
@@ -2243,7 +2305,7 @@ transform = Transform3D(0.809133, 0.490522, 0.323563, 0.280953, 0.160684, -0.946
 [node name="Spawnpoint3" type="Node3D" parent="Stage2/KnospEvent" index="2"]
 transform = Transform3D(-0.929567, 0.352337, -0.108458, -0.125346, -0.0254039, 0.991788, 0.346689, 0.935528, 0.0677787, 0.032369, 0.267677, -0.0803073)
 
-[node name="WeedEvent" type="Node3D" parent="Stage2" index="5"]
+[node name="WeedEvent" type="Node3D" parent="Stage2" index="6"]
 script = ExtResource("18_fqt52")
 event_weed = ExtResource("19_hsbs3")
 icon_texture = ExtResource("20_nq6kw")
@@ -2256,6 +2318,40 @@ transform = Transform3D(-0.404013, 0.179914, 0.896886, 0.122378, 0.982284, -0.14
 
 [node name="Spawnpoint3" type="Node3D" parent="Stage2/WeedEvent" index="2"]
 transform = Transform3D(0.909404, -0.18517, 0.372419, 0.160179, 0.982284, 0.0972627, -0.383832, -0.0287975, 0.922954, -0.118913, 0.0210242, -0.00524729)
+
+[node name="FireFairyEvent" type="Node3D" parent="Stage2" index="7" node_paths=PackedStringArray("fairy_spawns")]
+script = ExtResource("24_gfvoo")
+fire = ExtResource("25_l47ll")
+fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
+icon_texture = ExtResource("26_sonoo")
+
+[node name="Spawnpoint1" type="Node3D" parent="Stage2/FireFairyEvent" index="0" groups=["Spawnpoint"]]
+transform = Transform3D(0.833667, -0.0513261, 0.549877, 0.101333, 0.992985, -0.0609443, -0.542892, 0.106528, 0.833019, 0.073319, 0.366594, -0.0587835)
+
+[node name="Spawnpoint2" type="Node3D" parent="Stage2/FireFairyEvent" index="1" groups=["Spawnpoint"]]
+transform = Transform3D(0.354742, 0.0833739, 0.931239, -0.0399014, 0.996459, -0.0740131, -0.934112, -0.0109024, 0.356812, -0.0645903, 0.482717, -0.0507669)
+
+[node name="Spawnpoint3" type="Node3D" parent="Stage2/FireFairyEvent" index="2" groups=["Spawnpoint"]]
+transform = Transform3D(0.799476, 0.0762701, 0.595836, 0.112563, 0.955315, -0.273319, -0.590057, 0.285581, 0.755166, 0.0115793, 0.0522909, 0.0078387)
+
+[node name="Spawnpoint4" type="Node3D" parent="Stage2/FireFairyEvent" index="3" groups=["Spawnpoint"]]
+transform = Transform3D(0.609816, -0.283467, 0.740115, 0.101382, 0.954078, 0.281882, -0.786032, -0.0968621, 0.61055, -0.100822, 0.231862, -0.102761)
+
+[node name="FairySpawn" parent="Stage2/FireFairyEvent" index="4" instance=ExtResource("13_t7fw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44876, -0.026737)
+radius = 0.16
+movement_speed = -1.5
+max_vertical_movement = 0.06
+vertical_movement_frequency = 1.2
+fairy = ExtResource("27_rti0y")
+
+[node name="FairySpawn2" parent="Stage2/FireFairyEvent" index="5" instance=ExtResource("13_t7fw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555765, -0.026737)
+radius = 0.08
+movement_speed = 1.2
+max_vertical_movement = 0.03
+vertical_movement_frequency = 2.0
+fairy = ExtResource("27_rti0y")
 
 [node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_47ol3")

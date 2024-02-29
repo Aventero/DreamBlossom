@@ -7,4 +7,4 @@ script = ExtResource("1_fldel")
 vertical_movement_frequency = 5.0
 
 [node name="Fairy" type="Node3D" parent="."]
-transform = Transform3D(0.98036, 0, 0.197215, 0, 1, 0, -0.197215, 0, 0.98036, 0.49018, -0.0837439, -0.0986074)
+transform = Transform3D(-0.995979, 0, -0.0895845, 0, 1, 0, 0.0895845, 0, -0.995979, -0.49799, 0.0433624, 0.0447909)

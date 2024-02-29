@@ -6,10 +6,8 @@ signal event_completed
 
 @export var icon_texture : Texture2D
 
-# Own initialization
 func initialize():
 	pass
 
-# Cleanup event
 func cleanup():
 	pass

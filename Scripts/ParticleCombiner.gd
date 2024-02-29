@@ -1,4 +1,4 @@
-@icon("res://Textures/ParticleCombiner.png")
+@icon("res://Textures/EditorIcons/ParticleCombiner.png")
 class_name ParticleCombiner
 extends Node3D
 

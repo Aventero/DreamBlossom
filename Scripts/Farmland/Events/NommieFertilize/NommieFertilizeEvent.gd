@@ -21,6 +21,7 @@ func initialize():
 	
 	_target_amount = nommies.size()
 	
+	# Enable event triggers
 	for nommie in nommies:
 		nommie.enable_fertilize_event(self)
 
