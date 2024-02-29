@@ -1,3 +1,4 @@
+class_name DigSpotLookup
 extends Node
 
 static var dictionary = {}

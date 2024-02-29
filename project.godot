@@ -17,7 +17,6 @@ config/features=PackedStringArray("4.2", "Mobile")
 [autoload]
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
-DigSpotLookup="*res://Scripts/Farmland/Digspot/DigSpotLookup.gd"
 
 [editor_plugins]
 

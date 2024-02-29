@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=57 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/Nommie/NommieIcon.png" id="27_nrjkk"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
 [ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="39_awgjq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
 
@@ -204,6 +205,9 @@ aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 [node name="Spawnpoint7" type="VisibleOnScreenNotifier3D" parent="KorikoManager"]
 transform = Transform3D(0.998763, 0, 0.0497214, 0, 1, 0, -0.0497214, 0, 0.998763, 0.00448477, 0.888436, -0.35562)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
+
+[node name="DigSpotLookup" type="Node" parent="."]
+script = ExtResource("39_awgjq")
 
 [node name="Environment" type="Node3D" parent="."]
 
