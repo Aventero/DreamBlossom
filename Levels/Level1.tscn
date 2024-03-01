@@ -21,7 +21,6 @@ amount = 3
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
-unlocked = 0
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")

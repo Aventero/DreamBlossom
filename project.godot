@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dreamblossom"
-run/main_scene="res://Scenes/Debug_Testing_Oli.tscn"
+run/main_scene="res://Scenes/MainScene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 
 [autoload]

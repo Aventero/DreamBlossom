@@ -67,6 +67,7 @@ func _on_dropped(pickable : RigidBody3D):
 
 func _on_death():
 	print("[Koriko] You died!")
+	#get_parent().owner.exit_to_main_menu()
 
 func _play_jiggle():
 	_tween = create_tween().set_loops()

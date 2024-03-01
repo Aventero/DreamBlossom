@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dwatqs3wldhe0"
-path="res://.godot/imported/FruitShroomie.blend-3c9247c883e3514f0a98af92a948a4de.scn"
+uid="uid://b2o2ashyqpvgl"
+path="res://.godot/imported/Shroomie.blend-458d7ef179325513b02ef0a3950a546b.scn"
 
 [deps]
 
-source_file="res://Models/Plants/Mushroomie/FruitShroomie.blend"
-dest_files=["res://.godot/imported/FruitShroomie.blend-3c9247c883e3514f0a98af92a948a4de.scn"]
+source_file="res://Models/Plants/Shroomie/Shroomie.blend"
+dest_files=["res://.godot/imported/Shroomie.blend-458d7ef179325513b02ef0a3950a546b.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ import_script/path=""
 _subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
-blender/nodes/visible=1
+blender/nodes/visible=0
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
