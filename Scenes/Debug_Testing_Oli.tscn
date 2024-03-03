@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=58 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
+[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_gd7fa"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="4_yyuga"]
 [ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="5_rchdc"]
@@ -14,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/Flamie/FlamieIcon.png" id="11_kghc3"]
 [ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie/ShellieIcon.png" id="12_gjvfb"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="12_w62ws"]
-[ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="13_5hnma"]
+[ext_resource type="PackedScene" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="13_5hnma"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="14_3g5ad"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="14_8orm1"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="15_76tl2"]
@@ -29,28 +30,40 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="21_ifxkr"]
 [ext_resource type="Texture2D" uid="uid://bbg826soj8ajf" path="res://Textures/Fruits/Shroomie/ShroomieIcon.png" id="21_jjy14"]
 [ext_resource type="Script" path="res://Scripts/Utility/TextureLoader.gd" id="22_2d7uo"]
-[ext_resource type="PackedScene" uid="uid://1mvsxfjgnyns" path="res://Prefabs/Planting/Seeds/FlamieSeed.tscn" id="22_d0ce8"]
+[ext_resource type="PackedScene" path="res://Prefabs/Planting/Seeds/FlamieSeed.tscn" id="22_d0ce8"]
 [ext_resource type="Script" path="res://Scripts/Cooking/IngredientTexture.gd" id="23_sn5yw"]
 [ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="24_1u2lc"]
-[ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
-[ext_resource type="PackedScene" uid="uid://oclhfpcij31g" path="res://Prefabs/Planting/Seeds/NommieSeed.tscn" id="26_2ncgd"]
+[ext_resource type="PackedScene" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="25_ju50c"]
+[ext_resource type="PackedScene" path="res://Prefabs/Planting/Seeds/NommieSeed.tscn" id="26_2ncgd"]
 [ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/Pumkie/PumkieIcon.png" id="26_rpomn"]
 [ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/Nommie/NommieIcon.png" id="27_nrjkk"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_4a1h8"]
-[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
+[ext_resource type="PackedScene" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="39_awgjq"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pkern"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kwyj"]
+panorama = ExtResource("2_gd7fa")
+filter = false
 
 [sub_resource type="Sky" id="Sky_5ota8"]
-sky_material = SubResource("ProceduralSkyMaterial_pkern")
+sky_material = SubResource("PanoramaSkyMaterial_0kwyj")
+process_mode = 3
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_88j2n"]
 background_mode = 2
 sky = SubResource("Sky_5ota8")
-ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
+sky_rotation = Vector3(0, 1.5708, 0)
+ambient_light_color = Color(0.454902, 0.631373, 1, 1)
+ambient_light_sky_contribution = 0.44
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.364706, 0.188235, 0.227451, 1)
+fog_density = 0.05
+fog_aerial_perspective = 0.01
+fog_sky_affect = 0.5
+adjustment_saturation = 1.25
 
 [sub_resource type="GDScript" id="GDScript_mo61k"]
 script/source = "extends XROrigin3D
@@ -129,7 +142,9 @@ size = Vector3(0.5, 1, 0.5)
 script = ExtResource("1_qcfmw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.135128, -0.858082, 0.495414, 0, 0.5, 0.866025, -0.990828, -0.117024, 0.067564, 0, 1, 0)
+transform = Transform3D(-0.7591, -0.326163, 0.563369, 0.575482, 0.0682899, 0.814958, -0.304281, 0.942844, 0.135862, 0, 1, 0)
+light_color = Color(1, 0.690196, 0.898039, 1)
+light_energy = 0.25
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -225,6 +240,7 @@ shape = SubResource("BoxShape3D_7yi6c")
 
 [node name="GroundMiddleShadow" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(0.999998, 0.00122001, -0.00142788, -0.00121978, 0.999999, 0.00016148, 0.00142807, -0.000159727, 0.999999, 0, 0.0125213, 0)
+visible = false
 mesh = SubResource("PlaneMesh_xbxci")
 
 [node name="Table" type="StaticBody3D" parent="Environment"]
@@ -254,7 +270,7 @@ skeleton = NodePath("../../Table2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
 [node name="OrderDisplay" parent="." instance=ExtResource("30_4a1h8")]
-transform = Transform3D(0.625951, 0, 0.779863, 0, 1, 0, -0.779863, 0, 0.625951, -1.40856, 1.47332, -0.902506)
+transform = Transform3D(0.997761, 0, -0.0668835, 0, 1, 0, 0.0668835, 0, 0.997761, 0.105126, 2.02232, -1.73414)
 
 [node name="Shroomie Bag" parent="." instance=ExtResource("8_rxdi4")]
 transform = Transform3D(0.567168, 0, -0.823602, 0, 1, 0, 0.823602, 0, 0.567168, 0.834377, 0.987084, -0.542417)
@@ -348,7 +364,7 @@ transform = Transform3D(0.651437, 0, -0.758703, 0, 1, 0, 0.758703, 0, 0.651437, 
 transform = Transform3D(-4.02728e-08, 0.921335, 0.38877, -1, -4.37114e-08, 0, 1.69937e-08, -0.38877, 0.921335, 0.532731, 0.870547, 0.382237)
 
 [node name="Bobo" parent="." instance=ExtResource("19_cdyvb")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.24385, -0.00775862, 0.253526)
+transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
 
 [node name="CookingChest" parent="." instance=ExtResource("19_splt0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666211, 0.848511, 0.354077)
