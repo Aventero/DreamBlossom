@@ -16,9 +16,6 @@ extends Area3D
 
 var reset_transforms = {}
 
-func _ready():
-	_get_data()
-
 func _process(delta):
 	# Draw debug lines if in editor
 	if debug_draw and Engine.is_editor_hint():
@@ -52,13 +49,17 @@ func _restore_transform(node : RigidBody3D):
 	# Reset transform (Position, Rotation)
 	node.transform = reset_transforms[node]
 
-func _get_data():
+func get_data():
 	# Find all object in group "returnable"
 	var returnables : Array[Node] = get_tree().get_nodes_in_group(group_name)
 	
 	# Save object positions into dictonary for later usage
 	for node in returnables:
+		if node.is_queued_for_deletion():
+			continue
+		
 		reset_transforms[node] = node.transform
+		print("Added")
 
 func update(clear_old : bool = true):
 	if clear_old:
@@ -66,7 +67,7 @@ func update(clear_old : bool = true):
 		reset_transforms.clear()
 		
 		# Fill with new data
-		_get_data()
+		get_data()
 	else:
 		# Find all object in group "returnable"
 		var returnables : Array[Node] = get_tree().get_nodes_in_group(group_name)

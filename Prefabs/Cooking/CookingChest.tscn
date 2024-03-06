@@ -41,15 +41,15 @@ size = Vector3(0.5, 0.126, 0.3)
 [sub_resource type="BoxMesh" id="BoxMesh_6r7os"]
 size = Vector3(0.15, 0.05, 0.15)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h8bqs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_a7s4q"]
 viewport_path = NodePath("Display Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxcgq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3hhb6"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_h8bqs")
+albedo_texture = SubResource("ViewportTexture_a7s4q")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hc3c"]
 transparency = 2
@@ -65,7 +65,7 @@ size = Vector2(0.5, 0.1)
 script/source = "@tool
 extends MeshInstance3D
 
-func _process(delta):
+func _process(_delta):
 	# Update quest display
 	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
 	material_dup.albedo_texture = $\"../Display Viewport\".get_texture()
@@ -165,7 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Display" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.0885971, 0.157852)
-material_override = SubResource("StandardMaterial3D_nxcgq")
+material_override = SubResource("StandardMaterial3D_3hhb6")
 mesh = SubResource("QuadMesh_tv7xr")
 script = SubResource("GDScript_pr1w6")
 

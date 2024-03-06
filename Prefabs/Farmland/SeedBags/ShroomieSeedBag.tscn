@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvj5pr73csoms"]
+
+[ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/ItemBag.tscn" id="1_qphuj"]
+[ext_resource type="PackedScene" uid="uid://c1c64vnq06pxm" path="res://Prefabs/Planting/Seeds/ShroomieSeed.tscn" id="2_mhoso"]
+[ext_resource type="Texture2D" uid="uid://bbg826soj8ajf" path="res://Textures/Fruits/Shroomie/ShroomieIcon.png" id="4_360vy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mi0v0"]
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpm5f"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_214ny"]
+material = SubResource("StandardMaterial3D_kpm5f")
+size = Vector3(0.105, 0.105, 0.105)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t1h0e"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Shroomie Bag" instance=ExtResource("1_qphuj")]
+item = ExtResource("2_mhoso")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("SphereShape3D_mi0v0")
+
+[node name="BagHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_214ny")
+
+[node name="Bag" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_t1h0e")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("4_360vy")

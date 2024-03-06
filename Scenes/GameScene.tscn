@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=51 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="1_lwbtv"]
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_qlbea"]
@@ -16,19 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/Pumkie/PumkieIcon.png" id="12_5ylt4"]
 [ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="13_cesqi"]
 [ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/Nommie/NommieIcon.png" id="13_egat3"]
-[ext_resource type="Script" path="res://Scripts/Utility/LevelManager.gd" id="14_57tlc"]
 [ext_resource type="PackedScene" uid="uid://c1nll5jy2q080" path="res://Prefabs/Cooking/RecipeManager.tscn" id="15_0l26a"]
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="16_5iuqp"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="17_moec4"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="20_eno23"]
+[ext_resource type="Script" path="res://Scripts/Utility/LevelActivationManager.gd" id="21_m3k46"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="21_poku3"]
-[ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/SeedBag.tscn" id="22_ov8xv"]
-[ext_resource type="PackedScene" uid="uid://c1c64vnq06pxm" path="res://Prefabs/Planting/Seeds/ShroomieSeed.tscn" id="23_gujo2"]
-[ext_resource type="PackedScene" uid="uid://4qvb4piv61b4" path="res://Prefabs/Planting/Seeds/BlubburuSeed.tscn" id="24_pypfd"]
-[ext_resource type="PackedScene" uid="uid://1mvsxfjgnyns" path="res://Prefabs/Planting/Seeds/FlamieSeed.tscn" id="25_kg5as"]
-[ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="26_gh7nm"]
-[ext_resource type="PackedScene" uid="uid://0x4sqm6u2c4h" path="res://Prefabs/Planting/Seeds/PumkieSeed.tscn" id="27_fhmx3"]
-[ext_resource type="PackedScene" uid="uid://oclhfpcij31g" path="res://Prefabs/Planting/Seeds/NommieSeed.tscn" id="28_ijn8h"]
+[ext_resource type="Script" path="res://Scripts/Utility/EditorModelPreview.gd" id="22_05r67"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/BlueFertilizerBag.tscn" id="29_wmbb2"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/OrangeFertilizerBag.tscn" id="30_s13fr"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/GreenFertilizerBag.tscn" id="31_sfeqm"]
@@ -51,20 +45,6 @@ sky = SubResource("Sky_taj3b")
 ambient_light_color = Color(0.756863, 0.764706, 0.788235, 1)
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="GDScript" id="GDScript_mo61k"]
-script/source = "extends XROrigin3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v1xlr"]
 size = Vector3(20, 0.1, 20)
@@ -125,19 +105,66 @@ size = Vector3(0.480469, 1, 0.930908)
 [sub_resource type="BoxMesh" id="BoxMesh_neeav"]
 size = Vector3(0.5, 1, 0.5)
 
+[sub_resource type="GDScript" id="GDScript_oojyb"]
+script/source = "@tool
+class_name Table
+extends Node3D
+
+var models : Array[String]
+
+func _get_property_list() -> Array:
+	return [
+		{
+			\"name\": \"models\",
+			\"type\": TYPE_ARRAY,
+			\"hint\": PROPERTY_HINT_FILE,
+			\"hint_string\": \"%d/%d:*.tscn\" % [TYPE_STRING, PROPERTY_HINT_FILE],
+			\"usage\": PROPERTY_USAGE_SCRIPT_VARIABLE | PROPERTY_USAGE_DEFAULT
+		}
+	]
+
+@export_category(\"Debug\")
+@export var debug_model : int:
+	set(value):
+		if value > models.size() - 1:
+			debug_model = 0
+		elif value < 0:
+			debug_model = models.size() - 1
+		else:
+			debug_model = value
+		
+		# Update model
+		load_model(debug_model)
+
+func load_model(index : int):
+	var model : PackedScene = ResourceLoader.load(models[index])
+	
+	if get_child_count() > 0:
+		get_child(0).queue_free()
+	
+	add_child(model.instantiate())
+
+func _ready():
+	# Check editor
+	if Engine.is_editor_hint():
+		var model = ResourceLoader.load(models[0]).instantiate()
+		add_child(model)
+"
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_qlbea")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.135128, -0.858082, 0.495414, 0, 0.5, 0.866025, -0.990828, -0.117024, 0.067564, 0, 1, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_88j2n")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
-script = SubResource("GDScript_mo61k")
 
 [node name="XRCamera3D" parent="XROrigin3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09101, 0)
 current = true
 
 [node name="Left Hand" parent="XROrigin3D" index="1"]
@@ -153,7 +180,6 @@ ranged_enable = false
 script = ExtResource("3_jf50y")
 
 [node name="ReturnManager" parent="." instance=ExtResource("4_nm514")]
-visible = false
 collision_layer = 0
 collision_mask = 4
 range = 3.0
@@ -163,15 +189,11 @@ range_origin = Vector3(0, 1.5, 0)
 shape = SubResource("BoxShape3D_v1xlr")
 
 [node name="WeedManager" parent="." node_paths=PackedStringArray("plots") instance=ExtResource("5_ygtrk")]
-transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
 plots = [NodePath("../Plot")]
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("6_ckn4w")
 ingredients_textures = Array[ExtResource("7_hyh7g")]([SubResource("Resource_rhegm"), SubResource("Resource_apqrx"), SubResource("Resource_y1j5k"), SubResource("Resource_3ihew"), SubResource("Resource_8mku3"), SubResource("Resource_4g8gd")])
-
-[node name="LevelManager" type="Node3D" parent="."]
-script = ExtResource("14_57tlc")
 
 [node name="RecipeManager" parent="." instance=ExtResource("15_0l26a")]
 
@@ -256,87 +278,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 [node name="OrderDisplay" parent="." instance=ExtResource("21_poku3")]
 transform = Transform3D(0.625951, 0, 0.779863, 0, 1, 0, -0.779863, 0, 0.625951, -1.40856, 1.47332, -0.902506)
 
-[node name="Shroomie Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(0.567168, 0, -0.823602, 0, 1, 0, 0.823602, 0, 0.567168, 0.834377, 0.987084, -0.542417)
-item = ExtResource("23_gujo2")
-ranged_grab_method = 1
+[node name="Seed Bags" type="Node3D" parent="."]
+script = ExtResource("21_m3k46")
+objects = Array[String](["ShroomieSeedBag", "BlubburuSeedBag", "FlamieSeedBag", "ShellieSeedBag", "PumkieSeedBag", "NommieSeedBag"])
 
-[node name="Sprite3D" type="Sprite3D" parent="Shroomie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("8_tl3wb")
+[node name="Shroomie Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.798305, 0.988397, -0.527845)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/ShroomieSeedBag.tscn"
 
-[node name="Blubburu Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(0.378859, 0, -0.925455, 0, 1, 0, 0.925455, 0, 0.378859, 0.903381, 0.987084, -0.414907)
-item = ExtResource("24_pypfd")
-ranged_grab_method = 1
+[node name="Blubburu Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.836991, 0.988158, -0.383392)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/BlubburuSeedBag.tscn"
 
-[node name="Sprite3D" type="Sprite3D" parent="Blubburu Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("9_aldcg")
+[node name="Flamie Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.875767, 0.988158, -0.23849)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/FlamieSeedBag.tscn"
 
-[node name="Fierie Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(0.149536, 0, -0.988756, 0, 1, 0, 0.988756, 0, 0.149536, 0.941578, 0.987084, -0.276162)
-item = ExtResource("25_kg5as")
-ranged_grab_method = 1
+[node name="Shellie Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.914533, 0.988158, -0.0935866)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/ShellieSeedBag.tscn"
 
-[node name="Sprite3D" type="Sprite3D" parent="Fierie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("10_8x4xw")
+[node name="Pumkie Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.953309, 0.988158, 0.051315)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/PumkieSeedBag.tscn"
 
-[node name="Shellie Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(0.0210824, 0, -0.999778, 0, 1, 0, 0.999778, 0, 0.0210824, 0.955167, 0.987084, -0.134897)
-item = ExtResource("26_gh7nm")
-ranged_grab_method = 1
+[node name="Nommie Seed Bag Spawn" type="Node3D" parent="Seed Bags"]
+transform = Transform3D(0.258465, 0, -0.966021, 0, 1, 0, 0.966021, 0, 0.258465, 0.992075, 0.988158, 0.196219)
+script = ExtResource("22_05r67")
+preview_model = "res://Prefabs/Farmland/SeedBags/NommieSeedBag.tscn"
 
-[node name="Sprite3D" type="Sprite3D" parent="Shellie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("11_6tk6j")
+[node name="Tools" type="Node3D" parent="."]
 
-[node name="Pumkie Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(-0.125316, 0, -0.992116, 0, 1, 0, 0.992116, 0, -0.125316, 0.950152, 0.987084, 0.00141571)
-item = ExtResource("27_fhmx3")
-ranged_grab_method = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="Pumkie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("12_5ylt4")
-
-[node name="Nommie Bag" parent="." instance=ExtResource("22_ov8xv")]
-transform = Transform3D(-0.287193, 0, -0.957872, 0, 1, 0, 0.957872, 0, -0.287193, 0.922409, 0.987084, 0.131635)
-item = ExtResource("28_ijn8h")
-ranged_grab_method = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="Nommie Bag"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("13_egat3")
-
-[node name="BlueFertilizerBag" parent="." instance=ExtResource("29_wmbb2")]
+[node name="BlueFertilizerBag" parent="Tools" instance=ExtResource("29_wmbb2")]
 transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.712142, 0.848191, -0.148105)
 ranged_grab_method = 1
 
-[node name="OrangeFertilizerBag" parent="." instance=ExtResource("30_s13fr")]
+[node name="OrangeFertilizerBag" parent="Tools" instance=ExtResource("30_s13fr")]
 transform = Transform3D(0.999676, 0, 0.0254442, 0, 1, 0, -0.0254442, 0, 0.999676, 0.714343, 0.847415, 0.0256355)
 
-[node name="GreenFertilizerBag" parent="." instance=ExtResource("31_sfeqm")]
+[node name="GreenFertilizerBag" parent="Tools" instance=ExtResource("31_sfeqm")]
 transform = Transform3D(0.95982, 0, -0.280616, 0, 1, 0, 0.280616, 0, 0.95982, 0.718342, 0.849216, 0.195436)
 
-[node name="Scissors" parent="." instance=ExtResource("32_rphih")]
+[node name="Scissors" parent="Tools" instance=ExtResource("32_rphih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569539, 0.890719, 0.0531206)
 
-[node name="MusicBox" parent="." instance=ExtResource("33_d0d3y")]
+[node name="MusicBox" parent="Tools" instance=ExtResource("33_d0d3y")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.465579, 0.897504, 0.235771)
+
+[node name="Pickaxe" parent="." instance=ExtResource("36_1xx8e")]
+transform = Transform3D(-4.02728e-08, 0.921335, 0.38877, -1, -4.37114e-08, 0, 1.69937e-08, -0.38877, 0.921335, 0.532731, 0.870547, 0.382237)
 
 [node name="Shovel" parent="." instance=ExtResource("13_cesqi")]
 transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 0.502734, 0.848511, -0.0648582)
@@ -344,16 +339,26 @@ transform = Transform3D(0.523584, 0, 0.851974, 0, 1, 0, -0.851974, 0, 0.523584, 
 [node name="WateringCan" parent="." instance=ExtResource("35_8r51a")]
 transform = Transform3D(0.651437, 0, -0.758703, 0, 1, 0, 0.758703, 0, 0.651437, 0.721337, 0.896471, 0.538949)
 
-[node name="Pickaxe" parent="." instance=ExtResource("36_1xx8e")]
-transform = Transform3D(-4.02728e-08, 0.921335, 0.38877, -1, -4.37114e-08, 0, 1.69937e-08, -0.38877, 0.921335, 0.532731, 0.870547, 0.382237)
-
 [node name="Bobo" parent="." instance=ExtResource("37_eqo3o")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.24385, -0.00775862, 0.253526)
 
-[node name="CookingChest" parent="." instance=ExtResource("38_s6e4e")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.666211, 0.848511, 0.354077)
+[node name="CookingChest" parent="Bobo" instance=ExtResource("38_s6e4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100551, 0.85627, 1.57764)
 
 [node name="RecipeBook" parent="." instance=ExtResource("39_468c5")]
 transform = Transform3D(0.480438, -0.339411, 0.80869, -1.49012e-08, 0.922079, 0.387001, -0.877029, -0.18593, 0.443002, -0.631728, 1.13668, -0.139854)
+
+[node name="Table" type="Node3D" parent="."]
+transform = Transform3D(0.999728, 0, -0.0233154, 0, 1, 0, 0.0233154, 0, 0.999728, 0.0148598, 1.54797, -0.874444)
+script = SubResource("GDScript_oojyb")
+models = Array[String](["res://Prefabs/Farmland/SeedBags/BlubburuSeedBag.tscn"])
+
+[connection signal="picked_up" from="Seed Bags/Shroomie Seed Bag Spawn/Shroomie Bag" to="Seed Bags/Shroomie Seed Bag Spawn/Shroomie Bag" method="_on_picked_up"]
+[connection signal="picked_up" from="Seed Bags/Blubburu Seed Bag Spawn/BlubburuBag" to="Seed Bags/Blubburu Seed Bag Spawn/BlubburuBag" method="_on_picked_up"]
+[connection signal="picked_up" from="Seed Bags/Flamie Seed Bag Spawn/Flamie Bag" to="Seed Bags/Flamie Seed Bag Spawn/Flamie Bag" method="_on_picked_up"]
+[connection signal="picked_up" from="Seed Bags/Shellie Seed Bag Spawn/Shellie Bag" to="Seed Bags/Shellie Seed Bag Spawn/Shellie Bag" method="_on_picked_up"]
+[connection signal="picked_up" from="Seed Bags/Pumkie Seed Bag Spawn/Pumkie Bag" to="Seed Bags/Pumkie Seed Bag Spawn/Pumkie Bag" method="_on_picked_up"]
+[connection signal="picked_up" from="Seed Bags/Nommie Seed Bag Spawn/Nommie Bag" to="Seed Bags/Nommie Seed Bag Spawn/Nommie Bag" method="_on_picked_up"]
+[connection signal="picked_up" from="Table/BlubburuBag" to="Table/BlubburuBag" method="_on_picked_up"]
 
 [editable path="XROrigin3D"]

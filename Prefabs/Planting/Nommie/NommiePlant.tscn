@@ -2264,7 +2264,7 @@ icon_texture = ExtResource("8_2vmdq")
 script = ExtResource("9_fqocv")
 ice_cube = ExtResource("10_uagbi")
 max_cube_hits = 4
-fairy_spawns = [null, null]
+fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
 appear_particles = ExtResource("11_b7ely")
 icon_texture = ExtResource("12_4rnbl")
 

@@ -4,13 +4,14 @@ extends Node3D
 
 @export var plots : Array[Node3D]
 
-@export_category("Spawn Chances")
-@export_range(0, 1.0, 0.01) var new_weed_chance : float
-@export_range(0, 1.0, 0.01) var new_weed_empty_chance : float
-
 @export_category("References")
 @export var weed : PackedScene
 @export var grow_particles : PackedScene
+
+var _inital_weed_chance : float
+var _additional_weed_chance : float
+var _spread_time : float
+var _spread_chance : float
 
 var soils : Array[PlantGrid]
 
@@ -32,13 +33,20 @@ func _ready():
 static func get_instance() -> WeedManager:
 	return instance
 
+func set_level_data(inital_weed_chance : float, additional_weed_chance : float, spread_time : float, spread_chance : float):
+	_inital_weed_chance = inital_weed_chance
+	_additional_weed_chance = additional_weed_chance
+	_spread_time = spread_time
+	_spread_chance = spread_chance
+
 func _on_grow_timer_timeout():
+	print("Spawn: ", _inital_weed_chance, " ", _additional_weed_chance)
 	for soil in soils:
 		# Calculate current chance for weed spawn
-		var chance : float = new_weed_chance
+		var chance : float = _additional_weed_chance
 		
 		if soil.current_weed_amount == 0.0:
-			chance = new_weed_empty_chance
+			chance = _inital_weed_chance
 		
 		# Check if new weed is spawning
 		if randf() < chance:
@@ -63,6 +71,7 @@ func spawn_weed(cell : GridCell, grid : PlantGrid):
 	
 	# Spawn new weed
 	var weed_digspot = weed.instantiate()
+	
 	grid.add_sibling(weed_digspot)
 	weed_digspot.global_position = grid.get_placement_position(cell, 1)
 	weed_digspot.scale = Vector3(0.0, 0.0, 0.0)

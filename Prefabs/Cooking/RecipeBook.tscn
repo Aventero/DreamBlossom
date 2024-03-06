@@ -17,7 +17,7 @@ size = Vector2(0.2, 0.266)
 [sub_resource type="GDScript" id="GDScript_0422u"]
 script/source = "extends MeshInstance3D
 
-func _process(delta):
+func _process(_delta):
 	# Update quest display
 	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
 	material_dup.albedo_texture = $\"../Book Viewport\".get_texture()

@@ -6,9 +6,9 @@ extends Node3D
 @onready var order_display_ui : OrderDisplayUI = $"Order Viewport/Order Display"
 @onready var between_timer : Timer = $"Between Orders Timer"
 
-func start_order():
+func start_order() -> void:
 	# Load first / next order
-	if not LevelManager.get_instance().next_order():
+	if not Game.Level.next_order():
 		return
 	
 	# Show order

@@ -7,8 +7,8 @@ extends Panel
 
 @onready var ingredient_ui = preload("res://Prefabs/UI/IngredientUI.tscn")
 
-func set_recipe_name(name : String):
-	recipe_name.text = name
+func set_recipe_name(r_name : String):
+	recipe_name.text = r_name
 
 func fill_recipe_input(input_data : Array[RecipeInputData]):
 	for data in input_data:
@@ -18,12 +18,12 @@ func fill_recipe_output(data : RecipeOutputData):
 	_spawn_ingredient_ui(output, data.ingredient, 1)
 
 func _spawn_ingredient_ui(parent : Control, ingredient : Ingredient.Type, amount : int):
-	var ingredient_ui : IngredientUI = ingredient_ui.instantiate()
-	parent.add_child(ingredient_ui)
+	var ingredient_ui_instance : IngredientUI = ingredient_ui.instantiate()
+	parent.add_child(ingredient_ui_instance)
 	
 	# Fill ingredient ui with data
-	ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
-	ingredient_ui.set_amount(amount)
+	ingredient_ui_instance.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
+	ingredient_ui_instance.set_amount(amount)
 
 func clear_icons():
 	# Clear input icons

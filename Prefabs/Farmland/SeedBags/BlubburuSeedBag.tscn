@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bra8rw002a4n"]
+
+[ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/ItemBag.tscn" id="1_abyro"]
+[ext_resource type="PackedScene" uid="uid://4qvb4piv61b4" path="res://Prefabs/Planting/Seeds/BlubburuSeed.tscn" id="2_e3g5x"]
+[ext_resource type="Texture2D" uid="uid://s2rpgvgaadg1" path="res://Textures/Fruits/Blubburu/BlubburuIcon.png" id="3_sv7ou"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5twb1"]
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpm5f"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_wrx1y"]
+material = SubResource("StandardMaterial3D_kpm5f")
+size = Vector3(0.105, 0.105, 0.105)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jnqdc"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="BlubburuBag" instance=ExtResource("1_abyro")]
+item = ExtResource("2_e3g5x")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("SphereShape3D_5twb1")
+
+[node name="BagHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_wrx1y")
+
+[node name="Bag" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_jnqdc")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="3"]
+transform = Transform3D(0.18943, 0, -0.462727, 0, 0.5, 0, 0.462727, 0, 0.18943, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_sv7ou")

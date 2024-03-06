@@ -6,8 +6,6 @@
 
 [node name="WeedManager" type="Node3D"]
 script = ExtResource("1_ht5d1")
-new_weed_chance = 0.1
-new_weed_empty_chance = 0.25
 weed = ExtResource("2_6pen1")
 grow_particles = ExtResource("3_umuig")
 

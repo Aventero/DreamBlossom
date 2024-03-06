@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://tkoawbvx1tqd"]
+
+[ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/PlantEvents/Fertilizer/ItemBags/ItemBag.tscn" id="1_vl78x"]
+[ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="2_ks0m4"]
+[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie/ShellieIcon.png" id="3_oa0sh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6rrn7"]
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yl3y5"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
+grow_amount = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwbg0"]
+material = SubResource("StandardMaterial3D_yl3y5")
+size = Vector3(0.105, 0.105, 0.105)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ddabb"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Shellie Bag" instance=ExtResource("1_vl78x")]
+item = ExtResource("2_ks0m4")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("SphereShape3D_6rrn7")
+
+[node name="BagHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_cwbg0")
+skeleton = NodePath("")
+
+[node name="Bag" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_ddabb")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_oa0sh")

@@ -38,12 +38,12 @@ func start_order():
 	await _show_screen(order_screen).finished
 	
 	# Connect to order events
-	LevelManager.order.completed.connect(_on_order_completed)
-	LevelManager.order.request_update.connect(_on_update_request)
+	Game.Level.current_order.completed.connect(_on_order_completed)
+	Game.Level.current_order.request_update.connect(_on_update_request)
 	
 	# Start timer
 	seconds_timer.start()
-	LevelManager.order.start_order()
+	Game.Level.current_order.start_order()
 
 func _show_screen(screen : Control):
 	var tween : Tween = create_tween().set_parallel(true)
@@ -58,7 +58,7 @@ func _show_screen(screen : Control):
 	return tween
 
 func _setup_order_ui():
-	var order : Order = LevelManager.order
+	var order : Order = Game.Level.current_order
 	
 	# Order name
 	$"Order Screen/Order Name".text = order.name
@@ -102,7 +102,7 @@ func _on_order_completed(success : bool):
 func _on_update_request(ingredients : Dictionary):
 	for ingredient in ingredients:
 		var ingredient_ui : IngredientUI = _ingredient_lookup[ingredient]
-		var difference : int = LevelManager.order.get_remaining_amount(ingredient)
+		var difference : int = Game.Level.current_order.get_remaining_amount(ingredient)
 		
 		# Update ingredient amount and show highlight if value changed
 		if ingredient_ui.set_amount(difference):
