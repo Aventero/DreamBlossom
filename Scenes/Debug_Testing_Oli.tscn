@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
-[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_gd7fa"]
+[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_4y1mq"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="4_yyuga"]
 [ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="5_rchdc"]
@@ -42,27 +42,21 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="39_awgjq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kwyj"]
-panorama = ExtResource("2_gd7fa")
+panorama = ExtResource("2_4y1mq")
 filter = false
 
 [sub_resource type="Sky" id="Sky_5ota8"]
 sky_material = SubResource("PanoramaSkyMaterial_0kwyj")
-process_mode = 3
-radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_88j2n"]
 background_mode = 2
 sky = SubResource("Sky_5ota8")
-sky_rotation = Vector3(0, 1.5708, 0)
-ambient_light_color = Color(0.454902, 0.631373, 1, 1)
-ambient_light_sky_contribution = 0.44
+ambient_light_color = Color(0.415686, 0.509804, 1, 1)
+ambient_light_sky_contribution = 0.52
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
-fog_light_color = Color(0.364706, 0.188235, 0.227451, 1)
-fog_density = 0.05
-fog_aerial_perspective = 0.01
-fog_sky_affect = 0.5
+fog_light_color = Color(0.137255, 0.333333, 0.423529, 1)
+fog_sky_affect = 0.0
 adjustment_saturation = 1.25
 
 [sub_resource type="GDScript" id="GDScript_mo61k"]
@@ -230,6 +224,7 @@ script = ExtResource("39_awgjq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(0.97326, 0, 0, 0, 0.97326, 0, 0, 0, 0.97326, 0, 0, 0)
 cast_shadow = 0
 gi_lightmap_scale = 3
 mesh = SubResource("BoxMesh_3skh4")
