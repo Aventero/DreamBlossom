@@ -21,7 +21,10 @@ amount = 3
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
-unlocked = 0
+active_plants = 53
+active_tools = 4
+inital_weed_chance = 1.0
+additional_weed_chance = 1.0
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")

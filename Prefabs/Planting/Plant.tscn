@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
+[ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="4_jennh"]
 [ext_resource type="Script" path="res://Scripts/Farmland/IconDisplay.gd" id="6_fcbyu"]
-[ext_resource type="PackedScene" uid="uid://8ecc2uq3sg6u" path="res://Prefabs/-- OLD --/WaterEventIcon.tscn" id="9_33sjg"]
 [ext_resource type="Texture2D" uid="uid://b285rd770k4ej" path="res://Textures/EventIcons/FertilizerBlueIcon.png" id="10_jih3p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjk1"]
@@ -47,6 +47,13 @@ transparent_bg = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(64, 83)
 
-[node name="Icon" parent="IconViewport" instance=ExtResource("9_33sjg")]
+[node name="Icon" type="TextureRect" parent="IconViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jennh")
+stretch_mode = 2
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://0x4sqm6u2c4h"]
+[gd_scene load_steps=15 format=3 uid="uid://0x4sqm6u2c4h"]
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_bjvkp"]
-[ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="2_t5tpc"]
 [ext_resource type="Texture2D" uid="uid://pjxpmy3xp4pj" path="res://Textures/Fruits/Pumkie/Pumkie.png" id="3_0ijwc"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_f7vcu"]
 
@@ -161,7 +160,7 @@ _surfaces = [{
 }]
 
 [node name="Pumkie Seed" instance=ExtResource("1_bjvkp")]
-plant = ExtResource("2_t5tpc")
+plant = "PumkiePlant"
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.018, 0)

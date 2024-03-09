@@ -81,10 +81,10 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	
-	_left_controller_pickup = XRToolsFunctionPickup.find_left($"/root/World/Player")
+	_left_controller_pickup = XRToolsFunctionPickup.find_left(owner)
 	_left_controller_pickup.has_picked_up.connect(_picked_up_item)
 	
-	_right_controller_pickup = XRToolsFunctionPickup.find_right($"/root/World/Player")
+	_right_controller_pickup = XRToolsFunctionPickup.find_right(owner)
 	_right_controller_pickup.has_picked_up.connect(_picked_up_item)
 	
 	# Disconnect from parent transform as we move to it in the physics step,

@@ -10,7 +10,7 @@
 [node name="Seed" instance=ExtResource("1_kbcdh")]
 collision_mask = 7
 script = ExtResource("2_nytjd")
-plant = null
+plant = ""
 ranged_grab_method = 0
 second_hand_grab = 1
 

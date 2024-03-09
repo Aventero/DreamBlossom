@@ -83,7 +83,6 @@ var _tween : Tween
 ## The [XRCamera3D] node used while staging
 @onready var xr_camera : XRCamera3D = XRHelpers.get_xr_camera(self)
 
-
 func _ready():
 	# Do not initialise if in the editor
 	if Engine.is_editor_hint():
@@ -126,7 +125,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsStaging"
-
 
 ## This function loads the [param p_scene_path] scene file.
 ##
@@ -193,13 +191,16 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 		new_scene = ResourceLoader.load(p_scene_path)
 	else:
 		# Start the loading in a thread
-		ResourceLoader.load_threaded_request(p_scene_path)
+		ResourceLoader.load_threaded_request(p_scene_path, "PackedScene")
 
 		# Loop waiting for the scene to load
 		var res : ResourceLoader.ThreadLoadStatus
 		while true:
 			var progress := []
 			res = ResourceLoader.load_threaded_get_status(p_scene_path, progress)
+			
+			print("Loading... ", progress[0])
+			
 			if res != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				break;
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dreamblossom"
-run/main_scene="res://Scenes/Debug_Testing_Oli.tscn"
+run/main_scene="res://Scenes/MainScene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 
 [autoload]
@@ -20,7 +20,7 @@ XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg")
 
 [filesystem]
 
@@ -54,7 +54,6 @@ jolt_3d/collisions/areas_detect_static_bodies=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-lights_and_shadows/directional_shadow/size.mobile=4096
 
 [xr]
 

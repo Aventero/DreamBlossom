@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmo00poipuk4w"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/staging/staging.gd" id="1_6s1ly"]
+[ext_resource type="Shader" path="res://addons/godot-xr-tools/staging/fade.gdshader" id="2_kf1ah"]
+[ext_resource type="Environment" uid="uid://ckiwtcdsam7ed" path="res://addons/godot-xr-tools/staging/staging_env.tres" id="3_ukd6r"]
+[ext_resource type="PackedScene" uid="uid://c556h0flmnid5" path="res://Scenes/LoadingScene.tscn" id="4_tossv"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="6_g2p2x"]
+
+[sub_resource type="QuadMesh" id="4"]
+custom_aabb = AABB(-5000, -5000, -5000, 10000, 10000, 10000)
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snlak"]
+render_priority = 0
+shader = ExtResource("2_kf1ah")
+shader_parameter/alpha = 0.0
+
+[node name="Staging" type="Node3D"]
+script = ExtResource("1_6s1ly")
+main_scene = "res://Scenes/HubScene.tscn"
+
+[node name="Fade" type="MeshInstance3D" parent="."]
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("ShaderMaterial_snlak")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+environment = ExtResource("3_ukd6r")
+
+[node name="LeftHandController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="RightHandController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("4_tossv")]
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="StartXR" parent="." instance=ExtResource("6_g2p2x")]
+
+[connection signal="xr_ended" from="StartXR" to="." method="_on_StartXR_xr_ended"]
+[connection signal="xr_started" from="StartXR" to="." method="_on_StartXR_xr_started"]

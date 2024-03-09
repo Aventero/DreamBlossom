@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://4i0pwdtfmtsv"]
+[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://4i0pwdtfmtsv"]
 
 [sub_resource type="VisualShaderNodeCompare" id="5"]
 output_port_for_preview = 0
@@ -39,6 +39,9 @@ texture_type = 1
 parameter_name = "cutout"
 default_value_enabled = true
 default_value = Vector3(4.85, 0.33, 0)
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_2v4bi"]
+default_input_values = [0, 0.5, 1, 0.0]
 
 [sub_resource type="VisualShaderNodeInput" id="10"]
 input_name = "uv"
@@ -143,14 +146,18 @@ void fragment() {
 	float n_out18p0 = n_out19p4 * n_out14p0;
 
 
+// Step:21
+	float n_in21p0 = 0.50000;
+	float n_out21p0 = step(n_in21p0, n_out18p0);
+
+
 // Output:0
 	ALBEDO = n_out17p0;
-	ALPHA = n_out18p0;
+	ALPHA = n_out21p0;
 
 
 }
 "
-graph_offset = Vector2(-744.269, 307.118)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(1220, 440)
 nodes/fragment/3/node = SubResource("10")
@@ -178,9 +185,11 @@ nodes/fragment/16/position = Vector2(40, -100)
 nodes/fragment/17/node = SubResource("18")
 nodes/fragment/17/position = Vector2(980, 80)
 nodes/fragment/18/node = SubResource("19")
-nodes/fragment/18/position = Vector2(940, 500)
+nodes/fragment/18/position = Vector2(760, 500)
 nodes/fragment/19/node = SubResource("VisualShaderNodeTexture_hpnli")
 nodes/fragment/19/position = Vector2(480, 260)
 nodes/fragment/20/node = SubResource("VisualShaderNodeVec3Parameter_fhc2j")
 nodes/fragment/20/position = Vector2(-280, 600)
-nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 5, 0, 5, 0, 6, 0, 6, 0, 8, 0, 3, 0, 11, 0, 13, 0, 11, 1, 12, 0, 13, 0, 8, 0, 14, 0, 11, 0, 14, 1, 15, 0, 17, 0, 17, 0, 0, 0, 18, 0, 0, 1, 14, 0, 18, 1, 16, 0, 19, 2, 19, 4, 18, 0, 19, 0, 17, 1, 20, 0, 8, 1)
+nodes/fragment/21/node = SubResource("VisualShaderNodeStep_2v4bi")
+nodes/fragment/21/position = Vector2(985.571, 602.233)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 5, 0, 5, 0, 6, 0, 6, 0, 8, 0, 3, 0, 11, 0, 13, 0, 11, 1, 12, 0, 13, 0, 8, 0, 14, 0, 11, 0, 14, 1, 15, 0, 17, 0, 17, 0, 0, 0, 14, 0, 18, 1, 16, 0, 19, 2, 19, 4, 18, 0, 19, 0, 17, 1, 20, 0, 8, 1, 18, 0, 21, 1, 21, 0, 0, 1)

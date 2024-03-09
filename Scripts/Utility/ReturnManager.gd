@@ -16,9 +16,6 @@ extends Area3D
 
 var reset_transforms = {}
 
-func _ready():
-	_get_data()
-
 func _process(delta):
 	# Draw debug lines if in editor
 	if debug_draw and Engine.is_editor_hint():
@@ -58,7 +55,8 @@ func _get_data():
 	
 	# Save object positions into dictonary for later usage
 	for node in returnables:
-		reset_transforms[node] = node.transform
+		if not node.is_queued_for_deletion():
+			reset_transforms[node] = node.transform
 
 func update(clear_old : bool = true):
 	if clear_old:

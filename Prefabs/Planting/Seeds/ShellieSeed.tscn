@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddqtngwr5tjy2"]
+[gd_scene load_steps=11 format=3 uid="uid://ddqtngwr5tjy2"]
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_0jrrn"]
-[ext_resource type="PackedScene" uid="uid://v4beiflx1jg0" path="res://Prefabs/Planting/Shellie/ShelliePlant.tscn" id="2_cvhjk"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_41xgw"]
 [ext_resource type="Texture2D" uid="uid://54voijuwx3tf" path="res://Textures/Fruits/Shellie/Shellie.png" id="3_ucqpq"]
 
@@ -86,7 +85,7 @@ flip_faces = true
 size = Vector3(0.025, 0.048, 0.025)
 
 [node name="Shellie Seed" instance=ExtResource("1_0jrrn")]
-plant = ExtResource("2_cvhjk")
+plant = "ShelliePlant"
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.88292e-05, -0.000463864, -4.88292e-05)

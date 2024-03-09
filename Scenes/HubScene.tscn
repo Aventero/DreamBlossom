@@ -1,0 +1,248 @@
+[gd_scene load_steps=37 format=3 uid="uid://dq7k7phd3i607"]
+
+[ext_resource type="Script" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
+[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_krgwt"]
+[ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_w4io7"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_6u0xd"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="3_we1bf"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_jl6qw"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_64uky"]
+[ext_resource type="PackedScene" uid="uid://2x5g6x5e1k7" path="res://Prefabs/Planting/Blubburu/BlubburuPlant.tscn" id="8_02uq7"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_area_button.gd" id="8_enwf4"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="9_np802"]
+[ext_resource type="PackedScene" uid="uid://dxhccbbkp1ghs" path="res://Prefabs/Planting/Flamie/FlamiePlant.tscn" id="9_wkoli"]
+[ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="10_4mlpb"]
+[ext_resource type="PackedScene" uid="uid://4exhe7q8f0pk" path="res://Prefabs/Planting/Nommie/NommiePlant.tscn" id="10_5grbc"]
+[ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="11_a812u"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
+[ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="12_12wo1"]
+[ext_resource type="PackedScene" uid="uid://v4beiflx1jg0" path="res://Prefabs/Planting/Shellie/ShelliePlant.tscn" id="12_w3ksd"]
+[ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="13_4ypwf"]
+[ext_resource type="Script" path="res://Scripts/Utility/ResourceSingelton.gd" id="14_y8p08"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ymhto"]
+panorama = ExtResource("2_krgwt")
+filter = false
+
+[sub_resource type="Sky" id="Sky_5ota8"]
+sky_material = SubResource("PanoramaSkyMaterial_ymhto")
+process_mode = 3
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_8frxu"]
+background_mode = 2
+sky = SubResource("Sky_5ota8")
+sky_rotation = Vector3(0, 1.5708, 0)
+ambient_light_color = Color(0.454902, 0.631373, 1, 1)
+ambient_light_sky_contribution = 0.44
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.364706, 0.188235, 0.227451, 1)
+fog_density = 0.05
+fog_aerial_perspective = 0.01
+fog_sky_affect = 0.5
+adjustment_saturation = 1.25
+
+[sub_resource type="GDScript" id="GDScript_46twt"]
+script/source = "extends XROrigin3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4rlj"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i07l1"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olq40"]
+size = Vector3(0.1, 2.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f432d"]
+size = Vector3(0.1, 2.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u5rhl"]
+size = Vector3(0.1, 2.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5bb2r"]
+size = Vector3(0.1, 1.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yq81d"]
+size = Vector3(0.1, 0.3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3i6o"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w74ww"]
+albedo_color = Color(1, 0.34902, 0.313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_agb10"]
+material = SubResource("StandardMaterial3D_w74ww")
+size = Vector3(0.1, 0.05, 0.1)
+
+[sub_resource type="Resource" id="Resource_7yv7s"]
+script = ExtResource("11_tpl5m")
+open_pose = ExtResource("10_4mlpb")
+closed_pose = ExtResource("10_4mlpb")
+
+[sub_resource type="Resource" id="Resource_f836c"]
+script = ExtResource("11_tpl5m")
+open_pose = ExtResource("12_12wo1")
+closed_pose = ExtResource("12_12wo1")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_81ety"]
+radius = 0.1
+
+[node name="Hub" type="Node3D"]
+script = ExtResource("1_bg8q6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.7591, -0.326163, 0.563369, 0.575482, 0.0682896, 0.814958, -0.304281, 0.942844, 0.135862, 0, 1, 0)
+light_color = Color(1, 0.690196, 0.898039, 1)
+light_energy = 0.25
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8frxu")
+
+[node name="XROrigin3D" parent="." instance=ExtResource("2_w4io7")]
+script = SubResource("GDScript_46twt")
+
+[node name="XRCamera3D" parent="XROrigin3D" index="0"]
+current = true
+
+[node name="Left Hand" parent="XROrigin3D" index="1"]
+transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
+
+[node name="FunctionPickup" parent="XROrigin3D/Left Hand/CollisionHandLeft" index="2"]
+ranged_enable = false
+
+[node name="MovementDirect" type="Node" parent="XROrigin3D/Left Hand" index="2" groups=["movement_providers"]]
+script = ExtResource("3_we1bf")
+strafe = true
+
+[node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="2"]
+ranged_enable = false
+
+[node name="MovementTurn" type="Node" parent="XROrigin3D/Right Hand" index="2" groups=["movement_providers"]]
+script = ExtResource("4_jl6qw")
+
+[node name="XRToolsRumbleManager" type="Node" parent="XROrigin3D"]
+script = ExtResource("3_6u0xd")
+
+[node name="XRToolsPlayerBody" type="CharacterBody3D" parent="XROrigin3D"]
+top_level = true
+script = ExtResource("6_64uky")
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "PumkiePlant", "ShelliePlant", "ShroomiePlant"), [ExtResource("8_02uq7"), ExtResource("9_wkoli"), ExtResource("10_5grbc"), ExtResource("11_a812u"), ExtResource("12_w3ksd"), ExtResource("13_4ypwf")]]
+script = ExtResource("14_y8p08")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="House" type="Node3D" parent="Environment"]
+
+[node name="Floor" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Floor"]
+shape = SubResource("BoxShape3D_x4rlj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Floor"]
+mesh = SubResource("BoxMesh_i07l1")
+
+[node name="Ceiling" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Ceiling"]
+shape = SubResource("BoxShape3D_x4rlj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Ceiling"]
+mesh = SubResource("BoxMesh_i07l1")
+
+[node name="Wall" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.25019, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Wall"]
+shape = SubResource("BoxShape3D_olq40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Wall"]
+mesh = SubResource("BoxMesh_f432d")
+
+[node name="Wall4" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Wall4"]
+shape = SubResource("BoxShape3D_olq40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+mesh = SubResource("BoxMesh_u5rhl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/House/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+mesh = SubResource("BoxMesh_u5rhl")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/House/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
+mesh = SubResource("BoxMesh_5bb2r")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment/House/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+mesh = SubResource("BoxMesh_yq81d")
+
+[node name="Wall2" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0, 1.25, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Wall2"]
+shape = SubResource("BoxShape3D_olq40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Wall2"]
+mesh = SubResource("BoxMesh_f432d")
+
+[node name="Wall3" type="StaticBody3D" parent="Environment/House"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0, 1.25, -2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Wall3"]
+shape = SubResource("BoxShape3D_olq40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Wall3"]
+mesh = SubResource("BoxMesh_f432d")
+
+[node name="DEBUG Load Level" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.01151, -0.454119)
+collision_layer = 0
+collision_mask = 131072
+script = ExtResource("8_enwf4")
+button = NodePath("Button")
+
+[node name="Collision" type="CollisionShape3D" parent="DEBUG Load Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255249, 0)
+shape = SubResource("BoxShape3D_p3i6o")
+
+[node name="Button" type="MeshInstance3D" parent="DEBUG Load Level"]
+mesh = SubResource("BoxMesh_agb10")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="DEBUG Load Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247621, 0)
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("9_np802")
+left_pose = SubResource("Resource_7yv7s")
+right_pose = SubResource("Resource_f836c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG Load Level/XRToolsHandPoseArea"]
+shape = SubResource("SphereShape3D_81ety")
+
+[connection signal="button_pressed" from="DEBUG Load Level" to="." method="_on_load_scene_button_pressed"]
+
+[editable path="XROrigin3D"]

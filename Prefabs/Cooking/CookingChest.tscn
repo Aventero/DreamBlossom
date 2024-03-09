@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://f2tflbsm5sd7"]
+[gd_scene load_steps=20 format=3 uid="uid://f2tflbsm5sd7"]
 
 [ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="1_icbq4"]
 [ext_resource type="Script" path="res://Scripts/Cooking/CookingChest.gd" id="1_t40mx"]
@@ -41,29 +41,19 @@ size = Vector3(0.5, 0.126, 0.3)
 [sub_resource type="BoxMesh" id="BoxMesh_6r7os"]
 size = Vector3(0.15, 0.05, 0.15)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h8bqs"]
-viewport_path = NodePath("Display Viewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxcgq"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_h8bqs")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hc3c"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
+texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_tv7xr"]
 material = SubResource("StandardMaterial3D_6hc3c")
 size = Vector2(0.5, 0.1)
 
 [sub_resource type="GDScript" id="GDScript_pr1w6"]
-script/source = "@tool
-extends MeshInstance3D
+script/source = "extends MeshInstance3D
 
 func _process(delta):
 	# Update quest display
@@ -165,7 +155,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Display" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.0885971, 0.157852)
-material_override = SubResource("StandardMaterial3D_nxcgq")
 mesh = SubResource("QuadMesh_tv7xr")
 script = SubResource("GDScript_pr1w6")
 

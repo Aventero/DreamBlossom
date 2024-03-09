@@ -9,18 +9,18 @@ var inital_position : Vector3
 
 func _on_ingredient_trigger_body_entered(ingredient):
 	# Check if order is existing and order is currently running
-	if not LevelManager.order or LevelManager.order and not LevelManager.order.is_running():
+	if not GameBase.level.current_order or GameBase.level.current_order and not GameBase.level.current_order.is_running():
 		return
 	
 	if not ingredient is Ingredient:
 		return
 	
 	# Check if ingredient is still required in order
-	if not LevelManager.order.is_required(ingredient.type) or LevelManager.order.get_remaining_amount(ingredient.type) == 0:
+	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
 		return
 	
 	# Add ingredient to order
-	LevelManager.order.add_to_order(ingredient.type)
+	GameBase.level.current_order.add_to_order(ingredient.type)
 	
 	# Play eating animation
 	_play_eating()

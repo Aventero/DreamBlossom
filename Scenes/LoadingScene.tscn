@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c556h0flmnid5"]
+
+[ext_resource type="PackedScene" uid="uid://bqumugyvkct4r" path="res://addons/godot-xr-tools/staging/loading_screen.tscn" id="1_pr7u4"]
+[ext_resource type="Texture2D" uid="uid://da0rpt5ai2r42" path="res://Textures/Logo.png" id="2_s6qt7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42e8u"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_s6qt7")
+texture_filter = 0
+
+[node name="LoadingScreen" instance=ExtResource("1_pr7u4")]
+splash_screen = ExtResource("2_s6qt7")
+
+[node name="SplashScreen" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.133, 0, 1, -5.81361e-09, 0, 15, -50)
+surface_material_override/0 = SubResource("StandardMaterial3D_42e8u")

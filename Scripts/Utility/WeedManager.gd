@@ -5,8 +5,8 @@ extends Node3D
 @export var plots : Array[Node3D]
 
 @export_category("Spawn Chances")
-@export_range(0, 1.0, 0.01) var new_weed_chance : float
-@export_range(0, 1.0, 0.01) var new_weed_empty_chance : float
+@export_range(0, 1.0, 0.01) var inital_weed_chance : float
+@export_range(0, 1.0, 0.01) var additional_weed_chance : float
 
 @export_category("References")
 @export var weed : PackedScene
@@ -35,10 +35,10 @@ static func get_instance() -> WeedManager:
 func _on_grow_timer_timeout():
 	for soil in soils:
 		# Calculate current chance for weed spawn
-		var chance : float = new_weed_chance
+		var chance : float = additional_weed_chance
 		
 		if soil.current_weed_amount == 0.0:
-			chance = new_weed_empty_chance
+			chance = inital_weed_chance
 		
 		# Check if new weed is spawning
 		if randf() < chance:

@@ -212,7 +212,7 @@ func _handle_water_drop():
 
 func _spawn_plant():
 	# Spawn plant
-	plant = seed.plant.instantiate()
+	plant = ResourceSingleton.instance.get_resource(seed.plant).instantiate()
 	plant.position = Vector3.ZERO
 	add_child(plant)
 	

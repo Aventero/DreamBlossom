@@ -9,6 +9,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
+texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_trbqm"]
 material = SubResource("StandardMaterial3D_osq7s")
@@ -16,6 +17,7 @@ size = Vector2(0.2, 0.266)
 
 [sub_resource type="GDScript" id="GDScript_0422u"]
 script/source = "extends MeshInstance3D
+
 
 func _process(delta):
 	# Update quest display

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dno7emojpbyb3"]
+
+[ext_resource type="PackedScene" uid="uid://djdx4mo1onrb7" path="res://Prefabs/Farmland/ItemBags/SeedBags/SeedBag.tscn" id="1_ecdbc"]
+[ext_resource type="PackedScene" uid="uid://ddqtngwr5tjy2" path="res://Prefabs/Planting/Seeds/ShellieSeed.tscn" id="2_eomgn"]
+[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie/ShellieIcon.png" id="3_xcdya"]
+
+[node name="ShellieSeedBag" instance=ExtResource("1_ecdbc")]
+item = ExtResource("2_eomgn")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_xcdya")

@@ -8,7 +8,7 @@ extends Node3D
 
 func start_order():
 	# Load first / next order
-	if not LevelManager.get_instance().next_order():
+	if not GameBase.level.next_order():
 		return
 	
 	# Show order

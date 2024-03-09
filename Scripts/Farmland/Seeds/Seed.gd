@@ -2,7 +2,7 @@
 class_name Seed
 extends XRToolsPickable
 
-@export var plant : PackedScene
+@export var plant : String
 
 # Ensures that seed is only planted once
 var planted : bool = false

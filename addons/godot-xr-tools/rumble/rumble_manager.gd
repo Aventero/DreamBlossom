@@ -1,4 +1,5 @@
 @icon("res://addons/godot-xr-tools/editor/icons/rumble.svg")
+@tool
 class_name XRToolsRumbleManager
 extends Node
 

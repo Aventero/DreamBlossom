@@ -1,15 +1,13 @@
 [gd_scene load_steps=17 format=3 uid="uid://blfgo0yoj5uox"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/SlurpShroomieEvent/SlurpShroomie.gd" id="1_wjceu"]
+[ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_csyhm"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_tf38i"]
 [ext_resource type="Texture2D" uid="uid://cijrwi6wgne84" path="res://Textures/Particles/SlurpParticle.png" id="3_g2d2u"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4mh8p"]
-load_path = "res://.godot/imported/Shroomie.png-f8b738eaacf6bff6821cf46619e3a189.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87x1i"]
 resource_name = "Shroomie.001"
-albedo_texture = SubResource("CompressedTexture2D_4mh8p")
+albedo_texture = ExtResource("2_csyhm")
 rim = 0.5
 heightmap_deep_parallax = true
 heightmap_min_layers = 8
@@ -68,6 +66,8 @@ shader = ExtResource("2_tf38i")
 shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/color_difference = 0.4
 shader_parameter/speed = 4.0
+shader_parameter/UV_multiplier = 1.0
+shader_parameter/UV_offset = Vector2(0, 0)
 
 [sub_resource type="Curve" id="Curve_47l6e"]
 max_value = 2.0
