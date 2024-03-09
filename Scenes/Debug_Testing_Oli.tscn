@@ -1,9 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://b6n7jy1fhhwfk"]
+[gd_scene load_steps=59 format=3 uid="uid://b6n7jy1fhhwfk"]
 
 [ext_resource type="Script" path="res://Scripts/EnableXR.gd" id="1_qcfmw"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="1_rip8e"]
-[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_4y1mq"]
+[ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_etkru"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_4slt7"]
+[ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="3_fnwqj"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="4_yyuga"]
 [ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="5_rchdc"]
 [ext_resource type="Material" uid="uid://dnw57lsslt8xx" path="res://Materials/Ground.tres" id="6_vvvde"]
@@ -41,18 +42,31 @@
 [ext_resource type="PackedScene" path="res://Prefabs/Tools/Pickaxe.tscn" id="33_3a8ur"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="39_awgjq"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kwyj"]
-panorama = ExtResource("2_4y1mq")
-filter = false
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3i1d"]
+shader = ExtResource("2_etkru")
+shader_parameter/day_top_color = Color(0.811765, 0.807843, 1, 1)
+shader_parameter/day_bottom_color = Color(0.780392, 0.639216, 1, 1)
+shader_parameter/sunset_top_color = Color(0.560784, 0.623529, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.501961, 0.701961, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/skyTexture = ExtResource("3_fnwqj")
+shader_parameter/under_horizon_top_color = Color(0.34902, 0.47451, 1, 1)
+shader_parameter/under_horizon_bottom_color = Color(0.203922, 0.00392157, 0.427451, 1)
+shader_parameter/horizon_color = Color(0, 0.207843, 0.239216, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 1.0
+shader_parameter/sun_blur = 0.01
 
 [sub_resource type="Sky" id="Sky_5ota8"]
-sky_material = SubResource("PanoramaSkyMaterial_0kwyj")
+sky_material = SubResource("ShaderMaterial_t3i1d")
 
 [sub_resource type="Environment" id="Environment_88j2n"]
 background_mode = 2
 sky = SubResource("Sky_5ota8")
 ambient_light_color = Color(0.415686, 0.509804, 1, 1)
-ambient_light_sky_contribution = 0.52
 tonemap_mode = 2
 glow_enabled = true
 fog_light_color = Color(0.137255, 0.333333, 0.423529, 1)
@@ -135,10 +149,9 @@ size = Vector3(0.5, 1, 0.5)
 [node name="World" type="Node3D"]
 script = ExtResource("1_qcfmw")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.7591, -0.326163, 0.563369, 0.575482, 0.0682899, 0.814958, -0.304281, 0.942844, 0.135862, 0, 1, 0)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987459, -0.102963, -0.119679, -0.0444383, -0.908685, 0.415111, -0.151492, -0.404587, -0.901865, 0.917489, 0.126445, -0.517482)
 light_color = Color(1, 0.690196, 0.898039, 1)
-light_energy = 0.25
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -221,7 +234,7 @@ script = ExtResource("39_awgjq")
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Ground" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+transform = Transform3D(0.0880568, 0, 0, 0, 0.0880568, 0, 0, 0, 0.0880568, 0, -0.125, 0)
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground"]
 transform = Transform3D(0.97326, 0, 0, 0, 0.97326, 0, 0, 0, 0.97326, 0, 0, 0)
