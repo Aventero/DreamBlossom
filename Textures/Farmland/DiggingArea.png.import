@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcii5pj8feohm"
-path.s3tc="res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.s3tc.ctex"
-path.etc2="res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.etc2.ctex"
+path="res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/Farmland/DiggingArea.png"
-dest_files=["res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.s3tc.ctex", "res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.etc2.ctex"]
+dest_files=["res://.godot/imported/DiggingArea.png-03997a2748f3a35cabcf5af505b13c48.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="16_o1o87"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
 [ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="18_0hdub"]
-[ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
+[ext_resource type="PackedScene" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="18_v0q0r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="19_anm5m"]

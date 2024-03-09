@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1digqk2qon33"
-path.s3tc="res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.s3tc.ctex"
-path.etc2="res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.etc2.ctex"
+path="res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/Environment/Rocks.png"
-dest_files=["res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.s3tc.ctex", "res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.etc2.ctex"]
+dest_files=["res://.godot/imported/Rocks.png-673b6d45425e034bdf844cbabd1724f0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,7 +1,7 @@
 class_name CookingChest
 extends Node3D
 
-@onready var chest_lid : Node3D = $Model/Anchor
+@onready var chest_lid : Node3D = $Model/Top
 @onready var ingredient_ui : CookingChestIngredientsUI = $"Display Viewport/Cooking Chest Ingredients"
 
 var ingredients : Dictionary = {}

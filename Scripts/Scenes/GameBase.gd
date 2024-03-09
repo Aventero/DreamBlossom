@@ -3,8 +3,8 @@ extends XRToolsSceneBase
 
 static var level : Level
 
-@onready var seed_bags : SeedBagsEnabler = $"Seed Bags"
-@onready var tools : ToolsEnabler = $"Variable Tools"
+@onready var seed_bags : SeedBagsEnabler = $"ToolArea/Seed Bags"
+@onready var tools : ToolsEnabler = $"ToolArea/Variable Tools"
 @onready var weed_manager : WeedManager = $Managers/WeedManager
 @onready var return_manager : ReturnManager = $Managers/ReturnManager
 

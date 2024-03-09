@@ -29,10 +29,6 @@ uniform vec3 sun_sunset_color : source_color = vec3(10.0, 0.0, 0.0);
 uniform float sun_size : hint_range(0.01, 1.0) = 0.2;
 uniform float sun_blur : hint_range(0.01, 20.0) = 10.0;
 
-
-// TODO:
-// Add bool for sun or moon enabled and then use the corresponding rotation
-
 void sky() {
     float view_angle = abs(sin(EYEDIR.y * PI * 0.5));
     vec3 base_sky_color = mix(day_bottom_color, day_top_color, view_angle);
