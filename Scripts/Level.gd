@@ -16,6 +16,7 @@ signal completed
 @export_range(0.0, 1.0, 0.01) var additional_weed_chance : float = 0.0
 
 @export_group("Soil Setup")
+@export var soil_setup : String = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
 
 @export_group("Koriko Settings")
 
@@ -25,9 +26,8 @@ signal completed
 
 @export_group("Not implemented yet")
 @export var spread_time : float = 0.0
+@export var spread_indicator_time : float = 0.0
 @export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
-
-@export var soil_setup : String = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
 
 @export var time_before_first_spawn : float = 0.0
 @export_range(0.0, 1.0, 0.01) var inital_spawn_chance : float = 0.0

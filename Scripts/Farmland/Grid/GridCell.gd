@@ -1,6 +1,8 @@
 class_name GridCell
 extends Resource
 
+signal state_change(state)
+
 # Grid in which cell exists
 var grid : PlantGrid
 
@@ -10,4 +12,16 @@ var index : int
 var position : Vector2i
 
 # Current state
-var occupied : bool = false
+var state : CELLSTATE = CELLSTATE.FREE:
+	set(value):
+		state = value
+		
+		# Emit state change signal
+		state_change.emit(state)
+
+enum CELLSTATE
+{
+	FREE,
+	RESERVED,
+	OCCUPIED
+}

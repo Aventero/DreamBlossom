@@ -164,3 +164,6 @@ func _on_pull_pickup_picked_up(pickable):
 func _on_grab():
 	_grab_tween = create_tween()
 	_grab_tween.tween_property(model, "scale", Vector3(0.9, 0.9, 0.9), 0.1)
+
+func is_picked_up() -> bool:
+	return pickable_pull.is_picked_up()

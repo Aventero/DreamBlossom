@@ -19,9 +19,11 @@ var current_weed_amount : int = 0
 var center_offset : Vector3
 
 func _ready():
+	get_child(1).top_level = true
+	
 	# Flip z axis
 	if flip_z:
-		transform.basis.z *= -1
+		scale.z *= 1
 	
 	# Init data array
 	width_cells = width / cellsize
@@ -76,6 +78,11 @@ func get_cell(position : Vector3) -> GridCell:
 		return data[index]
 	return null
 
+func get_cell_by_index(index : int) -> GridCell:
+	if _is_index_valid(index):
+		return data[index]
+	return null
+
 func _is_index_valid(index : int) -> bool:
 	if index < 0 or index >= data.size():
 		return false
@@ -102,13 +109,13 @@ func is_placement_allowed(cell : GridCell, width : int) -> bool:
 	if not cell:
 		return false
 	
-	var cells : Array[GridCell] = get_cells(cell, width)
+	var cells : Array[GridCell] = get_cells(cell, width, false)
 	
 	if cells.size() == 0:
 		return false
 	
 	for current_cell in cells:
-		if current_cell.occupied:
+		if current_cell.state == GridCell.CELLSTATE.OCCUPIED:
 			return false
 	
 	return true
@@ -129,7 +136,7 @@ func _is_position_valid(position : Vector2i) -> bool:
 	
 	return true
 
-func set_state(cell : GridCell, width : int, state : bool) -> void:
+func set_state(cell : GridCell, width : int, state : GridCell.CELLSTATE) -> void:
 	# Check on null reference
 	if not cell:
 		return
@@ -137,7 +144,7 @@ func set_state(cell : GridCell, width : int, state : bool) -> void:
 	var cells : Array[GridCell] = get_cells(cell, width)
 	
 	for current_cell in cells:
-		current_cell.occupied = state
+		current_cell.state = state
 
 func get_cells(cell : GridCell, width : int, break_on_null = true) -> Array[GridCell]:
 	# Check on null reference
@@ -196,7 +203,23 @@ func get_free_cells() -> Array[GridCell]:
 	var free_cells : Array[GridCell] = []
 	
 	for cell in data:
-		if not cell.occupied:
+		if cell.state == GridCell.CELLSTATE.FREE:
 			free_cells.append(cell)
 	
 	return free_cells
+
+func get_nearby_free_cell(cell : GridCell) -> GridCell:
+	# Get all surrounding cells
+	var surrounding_cells : Array[GridCell] = get_cells(cell, 3, false)
+	var possible_cells : Array[GridCell]
+	
+	for s_cell in surrounding_cells:
+		if s_cell.state == GridCell.CELLSTATE.FREE:
+			possible_cells.append(s_cell)
+	
+	# Check if there is a empty cell nearby
+	if possible_cells.size() == 0:
+		return null
+	
+	# Return random free cell
+	return possible_cells[randi_range(0, possible_cells.size() - 1)]

@@ -83,7 +83,7 @@ func _process(delta):
 
 func remove_self():
 	# Free occupied cells in grid
-	anchor_cell.grid.set_state(anchor_cell, cell_width, false)
+	anchor_cell.grid.set_state(anchor_cell, cell_width, GridCell.CELLSTATE.FREE)
 	
 	# Spawn remove particles
 	var particles : GPUParticles3D = remove_particles.instantiate()

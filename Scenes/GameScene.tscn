@@ -38,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="36_eqljc"]
-[ext_resource type="PackedScene" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
+[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
 [ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="38_1hlk4"]
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
@@ -349,6 +349,7 @@ shadow_enabled = true
 script = SubResource("GDScript_mo61k")
 
 [node name="XRCamera3D" parent="XROrigin3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09149, 0)
 current = true
 
 [node name="Left Hand" parent="XROrigin3D" index="1"]
@@ -379,9 +380,12 @@ range_origin = Vector3(0, 1.5, 0)
 [node name="Collision" type="CollisionShape3D" parent="Managers/ReturnManager"]
 shape = SubResource("BoxShape3D_v1xlr")
 
-[node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plots") instance=ExtResource("6_8t4s2")]
+[node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plot") instance=ExtResource("6_8t4s2")]
 transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
-plots = [NodePath("../../Plot")]
+plot = NodePath("../../Plot")
+spread_time = 5.0
+spread_indicator_time = 5.0
+spread_chance = 1.0
 
 [node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
 

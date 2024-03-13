@@ -2125,13 +2125,13 @@ mesh = SubResource("ArrayMesh_7ch32")
 skeleton = NodePath("")
 
 [node name="NommieGrowingFruit1" parent="Model" index="22" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.749094, 0.0368596, 0, -0.0368596, 0.749094, 0, 0, 0, 0.75, -0.0595729, 0.218215, 0.0146779)
+transform = Transform3D(0.859716, 0.189958, 0, -0.189958, 0.859716, 0, 0, 0, 0.880452, -0.0595729, 0.218215, 0.0146779)
 
 [node name="NommieGrowingFruit2" parent="Model" index="23" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0639237, 0.3583, -0.032154)
+transform = Transform3D(0.760905, 0, 0, 0, 0.752098, -0.115434, 0, 0.115434, 0.752098, 0.0639237, 0.3583, -0.032154)
 
 [node name="NommieGrowingFruit3" parent="Model" index="24" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00544426, 0.531364, -0.0152283)
+transform = Transform3D(0.374319, 0.00542876, 0.147209, -0.0263127, 0.397988, 0.0522303, -0.14494, -0.0582313, 0.370697, 0.00544426, 0.531364, -0.0152283)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

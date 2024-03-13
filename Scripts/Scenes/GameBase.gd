@@ -21,6 +21,7 @@ func scene_loaded(user_data = null):
 	# Set weed settings
 	weed_manager.inital_weed_chance = level.inital_weed_chance
 	weed_manager.additional_weed_chance = level.additional_weed_chance
+	weed_manager.setup_soil_arrangement(level.soil_setup)
 	
 	# Update return manager
 	return_manager.update(true)

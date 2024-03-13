@@ -23,6 +23,7 @@ amount = 3
 script = ExtResource("1_l34ll")
 active_plants = 63
 active_tools = 63
+soil_setup = ",W,,,W,,,W,W,W,W,,,,,W,,,,,,,W,W,W,,,,,,,"
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
