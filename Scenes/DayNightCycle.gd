@@ -4,7 +4,8 @@ extends Node3D
 var _time_of_day: float = 0.0
 @export_range(0, 24, 0.1) var time_of_day: float:
 	set(value):
-		set_time_of_day(value)
+		if Engine.is_editor_hint():
+			set_time_of_day(value)
 	get:
 		return _time_of_day
 

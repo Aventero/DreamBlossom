@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyrjvfiya4jf5"]
+[gd_scene load_steps=10 format=3 uid="uid://ckulb7rpdxh1v"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DiggingIndicator.gd" id="1_xlvc4"]
-[ext_resource type="Shader" path="res://Shader/Halo_01.gdshader" id="4_pc3ig"]
-[ext_resource type="Texture2D" uid="uid://dl1rkendj3xas" path="res://Textures/Shader/Lines.png" id="4_u463x"]
-[ext_resource type="Texture2D" uid="uid://crsh885652ill" path="res://Textures/Shader/Halo_01.png" id="5_mgom7"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DiggingIndicator.gd" id="1_q6t32"]
+[ext_resource type="Shader" path="res://Shader/Halo_01.gdshader" id="2_cmbd0"]
+[ext_resource type="Texture2D" uid="uid://crsh885652ill" path="res://Textures/Shader/Halo_01.png" id="3_72xu3"]
+[ext_resource type="Texture2D" uid="uid://dl1rkendj3xas" path="res://Textures/Shader/Lines.png" id="4_17btt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujkl4"]
+size = Vector3(0.376, 0.0999658, 0.376)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awuac"]
 
@@ -39,23 +42,26 @@ shadow_mesh = SubResource("ArrayMesh_rv18l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1qmd"]
 render_priority = 0
-shader = ExtResource("4_pc3ig")
+shader = ExtResource("2_cmbd0")
 shader_parameter/object_height = 0.165
 shader_parameter/base_color = Color(0.505882, 0.733333, 0.988235, 1)
 shader_parameter/cursor = Vector3(0.01, 0, 0)
-shader_parameter/halo_01 = ExtResource("5_mgom7")
-shader_parameter/halo_02 = ExtResource("4_u463x")
+shader_parameter/halo_01 = ExtResource("3_72xu3")
+shader_parameter/halo_02 = ExtResource("4_17btt")
 
 [node name="DiggingIndicator" type="Area3D"]
 collision_layer = 256
 collision_mask = 0
-script = ExtResource("1_xlvc4")
+script = ExtResource("1_q6t32")
 allowed_material = Color(0.505882, 0.733333, 0.988235, 1)
 restricted_material = Color(0.988235, 0.239216, 0.152941, 1)
 
 [node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0499829, 0)
+shape = SubResource("BoxShape3D_ujkl4")
 
 [node name="Indicator Halo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
 mesh = SubResource("ArrayMesh_giwy4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_l1qmd")

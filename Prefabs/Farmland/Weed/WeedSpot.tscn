@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://mvx45djeopmk"]
 
-[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpot.tscn" id="1_4e4g3"]
+[ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpotBase.tscn" id="1_yhhyw"]
 [ext_resource type="PackedScene" uid="uid://c2e16pvwhohgx" path="res://Prefabs/Farmland/Weed/Weed.tscn" id="2_sxg6l"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="5_aama0"]
 [ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_2xyoj"]
@@ -86,7 +86,7 @@ script = ExtResource("6_2xyoj")
 name = "Wet_2"
 material = SubResource("StandardMaterial3D_sskm3")
 
-[node name="DigSpot" instance=ExtResource("1_4e4g3")]
+[node name="DigSpot" instance=ExtResource("1_yhhyw")]
 hand_removal = false
 seed_insertion = false
 fertilizing = false

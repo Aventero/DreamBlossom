@@ -12,7 +12,10 @@ func scene_loaded(user_data = null):
 	super(user_data)
 	
 	# Load level
-	_load_level(user_data["level"])
+	if user_data and user_data["level"]:
+		_load_level(user_data["level"])
+	else:
+		_load_level(1)
 	
 	# Apply level settings
 	seed_bags.load_seed_bags(level.active_plants)

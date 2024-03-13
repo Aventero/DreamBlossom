@@ -30,7 +30,6 @@ signal fertilizer_added(type : Fertilizer.Type)
 @onready var outline_mesh : MeshInstance3D = $Outline
 
 var anchor_cell : GridCell
-var cell_width : int
 
 # Removing function
 var progress : float
@@ -83,7 +82,7 @@ func _process(delta):
 
 func remove_self():
 	# Free occupied cells in grid
-	anchor_cell.grid.set_state(anchor_cell, cell_width, GridCell.CELLSTATE.FREE)
+	anchor_cell.grid.set_state(anchor_cell, 2, GridCell.CELLSTATE.FREE)
 	
 	# Spawn remove particles
 	var particles : GPUParticles3D = remove_particles.instantiate()

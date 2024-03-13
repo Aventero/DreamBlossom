@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=3 uid="uid://k1ig4nxq85cm"]
+
+[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpot.gd" id="1_vwm3m"]
+[ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/Shovel/ShovelPullComplete.tscn" id="2_y6nby"]
+[ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/Shovel/ShovelInsert.tscn" id="3_bevoi"]
+[ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="4_d7spc"]
+[ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="5_pfhdn"]
+[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_frjcy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1311s"]
+albedo_texture = ExtResource("5_pfhdn")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_qvnrg"]
+script = ExtResource("6_frjcy")
+name = "Dry"
+material = SubResource("StandardMaterial3D_1311s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orm6g"]
+albedo_color = Color(0.882353, 0.882353, 0.882353, 1)
+albedo_texture = ExtResource("5_pfhdn")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_2qm22"]
+script = ExtResource("6_frjcy")
+name = "Wet_0"
+material = SubResource("StandardMaterial3D_orm6g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0xf6"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+albedo_texture = ExtResource("5_pfhdn")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_ah4j5"]
+script = ExtResource("6_frjcy")
+name = "Wet_1"
+material = SubResource("StandardMaterial3D_n0xf6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tbwd"]
+albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
+albedo_texture = ExtResource("5_pfhdn")
+texture_filter = 0
+
+[sub_resource type="Resource" id="Resource_tca8r"]
+script = ExtResource("6_frjcy")
+name = "Wet_2"
+material = SubResource("StandardMaterial3D_1tbwd")
+
+[sub_resource type="GDScript" id="GDScript_ceeo6"]
+script/source = "extends Timer
+
+@onready var dig_spot : DigSpot = $\"..\"
+
+func _on_timeout():
+	# Reduce water amount by one
+	dig_spot.current_water -= 1
+	
+	dig_spot.material_changer.previous_state()
+	
+	dig_spot._play_jiggle(0.05)
+	
+	# Stop timer if completly dry
+	if dig_spot.current_water == 0:
+		stop()
+"
+
+[node name="DigSpotBase" type="Node3D"]
+script = ExtResource("1_vwm3m")
+remove_amount = 2.0
+watering_amount = 5
+max_jiggle = 10.0
+max_jiggle_speed = 40.0
+remove_particles = ExtResource("2_y6nby")
+seed_insert_particles = ExtResource("3_bevoi")
+
+[node name="Trigger" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 197124
+
+[node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]
+
+[node name="Particle Collision" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)
+size = Vector3(0.19, 0.01875, 0.19)
+
+[node name="Seed Snap Point" type="Node3D" parent="."]
+
+[node name="MaterialChanger" type="Node3D" parent="."]
+script = ExtResource("4_d7spc")
+material_states = Array[ExtResource("6_frjcy")]([SubResource("Resource_qvnrg"), SubResource("Resource_2qm22"), SubResource("Resource_ah4j5"), SubResource("Resource_tca8r")])
+
+[node name="DryTimer" type="Timer" parent="."]
+wait_time = 5.0
+script = SubResource("GDScript_ceeo6")
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_trigger_body_exited"]
+[connection signal="timeout" from="DryTimer" to="DryTimer" method="_on_timeout"]

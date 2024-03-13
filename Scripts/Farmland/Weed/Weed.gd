@@ -131,6 +131,8 @@ func _on_pull_pickup_dropped(pickable):
 func _on_pull_completed():
 	# Free spreading cell
 	if _spreading_cell:
+		# Disconnect state change event
+		_spreading_cell.state_change.disconnect(_state_changed)
 		WeedManager.get_instance().free_cell(_spreading_cell)
 		_spreading_cell = null
 	
