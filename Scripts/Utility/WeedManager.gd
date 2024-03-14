@@ -13,6 +13,7 @@ signal jiggle_synchronisation
 @export_category("Spread Chances")
 @export var spread_time : float = 0.0
 @export var spread_indicator_time : float = 0.0
+@export var spread_release_grace_time : float = 0.0
 @export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
 
 @export_category("References")
@@ -20,9 +21,14 @@ signal jiggle_synchronisation
 @export var grow_particles : PackedScene
 
 @onready var spread_timer : Timer = $SpreadTimer
+@onready var spread_indicator_timer : Timer = $SpreadIndicatorTimer
 
 var soil : PlantGrid
+
 var weed_instances : Array[Weed]
+var spreading_weed : Array[Weed]
+
+var _weed_spread_jiggle_sync : Tween 
 
 static var instance : WeedManager
 
@@ -74,24 +80,71 @@ func _on_spread_timer_timeout() -> void:
 			continue
 		
 		# Start spread process for weed
-		weed_instance.spread(spread_indicator_time)
-		spread_amount += 1
+		if queue_weed(weed_instance):
+			spread_amount += 1
 	
 	# Wait for jiggle / spread to complete
 	if spread_amount > 0:
 		# Start jiggle synchronisation
-		var sync : Tween = create_tween().set_loops()
-		sync.tween_interval(0.4)
-		sync.tween_callback(func(): jiggle_synchronisation.emit())
+		_weed_spread_jiggle_sync = create_tween().set_loops()
+		_weed_spread_jiggle_sync.tween_interval(0.4)
+		_weed_spread_jiggle_sync.tween_callback(func(): jiggle_synchronisation.emit())
 		
 		# Wait for spreading to complete
-		await get_tree().create_timer(spread_indicator_time).timeout
+		spread_indicator_timer.start(spread_indicator_time)
+	else:
+		# Restart spread timer
+		spread_timer.start(spread_time)
+
+func _on_spread_indicator_timer_timeout() -> void:
+	for weed_instance in spreading_weed:
+		# Stop spreading jiggle on weed
+		weed_instance.stop_jiggle()
 		
-		sync.kill()
-		sync = null
+		# Cleanup weed
+		weed_instance.cleanup()
+		
+		# Check if spreading is canceled
+		if weed_instance.is_picked_up() or weed_instance.spreading_blocked:
+			if weed_instance.spreading_cell:
+				free_cell(weed_instance.spreading_cell)
+				weed_instance.spreading_cell = null
+			continue
+		
+		# Spawn spreading weed
+		spawn_weed(weed_instance.spreading_cell)
+	
+	# Kill jiggle sync
+	_weed_spread_jiggle_sync.kill()
+	_weed_spread_jiggle_sync = null
+	
+	# Clear spreading weed list
+	spreading_weed.clear()
 	
 	# Restart spread timer
 	spread_timer.start(spread_time)
+
+func queue_weed(weed : Weed) -> bool:
+	# Find nearby cell to spread to
+	var spreading_cell : GridCell = soil.get_nearby_free_cell(weed.cell)
+	
+	# Ignore spread if no free cell was found
+	if not spreading_cell:
+		return false
+	
+	# Set data in weed
+	weed.setup_spread(spreading_cell)
+	
+	# Reserve spreading cell
+	reserve_cell(spreading_cell)
+	
+	# Start weed jiggle
+	weed.play_jiggle()
+	
+	# Add to spreading weed list
+	spreading_weed.append(weed)
+	
+	return true
 
 func free_cell(cell : GridCell):
 	soil.set_state(cell, 1, GridCell.CELLSTATE.FREE)
@@ -99,9 +152,12 @@ func free_cell(cell : GridCell):
 func reserve_cell(cell : GridCell):
 	soil.set_state(cell, 1, GridCell.CELLSTATE.RESERVED)
 
+func occupy_cell(cell : GridCell):
+	soil.set_state(cell, 1, GridCell.CELLSTATE.OCCUPIED)
+
 func spawn_weed(cell : GridCell, ignore_particles : bool = false):
 	# Occupy space on soil
-	soil.set_state(cell, 1, GridCell.CELLSTATE.OCCUPIED)
+	occupy_cell(cell)
 	soil.current_weed_amount += 1
 	
 	# Spawn new weed
@@ -137,13 +193,17 @@ func spawn_weed(cell : GridCell, ignore_particles : bool = false):
 
 func _on_weed_removed(weed : Weed):
 	# Free occupied space on soil
-	soil.set_state(weed.cell, 1, GridCell.CELLSTATE.FREE)
+	free_cell(weed.cell)
 	soil.current_weed_amount -= 1
+	
+	# Check if weed was currently spreading
+	if spreading_weed.has(weed):
+		free_cell(weed.spreading_cell)
+		weed.spreading_cell = null
+		spreading_weed.erase(weed)
 	
 	# Remove weed from weed instances
 	weed_instances.erase(weed)
-	
-	print("New weeds: ", weed_instances)
 
 func setup_soil_arrangement(soil_setup : String):
 	var setup_array : PackedStringArray = soil_setup.split(",")
@@ -155,3 +215,10 @@ func setup_soil_arrangement(soil_setup : String):
 			"W": spawn_weed(soil.get_cell_by_index(index), true)
 		
 		index += 1
+
+func is_spreading() -> bool:
+	return spreading_weed.size() > 0
+
+func get_remaining_spread_time() -> float:
+	return spread_indicator_timer.time_left
+

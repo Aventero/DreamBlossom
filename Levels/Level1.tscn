@@ -23,6 +23,10 @@ amount = 3
 script = ExtResource("1_l34ll")
 active_plants = 63
 active_tools = 63
+spread_time = 5.0
+spread_indicator_time = 2.0
+spread_release_grace_time = 0.5
+spread_chance = 0.5
 soil_setup = ",W,,,W,,,W,W,W,W,,,,,W,,,,,,,W,W,W,,,,,,,"
 
 [node name="Order #1" type="Timer" parent="."]

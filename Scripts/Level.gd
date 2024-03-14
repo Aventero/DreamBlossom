@@ -12,8 +12,10 @@ signal completed
 @export_flags("Fertilizer Blue", "Fertilizer Orange", "Fertilizer Green", "Scissors", "MusicBox", "PickAxe") var active_tools
 
 @export_group("Weed Settings")
-@export_range(0.0, 1.0, 0.01) var inital_weed_chance : float = 0.0
-@export_range(0.0, 1.0, 0.01) var additional_weed_chance : float = 0.0
+@export var spread_time : float = 0.0
+@export var spread_indicator_time : float = 0.0
+@export var spread_release_grace_time : float = 0.0
+@export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
 
 @export_group("Soil Setup")
 @export var soil_setup : String = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
@@ -23,11 +25,7 @@ signal completed
 @export_group("Additional Settings")
 
 # Not Implemented
-
 @export_group("Not implemented yet")
-@export var spread_time : float = 0.0
-@export var spread_indicator_time : float = 0.0
-@export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
 
 @export var time_before_first_spawn : float = 0.0
 @export_range(0.0, 1.0, 0.01) var inital_spawn_chance : float = 0.0
