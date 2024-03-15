@@ -26,7 +26,7 @@ func scene_loaded(user_data = null):
 	weed_manager.additional_weed_chance = level.additional_weed_chance
 	weed_manager.setup_soil_arrangement(level.soil_setup)
 	
-	# Update return manager
+	# Update return manager	
 	return_manager.update(true)
 
 func _load_level(level_nr : int) -> void:
