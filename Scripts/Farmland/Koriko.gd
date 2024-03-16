@@ -3,23 +3,25 @@ class_name Koriko
 extends XRToolsPickable
 
 @export var time_between_teleport : float = 1.0
-@export var time_until_death : float = 1
 
 var manager : KorikoManager
-var angle_to_center : float
 
 var _tween : Tween
+var _angle_to_center : float
 var _is_fed : bool = false
 
-func _ready():
-	super()
+func setup(p_manager : KorikoManager) -> void:
+	manager = p_manager
 	
 	# Calculate angle to center
-	angle_to_center = Vector3.BACK.signed_angle_to(Vector3(-global_position.x, 0.0, -global_position.z), Vector3.UP)
-	global_rotation = Vector3(global_rotation.x, angle_to_center, global_rotation.z)
+	_angle_to_center = Vector3.BACK.signed_angle_to(Vector3(-global_position.x, 0.0, -global_position.z), Vector3.UP)
+	global_rotation = Vector3(global_rotation.x, _angle_to_center, global_rotation.z)
+	
+	# Play spawn audio 
+	$AudioSource.play()
 	
 	# Start death timer
-	get_tree().create_timer(time_until_death).timeout.connect(_on_death)
+	get_tree().create_timer(manager.time_until_death).timeout.connect(_on_death)
 	
 	_play_jiggle()
 
@@ -109,7 +111,7 @@ func _play_return_vanish():
 	# Reset position
 	visible = false
 	position = Vector3.ZERO
-	global_rotation = Vector3(0.0, angle_to_center, 0.0)
+	global_rotation = Vector3(0.0, _angle_to_center, 0.0)
 	
 	# Wait before reappearing
 	await get_tree().create_timer(time_between_teleport).timeout

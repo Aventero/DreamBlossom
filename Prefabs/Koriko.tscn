@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://babjqrl366pkk"]
+[gd_scene load_steps=21 format=3 uid="uid://babjqrl366pkk"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_pgw36"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_c3ab7"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Koriko.gd" id="2_crsb1"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_vyl5u"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_4hwhu"]
+[ext_resource type="AudioStream" uid="uid://1rju32gxnpbw" path="res://Sound/Giggle.wav" id="6_iadhi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gdrmm"]
 size = Vector3(0.118018, 0.111182, 0.10957)
@@ -60,8 +61,7 @@ size = Vector3(0.12, 0.12, 0.12)
 collision_mask = 65543
 freeze = true
 script = ExtResource("2_crsb1")
-time_between_teleport = 1.0
-time_until_death = 1.0
+time_between_teleport = 2.0
 release_mode = 0
 ranged_grab_method = 0
 
@@ -129,6 +129,10 @@ collision_mask = 65540
 [node name="Trigger" type="CollisionShape3D" parent="FeedArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01182, 0)
 shape = SubResource("BoxShape3D_okvc6")
+
+[node name="AudioSource" type="AudioStreamPlayer3D" parent="." index="6"]
+stream = ExtResource("6_iadhi")
+volume_db = -40.0
 
 [connection signal="dropped" from="." to="." method="_on_dropped"]
 [connection signal="body_entered" from="FeedArea" to="." method="_on_feed_area_body_entered"]

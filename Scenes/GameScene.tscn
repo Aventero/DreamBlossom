@@ -385,41 +385,41 @@ shape = SubResource("BoxShape3D_v1xlr")
 [node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plot") instance=ExtResource("6_8t4s2")]
 transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
 plot = NodePath("../../Plot")
-spread_time = 5.0
-spread_indicator_time = 2.0
-spread_release_grace_time = 0.5
-spread_chance = 0.5
+spread_time = 10.0
+spread_indicator_time = 4.0
+spread_release_grace_time = 1.0
+spread_chance = 0.25
 
 [node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
 
 [node name="KorikoManager" parent="Managers" instance=ExtResource("17_1ewji")]
 
 [node name="Spawnpoint1" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(0.8617, 0, -0.507418, 0, 1, 0, 0.507418, 0, 0.8617, 0.765556, 0.888436, -1.20646)
+transform = Transform3D(0.8617, 0, -0.507418, 0, 1, 0, 0.507418, 0, 0.8617, 0.77485, 0.91463, -1.17053)
 aabb = AABB(-0.1, -0.1, -0.1, 0.2, 0.2, 0.2)
 
 [node name="Spawnpoint2" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(0.934036, 0, 0.357178, 0, 1, 0, -0.357178, 0, 0.934036, -0.750648, 0.888436, -1.20646)
+transform = Transform3D(0.884532, 0, 0.466479, 0, 1, 0, -0.466479, 0, 0.884532, -0.783108, 0.914296, -1.17668)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint3" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(0.371951, 0, 0.928252, 0, 1, 0, -0.928252, 0, 0.371951, -0.800991, 0.888436, -0.364364)
+transform = Transform3D(0.543555, 0, 0.839373, 0, 1, 0, -0.839373, 0, 0.543555, -0.809922, 0.914411, -0.350212)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint4" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(0.8497, 0, -0.527267, 0, 1, 0, 0.527267, 0, 0.8497, 0.549694, 0.908195, -0.35636)
+transform = Transform3D(0.8497, 0, -0.527267, 0, 1, 0, 0.527267, 0, 0.8497, 0.549694, 0.914356, -0.35636)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint5" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(-0.393332, 0, 0.919397, 0, 1, 0, -0.919397, 0, -0.393332, -0.738928, 0.664597, 0.171511)
+transform = Transform3D(-0.393332, 0, 0.919397, 0, 1, 0, -0.919397, 0, -0.393332, -0.916839, 0.663163, 0.22085)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint6" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(-0.751737, 0, -0.659464, 0, 1, 0, 0.659464, 0, -0.751737, 0.401714, 0.91738, 0.57233)
+transform = Transform3D(-0.697741, 0, -0.716351, 0, 1, 0, 0.716351, 0, -0.697741, 0.494977, 0.912426, 0.676683)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint7" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
-transform = Transform3D(0.998763, 0, 0.0497214, 0, 1, 0, -0.0497214, 0, 0.998763, 0.00361368, 0.888055, -0.35754)
+transform = Transform3D(0.923492, 0, 0.383618, 0, 1, 0, -0.383618, 0, 0.923492, -0.0845595, 0.914849, -0.35754)
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="DigSpotLookup" type="Node" parent="."]
@@ -448,16 +448,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47965, -1.70578)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
 
 [node name="CookingChest" parent="CookingArea" instance=ExtResource("39_43inh")]
-transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.690429, 0.562432, 0.615636)
+transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
 
 [node name="CookingButton" parent="CookingArea/CookingChest" instance=ExtResource("47_5mn04")]
 transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274516, 0.426609, 0.071738, 0.280397)
 
 [node name="RecipeBook" parent="CookingArea" instance=ExtResource("40_1g7i3")]
-transform = Transform3D(0.4388, -0.431013, 0.788468, 0.0354846, 0.885083, 0.464079, -0.897884, -0.17566, 0.403669, -0.692668, 1.09178, -0.134787)
+transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
 
 [node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588696, 0.348511, 0.0218657)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
 
 [node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)

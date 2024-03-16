@@ -6,10 +6,6 @@ signal jiggle_synchronisation
 
 @export var plot : Node3D
 
-@export_category("Spawn Chances")
-@export_range(0, 1.0, 0.01) var inital_weed_chance : float
-@export_range(0, 1.0, 0.01) var additional_weed_chance : float
-
 @export_category("Spread Chances")
 @export var spread_time : float = 0.0
 @export var spread_indicator_time : float = 0.0
@@ -48,24 +44,16 @@ func _ready():
 static func get_instance() -> WeedManager:
 	return instance
 
-func _on_grow_timer_timeout() -> void:
-	# Calculate current chance for weed spawn
-	var chance : float = additional_weed_chance
+func setup(p_spread_time : float, p_spread_indicator_time : float, p_spread_release_grace_time : float, p_spread_chance : float) -> void:
+	# Set data
+	spread_time = p_spread_time
+	spread_indicator_time = p_spread_indicator_time
+	spread_release_grace_time = p_spread_release_grace_time
+	spread_chance = p_spread_chance
 	
-	if soil.current_weed_amount == 0.0:
-		chance = inital_weed_chance
-	
-	# Check if new weed is spawning
-	if randf() < chance:
-		# Get random free cell
-		var free_cells : Array[GridCell] = soil.get_free_cells()
-		
-		if free_cells.size() <= 0:
-			return
-		
-		# Select random cell
-		var random_cell : GridCell = free_cells[randi_range(0, free_cells.size() - 1)]
-		spawn_weed(random_cell)
+	# Start spread timer if not already
+	if spread_timer.is_stopped():
+		spread_timer.start(spread_time)
 
 func _on_spread_timer_timeout() -> void:
 	var spread_amount : int = 0

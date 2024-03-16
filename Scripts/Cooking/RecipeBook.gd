@@ -12,6 +12,9 @@ func _ready():
 	var recipe : Recipe = RecipeManager.get_instance().get_recipe(0)
 	display_recipe(recipe)
 
+func disable_recipe_cook():
+	queue_free()
+
 func display_recipe(recipe : Recipe):
 	# Set recipe name
 	page.set_recipe_name(recipe.name)

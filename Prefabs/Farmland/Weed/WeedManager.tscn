@@ -9,17 +9,12 @@ script = ExtResource("1_ht5d1")
 weed = ExtResource("2_6pen1")
 grow_particles = ExtResource("3_umuig")
 
-[node name="GrowTimer" type="Timer" parent="."]
-wait_time = 5.0
-
 [node name="SpreadTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [node name="SpreadIndicatorTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]
 [connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
 [connection signal="timeout" from="SpreadIndicatorTimer" to="." method="_on_spread_indicator_timer_timeout"]

@@ -26,7 +26,6 @@ func _process(delta):
 
 [node name="OrderDisplay" type="Node3D"]
 script = ExtResource("1_k262u")
-time_between_orders = 10.0
 
 [node name="Display" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_114af")

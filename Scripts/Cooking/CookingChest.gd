@@ -9,8 +9,11 @@ var ingredient_instances : Dictionary = {}
 
 var _is_cooking : bool = false
 
-func _ready():
+func _ready() -> void:
 	_open_chest()
+
+func disable_chest() -> void:
+	queue_free()
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group("Ingredient"):

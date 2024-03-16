@@ -17,7 +17,7 @@ shader_parameter/alpha = 0.0
 
 [node name="Staging" type="Node3D"]
 script = ExtResource("1_6s1ly")
-main_scene = "res://Scenes/GameScene.tscn"
+main_scene = "res://Scenes/HubScene.tscn"
 
 [node name="Fade" type="MeshInstance3D" parent="."]
 mesh = SubResource("4")

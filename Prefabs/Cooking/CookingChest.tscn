@@ -224,7 +224,7 @@ skeleton = NodePath("")
 collision_layer = 0
 collision_mask = 4
 
-[node name="Trigger" type="CollisionShape3D" parent="Trigger"]
+[node name="Shape" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000228882, 0.0908236, 0.00135802)
 shape = SubResource("BoxShape3D_kqov5")
 

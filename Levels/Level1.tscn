@@ -23,11 +23,17 @@ amount = 3
 script = ExtResource("1_l34ll")
 active_plants = 63
 active_tools = 63
-spread_time = 5.0
-spread_indicator_time = 2.0
-spread_release_grace_time = 0.5
-spread_chance = 0.5
+spread_time = 10.0
+spread_indicator_time = 5.0
+spread_release_grace_time = 1.0
+spread_chance = 0.2
 soil_setup = ",W,,,W,,,W,W,W,W,,,,,W,,,,,,,W,W,W,,,,,,,"
+time_before_first_spawn = 30.0
+inital_spawn_chance = 0.1
+stack_spawn_chance = 0.05
+time_until_death = 30.0
+enable_cooking_chest = true
+time_between_orders = 10.0
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
