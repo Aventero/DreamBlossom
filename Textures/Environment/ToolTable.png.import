@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhaioulf8pfon"
-path.s3tc="res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.s3tc.ctex"
-path.etc2="res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.etc2.ctex"
+path="res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/Environment/ToolTable.png"
-dest_files=["res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.s3tc.ctex", "res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.etc2.ctex"]
+dest_files=["res://.godot/imported/ToolTable.png-19a813ae7bc43bb61833f7737549e261.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
