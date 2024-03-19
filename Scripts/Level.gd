@@ -10,7 +10,7 @@ signal completed
 @export_flags("Shroomie", "Blubburu", "Flamie", "Shellie", "Pumkie", "Nommie") var active_plants
 
 @export_group("Tools")
-# Defines which tools are active in current level
+## Defines which tools are active in current level
 @export_flags("Fertilizer Blue", "Fertilizer Orange", "Fertilizer Green", "Scissors", "MusicBox", "PickAxe") var active_tools
 
 @export_group("Weed Settings")
@@ -22,6 +22,8 @@ signal completed
 @export var spread_release_grace_time : float = 0.0
 ## Chance that a single weed is spreading
 @export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
+## Spawn chance for obstacle (Weed, Rock, etc) to spawn per cell upon digspot removal
+@export_range(0.0, 1.0, 0.01) var obstacle_spawn_chance : float = 0.0
 
 @export_group("Soil Setup")
 ## Starting arrangement of soil
@@ -45,7 +47,6 @@ signal completed
 
 # Not Implemented
 @export_group("Not implemented yet")
-
 
 enum Plants {
 	SHROOMIE = 1,

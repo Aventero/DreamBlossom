@@ -27,6 +27,7 @@ spread_time = 10.0
 spread_indicator_time = 5.0
 spread_release_grace_time = 1.0
 spread_chance = 0.2
+obstacle_spawn_chance = 0.5
 soil_setup = ",W,,,W,,,W,W,W,W,,,,,W,,,,,,,W,W,W,,,,,,,"
 time_before_first_spawn = 30.0
 inital_spawn_chance = 0.1

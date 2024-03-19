@@ -26,7 +26,13 @@ func scene_loaded(user_data = null):
 	tools.load_tools_bags(level.active_tools)
 	
 	# Set weed settings
-	weed_manager.setup(level.spread_time, level.spread_indicator_time, level.spread_release_grace_time, level.spread_chance)
+	weed_manager.setup(
+		level.spread_time,
+		level.spread_indicator_time,
+		level.spread_release_grace_time,
+		level.spread_chance,
+		level.obstacle_spawn_chance
+	)
 	weed_manager.setup_soil_arrangement(level.soil_setup)
 	
 	# Set koriko settings

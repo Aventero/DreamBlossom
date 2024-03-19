@@ -95,6 +95,9 @@ func remove_self():
 	remove_tween.tween_property(self, "global_position", global_position + Vector3(0, -0.2, 0), 2.0)
 	remove_tween.tween_callback(Callable(_free_callback))
 	
+	# Spawn random obstacles
+	WeedManager.get_instance().spawn_obstacles(anchor_cell)
+	
 	# Update Lookup
 	DigSpotLookup.remove(self)
 	

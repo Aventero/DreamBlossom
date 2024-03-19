@@ -12,6 +12,9 @@ signal jiggle_synchronisation
 @export var spread_release_grace_time : float = 0.0
 @export_range(0.0, 1.0, 0.01) var spread_chance : float = 0.0
 
+@export_category("Obstacle Chances")
+@export var obstacle_chance : float = 0.0
+
 @export_category("References")
 @export var weed : PackedScene
 @export var grow_particles : PackedScene
@@ -44,12 +47,13 @@ func _ready():
 static func get_instance() -> WeedManager:
 	return instance
 
-func setup(p_spread_time : float, p_spread_indicator_time : float, p_spread_release_grace_time : float, p_spread_chance : float) -> void:
+func setup(p_spread_time : float, p_spread_indicator_time : float, p_spread_release_grace_time : float, p_spread_chance : float, p_obstacle_chance : float) -> void:
 	# Set data
 	spread_time = p_spread_time
 	spread_indicator_time = p_spread_indicator_time
 	spread_release_grace_time = p_spread_release_grace_time
 	spread_chance = p_spread_chance
+	obstacle_chance = p_obstacle_chance
 	
 	# Start spread timer if not already
 	if spread_timer.is_stopped():
@@ -210,3 +214,11 @@ func is_spreading() -> bool:
 func get_remaining_spread_time() -> float:
 	return spread_indicator_timer.time_left
 
+func spawn_obstacles(anchor_cell : GridCell):
+	var affected_cells : Array[GridCell] = soil.get_cells(anchor_cell, 2)
+	
+	for cell in affected_cells:
+		if randf() > obstacle_chance:
+			continue
+		
+		spawn_weed(cell)

@@ -389,6 +389,7 @@ spread_time = 10.0
 spread_indicator_time = 4.0
 spread_release_grace_time = 1.0
 spread_chance = 0.25
+obstacle_chance = 0.5
 
 [node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
 
