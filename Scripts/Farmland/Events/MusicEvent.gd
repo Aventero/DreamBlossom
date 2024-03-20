@@ -16,6 +16,16 @@ func _ready():
 	# Disable processing until event is called
 	set_process(false)
 
+func check_feasibility() -> void:
+	if not GameBase.level:
+		return
+	
+	if GameBase.level.is_tool_active("MusicBox"):
+		return
+	
+	# Delete self
+	queue_free()
+
 func initialize():
 	# Get current digspot for later
 	dig_spot = DigSpotLookup.get_dig_spot(self.owner)

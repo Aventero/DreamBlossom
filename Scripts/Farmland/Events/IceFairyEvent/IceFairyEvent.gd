@@ -11,6 +11,16 @@ extends PlantEvent
 var _ice_cube_amount : int = 0
 var _destroyed_cubes : int = 0
 
+func check_feasibility():
+	if not GameBase.level:
+		return
+	
+	if GameBase.level.is_tool_active("PickAxe"):
+		return
+	
+	# Delete self
+	queue_free()
+
 func initialize():
 	for spawn in fairy_spawns:
 		spawn.show_fairy()

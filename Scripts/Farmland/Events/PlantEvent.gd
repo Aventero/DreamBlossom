@@ -6,6 +6,9 @@ signal event_completed
 
 @export var icon_texture : Texture2D
 
+func check_feasibility():
+	pass
+
 func initialize():
 	pass
 

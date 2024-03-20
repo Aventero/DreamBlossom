@@ -62,7 +62,8 @@ enum Tools {
 	Fertilizer_Orange = 2,
 	Fertilizer_Green = 4,
 	Scissors = 8,
-	MusicBox = 16
+	MusicBox = 16,
+	PickAxe = 32,
 }
 
 var current_order : Order = null
@@ -88,3 +89,20 @@ func _on_order_completed(success : bool) -> void:
 	# Check if level is completed (No more orders)
 	if get_child_count() == 0:
 		completed.emit()
+
+func is_tool_active(tool : String) -> bool:
+	match tool:
+		"Fertilizer Blue":
+			return active_tools & Tools.Fertilizer_Blue != 0
+		"Fertilizer Orange":
+			return active_tools & Tools.Fertilizer_Orange != 0
+		"Fertilizer Green":
+			return active_tools & Tools.Fertilizer_Green != 0
+		"Scissors":
+			return active_tools & Tools.Scissors != 0
+		"MusicBox":
+			return active_tools & Tools.MusicBox != 0
+		"PickAxe":
+			return active_tools & Tools.PickAxe != 0
+	
+	return false

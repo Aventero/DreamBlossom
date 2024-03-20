@@ -46,7 +46,7 @@ func scene_loaded(user_data = null):
 	# Set order settings
 	order_display.setup(level.time_between_orders)
 	
-	# Update return manager	
+	# Update return manager
 	return_manager.update(true)
 
 func _load_level(level_nr : int) -> void:

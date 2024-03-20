@@ -25,9 +25,8 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_2nty6")
 size = Vector2(0.075, 0.075)
 
-[node name="Plant" type="Node3D" node_paths=PackedStringArray("plant_model")]
+[node name="Plant" type="Node3D"]
 script = ExtResource("1_unpe5")
-plant_model = NodePath("Model")
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182204, 0)

@@ -143,10 +143,6 @@ script = ExtResource("3_6u0xd")
 top_level = true
 script = ExtResource("6_64uky")
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "PumkiePlant", "ShelliePlant", "ShroomiePlant"), [ExtResource("8_02uq7"), ExtResource("9_wkoli"), ExtResource("10_5grbc"), ExtResource("11_a812u"), ExtResource("12_w3ksd"), ExtResource("13_4ypwf")]]
-script = ExtResource("14_y8p08")
-
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="House" type="Node3D" parent="Environment"]
@@ -242,6 +238,10 @@ right_pose = SubResource("Resource_f836c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG Load Level/XRToolsHandPoseArea"]
 shape = SubResource("SphereShape3D_81ety")
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "PumkiePlant", "ShelliePlant", "ShroomiePlant"), [ExtResource("8_02uq7"), ExtResource("9_wkoli"), ExtResource("10_5grbc"), ExtResource("11_a812u"), ExtResource("12_w3ksd"), ExtResource("13_4ypwf")]]
+script = ExtResource("14_y8p08")
 
 [connection signal="button_pressed" from="DEBUG Load Level" to="." method="_on_load_scene_button_pressed"]
 

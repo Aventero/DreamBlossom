@@ -4,9 +4,11 @@ extends Node3D
  
 signal dying
 
+@export var auto_grow : bool = true
+
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@export var plant_model : Node3D
+@onready var plant_model : Node3D = $Model
 
 var stages : Array[Stage] = []
 var current_stage : int = 0
@@ -18,8 +20,16 @@ func _ready():
 		if child.is_in_group("Stage"):
 			stages.append(child)
 	
+	# Deactive events which are not possible due to missing tools
+	check_feasibility()
+	
 	# Start first stage
-	start_stage(current_stage)
+	if auto_grow:
+		start_stage(current_stage)
+
+func check_feasibility():
+	for stage in stages:
+		stage.check_feasibility()
 
 func start_stage(index : int):
 	var stage : Stage = stages[index]

@@ -7,6 +7,16 @@ extends PlantEvent
 
 var _prune_count = 0
 
+func check_feasibility():
+	if not GameBase.level:
+		return
+	
+	if GameBase.level.is_tool_active("Scissors"):
+		return
+	
+	# Delete self
+	queue_free()
+
 func initialize():
 	# safety net
 	if max_prune_count > get_child_count():

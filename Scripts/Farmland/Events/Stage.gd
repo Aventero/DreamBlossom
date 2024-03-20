@@ -12,7 +12,11 @@ signal stage_complete
 @onready var icon_display : IconDisplay = $"../IconDisplay"
 var current_event : PlantEvent
 
-# started once the timer runs out
+func check_feasibility() -> void:
+	for event in get_children():
+		event.check_feasibility()
+
+# Started once the timer runs out
 func start_events():
 	print("[Stage] Start events!")
 	
