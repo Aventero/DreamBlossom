@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmp8q4v4gqxok"
-path.s3tc="res://.godot/imported/Bush.png-cb2f40095de814c003899c9babf0e47b.s3tc.ctex"
-path.etc2="res://.godot/imported/Bush.png-cb2f40095de814c003899c9babf0e47b.etc2.ctex"
+uid="uid://cqitadukeoxox"
+path.s3tc="res://.godot/imported/Tree.png-b938ca0b6c8804630c5f1dfd32fe6e32.s3tc.ctex"
+path.etc2="res://.godot/imported/Tree.png-b938ca0b6c8804630c5f1dfd32fe6e32.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Environment/Bush.png"
-dest_files=["res://.godot/imported/Bush.png-cb2f40095de814c003899c9babf0e47b.s3tc.ctex", "res://.godot/imported/Bush.png-cb2f40095de814c003899c9babf0e47b.etc2.ctex"]
+source_file="res://Textures/Environment/Tree.png"
+dest_files=["res://.godot/imported/Tree.png-b938ca0b6c8804630c5f1dfd32fe6e32.s3tc.ctex", "res://.godot/imported/Tree.png-b938ca0b6c8804630c5f1dfd32fe6e32.etc2.ctex"]
 
 [params]
 
