@@ -24,14 +24,14 @@
 panorama = ExtResource("2_krgwt")
 filter = false
 
-[sub_resource type="Sky" id="Sky_5ota8"]
+[sub_resource type="Sky" id="Sky_xr2ka"]
 sky_material = SubResource("PanoramaSkyMaterial_ymhto")
 process_mode = 3
 radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_8frxu"]
 background_mode = 2
-sky = SubResource("Sky_5ota8")
+sky = SubResource("Sky_xr2ka")
 sky_rotation = Vector3(0, 1.5708, 0)
 ambient_light_color = Color(0.454902, 0.631373, 1, 1)
 ambient_light_sky_contribution = 0.44

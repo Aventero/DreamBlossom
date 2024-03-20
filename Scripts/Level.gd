@@ -86,8 +86,12 @@ func _on_order_completed(success : bool) -> void:
 	current_order.queue_free()
 	current_order = null
 	
+	# Update current game statistics
+	if not success:
+		Statistics.failed_orders += 1
+	
 	# Check if level is completed (No more orders)
-	if get_child_count() == 0:
+	if get_child_count() == 1:
 		completed.emit()
 
 func is_tool_active(tool : String) -> bool:

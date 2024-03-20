@@ -15,6 +15,9 @@ var _max_picked : int = 0
 var _picked : int = 0
 
 func initialize():
+	# Update statistics
+	Statistics.grown_plants += 1
+	
 	_max_picked = get_child_count()
 	
 	# Despawn old models

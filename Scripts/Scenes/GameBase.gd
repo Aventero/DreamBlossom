@@ -1,7 +1,10 @@
+@icon("res://Textures/EditorIcons/Scene.png")
 class_name GameBase
 extends XRToolsSceneBase
 
 static var level : Level
+
+@export var level_complete_fade_offset : float = 2.0
 
 @onready var seed_bags : SeedBagsEnabler = $"ToolArea/Seed Bags"
 @onready var tools : ToolsEnabler = $"ToolArea/Variable Tools"
@@ -57,4 +60,13 @@ func _load_level(level_nr : int) -> void:
 	level.completed.connect(_on_level_complete)
 
 func _on_level_complete():
-	print("Well done! Level completed :D")
+	await get_tree().create_timer(level_complete_fade_offset).timeout
+	
+	# TODO - Trigger gorgeous confetti effect
+	
+	# Load level complete scene
+	load_scene("res://Scenes/LevelCompleteScene.tscn", {
+		"time" : Statistics.elapsed_time,
+		"failed_orders" : Statistics.failed_orders,
+		"grown_plants" : Statistics.grown_plants
+	}, false)

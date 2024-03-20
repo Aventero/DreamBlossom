@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/Scene.png")
 class_name HubBase
 extends XRToolsSceneBase
 

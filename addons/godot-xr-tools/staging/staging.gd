@@ -64,10 +64,6 @@ signal xr_ended
 ## Main scene file
 @export_file('*.tscn') var main_scene : String
 
-## If true, the player is prompted to continue
-@export var prompt_for_continue : bool = true
-
-
 ## The current scene
 var current_scene : XRToolsSceneBase
 
@@ -133,7 +129,7 @@ func is_xr_class(name : String) -> bool:
 ##
 ## See [method XRToolsSceneBase.scene_loaded] for details on how to implement
 ## advanced scene-switching.
-func load_scene(p_scene_path : String, user_data = null) -> void:
+func load_scene(p_scene_path : String, user_data = null, show_loading_screen : bool = true, request_continue : bool = true) -> void:
 	# Do not load if in the editor
 	if Engine.is_editor_hint():
 		return
@@ -168,21 +164,22 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 		current_scene = null
 
 		# Make our loading screen visible again and reset some stuff
-		xr_origin.set_process_internal(true)
-		xr_origin.current = true
-		xr_camera.current = true
-		$LoadingScreen.progress = 0.0
-		$LoadingScreen.enable_press_to_continue = false
-		$LoadingScreen.follow_camera = true
-		$LoadingScreen.visible = true
-		switching_to_loading_scene.emit(user_data)
+		if show_loading_screen:
+			xr_origin.set_process_internal(true)
+			xr_origin.current = true
+			xr_camera.current = true
+			$LoadingScreen.progress = 0.0
+			$LoadingScreen.enable_press_to_continue = false
+			$LoadingScreen.follow_camera = true
+			$LoadingScreen.visible = true
+			switching_to_loading_scene.emit(user_data)
 
-		# Fade to visible
-		if _tween:
-			_tween.kill()
-		_tween = get_tree().create_tween()
-		_tween.tween_method(set_fade, 1.0, 0.0, 1.0)
-		await _tween.finished
+			# Fade to visible
+			if _tween:
+				_tween.kill()
+			_tween = get_tree().create_tween()
+			_tween.tween_method(set_fade, 1.0, 0.0, 1.0)
+			await _tween.finished
 
 	# Load the new scene
 	var new_scene : PackedScene
@@ -223,16 +220,17 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 		new_scene = ResourceLoader.load_threaded_get(p_scene_path)
 
 	# Wait for user to be ready
-	if prompt_for_continue:
+	if request_continue and show_loading_screen:
 		$LoadingScreen.enable_press_to_continue = true
 		await $LoadingScreen.continue_pressed
 
 	# Fade to black
-	if _tween:
-		_tween.kill()
-	_tween = get_tree().create_tween()
-	_tween.tween_method(set_fade, 0.0, 1.0, 1.0)
-	await _tween.finished
+	if show_loading_screen:
+		if _tween:
+			_tween.kill()
+		_tween = get_tree().create_tween()
+		_tween.tween_method(set_fade, 0.0, 1.0, 1.0)
+		await _tween.finished
 
 	# Hide our loading screen
 	$LoadingScreen.follow_camera = false
@@ -297,8 +295,8 @@ func _on_exit_to_main_menu():
 	load_scene(main_scene)
 
 
-func _on_load_scene(p_scene_path : String, user_data):
-	load_scene(p_scene_path, user_data)
+func _on_load_scene(p_scene_path : String, user_data, show_loading_screen, request_continue):
+	load_scene(p_scene_path, user_data, show_loading_screen, request_continue)
 
 
 func _on_reset_scene(user_data):

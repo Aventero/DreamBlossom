@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=77 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="17_1ewji"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="18_f3skm"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="21_3pn3s"]
+[ext_resource type="Script" path="res://Scripts/Statistics.gd" id="22_a16c0"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="22_s8pn7"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Seeds/SeedBagsEnabler.gd" id="22_wos47"]
 [ext_resource type="PackedScene" uid="uid://c3tbx03ebxa0h" path="res://Prefabs/Farmland/ItemBags/SeedBags/BlubburuSeedBag.tscn" id="24_yqt5i"]
@@ -43,13 +44,14 @@
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
+[ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Planting/Fruits/ShroomieFruit.tscn" id="46_6sx3p"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.278325, 1)
 colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 0.0858737, 0.190121, 0.357333, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ddl5m"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q02xl"]
 gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
@@ -65,14 +67,14 @@ shader_parameter/moon_size = 0.07
 shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
-shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_ddl5m")
+shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 
-[sub_resource type="Sky" id="Sky_5ota8"]
+[sub_resource type="Sky" id="Sky_eqxy8"]
 sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-sky = SubResource("Sky_5ota8")
+sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.254902, 0.447059, 0.937255, 1)
 ambient_light_sky_contribution = 0.8
 tonemap_mode = 2
@@ -426,6 +428,9 @@ aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 [node name="DigSpotLookup" type="Node" parent="."]
 script = ExtResource("18_f3skm")
 
+[node name="Statistics" type="Node" parent="."]
+script = ExtResource("22_a16c0")
+
 [node name="Plot" parent="." instance=ExtResource("21_3pn3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
@@ -575,6 +580,24 @@ shape = SubResource("ConcavePolygonShape3D_grg2q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/ToolRock/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ac08b")
+
+[node name="Shroomie" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526074, 0.828662, -0.65183)
+
+[node name="Shroomie2" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.324193, 0.828662, -0.65183)
+
+[node name="Shroomie3" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147868, 0.828662, -0.65183)
+
+[node name="Shroomie4" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565524, 0.828662, -0.65183)
+
+[node name="Shroomie5" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249225, 0.828662, -0.65183)
+
+[node name="Shroomie6" parent="." instance=ExtResource("46_6sx3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.437012, 0.828662, -0.65183)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 

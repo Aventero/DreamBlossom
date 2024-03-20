@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbigenword6yp" path="res://Prefabs/UI/OrderDisplayUI.tscn" id="1_cslj7"]
 [ext_resource type="Script" path="res://Scripts/UI/OrderDisplay.gd" id="1_k262u"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f4fp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8d46"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -11,7 +11,7 @@ shading_mode = 0
 texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_114af"]
-material = SubResource("StandardMaterial3D_2f4fp")
+material = SubResource("StandardMaterial3D_w8d46")
 size = Vector2(1, 0.628)
 
 [sub_resource type="GDScript" id="GDScript_8tygm"]

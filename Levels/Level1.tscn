@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7fsfa0uiemfr"]
+[gd_scene load_steps=8 format=3 uid="uid://7fsfa0uiemfr"]
 
 [ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="1_6v35p"]
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_l34ll"]
@@ -16,13 +16,18 @@ amount = 2
 
 [sub_resource type="Resource" id="Resource_5rskn"]
 script = ExtResource("2_0wgeb")
-type = 3
+type = 0
 amount = 3
+
+[sub_resource type="Resource" id="Resource_kviuo"]
+script = ExtResource("2_0wgeb")
+type = 0
+amount = 4
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
 active_plants = 63
-active_tools = 7
+active_tools = 63
 spread_time = 10.0
 spread_indicator_time = 5.0
 spread_release_grace_time = 1.0
@@ -34,7 +39,7 @@ inital_spawn_chance = 0.1
 stack_spawn_chance = 0.05
 time_until_death = 30.0
 enable_cooking_chest = true
-time_between_orders = 10.0
+time_between_orders = 1.0
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
@@ -50,3 +55,8 @@ requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_ni2nd")])
 script = ExtResource("1_6v35p")
 time = 30
 requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_5rskn")])
+
+[node name="Order #4" type="Timer" parent="."]
+script = ExtResource("1_6v35p")
+time = 30
+requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_kviuo")])

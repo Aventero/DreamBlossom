@@ -22,7 +22,7 @@ signal request_exit_to_main_menu
 ## this signal directly.
 ##
 ## The [param user_data] parameter is passed through staging to the new scenes.
-signal request_load_scene(p_scene_path, user_data)
+signal request_load_scene(p_scene_path, user_data, show_loading_screen, request_continue)
 
 ## This signal is used to request the staging reload this scene. Developers
 ## should use [method reset_scene] rather than emitting this signal directly.
@@ -44,11 +44,9 @@ signal request_reset_scene(user_data)
 func _ready() -> void:
 	pass
 
-
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsSceneBase"
-
 
 ## This method center the player on the [param p_transform] transform.
 func center_player_on(p_transform : Transform3D):
@@ -177,8 +175,8 @@ func exit_to_main_menu() -> void:
 ##
 ## See [method scene_loaded] for options to provide advanced scene-transition
 ## functionality.
-func load_scene(p_scene_path : String, user_data = null) -> void:
-	emit_signal("request_load_scene", p_scene_path, user_data)
+func load_scene(p_scene_path : String, user_data = null, show_loading_screen : bool = true, request_continue : bool = true) -> void:
+	emit_signal("request_load_scene", p_scene_path, user_data, show_loading_screen, request_continue)
 
 
 ## This function is used to reset the current scene. The default
