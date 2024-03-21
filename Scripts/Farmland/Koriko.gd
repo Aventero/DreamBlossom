@@ -4,6 +4,8 @@ extends XRToolsPickable
 
 @export var time_between_teleport : float = 1.0
 
+@onready var death_timer : Timer = $DeathTimer
+
 var manager : KorikoManager
 
 var _tween : Tween
@@ -21,7 +23,7 @@ func setup(p_manager : KorikoManager) -> void:
 	$AudioSource.play()
 	
 	# Start death timer
-	get_tree().create_timer(manager.time_until_death).timeout.connect(_on_death)
+	death_timer.start(manager.time_until_death)
 	
 	_play_jiggle()
 
@@ -72,7 +74,7 @@ func _on_death():
 	
 	# TODO - Play death jumpscare
 	
-	owner.level_failed()
+	manager.owner.level_failed()
 
 func _play_jiggle():
 	_tween = create_tween().set_loops()
@@ -98,6 +100,11 @@ func _play_fed_vanish():
 	# Scale down
 	_tween.chain().tween_callback(func(): manager.spawn_smoke(global_position))
 	_tween.tween_property(self, "scale", Vector3.ZERO, 0.1)
+	
+	await _tween.finished
+	
+	# Despawn koriko
+	queue_free()
 
 func _play_return_vanish():
 	_tween = create_tween()

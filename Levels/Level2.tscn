@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://m4bba07ys6km"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_132p8"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_tnwy3"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="3_i4fpv"]
+
+[sub_resource type="Resource" id="Resource_0gfwg"]
+script = ExtResource("3_i4fpv")
+type = 1
+amount = 2
+
+[sub_resource type="Resource" id="Resource_myibx"]
+script = ExtResource("3_i4fpv")
+type = 0
+amount = 2
+
+[sub_resource type="Resource" id="Resource_f5b0t"]
+script = ExtResource("3_i4fpv")
+type = 1
+amount = 2
+
+[sub_resource type="Resource" id="Resource_j4ob6"]
+script = ExtResource("3_i4fpv")
+type = 1
+amount = 5
+
+[sub_resource type="Resource" id="Resource_ayxi0"]
+script = ExtResource("3_i4fpv")
+type = 0
+amount = 3
+
+[sub_resource type="Resource" id="Resource_0qpv5"]
+script = ExtResource("3_i4fpv")
+type = 1
+amount = 3
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_132p8")
+active_plants = 3
+active_tools = 7
+spread_time = 20.0
+spread_indicator_time = 5.0
+spread_release_grace_time = 1.0
+spread_chance = 0.2
+obstacle_spawn_chance = 0.25
+soil_setup = "W,W,W,,,,,W,,,,,,,,,,,,,,,,,,,,,,,,W"
+time_before_first_spawn = 1e+07
+inital_spawn_chance = 0.1
+stack_spawn_chance = 0.05
+time_until_death = 30.0
+time_between_orders = 10.0
+
+[node name="Order #1" type="Timer" parent="."]
+script = ExtResource("2_tnwy3")
+time = 90
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg")])
+
+[node name="Order #2" type="Timer" parent="."]
+script = ExtResource("2_tnwy3")
+time = 75
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_myibx"), SubResource("Resource_f5b0t")])
+
+[node name="Order #3" type="Timer" parent="."]
+script = ExtResource("2_tnwy3")
+time = 60
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_j4ob6")])
+
+[node name="Order #4" type="Timer" parent="."]
+script = ExtResource("2_tnwy3")
+time = 60
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_ayxi0"), SubResource("Resource_0qpv5")])

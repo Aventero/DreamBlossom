@@ -130,9 +130,12 @@ collision_mask = 65540
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01182, 0)
 shape = SubResource("BoxShape3D_okvc6")
 
-[node name="AudioSource" type="AudioStreamPlayer3D" parent="." index="6"]
+[node name="DeathTimer" type="Timer" parent="." index="6"]
+
+[node name="AudioSource" type="AudioStreamPlayer3D" parent="." index="7"]
 stream = ExtResource("6_iadhi")
 volume_db = -40.0
 
 [connection signal="dropped" from="." to="." method="_on_dropped"]
 [connection signal="body_entered" from="FeedArea" to="." method="_on_feed_area_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death"]

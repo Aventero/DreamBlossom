@@ -1,0 +1,161 @@
+[gd_scene load_steps=24 format=3 uid="uid://bl2p5tgx4b43p"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_rncyg"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_2xhvd"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="3_xu1bg"]
+
+[sub_resource type="Resource" id="Resource_kwgqg"]
+script = ExtResource("3_xu1bg")
+type = 5
+amount = 2
+
+[sub_resource type="Resource" id="Resource_obfeg"]
+script = ExtResource("3_xu1bg")
+type = 1
+amount = 1
+
+[sub_resource type="Resource" id="Resource_tvb4w"]
+script = ExtResource("3_xu1bg")
+type = 3
+amount = 4
+
+[sub_resource type="Resource" id="Resource_1ieu3"]
+script = ExtResource("3_xu1bg")
+type = 5
+amount = 2
+
+[sub_resource type="Resource" id="Resource_6624m"]
+script = ExtResource("3_xu1bg")
+type = 0
+amount = 3
+
+[sub_resource type="Resource" id="Resource_olfrm"]
+script = ExtResource("3_xu1bg")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_3rcuk"]
+script = ExtResource("3_xu1bg")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_0xvww"]
+script = ExtResource("3_xu1bg")
+type = 4
+amount = 1
+
+[sub_resource type="Resource" id="Resource_rakcf"]
+script = ExtResource("3_xu1bg")
+type = 5
+amount = 2
+
+[sub_resource type="Resource" id="Resource_pomon"]
+script = ExtResource("3_xu1bg")
+type = 4
+amount = 3
+
+[sub_resource type="Resource" id="Resource_sn5mi"]
+script = ExtResource("3_xu1bg")
+type = 0
+amount = 5
+
+[sub_resource type="Resource" id="Resource_ar8oy"]
+script = ExtResource("3_xu1bg")
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_5fmri"]
+script = ExtResource("3_xu1bg")
+type = 5
+amount = 1
+
+[sub_resource type="Resource" id="Resource_76pv7"]
+script = ExtResource("3_xu1bg")
+type = 3
+amount = 15
+
+[sub_resource type="Resource" id="Resource_4oajm"]
+script = ExtResource("3_xu1bg")
+type = 0
+amount = 2
+
+[sub_resource type="Resource" id="Resource_84x65"]
+script = ExtResource("3_xu1bg")
+type = 1
+amount = 3
+
+[sub_resource type="Resource" id="Resource_kfbsm"]
+script = ExtResource("3_xu1bg")
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_mwf07"]
+script = ExtResource("3_xu1bg")
+type = 4
+amount = 1
+
+[sub_resource type="Resource" id="Resource_qs0c6"]
+script = ExtResource("3_xu1bg")
+type = 3
+amount = 3
+
+[sub_resource type="Resource" id="Resource_b34l0"]
+script = ExtResource("3_xu1bg")
+type = 5
+amount = 2
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_rncyg")
+active_plants = 63
+active_tools = 63
+spread_time = 7.0
+spread_indicator_time = 2.0
+spread_release_grace_time = 1.0
+spread_chance = 0.3
+obstacle_spawn_chance = 0.4
+soil_setup = ",,,,W,,W,,,W,,,,,W,,,,,W,W,,W,,W,W,,,,,,"
+time_before_first_spawn = 15.0
+inital_spawn_chance = 0.2
+stack_spawn_chance = 0.07
+time_until_death = 40.0
+time_between_orders = 10.0
+
+[node name="Order #1" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 90
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_kwgqg")])
+
+[node name="Order #2" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 75
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_obfeg"), SubResource("Resource_tvb4w"), SubResource("Resource_1ieu3")])
+
+[node name="Order #3" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 60
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_6624m"), SubResource("Resource_olfrm")])
+
+[node name="Order #4" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 60
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_3rcuk"), SubResource("Resource_0xvww"), SubResource("Resource_rakcf")])
+
+[node name="Order #5" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 90
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_pomon")])
+
+[node name="Order #6" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 90
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_sn5mi"), SubResource("Resource_ar8oy"), SubResource("Resource_5fmri")])
+
+[node name="Order #7" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 60
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_76pv7")])
+
+[node name="Order #8" type="Timer" parent="."]
+script = ExtResource("2_2xhvd")
+time = 90
+requirements = Array[ExtResource("3_xu1bg")]([SubResource("Resource_4oajm"), SubResource("Resource_84x65"), SubResource("Resource_kfbsm"), SubResource("Resource_mwf07"), SubResource("Resource_qs0c6"), SubResource("Resource_b34l0")])

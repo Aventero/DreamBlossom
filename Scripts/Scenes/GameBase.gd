@@ -17,6 +17,11 @@ static var level_id : int
 @onready var order_display : OrderDisplay = $OrderDisplay
 @onready var bobo : Bobo = $Bobo
 
+@onready var hands : Array[XRToolsFunctionPickup] = [
+	$"XROrigin3D/Left Hand/CollisionHandLeft/FunctionPickup",
+	$"XROrigin3D/Right Hand/CollisionHandRight/FunctionPickup"
+]
+
 func scene_loaded(user_data = null):
 	super(user_data)
 	
@@ -72,6 +77,10 @@ func _on_level_complete():
 	
 	# TODO - Trigger gorgeous confetti effect
 	
+	# Make sure to let go of all things before loading new scene
+	for hand in hands:
+		hand.drop_object()
+	
 	# Load level complete scene
 	load_scene("res://Scenes/LevelCompleteScene.tscn", {
 		"time" : Statistics.elapsed_time,
@@ -81,6 +90,10 @@ func _on_level_complete():
 
 func level_failed():
 	await get_tree().create_timer(level_complete_fade_offset).timeout
+	
+	# Make sure to let go of all things before loading new scene
+	for hand in hands:
+		hand.drop_object()
 	
 	# Load level complete scene
 	load_scene("res://Scenes/LevelFailedScene.tscn", {

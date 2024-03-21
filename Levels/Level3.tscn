@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://br2n2fegflibc"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_lfmrd"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_0o07s"]
+[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="3_03amo"]
+
+[sub_resource type="Resource" id="Resource_3umco"]
+script = ExtResource("3_03amo")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_y626q"]
+script = ExtResource("3_03amo")
+type = 0
+amount = 2
+
+[sub_resource type="Resource" id="Resource_lspv2"]
+script = ExtResource("3_03amo")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_pdx0t"]
+script = ExtResource("3_03amo")
+type = 1
+amount = 3
+
+[sub_resource type="Resource" id="Resource_cq65g"]
+script = ExtResource("3_03amo")
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_j4oe7"]
+script = ExtResource("3_03amo")
+type = 0
+amount = 3
+
+[sub_resource type="Resource" id="Resource_vpcdw"]
+script = ExtResource("3_03amo")
+type = 1
+amount = 2
+
+[sub_resource type="Resource" id="Resource_chvdw"]
+script = ExtResource("3_03amo")
+type = 2
+amount = 1
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_lfmrd")
+active_plants = 7
+active_tools = 15
+spread_time = 15.0
+spread_indicator_time = 5.0
+spread_release_grace_time = 1.0
+spread_chance = 0.25
+obstacle_spawn_chance = 0.25
+soil_setup = ",W,W,W,,,,,W,W,,,,,,,W,,,W,,,,,W,,,,,,,W"
+time_before_first_spawn = 1e+07
+inital_spawn_chance = 0.1
+stack_spawn_chance = 0.05
+time_until_death = 30.0
+time_between_orders = 10.0
+
+[node name="Order #1" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
+
+[node name="Order #2" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_y626q"), SubResource("Resource_lspv2")])
+
+[node name="Order #3" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 40
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_pdx0t")])
+
+[node name="Order #4" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 40
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_cq65g")])
+
+[node name="Order #5" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 40
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_j4oe7"), SubResource("Resource_vpcdw"), SubResource("Resource_chvdw")])

@@ -50,7 +50,6 @@ func _on_stage_timer_timeout():
 	stages[current_stage].start_events()
 
 func _on_stage_complete():
-	print("[Plant] Stage completed")
 	current_stage += 1
 	
 	if current_stage < stages.size():

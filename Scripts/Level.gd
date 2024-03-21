@@ -90,6 +90,7 @@ func next_order() -> bool:
 	return true
 
 func _on_order_completed(success : bool) -> void:
+	print("Order done")
 	current_order.queue_free()
 	current_order = null
 	

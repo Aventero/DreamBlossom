@@ -7,56 +7,53 @@
 [sub_resource type="Resource" id="Resource_5tluc"]
 script = ExtResource("2_0wgeb")
 type = 0
-amount = 1
+amount = 2
 
 [sub_resource type="Resource" id="Resource_ni2nd"]
 script = ExtResource("2_0wgeb")
 type = 0
-amount = 2
+amount = 3
 
 [sub_resource type="Resource" id="Resource_5rskn"]
 script = ExtResource("2_0wgeb")
 type = 0
-amount = 3
+amount = 4
 
 [sub_resource type="Resource" id="Resource_kviuo"]
 script = ExtResource("2_0wgeb")
 type = 0
-amount = 4
+amount = 5
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
-active_plants = 63
-active_tools = 63
-spread_time = 10.0
+active_plants = 1
+active_tools = 7
+spread_time = 20.0
 spread_indicator_time = 5.0
 spread_release_grace_time = 1.0
 spread_chance = 0.2
-obstacle_spawn_chance = 0.5
-soil_setup = ",W,,,W,,,W,W,W,W,,,,,W,,,,,,,W,W,W,,,,,,,"
-time_before_first_spawn = 30.0
+time_before_first_spawn = 1e+07
 inital_spawn_chance = 0.1
 stack_spawn_chance = 0.05
 time_until_death = 30.0
-enable_cooking_chest = true
-time_between_orders = 1.0
+time_between_orders = 10.0
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-time = 30
+time = 90
 requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_5tluc")])
 
 [node name="Order #2" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-time = 30
+time = 75
 requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_ni2nd")])
 
 [node name="Order #3" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-time = 30
+time = 60
 requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_5rskn")])
 
 [node name="Order #4" type="Timer" parent="."]
 script = ExtResource("1_6v35p")
-time = 30
+time = 45
 requirements = Array[ExtResource("2_0wgeb")]([SubResource("Resource_kviuo")])

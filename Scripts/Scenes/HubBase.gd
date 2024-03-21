@@ -14,7 +14,7 @@ func _process(delta) -> void:
 		_on_load_scene_button_pressed(null)
 		pressed = true
 
-func _on_load_scene_button_pressed(button : Variant) -> void:
+func _on_load_scene_button_pressed(button : LevelButton) -> void:
 	load_scene("res://Scenes/GameScene.tscn", {
-		"level": 1
+		"level": button.level_id
 	})
