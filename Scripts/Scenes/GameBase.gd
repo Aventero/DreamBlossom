@@ -3,6 +3,7 @@ class_name GameBase
 extends XRToolsSceneBase
 
 static var level : Level
+static var level_id : int
 
 @export var level_complete_fade_offset : float = 2.0
 
@@ -14,6 +15,7 @@ static var level : Level
 @onready var cooking_chest : CookingChest = $CookingArea/CookingChest
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
 @onready var order_display : OrderDisplay = $OrderDisplay
+@onready var bobo : Bobo = $Bobo
 
 func scene_loaded(user_data = null):
 	super(user_data)
@@ -21,8 +23,11 @@ func scene_loaded(user_data = null):
 	# Load level
 	if user_data and user_data["level"]:
 		_load_level(user_data["level"])
+		level_id = user_data["level"]
 	else:
+		# Load first level on missing data
 		_load_level(1)
+		level_id = 1
 	
 	# Apply level settings
 	seed_bags.load_seed_bags(level.active_plants)
@@ -49,6 +54,9 @@ func scene_loaded(user_data = null):
 	# Set order settings
 	order_display.setup(level.time_between_orders)
 	
+	# Setup bobo
+	bobo.setup()
+	
 	# Update return manager
 	return_manager.update(true)
 
@@ -69,4 +77,12 @@ func _on_level_complete():
 		"time" : Statistics.elapsed_time,
 		"failed_orders" : Statistics.failed_orders,
 		"grown_plants" : Statistics.grown_plants
+	}, false)
+
+func level_failed():
+	await get_tree().create_timer(level_complete_fade_offset).timeout
+	
+	# Load level complete scene
+	load_scene("res://Scenes/LevelFailedScene.tscn", {
+		"prev_level_id" : level_id,
 	}, false)

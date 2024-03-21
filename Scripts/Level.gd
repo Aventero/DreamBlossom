@@ -2,6 +2,10 @@
 class_name Level
 extends Node3D
 
+## Emit when new order started
+signal new_order(order : Order)
+
+## Emit when level is completed
 signal completed
 
 # Implemented
@@ -79,6 +83,9 @@ func next_order() -> bool:
 	if new_order != current_order:
 		current_order = new_order
 		current_order.completed.connect(_on_order_completed)
+		
+		# Emit new order signal
+		self.new_order.emit(current_order)
 	
 	return true
 

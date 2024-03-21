@@ -2,10 +2,13 @@
 class_name Bobo
 extends Node3D
 
-var max_steps : int = 3
-var _current_step : int = 0
+@export var max_order_fails : int = 3
 
-var inital_position : Vector3
+var _failed_orders : int = 0
+
+func setup() -> void:
+	# Connect new_order event from current level
+	GameBase.level.new_order.connect(_on_new_order)
 
 func _on_ingredient_trigger_body_entered(ingredient):
 	# Check if order is existing and order is currently running
@@ -39,6 +42,28 @@ func _play_eating():
 	var tween : Tween = create_tween().set_loops(3)
 	tween.tween_property($Model/MeshInstance3D11, "scale", Vector3(0.222, 0.1, 0.17), 0.2)
 	tween.tween_property($Model/MeshInstance3D11, "scale", Vector3(0.319, 0.075, 0.17), 0.2)
+
+func _on_new_order(order : Order) -> void:
+	# Connect complete event
+	order.completed.connect(_on_order_complete)
+
+func _on_order_complete(success : bool) -> void:
+	if success:
+		return
+	
+	# Update failed orders counter
+	_failed_orders += 1
+	
+	if _failed_orders >= max_order_fails:
+		_bobo_death()
+
+func _bobo_death() -> void:
+	print("Bobo killed you. Oh my.")
+	
+	# TODO - Play jumpscare
+	
+	# Load level failed scene
+	owner.level_failed()
 
 #func _ready():
 	#LevelManager.get_instance().got_new_quest.connect(Callable(_on_new_quest))

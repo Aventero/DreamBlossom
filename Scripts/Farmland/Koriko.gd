@@ -69,6 +69,10 @@ func _on_dropped(pickable : RigidBody3D):
 
 func _on_death():
 	print("[Koriko] You died!")
+	
+	# TODO - Play death jumpscare
+	
+	owner.level_failed()
 
 func _play_jiggle():
 	_tween = create_tween().set_loops()
