@@ -51,19 +51,19 @@
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.330049, 0.706897, 1)
-colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 0.0670116, 0, 0.650524, 1, 0.212795, 1.34766e-05, 0.865218, 1)
+colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 0.275676, 0.000405742, 0.769159, 1, 0.470872, 0.00264873, 0.806439, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q02xl"]
 gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
 shader = ExtResource("2_ktote")
-shader_parameter/sun_direction = Vector3(0.276393, 0.850651, -0.447214)
-shader_parameter/day_intensity = 0.951057
+shader_parameter/sun_direction = Vector3(-0.580884, -0.680128, -0.447214)
+shader_parameter/day_intensity = 1.22461e-16
 shader_parameter/sun_color = Color(10, 8, 1, 1)
 shader_parameter/sun_size = 0.1
-shader_parameter/moon_direction = Vector3(-0.276393, -0.850651, -0.447214)
-shader_parameter/night_intensity = 1.22461e-16
+shader_parameter/moon_direction = Vector3(0.580884, 0.680128, -0.447214)
+shader_parameter/night_intensity = 0.760406
 shader_parameter/moon_color = Color(0.701961, 0.772549, 0.843137, 1)
 shader_parameter/moon_size = 0.07
 shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
@@ -81,9 +81,9 @@ ambient_light_color = Color(0.254902, 0.447059, 0.937255, 1)
 ambient_light_sky_contribution = 0.8
 tonemap_mode = 2
 glow_enabled = true
-fog_light_color = Color(0.137255, 0.333333, 0.423529, 1)
-fog_light_energy = 2.76
-fog_sky_affect = 0.0
+fog_enabled = true
+fog_light_color = Color(0, 0.403922, 0.443137, 1)
+fog_sky_affect = 0.05
 adjustment_saturation = 1.25
 
 [sub_resource type="GDScript" id="GDScript_mo61k"]
@@ -343,20 +343,20 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="."]
 script = ExtResource("4_ko70n")
-time_of_day = 4.8
+time_of_day = 15.3
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.85065, -0.447214, 0.276393, 0, 0.525731, 0.85065, -0.525731, 0.723607, -0.447213, 0, 0, 0)
-light_color = Color(0.952941, 0.913725, 0.988235, 1)
+transform = Transform3D(-0.447213, 9.79685e-17, -0.894426, 0, 1, 1.09532e-16, 0.894427, 4.89843e-17, -0.447213, 0, 0, 0)
+visible = false
+light_color = Color(0.964706, 0.933333, 0.992157, 1)
 shadow_enabled = true
 shadow_bias = 0.27
 shadow_blur = 0.1
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447214, 9.79686e-17, -0.894429, 0, 1, 1.09532e-16, 0.894428, 4.89843e-17, -0.447214, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.610037, -0.538915, 0.580885, 0, 0.733094, 0.680129, -0.792374, 0.414903, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 shadow_enabled = true
 shadow_blur = 0.1
