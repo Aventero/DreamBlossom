@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=81 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -46,30 +46,32 @@
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
-[ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/EnvironmentTesting.blend" id="47_thwiv"]
+[ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
 [ext_resource type="PackedScene" uid="uid://baw2074xb4o65" path="res://Models/Environment/ToolTable.blend" id="48_vyab7"]
+[ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="49_n67su"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
-offsets = PackedFloat32Array(0, 0.330049, 0.706897, 1)
-colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 0.275676, 0.000405742, 0.769159, 1, 0.470872, 0.00264873, 0.806439, 1)
+offsets = PackedFloat32Array(0, 0.359606, 0.706897, 1)
+colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 0.275676, 0.000405742, 0.769159, 1, 0.603047, 0.161242, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q02xl"]
 gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
 shader = ExtResource("2_ktote")
-shader_parameter/sun_direction = Vector3(-0.580884, -0.680128, -0.447214)
-shader_parameter/day_intensity = 1.22461e-16
-shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_size = 0.1
-shader_parameter/moon_direction = Vector3(0.580884, 0.680128, -0.447214)
-shader_parameter/night_intensity = 0.760406
-shader_parameter/moon_color = Color(0.701961, 0.772549, 0.843137, 1)
-shader_parameter/moon_size = 0.07
+shader_parameter/day_sky_color = Color(0.52549, 0.568627, 0.827451, 1)
 shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
+shader_parameter/sun_direction = Vector3(0.185962, 0.874882, -0.447214)
+shader_parameter/day_intensity = 0.978148
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_size = 0.1
+shader_parameter/moon_direction = Vector3(-0.185962, -0.874882, -0.447214)
+shader_parameter/night_intensity = 0.996917
+shader_parameter/moon_color = Color(0.701961, 0.772549, 0.843137, 1)
+shader_parameter/moon_size = 0.204
 
 [sub_resource type="Sky" id="Sky_eqxy8"]
 sky_material = SubResource("ShaderMaterial_5puty")
@@ -343,20 +345,20 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="."]
 script = ExtResource("4_ko70n")
-time_of_day = 15.3
+time_of_day = 5.2
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447213, 9.79685e-17, -0.894426, 0, 1, 1.09532e-16, 0.894427, 4.89843e-17, -0.447213, 0, 0, 0)
-visible = false
-light_color = Color(0.964706, 0.933333, 0.992157, 1)
+transform = Transform3D(-0.923353, -0.335913, 0.185962, 0, 0.484336, 0.874881, -0.383952, 0.807825, -0.447213, 0, 0, 0)
+light_color = Color(1, 0.972549, 0.941176, 1)
 shadow_enabled = true
 shadow_bias = 0.27
 shadow_blur = 0.1
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.610037, -0.538915, 0.580885, 0, 0.733094, 0.680129, -0.792374, 0.414903, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.987912, 0.138228, -0.070176, 0, 0.452686, 0.891671, 0.155021, 0.880891, -0.447214, 0, 0, 0)
+visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 shadow_enabled = true
 shadow_blur = 0.1
@@ -553,7 +555,7 @@ transform = Transform3D(0.994829, 0, -0.10156, 0, 1, 0, 0.10156, 0, 0.994829, 0.
 transform = Transform3D(0.734145, 0, -0.678993, 0, 1, 0, 0.678993, 0, 0.734145, 0.854381, 1.06299, -0.263596)
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569539, 0.890719, 0.0531206)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.890719, 0.50453)
 
 [node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("34_opvkw")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.524621, 0.897504, 0.222879)
@@ -596,10 +598,13 @@ shape = SubResource("ConcavePolygonShape3D_grg2q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/ToolRock/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ac08b")
 
-[node name="EnvironmentTesting" parent="." instance=ExtResource("47_thwiv")]
+[node name="Environment" parent="." instance=ExtResource("47_thwiv")]
 
 [node name="ToolTable" parent="." instance=ExtResource("48_vyab7")]
-transform = Transform3D(1.13796, 0, 0, 0, 1.13796, 0, 0, 0, 1.13796, 0.762668, -0.000666589, 0.596091)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, 0.032301, 0.596091)
+
+[node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
+transform = Transform3D(0.847798, 0, 0.530319, 0, 1, 0, -0.530319, 0, 0.847798, 0.722905, 0.867148, 0.162013)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 

@@ -7,7 +7,9 @@ uniform sampler2D nightSkyTexture : filter_nearest;
 uniform sampler2D cloudsTexture : filter_nearest;
 uniform sampler2D horizonSkyGradient : filter_linear_mipmap;
 uniform sampler2D baseSkyGradient : filter_linear_mipmap;
-// Sunq
+uniform vec3 day_sky_color : source_color = vec3(1.0, 1.0, 1.0);
+
+// Sun
 group_uniforms sun;
 uniform vec3 sun_direction;
 uniform float day_intensity: hint_range(0.0, 1.0, 0.1) = 1.0;
@@ -53,7 +55,7 @@ void sky() {
 	float moonMask = getSunMask(moonViewDot, moon_size);
 	vec3 _moonColor = moon_color * moonMask;
 	
-	vec3 cloudTextureColor = texture(cloudsTexture, SKY_COORDS).rgb;
+	vec3 cloudTextureColor = texture(cloudsTexture, SKY_COORDS).rgb * day_sky_color;
 	if (day_intensity > 0.001) {
 		skyColor = mix(skyColor, cloudTextureColor, pow(clamp(0.0, 1.0, sunHeight), 2.0));
 	} else {
