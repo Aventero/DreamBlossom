@@ -24,7 +24,8 @@ func _on_trigger_body_entered(body: Node3D) -> void:
 	for parts in disappear_particles:
 		parts.emitting = true
 	
-	fire_fairy_event.fire_extinguished()
+	if fire_fairy_event:
+		fire_fairy_event.fire_extinguished()
 	
 	# Wait for particles to finish
 	await particle_combiner.complete

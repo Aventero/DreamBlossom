@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://k38i05551xx3"]
+
+[ext_resource type="PackedScene" uid="uid://dd1p7jnxxyv0m" path="res://Models/PotionDrop.blend" id="1_d53ri"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pr5da"]
+size = Vector3(0.08, 0.08, 0.08)
+
+[node name="PotionDrop" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+shape = SubResource("BoxShape3D_pr5da")
+
+[node name="PotionDrop" parent="." instance=ExtResource("1_d53ri")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)

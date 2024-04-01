@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=82 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="36_eqljc"]
-[ext_resource type="PackedScene" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
+[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
 [ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="38_1hlk4"]
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
 [ext_resource type="PackedScene" uid="uid://baw2074xb4o65" path="res://Models/Environment/ToolTable.blend" id="48_vyab7"]
 [ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="49_n67su"]
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Potion.tscn" id="50_5pjo5"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.359606, 0.706897, 1)
@@ -606,6 +607,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, 0.032301, 0.596091)
 [node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
 transform = Transform3D(0.847798, 0, 0.530319, 0, 1, 0, -0.530319, 0, 0.847798, 0.722905, 0.867148, 0.162013)
 
+[node name="R" parent="." instance=ExtResource("50_5pjo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224702, 0.846299, -0.509224)
+infinite_drops = true
+
+[node name="G" parent="." instance=ExtResource("50_5pjo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0735074, 0.846299, -0.509224)
+infinite_drops = true
+
+[node name="Fill" parent="G/Model" index="2"]
+instance_shader_parameters/base_color = Color(0.121569, 0.517647, 0.294118, 1)
+instance_shader_parameters/fresnel_color = Color(0.192157, 0.866667, 0.498039, 1)
+instance_shader_parameters/line_color = Color(0.592157, 0.905882, 0.717647, 1)
+instance_shader_parameters/surface_color = Color(0.227451, 0.737255, 0.560784, 1)
+
+[node name="B" parent="." instance=ExtResource("50_5pjo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0944575, 0.846299, -0.509224)
+infinite_drops = true
+
+[node name="Flask" parent="B/Model" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Fill" parent="B/Model" index="2"]
+instance_shader_parameters/base_color = Color(0.215686, 0.537255, 0.807843, 1)
+instance_shader_parameters/fresnel_color = Color(0.941176, 0.968627, 0.996078, 1)
+instance_shader_parameters/line_color = Color(0.694118, 0.831373, 0.964706, 1)
+instance_shader_parameters/surface_color = Color(0.427451, 0.682353, 0.913725, 1)
+
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 
 [editable path="XROrigin3D"]
+[editable path="G"]
+[editable path="B"]
