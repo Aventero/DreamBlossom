@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=79 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -26,7 +26,6 @@
 [ext_resource type="Script" path="res://Scripts/Statistics.gd" id="22_a16c0"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="22_s8pn7"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Seeds/SeedBagsEnabler.gd" id="22_wos47"]
-[ext_resource type="Texture2D" uid="uid://dhygfshp4c5ql" path="res://Textures/Environment/ForestGround.png" id="24_j26gd"]
 [ext_resource type="PackedScene" uid="uid://c3tbx03ebxa0h" path="res://Prefabs/Farmland/ItemBags/SeedBags/BlubburuSeedBag.tscn" id="24_yqt5i"]
 [ext_resource type="PackedScene" uid="uid://bf313parhvyeb" path="res://Prefabs/Farmland/ItemBags/SeedBags/FlamieSeedBag.tscn" id="25_7iamt"]
 [ext_resource type="PackedScene" uid="uid://dno7emojpbyb3" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShellieSeedBag.tscn" id="26_1y0nt"]
@@ -36,6 +35,7 @@
 [ext_resource type="Script" path="res://Scripts/Farmland/Tools/ToolEnabler.gd" id="29_n5npg"]
 [ext_resource type="PackedScene" uid="uid://df8cna43r4wgq" path="res://Prefabs/Farmland/ItemBags/FertilizerBags/BlueFertilizerBag.tscn" id="30_n7ieb"]
 [ext_resource type="PackedScene" uid="uid://cotpcplp04kvf" path="res://Prefabs/Farmland/ItemBags/FertilizerBags/OrangeFertilizerBag.tscn" id="31_4w3ie"]
+[ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="31_yrpf0"]
 [ext_resource type="PackedScene" uid="uid://chfutt0f8652r" path="res://Prefabs/Farmland/ItemBags/FertilizerBags/GreenFertilizerBag.tscn" id="32_thpbk"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
@@ -47,9 +47,10 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
-[ext_resource type="PackedScene" uid="uid://baw2074xb4o65" path="res://Models/Environment/ToolTable.blend" id="48_vyab7"]
 [ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="49_n67su"]
-[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Potion.tscn" id="50_5pjo5"]
+[ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potion1.tscn" id="50_s8iy7"]
+[ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potion2.tscn" id="51_mxxtv"]
+[ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potion4.tscn" id="52_7lsh3"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.359606, 0.706897, 1)
@@ -137,17 +138,7 @@ texture = ExtResource("14_ffiwl")
 size = Vector3(20, 0.1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yi6c"]
-size = Vector3(100, 0.25, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37dyg"]
-albedo_texture = ExtResource("24_j26gd")
-metallic_specular = 0.0
-uv1_scale = Vector3(5, 5, 5)
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_wb77r"]
-material = SubResource("StandardMaterial3D_37dyg")
-size = Vector2(50, 50)
+size = Vector3(6, 0.25, 6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvd5p"]
 resource_name = "Rock"
@@ -332,12 +323,6 @@ shadow_mesh = SubResource("ArrayMesh_mr7pr")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uyehh"]
 points = PackedVector3Array(-0.0703124, 0.117132, 0.468694, -0.21096, 0.117132, 0.632806, -0.0703124, -0.375, 0.468694, -0.0703124, 0.117132, -0.304746, -0.140636, 0.1875, 0.468694, -0.21096, -0.375, 0.632806, -0.23438, 0.1875, 0.562395, -0.609419, 0.117132, 0.632806, -0.0703124, -0.375, -0.304746, -0.21096, 0.117132, -0.46875, -0.140636, 0.1875, -0.304746, -0.609419, -0.375, 0.632806, -0.585999, 0.1875, 0.562395, -0.679743, 0.1875, 0.468694, -0.75, 0.117132, 0.468694, -0.21096, -0.375, -0.46875, -0.23438, 0.1875, -0.398447, -0.609419, 0.117132, -0.46875, -0.75, -0.375, 0.468694, -0.679743, 0.1875, -0.304746, -0.75, 0.117132, -0.304746, -0.609419, -0.375, -0.46875, -0.585999, 0.1875, -0.398447, -0.75, -0.375, -0.304746)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_grg2q"]
-data = PackedVector3Array(0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, -0.1286, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, -0.2344, -0.1172, -0.1286, 0.1837, -0.1172, 0.0296, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0296, 0.1837, 0.0352, 0.0296, -0.2344, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, -0.0779, 0.2344, -0.0155, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, 0.0296, 0.1837, 0.0352, -0.1286, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, 0.0508, 0.2127, 0.0062, 0.0296, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, -0.1172, -0.0779, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, 0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0665, -0.1286, 0.1837, -0.1172, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0155, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.067, 0.0292, 0.2344, -0.0155, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, 0.0798, 0.1837, -0.015, 0.0296, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0508, 0.2127, -0.0882, 0.0296, 0.1837, -0.1172, 0.0798, -0.2344, -0.015, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.015, 0.0296, -0.2344, 0.0352, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.067, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.067, 0.0296, 0.1837, -0.1172, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.015, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0798, -0.2344, -0.015)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ac08b"]
-data = PackedVector3Array(-0.6797, 0.1875, 0.4687, -0.6094, 0.1172, 0.6328, -0.75, 0.1172, 0.4687, -0.6797, 0.1875, 0.4687, -0.5859, 0.1875, 0.5625, -0.6094, 0.1172, 0.6328, -0.6094, -0.375, -0.4688, -0.2109, 0.1172, -0.4688, -0.6094, 0.1172, -0.4688, -0.6094, -0.375, -0.4688, -0.2109, -0.375, -0.4688, -0.2109, 0.1172, -0.4688, -0.2109, -0.375, 0.6328, -0.6094, 0.1172, 0.6328, -0.2109, 0.1172, 0.6328, -0.2109, -0.375, 0.6328, -0.6094, -0.375, 0.6328, -0.6094, 0.1172, 0.6328, -0.0703, -0.375, -0.3047, -0.0703, 0.1172, 0.4687, -0.0703, 0.1172, -0.3047, -0.0703, -0.375, -0.3047, -0.0703, -0.375, 0.4687, -0.0703, 0.1172, 0.4687, -0.1406, 0.1875, 0.4687, -0.5859, 0.1875, 0.5625, -0.6797, 0.1875, 0.4687, -0.1406, 0.1875, 0.4687, -0.2344, 0.1875, 0.5625, -0.5859, 0.1875, 0.5625, -0.75, -0.375, 0.4687, -0.75, 0.1172, -0.3047, -0.75, 0.1172, 0.4687, -0.75, -0.375, 0.4687, -0.75, -0.375, -0.3047, -0.75, 0.1172, -0.3047, -0.0703, -0.375, 0.4687, -0.2109, 0.1172, 0.6328, -0.0703, 0.1172, 0.4687, -0.0703, -0.375, 0.4687, -0.2109, -0.375, 0.6328, -0.2109, 0.1172, 0.6328, -0.75, 0.1172, 0.4687, -0.6094, -0.375, 0.6328, -0.75, -0.375, 0.4687, -0.75, 0.1172, 0.4687, -0.6094, 0.1172, 0.6328, -0.6094, -0.375, 0.6328, -0.6094, 0.1172, -0.4688, -0.75, -0.375, -0.3047, -0.6094, -0.375, -0.4688, -0.6094, 0.1172, -0.4688, -0.75, 0.1172, -0.3047, -0.75, -0.375, -0.3047, -0.0703, 0.1172, -0.3047, -0.2109, -0.375, -0.4688, -0.0703, -0.375, -0.3047, -0.0703, 0.1172, -0.3047, -0.2109, 0.1172, -0.4688, -0.2109, -0.375, -0.4688, -0.75, -0.375, 0.4687, -0.2109, -0.375, 0.6328, -0.0703, -0.375, 0.4687, -0.75, -0.375, 0.4687, -0.6094, -0.375, 0.6328, -0.2109, -0.375, 0.6328, -0.5859, 0.1875, -0.3984, -0.75, 0.1172, -0.3047, -0.6094, 0.1172, -0.4688, -0.5859, 0.1875, -0.3984, -0.6797, 0.1875, -0.3047, -0.75, 0.1172, -0.3047, -0.2344, 0.1875, 0.5625, -0.6094, 0.1172, 0.6328, -0.5859, 0.1875, 0.5625, -0.2344, 0.1875, 0.5625, -0.2109, 0.1172, 0.6328, -0.6094, 0.1172, 0.6328, -0.1406, 0.1875, 0.4687, -0.2109, 0.1172, 0.6328, -0.2344, 0.1875, 0.5625, -0.1406, 0.1875, 0.4687, -0.0703, 0.1172, 0.4687, -0.2109, 0.1172, 0.6328, -0.1406, 0.1875, -0.3047, -0.0703, 0.1172, 0.4687, -0.1406, 0.1875, 0.4687, -0.1406, 0.1875, -0.3047, -0.0703, 0.1172, -0.3047, -0.0703, 0.1172, 0.4687, -0.2344, 0.1875, -0.3984, -0.0703, 0.1172, -0.3047, -0.1406, 0.1875, -0.3047, -0.2344, 0.1875, -0.3984, -0.2109, 0.1172, -0.4688, -0.0703, 0.1172, -0.3047, -0.5859, 0.1875, -0.3984, -0.2109, 0.1172, -0.4688, -0.2344, 0.1875, -0.3984, -0.5859, 0.1875, -0.3984, -0.6094, 0.1172, -0.4688, -0.2109, 0.1172, -0.4688, -0.6797, 0.1875, 0.4687, -0.75, 0.1172, -0.3047, -0.6797, 0.1875, -0.3047, -0.6797, 0.1875, 0.4687, -0.75, 0.1172, 0.4687, -0.75, 0.1172, -0.3047, -0.1406, 0.1875, -0.3047, -0.5859, 0.1875, -0.3984, -0.2344, 0.1875, -0.3984, -0.1406, 0.1875, -0.3047, -0.6797, 0.1875, -0.3047, -0.5859, 0.1875, -0.3984, -0.1406, 0.1875, 0.4687, -0.6797, 0.1875, -0.3047, -0.1406, 0.1875, -0.3047, -0.1406, 0.1875, 0.4687, -0.6797, 0.1875, 0.4687, -0.6797, 0.1875, -0.3047, -0.75, -0.375, -0.3047, -0.2109, -0.375, -0.4688, -0.6094, -0.375, -0.4688, -0.75, -0.375, -0.3047, -0.0703, -0.375, -0.3047, -0.2109, -0.375, -0.4688, -0.75, -0.375, 0.4687, -0.0703, -0.375, -0.3047, -0.75, -0.375, -0.3047, -0.75, -0.375, 0.4687, -0.0703, -0.375, 0.4687, -0.0703, -0.375, -0.3047)
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_r2msa")
 
@@ -453,13 +438,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1.00165, 0, 0, 0, 1.00165, 0, 0, 0, 1.00165, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
 shape = SubResource("BoxShape3D_7yi6c")
-
-[node name="Ground" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(0.120433, 0, 0, 0, 0.120433, 0, 0, 0, 0.120433, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_wb77r")
 
 [node name="Bobo" parent="." instance=ExtResource("38_1hlk4")]
 transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
@@ -519,6 +499,9 @@ shape = SubResource("ConvexPolygonShape3D_uyehh")
 
 [node name="ToolArea" type="Node3D" parent="."]
 
+[node name="ToolTable" parent="ToolArea" instance=ExtResource("31_yrpf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
+
 [node name="Seed Bags" type="Node3D" parent="ToolArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583562, 0, 0.0296309)
 script = ExtResource("22_wos47")
@@ -546,14 +529,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
 script = ExtResource("29_n5npg")
 
 [node name="BlueFertilizerBag" parent="ToolArea/Variable Tools" instance=ExtResource("30_n7ieb")]
-transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.834087, 1.36471, 0.0133831)
+transform = Transform3D(0.968366, 0, 0.249535, 0, 1, 0, -0.249535, 0, 0.968366, 0.834087, 2.13562, 0.0133831)
 ranged_grab_method = 1
 
 [node name="OrangeFertilizerBag" parent="ToolArea/Variable Tools" instance=ExtResource("31_4w3ie")]
-transform = Transform3D(0.994829, 0, -0.10156, 0, 1, 0, 0.10156, 0, 0.994829, 0.771698, 1.25407, -0.15012)
+transform = Transform3D(0.994829, 0, -0.10156, 0, 1, 0, 0.10156, 0, 0.994829, 0.771698, 2.02498, -0.15012)
 
 [node name="GreenFertilizerBag" parent="ToolArea/Variable Tools" instance=ExtResource("32_thpbk")]
-transform = Transform3D(0.734145, 0, -0.678993, 0, 1, 0, 0.678993, 0, 0.734145, 0.854381, 1.06299, -0.263596)
+transform = Transform3D(0.734145, 0, -0.678993, 0, 1, 0, 0.678993, 0, 0.734145, 0.854381, 1.8339, -0.263596)
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.890719, 0.50453)
@@ -573,69 +556,22 @@ transform = Transform3D(0.279242, 0, 0.960221, 0, 1, 0, -0.960221, 0, 0.279242, 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
 transform = Transform3D(0.542574, 0, -0.840008, 0, 1, 0, 0.840008, 0, 0.542574, 0.486446, 0.871228, 0.816761)
 
-[node name="ToolRock" type="MeshInstance3D" parent="ToolArea"]
-transform = Transform3D(1, 0, 0, 0, 1.52082, 0, 0, 0, 1, 1.06379, 0.581994, 0.371342)
-visible = false
-mesh = SubResource("ArrayMesh_h6ffo")
-skeleton = NodePath("")
+[node name="Potions" type="Node3D" parent="ToolArea"]
 
-[node name="Rock" type="MeshInstance3D" parent="ToolArea/ToolRock"]
-transform = Transform3D(0.572679, 0.292153, 0.990433, -0.644507, 0.506938, 0.00852391, -0.552184, -0.2887, 1.01725, -0.0778272, -0.222884, -0.365752)
-mesh = SubResource("ArrayMesh_pval3")
-skeleton = NodePath("")
+[node name="PotionType1" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("50_s8iy7")]
+transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)
 
-[node name="Rock2" type="MeshInstance3D" parent="ToolArea/ToolRock"]
-transform = Transform3D(0.00398746, -0.00796057, -2.22869, -1.01334, 0.794934, -0.0169322, 1.24749, 0.645751, -0.00663054, -0.522226, -0.159592, 0.674088)
-mesh = SubResource("ArrayMesh_pq4o7")
-skeleton = NodePath("")
+[node name="PotionType2" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("51_mxxtv")]
+transform = Transform3D(-0.317305, 0, -0.948324, 0, 1, 0, 0.948324, 0, -0.317305, 0.871379, 1.3195, -0.0400517)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ToolArea/ToolRock/Rock2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/ToolRock/Rock2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_grg2q")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ToolArea/ToolRock"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/ToolRock/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ac08b")
+[node name="PotionType4" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_7lsh3")]
+transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)
 
 [node name="Environment" parent="." instance=ExtResource("47_thwiv")]
 
-[node name="ToolTable" parent="." instance=ExtResource("48_vyab7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, 0.032301, 0.596091)
-
 [node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
-transform = Transform3D(0.847798, 0, 0.530319, 0, 1, 0, -0.530319, 0, 0.847798, 0.722905, 0.867148, 0.162013)
-
-[node name="R" parent="." instance=ExtResource("50_5pjo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224702, 0.846299, -0.509224)
-infinite_drops = true
-
-[node name="G" parent="." instance=ExtResource("50_5pjo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0735074, 0.846299, -0.509224)
-infinite_drops = true
-
-[node name="Fill" parent="G/Model" index="2"]
-instance_shader_parameters/base_color = Color(0.121569, 0.517647, 0.294118, 1)
-instance_shader_parameters/fresnel_color = Color(0.192157, 0.866667, 0.498039, 1)
-instance_shader_parameters/line_color = Color(0.592157, 0.905882, 0.717647, 1)
-instance_shader_parameters/surface_color = Color(0.227451, 0.737255, 0.560784, 1)
-
-[node name="B" parent="." instance=ExtResource("50_5pjo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0944575, 0.846299, -0.509224)
-infinite_drops = true
-
-[node name="Flask" parent="B/Model" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Fill" parent="B/Model" index="2"]
-instance_shader_parameters/base_color = Color(0.215686, 0.537255, 0.807843, 1)
-instance_shader_parameters/fresnel_color = Color(0.941176, 0.968627, 0.996078, 1)
-instance_shader_parameters/line_color = Color(0.694118, 0.831373, 0.964706, 1)
-instance_shader_parameters/surface_color = Color(0.427451, 0.682353, 0.913725, 1)
+transform = Transform3D(0.933855, 0, 0.357651, 0, 1, 0, -0.357651, 0, 0.933855, 0.623699, 0.850318, 0.204481)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 
 [editable path="XROrigin3D"]
-[editable path="G"]
-[editable path="B"]

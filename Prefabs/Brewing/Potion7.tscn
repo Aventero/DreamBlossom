@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxpp3a3kxtx8c"]
+
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="1_3qdxy"]
+[ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="2_pttw4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1ixm"]
+render_priority = 0
+shader = ExtResource("2_pttw4")
+shader_parameter/min_height = -0.04
+shader_parameter/max_height = 0.04
+shader_parameter/base_color = Color(0.631373, 0.631373, 0.631373, 1)
+shader_parameter/surface_color = Color(0.662745, 0.662745, 0.662745, 1)
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/fresnel_color = Color(1, 1, 1, 1)
+shader_parameter/line_width = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywd71"]
+albedo_color = Color(0.698039, 0.698039, 0.698039, 1)
+
+[node name="Potion" instance=ExtResource("1_3qdxy")]
+drop_count = 4
+
+[node name="Fill" parent="Model" index="2"]
+instance_shader_parameters/fill_percentage = 1.0
+surface_material_override/0 = SubResource("ShaderMaterial_s1ixm")
+
+[node name="Drop" parent="Drop/Drop" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ywd71")
+
+[node name="PotionType" parent="Indicator" index="0"]
+text = "7"
+
+[editable path="Drop/Drop"]

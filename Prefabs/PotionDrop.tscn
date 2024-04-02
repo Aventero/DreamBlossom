@@ -1,9 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://k38i05551xx3"]
-
-[ext_resource type="PackedScene" uid="uid://dd1p7jnxxyv0m" path="res://Models/PotionDrop.blend" id="1_d53ri"]
+[gd_scene load_steps=6 format=3 uid="uid://k38i05551xx3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pr5da"]
 size = Vector3(0.08, 0.08, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovpsf"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mdg80"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2.00001),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 255, 255, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2u6j8"]
+resource_name = "PotionDrop_Cube"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2.00001),
+"attribute_data": PackedByteArray(255, 95, 255, 255, 255, 31, 255, 63, 255, 95, 0, 0, 255, 159, 255, 255, 255, 159, 0, 0, 255, 223, 255, 63, 255, 95, 255, 191, 255, 31, 255, 127, 255, 95, 255, 191, 255, 159, 255, 191, 255, 159, 255, 191, 255, 223, 255, 127, 255, 95, 255, 63, 255, 95, 255, 63, 255, 95, 255, 63, 255, 159, 255, 63, 255, 159, 255, 63, 255, 159, 255, 63, 255, 95, 255, 127, 255, 95, 255, 127, 255, 95, 255, 127, 255, 159, 255, 127, 255, 159, 255, 127, 255, 159, 255, 127),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0),
+"material": SubResource("StandardMaterial3D_ovpsf"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 84, 213, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 84, 213, 0, 0, 255, 255, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 84, 213, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 84, 213, 255, 255, 255, 255, 254, 255, 255, 191, 255, 255, 255, 255, 254, 255, 255, 255, 255, 255, 255, 255, 254, 255, 84, 213, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 84, 213, 84, 213, 84, 213, 0, 0, 255, 127, 255, 255, 255, 255, 84, 213, 84, 213, 255, 255, 255, 255, 255, 127, 255, 191, 84, 213, 84, 213, 0, 0, 255, 127, 255, 191, 255, 191, 84, 213, 84, 213, 255, 191, 255, 191, 255, 127, 255, 191, 0, 0, 255, 127, 255, 255, 255, 255, 170, 42, 170, 42, 255, 255, 255, 255, 255, 127, 255, 191, 170, 42, 170, 42, 0, 0, 255, 127, 255, 191, 255, 191, 170, 42, 170, 42, 255, 191, 255, 191, 255, 127, 255, 191, 170, 42, 170, 42)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mdg80")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6stja"]
+shading_mode = 0
 
 [node name="PotionDrop" type="RigidBody3D"]
 
@@ -11,5 +44,8 @@ size = Vector3(0.08, 0.08, 0.08)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 shape = SubResource("BoxShape3D_pr5da")
 
-[node name="PotionDrop" parent="." instance=ExtResource("1_d53ri")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+[node name="Drop" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2u6j8")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_6stja")

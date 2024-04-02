@@ -18,6 +18,7 @@ extends XRToolsPickable
 var _current_drop_count : int
 var _drop_progress : float = 0.0
 var _reduction_tween : Tween = null
+var _stomp_tween : Tween = null
 
 func _ready() -> void:
 	super()
@@ -91,11 +92,17 @@ func _lerp_fill(percentage : float):
 
 func _on_picked_up(pickable: Variant) -> void:
 	# Despawn stomp
-	flask_stomp.visible = false
+	if _stomp_tween and _stomp_tween.is_running():
+		_stomp_tween.kill()
+	_stomp_tween = create_tween()
+	_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
 
 func _on_dropped(pickable: Variant) -> void:
 	# Spawn stomp
-	flask_stomp.visible = true
+	if _stomp_tween and _stomp_tween.is_running():
+		_stomp_tween.kill()
+	_stomp_tween = create_tween()
+	_stomp_tween.tween_property(flask_stomp, "scale", Vector3(0.016, 0.016, 0.016), 0.1)
 	
 	# Start reduction tween
 	if _reduction_tween and _reduction_tween.is_running():
