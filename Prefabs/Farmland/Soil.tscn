@@ -62,5 +62,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0100777, 0.00363159)
 shape = SubResource("BoxShape3D_jxybn")
 
 [node name="DiggingArea" type="MeshInstance3D" parent="."]
+layers = 129
 mesh = SubResource("ArrayMesh_metgf")
 skeleton = NodePath("")

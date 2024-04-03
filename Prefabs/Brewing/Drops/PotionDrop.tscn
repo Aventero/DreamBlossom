@@ -1,4 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://k38i05551xx3"]
+[gd_scene load_steps=9 format=3 uid="uid://k38i05551xx3"]
+
+[ext_resource type="Script" path="res://Scripts/PotionDrop.gd" id="1_mxpeb"]
+[ext_resource type="PackedScene" uid="uid://b5n4tkiy2iu5g" path="res://Particles/PotionSplash/PotionDropSplash.tscn" id="2_kr8d7"]
+[ext_resource type="PackedScene" uid="uid://dx3xx8wyr8tc0" path="res://Prefabs/Brewing/SplashDecal/SplashDecal.tscn" id="3_e7qfs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pr5da"]
 size = Vector3(0.08, 0.08, 0.08)
@@ -36,9 +40,14 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mdg80")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6stja"]
-shading_mode = 0
 
 [node name="PotionDrop" type="RigidBody3D"]
+collision_layer = 512
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_mxpeb")
+splash_particles = ExtResource("2_kr8d7")
+splash_decal = ExtResource("3_e7qfs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
@@ -49,3 +58,5 @@ transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
 mesh = SubResource("ArrayMesh_2u6j8")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_6stja")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

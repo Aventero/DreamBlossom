@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu1l1nae07mnt"]
+
+[ext_resource type="PackedScene" uid="uid://dx3xx8wyr8tc0" path="res://Prefabs/Brewing/SplashDecal/SplashDecal.tscn" id="1_uoluf"]
+
+[node name="SplashDecal" instance=ExtResource("1_uoluf")]
+modulate = Color(0.882353, 0.698039, 0.152941, 1)

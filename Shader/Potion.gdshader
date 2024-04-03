@@ -8,11 +8,13 @@ uniform float min_height;
 uniform float max_height;
 
 // Colors
+uniform sampler2D potion_noise : filter_nearest;
 uniform vec3 base_color : source_color;
 uniform vec3 surface_color : source_color;
 uniform vec3 line_color : source_color;
 uniform vec3 fresnel_color : source_color;
 uniform float line_width = 0.001;
+uniform float mix_amount = 0.5;
 
 varying vec3 position;
 varying bool unshaded;
@@ -44,6 +46,10 @@ void fragment() {
 	{
 		ALBEDO = mix(base_color, fresnel_color, fresnel(10.0, NORMAL, VIEW));
 		unshaded = false;
+		
+		// Noise
+		vec3 noise_color = texture(potion_noise, UV * 0.65 + vec2(0.02 * sin(TIME), 0.01 * sin(TIME))).rgb;
+		ALBEDO = mix(ALBEDO, ALBEDO * noise_color, mix_amount);
 	}
 	else
 	{

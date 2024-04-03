@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=83 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -48,9 +48,13 @@
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
 [ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="49_n67su"]
-[ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potion1.tscn" id="50_s8iy7"]
-[ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potion2.tscn" id="51_mxxtv"]
-[ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potion4.tscn" id="52_7lsh3"]
+[ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potions/Potion1.tscn" id="50_s8iy7"]
+[ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potions/Potion2.tscn" id="51_mxxtv"]
+[ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potions/Potion4.tscn" id="52_7lsh3"]
+[ext_resource type="PackedScene" uid="uid://bqwwbdd6jnnar" path="res://Prefabs/Brewing/Potions/Potion3.tscn" id="52_w4uv7"]
+[ext_resource type="PackedScene" uid="uid://cdos2p7jyssw8" path="res://Prefabs/Brewing/Potions/Potion5.tscn" id="53_hhxue"]
+[ext_resource type="PackedScene" uid="uid://qkacnp7hnic4" path="res://Prefabs/Brewing/Potions/Potion6.tscn" id="54_rew5c"]
+[ext_resource type="PackedScene" uid="uid://bxpp3a3kxtx8c" path="res://Prefabs/Brewing/Potions/Potion7.tscn" id="55_4slal"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.359606, 0.706897, 1)
@@ -571,6 +575,27 @@ transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948
 
 [node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
 transform = Transform3D(0.933855, 0, 0.357651, 0, 1, 0, -0.357651, 0, 0.933855, 0.623699, 0.850318, 0.204481)
+
+[node name="Potion" parent="." instance=ExtResource("50_s8iy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.399674, 0.828662, -0.520608)
+
+[node name="Potion2" parent="." instance=ExtResource("51_mxxtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28658, 0.828662, -0.517973)
+
+[node name="Potion3" parent="." instance=ExtResource("52_w4uv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.181371, 0.828662, -0.517519)
+
+[node name="Potion4" parent="." instance=ExtResource("52_7lsh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0724951, 0.828662, -0.518873)
+
+[node name="Potion5" parent="." instance=ExtResource("53_hhxue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0385033, 0.828662, -0.517366)
+
+[node name="Potion6" parent="." instance=ExtResource("54_rew5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143703, 0.828662, -0.513216)
+
+[node name="Potion7" parent="." instance=ExtResource("55_4slal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250343, 0.828662, -0.506135)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5n4tkiy2iu5g"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_ucd52"]
+
+[sub_resource type="Curve" id="Curve_ji4ae"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0821429, 1), 0.0, 0.0, 0, 0, Vector2(0.767857, 0), -3.98445, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hse0s"]
+curve = SubResource("Curve_ji4ae")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uivjh"]
+particle_flag_rotate_y = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, -3, 0)
+scale_curve = SubResource("CurveTexture_hse0s")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlxqc"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_e8n7q"]
+material = SubResource("StandardMaterial3D_qlxqc")
+size = Vector2(0.05, 0.05)
+
+[node name="PotionDropSplash" type="Node3D"]
+script = ExtResource("1_ucd52")
+
+[node name="Splash" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120636, 0)
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 0.95
+fixed_fps = 60
+collision_base_size = 0.03
+process_material = SubResource("ParticleProcessMaterial_uivjh")
+draw_pass_1 = SubResource("QuadMesh_e8n7q")

@@ -833,6 +833,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqc2o")
 
 [node name="Legs" type="MeshInstance3D" parent="Table"]
 transform = Transform3D(2.38419e-07, 0, 1, -1, 0, 2.38419e-07, 0, -0.357562, 0, 0, 0, 0)
+layers = 129
 mesh = SubResource("ArrayMesh_yelgt")
 skeleton = NodePath("")
 
@@ -843,6 +844,7 @@ shape = SubResource("ConcavePolygonShape3D_mbk7r")
 
 [node name="StoneTable" type="MeshInstance3D" parent="Table"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+layers = 129
 mesh = SubResource("ArrayMesh_vfq4n")
 skeleton = NodePath("")
 

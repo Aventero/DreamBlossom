@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_6iw1p"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_75se4"]
 [ext_resource type="Script" path="res://Scripts/Potion.gd" id="2_a0gms"]
-[ext_resource type="PackedScene" uid="uid://k38i05551xx3" path="res://Prefabs/PotionDrop.tscn" id="3_mgk1n"]
+[ext_resource type="PackedScene" uid="uid://k38i05551xx3" path="res://Prefabs/Brewing/Drops/PotionDrop.tscn" id="3_kxs43"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_t6hfu"]
 [ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="4_w566o"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_88qnn"]
@@ -163,7 +163,7 @@ drop_count = 3
 tilt_angle = 95.0
 drop_fill_speed = 1.0
 max_drop_size = 8.0
-potion_drop = ExtResource("3_mgk1n")
+potion_drop = ExtResource("3_kxs43")
 second_hand_grab = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -184,7 +184,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")
 
 [node name="Fill" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.863298, 0, 0, 0, 0.863297, 0, 0, 0, 0.863297, 0, 0.044, 0)
-instance_shader_parameters/fill_percentage = null
+instance_shader_parameters/fill_percentage = 1.0
 mesh = SubResource("ArrayMesh_peid5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_7rm1w")

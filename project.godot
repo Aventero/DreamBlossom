@@ -28,6 +28,7 @@ import/fbx/enabled=false
 
 [layer_names]
 
+3d_render/layer_8="DropDecail"
 3d_physics/layer_1="Static World"
 3d_physics/layer_2="Dynamic World"
 3d_physics/layer_3="Pickable Objects"
@@ -54,6 +55,7 @@ jolt_3d/collisions/areas_detect_static_bodies=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+textures/decals/filter=0
 
 [xr]
 

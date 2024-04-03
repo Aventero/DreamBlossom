@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx3xx8wyr8tc0"]
+
+[ext_resource type="Texture2D" uid="uid://kdy706w2o0jd" path="res://Textures/PotionDropDecail.png" id="1_oserf"]
+
+[sub_resource type="GDScript" id="GDScript_gjeql"]
+script/source = "extends Decal
+
+func _ready() -> void:
+	rotation = Vector3(0.0, randf_range(0, 2.0 * PI), 0.0)
+	
+	# Disappear
+	var tween : Tween = create_tween()
+	tween.tween_property(self, \"albedo_mix\", 0.0, 3.0)
+	tween.tween_callback(queue_free)
+"
+
+[node name="SplashDecal" type="Decal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 128
+size = Vector3(0.2, 0.2, 0.2)
+texture_albedo = ExtResource("1_oserf")
+albedo_mix = 0.25
+cull_mask = 128
+script = SubResource("GDScript_gjeql")
