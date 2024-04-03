@@ -16,6 +16,8 @@ extends Area3D
 
 var reset_transforms = {}
 
+var _returning_objects = []
+
 func _process(delta):
 	# Draw debug lines if in editor
 	if debug_draw and Engine.is_editor_hint():
@@ -25,29 +27,58 @@ func _process(delta):
 		for node in reset_transforms:
 			var distance : float = node.global_position.distance_to(reset_transforms[node].origin)
 			
-			if distance > range:
-				# Tween scale / Animation
-				var tween : Tween = create_tween()
-				tween.tween_property(node, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
-				tween.tween_callback(Callable(_restore_transform).bind(node))
+			if distance < range:
+				continue
+			
+			# Check if already returning
+			if node in _returning_objects:
+				continue
+			_returning_objects.append(node)
+			
+			# Tween scale / Animation
+			var tween : Tween = create_tween()
+			tween.tween_property(node, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
+			tween.tween_callback(Callable(_restore_transform).bind(node))
 
 func _on_body_entered(body : RigidBody3D):
 	if not enable_area_reset:
 		return
 	
-	if body.is_in_group(group_name):
-		# Tween scale / Animation
-		var tween : Tween = create_tween()
-		tween.tween_property(body, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
-		tween.tween_callback(Callable(_restore_transform).bind(body))
+	if not body.is_in_group(group_name):
+		return
+	
+	# Check if already returning
+	if body in _returning_objects:
+		return
+	_returning_objects.append(body)
+	
+	# Tween scale / Animation
+	var tween : Tween = create_tween()
+	tween.tween_property(body, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
+	tween.tween_callback(Callable(_restore_transform).bind(body))
 
 func _restore_transform(node : RigidBody3D):
+	# Wait time until transform restore
+	node.visible = false
+	await get_tree().create_timer(1.0).timeout
+	node.visible = true
+	
+	# Remove object from returning list
+	_returning_objects.erase(node)
+	
 	# Reset velocity of body
 	node.linear_velocity = Vector3.ZERO
 	node.angular_velocity = Vector3.ZERO
 	
 	# Reset transform (Position, Rotation)
 	node.transform = reset_transforms[node]
+	
+	# Appear tween
+	var old_scale : Vector3 = node.scale
+	node.scale = Vector3(0.1, 0.1, 0.1)
+	
+	var appear_tween : Tween = create_tween()
+	appear_tween.tween_property(node, "scale", old_scale, 0.1)
 
 func _get_data():
 	# Find all object in group "returnable"
