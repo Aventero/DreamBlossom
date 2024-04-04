@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8s3i47fse05c"]
+[gd_scene load_steps=20 format=3 uid="uid://b8s3i47fse05c"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_qrvtc"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Tools/MusicBox.gd" id="2_jkbs3"]
-[ext_resource type="Material" uid="uid://mn7q5ureexgr" path="res://Materials/Stem.tres" id="3_cfuf2"]
+[ext_resource type="PackedScene" uid="uid://1qxno1rot6rq" path="res://Models/Tools/Jukebox.blend" id="3_kxgj4"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="5_7vs1a"]
 [ext_resource type="Texture2D" uid="uid://cfvy1nmdhb3jv" path="res://Textures/Tools/Range.png" id="7_0a8fx"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="7_6rsry"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="8_ummhs"]
@@ -12,19 +13,18 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xspe"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_c4c6x"]
-material = ExtResource("3_cfuf2")
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cacld"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0.231373, 0.756863, 0.0823529, 1)
-grow_amount = 0.2
-
-[sub_resource type="BoxMesh" id="BoxMesh_2ls1p"]
-material = SubResource("StandardMaterial3D_cacld")
-size = Vector3(0.11, 0.11, 0.11)
+[sub_resource type="ArrayMesh" id="ArrayMesh_q32l2"]
+_surfaces = [{
+"aabb": AABB(-0.0503184, -0.0503184, -0.0503184, 0.100646, 0.100637, 0.100637),
+"attribute_data": PackedByteArray(223, 255, 94, 63, 194, 255, 65, 63, 193, 255, 64, 63, 191, 255, 62, 63, 206, 255, 77, 63, 191, 255, 62, 63, 193, 255, 64, 63, 178, 255, 49, 63, 223, 255, 94, 63, 207, 255, 78, 63, 206, 255, 77, 63, 178, 255, 49, 63, 210, 255, 81, 63, 194, 255, 65, 63, 206, 255, 77, 63, 191, 255, 62, 63, 193, 255, 64, 63, 191, 255, 62, 63, 206, 255, 77, 63, 178, 255, 49, 63, 210, 255, 81, 63, 207, 255, 78, 63, 193, 255, 64, 63, 178, 255, 49, 63, 193, 255, 64, 63, 191, 255, 62, 63, 223, 255, 94, 63, 207, 255, 78, 63, 206, 255, 77, 63, 191, 255, 62, 63, 193, 255, 64, 63, 178, 255, 49, 63, 206, 255, 77, 63, 178, 255, 49, 63, 223, 255, 94, 63, 194, 255, 65, 63, 206, 255, 77, 63, 191, 255, 62, 63, 210, 255, 81, 63, 207, 255, 78, 63, 193, 255, 64, 63, 191, 255, 62, 63, 206, 255, 77, 63, 178, 255, 49, 63, 193, 255, 64, 63, 178, 255, 49, 63, 210, 255, 81, 63, 194, 255, 65, 63),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 5, 0, 11, 0, 2, 0, 11, 0, 8, 0, 7, 0, 9, 0, 22, 0, 7, 0, 22, 0, 20, 0, 18, 0, 21, 0, 15, 0, 18, 0, 15, 0, 12, 0, 14, 0, 16, 0, 3, 0, 14, 0, 3, 0, 1, 0, 6, 0, 19, 0, 13, 0, 6, 0, 13, 0, 0, 0, 23, 0, 10, 0, 4, 0, 23, 0, 4, 0, 17, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(106, 25, 78, 61, 165, 26, 78, 189, 166, 26, 78, 189, 106, 25, 78, 61, 165, 26, 78, 189, 166, 26, 78, 189, 106, 25, 78, 61, 165, 26, 78, 189, 166, 26, 78, 189, 106, 25, 78, 61, 163, 26, 78, 61, 166, 26, 78, 189, 106, 25, 78, 61, 163, 26, 78, 61, 166, 26, 78, 189, 106, 25, 78, 61, 163, 26, 78, 61, 166, 26, 78, 189, 125, 25, 78, 61, 165, 26, 78, 189, 30, 25, 78, 61, 125, 25, 78, 61, 165, 26, 78, 189, 30, 25, 78, 61, 125, 25, 78, 61, 165, 26, 78, 189, 30, 25, 78, 61, 125, 25, 78, 61, 163, 26, 78, 61, 30, 25, 78, 61, 125, 25, 78, 61, 163, 26, 78, 61, 30, 25, 78, 61, 125, 25, 78, 61, 163, 26, 78, 61, 30, 25, 78, 61, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 189, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 189, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 189, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 189, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 189, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 189, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 61, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 61, 166, 26, 78, 189, 165, 26, 78, 189, 166, 26, 78, 61, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 61, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 61, 166, 26, 78, 189, 163, 26, 78, 61, 166, 26, 78, 61, 8, 128, 3, 0, 249, 255, 253, 255, 254, 255, 0, 0, 0, 0, 255, 191, 253, 255, 0, 128, 254, 255, 254, 255, 254, 255, 0, 0, 0, 0, 255, 191, 1, 128, 251, 255, 0, 0, 254, 255, 253, 255, 0, 128, 254, 255, 254, 255, 8, 128, 3, 0, 249, 255, 253, 255, 253, 127, 255, 127, 253, 255, 255, 63, 253, 255, 0, 128, 254, 255, 254, 255, 253, 127, 255, 127, 253, 255, 255, 63, 1, 128, 251, 255, 0, 0, 254, 255, 253, 255, 0, 128, 254, 255, 254, 255, 1, 0, 255, 127, 0, 128, 255, 191, 8, 128, 3, 0, 249, 255, 253, 255, 254, 255, 0, 0, 0, 0, 255, 191, 1, 0, 255, 127, 0, 128, 255, 191, 254, 255, 0, 0, 0, 0, 255, 191, 1, 128, 251, 255, 0, 0, 254, 255, 1, 0, 255, 127, 0, 128, 255, 191, 8, 128, 3, 0, 249, 255, 253, 255, 253, 127, 255, 127, 253, 255, 255, 63, 1, 0, 255, 127, 0, 128, 255, 191, 253, 127, 255, 127, 253, 255, 255, 63, 1, 128, 251, 255, 0, 0, 254, 255)
+}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriak"]
 transparency = 2
@@ -85,19 +85,19 @@ second_hand_grab = 1
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_7xspe")
 
-[node name="MusicBox" type="MeshInstance3D" parent="." index="1"]
-mesh = SubResource("BoxMesh_c4c6x")
+[node name="MusicBox" parent="." index="1" instance=ExtResource("3_kxgj4")]
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="MusicBox" index="0"]
-remote_path = NodePath("../../XRToolsHighlightVisible/MusicBoxHighlight")
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="MusicBox" index="1"]
+remote_path = NodePath("../../XRToolsHighlightVisible/Highlight")
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
 visible = false
 script = ExtResource("4_wadoy")
 
-[node name="MusicBoxHighlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-mesh = SubResource("BoxMesh_2ls1p")
-skeleton = NodePath("../..")
+[node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+mesh = SubResource("ArrayMesh_q32l2")
+skeleton = NodePath("../../MusicBox/Jukebox")
+surface_material_override/0 = ExtResource("5_7vs1a")
 
 [node name="Range" type="MeshInstance3D" parent="." index="3"]
 visible = false
@@ -119,11 +119,13 @@ collision_mask = 32
 shape = SubResource("SphereShape3D_wxi77")
 
 [node name="GrabPointHandLeft" parent="." index="6" instance=ExtResource("7_6rsry")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385141, -0.0949468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385141, -0.0363595)
 
 [node name="GrabPointHandRight" parent="." index="7" instance=ExtResource("8_ummhs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385141, -0.0949468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385141, -0.0363595)
 
 [connection signal="action_pressed" from="." to="." method="_on_action_pressed"]
 [connection signal="area_entered" from="RangeArea" to="." method="_on_range_area_area_entered"]
 [connection signal="area_exited" from="RangeArea" to="." method="_on_range_area_area_exited"]
+
+[editable path="MusicBox"]

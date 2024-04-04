@@ -26,7 +26,7 @@ uniform float moon_size : hint_range(0.01, 1.0) = 0.05;
 
 float getSunMask(float sunViewDot, float sunRadius) {
 	float stepRadius = 1.0 - sunRadius * sunRadius;
-	return smoothstep(stepRadius, stepRadius * 1.04, sunViewDot);
+	return smoothstep(stepRadius, stepRadius * 1.1, sunViewDot);
 }
 
 void sky() {
@@ -42,8 +42,8 @@ void sky() {
 	float sunViewDot01 = (sunViewDot + 1.0) * 0.5;
 	float sunHeight01 = (sunHeight + 1.0) * 0.5;
 	
-    vec3 baseSkyColor = texture(baseSkyGradient, vec2(sunHeight01, 0.5)).rgb * 0.9;
-	vec3 horizonColor = texture(horizonSkyGradient, vec2(sunHeight01, 0.5)).rgb * 1.5;
+    vec3 baseSkyColor = texture(baseSkyGradient, vec2(sunHeight01, 0.5)).rgb * 0.8;
+	vec3 horizonColor = texture(horizonSkyGradient, vec2(sunHeight01, 0.5)).rgb * 0.7;
 	float horizonMix = pow(1.0 - abs(1.0 * viewHeight), 4.0);
 	vec3 skyColor = baseSkyColor + horizonColor * horizonMix;
 	
@@ -60,7 +60,7 @@ void sky() {
 		skyColor = mix(skyColor, cloudTextureColor, pow(clamp(0.0, 1.0, sunHeight), 2.0));
 	} else {
 		vec3 nightSky = texture(nightSkyTexture, SKY_COORDS).rgb;
-		skyColor = mix(skyColor, nightSky, pow(abs((sunHeight - 1.0) * 0.5), 8.0)) * abs(1.1 - night_intensity);
+		skyColor = mix(skyColor, nightSky, pow(abs((sunHeight - 1.0) * 0.5), 4.0)) * abs(1.1 - night_intensity);
 	}
 	skyColor += _sunColor + _moonColor;
 	COLOR = skyColor;

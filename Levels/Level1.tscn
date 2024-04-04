@@ -27,7 +27,7 @@ amount = 5
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l34ll")
 active_plants = 1
-active_tools = 7
+active_tools = 63
 spread_time = 20.0
 spread_indicator_time = 5.0
 spread_release_grace_time = 1.0

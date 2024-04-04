@@ -24,6 +24,11 @@ gradient = SubResource("Gradient_jnitu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_js556"]
 shader = ExtResource("2_jn0jq")
+shader_parameter/day_sky_color = Color(1, 1, 1, 1)
+shader_parameter/nightSkyTexture = ExtResource("5_86oiq")
+shader_parameter/cloudsTexture = ExtResource("3_dsvja")
+shader_parameter/horizonSkyGradient = ExtResource("4_pxk1y")
+shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_hasvb")
 shader_parameter/sun_direction = Vector3(0.709597, 0.544493, -0.447214)
 shader_parameter/day_intensity = 0.608761
 shader_parameter/sun_color = Color(10, 8, 1, 1)
@@ -32,10 +37,6 @@ shader_parameter/moon_direction = Vector3(-0.709597, -0.544493, -0.447214)
 shader_parameter/night_intensity = 1.22461e-16
 shader_parameter/moon_color = Color(0.701961, 0.772549, 0.843137, 1)
 shader_parameter/moon_size = 0.07
-shader_parameter/nightSkyTexture = ExtResource("5_86oiq")
-shader_parameter/cloudsTexture = ExtResource("3_dsvja")
-shader_parameter/horizonSkyGradient = ExtResource("4_pxk1y")
-shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_hasvb")
 
 [sub_resource type="Sky" id="Sky_s2wdu"]
 sky_material = SubResource("ShaderMaterial_js556")

@@ -373,18 +373,18 @@ func _on_dropped(pickable : XRToolsPickable):
 
 func _insertion_squish():
 	# Get the mesh
-	var shovel_mesh : MeshInstance3D = $Shovel
-	var initial_scale = shovel_mesh.scale
+	var shovel : Node3D = $Shovel
+	var initial_scale = shovel.scale
 	var tween : Tween = create_tween()
 	
 	# Longate (increase length)
 	var longated_scale = Vector3(initial_scale.x, initial_scale.y, initial_scale.z  * 1.1)
-	tween.tween_property(shovel_mesh, "scale", longated_scale, 0.05)
+	tween.tween_property(shovel, "scale", longated_scale, 0.05)
 
 	# Widen (increase width)
 	var widened_scale = Vector3(initial_scale.x * 1.1, initial_scale.y * 1.1, initial_scale.z)
-	tween.tween_property(shovel_mesh, "scale", widened_scale, 0.05)
+	tween.tween_property(shovel, "scale", widened_scale, 0.05)
 
 	# Return to normal
-	tween.tween_property(shovel_mesh, "scale", initial_scale, 0.05)
+	tween.tween_property(shovel, "scale", initial_scale, 0.05)
 
