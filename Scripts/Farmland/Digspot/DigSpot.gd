@@ -221,6 +221,7 @@ func _spawn_plant():
 	# Remove seed
 	var tween : Tween = create_tween()
 	tween.tween_property(seed, "scale", Vector3.ZERO, 0.5)
+	tween.tween_callback(seed.queue_free)
 	
 	# Update Lookup
 	DigSpotLookup.add(self, plant)

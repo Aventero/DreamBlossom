@@ -26,13 +26,8 @@ func scene_loaded(user_data = null):
 	super(user_data)
 	
 	# Load level
-	if user_data and user_data["level"]:
-		_load_level(user_data["level"])
-		level_id = user_data["level"]
-	else:
-		# Load first level on missing data
-		_load_level(1)
-		level_id = 1
+	_load_level(user_data["level"])
+	level_id = user_data["level"]
 	
 	# Apply level settings
 	seed_bags.load_seed_bags(level.active_plants)
@@ -66,6 +61,8 @@ func scene_loaded(user_data = null):
 	return_manager.update(true)
 
 func _load_level(level_nr : int) -> void:
+	print("Loading ", level_nr)
+	
 	level = load("res://Levels/Level" + str(level_nr) + ".tscn").instantiate()
 	add_child(level)
 	

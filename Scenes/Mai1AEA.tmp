@@ -24,7 +24,7 @@ func _ready() -> void:
 	fps_tween.tween_interval(1.0)
 
 func _update_fps() -> void:
-	get_window().title = \"FPS: \" + str(Engine.get_frames_per_second())
+	get_window().title = \"FPS: \" + Engine.get_frames_per_second()
 "
 
 [node name="Staging" type="Node3D"]

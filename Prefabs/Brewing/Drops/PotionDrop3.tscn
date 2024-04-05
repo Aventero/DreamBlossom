@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://biyo04tvg8dv5"]
+[gd_scene load_steps=5 format=3 uid="uid://biyo04tvg8dv5"]
 
 [ext_resource type="PackedScene" uid="uid://k38i05551xx3" path="res://Prefabs/Brewing/Drops/PotionDrop.tscn" id="1_3ufmg"]
+[ext_resource type="PackedScene" uid="uid://cewdkobfs4pob" path="res://Particles/PotionSplash/PotionDropSplash3.tscn" id="2_1v5io"]
 [ext_resource type="PackedScene" uid="uid://bu1l1nae07mnt" path="res://Prefabs/Brewing/SplashDecal/SplashDecal3.tscn" id="2_1258h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfg6i"]
@@ -8,7 +9,7 @@ albedo_color = Color(0.882353, 0.698039, 0.152941, 1)
 
 [node name="PotionDrop" instance=ExtResource("1_3ufmg")]
 type = 3
-splash_particles = null
+splash_particles = ExtResource("2_1v5io")
 splash_decal = ExtResource("2_1258h")
 
 [node name="Drop" parent="." index="1"]

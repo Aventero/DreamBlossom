@@ -220,6 +220,42 @@ script = ExtResource("14_y8p08")
 
 [node name="Level Selection" type="Node3D" parent="."]
 
+[node name="Level Sandbox" type="Node3D" parent="Level Selection"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.42984, 1.40324, -1.34845)
+
+[node name="Level" type="Label3D" parent="Level Selection/Level Sandbox"]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
+text = "Sandbox"
+
+[node name="LevelButton" type="Area3D" parent="Level Selection/Level Sandbox"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 131072
+script = ExtResource("15_vmvpr")
+button = NodePath("Button")
+
+[node name="Collision" type="CollisionShape3D" parent="Level Selection/Level Sandbox/LevelButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255249, 0)
+shape = SubResource("BoxShape3D_p3i6o")
+
+[node name="Button" type="MeshInstance3D" parent="Level Selection/Level Sandbox/LevelButton"]
+mesh = SubResource("BoxMesh_agb10")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="Level Selection/Level Sandbox/LevelButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247621, 0)
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("9_np802")
+left_pose = SubResource("Resource_7yv7s")
+right_pose = SubResource("Resource_f836c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Selection/Level Sandbox/LevelButton/XRToolsHandPoseArea"]
+shape = SubResource("SphereShape3D_81ety")
+
+[node name="Level Description" type="Label3D" parent="Level Selection/Level Sandbox"]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.154084, 0)
+text = "No danger - Just planting"
+
 [node name="Level 1" type="Node3D" parent="Level Selection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31397, 1.40324, -2.43743)
 
@@ -475,6 +511,7 @@ PickAxe
 
 Weed, Koriko"
 
+[connection signal="button_pressed" from="Level Selection/Level Sandbox/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 1/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 2/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 3/LevelButton" to="." method="_on_load_scene_button_pressed"]

@@ -127,6 +127,7 @@ shader_parameter/surface_color = null
 shader_parameter/line_color = null
 shader_parameter/fresnel_color = null
 shader_parameter/line_width = 0.001
+shader_parameter/mix_amount = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_su3ml"]
 _surfaces = [{

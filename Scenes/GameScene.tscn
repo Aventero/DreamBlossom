@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=80 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -51,10 +51,6 @@
 [ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potions/Potion1.tscn" id="50_s8iy7"]
 [ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potions/Potion2.tscn" id="51_mxxtv"]
 [ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potions/Potion4.tscn" id="52_7lsh3"]
-[ext_resource type="PackedScene" uid="uid://bqwwbdd6jnnar" path="res://Prefabs/Brewing/Potions/Potion3.tscn" id="52_w4uv7"]
-[ext_resource type="PackedScene" uid="uid://cdos2p7jyssw8" path="res://Prefabs/Brewing/Potions/Potion5.tscn" id="53_hhxue"]
-[ext_resource type="PackedScene" uid="uid://qkacnp7hnic4" path="res://Prefabs/Brewing/Potions/Potion6.tscn" id="54_rew5c"]
-[ext_resource type="PackedScene" uid="uid://bxpp3a3kxtx8c" path="res://Prefabs/Brewing/Potions/Potion7.tscn" id="55_4slal"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.576355, 1)
@@ -220,6 +216,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eglbb")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yt8j3"]
+data = PackedVector3Array(0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, -0.1286, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, -0.2344, -0.1172, -0.1286, 0.1837, -0.1172, 0.0296, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0296, 0.1837, 0.0352, 0.0296, -0.2344, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, -0.0779, 0.2344, -0.0155, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, 0.0296, 0.1837, 0.0352, -0.1286, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, 0.0508, 0.2127, 0.0062, 0.0296, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, -0.1172, -0.0779, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, 0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0665, -0.1286, 0.1837, -0.1172, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0155, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.067, 0.0292, 0.2344, -0.0155, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, 0.0798, 0.1837, -0.015, 0.0296, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0508, 0.2127, -0.0882, 0.0296, 0.1837, -0.1172, 0.0798, -0.2344, -0.015, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.015, 0.0296, -0.2344, 0.0352, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.067, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.067, 0.0296, 0.1837, -0.1172, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.015, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0798, -0.2344, -0.015)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_chjtm"]
 _surfaces = [{
@@ -473,16 +472,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.021865
 
 [node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
+layers = 129
 mesh = SubResource("ArrayMesh_h6ffo")
 skeleton = NodePath("")
 
 [node name="Rock" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
 transform = Transform3D(0.572679, 0.292153, 0.990433, -0.644507, 0.506938, 0.00852391, -0.552184, -0.2887, 1.01725, -0.0778272, -0.222884, -0.365752)
+layers = 129
 mesh = SubResource("ArrayMesh_pval3")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock/ActualRock/Rock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock/ActualRock/Rock/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_yt8j3")
+
 [node name="Rock2" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
 transform = Transform3D(0.00398746, -0.00796057, -2.22869, -1.01334, 0.794934, -0.0169322, 1.24749, 0.645751, -0.00663054, -0.522226, -0.159592, 0.674088)
+layers = 129
 mesh = SubResource("ArrayMesh_pq4o7")
 skeleton = NodePath("")
 
@@ -494,11 +501,13 @@ shape = SubResource("ConvexPolygonShape3D_m6eh3")
 
 [node name="Rock3" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
 transform = Transform3D(0.249475, 0, -0.312669, 0, 0.4, 0, 0.312669, 0, 0.249475, -0.31455, 0.13709, -0.185621)
+layers = 129
 mesh = SubResource("ArrayMesh_27sti")
 skeleton = NodePath("")
 
 [node name="Rock4" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
 transform = Transform3D(0.0211634, 0, -0.330505, 0, 0.331182, 0, 0.330505, 0, 0.0211634, -0.499544, 0.147079, -0.143808)
+layers = 129
 mesh = SubResource("ArrayMesh_dh3e5")
 skeleton = NodePath("")
 
@@ -578,32 +587,29 @@ transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948
 
 [node name="Environment" parent="." instance=ExtResource("47_thwiv")]
 
+[node name="Plane_382" parent="Environment" index="30"]
+layers = 129
+
+[node name="Plane_386" parent="Environment" index="31"]
+layers = 129
+
+[node name="Plane_387" parent="Environment" index="32"]
+layers = 129
+
+[node name="Plane_388" parent="Environment" index="33"]
+layers = 129
+
 [node name="Plane_286" parent="Environment" index="37"]
-transform = Transform3D(2.9733, 0, -1.78336, 0, 3.46712, 0, 1.78336, 0, 2.9733, -0.715293, 0.0205825, -0.295147)
+layers = 129
+
+[node name="Plane_767" parent="Environment" index="80"]
+layers = 129
+
+[node name="Plane_749" parent="Environment" index="81"]
+layers = 129
 
 [node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
 transform = Transform3D(0.933855, 0, 0.357651, 0, 1, 0, -0.357651, 0, 0.933855, 0.623699, 0.850318, 0.204481)
-
-[node name="Potion" parent="." instance=ExtResource("50_s8iy7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.399674, 0.828662, -0.520608)
-
-[node name="Potion2" parent="." instance=ExtResource("51_mxxtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28658, 0.828662, -0.517973)
-
-[node name="Potion3" parent="." instance=ExtResource("52_w4uv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.181371, 0.828662, -0.517519)
-
-[node name="Potion4" parent="." instance=ExtResource("52_7lsh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0724951, 0.828662, -0.518873)
-
-[node name="Potion5" parent="." instance=ExtResource("53_hhxue")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0385033, 0.828662, -0.517366)
-
-[node name="Potion6" parent="." instance=ExtResource("54_rew5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143703, 0.828662, -0.513216)
-
-[node name="Potion7" parent="." instance=ExtResource("55_4slal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250343, 0.828662, -0.506135)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 
