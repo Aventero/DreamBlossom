@@ -8,7 +8,7 @@
 item = ExtResource("2_pyj4h")
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="3"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.147424, 0)
-billboard = 2
+transform = Transform3D(-1.62484e-08, 0.07545, -0.363983, 0, 0.363983, 0.07545, 0.37172, 3.29803e-09, -1.59102e-08, -0.0810206, 0.0432118, 4.36212e-10)
+double_sided = false
 texture_filter = 0
 texture = ExtResource("3_eus6e")
