@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potions/Potion.tscn" id="1_jd67i"]
 [ext_resource type="PackedScene" uid="uid://biyo04tvg8dv5" path="res://Prefabs/Brewing/Drops/PotionDrop3.tscn" id="2_f742v"]
 [ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="2_y7mer"]
-[ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/PotionNoise.png" id="3_cqrup"]
+[ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/Brewing/PotionNoise.png" id="3_cqrup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4wkvo"]
 render_priority = 0

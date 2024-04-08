@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b82hongws0y4"]
+[gd_scene load_steps=18 format=3 uid="uid://b82hongws0y4"]
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpotBase.tscn" id="1_okxs7"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="2_5qhmp"]
@@ -101,6 +101,9 @@ shadow_mesh = SubResource("ArrayMesh_km242")
 albedo_texture = ExtResource("5_jaky1")
 texture_filter = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ynn1"]
+size = Vector3(0.38, 0.029082, 0.38)
+
 [sub_resource type="QuadMesh" id="QuadMesh_atl0b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqyy2"]
@@ -124,23 +127,29 @@ shape = SubResource("BoxShape3D_qquq1")
 script = SubResource("GDScript_lh4gf")
 
 [node name="DigSpotMiddle_03" type="MeshInstance3D" parent="Model" index="0"]
+layers = 129
 mesh = SubResource("ArrayMesh_wk8wd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_7kcn0")
 
 [node name="DigSpotMiddle_04" type="MeshInstance3D" parent="Model" index="1"]
+layers = 129
 mesh = SubResource("ArrayMesh_ur3r2")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_shs5x")
 
-[node name="Particle Collision" parent="." index="2"]
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014541, 0)
+shape = SubResource("BoxShape3D_1ynn1")
+
+[node name="Particle Collision" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125024, 0)
 size = Vector3(0.38, 0.0250049, 0.38)
 
-[node name="Seed Snap Point" parent="." index="3"]
+[node name="Seed Snap Point" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0265316, 0)
 
-[node name="MaterialChanger" parent="." index="4" node_paths=PackedStringArray("meshes")]
+[node name="MaterialChanger" parent="." index="5" node_paths=PackedStringArray("meshes")]
 meshes = [NodePath("../Model/DigSpotMiddle_03"), NodePath("../Model/DigSpotMiddle_04")]
 
 [node name="Outline" type="MeshInstance3D" parent="." index="6"]

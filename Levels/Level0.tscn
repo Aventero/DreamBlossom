@@ -12,7 +12,7 @@ amount = 1
 [node name="LevelSandbox" type="Node3D"]
 script = ExtResource("1_510fn")
 active_plants = 63
-active_tools = 63
+active_tools = 127
 enable_cooking_chest = true
 time_between_orders = 1e+08
 

@@ -15,7 +15,7 @@ signal completed
 
 @export_group("Tools")
 ## Defines which tools are active in current level
-@export_flags("Fertilizer Blue", "Fertilizer Orange", "Fertilizer Green", "Scissors", "MusicBox", "PickAxe") var active_tools
+@export_flags("Fertilizer Blue", "Fertilizer Orange", "Fertilizer Green", "Scissors", "MusicBox", "PickAxe", "Cauldron") var active_tools
 
 @export_group("Weed Settings")
 ## Time between spreads
@@ -68,6 +68,7 @@ enum Tools {
 	Scissors = 8,
 	MusicBox = 16,
 	PickAxe = 32,
+	Cauldron = 64
 }
 
 var current_order : Order = null

@@ -64,7 +64,7 @@ func _on_timeout():
 		stop()
 "
 
-[node name="DigSpotBase" type="Node3D"]
+[node name="DigSpotBase" type="AnimatableBody3D"]
 script = ExtResource("1_vwm3m")
 remove_amount = 2.0
 watering_amount = 5
@@ -78,6 +78,8 @@ collision_layer = 32
 collision_mask = 197124
 
 [node name="Trigger Shape" type="CollisionShape3D" parent="Trigger"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
 [node name="Particle Collision" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00970989, 0)

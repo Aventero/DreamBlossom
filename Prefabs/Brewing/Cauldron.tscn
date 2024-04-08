@@ -1,0 +1,169 @@
+[gd_scene load_steps=19 format=3 uid="uid://c78a1jfo7knpf"]
+
+[ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="1_vhr3y"]
+[ext_resource type="Shader" path="res://Shader/CauldronPotion.gdshader" id="2_of62d"]
+[ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/Brewing/PotionNoise.png" id="3_2spr6"]
+[ext_resource type="Texture2D" uid="uid://d08hyvia0w3td" path="res://Textures/Particles/CouldronFire.png" id="4_m4ul7"]
+[ext_resource type="PackedScene" uid="uid://b1m3kqhs6gx7" path="res://Models/Log.blend" id="5_encwd"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="6_r7pt7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggtmg"]
+render_priority = 0
+shader = ExtResource("2_of62d")
+shader_parameter/base_color = Color(0, 0.384314, 0.478431, 1)
+shader_parameter/mix_amount = 1.5
+shader_parameter/potion_noise = ExtResource("3_2spr6")
+
+[sub_resource type="Curve" id="Curve_fewjo"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.257143, 0.990525), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7e3np"]
+curve = SubResource("Curve_fewjo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4upeb"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 0.15
+angular_velocity_min = 180.0
+angular_velocity_max = 180.0
+radial_velocity_min = 0.01
+radial_velocity_max = 0.03
+gravity = Vector3(0, 0.01, 0)
+scale_curve = SubResource("CurveTexture_7e3np")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wuelf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(100, 1, 1, 1)
+albedo_texture = ExtResource("4_m4ul7")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_0idgw"]
+material = SubResource("StandardMaterial3D_wuelf")
+size = Vector2(0.025, 0.025)
+
+[sub_resource type="Curve" id="Curve_idskj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.263473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0251408, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fa2pi"]
+curve = SubResource("Curve_idskj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5uriq"]
+emission_shape = 1
+emission_sphere_radius = 0.02
+direction = Vector3(0, 1, 0)
+spread = 90.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+radial_velocity_min = 0.01
+radial_velocity_max = 0.03
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_fa2pi")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.015
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk5p5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(1.77647, 0.745098, 0.247059, 1)
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_j6bkw"]
+material = SubResource("StandardMaterial3D_yk5p5")
+size = Vector2(0.008, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2s61"]
+resource_name = "Leaves.001"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("6_r7pt7")
+texture_filter = 0
+
+[node name="Cauldron" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_vhr3y")]
+
+[node name="Water" parent="Model" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_ggtmg")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255464, 0)
+amount = 64
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4upeb")
+draw_pass_1 = SubResource("QuadMesh_0idgw")
+
+[node name="Parts" type="GPUParticles3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0588994, -0.0224255, -0.0308267)
+layers = 2
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5uriq")
+draw_pass_1 = SubResource("QuadMesh_j6bkw")
+
+[node name="Parts2" type="GPUParticles3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0563633, 0.00111366, 0.030563)
+layers = 2
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5uriq")
+draw_pass_1 = SubResource("QuadMesh_j6bkw")
+
+[node name="Parts3" type="GPUParticles3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0216846, -0.0217348, -0.0405158)
+layers = 2
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5uriq")
+draw_pass_1 = SubResource("QuadMesh_j6bkw")
+
+[node name="Log" parent="." instance=ExtResource("5_encwd")]
+transform = Transform3D(0.8, -9.28038e-09, -1.25393e-09, 9.28038e-09, 0.771313, 0.21231, -1.25393e-09, -0.21231, 0.771313, -0.0147545, -0.0128849, 0.0504822)
+
+[node name="Cube_003" parent="Log" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_y2s61")
+
+[node name="Log2" parent="." instance=ExtResource("5_encwd")]
+transform = Transform3D(-0.69282, 0.106155, -0.385657, 9.28038e-09, 0.771313, 0.21231, 0.4, 0.183866, -0.667977, -0.0147545, -0.0128849, -0.0514864)
+
+[node name="Cube_003" parent="Log2" index="0"]
+transform = Transform3D(0.0473019, 0.0134546, -0.0683293, -0.00336366, 0.195412, 0.00238736, 0.01222, 0.00170783, 0.26515, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_y2s61")
+
+[node name="Log3" parent="." instance=ExtResource("5_encwd")]
+transform = Transform3D(-0.219825, -0.204138, 0.741623, 3.31991e-09, 0.771313, 0.21231, -0.769205, 0.058339, -0.211943, 0.0571414, -0.0148161, 0.0148769)
+
+[node name="Cube_003" parent="Log3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_y2s61")
+
+[node name="Log4" parent="." instance=ExtResource("5_encwd")]
+transform = Transform3D(-0.287701, 0.0512452, -0.744716, -0.120105, 0.784537, 0.100385, 0.736752, 0.147906, -0.274446, -0.0461599, -0.0139532, 0.00390205)
+
+[node name="Cube_003" parent="Log4" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_y2s61")
+
+[editable path="Model"]
+[editable path="Log"]
+[editable path="Log2"]
+[editable path="Log3"]
+[editable path="Log4"]

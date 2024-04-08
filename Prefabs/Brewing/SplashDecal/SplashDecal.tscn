@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx3xx8wyr8tc0"]
 
-[ext_resource type="Texture2D" uid="uid://kdy706w2o0jd" path="res://Textures/PotionDropDecail.png" id="1_oserf"]
+[ext_resource type="Texture2D" uid="uid://kdy706w2o0jd" path="res://Textures/Brewing/PotionDropDecail.png" id="1_oserf"]
 
 [sub_resource type="GDScript" id="GDScript_gjeql"]
 script/source = "extends Decal

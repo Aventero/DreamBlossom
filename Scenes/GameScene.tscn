@@ -47,9 +47,9 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
-[ext_resource type="PackedScene" uid="uid://dhv6t6e3rrxc2" path="res://Models/Environment/Cauldron.blend" id="49_n67su"]
 [ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potions/Potion1.tscn" id="50_s8iy7"]
 [ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potions/Potion2.tscn" id="51_mxxtv"]
+[ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
 [ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potions/Potion4.tscn" id="52_7lsh3"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
@@ -565,14 +565,16 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.701543, 
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400998, 0.860584, 0.40887)
 
+[node name="Cauldron" parent="ToolArea/Variable Tools" instance=ExtResource("51_nckfo")]
+transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.555268, 0.853512, 0.055458)
+
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.222463)
 
 [node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
-transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.309553, 0.851818, -0.0344066)
+transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.40095, 0.851818, -0.170048)
 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
-transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.358386, 0.858456, 0.652648)
+transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.449783, 0.858456, 0.911969)
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
 
@@ -607,9 +609,6 @@ layers = 129
 
 [node name="Plane_749" parent="Environment" index="81"]
 layers = 129
-
-[node name="Cauldron" parent="." instance=ExtResource("49_n67su")]
-transform = Transform3D(0.933855, 0, 0.357651, 0, 1, 0, -0.357651, 0, 0.933855, 0.623699, 0.850318, 0.204481)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 

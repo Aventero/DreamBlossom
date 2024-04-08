@@ -1,6 +1,6 @@
 @icon("res://Textures/EditorIcons/DigSpot.png")
 class_name DigSpot
-extends Node3D
+extends AnimatableBody3D
 
 signal watering_completed
 
