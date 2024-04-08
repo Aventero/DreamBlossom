@@ -42,7 +42,7 @@ shadow_mesh = SubResource("ArrayMesh_mdg80")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6stja"]
 
 [node name="PotionDrop" type="RigidBody3D"]
-collision_layer = 512
+collision_layer = 2048
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_mxpeb")

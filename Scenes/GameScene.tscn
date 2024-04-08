@@ -557,16 +557,19 @@ transform = Transform3D(0.994829, 0, -0.10156, 0, 1, 0, 0.10156, 0, 0.994829, 0.
 transform = Transform3D(0.734145, 0, -0.678993, 0, 1, 0, 0.678993, 0, 0.734145, 0.854381, 1.8339, -0.263596)
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.86449, 0.50453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.86449, 0.595764)
 
 [node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("34_opvkw")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.701543, 0.900121, 0.373978)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0.900121, 0.581508)
 
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400998, 0.860584, 0.40887)
+transform = Transform3D(0.945479, 0, -0.325684, 0, 1, 0, 0.325684, 0, 0.945479, 0.348002, 0.860584, 0.55081)
 
 [node name="Cauldron" parent="ToolArea/Variable Tools" instance=ExtResource("51_nckfo")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.555268, 0.853512, 0.055458)
+
+[node name="EmptyCauldronButton" parent="ToolArea/Variable Tools/Cauldron" instance=ExtResource("47_5mn04")]
+transform = Transform3D(0.985293, 0, -0.17088, 0, 1, 0, 0.17088, 0, 0.985293, -0.123891, 0.0132521, 0.222906)
 
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
@@ -611,6 +614,7 @@ layers = 129
 layers = 129
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
+[connection signal="button_pressed" from="ToolArea/Variable Tools/Cauldron/EmptyCauldronButton" to="ToolArea/Variable Tools/Cauldron" method="_on_empty_cauldron_button_button_pressed"]
 
 [editable path="XROrigin3D"]
 [editable path="Environment"]

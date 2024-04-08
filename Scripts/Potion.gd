@@ -111,3 +111,19 @@ func _on_dropped(pickable: Variant) -> void:
 	_reduction_tween = create_tween()
 	_reduction_tween.tween_property(self, "_drop_progress", 0.0, 0.1)
 	_reduction_tween.tween_callback(func(): drop_model.scale = Vector3.ZERO)
+
+# Potion Color lookup
+static var _potion_colors = {
+	1: "ee0030",
+	2: "44cd38",
+	3: "e1b227",
+	4: "0844ff",
+	5: "c929ce",
+	6: "1bc2c0",
+	7: "a1a1a1",
+}
+
+static func get_color(type : int) -> Color:
+	if not _potion_colors.has(type):
+		return Color.WHITE
+	return Color.html(_potion_colors[type])
