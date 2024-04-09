@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=81 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potions/Potion2.tscn" id="51_mxxtv"]
 [ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
 [ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potions/Potion4.tscn" id="52_7lsh3"]
+[ext_resource type="PackedScene" uid="uid://dcyvi11lbp64" path="res://Prefabs/Brewing/Potions/EmptyPotion.tscn" id="52_dm6md"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.576355, 1)
@@ -574,7 +575,7 @@ transform = Transform3D(0.985293, 0, -0.17088, 0, 1, 0, 0.17088, 0, 0.985293, -0
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
 [node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
-transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.40095, 0.851818, -0.170048)
+transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.18751)
 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
 transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.449783, 0.858456, 0.911969)
@@ -612,6 +613,15 @@ layers = 129
 
 [node name="Plane_749" parent="Environment" index="81"]
 layers = 129
+
+[node name="EmptyPotion" parent="." instance=ExtResource("52_dm6md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0199385, 0.852001, -0.568901)
+
+[node name="EmptyPotion2" parent="." instance=ExtResource("52_dm6md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102635, 0.852001, -0.568901)
+
+[node name="EmptyPotion3" parent="." instance=ExtResource("52_dm6md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244738, 0.852001, -0.568901)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="button_pressed" from="ToolArea/Variable Tools/Cauldron/EmptyCauldronButton" to="ToolArea/Variable Tools/Cauldron" method="_on_empty_cauldron_button_button_pressed"]

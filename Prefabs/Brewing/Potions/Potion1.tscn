@@ -26,6 +26,8 @@ infinite_drops = true
 potion_drop = ExtResource("2_fx1su")
 
 [node name="Fill" parent="Model" index="2"]
+transform = Transform3D(0.863298, 0, 0, 0, 0.863297, 0, 0, 0, 0.863297, 0, 0.044431, 0)
+instance_shader_parameters/fill_percentage = 1.0
 surface_material_override/0 = SubResource("ShaderMaterial_djo3j")
 
 [node name="Drop" parent="Drop/Drop" index="0"]

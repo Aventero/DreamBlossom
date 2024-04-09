@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/Potion.png")
 class_name Potion
 extends XRToolsPickable
 
@@ -14,6 +15,8 @@ extends XRToolsPickable
 @onready var drop_model : Node3D = $Drop/Drop
 @onready var flask_stomp : Node3D = $Model/Stomp
 @onready var flask_fill : MeshInstance3D = $Model/Fill
+
+@onready var empty_potion : PackedScene = preload("res://Prefabs/Brewing/Potions/EmptyPotion.tscn")
 
 var _current_drop_count : int
 var _drop_progress : float = 0.0
@@ -83,9 +86,27 @@ func _handle_drop() -> void:
 		
 		var fill_tween : Tween = create_tween()
 		fill_tween.tween_method(_lerp_fill, old_fill_percentage, new_fill_percentage, 0.2)
+		
+		# Reduce drop count
+		_current_drop_count -= 1
+		
+		if _current_drop_count <= 0:
+			fill_tween.tween_callback(_replace_with_empty).set_delay(0.1)
+
+func _replace_with_empty() -> void:
+	var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
 	
-	# Reduce drop count
-	_current_drop_count -= 1
+	# Replace with empty potion
+	var empty_potion : EmptyPotion = empty_potion.instantiate()
+	empty_potion.global_transform = global_transform
+	
+	# Force new potion in hand
+	drop()
+	add_sibling(empty_potion)
+	controller_pickup._pick_up_object(empty_potion)
+	
+	# Free old potion
+	queue_free()
 
 func _lerp_fill(percentage : float):
 	flask_fill.set_instance_shader_parameter("fill_percentage", percentage)
@@ -111,6 +132,15 @@ func _on_dropped(pickable: Variant) -> void:
 	_reduction_tween = create_tween()
 	_reduction_tween.tween_property(self, "_drop_progress", 0.0, 0.1)
 	_reduction_tween.tween_callback(func(): drop_model.scale = Vector3.ZERO)
+
+func set_data(p_drop_count : int) -> void:
+	# Update drop variables
+	drop_count = p_drop_count
+	_current_drop_count = drop_count
+	infinite_drops = false
+	
+	# Update shader parameter
+	_lerp_fill(1.0)
 
 # Potion Color lookup
 static var _potion_colors = {

@@ -9,7 +9,7 @@ uniform float max_height;
 
 // Colors
 uniform sampler2D potion_noise : filter_nearest;
-uniform vec3 base_color : source_color;
+uniform vec4 base_color : source_color;
 uniform vec3 surface_color : source_color;
 uniform vec3 line_color : source_color;
 uniform vec3 fresnel_color : source_color;
@@ -44,7 +44,7 @@ void fragment() {
 	// Base color
 	if (FRONT_FACING)
 	{
-		ALBEDO = mix(base_color, fresnel_color, fresnel(10.0, NORMAL, VIEW));
+		ALBEDO = mix(base_color.rgb, fresnel_color, fresnel(10.0, NORMAL, VIEW));
 		unshaded = false;
 		
 		// Noise

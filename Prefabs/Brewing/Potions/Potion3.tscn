@@ -26,6 +26,7 @@ drop_count = 4
 potion_drop = ExtResource("2_f742v")
 
 [node name="Fill" parent="Model" index="2"]
+instance_shader_parameters/fill_percentage = 1.0
 surface_material_override/0 = SubResource("ShaderMaterial_4wkvo")
 
 [node name="Drop" parent="Drop/Drop" index="0"]

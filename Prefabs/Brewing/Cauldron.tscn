@@ -175,10 +175,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_y2s61")
 
 [node name="PotionDropArea" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 2048
+collision_mask = 67584
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PotionDropArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00123596, 0.248951, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00123596, 0.239109, 0)
 shape = SubResource("CylinderShape3D_hyasg")
 
 [node name="ParticleCombiner" type="Node3D" parent="."]

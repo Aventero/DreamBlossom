@@ -26,6 +26,7 @@ infinite_drops = true
 potion_drop = ExtResource("2_avspk")
 
 [node name="Fill" parent="Model" index="2"]
+instance_shader_parameters/fill_percentage = 1.0
 surface_material_override/0 = SubResource("ShaderMaterial_x0imx")
 
 [node name="Drop" parent="Drop/Drop" index="0"]
