@@ -16,6 +16,7 @@ extends XRToolsPickable
 @onready var flask_stomp : Node3D = $Model/Stomp
 @onready var flask_fill : MeshInstance3D = $Model/Fill
 
+@onready var potion_type : Label3D = $Indicator/PotionType
 @onready var empty_potion : PackedScene = preload("res://Prefabs/Brewing/Potions/EmptyPotion.tscn")
 
 var _current_drop_count : int
@@ -94,18 +95,19 @@ func _handle_drop() -> void:
 			fill_tween.tween_callback(_replace_with_empty).set_delay(0.1)
 
 func _replace_with_empty() -> void:
-	var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
+	# Hide label
+	await hide_type_label().finished
 	
 	# Replace with empty potion
 	var empty_potion : EmptyPotion = empty_potion.instantiate()
-	empty_potion.global_transform = global_transform
-	
-	# Force new potion in hand
-	drop()
 	add_sibling(empty_potion)
-	controller_pickup._pick_up_object(empty_potion)
+	empty_potion.global_position = global_position
+	empty_potion.global_rotation = global_rotation
 	
-	# Free old potion
+	if is_picked_up():
+		var controller_pickup : XRToolsFunctionPickup = get_picked_up_by()
+		controller_pickup._pick_up_object(empty_potion)
+	
 	queue_free()
 
 func _lerp_fill(percentage : float):
@@ -134,6 +136,8 @@ func _on_dropped(pickable: Variant) -> void:
 	_reduction_tween.tween_callback(func(): drop_model.scale = Vector3.ZERO)
 
 func set_data(p_drop_count : int) -> void:
+	potion_type.scale = Vector3.ZERO
+	
 	# Update drop variables
 	drop_count = p_drop_count
 	_current_drop_count = drop_count
@@ -141,6 +145,25 @@ func set_data(p_drop_count : int) -> void:
 	
 	# Update shader parameter
 	_lerp_fill(1.0)
+	
+	# Update type scale
+	show_type_label()
+	
+	# Lerp stomp
+	if _stomp_tween and _stomp_tween.is_running():
+		_stomp_tween.kill()
+	_stomp_tween = create_tween()
+	_stomp_tween.tween_property(flask_stomp, "scale", Vector3(0.016, 0.016, 0.016), 0.1)
+
+func show_type_label() -> Tween:
+	var tween : Tween = create_tween()
+	tween.tween_property(potion_type, "scale", Vector3(0.4, 0.4, 0.4), 0.25)
+	return tween
+
+func hide_type_label() -> Tween:
+	var tween : Tween = create_tween()
+	tween.tween_property(potion_type, "scale", Vector3.ZERO, 0.25)
+	return tween
 
 # Potion Color lookup
 static var _potion_colors = {

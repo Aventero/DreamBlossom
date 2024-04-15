@@ -4,7 +4,7 @@ extends Node3D
 @export_category("Potion Fluid Settings")
 @export var default_fluid_height : float = 0.012
 @export var empty_fluid_height : float = -0.15
-@export var jiggle_height : float = 0.05
+@export var jiggle_height : float = 0.075
 
 @onready var potion_fluid : MeshInstance3D = $Model/Water
 @onready var collision_shape : CollisionShape3D = $PotionDropArea/CollisionShape
@@ -85,8 +85,8 @@ func _handle_empty_potion(empty_potion : EmptyPotion) -> void:
 	# Force new potion in hand
 	controller_pickup._pick_up_object(potion)
 	
-	# Empty cauldron
-	_empty_cauldron()
+	# Play potion jiggle effect
+	_jiggle_cauldron(-1)
 
 func get_mixture() -> int:
 	var mix : int = 0
@@ -121,7 +121,11 @@ func _jiggle_cauldron(type : int) -> void:
 	# Make fluid jiggle
 	var fluid_tween : Tween = create_tween()
 	fluid_tween.tween_property(potion_fluid, "position:y", -jiggle_height, 0.25).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_color(type), 0.1)
+	
+	# Update color of fluid
+	if type != -1:
+		fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_color(type), 0.1)
+	
 	fluid_tween.tween_property(potion_fluid, "position:y", jiggle_height, 0.5).as_relative().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _update_fluid_color(color : Color) -> void:

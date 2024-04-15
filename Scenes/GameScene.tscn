@@ -564,21 +564,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.86449, 0.595764)
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0.900121, 0.581508)
 
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
-transform = Transform3D(0.945479, 0, -0.325684, 0, 1, 0, 0.325684, 0, 0.945479, 0.348002, 0.860584, 0.55081)
+transform = Transform3D(0.12767, 0, -0.991817, 0, 1, 0, 0.991817, 0, 0.12767, 0.348002, 0.860584, 0.781112)
 
 [node name="Cauldron" parent="ToolArea/Variable Tools" instance=ExtResource("51_nckfo")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.555268, 0.853512, 0.055458)
 
 [node name="EmptyCauldronButton" parent="ToolArea/Variable Tools/Cauldron" instance=ExtResource("47_5mn04")]
-transform = Transform3D(0.985293, 0, -0.17088, 0, 1, 0, 0.17088, 0, 0.985293, -0.123891, 0.0132521, 0.222906)
+transform = Transform3D(0.927525, 0, 0.373766, 0, 1, 0, -0.373766, 0, 0.927525, -0.137074, 0.0132521, -0.220408)
 
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
 [node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
-transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.18751)
+transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.630592)
 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
-transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.449783, 0.858456, 0.911969)
+transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.607941, 0.858456, 1.10913)
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
 
@@ -615,13 +615,16 @@ layers = 129
 layers = 129
 
 [node name="EmptyPotion" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0199385, 0.852001, -0.568901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228112, 0.828662, -0.524517)
 
 [node name="EmptyPotion2" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102635, 0.852001, -0.568901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0525054, 0.828662, -0.524517)
 
 [node name="EmptyPotion3" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244738, 0.852001, -0.568901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129356, 0.828662, -0.524517)
+
+[node name="EmptyPotion4" parent="." instance=ExtResource("52_dm6md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.291278, 0.828662, -0.524517)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="button_pressed" from="ToolArea/Variable Tools/Cauldron/EmptyCauldronButton" to="ToolArea/Variable Tools/Cauldron" method="_on_empty_cauldron_button_button_pressed"]

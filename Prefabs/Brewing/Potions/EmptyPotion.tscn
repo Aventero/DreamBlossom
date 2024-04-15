@@ -42,10 +42,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vdr4u")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe2fr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4cbs"]
 transparency = 1
-albedo_color = Color(1, 0.952941, 1, 0.0392157)
-metallic_specular = 1.0
+albedo_color = Color(1, 0.952941, 1, 0.235294)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dyd80"]
 _surfaces = [{
@@ -72,7 +71,7 @@ shape = SubResource("ConvexPolygonShape3D_4y4ed")
 [node name="Flask" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_hgpem")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_qe2fr")
+surface_material_override/0 = SubResource("StandardMaterial3D_l4cbs")
 
 [node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("2_mbjeh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154112, 0.117449, -0.0846456)

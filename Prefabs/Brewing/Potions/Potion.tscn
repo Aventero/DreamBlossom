@@ -47,7 +47,7 @@ shadow_mesh = SubResource("ArrayMesh_1xab5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hc8to"]
 transparency = 1
-albedo_color = Color(1, 0.952941, 1, 0.0392157)
+albedo_color = Color(1, 0.952941, 1, 0.235294)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhe0v"]
 
@@ -184,8 +184,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")
 
 [node name="Fill" type="MeshInstance3D" parent="Model" index="2"]
-transform = Transform3D(0.863298, 0, 0, 0, 0.863297, 0, 0, 0, 0.863297, 0, 0.0447862, 0)
-instance_shader_parameters/fill_percentage = null
+transform = Transform3D(0.86, 0, 0, 0, 0.86, 0, 0, 0, 0.86, 0, 0.0440235, 0)
 mesh = SubResource("ArrayMesh_peid5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_7rm1w")
