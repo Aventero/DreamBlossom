@@ -21,7 +21,7 @@ func _change_state(state : bool):
 		if child is GPUParticles3D:
 			child.emitting = state
 
-func _process(delta):
+func _process(_delta):
 	if get_child_count() == 0:
 		complete.emit()
 		queue_free()

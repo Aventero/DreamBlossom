@@ -13,11 +13,11 @@ func _ready():
 	# Setup and start timer
 	start(inactivity_time)
 
-func _on_object_pick_up(pickable : XRToolsPickable):
+func _on_object_pick_up(_pickable : XRToolsPickable):
 	# Stop timer
 	stop()
 
-func _on_object_dropped(pickable : XRToolsPickable):
+func _on_object_dropped(_pickable : XRToolsPickable):
 	# Start timer again
 	start(inactivity_time)
 

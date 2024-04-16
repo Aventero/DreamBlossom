@@ -50,7 +50,7 @@ func _on_trigger_body_exited(body):
 		
 		ingredient_ui.update(ingredients)
 
-func _on_cook_button_pressed(button):
+func _on_cook_button_pressed(_button):
 	if _is_cooking:
 		return
 	_is_cooking = true

@@ -6,7 +6,7 @@ extends Fruit
 
 var _movement_tween : Tween
 
-func _on_action_pressed(pickable):
+func _on_action_pressed(_pickable):
 	if _movement_tween and _movement_tween.is_running():
 		_movement_tween.kill()
 	
@@ -14,7 +14,7 @@ func _on_action_pressed(pickable):
 	_movement_tween.tween_property(upper_head, "rotation", Vector3(-0.79237948, 0, 0), 0.1)
 	_movement_tween.tween_property(lower_head, "rotation", Vector3.ZERO, 0.1)
 
-func _on_action_released(pickable):
+func _on_action_released(_pickable):
 	if _movement_tween and _movement_tween.is_running():
 		_movement_tween.kill()
 	

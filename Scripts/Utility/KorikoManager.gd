@@ -23,7 +23,7 @@ func _ready():
 		
 		_spawnpoints.append(spawnpoint)
 
-func _process(delta):
+func _process(_delta):
 	# Do nothing if no korikos need to be spawned
 	if _korikos_to_spawn == 0:
 		return

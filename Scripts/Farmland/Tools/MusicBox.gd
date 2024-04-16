@@ -8,13 +8,13 @@ extends XRToolsPickable
 static var turned_on : bool = false
 static var _affected_digspots : Dictionary
 
-func _process(delta):
+func _process(_delta):
 	if turned_on:
 		# Correct rotation
 		range_indicator.global_rotation = Vector3.ZERO
 		note_particles.global_rotation = Vector3.ZERO
 
-func _on_action_pressed(pickable):
+func _on_action_pressed(_pickable):
 	turned_on = !turned_on
 	range_indicator.visible = turned_on
 	

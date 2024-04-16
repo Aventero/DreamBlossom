@@ -7,7 +7,6 @@ extends Pullable
 @onready var knosp_open : Node3D = $"Model/Knosp Open"
 
 var knosp_event : KnospEvent
-var _inital_scale : Vector3
 
 func set_event(event : KnospEvent):
 	knosp_event = event
@@ -25,11 +24,11 @@ func _on_pull_pickup_dropped(pickable):
 	# Enable outline
 	outline_mesh.visible = true
 
-func _on_xr_tools_highlight_visible_visibility_change(visible):
+func _on_xr_tools_highlight_visible_visibility_change(_visible):
 	if picked_by:
 		return
 	
-	outline_mesh.visible = !visible
+	outline_mesh.visible = !_visible
 
 func _on_pull_completed():
 	outline_mesh.queue_free()

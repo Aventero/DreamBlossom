@@ -17,7 +17,7 @@ func setup(event : NommieWateringEvent) -> void:
 	# Enable trigger
 	get_child(0).disabled = false
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(_body: Node3D) -> void:
 	_current_watering_amount += 1
 	
 	# Jiggle

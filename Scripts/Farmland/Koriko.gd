@@ -63,7 +63,7 @@ func _on_feed_area_body_entered(body):
 	# Play vanish animation
 	_play_fed_vanish()
 
-func _on_dropped(pickable : RigidBody3D):
+func _on_dropped(_pickable : RigidBody3D):
 	if _is_fed:
 		return
 	

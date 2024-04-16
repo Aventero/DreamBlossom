@@ -9,7 +9,7 @@ extends Node3D
 
 var fire_fairy_event : FireFairyEvent
 
-func _on_trigger_body_entered(body: Node3D) -> void:
+func _on_trigger_body_entered(_body: Node3D) -> void:
 	# Disable trigger
 	water_trigger.disabled = true
 	

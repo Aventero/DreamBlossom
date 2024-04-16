@@ -24,11 +24,11 @@ func _on_xr_tools_highlight_visible_visibility_change(visible):
 	outline_mesh.visible = !visible
 
 # Override with custom class / function
-func _on_action_pressed(pickable):
+func _on_action_pressed(_pickable):
 	pass
 
 # Override with custom class / function
-func _on_action_released(pickable):
+func _on_action_released(_pickable):
 	pass
 
 func _on_dropped(pickable):

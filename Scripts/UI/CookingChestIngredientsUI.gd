@@ -22,7 +22,7 @@ func clear_ingredients():
 	for ingredient in get_children():
 		ingredient.queue_free()
 
-func _on_cook_button_pressed(button):
+func _on_cook_button_pressed(_button):
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.2)
 	tween.tween_callback(clear_ingredients)

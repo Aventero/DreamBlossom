@@ -25,10 +25,10 @@ func display_recipe(recipe : Recipe):
 	# Fill output icons
 	page.fill_recipe_output(recipe.output)
 
-func _on_next_page_button_pressed(button):
+func _on_next_page_button_pressed(_button):
 	_flip_page(1)
 
-func _on_prev_page_button_pressed(button):
+func _on_prev_page_button_pressed(_button):
 	_flip_page(-1)
 
 func _flip_page(offset : int):

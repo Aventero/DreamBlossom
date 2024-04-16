@@ -239,7 +239,7 @@ func _play_jiggle(strength : float = 0.1):
 	tween.tween_property(self, "scale", Vector3(1.0 - strength, 1.0 - strength, 1.0 - strength), 0.05)
 	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
 
-func _on_trigger_body_exited(body):
+func _on_trigger_body_exited(_body):
 	hand = null
 	time = 0.0
 	

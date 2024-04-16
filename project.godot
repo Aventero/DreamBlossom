@@ -69,4 +69,5 @@ lights_and_shadows/positional_shadow/atlas_size=2048
 [xr]
 
 openxr/enabled=true
+openxr/extensions/eye_gaze_interaction=true
 shaders/enabled=true

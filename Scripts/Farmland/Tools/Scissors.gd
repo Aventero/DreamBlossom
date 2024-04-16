@@ -7,7 +7,7 @@ extends XRToolsPickable
 
 var inside_dead_leaf : Array[DeadLeaf] 
 
-func _on_action_pressed(pickable : Scissors):
+func _on_action_pressed(_pickable : Scissors):
 	open_scissors.hide()
 	closed_scissors.show()
 	
@@ -34,11 +34,11 @@ func _squish():
 	# Return to normal
 	tween.tween_property(self, "scale", initial_scale, 0.025)
 
-func _on_action_released(pickable : Scissors):
+func _on_action_released(_pickable : Scissors):
 	open_scissors.show()
 	closed_scissors.hide()
 
-func _on_dropped(pickable):
+func _on_dropped(_pickable):
 	open_scissors.show()
 	closed_scissors.hide()
 

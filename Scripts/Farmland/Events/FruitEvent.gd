@@ -50,7 +50,7 @@ func initialize():
 			await get_tree().create_timer(randf_range(0.1, 2.0)).timeout
 
 # check when a fruit is picked
-func first_fruit_pickup(picked_fruit : Fruit):
+func first_fruit_pickup(_picked_fruit : Fruit):
 	_picked += 1
 	
 	if _picked >= _max_picked:

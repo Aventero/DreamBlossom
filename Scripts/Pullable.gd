@@ -120,7 +120,7 @@ func _pull_animation(ratio):
 		cos(time * 20) * ratio * 0.1
 	)
 
-func _on_pull_pickup_dropped(pickable):
+func _on_pull_pickup_dropped(_pickable):
 	pickable_pull.enabled = false
 	
 	var tween : Tween = create_tween().set_parallel(true)

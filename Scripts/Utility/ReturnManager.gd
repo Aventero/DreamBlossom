@@ -18,7 +18,7 @@ var reset_transforms = {}
 
 var _returning_objects = []
 
-func _process(delta):
+func _process(_delta):
 	# Draw debug lines if in editor
 	if debug_draw and Engine.is_editor_hint():
 		DebugDraw3D.draw_sphere(range_origin, range)

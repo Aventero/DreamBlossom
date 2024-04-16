@@ -10,7 +10,7 @@ var original_scale : Vector3
 func _ready():
 	original_scale = scale
 
-func _process(delta):
+func _process(_delta):
 	look_at(player_camera.global_position, Vector3.UP)
 	rotation = Vector3(PI / 2.0, rotation.y + PI, 0.0)
 
