@@ -1,33 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxpp3a3kxtx8c"]
+[gd_scene load_steps=4 format=3 uid="uid://bxpp3a3kxtx8c"]
 
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potions/Potion.tscn" id="1_3qdxy"]
-[ext_resource type="PackedScene" uid="uid://dcmtgvqkiwopp" path="res://Prefabs/Brewing/Drops/PotionDrop7.tscn" id="2_klf35"]
-[ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="2_pttw4"]
-[ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/Brewing/PotionNoise.png" id="3_gqt5b"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1ixm"]
-render_priority = 0
-shader = ExtResource("2_pttw4")
-shader_parameter/min_height = -0.04
-shader_parameter/max_height = 0.04
-shader_parameter/base_color = Color(0.631373, 0.631373, 0.631373, 1)
-shader_parameter/surface_color = Color(0.662745, 0.662745, 0.662745, 1)
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/fresnel_color = Color(1, 1, 1, 1)
-shader_parameter/line_width = 0.001
-shader_parameter/mix_amount = 0.5
-shader_parameter/potion_noise = ExtResource("3_gqt5b")
+[ext_resource type="Material" uid="uid://dv0xchdykhpgj" path="res://Materials/Potions/PotionGrey.tres" id="2_hfc70"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywd71"]
 albedo_color = Color(0.698039, 0.698039, 0.698039, 1)
 
 [node name="Potion" instance=ExtResource("1_3qdxy")]
 drop_count = 4
-potion_drop = ExtResource("2_klf35")
 
 [node name="Fill" parent="Model" index="2"]
 instance_shader_parameters/fill_percentage = 1.0
-surface_material_override/0 = SubResource("ShaderMaterial_s1ixm")
+surface_material_override/0 = ExtResource("2_hfc70")
 
 [node name="Drop" parent="Drop/Drop" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ywd71")

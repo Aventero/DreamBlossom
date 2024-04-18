@@ -1,7 +1,7 @@
 class_name PotionDrop
 extends RigidBody3D
 
-@export var type : int = 0
+@export var type : Potion.TYPE = Potion.TYPE.RED
 @export var splash_particles : PackedScene
 @export var splash_decal : PackedScene
 

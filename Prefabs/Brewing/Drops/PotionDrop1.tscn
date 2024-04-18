@@ -8,7 +8,6 @@
 albedo_color = Color(0.933333, 0, 0.188235, 1)
 
 [node name="PotionDrop" instance=ExtResource("1_6jj0p")]
-type = 1
 splash_particles = ExtResource("2_rlm35")
 splash_decal = ExtResource("3_lqtkq")
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgb3ju2h2oipm"]
+[gd_scene load_steps=25 format=3 uid="uid://cgb3ju2h2oipm"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_6iw1p"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_75se4"]
 [ext_resource type="Script" path="res://Scripts/Potion.gd" id="2_a0gms"]
-[ext_resource type="PackedScene" uid="uid://k38i05551xx3" path="res://Prefabs/Brewing/Drops/PotionDrop.tscn" id="3_kxs43"]
+[ext_resource type="Material" uid="uid://dh3v7bvyuf5xi" path="res://Materials/Potions/PotionRed.tres" id="3_sjyhy"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_t6hfu"]
-[ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="4_w566o"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_88qnn"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="6_of8cu"]
 [ext_resource type="PackedScene" uid="uid://dd1p7jnxxyv0m" path="res://Models/PotionDrop.blend" id="8_w4dig"]
@@ -117,18 +116,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3cjix")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rm1w"]
-render_priority = 0
-shader = ExtResource("4_w566o")
-shader_parameter/min_height = -0.04
-shader_parameter/max_height = 0.04
-shader_parameter/base_color = null
-shader_parameter/surface_color = null
-shader_parameter/line_color = null
-shader_parameter/fresnel_color = null
-shader_parameter/line_width = 0.001
-shader_parameter/mix_amount = 0.5
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_su3ml"]
 _surfaces = [{
 "aabb": AABB(-0.0576126, -0.00652003, -0.0584029, 0.116001, 0.143694, 0.115825),
@@ -145,7 +132,8 @@ _surfaces = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_3cxve"]
 radius = 0.00875705
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwb4f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exi0o"]
+albedo_color = Color(0.933333, 0, 0.188235, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ulkbn"]
 size = Vector3(0.0454712, 0.0132141, 0.0454865)
@@ -158,13 +146,14 @@ func _process(delta: float) -> void:
 "
 
 [node name="Potion" instance=ExtResource("1_6iw1p")]
+input_ray_pickable = false
 script = ExtResource("2_a0gms")
+type = 0
 infinite_drops = false
-drop_count = 3
+drop_count = 5
 tilt_angle = 95.0
 drop_fill_speed = 1.0
 max_drop_size = 8.0
-potion_drop = ExtResource("3_kxs43")
 second_hand_grab = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -185,9 +174,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")
 
 [node name="Fill" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.86, 0, 0, 0, 0.86, 0, 0, 0, 0.86, 0, 0.0440235, 0)
+visible = false
+instance_shader_parameters/fill_percentage = 1.0
 mesh = SubResource("ArrayMesh_peid5")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_7rm1w")
+surface_material_override/0 = ExtResource("3_sjyhy")
 
 [node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("2_75se4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154112, 0.117449, -0.0846456)
@@ -213,10 +204,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110229, 0)
 shape = SubResource("SphereShape3D_3cxve")
 
 [node name="Drop" parent="Drop" index="1" instance=ExtResource("8_w4dig")]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
 
 [node name="Drop" parent="Drop/Drop" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wwb4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_exi0o")
 
 [node name="DropCollision" type="StaticBody3D" parent="." index="6"]
 collision_layer = 64
@@ -242,9 +233,10 @@ script = SubResource("GDScript_3awcx")
 
 [node name="PotionType" type="Label3D" parent="Indicator" index="0"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.127099, 0)
+visible = false
 billboard = 2
 texture_filter = 0
-text = "<Type>"
+text = "1"
 font_size = 34
 
 [node name="RemoteIndicator" type="RemoteTransform3D" parent="." index="9"]

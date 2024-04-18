@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=79 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -47,11 +47,9 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
-[ext_resource type="PackedScene" uid="uid://1yisi6c37pao" path="res://Prefabs/Brewing/Potions/Potion1.tscn" id="50_s8iy7"]
-[ext_resource type="PackedScene" uid="uid://pqo7xemd8saf" path="res://Prefabs/Brewing/Potions/Potion2.tscn" id="51_mxxtv"]
+[ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="50_jy8n4"]
 [ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
-[ext_resource type="PackedScene" uid="uid://dbhew0er5v4kk" path="res://Prefabs/Brewing/Potions/Potion4.tscn" id="52_7lsh3"]
-[ext_resource type="PackedScene" uid="uid://dcyvi11lbp64" path="res://Prefabs/Brewing/Potions/EmptyPotion.tscn" id="52_dm6md"]
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potions/Potion.tscn" id="52_vtd61"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.576355, 1)
@@ -372,6 +370,9 @@ transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981
 [node name="FunctionPickup" parent="XROrigin3D/Left Hand/CollisionHandLeft" index="2"]
 ranged_enable = false
 
+[node name="CollisionHandRight" parent="XROrigin3D/Right Hand" index="0"]
+hand = 1
+
 [node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="2"]
 ranged_enable = false
 
@@ -582,14 +583,23 @@ transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
 
-[node name="PotionType1" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("50_s8iy7")]
+[node name="PotionRed" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)
+type = 1
+infinite_drops = true
 
-[node name="PotionType2" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("51_mxxtv")]
+[node name="PotionGreen" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
 transform = Transform3D(-0.317305, 0, -0.948324, 0, 1, 0, 0.948324, 0, -0.317305, 0.871379, 1.3195, -0.0400517)
+type = 2
+infinite_drops = true
 
-[node name="PotionType4" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_7lsh3")]
+[node name="PotionBlue" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
 transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)
+type = 4
+infinite_drops = true
+
+[node name="FlaskSpawner" parent="ToolArea" instance=ExtResource("50_jy8n4")]
+transform = Transform3D(0.91319, 0, -0.407534, 0, 1, 0, 0.407534, 0, 0.91319, 0.730659, 0.848394, 0.498857)
 
 [node name="Environment" parent="." instance=ExtResource("47_thwiv")]
 
@@ -613,18 +623,6 @@ layers = 129
 
 [node name="Plane_749" parent="Environment" index="81"]
 layers = 129
-
-[node name="EmptyPotion" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228112, 0.828662, -0.524517)
-
-[node name="EmptyPotion2" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0525054, 0.828662, -0.524517)
-
-[node name="EmptyPotion3" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129356, 0.828662, -0.524517)
-
-[node name="EmptyPotion4" parent="." instance=ExtResource("52_dm6md")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.291278, 0.828662, -0.524517)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="button_pressed" from="ToolArea/Variable Tools/Cauldron/EmptyCauldronButton" to="ToolArea/Variable Tools/Cauldron" method="_on_empty_cauldron_button_button_pressed"]

@@ -9,6 +9,11 @@ extends XRToolsForceBody
 ## its ancestor [XRController3D], and can act as a container for hand models
 ## and pickup functions.
 
+## Defines hand
+enum Hand {
+	LEFT,
+	RIGHT
+}
 
 ## Modes for collision hand
 enum CollisionHandMode {
@@ -43,6 +48,8 @@ const TELEPORT_DISTANCE := 1.0
 ## Controls the hand collision mode
 @export var mode : CollisionHandMode = CollisionHandMode.COLLIDE
 
+## Defines hand
+@export var hand : Hand = Hand.LEFT
 
 # Controller to target (if no target overrides)
 var _controller : XRController3D
@@ -53,8 +60,7 @@ var _target_overrides := []
 # Current target (controller or override)
 var _target : Node3D
 
-var _left_controller_pickup : XRToolsFunctionPickup
-var _right_controller_pickup : XRToolsFunctionPickup
+var _controller_pickup : XRToolsFunctionPickup
 
 ## Target-override class
 class TargetOverride:
@@ -69,11 +75,9 @@ class TargetOverride:
 		target = t
 		priority = p
 
-
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsCollisionHand"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,11 +85,12 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	
-	_left_controller_pickup = XRToolsFunctionPickup.find_left(owner)
-	_left_controller_pickup.has_picked_up.connect(_picked_up_item)
+	if hand == Hand.LEFT:
+		_controller_pickup = XRToolsFunctionPickup.find_left(owner)
+	else:
+		_controller_pickup = XRToolsFunctionPickup.find_right(owner)
 	
-	_right_controller_pickup = XRToolsFunctionPickup.find_right(owner)
-	_right_controller_pickup.has_picked_up.connect(_picked_up_item)
+	_controller_pickup.has_picked_up.connect(_picked_up_item)
 	
 	# Disconnect from parent transform as we move to it in the physics step,
 	# and boost the physics priority above any grab-drivers or hands.

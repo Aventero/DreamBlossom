@@ -12,16 +12,7 @@ extends Node3D
 
 var _fluid_material : ShaderMaterial
 var _mixture = []
-
-var _potions = [
-	preload("res://Prefabs/Brewing/Potions/Potion1.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion2.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion3.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion4.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion5.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion6.tscn"),
-	preload("res://Prefabs/Brewing/Potions/Potion7.tscn"),
-]
+var _fluid_tween : Tween
 
 func _ready() -> void:
 	# Get potion fluid material
@@ -33,12 +24,14 @@ func _on_potion_drop_area_body_entered(body: Node3D) -> void:
 		_handle_drop(body)
 	
 	# Check if object is empty potion
-	if body is EmptyPotion:
+	if body is Potion and body.type == Potion.TYPE.EMPTY:
 		_handle_empty_potion(body)
 
 func _handle_drop(drop : PotionDrop) -> void:
 	# Only accept "base" drops
-	if not drop.type == 1 and not drop.type == 2 and not drop.type == 4:
+	if not drop.type == Potion.TYPE.RED and \
+	   not drop.type == Potion.TYPE.GREEN and \
+	   not drop.type == Potion.TYPE.BLUE:
 		return
 	
 	# Splash drop
@@ -60,30 +53,24 @@ func _handle_drop(drop : PotionDrop) -> void:
 		_jiggle_cauldron(get_mixture())
 	
 	# Update mixture display
-	mixture.text = str(get_mixture())
+	_update_mixture_display(drop.type)
 
-func _handle_empty_potion(empty_potion : EmptyPotion) -> void:
+func _update_mixture_display(type : int) -> void:
+	var new_mixture : String = str(get_mixture())
+	
+	# Make text jiggle
+	var label_tween = create_tween()
+	label_tween.tween_property(mixture, "scale", Vector3(0.2, 0.2, 0.2), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	label_tween.tween_callback(func(): mixture.text = new_mixture)
+	label_tween.tween_property(mixture, "scale", Vector3(0.4, 0.4, 0.4), 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func _handle_empty_potion(empty_potion : Potion) -> void:
 	# Do nothing if cauldron is empty
 	if _mixture.is_empty():
 		return
 	
-	var controller_pickup : XRToolsFunctionPickup = empty_potion.get_picked_up_by()
-	
-	# Replace empty potion with correct potion
-	var potion : Potion = _potions[get_mixture() - 1].instantiate()
-	potion.global_transform = empty_potion.global_transform
-	
-	# Drop empty potion
-	empty_potion.drop()
-	empty_potion.queue_free()
-	
-	add_child(potion)
-	
-	# Set potion data
-	potion.set_data(4)
-	
-	# Force new potion in hand
-	controller_pickup._pick_up_object(potion)
+	# Fill potion with given potion type
+	empty_potion.fill_potion(get_mixture())
 	
 	# Play potion jiggle effect
 	_jiggle_cauldron(-1)
@@ -96,37 +83,51 @@ func get_mixture() -> int:
 	
 	return mix
 
-func _fill_cauldron(type : int) -> void:
+func _fill_cauldron(type : Potion.TYPE) -> void:
 	# Color in fluid
-	_fluid_material.set_shader_parameter("base_color", Potion.get_color(type))
+	#_fluid_material.set_shader_parameter("base_color", Potion.get_color(type))
+	_fluid_material.set_shader_parameter("base_color", Potion.get_potion_data(type, Potion.PROPERTIES.COLOR))
 	
 	# Make fluid visible
-	var fluid_tween : Tween = create_tween().set_parallel()
-	fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	fluid_tween.tween_method(_update_fluid_alpha, 0.0, 1.0, 0.2)
+	if _fluid_tween and _fluid_tween.is_running():
+		_fluid_tween.kill()
+	
+	_fluid_tween= create_tween().set_parallel()
+	_fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	_fluid_tween.tween_method(_update_fluid_alpha, 0.0, 1.0, 0.2)
 
 func _empty_cauldron() -> void:
 	# Clear mixture
 	_mixture.clear()
 	
 	# Update mixture label
-	mixture.text = ""
+	var label_tween = create_tween()
+	label_tween.tween_property(mixture, "scale", Vector3(0.0, 0.0, 0.0), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	label_tween.tween_callback(func(): mixture.text = "")
+	label_tween.tween_callback(func(): mixture.scale = Vector3(0.2, 0.2, 0.2))
 	
 	# Make fluid invisible
-	var fluid_tween : Tween = create_tween().set_parallel()
-	fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 0.75).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(0.55)
+	if _fluid_tween and _fluid_tween.is_running():
+		_fluid_tween.kill()
+	
+	_fluid_tween= create_tween().set_parallel()
+	_fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 0.75).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(0.55)
 
-func _jiggle_cauldron(type : int) -> void:
+func _jiggle_cauldron(type : Potion.TYPE) -> void:
+	if _fluid_tween and _fluid_tween.is_running():
+		_fluid_tween.kill()
+	
 	# Make fluid jiggle
-	var fluid_tween : Tween = create_tween()
-	fluid_tween.tween_property(potion_fluid, "position:y", -jiggle_height, 0.25).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_fluid_tween = create_tween()
+	_fluid_tween.tween_property(potion_fluid, "position:y", jiggle_height, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Update color of fluid
 	if type != -1:
-		fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_color(type), 0.1)
+		#_fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_color(type), 0.1)
+		_fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_potion_data(type, Potion.PROPERTIES.COLOR), 0.1)
 	
-	fluid_tween.tween_property(potion_fluid, "position:y", jiggle_height, 0.5).as_relative().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	_fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _update_fluid_color(color : Color) -> void:
 	_fluid_material.set_shader_parameter("base_color", color)
