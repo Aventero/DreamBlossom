@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_t2yly"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Fertilizer/Fertilizer.gd" id="2_jm5qm"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_dp1he"]
-[ext_resource type="Script" path="res://Scripts/Utility/InactivityManager_OLD.gd" id="4_hxy0e"]
+[ext_resource type="Script" path="res://Scripts/Utility/InactivityManager.gd" id="4_hxy0e"]
 
 [node name="Fertilizer" instance=ExtResource("1_t2yly")]
 collision_mask = 7

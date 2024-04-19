@@ -571,13 +571,13 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0
 transform = Transform3D(0.12767, 0, -0.991817, 0, 1, 0, 0.991817, 0, 0.12767, 0.348002, 0.860584, 0.781112)
 
 [node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
-transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.623699, 0.853512, 0.204481)
+transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0756496)
 
 [node name="EmptyCauldronButton" parent="ToolArea/Cauldron" instance=ExtResource("47_5mn04")]
 transform = Transform3D(0.927525, 0, 0.373766, 0, 1, 0, -0.373766, 0, 0.927525, -0.137074, 0.0132521, -0.220408)
 
 [node name="FlaskSpawner" parent="ToolArea/Cauldron" instance=ExtResource("50_jy8n4")]
-transform = Transform3D(0.705872, 0, -0.70834, 0, 1, 0, 0.70834, 0, 0.705872, -0.0056392, 0.0863734, 0.313155)
+transform = Transform3D(0.263168, 0.320986, -0.909786, -0.289685, 0.925803, 0.242842, 0.920231, 0.199643, 0.336627, -0.126386, 0.135699, -0.175705)
 
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
