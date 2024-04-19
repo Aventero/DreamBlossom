@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfesrqr5mn6xn"]
+[gd_scene load_steps=6 format=3 uid="uid://dfesrqr5mn6xn"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_kbcdh"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Seeds/Seed.gd" id="2_nytjd"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_4rws3"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_ol1lh"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="5_fyvg5"]
-[ext_resource type="Script" path="res://Scripts/Utility/InactivityManager.gd" id="6_t60xs"]
 
 [node name="Seed" instance=ExtResource("1_kbcdh")]
 collision_mask = 7
@@ -23,6 +22,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, -0.083)
 
 [node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("5_fyvg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, -0.083)
-
-[node name="InactivityManager" type="Timer" parent="." index="4"]
-script = ExtResource("6_t60xs")

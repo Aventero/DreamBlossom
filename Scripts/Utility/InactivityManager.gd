@@ -1,31 +1,86 @@
+@icon("res://Textures/EditorIcons/Cog.png")
 class_name InactivityManager
-extends Timer
+extends Node3D
 
-@export var inactivity_time : float = 10
+# Singelton instance
+static var instance : InactivityManager
 
-func _ready():
-	timeout.connect(Callable(_on_timeout))
+@export var default_inactivity_time : float = 10.0
+
+var _observed_nodes : Dictionary = { }
+
+func _ready() -> void:
+	# Setup singleton
+	if instance == null:
+		instance = self
+	else:
+		queue_free()
+
+func _process(delta: float) -> void:
+	for node in _observed_nodes.keys():
+		# Skip currently hold nodes
+		if _observed_nodes[node]["picked_up"]:
+			continue
+		
+		# Reduce time
+		_observed_nodes[node]["inactivity_time"] -= delta
+		
+		if _observed_nodes[node]["inactivity_time"] <= 0.0:
+			_despawn_node(node)
+
+func add_node(node : Node3D, currently_hold : bool = false) -> void:
+	# Skip if node is already observed
+	if _observed_nodes.has(node):
+		return
 	
-	# Subscribe to pickup event of current pickable object
-	self.owner.picked_up.connect(Callable(_on_object_pick_up))
-	self.owner.dropped.connect(Callable(_on_object_dropped))
+	# Add node to observed list
+	_observed_nodes[node] = {
+		"inactivity_time" : default_inactivity_time,
+		"picked_up" : currently_hold
+	}
 	
-	# Setup and start timer
-	start(inactivity_time)
+	# Add pickup event if pickable
+	if node is XRToolsPickable:
+		node.picked_up.connect(_on_node_pickup)
+		node.dropped.connect(_on_node_dropped)
 
-func _on_object_pick_up(_pickable : XRToolsPickable):
-	# Stop timer
-	stop()
+func remove_node(node : Node3D) -> void:
+	# Do nothing if node is currently not observed
+	if not _observed_nodes.has(node):
+		return
+	
+	_observed_nodes.erase(node)
+	
+	# Disconnect event if node was pickable
+	if node is XRToolsPickable:
+		node.picked_up.disconnect(_on_node_pickup)
+		node.dropped.disconnect(_on_node_dropped)
 
-func _on_object_dropped(_pickable : XRToolsPickable):
-	# Start timer again
-	start(inactivity_time)
+func _on_node_pickup(pickable : XRToolsPickable) -> void:
+	# Reset inactivity timer
+	_observed_nodes[pickable]["picked_up"] = true
 
-func _on_timeout():
-	# Destory object
-	var tween : Tween = create_tween()
-	tween.tween_property(self.owner, "scale", Vector3.ZERO, 0.5)
-	tween.tween_callback(Callable(_destroy_callback))
+func _on_node_dropped(pickable : XRToolsPickable) -> void:
+	# Reset inactivity timer
+	_observed_nodes[pickable]["inactivity_time"] = default_inactivity_time
+	_observed_nodes[pickable]["picked_up"] = false
 
-func _destroy_callback():
-	self.owner.queue_free()
+func _despawn_node(node : Node3D) -> void:
+	# Disable pickup if pickable
+	if node is XRToolsPickable:
+		node.drop()
+		node.enabled = false
+	
+	# Remove from observed list
+	remove_node(node)
+	
+	# Tween scale to zero
+	var tween : Tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+	tween.tween_property(node, "scale", Vector3.ZERO, 0.5)
+	
+	# Free node after tween finished
+	await tween.finished
+	node.queue_free()
+
+static func get_instance() -> InactivityManager:
+	return instance

@@ -146,14 +146,15 @@ func _process(delta: float) -> void:
 "
 
 [node name="Potion" instance=ExtResource("1_6iw1p")]
+collision_mask = 131079
 input_ray_pickable = false
 script = ExtResource("2_a0gms")
 type = 0
 infinite_drops = false
-drop_count = 5
 tilt_angle = 95.0
 drop_fill_speed = 1.0
 max_drop_size = 8.0
+release_mode = 0
 second_hand_grab = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -181,10 +182,12 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_sjyhy")
 
 [node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("2_75se4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154112, 0.117449, -0.0846456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, 0.117, -0.0519601)
+editor_preview_mode = 1
 
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("3_t6hfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0.117, -0.085)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0.117, -0.0519601)
+editor_preview_mode = 1
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="4"]
 visible = false

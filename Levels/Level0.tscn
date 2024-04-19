@@ -13,7 +13,8 @@ amount = 1
 script = ExtResource("1_510fn")
 active_plants = 63
 active_tools = 127
-enable_cooking_chest = true
+enable_brewing = true
+enable_cooking = true
 time_between_orders = 1e+08
 
 [node name="Empty Order" type="Timer" parent="."]

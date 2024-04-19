@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _spawn_flask() -> void:
 	# Instantiate flask
-	var empty_potion : Node3D = flask.instantiate()
+	var empty_potion : Potion = flask.instantiate()
 	add_child(empty_potion)
 	empty_potion.scale = Vector3(0.0001, 0.0001, 0.0001)
 	
@@ -20,13 +20,27 @@ func _spawn_flask() -> void:
 	
 	# Connect pickup event
 	empty_potion.picked_up.connect(_flask_picked_up)
+	
+	# Disable collision with player hand
+	empty_potion.set_collision_mask_value(18, false)
+	empty_potion.set_collision_mask_value(3, false)
+	
+	# Freeze object
+	empty_potion.freeze = true
 
-func _flask_picked_up(pickable) -> void:
+func _flask_picked_up(pickable : XRToolsPickable) -> void:
 	# Disconnect pickup event
 	pickable.picked_up.disconnect(_flask_picked_up)
 	
+	# Reenable collision with player hand
+	pickable.set_collision_mask_value(18, true)
+	pickable.set_collision_mask_value(3, true)
+	
 	# Start timer
 	$Timer.start()
+	
+	# Add empty potion to inactivity manager
+	InactivityManager.get_instance().add_node(pickable, true)
 
 func _on_timeout() -> void:
 	_spawn_flask()

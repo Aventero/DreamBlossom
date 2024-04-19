@@ -45,8 +45,16 @@ signal completed
 ## Time until koriko is killing you
 @export var time_until_death : float = 0.0
 
-@export_group("Additional Settings")
-@export var enable_cooking_chest : bool = false
+@export_group("Brewing Settings")
+## Enable brewing
+@export var enable_brewing : bool = false
+## Defines how many drops a brewed potion contains
+@export var drops_per_potion : int = 5
+
+@export_group("Cooking Settings")
+@export var enable_cooking : bool = false
+
+@export_group("Order Settings")
 @export var time_between_orders : float = 0.0
 
 # Not Implemented

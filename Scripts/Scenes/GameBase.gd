@@ -13,6 +13,7 @@ static var level_id : int
 @onready var return_manager : ReturnManager = $Managers/ReturnManager
 @onready var koriko_manager : KorikoManager = $Managers/KorikoManager
 @onready var cooking_chest : CookingChest = $CookingArea/CookingChest
+@onready var cauldron : Cauldron = $"ToolArea/Cauldron"
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
 @onready var order_display : OrderDisplay = $OrderDisplay
 @onready var bobo : Bobo = $Bobo
@@ -47,9 +48,15 @@ func scene_loaded(user_data = null):
 	koriko_manager.setup(level.time_before_first_spawn, level.inital_spawn_chance, level.stack_spawn_chance, level.time_until_death)
 	
 	# Enable cooking if needed
-	if not level.enable_cooking_chest:
+	if not level.enable_cooking:
 		cooking_chest.disable_chest()
 		recipe_book.disable_recipe_cook()
+	
+	# Enable brewing if needed
+	if not level.enable_brewing:
+		cauldron.disable_cauldron()
+	else:
+		cauldron.setup(level.drops_per_potion)
 	
 	# Set order settings
 	order_display.setup(level.time_between_orders)

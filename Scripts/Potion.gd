@@ -34,7 +34,6 @@ extends XRToolsPickable
 
 @export_category("Pouring Settings")
 @export var infinite_drops : bool = false
-@export var drop_count : int = 4
 @export var tilt_angle : float 
 @export var drop_fill_speed : float = 1.0
 @export var max_drop_size : float = 8.0
@@ -45,6 +44,7 @@ extends XRToolsPickable
 
 @onready var potion_type_label : Label3D = $Indicator/PotionType
 
+var _max_drop_count : int
 var _current_drop_count : int
 var _drop_progress : float = 0.0
 var _reduction_tween : Tween = null
@@ -67,12 +67,6 @@ enum PROPERTIES {
 	DROP,
 	FILL_MATERIAL
 }
-
-func _ready() -> void:
-	super()
-	
-	# Set data
-	_current_drop_count = drop_count
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -137,8 +131,8 @@ func _handle_drop() -> void:
 	
 	# Update fill shader
 	if not infinite_drops:
-		var old_fill_percentage : float = float(_current_drop_count) / float(drop_count)
-		var new_fill_percentage : float = float(_current_drop_count - 1) / float(drop_count)
+		var old_fill_percentage : float = float(_current_drop_count) / float(_max_drop_count)
+		var new_fill_percentage : float = float(_current_drop_count - 1) / float(_max_drop_count)
 		
 		var fill_tween : Tween = create_tween()
 		fill_tween.tween_method(_lerp_fill, old_fill_percentage, new_fill_percentage, 0.2)
@@ -155,6 +149,9 @@ func _replace_with_empty() -> void:
 	
 	# Set type to empty
 	type = TYPE.EMPTY
+	
+	# Add self to Inactivity Manager
+	InactivityManager.get_instance().add_node(self, is_picked_up())
 
 func _lerp_fill(percentage : float):
 	flask_fill.set_instance_shader_parameter("fill_percentage", percentage)
@@ -192,12 +189,13 @@ func hide_type_label() -> Tween:
 	tween.tween_property(potion_type_label, "scale", Vector3.ZERO, 0.25)
 	return tween
 
-func fill_potion(p_type : TYPE) -> void:
+func fill_potion(p_type : TYPE, drops_per_potion : int) -> void:
 	# Set type
 	type = p_type
 	
 	# Reset / Fill drop count
-	_current_drop_count = drop_count
+	_max_drop_count = drops_per_potion
+	_current_drop_count = drops_per_potion
 	
 	# Lerp potion fill level to max
 	flask_fill.visible = true
@@ -207,6 +205,9 @@ func fill_potion(p_type : TYPE) -> void:
 	# Tween in type label
 	potion_type_label.text = str(_type)
 	show_type_label()
+	
+	# Remove self from inactivity manager
+	InactivityManager.get_instance().remove_node(self)
 
 # Potion Lookups
 static var _potion_properties = {

@@ -30,3 +30,6 @@ func _on_picked_up(pickable):
 	
 	# Force item into players hand
 	player_hand._pick_up_object(item_instance)
+	
+	# Add to inactivity manager
+	InactivityManager.get_instance().add_node(item_instance, true)

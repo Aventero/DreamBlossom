@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=80 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
 [ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="50_jy8n4"]
+[ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
 [ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potions/Potion.tscn" id="52_vtd61"]
 
@@ -406,6 +407,8 @@ obstacle_chance = 0.5
 
 [node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
 
+[node name="InactivityManager" parent="Managers" instance=ExtResource("51_fasii")]
+
 [node name="KorikoManager" parent="Managers" instance=ExtResource("17_1ewji")]
 
 [node name="Spawnpoint1" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
@@ -567,11 +570,14 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
 transform = Transform3D(0.12767, 0, -0.991817, 0, 1, 0, 0.991817, 0, 0.12767, 0.348002, 0.860584, 0.781112)
 
-[node name="Cauldron" parent="ToolArea/Variable Tools" instance=ExtResource("51_nckfo")]
-transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.555268, 0.853512, 0.055458)
+[node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
+transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.623699, 0.853512, 0.204481)
 
-[node name="EmptyCauldronButton" parent="ToolArea/Variable Tools/Cauldron" instance=ExtResource("47_5mn04")]
+[node name="EmptyCauldronButton" parent="ToolArea/Cauldron" instance=ExtResource("47_5mn04")]
 transform = Transform3D(0.927525, 0, 0.373766, 0, 1, 0, -0.373766, 0, 0.927525, -0.137074, 0.0132521, -0.220408)
+
+[node name="FlaskSpawner" parent="ToolArea/Cauldron" instance=ExtResource("50_jy8n4")]
+transform = Transform3D(0.705872, 0, -0.70834, 0, 1, 0, 0.70834, 0, 0.705872, -0.0056392, 0.0863734, 0.313155)
 
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
@@ -598,9 +604,6 @@ transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948
 type = 4
 infinite_drops = true
 
-[node name="FlaskSpawner" parent="ToolArea" instance=ExtResource("50_jy8n4")]
-transform = Transform3D(0.91319, 0, -0.407534, 0, 1, 0, 0.407534, 0, 0.91319, 0.730659, 0.848394, 0.498857)
-
 [node name="Environment" parent="." instance=ExtResource("47_thwiv")]
 
 [node name="Plane_382" parent="Environment" index="30"]
@@ -625,7 +628,7 @@ layers = 129
 layers = 129
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
-[connection signal="button_pressed" from="ToolArea/Variable Tools/Cauldron/EmptyCauldronButton" to="ToolArea/Variable Tools/Cauldron" method="_on_empty_cauldron_button_button_pressed"]
+[connection signal="button_pressed" from="ToolArea/Cauldron/EmptyCauldronButton" to="ToolArea/Cauldron" method="_on_empty_cauldron_button_button_pressed"]
 
 [editable path="XROrigin3D"]
 [editable path="Environment"]

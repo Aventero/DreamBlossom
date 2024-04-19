@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Brewing/FlaskSpawner.gd" id="1_a6mb1"]
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potions/Potion.tscn" id="2_n6c7n"]
-[ext_resource type="PackedScene" uid="uid://c5tgoselksef6" path="res://Prefabs/InactivityManager.tscn" id="3_01ms2"]
+[ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="3_01ms2"]
 
 [node name="FlaskSpawner" type="Node3D"]
 script = ExtResource("1_a6mb1")

@@ -1,7 +1,6 @@
 class_name Cauldron
 extends Node3D
 
-@export_category("Potion Fluid Settings")
 @export var default_fluid_height : float = 0.012
 @export var empty_fluid_height : float = -0.15
 @export var jiggle_height : float = 0.075
@@ -10,6 +9,8 @@ extends Node3D
 @onready var collision_shape : CollisionShape3D = $PotionDropArea/CollisionShape
 @onready var mixture : Label3D = $Mixture
 
+var drops_per_potion : int = 5
+
 var _fluid_material : ShaderMaterial
 var _mixture = []
 var _fluid_tween : Tween
@@ -17,6 +18,13 @@ var _fluid_tween : Tween
 func _ready() -> void:
 	# Get potion fluid material
 	_fluid_material = potion_fluid.get_surface_override_material(0)
+
+func disable_cauldron() -> void:
+	queue_free()
+
+func setup(p_drops_per_potion : int) -> void:
+	# Set data
+	drops_per_potion = p_drops_per_potion
 
 func _on_potion_drop_area_body_entered(body: Node3D) -> void:
 	# Check if object is potion drop
@@ -70,7 +78,7 @@ func _handle_empty_potion(empty_potion : Potion) -> void:
 		return
 	
 	# Fill potion with given potion type
-	empty_potion.fill_potion(get_mixture())
+	empty_potion.fill_potion(get_mixture(), drops_per_potion)
 	
 	# Play potion jiggle effect
 	_jiggle_cauldron(-1)
