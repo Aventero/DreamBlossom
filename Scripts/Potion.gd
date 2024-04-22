@@ -121,7 +121,6 @@ func _process(delta: float) -> void:
 		_reduction_tween.tween_callback(func(): drop_model.visible = false)
 
 func _handle_drop() -> void:
-	#var drop_instance : RigidBody3D = _potion_drops[_type - 1].instantiate()
 	var drop_instance : RigidBody3D = get_potion_data(_type, PROPERTIES.DROP).instantiate()
 	get_parent().add_child(drop_instance)
 	

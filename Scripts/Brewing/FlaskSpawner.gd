@@ -4,19 +4,23 @@ extends Node3D
 @export var flask : PackedScene
 @export var inactivity_manager : PackedScene
 
+@onready var spawnpoint : Node3D = $Spawnpoint
+
 func _ready() -> void:
 	# Spawn first flask on start
 	_spawn_flask()
 
 func _spawn_flask() -> void:
+	spawnpoint.scale = Vector3(0.0001, 0.0001, 0.0001)
+	
 	# Instantiate flask
 	var empty_potion : Potion = flask.instantiate()
-	add_child(empty_potion)
-	empty_potion.scale = Vector3(0.0001, 0.0001, 0.0001)
+	empty_potion.position = Vector3(0.0, -0.108, 0.0)
+	spawnpoint.add_child(empty_potion)
 	
 	# Lerp scale
-	var tween : Tween = create_tween().set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(empty_potion, "scale", Vector3.ONE, 1.0)
+	var tween : Tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(spawnpoint, "scale", Vector3.ONE, 1.0)
 	
 	# Connect pickup event
 	empty_potion.picked_up.connect(_flask_picked_up)
@@ -27,6 +31,12 @@ func _spawn_flask() -> void:
 	
 	# Freeze object
 	empty_potion.freeze = true
+	
+	# Disable object while scaling
+	empty_potion.enabled = false
+	await tween.finished
+	empty_potion.reparent(self)
+	empty_potion.enabled = true
 
 func _flask_picked_up(pickable : XRToolsPickable) -> void:
 	# Disconnect pickup event
