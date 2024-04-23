@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=79 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -47,10 +47,9 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="PackedScene" uid="uid://cqm3tx7jbvbee" path="res://Models/Environment/Environment.blend" id="47_thwiv"]
-[ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="50_jy8n4"]
 [ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
 [ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
-[ext_resource type="PackedScene" uid="uid://bheek8uwc4n13" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.576355, 1)
@@ -573,12 +572,6 @@ transform = Transform3D(0.12767, 0, -0.991817, 0, 1, 0, 0.991817, 0, 0.12767, 0.
 [node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
 
-[node name="EmptyCauldronButton" parent="ToolArea/Cauldron" instance=ExtResource("47_5mn04")]
-transform = Transform3D(0.927525, 0, 0.373766, 0, 1, 0, -0.373766, 0, 0.927525, -0.137074, 0.0132521, -0.220408)
-
-[node name="FlaskSpawner" parent="ToolArea/Cauldron" instance=ExtResource("50_jy8n4")]
-transform = Transform3D(0.263168, 0.320986, -0.909786, -0.289685, 0.925803, 0.242842, 0.920231, 0.199643, 0.336627, -0.094266, 0.228341, -0.155727)
-
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
 [node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
@@ -628,7 +621,6 @@ layers = 129
 layers = 129
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
-[connection signal="button_pressed" from="ToolArea/Cauldron/EmptyCauldronButton" to="ToolArea/Cauldron" method="_on_empty_cauldron_button_button_pressed"]
 
 [editable path="XROrigin3D"]
 [editable path="Environment"]

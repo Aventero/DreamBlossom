@@ -119,8 +119,8 @@ func _empty_cauldron() -> void:
 		_fluid_tween.kill()
 	
 	_fluid_tween= create_tween().set_parallel()
-	_fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 0.75).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(0.55)
+	_fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(1.1)
 
 func _jiggle_cauldron(type : Potion.TYPE) -> void:
 	if _fluid_tween and _fluid_tween.is_running():
@@ -143,7 +143,7 @@ func _update_fluid_color(color : Color) -> void:
 func _update_fluid_alpha(value : float) -> void:
 	_fluid_material.set_shader_parameter("alpha", value)
 
-func _on_empty_cauldron_button_button_pressed(button: Variant) -> void:
+func _on_empty_cauldron_button_button_pressed() -> void:
 	if _mixture.is_empty():
 		return
 	
