@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const STORED_SECTIONS_PATH : String = "res://project_time_traker.json"
+const STORED_SECTIONS_PATH : String = "res://Tracker/project_time_traker.json"
 
 var _dock_instance : Control
 

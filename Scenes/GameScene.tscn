@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="50_jy8n4"]
 [ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
 [ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
-[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
+[ext_resource type="PackedScene" uid="uid://bheek8uwc4n13" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.576355, 1)

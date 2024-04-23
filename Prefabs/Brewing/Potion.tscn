@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cgb3ju2h2oipm"]
+[gd_scene load_steps=25 format=3 uid="uid://bheek8uwc4n13"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_6iw1p"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_75se4"]
