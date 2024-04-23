@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://babjqrl366pkk"]
+[gd_scene load_steps=22 format=3 uid="uid://babjqrl366pkk"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_pgw36"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_c3ab7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="2_vyl5u"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_4hwhu"]
 [ext_resource type="AudioStream" uid="uid://1rju32gxnpbw" path="res://Sound/Giggle.wav" id="6_iadhi"]
+[ext_resource type="PackedScene" uid="uid://87u1hki65bsm" path="res://Models/Mobs/Koriko.blend" id="7_xkjsn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gdrmm"]
 size = Vector3(0.118018, 0.111182, 0.10957)
@@ -69,7 +70,11 @@ ranged_grab_method = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32392e-05, 0.00808398, 0.00478515)
 shape = SubResource("BoxShape3D_gdrmm")
 
-[node name="Model" type="Node3D" parent="." index="1"]
+[node name="Koriko" parent="." index="1" instance=ExtResource("7_xkjsn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Model" type="Node3D" parent="." index="2"]
+visible = false
 
 [node name="Body" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131437, 0)
@@ -105,7 +110,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00842614, 0.0485995)
 mesh = SubResource("BoxMesh_6p17w")
 
-[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="2"]
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="3"]
 visible = false
 script = ExtResource("2_vyl5u")
 
@@ -116,13 +121,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0963693, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109901, 0)
 mesh = SubResource("BoxMesh_ltdky")
 
-[node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("2_c3ab7")]
+[node name="GrabPointHandLeft" parent="." index="4" instance=ExtResource("2_c3ab7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0391021, 0.0301747, -0.0461405)
 
-[node name="GrabPointHandRight" parent="." index="4" instance=ExtResource("3_4hwhu")]
+[node name="GrabPointHandRight" parent="." index="5" instance=ExtResource("3_4hwhu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039, 0.03, -0.046)
 
-[node name="FeedArea" type="Area3D" parent="." index="5"]
+[node name="FeedArea" type="Area3D" parent="." index="6"]
 collision_layer = 0
 collision_mask = 65540
 
@@ -130,9 +135,9 @@ collision_mask = 65540
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01182, 0)
 shape = SubResource("BoxShape3D_okvc6")
 
-[node name="DeathTimer" type="Timer" parent="." index="6"]
+[node name="DeathTimer" type="Timer" parent="." index="7"]
 
-[node name="AudioSource" type="AudioStreamPlayer3D" parent="." index="7"]
+[node name="AudioSource" type="AudioStreamPlayer3D" parent="." index="8"]
 stream = ExtResource("6_iadhi")
 volume_db = -40.0
 

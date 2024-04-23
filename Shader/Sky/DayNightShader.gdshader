@@ -1,4 +1,4 @@
-			shader_type sky;
+shader_type sky;
 render_mode use_quarter_res_pass;
 
 // Sky colors
