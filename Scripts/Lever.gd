@@ -8,6 +8,12 @@ signal pulled()
 @onready var lever_model : Node3D = $"../Model/LeverStick"
 @onready var lever_pull_particles : ParticleCombiner = $"../LeverPulledCombiner"
 
+# Smoke Particles
+@onready var smoke : Array[GPUParticles3D] = [
+	$"../LeverPulledCombiner/Smoke1",
+	$"../LeverPulledCombiner/Smoke2"
+]
+
 var _lower_angle : float = -deg_to_rad(56)
 var _upper_angle : float = deg_to_rad(56)
 
@@ -37,13 +43,14 @@ func _process(delta: float) -> void:
 	if angle < _upper_angle:
 		return
 	
-	pulled.emit()
-	
 	# Force player to drop lever (Ignore lerp back
 	_ignore_drop = true
 	grab_pickable.drop()
 	
-	# Play particles
+	# Play particles (Smoke too if cauldron is empty)
+	var cauldron_empty : bool = owner.get_mixture() == 0
+	for s in smoke:
+		s.visible = cauldron_empty
 	lever_pull_particles.start()
 	
 	# Disable pickable
@@ -52,6 +59,9 @@ func _process(delta: float) -> void:
 	var tween : Tween = create_tween()
 	tween.tween_interval(1.0)
 	tween.tween_method(_retract, _upper_angle, _lower_angle,2.0)
+	
+	# Emit pulled event
+	pulled.emit()
 	
 	# Renable grab after tween
 	await tween.finished

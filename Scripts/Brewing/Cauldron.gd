@@ -9,6 +9,18 @@ extends Node3D
 @onready var collision_shape : CollisionShape3D = $PotionDropArea/CollisionShape
 @onready var mixture : Label3D = $Mixture
 
+# Pipe objects for empty jiggle
+@onready var pipe_parts = [
+	$Model/Pipe_0,
+	$Model/Pipe_1,
+	$Model/Pipe_2,
+	$Model/Pipe_3,
+	$Model/Pipe_4,
+	$Model/Pipe_5,
+	$Model/Pipe_6,
+	$Model/Pipe_7,
+]
+
 var drops_per_potion : int = 5
 
 var _fluid_material : ShaderMaterial
@@ -119,8 +131,28 @@ func _empty_cauldron() -> void:
 		_fluid_tween.kill()
 	
 	_fluid_tween= create_tween().set_parallel()
-	_fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(1.1)
+	_fluid_tween.tween_property(potion_fluid, "position:y", empty_fluid_height, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_fluid_tween.tween_method(_update_fluid_alpha, 1.0, 0.0, 0.2).set_delay(1.8)
+	
+	# Start pipe jiggles
+	var part_count : int = 0
+	
+	for part in pipe_parts:
+		var pipe_jiggle : Tween = create_tween()
+		
+		# Jiggle one
+		pipe_jiggle.tween_interval(part_count * 0.1)
+		pipe_jiggle.tween_property(part, "scale", 1.2 * Vector3.ONE, 0.2)
+		pipe_jiggle.tween_interval(0.1)
+		pipe_jiggle.tween_property(part, "scale", Vector3.ONE, 0.2)
+		
+		# Jiggle two
+		pipe_jiggle.tween_interval(0.4)
+		pipe_jiggle.tween_property(part, "scale", 1.1 * Vector3.ONE, 0.2)
+		pipe_jiggle.tween_interval(0.2)
+		pipe_jiggle.tween_property(part, "scale", Vector3.ONE, 0.2)
+		
+		part_count += 1
 
 func _jiggle_cauldron(type : Potion.TYPE) -> void:
 	if _fluid_tween and _fluid_tween.is_running():
