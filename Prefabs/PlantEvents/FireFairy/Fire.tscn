@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://oy4mv3s1ayr7"]
+[gd_scene load_steps=38 format=3 uid="uid://oy4mv3s1ayr7"]
 
 [ext_resource type="Texture2D" uid="uid://0gy63t2w51ki" path="res://Textures/Particles/Fire_01.png" id="1_1pe2x"]
 [ext_resource type="Script" path="res://Prefabs/PlantEvents/FireFairy/Fire.gd" id="1_ko301"]
@@ -118,7 +118,7 @@ shader_parameter/texture_albedo = SubResource("AnimatedTexture_86cut")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.263473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0251408, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fa2pi"]
+[sub_resource type="CurveTexture" id="CurveTexture_aman6"]
 curve = SubResource("Curve_d1kj2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tj71g"]
@@ -127,12 +127,12 @@ emission_sphere_radius = 0.02
 angular_velocity_min = -90.0
 angular_velocity_max = 90.0
 gravity = Vector3(0, 0.07, 0)
-scale_curve = SubResource("CurveTexture_fa2pi")
+scale_curve = SubResource("CurveTexture_aman6")
 turbulence_enabled = true
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.015
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb52g"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrhcj"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -147,7 +147,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_cdk0o"]
-material = SubResource("StandardMaterial3D_cb52g")
+material = SubResource("StandardMaterial3D_xrhcj")
 size = Vector2(0.02, 0.02)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhp6n"]
@@ -166,6 +166,13 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_uaqg8"]
 material = SubResource("StandardMaterial3D_nhp6n")
 size = Vector2(0.02, 0.02)
+
+[sub_resource type="Curve" id="Curve_hav8i"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.263473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0251408, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fa2pi"]
+curve = SubResource("Curve_hav8i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30ih0"]
 emission_shape = 1
