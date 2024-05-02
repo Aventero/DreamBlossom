@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b285rd770k4ej"
-path="res://.godot/imported/FertilizerBlueIcon.png-49b10183a9c9a65122a251cb6e40b756.ctex"
+uid="uid://upyrpwifmq0r"
+path="res://.godot/imported/PotionGrey.png-948854b13554bea840f0a0b6d61cae6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EventIcons/FertilizerBlueIcon.png"
-dest_files=["res://.godot/imported/FertilizerBlueIcon.png-49b10183a9c9a65122a251cb6e40b756.ctex"]
+source_file="res://Textures/EventIcons/PotionGrey.png"
+dest_files=["res://.godot/imported/PotionGrey.png-948854b13554bea840f0a0b6d61cae6c.ctex"]
 
 [params]
 

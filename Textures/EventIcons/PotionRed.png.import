@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xuheen3agtpj"
-path="res://.godot/imported/FertilizerOrangeIcon.png-49c5fd621955028d105d22c8ce7a218a.ctex"
+uid="uid://d3oqp3wpdyxvj"
+path="res://.godot/imported/PotionRed.png-cf4c6c75354998fa3d30c51500bc8efd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EventIcons/FertilizerOrangeIcon.png"
-dest_files=["res://.godot/imported/FertilizerOrangeIcon.png-49c5fd621955028d105d22c8ce7a218a.ctex"]
+source_file="res://Textures/EventIcons/PotionRed.png"
+dest_files=["res://.godot/imported/PotionRed.png-cf4c6c75354998fa3d30c51500bc8efd.ctex"]
 
 [params]
 

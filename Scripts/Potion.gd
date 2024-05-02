@@ -37,6 +37,7 @@ extends XRToolsPickable
 @export var tilt_angle : float 
 @export var drop_fill_speed : float = 1.0
 @export var max_drop_size : float = 8.0
+@export var drop_rumble : XRToolsRumbleEvent
 
 @onready var drop_model : Node3D = $Drop/Drop
 @onready var flask_stomp : Node3D = $Model/Stomp
@@ -65,7 +66,8 @@ enum TYPE {
 enum PROPERTIES {
 	COLOR,
 	DROP,
-	FILL_MATERIAL
+	FILL_MATERIAL,
+	ICON
 }
 
 func _process(delta: float) -> void:
@@ -127,6 +129,9 @@ func _handle_drop() -> void:
 	# Set position & rotation
 	drop_instance.global_position = $Drop.global_position
 	drop_instance.global_rotation = $Drop.global_rotation
+	
+	# Play drop rumble
+	XRToolsRumbleManager.add("potion_drop", drop_rumble, [get_picked_up_by_controller()])
 	
 	# Update fill shader
 	if not infinite_drops:
@@ -213,42 +218,50 @@ static var _potion_properties = {
 	Potion.TYPE.EMPTY : {
 		"color": Color(0, 0, 0, 0), # Transparent for empty
 		"drop": null,
-		"fill_material": null
+		"fill_material": null,
+		"icon": null
 	},
 	Potion.TYPE.RED : {
 		"color": Color.html("ee0030"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop1.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionRed.tres")
+		"fill_material": preload("res://Materials/Potions/PotionRed.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionRed.png")
 	},
 	Potion.TYPE.GREEN : {
 		"color": Color.html("44cd38"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop2.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionGreen.tres")
+		"fill_material": preload("res://Materials/Potions/PotionGreen.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionGreen.png")
 	},
 	Potion.TYPE.ORANGE : {
 		"color": Color.html("e1b227"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop3.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionOrange.tres")
+		"fill_material": preload("res://Materials/Potions/PotionOrange.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionOrange.png")
 	},
 	Potion.TYPE.BLUE : {
 		"color": Color.html("0844ff"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop4.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionBlue.tres")
+		"fill_material": preload("res://Materials/Potions/PotionBlue.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionBlue.png")
 	},
 	Potion.TYPE.PURPLE : {
 		"color": Color.html("c929ce"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop5.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionPurple.tres")
+		"fill_material": preload("res://Materials/Potions/PotionPurple.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionPurple.png")
 	},
 	Potion.TYPE.CYAN : {
 		"color": Color.html("1bc2c0"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop6.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionCyan.tres")
+		"fill_material": preload("res://Materials/Potions/PotionCyan.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionCyan.png")
 	},
 	Potion.TYPE.GREY : {
 		"color": Color.html("a1a1a1"),
 		"drop": preload("res://Prefabs/Brewing/Drops/PotionDrop7.tscn"),
-		"fill_material": preload("res://Materials/Potions/PotionGrey.tres")
+		"fill_material": preload("res://Materials/Potions/PotionGrey.tres"),
+		"icon": preload("res://Textures/EventIcons/PotionGrey.png")
 	}
 }
 

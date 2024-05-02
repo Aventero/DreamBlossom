@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="5_jaky1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qquq1"]
-size = Vector3(0.376, 0.0404883, 0.376)
+size = Vector3(0.376, 0.0496631, 0.376)
 
 [sub_resource type="GDScript" id="GDScript_lh4gf"]
 script/source = "extends Node3D
@@ -117,10 +117,14 @@ shader_parameter/UV_offset = Vector2(0.055, 0.055)
 shader_parameter/mask = ExtResource("5_j0fmd")
 
 [node name="DigSpot" instance=ExtResource("1_okxs7")]
+sync_to_physics = false
 watering_amount = 3
 
+[node name="Trigger" parent="." index="0"]
+collision_mask = 199172
+
 [node name="Trigger Shape" parent="Trigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0202441, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0248315, 0)
 shape = SubResource("BoxShape3D_qquq1")
 
 [node name="Model" type="Node3D" parent="." index="1"]
@@ -154,6 +158,6 @@ meshes = [NodePath("../Model/DigSpotMiddle_03"), NodePath("../Model/DigSpotMiddl
 
 [node name="Outline" type="MeshInstance3D" parent="." index="6"]
 transform = Transform3D(0.334305, 0, 0, 0, -1.4613e-08, 0.334305, 0, -0.334305, -1.4613e-08, 0, 0.0295847, -1.29319e-09)
-visible = false
+instance_shader_parameters/alpha = 0.0
 mesh = SubResource("QuadMesh_atl0b")
 surface_material_override/0 = SubResource("ShaderMaterial_gqyy2")

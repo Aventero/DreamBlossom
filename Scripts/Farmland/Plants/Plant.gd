@@ -23,6 +23,13 @@ func _ready():
 	# Deactive events which are not possible due to missing tools
 	check_feasibility()
 	
+	# Make all materials unique
+	var material = get_node("Model").get_child(0).get_surface_override_material(0).duplicate()
+	
+	for child in get_node("Model").get_children():
+		if child is MeshInstance3D:
+			child.set_surface_override_material(0, material)
+	
 	# Start first stage
 	if auto_grow:
 		start_stage(current_stage)

@@ -3,6 +3,9 @@ extends Node3D
 
 signal pulled()
 
+@export var pull_rumble : XRToolsRumbleEvent
+@export var pull_complete_rumble : XRToolsRumbleEvent
+
 @onready var grab_pickable : XRToolsPickable = $"Grab Pickable"
 @onready var grab_origin : Node3D = $"../Model/LeverStick/Grab Origin"
 @onready var lever_model : Node3D = $"../Model/LeverStick"
@@ -18,8 +21,8 @@ var _lower_angle : float = -deg_to_rad(56)
 var _upper_angle : float = deg_to_rad(56)
 
 var _retract_tween : Tween
-
 var _ignore_drop : bool = false
+var _controller : XRController3D
 
 func _process(delta: float) -> void:
 	if not grab_pickable.is_picked_up():
@@ -39,11 +42,17 @@ func _process(delta: float) -> void:
 	# Set new rotation
 	lever_model.rotation = Vector3(angle, 0.0, 0.0)
 	
+	# Change rumble strength
+	pull_rumble.magnitude = 0.5 * ((angle - _lower_angle) / 1.954769) # Map current angle to Range 0.0 <---> 0.5
+	
 	# Check if lever reached end
 	if angle < _upper_angle:
 		return
 	
-	# Force player to drop lever (Ignore lerp back
+	# Play pull complete rumble
+	XRToolsRumbleManager.add("cauldron_pull_complete", pull_complete_rumble, [_controller])
+	
+	# Force player to drop lever (Ignore lerp back)
 	_ignore_drop = true
 	grab_pickable.drop()
 	
@@ -68,12 +77,22 @@ func _process(delta: float) -> void:
 	_ignore_drop = false
 	grab_pickable.enabled = true
 
-func _on_grip_pickable_picked_up(pickable: Variant) -> void:
+func _on_grip_pickable_picked_up(pickable: XRToolsPickable) -> void:
+	# Save controller
+	_controller = pickable.get_picked_up_by_controller()
+	
+	# Add pull rumble
+	XRToolsRumbleManager.add("cauldron_pull", pull_rumble, [_controller])
+	
 	# Kill retraction tween
 	if _retract_tween and _retract_tween.is_running():
 		_retract_tween.kill()
 
 func _on_grip_pickable_dropped(pickable: Variant) -> void:
+	# Remove rumble
+	XRToolsRumbleManager.clear("cauldron_pull", [_controller])
+	_controller = null
+	
 	if _ignore_drop:
 		return
 	

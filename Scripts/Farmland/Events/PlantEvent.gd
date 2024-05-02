@@ -6,11 +6,11 @@ signal event_completed
 
 @export var icon_texture : Texture2D
 
-func check_feasibility():
+func check_feasibility() -> void:
 	pass
 
-func initialize():
+func initialize() -> void:
 	pass
 
-func cleanup():
+func cleanup() -> void:
 	pass

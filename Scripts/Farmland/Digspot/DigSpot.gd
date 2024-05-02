@@ -4,7 +4,7 @@ extends AnimatableBody3D
 
 signal watering_completed
 
-signal fertilizer_added(type : Fertilizer.Type)
+signal potion_added(type : Potion.TYPE)
 
 @export_category("Interaction")
 @export var hand_removal : bool = true
@@ -42,6 +42,8 @@ var plant : Node3D = null
 
 # Watering
 var current_water : int = 0
+
+var jiggle_tween : Tween
 
 var time : float = 0.0
 var to_be_deleted : bool = false
@@ -123,17 +125,10 @@ func _on_trigger_body_entered(body):
 	if watering and body is WaterDrop and current_water < watering_amount:
 		_handle_water_drop()
 	
-	# Check if body is fertilizer
-	if fertilizing and body is Fertilizer and fertilizer_added.get_connections().size() > 0:
-		# Play jiggle
-		_play_jiggle()
-		
-		# Despawn fertilizer
-		body.drop()
-		body.queue_free()
-		
-		# Emit fertilizer signal
-		fertilizer_added.emit(body.type)
+	# Check if body is PotionDrop
+	if fertilizing and body is PotionDrop and potion_added.get_connections().size() > 0:
+		# Emit potion added signal
+		potion_added.emit(body.type)
 
 func _handle_hand_movement(body : Node3D):
 	# Check if hand is currently holding a object
@@ -155,9 +150,7 @@ func _handle_seed_insert():
 	seed.freeze = true
 	
 	# Disable inactivity manager
-	for child in seed.get_children():
-		if child is InactivityManager:
-			child.queue_free()
+	InactivityManager.get_instance().remove_node(seed)
 	
 	# Stop watering timer
 	dry_timer.stop()
@@ -169,7 +162,7 @@ func _handle_seed_insert():
 	tween.tween_property(seed, "global_position", seed_snap_point.global_position, 0.05)
 	
 	# Play jiggle animation for dig spot
-	_play_jiggle()
+	play_jiggle()
 	
 	# Spawn particles
 	var particles : GPUParticles3D = seed_insert_particles.instantiate()
@@ -189,7 +182,7 @@ func _handle_water_drop():
 	current_water += 1
 	
 	# Change material to next state
-	_play_jiggle(0.05)
+	play_jiggle(0.05)
 	material_changer.next_state()
 	
 	# Check if fully watered
@@ -233,11 +226,14 @@ func _reparent_seed_callback():
 	# Reset position to ZERO because of the reparenting
 	seed.position = Vector3.ZERO
 
-func _play_jiggle(strength : float = 0.1):
+func play_jiggle(strength : float = 0.1, length : float = 0.2):
+	if jiggle_tween and jiggle_tween.is_running():
+		jiggle_tween.kill()
+	
 	# Play jiggle animation for dig spot
-	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3(1.0 - strength, 1.0 - strength, 1.0 - strength), 0.05)
-	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.05)
+	jiggle_tween = create_tween()
+	jiggle_tween.tween_property(self, "scale", Vector3(1.0 - strength, 1.0 - strength, 1.0 - strength), length)
+	jiggle_tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), length)
 
 func _on_trigger_body_exited(_body):
 	hand = null
@@ -249,7 +245,7 @@ func _on_trigger_body_exited(_body):
 
 func reset_watering(new_watering_amount : int):
 	# Reset to dry state
-	_play_jiggle(0.05)
+	play_jiggle(0.05)
 	material_changer.set_state_by_index(0)
 	
 	# Reset watering amount and set new value
@@ -257,4 +253,14 @@ func reset_watering(new_watering_amount : int):
 	current_water = 0
 
 func set_outline(visibility : bool):
-	outline_mesh.visible = visibility
+	# Tween alpha of outline
+	var tween : Tween = create_tween()
+	if visibility:
+		tween.tween_method(_set_shader_parameter, 0.0, 1.0, 0.5)
+	else:
+		tween.tween_method(_set_shader_parameter, 1.0, 0.0, 0.5)
+	
+	#outline_mesh.visible = visibility
+
+func _set_shader_parameter(value : float) -> void:
+	outline_mesh.set_instance_shader_parameter("alpha", value)

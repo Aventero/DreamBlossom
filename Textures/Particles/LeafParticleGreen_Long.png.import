@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xm6fskfgf42h"
-path="res://.godot/imported/FertilizerGreenIcon.png-abbc5488886f6e6e16e312c678c8d593.ctex"
+uid="uid://d3e475vuxy8bi"
+path="res://.godot/imported/LeafParticleGreen_Long.png-50d4e4a4769c76bd5dc01c511820ebff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EventIcons/FertilizerGreenIcon.png"
-dest_files=["res://.godot/imported/FertilizerGreenIcon.png-abbc5488886f6e6e16e312c678c8d593.ctex"]
+source_file="res://Textures/Particles/LeafParticleGreen_Long.png"
+dest_files=["res://.godot/imported/LeafParticleGreen_Long.png-50d4e4a4769c76bd5dc01c511820ebff.ctex"]
 
 [params]
 

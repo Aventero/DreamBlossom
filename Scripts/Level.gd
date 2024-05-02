@@ -15,7 +15,7 @@ signal completed
 
 @export_group("Tools")
 ## Defines which tools are active in current level
-@export_flags("Fertilizer Blue", "Fertilizer Orange", "Fertilizer Green", "Scissors", "MusicBox", "PickAxe", "Cauldron") var active_tools
+@export_flags("Scissors", "MusicBox", "PickAxe") var active_tools
 
 @export_group("Weed Settings")
 ## Time between spreads
@@ -70,13 +70,9 @@ enum Plants {
 }
 
 enum Tools {
-	Fertilizer_Blue = 1,
-	Fertilizer_Orange = 2,
-	Fertilizer_Green = 4,
-	Scissors = 8,
-	MusicBox = 16,
-	PickAxe = 32,
-	Cauldron = 64
+	Scissors = 1,
+	MusicBox = 2,
+	PickAxe = 4,
 }
 
 var current_order : Order = null
@@ -113,12 +109,6 @@ func _on_order_completed(success : bool) -> void:
 
 func is_tool_active(tool : String) -> bool:
 	match tool:
-		"Fertilizer Blue":
-			return active_tools & Tools.Fertilizer_Blue != 0
-		"Fertilizer Orange":
-			return active_tools & Tools.Fertilizer_Orange != 0
-		"Fertilizer Green":
-			return active_tools & Tools.Fertilizer_Green != 0
 		"Scissors":
 			return active_tools & Tools.Scissors != 0
 		"MusicBox":

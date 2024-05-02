@@ -57,7 +57,7 @@ func _on_timeout():
 	
 	dig_spot.material_changer.previous_state()
 	
-	dig_spot._play_jiggle(0.05)
+	dig_spot.play_jiggle(0.05)
 	
 	# Stop timer if completly dry
 	if dig_spot.current_water == 0:

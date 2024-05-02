@@ -34,9 +34,11 @@ func _on_ingredient_trigger_body_entered(ingredient):
 	
 	var tween : Tween = create_tween()
 	tween.tween_property(ingredient, "scale", Vector3.ZERO, 0.5)
+	
 	await tween.finished
 	
-	ingredient.queue_free()
+	if ingredient and not ingredient.is_queued_for_deletion():
+		ingredient.queue_free()
 
 func _play_eating():
 	var tween : Tween = create_tween().set_loops(3)

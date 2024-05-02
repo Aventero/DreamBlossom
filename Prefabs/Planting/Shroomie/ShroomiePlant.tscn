@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://glujk3jsap01"]
+[gd_scene load_steps=52 format=3 uid="uid://glujk3jsap01"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_3n1ia"]
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_xxdtx"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="6_v8jss"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="6_yaumk"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="7_15vy4"]
-[ext_resource type="Texture2D" uid="uid://xm6fskfgf42h" path="res://Textures/EventIcons/FertilizerGreenIcon.png" id="7_d6w1r"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="7_ql15b"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="8_nxfej"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="14_71xky"]
@@ -63,6 +62,69 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_54tng")
+
+[sub_resource type="Shader" id="Shader_1r0ed"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+instance uniform float stength = 1.0;
+instance uniform float noise_scale = 50.0;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	// Foliage
+	VERTEX.x += sin(TIME * 2.0 + VERTEX.y * noise_scale) * 0.075 * length(VERTEX) * stength;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g56vu"]
+resource_name = "Shroomie"
+render_priority = 0
+shader = SubResource("Shader_1r0ed")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_xxdtx")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_k7dpv"]
 _surfaces = [{
@@ -1012,80 +1074,119 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122338, 0)
 [node name="Cube_012" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423, 0)
 layers = 13
+instance_shader_parameters/noise_scale = 0.5
+instance_shader_parameters/stength = 0.2
 mesh = SubResource("ArrayMesh_x2b4y")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_003" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245, 0)
 layers = 13
+instance_shader_parameters/noise_scale = 1.0
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_baq0t")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="base" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, 0)
 layers = 13
+instance_shader_parameters/noise_scale = 1.0
+instance_shader_parameters/stength = 0.01
 mesh = SubResource("ArrayMesh_7wk8c")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Head" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059, 0)
 layers = 13
+instance_shader_parameters/noise_scale = 5.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_2nrpw")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_018" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0200921, 0.211646, 0.0389111)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_vvtr6")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_038" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00221913, 0.0560875, -0.0409706)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_uhode")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_039" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(0.280917, -0.439579, 0.853145, 0.137478, 0.898204, 0.417528, -0.949834, -2.26498e-06, 0.312753, -0.031489, 0.350231, -0.00678784)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_uhode")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_043" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00492633, 0.204338, -0.0431907)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_uhode")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_041" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(0.971648, 0.0529365, 0.230429, -0.222795, 0.5312, 0.817428, -0.079132, -0.845591, 0.527934, -0.00127596, 0.469483, -0.0226404)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_uhode")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_040" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000173767, 0.0401633, 0.0441757)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_7ilwa")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_042" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(0.244905, -0.535981, 0.807927, 0.968707, 0.100598, -0.226905, 0.0403413, 0.838215, 0.543845, -0.00162792, 0.352546, 0.034107)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_7ilwa")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_013" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048619, 0.0491401, -0.0102597)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_m221e")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="Cube_021" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0412237, 0.140862, -0.00859955)
 layers = 13
+instance_shader_parameters/noise_scale = 10.0
+instance_shader_parameters/stength = 0.1
 mesh = SubResource("ArrayMesh_lk3ir")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_g56vu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 root_node = NodePath("../Model")
@@ -1105,7 +1206,6 @@ icon_position = Vector3(0, 0.39, 0)
 [node name="SlurpEvent" type="Node3D" parent="Stage1" index="0"]
 script = ExtResource("5_fkcip")
 slurp_shroomie = ExtResource("23_nsi5g")
-icon_texture = ExtResource("7_d6w1r")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage1/SlurpEvent" index="0"]
 transform = Transform3D(0.105104, 0.210923, -0.971836, 0.313166, 0.920508, 0.233652, 0.943865, -0.328903, 0.0306946, 0.0425011, 0.203711, -0.0470183)
@@ -1242,7 +1342,6 @@ icon_position = Vector3(0, 0.902, 0)
 [node name="SlurpEvent" type="Node3D" parent="Stage3" index="0"]
 script = ExtResource("5_fkcip")
 slurp_shroomie = ExtResource("23_nsi5g")
-icon_texture = ExtResource("7_d6w1r")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage3/SlurpEvent" index="0"]
 transform = Transform3D(-0.459997, 0.444374, -0.768723, 0.67274, 0.739459, 0.0248969, 0.579502, -0.505699, -0.639099, 0.0730715, 0.583665, -0.0597959)

@@ -1,10 +1,9 @@
-[gd_scene load_steps=96 format=3 uid="uid://dxhccbbkp1ghs"]
+[gd_scene load_steps=98 format=3 uid="uid://dxhccbbkp1ghs"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_xrug7"]
 [ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Flamie/FlamieFruit.blend" id="2_kawg3"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Textures/Fruits/Flamie/Flamie.png" id="3_5ptct"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_cqu8f"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FertilizeEvent.gd" id="5_d4ng8"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_glrd6"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="7_6pry3"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
@@ -27,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_qbu5y"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_n20ja"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="24_5ielf"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="24_kj3ng"]
+[ext_resource type="PackedScene" uid="uid://dxnefxr42p1k4" path="res://Prefabs/Particles/FallingLeafes/FallingLeafes_Flamie.tscn" id="25_ssrgl"]
+[ext_resource type="PackedScene" uid="uid://ddyq37vwqy62h" path="res://Prefabs/Particles/FallingLeafes/FallingLeafesLarge_Flamie.tscn" id="25_v5he5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_esutq"]
 resource_name = "Fierie"
@@ -2632,10 +2634,7 @@ texture_filter = 2
 [node name="Model" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0163294, 0)
 
-[node name="FlamieFruit" parent="Model" index="0" instance=ExtResource("2_kawg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.214325, 0.0501802)
-
-[node name="Blossom_026" type="MeshInstance3D" parent="Model" index="1"]
+[node name="Blossom_026" type="MeshInstance3D" parent="Model" index="0"]
 transform = Transform3D(-0.579652, 0.738199, -0.34506, -0.222707, 0.263818, 0.93851, 0.78384, 0.620857, 0.0114797, -0.0706334, 0.138057, 0.0571824)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2643,7 +2642,7 @@ mesh = SubResource("ArrayMesh_o3mwt")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_028" type="MeshInstance3D" parent="Model" index="2"]
+[node name="Blossom_028" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(-0.879716, 0.149895, -0.451256, -0.38548, 0.330815, 0.861375, 0.278398, 0.931715, -0.233241, 0.00561653, 0.14661, -0.0155226)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2651,7 +2650,7 @@ mesh = SubResource("ArrayMesh_7jsk7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_029" type="MeshInstance3D" parent="Model" index="3"]
+[node name="Blossom_029" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(-0.464098, -0.876906, 0.125097, -0.382719, 0.325877, 0.864483, -0.798836, 0.353328, -0.486848, 0.0769347, 0.140662, 0.0575555)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2659,43 +2658,55 @@ mesh = SubResource("ArrayMesh_kohbi")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_016" type="MeshInstance3D" parent="Model" index="4"]
+[node name="Stick_016" type="MeshInstance3D" parent="Model" index="3"]
 transform = Transform3D(0.0519602, -0.738654, -0.672079, -0.208643, -0.666166, 0.716025, -0.97661, 0.10302, -0.188729, -0.074147, 0.133994, 0.0593846)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_4m2v8")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_018" type="MeshInstance3D" parent="Model" index="5"]
+[node name="Stick_018" type="MeshInstance3D" parent="Model" index="4"]
 transform = Transform3D(0.906038, 0.0152358, -0.422922, 0.271509, -0.787496, 0.553293, -0.324619, -0.616131, -0.717638, 0.0037562, 0.118743, -0.0304317)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_oa3so")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_020" type="MeshInstance3D" parent="Model" index="6"]
+[node name="Stick_020" type="MeshInstance3D" parent="Model" index="5"]
 transform = Transform3D(-0.120518, 0.751503, 0.648629, 0.0488254, -0.648113, 0.759977, 0.99151, 0.12326, 0.0414168, 0.100661, 0.123652, 0.0608898)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_gssjb")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_021" type="MeshInstance3D" parent="Model" index="7"]
+[node name="Stick_021" type="MeshInstance3D" parent="Model" index="6"]
 transform = Transform3D(0.634337, -0.162754, -0.755729, -0.113425, -0.986602, 0.11727, -0.76469, 0.0113301, -0.644299, 0.0814296, 0.0104188, 0.0556514)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_6qtmo")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_019" type="MeshInstance3D" parent="Model" index="8"]
+[node name="Stick_019" type="MeshInstance3D" parent="Model" index="7"]
 transform = Transform3D(-0.660354, -0.0409186, -0.749839, -0.181961, -0.96004, 0.212635, -0.728576, 0.276856, 0.626521, -0.000295188, -0.000906294, -0.00456834)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_a7a8q")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_013" type="MeshInstance3D" parent="Model" index="9"]
+[node name="Stick_013" type="MeshInstance3D" parent="Model" index="8"]
 transform = Transform3D(-0.677425, 0.135992, 0.722912, -0.113431, -0.99032, 0.0800026, 0.726794, -0.0278048, 0.686293, -0.0708239, 0.000122596, 0.0360236)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_tugwg")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_023" type="MeshInstance3D" parent="Model" index="10"]
+[node name="Blossom_023" type="MeshInstance3D" parent="Model" index="9"]
 transform = Transform3D(0.356118, -0.136456, -0.924424, 0.000109665, 0.989286, -0.145988, 0.934441, 0.0518877, 0.352317, -0.126711, 0.364508, 0.0452411)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2703,7 +2714,7 @@ mesh = SubResource("ArrayMesh_kknn3")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_024" type="MeshInstance3D" parent="Model" index="11"]
+[node name="Blossom_024" type="MeshInstance3D" parent="Model" index="10"]
 transform = Transform3D(-0.656732, 0.045146, 0.752771, -0.203579, 0.950533, -0.234613, -0.726125, -0.307326, -0.615055, 0.0212855, 0.40874, -0.122027)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2711,7 +2722,7 @@ mesh = SubResource("ArrayMesh_raiba")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_025" type="MeshInstance3D" parent="Model" index="12"]
+[node name="Blossom_025" type="MeshInstance3D" parent="Model" index="11"]
 transform = Transform3D(-0.0605277, 0.146774, -0.987316, 0.0161927, 0.989144, 0.146053, 0.998035, -0.00714703, -0.0622473, 0.13026, 0.315936, 0.0502326)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2719,7 +2730,7 @@ mesh = SubResource("ArrayMesh_q8hve")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_011" type="MeshInstance3D" parent="Model" index="13"]
+[node name="Blossom_011" type="MeshInstance3D" parent="Model" index="12"]
 transform = Transform3D(-0.964075, -0.16102, -0.211262, -0.20895, 0.950769, 0.228863, 0.164009, 0.264785, -0.950258, 0.0854144, 0.394156, 0.0919719)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2727,13 +2738,15 @@ mesh = SubResource("ArrayMesh_60qj5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_014" type="MeshInstance3D" parent="Model" index="14"]
+[node name="Stick_014" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(0.853125, 0.19874, 0.48237, 0.0541235, -0.953326, 0.297054, 0.518892, -0.227317, -0.824062, 0.111927, 0.273685, 0.0627559)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_le0m5")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_013" type="MeshInstance3D" parent="Model" index="15"]
+[node name="Blossom_013" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(-0.340664, 0.262945, -0.902667, 0.062555, 0.964307, 0.257292, 0.938102, 0.0311839, -0.344953, -0.067651, 0.453293, 0.0611964)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2741,13 +2754,15 @@ mesh = SubResource("ArrayMesh_1xahy")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_015" type="MeshInstance3D" parent="Model" index="16"]
+[node name="Stick_015" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(0.919921, -0.297994, 0.254845, -0.293598, -0.954284, -0.0560481, 0.259897, -0.0232623, -0.965356, -0.102612, 0.327968, 0.0568309)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_m4x6h")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_021" type="MeshInstance3D" parent="Model" index="17"]
+[node name="Blossom_021" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(-0.735308, 0.0423867, -0.676406, -0.302229, 0.872802, 0.383241, 0.606613, 0.48623, -0.628968, 0.0130518, 0.506348, -0.00695341)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2755,13 +2770,15 @@ mesh = SubResource("ArrayMesh_n8wn0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Stick_017" type="MeshInstance3D" parent="Model" index="18"]
+[node name="Stick_017" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(0.999749, 0.00936841, -0.0203304, 0.0179119, -0.879517, 0.47553, -0.013426, -0.475775, -0.879465, 0.0159315, 0.356161, -0.0900294)
 layers = 5
+instance_shader_parameters/stength = 0.05
 mesh = SubResource("ArrayMesh_hjhuc")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_025" type="MeshInstance3D" parent="Model" index="19"]
+[node name="Leaf_025" type="MeshInstance3D" parent="Model" index="18"]
 transform = Transform3D(-0.813457, -0.579752, 0.0466447, -0.478227, 0.712336, 0.513689, -0.331039, 0.395557, -0.856708, 0.108282, 0.276104, 0.060318)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2769,7 +2786,7 @@ mesh = SubResource("ArrayMesh_yapkp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_027" type="MeshInstance3D" parent="Model" index="20"]
+[node name="Leaf_027" type="MeshInstance3D" parent="Model" index="19"]
 transform = Transform3D(0.0376623, -0.596049, 0.802065, -0.0456643, 0.800769, 0.59723, -0.998247, -0.0591187, 0.00294067, -0.00900609, 0.220624, -0.0761441)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2777,7 +2794,7 @@ mesh = SubResource("ArrayMesh_rff0h")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_028" type="MeshInstance3D" parent="Model" index="21"]
+[node name="Leaf_028" type="MeshInstance3D" parent="Model" index="20"]
 transform = Transform3D(-0.84826, 0.319835, -0.422091, -0.00557284, 0.791594, 0.611022, 0.529551, 0.520658, -0.669695, -0.0984178, 0.334739, 0.0562602)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2785,7 +2802,7 @@ mesh = SubResource("ArrayMesh_l55a7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_031" type="MeshInstance3D" parent="Model" index="22"]
+[node name="Leaf_031" type="MeshInstance3D" parent="Model" index="21"]
 transform = Transform3D(-0.537396, -0.526519, 0.658774, 0.180839, 0.691041, 0.699828, -0.823713, 0.495217, -0.276147, -0.128094, 0.249375, 0.0402488)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2793,7 +2810,7 @@ mesh = SubResource("ArrayMesh_hh2i5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_034" type="MeshInstance3D" parent="Model" index="23"]
+[node name="Leaf_034" type="MeshInstance3D" parent="Model" index="22"]
 transform = Transform3D(-0.354211, 0.397054, -0.846689, -0.318337, 0.800124, 0.508393, 0.879316, 0.449611, -0.157016, 0.019052, 0.36108, -0.0844574)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2801,7 +2818,7 @@ mesh = SubResource("ArrayMesh_k5o1q")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom" type="MeshInstance3D" parent="Model" index="24"]
+[node name="Blossom" type="MeshInstance3D" parent="Model" index="23"]
 transform = Transform3D(0.457094, 0.0202152, -0.889188, -0.0148417, 0.999776, 0.0150998, 0.889294, 0.00629499, 0.457292, 0.00513073, 0.208926, 0.0410657)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2809,7 +2826,7 @@ mesh = SubResource("ArrayMesh_5bnnr")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_022" type="MeshInstance3D" parent="Model" index="25"]
+[node name="Blossom_022" type="MeshInstance3D" parent="Model" index="24"]
 transform = Transform3D(0.706982, -0.0053092, -0.707211, -0.0114544, 0.999755, -0.0189561, 0.707139, 0.0215023, 0.706748, 0.00478356, 0.211292, 0.0482844)
 layers = 5
 instance_shader_parameters/stength = 0.5
@@ -2817,7 +2834,7 @@ mesh = SubResource("ArrayMesh_2b8b0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_032" type="MeshInstance3D" parent="Model" index="26"]
+[node name="Leaf_032" type="MeshInstance3D" parent="Model" index="25"]
 transform = Transform3D(-0.184399, -0.732974, 0.654787, 0.0843241, 0.651957, 0.753553, -0.979227, 0.194169, -0.058413, -0.123486, 0.160739, 0.0427309)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2825,7 +2842,7 @@ mesh = SubResource("ArrayMesh_2pjwn")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_033" type="MeshInstance3D" parent="Model" index="27"]
+[node name="Leaf_033" type="MeshInstance3D" parent="Model" index="26"]
 transform = Transform3D(-0.92075, 0.206794, -0.33084, -0.13471, 0.627322, 0.76702, 0.366159, 0.750802, -0.54975, 0.11101, 0.153459, 0.0863382)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2833,7 +2850,7 @@ mesh = SubResource("ArrayMesh_qerns")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Blossom_009" type="MeshInstance3D" parent="Model" index="28"]
+[node name="Blossom_009" type="MeshInstance3D" parent="Model" index="27"]
 transform = Transform3D(-0.512636, -0.0114145, -0.292242, -0.00676034, 0.590051, -0.0111878, 0.292387, -0.0063701, -0.512641, 0.00322615, 0.0215668, -0.00785992)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2841,7 +2858,7 @@ mesh = SubResource("ArrayMesh_ko5v8")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_029" type="MeshInstance3D" parent="Model" index="29"]
+[node name="Leaf_029" type="MeshInstance3D" parent="Model" index="28"]
 transform = Transform3D(0.117054, -0.0926584, 0.988794, 0.0364235, 0.995369, 0.0889627, -0.992457, 0.025602, 0.119887, -0.0696236, 0.0159551, 0.0388049)
 layers = 5
 instance_shader_parameters/stength = 1.0
@@ -2849,13 +2866,16 @@ mesh = SubResource("ArrayMesh_g0wi1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
 
-[node name="Leaf_030" type="MeshInstance3D" parent="Model" index="30"]
+[node name="Leaf_030" type="MeshInstance3D" parent="Model" index="29"]
 transform = Transform3D(0.962509, -0.057586, 0.265067, 0.0550487, 0.998339, 0.0169975, -0.265605, -0.00176864, 0.96408, 0.0847547, 0.0161041, 0.058304)
 layers = 5
 instance_shader_parameters/stength = 1.0
 mesh = SubResource("ArrayMesh_ubdyu")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_a14ga")
+
+[node name="FlamieFruit" parent="Model" index="30" instance=ExtResource("2_kawg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.214325, 0.0501802)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -2871,15 +2891,12 @@ animation_time = 6.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.283, 0)
 
-[node name="FertilizeEvent" type="Node3D" parent="Stage1" index="0"]
-script = ExtResource("5_d4ng8")
-
-[node name="MusicEvent" type="Node3D" parent="Stage1" index="1"]
+[node name="MusicEvent" type="Node3D" parent="Stage1" index="0"]
 script = ExtResource("6_glrd6")
 target_time = 5.0
 icon_texture = ExtResource("7_6pry3")
 
-[node name="WeedEvent" type="Node3D" parent="Stage1" index="2"]
+[node name="WeedEvent" type="Node3D" parent="Stage1" index="1"]
 script = ExtResource("8_4a6pc")
 event_weed = ExtResource("9_5c5wj")
 icon_texture = ExtResource("10_xwg07")
@@ -2896,7 +2913,7 @@ transform = Transform3D(0.721464, -0.0641114, 0.689477, -0.0757967, 0.98241, 0.1
 [node name="Spawnpoint4" type="Node3D" parent="Stage1/WeedEvent" index="3"]
 transform = Transform3D(0.979297, 0.202428, 0, -0.20071, 0.970984, 0.130024, 0.0263206, -0.127332, 0.991511, 0.104627, 0.0162301, -0.0431781)
 
-[node name="FireFairyEvent" type="Node3D" parent="Stage1" index="3" node_paths=PackedStringArray("fairy_spawns")]
+[node name="FireFairyEvent" type="Node3D" parent="Stage1" index="2" node_paths=PackedStringArray("fairy_spawns")]
 script = ExtResource("11_5ym1y")
 fire = ExtResource("24_5ielf")
 fairy_spawns = [NodePath("FairySpawn")]
@@ -2923,7 +2940,12 @@ animation_time = 9.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.43, 0)
 
-[node name="KnospEvent" type="Node3D" parent="Stage2" index="0"]
+[node name="PotionEvent" type="Node3D" parent="Stage2" index="0"]
+script = ExtResource("24_kj3ng")
+particles_position = Vector3(0, 0.135, 0)
+falling_leaf_particles = ExtResource("25_ssrgl")
+
+[node name="KnospEvent" type="Node3D" parent="Stage2" index="1"]
 script = ExtResource("11_gjqbd")
 knosp = ExtResource("12_reiha")
 max_knosp_amount = 4
@@ -2940,9 +2962,6 @@ transform = Transform3D(0.541692, 0.659362, 0.521355, 0.508037, 0.237321, -0.827
 
 [node name="Spawnpoint4" type="Node3D" parent="Stage2/KnospEvent" index="3"]
 transform = Transform3D(-0.618767, -0.749987, -0.233768, -0.57755, 0.232592, 0.78252, -0.532507, 0.61921, -0.577075, -0.0021644, 0.34059, -0.08558)
-
-[node name="FertilizeEvent" type="Node3D" parent="Stage2" index="1"]
-script = ExtResource("5_d4ng8")
 
 [node name="MusicEvent" type="Node3D" parent="Stage2" index="2"]
 script = ExtResource("6_glrd6")
@@ -3011,8 +3030,10 @@ animation_time = 5.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.43, 0)
 
-[node name="FertilizeEvent" type="Node3D" parent="Stage3" index="0"]
-script = ExtResource("5_d4ng8")
+[node name="PotionEvent" type="Node3D" parent="Stage3" index="0"]
+script = ExtResource("24_kj3ng")
+particles_position = Vector3(0, 0.166, 0)
+falling_leaf_particles = ExtResource("25_v5he5")
 
 [node name="MusicEvent" type="Node3D" parent="Stage3" index="1"]
 script = ExtResource("6_glrd6")

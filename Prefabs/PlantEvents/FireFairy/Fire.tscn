@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://oy4mv3s1ayr7"]
+[gd_scene load_steps=36 format=3 uid="uid://oy4mv3s1ayr7"]
 
 [ext_resource type="Texture2D" uid="uid://0gy63t2w51ki" path="res://Textures/Particles/Fire_01.png" id="1_1pe2x"]
 [ext_resource type="Script" path="res://Prefabs/PlantEvents/FireFairy/Fire.gd" id="1_ko301"]
@@ -259,17 +259,6 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_xtvto")
 size = Vector2(0.02, 0.02)
 
-[sub_resource type="Gradient" id="Gradient_as50g"]
-offsets = PackedFloat32Array(0.387574, 0.819527)
-colors = PackedColorArray(0, 0, 0, 0.807843, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l0cqy"]
-gradient = SubResource("Gradient_as50g")
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_nwjdi"]
 size = Vector3(0.05, 0.05, 0.05)
 
@@ -345,15 +334,6 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1t44u")
 draw_pass_1 = SubResource("QuadMesh_28g6y")
-
-[node name="Decal" type="Decal" parent="."]
-layers = 4
-size = Vector3(0.1, 0.1, 0.1)
-texture_albedo = SubResource("GradientTexture2D_l0cqy")
-emission_energy = 0.0
-lower_fade = 1.63925
-distance_fade_begin = 36.95
-cull_mask = 4
 
 [node name="Trigger" type="Area3D" parent="."]
 collision_layer = 0

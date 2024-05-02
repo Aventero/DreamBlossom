@@ -105,7 +105,6 @@ func get_mixture() -> int:
 
 func _fill_cauldron(type : Potion.TYPE) -> void:
 	# Color in fluid
-	#_fluid_material.set_shader_parameter("base_color", Potion.get_color(type))
 	_fluid_material.set_shader_parameter("base_color", Potion.get_potion_data(type, Potion.PROPERTIES.COLOR))
 	
 	# Make fluid visible
@@ -114,7 +113,10 @@ func _fill_cauldron(type : Potion.TYPE) -> void:
 	
 	_fluid_tween= create_tween().set_parallel()
 	_fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	_fluid_tween.tween_method(_update_fluid_alpha, 0.0, 1.0, 0.2)
+	
+	# Tween alpha value with different tween
+	var alpha_tween : Tween = create_tween()
+	alpha_tween.tween_method(_update_fluid_alpha, _fluid_material.get_shader_parameter("alpha"), 1.0, 0.2)
 
 func _empty_cauldron() -> void:
 	# Clear mixture

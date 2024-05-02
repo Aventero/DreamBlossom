@@ -6,13 +6,13 @@ extends Node3D
 func set_outline(visiblity : bool) -> void:
 	outline.visible = visiblity
 
-func enable_fertilize_event(event : NommieFertilizeEvent) -> void:
+func enable_potion_event(event : NommiePotionEvent) -> void:
 	# Enable outline
 	set_outline(true)
 	
 	# Setup event
 	for child in get_children():
-		if child is NommieFertilize:
+		if child is NommiePotion:
 			child.setup(event)
 
 func enable_watering_event(event : NommieWateringEvent) -> void:

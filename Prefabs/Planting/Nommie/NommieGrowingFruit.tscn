@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="1_lbt5m"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Fruits/NommieGrowingFruit.gd" id="1_wdsrn"]
 [ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_bd17p"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommieFertilize.gd" id="4_cj6x0"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotion.gd" id="4_cj6x0"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieWatering/NommieWatering.gd" id="5_saklj"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeeding.gd" id="6_3u6u3"]
 
@@ -200,12 +200,12 @@ skeleton = NodePath("")
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Model/Upper_Head"]
 remote_path = NodePath("../../Outline/Outline_Top")
 
-[node name="NommieFertilize" type="Area3D" parent="."]
+[node name="NommiePotion" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 65540
+collision_mask = 2048
 script = ExtResource("4_cj6x0")
 
-[node name="Shape" type="CollisionShape3D" parent="NommieFertilize"]
+[node name="Shape" type="CollisionShape3D" parent="NommiePotion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.00818772, 0.0462392)
 shape = SubResource("BoxShape3D_oofyk")
 disabled = true
@@ -230,6 +230,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.00818772, 0.046
 shape = SubResource("BoxShape3D_oofyk")
 disabled = true
 
-[connection signal="body_entered" from="NommieFertilize" to="NommieFertilize" method="_on_body_entered"]
+[connection signal="body_entered" from="NommiePotion" to="NommiePotion" method="_on_body_entered"]
 [connection signal="body_entered" from="NommieWatering" to="NommieWatering" method="_on_body_entered"]
 [connection signal="body_entered" from="NommieFeeding" to="NommieFeeding" method="_on_body_entered"]

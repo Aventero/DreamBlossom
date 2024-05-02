@@ -14,7 +14,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if state.get_contact_count() >= 1:
 		_contact_point = state.get_contact_local_position(0)
 
-func splash_drop() -> void:
+func splash_drop(override_position : Vector3 = Vector3.INF) -> void:
 	# Destory collision to prevent further collisions
 	$CollisionShape3D.queue_free()
 	
@@ -26,12 +26,20 @@ func splash_drop() -> void:
 	# Spawn splash particles
 	var splash : ParticleCombiner = splash_particles.instantiate()
 	add_sibling(splash)
-	splash.global_position = _contact_point
+	
+	if override_position == Vector3.INF:
+		splash.global_position = _contact_point
+	else:
+		splash.global_position = override_position
 	
 	# Decal
 	var splash_decal : Node3D = splash_decal.instantiate()
 	add_sibling(splash_decal)
-	splash_decal.global_position = _contact_point
+	
+	if override_position == Vector3.INF:
+		splash_decal.global_position = _contact_point
+	else:
+		splash_decal.global_position = override_position
 
 func cauldron_splash(spawn_point : Vector3) -> void:
 	# Destory collision to prevent further collisions

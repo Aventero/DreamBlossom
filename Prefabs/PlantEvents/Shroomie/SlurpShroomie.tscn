@@ -109,7 +109,6 @@ radius = 0.055
 
 [node name="Slurp Shroomie" type="Node3D"]
 script = ExtResource("1_wjceu")
-fertilizer_colors = Array[Color]([Color(0.157, 0.361, 1.707, 1), Color(1.783, 0.665, 0.251, 1), Color(0.078, 1.716, 0.389, 1)])
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -121,14 +120,14 @@ skeleton = NodePath("")
 mesh = SubResource("ArrayMesh_apvoo")
 surface_material_override/0 = SubResource("ShaderMaterial_qkiep")
 
-[node name="Fertilizer Particles" type="GPUParticles3D" parent="."]
+[node name="Potion Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0562818, 0)
 amount = 12
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_aab0v")
 draw_pass_1 = SubResource("QuadMesh_kokmr")
 
-[node name="Fertilizer Complete Particles" type="GPUParticles3D" parent="."]
+[node name="Potion Complete Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0562818, 0)
 emitting = false
 amount = 16
@@ -143,12 +142,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0562818, 0)
 cull_mask = 4293918721
 radius = 0.15
 
-[node name="Fertilizer Trigger" type="Area3D" parent="."]
+[node name="Potion Trigger" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 65540
+collision_mask = 2048
 
-[node name="Trigger" type="CollisionShape3D" parent="Fertilizer Trigger"]
+[node name="Trigger" type="CollisionShape3D" parent="Potion Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0517518, 0)
 shape = SubResource("SphereShape3D_n3rvt")
 
-[connection signal="body_entered" from="Fertilizer Trigger" to="." method="_on_fertilizer_trigger_body_entered"]
+[connection signal="body_entered" from="Potion Trigger" to="." method="_on_potion_trigger_body_entered"]

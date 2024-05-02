@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v2r5d120efo0"
-path="res://.godot/imported/LeafParticle.png-b93c39b600c60573f936c92efc605fb0.ctex"
+uid="uid://do4firq1aar64"
+path="res://.godot/imported/PotionBlue.png-8c6c78efe59370a8c70b14a799f4bc41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Particles/LeafParticle.png"
-dest_files=["res://.godot/imported/LeafParticle.png-b93c39b600c60573f936c92efc605fb0.ctex"]
+source_file="res://Textures/EventIcons/PotionBlue.png"
+dest_files=["res://.godot/imported/PotionBlue.png-8c6c78efe59370a8c70b14a799f4bc41.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

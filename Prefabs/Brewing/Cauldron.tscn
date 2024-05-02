@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://c78a1jfo7knpf"]
+[gd_scene load_steps=89 format=3 uid="uid://c78a1jfo7knpf"]
 
 [ext_resource type="Script" path="res://Scripts/Brewing/Cauldron.gd" id="1_4rxum"]
 [ext_resource type="Texture2D" uid="uid://daw2f8acud4t8" path="res://Textures/Environment/Cauldron.png" id="2_vnfj3"]
@@ -7,10 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://d08hyvia0w3td" path="res://Textures/Particles/CouldronFire.png" id="4_m4ul7"]
 [ext_resource type="PackedScene" uid="uid://b1m3kqhs6gx7" path="res://Models/Log.blend" id="5_encwd"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="6_r7pt7"]
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="7_6rd3o"]
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="7_5lvsu"]
 [ext_resource type="Script" path="res://Scripts/Lever.gd" id="9_8d6wc"]
 [ext_resource type="Texture2D" uid="uid://cg3g2cb5up2k0" path="res://Textures/Particles/FireSmoke02.png" id="9_sbiad"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="10_f8ijn"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="10_niq00"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="11_d68hx"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="12_0hfjq"]
 [ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="13_4jxc5"]
@@ -823,6 +824,20 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_lsptb")
 size = Vector2(0.02, 0.02)
 
+[sub_resource type="Resource" id="Resource_xs5ho"]
+script = ExtResource("10_niq00")
+magnitude = 1.0
+active_during_pause = false
+indefinite = true
+duration_ms = 300
+
+[sub_resource type="Resource" id="Resource_v5nlm"]
+script = ExtResource("10_niq00")
+magnitude = 1.0
+active_during_pause = false
+indefinite = false
+duration_ms = 100
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_wyweb"]
 radius = 0.03
 
@@ -979,7 +994,7 @@ transform = Transform3D(-1.74846e-08, 0.0899804, -0.389748, 0, 0.389748, 0.08998
 font_size = 34
 
 [node name="FireCombiner" type="Node3D" parent="."]
-script = ExtResource("7_6rd3o")
+script = ExtResource("7_5lvsu")
 
 [node name="Flames" type="GPUParticles3D" parent="FireCombiner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255464, 0)
@@ -1014,7 +1029,7 @@ process_material = SubResource("ParticleProcessMaterial_5uriq")
 draw_pass_1 = SubResource("QuadMesh_j6bkw")
 
 [node name="LeverPulledCombiner" type="Node3D" parent="."]
-script = ExtResource("7_6rd3o")
+script = ExtResource("7_5lvsu")
 start_on_ready = false
 
 [node name="Sparks" type="GPUParticles3D" parent="LeverPulledCombiner"]
@@ -1053,6 +1068,8 @@ draw_pass_1 = SubResource("QuadMesh_b32g7")
 
 [node name="Lever" type="Node3D" parent="."]
 script = ExtResource("9_8d6wc")
+pull_rumble = SubResource("Resource_xs5ho")
+pull_complete_rumble = SubResource("Resource_v5nlm")
 
 [node name="Grab Pickable" type="RigidBody3D" parent="Lever"]
 transform = Transform3D(1, 0, 0, 0, 0.559193, 0.829037, 0, -0.829037, 0.559193, 0.180354, 0.333435, -0.0928104)

@@ -1,13 +1,21 @@
-[gd_scene load_steps=25 format=3 uid="uid://bheek8uwc4n13"]
+[gd_scene load_steps=27 format=3 uid="uid://cgb3ju2h2oipm"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_6iw1p"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_75se4"]
 [ext_resource type="Script" path="res://Scripts/Potion.gd" id="2_a0gms"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="3_ieyp2"]
 [ext_resource type="Material" uid="uid://dh3v7bvyuf5xi" path="res://Materials/Potions/PotionRed.tres" id="3_sjyhy"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_t6hfu"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_88qnn"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="6_of8cu"]
 [ext_resource type="PackedScene" uid="uid://dd1p7jnxxyv0m" path="res://Models/PotionDrop.blend" id="8_w4dig"]
+
+[sub_resource type="Resource" id="Resource_gdcvt"]
+script = ExtResource("3_ieyp2")
+magnitude = 0.3
+active_during_pause = false
+indefinite = false
+duration_ms = 20
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bj21r"]
 points = PackedVector3Array(-0.0517108, 0.0651855, -0.0517108, 0.0517108, 0.0651855, -0.0517108, -0.0480866, 0.0222808, -0.0480866, -0.0517108, 0.0651855, 0.0517108, -0.0228386, 0.131978, -0.0228386, 0.0517108, 0.0651855, 0.0517108, 0.0480765, 0.0222808, -0.0480866, 0.0228285, 0.131978, -0.0228386, -0.031474, -4.81147e-06, -0.0314739, -0.0480866, 0.0222808, 0.0480765, -0.0228386, 0.131978, 0.0228285, 0.0480765, 0.0222808, 0.0480765, 0.0228285, 0.131978, 0.0228285, 0.0314537, -4.81147e-06, -0.0314739, -0.031474, -4.81147e-06, 0.0314537, 0.0314537, -4.81147e-06, 0.0314537)
@@ -130,7 +138,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3cxve"]
-radius = 0.00875705
+radius = 0.005
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exi0o"]
 albedo_color = Color(0.933333, 0, 0.188235, 1)
@@ -155,6 +163,7 @@ infinite_drops = false
 tilt_angle = 95.0
 drop_fill_speed = 1.0
 max_drop_size = 8.0
+drop_rumble = SubResource("Resource_gdcvt")
 release_mode = 0
 second_hand_grab = 1
 
@@ -170,6 +179,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hc8to")
 
 [node name="Stomp" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(0.0164757, 0, 0, 0, 0.0164757, 0, 0, 0, 0.0164757, 0, 0.134488, 0)
+visible = false
 mesh = SubResource("ArrayMesh_ng7mj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")

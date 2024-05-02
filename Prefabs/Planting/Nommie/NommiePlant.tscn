@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="19_hsbs3"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieWatering/NommieWateringEvent.gd" id="20_dbgk5"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="20_nq6kw"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommieFertilizeEvent.gd" id="21_efj4t"]
+[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotionEvent.gd" id="21_efj4t"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeedingEvent.gd" id="23_wguxe"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="24_gfvoo"]
 [ext_resource type="Texture2D" uid="uid://b0j2pyrhms3mm" path="res://Textures/EditorIcons/SlurpShroomieEvent.png" id="24_vkyfw"]
@@ -2073,65 +2073,83 @@ surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 [node name="Stick_027" type="MeshInstance3D" parent="Model" index="13"]
 transform = Transform3D(0.999974, 0.0071993, -0.000258603, -0.00591701, 0.841283, 0.540562, 0.00410922, -0.540546, 0.841304, 0.00160307, -0.00920491, -0.00666186)
 layers = 13
+instance_shader_parameters/strength = 0.05
 mesh = SubResource("ArrayMesh_tmvhq")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_028" type="MeshInstance3D" parent="Model" index="14"]
 transform = Transform3D(-0.0212414, -0.484573, 0.874493, -0.246646, 0.850195, 0.465118, -0.968873, -0.205811, -0.137578, -0.00693581, 0.0617067, -0.0629007)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_a18ql")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_029" type="MeshInstance3D" parent="Model" index="15"]
 transform = Transform3D(-0.398553, 0.239506, 0.88532, -0.162991, 0.931438, -0.325358, -0.902546, -0.273972, -0.33219, -0.0435652, 0.335307, -0.0682088)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_cykhn")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_030" type="MeshInstance3D" parent="Model" index="16"]
 transform = Transform3D(0.340125, 0.433399, -0.834554, -0.0295358, 0.89195, 0.451168, 0.939916, -0.128804, 0.316175, -0.00565244, 0.177123, -0.0928072)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_1fkw1")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_031" type="MeshInstance3D" parent="Model" index="17"]
 transform = Transform3D(0.943769, -0.268518, 0.192868, 0.288794, 0.953558, -0.0855897, -0.160928, 0.136476, 0.977485, 0.00776322, 0.12543, -0.103377)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_b48wh")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_032" type="MeshInstance3D" parent="Model" index="18"]
 transform = Transform3D(0.883276, 0.0716162, -0.463352, -0.41062, 0.595178, -0.690763, 0.226307, 0.800396, 0.555114, 0.0558496, 0.295504, -0.116672)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_qwts4")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_033" type="MeshInstance3D" parent="Model" index="19"]
 transform = Transform3D(0.827498, 0.0577699, 0.558488, 0.424416, 0.58685, -0.68955, -0.367584, 0.807632, 0.461099, -0.0616638, 0.159651, -0.0793729)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_3p505")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_034" type="MeshInstance3D" parent="Model" index="20"]
 transform = Transform3D(0.988756, 0.142725, -0.0446132, -0.138714, 0.763999, -0.63013, -0.055851, 0.629234, 0.775207, -0.0121634, 0.44347, -0.0946563)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_7pf34")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="Stick_019" type="MeshInstance3D" parent="Model" index="21"]
 transform = Transform3D(0.840681, 0.541528, -0.00169087, -0.453012, 0.701549, -0.550099, -0.296708, 0.463224, 0.835098, 0.0198656, 0.0969914, -0.0881881)
 layers = 13
+instance_shader_parameters/strength = 0.1
 mesh = SubResource("ArrayMesh_7ch32")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gqrjr")
 
 [node name="NommieGrowingFruit1" parent="Model" index="22" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.859716, 0.189958, 0, -0.189958, 0.859716, 0, 0, 0, 0.880452, -0.0595729, 0.218215, 0.0146779)
+transform = Transform3D(0.749094, 0.0368596, 0, -0.0368596, 0.749094, 0, 0, 0, 0.75, -0.0595729, 0.218215, 0.0146779)
 
 [node name="NommieGrowingFruit2" parent="Model" index="23" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.760905, 0, 0, 0, 0.752098, -0.115434, 0, 0.115434, 0.752098, 0.0639237, 0.3583, -0.032154)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0639237, 0.3583, -0.032154)
 
 [node name="NommieGrowingFruit3" parent="Model" index="24" instance=ExtResource("3_3nw5c")]
-transform = Transform3D(0.374319, 0.00542877, 0.147209, -0.0263127, 0.397988, 0.0522302, -0.14494, -0.0582313, 0.370697, 0.00544426, 0.531364, -0.0152283)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00544426, 0.531364, -0.0152283)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -2147,14 +2165,14 @@ animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.35, 0)
 
-[node name="NommieFeedingEvent" type="Node3D" parent="Stage1" index="0" node_paths=PackedStringArray("nommies")]
+[node name="NommiePotionEvent" type="Node3D" parent="Stage1" index="0" node_paths=PackedStringArray("nommies")]
+script = ExtResource("21_efj4t")
+nommies = [NodePath("../../Model/NommieGrowingFruit1")]
+
+[node name="NommieFeedingEvent" type="Node3D" parent="Stage1" index="1" node_paths=PackedStringArray("nommies")]
 script = ExtResource("23_wguxe")
 nommies = [NodePath("../../Model/NommieGrowingFruit1")]
 icon_texture = ExtResource("24_vkyfw")
-
-[node name="NommieFertilizeEvent" type="Node3D" parent="Stage1" index="1" node_paths=PackedStringArray("nommies")]
-script = ExtResource("21_efj4t")
-nommies = [NodePath("../../Model/NommieGrowingFruit1")]
 
 [node name="NommieWateringEvent" type="Node3D" parent="Stage1" index="2" node_paths=PackedStringArray("nommies")]
 script = ExtResource("20_dbgk5")
@@ -2174,13 +2192,13 @@ max_knosp_amount = 3
 icon_texture = ExtResource("17_gbdlc")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage1/KnospEvent" index="0"]
-transform = Transform3D(0.911011, -0.00591389, -0.412339, -0.344966, 0.536947, -0.769861, 0.225957, 0.843595, 0.487125, 0, 0.1193, -0.0341208)
+transform = Transform3D(0.911011, -0.00591389, -0.412339, -0.344966, 0.536947, -0.769861, 0.225957, 0.843595, 0.487125, 0, 0.110034, -0.0341208)
 
 [node name="Spawnpoint2" type="Node3D" parent="Stage1/KnospEvent" index="1"]
-transform = Transform3D(0.795068, 0.546909, 0.262217, -0.267551, 0.704246, -0.657612, -0.544319, 0.45269, 0.70625, 0.102469, 0.222552, -0.0196146)
+transform = Transform3D(0.795068, 0.546909, 0.262217, -0.267551, 0.704246, -0.657612, -0.544319, 0.45269, 0.70625, 0.102469, 0.213286, -0.0196146)
 
 [node name="Spawnpoint3" type="Node3D" parent="Stage1/KnospEvent" index="2"]
-transform = Transform3D(0.203553, -0.48645, 0.849666, -0.153345, 0.841284, 0.518388, -0.966981, -0.235811, 0.0966517, -0.0979626, 0.243418, -0.100438)
+transform = Transform3D(0.203553, -0.48645, 0.849666, -0.153345, 0.841284, 0.518388, -0.966981, -0.235811, 0.0966517, -0.0979626, 0.234152, -0.100438)
 
 [node name="WeedEvent" type="Node3D" parent="Stage1" index="5"]
 script = ExtResource("18_fqt52")
@@ -2239,21 +2257,20 @@ animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.604, 0)
 
-[node name="NommieFeedingEvent" type="Node3D" parent="Stage2" index="0" node_paths=PackedStringArray("nommies")]
+[node name="NommiePotionEvent" type="Node3D" parent="Stage2" index="0" node_paths=PackedStringArray("nommies")]
+script = ExtResource("21_efj4t")
+nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
+
+[node name="NommieFeedingEvent" type="Node3D" parent="Stage2" index="1" node_paths=PackedStringArray("nommies")]
 script = ExtResource("23_wguxe")
 nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
 icon_texture = ExtResource("24_vkyfw")
 
-[node name="NommieWateringEvent" type="Node3D" parent="Stage2" index="1" node_paths=PackedStringArray("nommies")]
+[node name="NommieWateringEvent" type="Node3D" parent="Stage2" index="2" node_paths=PackedStringArray("nommies")]
 script = ExtResource("20_dbgk5")
 target_water_amount = 5
 nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
 icon_texture = ExtResource("6_suqks")
-
-[node name="NommieFertilizeEvent" type="Node3D" parent="Stage2" index="2" node_paths=PackedStringArray("nommies")]
-visible = false
-script = ExtResource("21_efj4t")
-nommies = [NodePath("../../Model/NommieGrowingFruit1"), NodePath("../../Model/NommieGrowingFruit2")]
 
 [node name="MusicEvent" type="Node3D" parent="Stage2" index="3"]
 script = ExtResource("7_h8b0q")

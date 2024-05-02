@@ -1,11 +1,11 @@
 @icon("res://Textures/EditorIcons/Fertilizer.png")
-class_name NommieFertilize
+class_name NommiePotion
 extends Area3D
 
-var _event : NommieFertilizeEvent
+var _event : NommiePotionEvent
 var _accept_food : bool = false
 
-func setup(event : NommieFertilizeEvent) -> void:
+func setup(event : NommiePotionEvent) -> void:
 	_event = event
 	
 	# Open mouth
@@ -23,19 +23,13 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	_accept_food = false
 	
-	if not body is Fertilizer:
+	if not body is PotionDrop:
 		return
 	
-	# Correct Fertilizer
-	if body.type == _event.target_fertilizer_type:
-		# Despawn fertilizer
-		body.drop()
-		body.freeze = true
-		body.enabled = false
-		
-		var fertilizer_tween : Tween = create_tween()
-		fertilizer_tween.tween_property(body, "scale", Vector3.ZERO, 0.2)
-		fertilizer_tween.tween_callback(body.queue_free)
+	# Correct Potion
+	if body.type == _event.requested_potion_type:
+		# Splash drop
+		body.splash_drop(global_position)
 		
 		# Wait for eating animation to finish
 		await _play_eat().finished
@@ -46,10 +40,10 @@ func _on_body_entered(body: Node3D) -> void:
 		mouth_tween.tween_property($"../Model/Upper_Head", "rotation", Vector3(-0.8866273, 0, 0), 0.5)
 		
 		# Notify event
-		_event.fertilizer_added()
+		_event.potion_added()
 		
 		_cleanup()
-	# Wrong Fertilizer
+	# Wrong Potion
 	else:
 		# Disable outline while nommie is shaking his head
 		owner.set_outline(false)

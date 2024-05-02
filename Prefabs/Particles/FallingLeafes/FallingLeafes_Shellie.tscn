@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://dimb8td3mgjuc"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_66p17"]
+[ext_resource type="Texture2D" uid="uid://dot52jl0egqy2" path="res://Textures/Particles/CoralDust.png" id="1_ju6wa"]
+[ext_resource type="Texture2D" uid="uid://d3e475vuxy8bi" path="res://Textures/Particles/LeafParticleGreen_Long.png" id="2_s31y4"]
+
+[sub_resource type="Curve" id="Curve_87m4r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262458, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26279, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bu7m6"]
+curve = SubResource("Curve_87m4r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gsfw"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.2
+emission_ring_radius = 0.15
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -80.0
+angular_velocity_max = 80.0
+gravity = Vector3(0, 0.01, 0)
+scale_curve = SubResource("CurveTexture_bu7m6")
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.075
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uvpf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
+albedo_texture = ExtResource("1_ju6wa")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4n4df"]
+material = SubResource("StandardMaterial3D_4uvpf")
+size = Vector2(0.015, 0.019)
+
+[sub_resource type="Curve" id="Curve_j06f7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262458, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26279, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aq0c2"]
+curve = SubResource("Curve_j06f7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pr1au"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 0.15
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -80.0
+angular_velocity_max = 80.0
+gravity = Vector3(0, 0.01, 0)
+scale_curve = SubResource("CurveTexture_aq0c2")
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g288i"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
+albedo_texture = ExtResource("2_s31y4")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_f0e3x"]
+material = SubResource("StandardMaterial3D_g288i")
+size = Vector2(0.015, 0.019)
+
+[node name="FallingLeafes_Shellie" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_66p17")
+
+[node name="FallingLeafes_Shellie" type="GPUParticles3D" parent="."]
+lifetime = 4.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_7gsfw")
+draw_pass_1 = SubResource("QuadMesh_4n4df")
+
+[node name="FallingLeades_Secondary" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.043637, 0)
+amount = 4
+lifetime = 4.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_pr1au")
+draw_pass_1 = SubResource("QuadMesh_f0e3x")
