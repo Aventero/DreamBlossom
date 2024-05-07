@@ -214,6 +214,7 @@ point_count = 4
 curve = SubResource("Curve_o4t1x")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1t44u"]
+lifetime_randomness = 0.25
 angle_min = -180.0
 angle_max = 180.0
 direction = Vector3(0, 1, 0)
@@ -284,6 +285,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_pl38q")
 
 [node name="Particles" type="Node3D" parent="."]
 script = ExtResource("7_4t0mm")
+start_on_ready = false
 
 [node name="Smoke1" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466629, 0)
@@ -315,10 +317,9 @@ draw_pass_1 = SubResource("QuadMesh_pdjm7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0160618, 0)
 layers = 2
 emitting = false
-amount = 16
 lifetime = 2.0
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.9
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1t44u")
 draw_pass_1 = SubResource("QuadMesh_qxr5x")
@@ -327,10 +328,9 @@ draw_pass_1 = SubResource("QuadMesh_qxr5x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0160618, 0)
 layers = 2
 emitting = false
-amount = 16
 lifetime = 2.0
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.9
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_1t44u")
 draw_pass_1 = SubResource("QuadMesh_28g6y")

@@ -8,8 +8,11 @@ extends Node3D
 @onready var particle_combiner : ParticleCombiner = $Particles
 
 var fire_fairy_event : FireFairyEvent
+var extinguished : bool = false
 
 func _on_trigger_body_entered(_body: Node3D) -> void:
+	extinguished = true
+	
 	# Disable trigger
 	water_trigger.disabled = true
 	
@@ -20,13 +23,17 @@ func _on_trigger_body_entered(_body: Node3D) -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale", Vector3.ZERO, 0.5)
 	
-	# Disappear particles
-	for parts in disappear_particles:
-		parts.emitting = true
+	play_smoke()
 	
 	if fire_fairy_event:
 		fire_fairy_event.fire_extinguished()
 	
 	# Wait for particles to finish
-	await particle_combiner.complete
+	await get_tree().create_timer(particle_combiner.get_max_lifetime()).timeout
 	queue_free()
+
+func play_smoke() -> void:
+	# Disappear particles
+	for parts in disappear_particles:
+		#parts.emitting = true
+		parts.restart()

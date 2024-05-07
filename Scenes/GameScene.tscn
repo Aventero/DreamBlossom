@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=77 format=3 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://cqjew7ckyr6bj" path="res://Prefabs/Farmland/ItemBags/SeedBags/PumkieSeedBag.tscn" id="27_h6dsn"]
 [ext_resource type="PackedScene" uid="uid://buxsxfl08780x" path="res://Prefabs/Farmland/ItemBags/SeedBags/NommieSeedBag.tscn" id="28_fuv11"]
 [ext_resource type="Script" path="res://Scripts/Farmland/Tools/ToolEnabler.gd" id="29_n5npg"]
+[ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="30_r4hcs"]
 [ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="31_yrpf0"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
@@ -468,6 +469,9 @@ transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274
 [node name="RecipeBook" parent="CookingArea" instance=ExtResource("40_1g7i3")]
 transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
 
+[node name="Candle" parent="CookingArea" instance=ExtResource("30_r4hcs")]
+transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
+
 [node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
 
@@ -548,13 +552,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
 script = ExtResource("29_n5npg")
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546872, 0.86449, 0.595764)
+transform = Transform3D(0.459487, 0, -0.888184, 0, 1, 0, 0.888184, 0, 0.459487, 0.528193, 0.86449, 0.553849)
 
 [node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("34_opvkw")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0.900121, 0.581508)
 
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
-transform = Transform3D(0.12767, 0, -0.991817, 0, 1, 0, 0.991817, 0, 0.12767, 0.348002, 0.860584, 0.781112)
+transform = Transform3D(-0.509538, 0, -0.860449, 0, 1, 0, 0.860449, 0, -0.509538, 0.409234, 0.860584, 0.781112)
 
 [node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
@@ -565,7 +569,7 @@ transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.
 transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.630592)
 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
-transform = Transform3D(-0.274093, 0, -0.961703, 0, 1, 0, 0.961703, 0, -0.274093, 0.607941, 0.858456, 1.10913)
+transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 0.669052, 0.858456, 0.44779)
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
 
