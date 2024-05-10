@@ -179,7 +179,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hc8to")
 
 [node name="Stomp" type="MeshInstance3D" parent="Model" index="1"]
 transform = Transform3D(0.0164757, 0, 0, 0, 0.0164757, 0, 0, 0, 0.0164757, 0, 0.134488, 0)
-visible = false
 mesh = SubResource("ArrayMesh_ng7mj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")
