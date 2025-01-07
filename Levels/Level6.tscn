@@ -118,6 +118,8 @@ time_before_first_spawn = 15.0
 inital_spawn_chance = 0.2
 stack_spawn_chance = 0.07
 time_until_death = 40.0
+enable_brewing = true
+enable_cooking = true
 time_between_orders = 10.0
 
 [node name="Order #1" type="Timer" parent="."]

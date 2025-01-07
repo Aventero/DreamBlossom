@@ -42,8 +42,8 @@ func _ready():
 	for child in plot.get_children():
 		if child.is_in_group("Soil"):
 			soil = child
-			break
 
+			break
 static func get_instance() -> WeedManager:
 	return instance
 
@@ -154,9 +154,11 @@ func spawn_weed(cell : GridCell, ignore_particles : bool = false):
 	
 	# Spawn new weed
 	var weed_digspot = weed.instantiate()
-	soil.add_sibling(weed_digspot)
+	
 	weed_digspot.global_position = soil.get_placement_position(cell, 1)
-	weed_digspot.scale = Vector3(0.0, 0.0, 0.0)
+	weed_digspot.scale = Vector3(0.001, 0.001, 0.001)
+	
+	soil.add_sibling(weed_digspot)
 	
 	# Spawn grow particles
 	if not ignore_particles:

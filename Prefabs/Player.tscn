@@ -32,6 +32,7 @@ tracker = &"right_hand"
 
 [node name="CollisionHandRight" parent="Right Hand" instance=ExtResource("3_gojer")]
 collision_mask = 0
+hand = 0
 
 [node name="RightHand" parent="Right Hand/CollisionHandRight" instance=ExtResource("2_cxmrd")]
 

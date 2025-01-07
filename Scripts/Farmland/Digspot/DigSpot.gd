@@ -27,7 +27,7 @@ signal potion_added(type : Potion.TYPE)
 @onready var seed_snap_point : Node3D = $"Seed Snap Point"
 @onready var material_changer : MaterialChanger = $MaterialChanger
 @onready var dry_timer : Timer = $DryTimer
-@onready var outline_mesh : MeshInstance3D = $Outline
+@export var outline_mesh : MeshInstance3D
 
 var anchor_cell : GridCell
 

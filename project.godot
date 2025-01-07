@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 
+[debug]
+
+settings/stdout/verbose_stdout=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/script-ide/plugin.cfg")

@@ -91,4 +91,3 @@ func _bobo_death() -> void:
 		#print("GETTING CLOSER UHIHIHIHIHI")
 		#if _current_step <= 0:
 			#print("U DIED")
-

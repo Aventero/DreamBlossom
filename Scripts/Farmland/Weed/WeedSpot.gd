@@ -124,7 +124,7 @@ func _on_spread_timer_timeout():
 	
 	var random_cell : GridCell = possible_cells[randi_range(0, possible_cells.size() - 1)]
 	
-	WeedManager.get_instance().spawn_weed(random_cell, random_cell.grid)
+	#WeedManager.get_instance().spawn_weed(random_cell, random_cell.grid)
 
 func _on_pull_pickup_picked_up(pickable):
 	# Squish on first pickup

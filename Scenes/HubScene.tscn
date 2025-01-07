@@ -130,9 +130,6 @@ ranged_enable = false
 script = ExtResource("3_we1bf")
 strafe = true
 
-[node name="CollisionHandRight" parent="XROrigin3D/Right Hand" index="0"]
-hand = 0
-
 [node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="2"]
 ranged_enable = false
 
