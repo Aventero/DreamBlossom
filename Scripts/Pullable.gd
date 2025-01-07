@@ -1,4 +1,4 @@
-@icon("res://Textures/Pullable.png")
+@icon("res://Textures/EditorIcons/Pullable.png")
 class_name Pullable
 extends Node3D
 

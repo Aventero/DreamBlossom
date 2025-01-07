@@ -12,7 +12,7 @@ uniform sampler2D mask : filter_nearest;
 
 void fragment() {
 	vec2 mod_UV = UV * UV_multiplier + UV_offset;
-	
+
 	if (texture(mask, mod_UV).a > 0.0)
 	{
 		ALBEDO = base_color * ((sin(TIME * speed) * color_difference / 2.0) + 0.5);

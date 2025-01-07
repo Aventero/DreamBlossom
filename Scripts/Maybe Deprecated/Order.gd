@@ -1,4 +1,4 @@
-@icon("res://Textures/Order.png")
+#@icon("res://Textures/Order.png")
 class_name Order
 extends Timer
 

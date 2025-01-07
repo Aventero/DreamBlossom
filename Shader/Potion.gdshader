@@ -21,7 +21,7 @@ varying bool unshaded;
 
 void vertex() {
 	position = mat3(MODEL_MATRIX) * VERTEX.xyz;
-	
+
 	// Wave
 	position.y += 0.0025 * sin(500.0 * position.x + 1.0 * TIME);
 }
@@ -34,19 +34,19 @@ float fresnel(float amount, vec3 normal, vec3 view)
 void fragment() {
 	if (fill_percentage <= 0.0)
 		discard;
-	
+
 	// Calculate fill percentage
 	float fill_line = min_height + (max_height - min_height) * fill_percentage;
-	
+
 	if (position.y > fill_line)
 		discard;
-	
+
 	// Base color
 	if (FRONT_FACING)
 	{
 		ALBEDO = mix(base_color.rgb, fresnel_color, fresnel(10.0, NORMAL, VIEW));
 		unshaded = false;
-		
+
 		// Noise
 		vec3 noise_color = texture(potion_noise, UV * 0.65 + vec2(0.02 * sin(TIME), 0.01 * sin(TIME))).rgb;
 		ALBEDO = mix(ALBEDO, ALBEDO * noise_color, mix_amount);
@@ -56,7 +56,7 @@ void fragment() {
 		ALBEDO = surface_color;
 		unshaded = true;
 	}
-	
+
 	// Line
 	if (position.y > fill_line - line_width)
 		ALBEDO = line_color;

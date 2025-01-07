@@ -120,7 +120,6 @@ var two_handed_complete : bool = false
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsPickable"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Get all grab points

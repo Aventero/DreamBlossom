@@ -387,4 +387,3 @@ func _insertion_squish():
 
 	# Return to normal
 	tween.tween_property(shovel, "scale", initial_scale, 0.05)
-
