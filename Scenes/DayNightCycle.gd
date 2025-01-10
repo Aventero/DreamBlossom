@@ -2,7 +2,7 @@
 extends Node3D
 
 var _time_of_day: float = 0.0
-@export_range(0, 24, 0.1) var time_of_day: float = 0.0:  
+@export_range(0, 24, 0.1) var time_of_day: float = 0.0:
 	set(value):
 		if Engine.is_editor_hint():
 			set_time_of_day(value)
@@ -15,17 +15,17 @@ func set_time_of_day(value):
 	_time_of_day = value  # Stop unnecissary updates
 	update_shader_parameters(value)
 
-	
+
 func calculate_sun_direction(hour: float) -> Vector3:
 	# Cycle starts with the sun at its highest at hour = 12
 	var angle = TAU * (hour / 24.0)  # TAU is 2*PI
 	var sun_direction: Vector3 = Vector3(cos(angle), sin(angle), -0.5)
-	return sun_direction	
+	return sun_direction
 
 func calculate_moon_direction(hour: float) -> Vector3:
 	var angle = TAU * (hour / 24.0)  # TAU is 2*PI
 	var moon_direction: Vector3 = Vector3(cos(angle + PI), sin(angle + PI), -0.5)  # Offset to opposite side
-	return moon_direction	
+	return moon_direction
 
 # Is celestial body above the horizon
 func is_sky_body_visible(direction: Vector3) -> bool:
