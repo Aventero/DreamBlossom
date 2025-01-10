@@ -57,10 +57,10 @@ void sky() {
 	
 	vec3 cloudTextureColor = texture(cloudsTexture, SKY_COORDS).rgb * day_sky_color;
 	if (day_intensity > 0.001) {
-		skyColor = mix(skyColor, cloudTextureColor, pow(clamp(0.0, 1.0, sunHeight), 2.0));
+		skyColor = mix(skyColor, cloudTextureColor, pow(clamp(0.0, 1.0, sunHeight), 4.0));
 	} else {
 		vec3 nightSky = texture(nightSkyTexture, SKY_COORDS).rgb;
-		skyColor = mix(skyColor, nightSky, pow(abs((sunHeight - 1.0) * 0.5), 4.0)) * abs(1.1 - night_intensity);
+		skyColor = mix(skyColor, nightSky, pow(abs((sunHeight - 1.0) * 0.5), 4.0)) * abs(1.2 - night_intensity);
 	}
 	skyColor += _sunColor + _moonColor;
 	COLOR = skyColor;

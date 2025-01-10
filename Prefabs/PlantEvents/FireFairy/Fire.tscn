@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://oy4mv3s1ayr7"]
+[gd_scene load_steps=36 format=4 uid="uid://oy4mv3s1ayr7"]
 
 [ext_resource type="Texture2D" uid="uid://0gy63t2w51ki" path="res://Textures/Particles/Fire_01.png" id="1_1pe2x"]
 [ext_resource type="Script" path="res://Prefabs/PlantEvents/FireFairy/Fire.gd" id="1_ko301"]
@@ -17,11 +17,11 @@ _surfaces = [{
 "aabb": AABB(-1, 0, -2.33357e-07, 2, 3.09091, 1.02334e-05),
 "format": 34896613377,
 "index_count": 24,
-"index_data": PackedByteArray(7, 0, 3, 0, 6, 0, 7, 0, 2, 0, 3, 0, 8, 0, 5, 0, 9, 0, 8, 0, 4, 0, 5, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0),
+"index_data": PackedByteArray("BwADAAYABwACAAMACAAFAAkACAAEAAUABAAGAAUABAAHAAYAAAAJAAEAAAAIAAkA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 10,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 214, 5, 0, 0, 255, 255, 0, 0, 214, 5, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 127, 235, 2, 0, 0, 255, 255, 255, 127, 235, 2, 0, 0, 255, 255, 255, 191, 117, 1, 0, 0, 0, 0, 255, 191, 117, 1, 0, 0, 0, 0, 255, 63, 96, 4, 0, 0, 255, 255, 255, 63, 96, 4, 0, 0)
+"vertex_data": PackedByteArray("AAAAANYFAAD//wAA1gUAAAAA//8AAAAA/////wAAAAAAAP9/6wIAAP///3/rAgAA////v3UBAAAAAP+/dQEAAAAA/z9gBAAA////P2AEAAA=")
 }]
 blend_shape_mode = 0
 
@@ -29,22 +29,22 @@ blend_shape_mode = 0
 resource_name = "Fire_Plane"
 _surfaces = [{
 "aabb": AABB(-1, 0, -2.33357e-07, 2, 3.09091, 1.02334e-05),
-"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 127, 255, 255, 255, 127, 255, 255, 255, 63, 0, 0, 255, 63, 0, 0, 255, 191, 255, 255, 255, 191),
+"attribute_data": PackedByteArray("AAD///////8AAAAA//8AAAAA/3////9/////PwAA/z8AAP+/////vw=="),
 "format": 34896613399,
 "index_count": 24,
-"index_data": PackedByteArray(7, 0, 3, 0, 6, 0, 7, 0, 2, 0, 3, 0, 8, 0, 5, 0, 9, 0, 8, 0, 4, 0, 5, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0),
+"index_data": PackedByteArray("BwADAAYABwACAAMACAAFAAkACAAEAAUABAAGAAUABAAHAAYAAAAJAAEAAAAIAAkA"),
 "material": SubResource("StandardMaterial3D_la4vl"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 10,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 214, 5, 255, 127, 255, 255, 0, 0, 214, 5, 255, 127, 0, 0, 255, 255, 0, 0, 255, 127, 255, 255, 255, 255, 0, 0, 255, 127, 0, 0, 255, 127, 235, 2, 255, 127, 255, 255, 255, 127, 235, 2, 255, 127, 255, 255, 255, 191, 117, 1, 255, 127, 0, 0, 255, 191, 117, 1, 255, 127, 0, 0, 255, 63, 96, 4, 255, 127, 255, 255, 255, 63, 96, 4, 255, 127, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255)
+"vertex_data": PackedByteArray("AAAAANYF/3///wAA1gX/fwAA//8AAP9//////wAA/38AAP9/6wL/f////3/rAv9/////v3UB/38AAP+/dQH/fwAA/z9gBP9/////P2AE/3//f////3////9/////f////3////9/////f////3////9/////f///")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ie65y")
 
 [sub_resource type="Shader" id="Shader_gwm1d"]
 code = "shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx, unshaded, shadows_disabled;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx, shadows_disabled;
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
 uniform float alpha_scissor_threshold;
@@ -64,7 +64,7 @@ instance uniform float stength = 1.0;
 
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
-	
+
 	// Foliage
 	VERTEX.x += sin(TIME * 7.0 + VERTEX.y * 50.0) * 0.075 * VERTEX.y * stength;
 }
@@ -81,6 +81,7 @@ void fragment() {
 	SPECULAR = specular;
 	ALPHA *= albedo.a * albedo_tex.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
+    EMISSION = vec3(0.05, 0.0, 0.0);  // Red emission
 }
 "
 
@@ -194,7 +195,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(1.77647, 0.745098, 0.247059, 1)
+albedo_color = Color(14.595, 0.5, 0, 1)
 texture_filter = 0
 billboard_mode = 3
 billboard_keep_scale = true

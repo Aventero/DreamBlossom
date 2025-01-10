@@ -38,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="36_eqljc"]
-[ext_resource type="PackedScene" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
+[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
 [ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="38_1hlk4"]
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
@@ -49,10 +49,10 @@
 [ext_resource type="Shader" path="res://Shader/wobbleTree.gdshader" id="49_u01kx"]
 [ext_resource type="Shader" path="res://Shader/wobbleLeaves.gdshader" id="49_wufmx"]
 [ext_resource type="Texture2D" uid="uid://by80yt2sy8pha" path="res://Textures/Environment/TreeLeaves.png" id="50_qfgda"]
-[ext_resource type="PackedScene" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
-[ext_resource type="PackedScene" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
+[ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
+[ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
 [ext_resource type="Texture2D" uid="uid://buuiah53s5e24" path="res://Textures/Environment/Foliage.png" id="51_uydf8"]
-[ext_resource type="PackedScene" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="52_wravo"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
@@ -64,18 +64,18 @@ gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
 shader = ExtResource("2_ktote")
-shader_parameter/day_sky_color = Color(0.509804, 0.552941, 0.815686, 1)
+shader_parameter/day_sky_color = Color(0.371819, 0.298171, 0.716147, 1)
 shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
-shader_parameter/sun_direction = Vector3(0.231495, 0.86395, -0.447214)
-shader_parameter/day_intensity = 0.965926
-shader_parameter/sun_color = Color(9.468, 9, 8.734, 1)
-shader_parameter/sun_size = 0.15
-shader_parameter/moon_direction = Vector3(-0.231495, -0.86395, -0.447214)
-shader_parameter/night_intensity = 0.0261769
-shader_parameter/moon_color = Color(21.06, 23.19, 25.29, 1)
+shader_parameter/sun_direction = Vector3(0.0163426, 0.894278, -0.447214)
+shader_parameter/day_intensity = 0.999833
+shader_parameter/sun_color = Color(2.05, 1.782, 1.096, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/moon_direction = Vector3(-0.0163426, -0.894278, -0.447214)
+shader_parameter/night_intensity = 1.22461e-16
+shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
 [sub_resource type="Sky" id="Sky_eqxy8"]
@@ -83,16 +83,28 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
+background_energy_multiplier = 0.999833
 sky = SubResource("Sky_eqxy8")
-ambient_light_color = Color(0.254902, 0.447059, 0.937255, 1)
-ambient_light_sky_contribution = 0.8
+ambient_light_color = Color(0.168978, 0.35464, 0.872666, 1)
+ambient_light_sky_contribution = 0.9
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
+glow_intensity = 5.79
+glow_strength = 1.53
+glow_blend_mode = 1
+glow_hdr_threshold = 2.72
+glow_hdr_scale = 2.24
 fog_enabled = true
-fog_light_color = Color(0, 0.45098, 0.47451, 1)
-fog_light_energy = 0.34
-fog_density = 0.0445
-fog_sky_affect = 0.016
+fog_mode = 1
+fog_light_color = Color(0, 0.213551, 0.226039, 1)
+fog_light_energy = 0.0
+fog_density = 1.0
+fog_aerial_perspective = 0.497
+fog_sky_affect = 0.0
+fog_depth_curve = 0.366018
+fog_depth_begin = 5.0
+fog_depth_end = 15.0
 adjustment_saturation = 1.25
 
 [sub_resource type="GDScript" id="GDScript_mo61k"]
@@ -20022,28 +20034,40 @@ script = ExtResource("1_r2msa")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_30re5")
 
-[node name="DayNightCycle" type="Node3D" parent="."]
+[node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 5.0
+time_of_day = 5.9302
 sky_shader_material = SubResource("ShaderMaterial_5puty")
+world_environment = NodePath("../WorldEnvironment")
+sun = NodePath("Sun")
+moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.888074, -0.397159, 0.231495, 0, 0.503577, 0.86395, -0.459701, 0.767252, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.999333, -0.0326581, 0.0163427, 0, 0.447512, 0.894277, -0.0365189, 0.893681, -0.447213, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
+light_energy = 0.999833
 shadow_enabled = true
-shadow_blur = 0.2
-directional_shadow_mode = 0
-directional_shadow_max_distance = 10.6
+directional_shadow_split_1 = 0.016
+directional_shadow_split_2 = 0.047
+directional_shadow_split_3 = 0.134
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447336, -0.0209401, 0.894121, 0, 0.999726, 0.0234134, -0.894366, 0.0104737, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447214, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89842e-17, -0.447214, 0, 0, 0)
 visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
+light_energy = 1.22461e-16
 shadow_enabled = true
 shadow_blur = 0.2
-directional_shadow_mode = 0
-directional_shadow_max_distance = 10.6
+directional_shadow_split_1 = 0.016
+directional_shadow_split_2 = 0.047
+directional_shadow_split_3 = 0.134
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]

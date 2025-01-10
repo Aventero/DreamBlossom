@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cttivc1gdbb5y"]
+[gd_scene load_steps=14 format=4 uid="uid://cttivc1gdbb5y"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/DeadLeaf.gd" id="1_5aubd"]
 [ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
@@ -21,12 +21,12 @@ _surfaces = [{
 "aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
 "format": 34896613377,
 "index_count": 24,
-"index_data": PackedByteArray(8, 0, 3, 0, 6, 0, 8, 0, 7, 0, 3, 0, 4, 0, 7, 0, 8, 0, 4, 0, 2, 0, 7, 0, 0, 0, 8, 0, 5, 0, 0, 0, 4, 0, 8, 0, 5, 0, 6, 0, 1, 0, 5, 0, 8, 0, 6, 0),
+"index_data": PackedByteArray("CAADAAYACAAHAAMABAAHAAgABAACAAcAAAAIAAUAAAAEAAgABQAGAAEABQAIAAYA"),
 "name": "Leaves",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 9,
-"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 0, 0, 243, 167, 205, 28, 53, 196, 0, 0, 99, 48, 0, 0, 239, 35, 0, 0, 255, 255, 205, 28, 0, 0, 0, 0, 0, 0, 205, 28, 115, 119, 0, 0, 209, 69, 205, 28, 246, 255, 0, 0, 255, 255, 205, 28, 251, 127, 0, 0, 22, 93, 205, 28, 0, 0, 0, 0, 25, 122, 255, 255, 3, 103, 0, 0)
+"vertex_data": PackedByteArray("AADNHPb/AADzp80cNcQAAGMwAADvIwAA///NHAAAAAAAAM0cc3cAANFFzRz2/wAA///NHPt/AAAWXc0cAAAAABl6//8DZwAA")
 }]
 blend_shape_mode = 0
 
@@ -34,16 +34,16 @@ blend_shape_mode = 0
 resource_name = "DeadLeaf_Plane_252"
 _surfaces = [{
 "aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
-"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"attribute_data": PackedByteArray("/wL/H/8J/xv/BP8S/w3/EP8C/xf/Av8X/wX/H/8F/x//DX8Y/w1/GP8G/xD/Bv8Q/wf/F/8H/xf/B/8X/wf/Fw=="),
 "format": 34896613399,
 "index_count": 24,
-"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"index_data": PackedByteArray("DgADAAgADgALAAMABAAKAAwABAACAAoAAAANAAYAAAAFAA0ABwAJAAEABwAPAAkA"),
 "material": SubResource("StandardMaterial3D_jx4s6"),
 "name": "Leaves",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+"vertex_data": PackedByteArray("AADNHPb/Kb3zp80cNcTjuGMwAADvI8fK///NHAAAr8YAAM0cc3fUygAAzRxzdyG+0UXNHPb/gr3RRc0c9v+cuf//zRz7f/PG///NHPt/17cWXc0cAAC9yhZdzRwAAHzGGXr//wNnzcoZev//A2dzvhl6//8DZ7TGGXr//wNndbi+84mX/+EugOz1OJ+W7zR7OPYqnyj88Jde97WXWd3fggHwWn4w41d7ufVCnzDvPXgR9jKfOv4ImJ3vbnug4lR+")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6lg7x")
@@ -62,16 +62,16 @@ shader_parameter/mask = ExtResource("3_aenkw")
 resource_name = "DeadLeaf_Plane_252"
 _surfaces = [{
 "aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
-"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"attribute_data": PackedByteArray("/wL/H/8J/xv/BP8S/w3/EP8C/xf/Av8X/wX/H/8F/x//DX8Y/w1/GP8G/xD/Bv8Q/wf/F/8H/xf/B/8X/wf/Fw=="),
 "format": 34896613399,
 "index_count": 24,
-"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"index_data": PackedByteArray("DgADAAgADgALAAMABAAKAAwABAACAAoAAAANAAYAAAAFAA0ABwAJAAEABwAPAAkA"),
 "material": SubResource("ShaderMaterial_h42cf"),
 "name": "Leaves",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+"vertex_data": PackedByteArray("AADNHPb/Kb3zp80cNcTjuGMwAADvI8fK///NHAAAr8YAAM0cc3fUygAAzRxzdyG+0UXNHPb/gr3RRc0c9v+cuf//zRz7f/PG///NHPt/17cWXc0cAAC9yhZdzRwAAHzGGXr//wNnzcoZev//A2dzvhl6//8DZ7TGGXr//wNndbi+84mX/+EugOz1OJ+W7zR7OPYqnyj88Jde97WXWd3fggHwWn4w41d7ufVCnzDvPXgR9jKfOv4ImJ3vbnug4lR+")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6lg7x")
@@ -88,16 +88,16 @@ shader_parameter/mask = ExtResource("3_aenkw")
 resource_name = "DeadLeaf_Plane_252"
 _surfaces = [{
 "aabb": AABB(-0.0428796, -0.00122835, -0.00624789, 0.0564266, 0.0109168, 0.0769554),
-"attribute_data": PackedByteArray(255, 2, 255, 31, 255, 9, 255, 27, 255, 4, 255, 18, 255, 13, 255, 16, 255, 2, 255, 23, 255, 2, 255, 23, 255, 5, 255, 31, 255, 5, 255, 31, 255, 13, 127, 24, 255, 13, 127, 24, 255, 6, 255, 16, 255, 6, 255, 16, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23, 255, 7, 255, 23),
+"attribute_data": PackedByteArray("/wL/H/8J/xv/BP8S/w3/EP8C/xf/Av8X/wX/H/8F/x//DX8Y/w1/GP8G/xD/Bv8Q/wf/F/8H/xf/B/8X/wf/Fw=="),
 "format": 34896613399,
 "index_count": 24,
-"index_data": PackedByteArray(14, 0, 3, 0, 8, 0, 14, 0, 11, 0, 3, 0, 4, 0, 10, 0, 12, 0, 4, 0, 2, 0, 10, 0, 0, 0, 13, 0, 6, 0, 0, 0, 5, 0, 13, 0, 7, 0, 9, 0, 1, 0, 7, 0, 15, 0, 9, 0),
+"index_data": PackedByteArray("DgADAAgADgALAAMABAAKAAwABAACAAoAAAANAAYAAAAFAA0ABwAJAAEABwAPAAkA"),
 "material": SubResource("ShaderMaterial_loev0"),
 "name": "Leaves",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(0, 0, 205, 28, 246, 255, 41, 189, 243, 167, 205, 28, 53, 196, 227, 184, 99, 48, 0, 0, 239, 35, 199, 202, 255, 255, 205, 28, 0, 0, 175, 198, 0, 0, 205, 28, 115, 119, 212, 202, 0, 0, 205, 28, 115, 119, 33, 190, 209, 69, 205, 28, 246, 255, 130, 189, 209, 69, 205, 28, 246, 255, 156, 185, 255, 255, 205, 28, 251, 127, 243, 198, 255, 255, 205, 28, 251, 127, 215, 183, 22, 93, 205, 28, 0, 0, 189, 202, 22, 93, 205, 28, 0, 0, 124, 198, 25, 122, 255, 255, 3, 103, 205, 202, 25, 122, 255, 255, 3, 103, 115, 190, 25, 122, 255, 255, 3, 103, 180, 198, 25, 122, 255, 255, 3, 103, 117, 184, 190, 243, 137, 151, 255, 225, 46, 128, 236, 245, 56, 159, 150, 239, 52, 123, 56, 246, 42, 159, 40, 252, 240, 151, 94, 247, 181, 151, 89, 221, 223, 130, 1, 240, 90, 126, 48, 227, 87, 123, 185, 245, 66, 159, 48, 239, 61, 120, 17, 246, 50, 159, 58, 254, 8, 152, 157, 239, 110, 123, 160, 226, 84, 126)
+"vertex_data": PackedByteArray("AADNHPb/Kb3zp80cNcTjuGMwAADvI8fK///NHAAAr8YAAM0cc3fUygAAzRxzdyG+0UXNHPb/gr3RRc0c9v+cuf//zRz7f/PG///NHPt/17cWXc0cAAC9yhZdzRwAAHzGGXr//wNnzcoZev//A2dzvhl6//8DZ7TGGXr//wNndbi+84mX/+EugOz1OJ+W7zR7OPYqnyj88Jde97WXWd3fggHwWn4w41d7ufVCnzDvPXgR9jKfOv4ImJ3vbnug4lR+")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6lg7x")

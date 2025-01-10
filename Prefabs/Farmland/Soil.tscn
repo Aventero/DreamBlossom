@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx8b2cp0171ha"]
+[gd_scene load_steps=7 format=4 uid="uid://cx8b2cp0171ha"]
 
 [ext_resource type="Script" path="res://Scripts/Farmland/Grid/Grid.gd" id="1_et88f"]
 [ext_resource type="Texture2D" uid="uid://dcii5pj8feohm" path="res://Textures/Farmland/DiggingArea.png" id="2_6bppe"]
@@ -20,13 +20,13 @@ _surfaces = [{
 "aabb": AABB(-0.75, -0.00766709, -0.375, 1.5, 0.0187061, 0.75001),
 "format": 34896613377,
 "index_count": 48,
-"index_data": PackedByteArray(13, 0, 2, 0, 6, 0, 13, 0, 11, 0, 2, 0, 14, 0, 4, 0, 8, 0, 14, 0, 12, 0, 4, 0, 12, 0, 6, 0, 4, 0, 12, 0, 13, 0, 6, 0, 10, 0, 8, 0, 0, 0, 10, 0, 14, 0, 8, 0, 1, 0, 14, 0, 10, 0, 1, 0, 9, 0, 14, 0, 5, 0, 13, 0, 12, 0, 5, 0, 7, 0, 13, 0, 9, 0, 12, 0, 14, 0, 9, 0, 5, 0, 12, 0, 7, 0, 11, 0, 13, 0, 7, 0, 3, 0, 11, 0),
-"lods": [0.0122408, PackedByteArray(11, 0, 2, 0, 6, 0, 4, 0, 11, 0, 6, 0, 7, 0, 3, 0, 11, 0, 5, 0, 7, 0, 11, 0, 5, 0, 11, 0, 4, 0, 9, 0, 5, 0, 4, 0, 9, 0, 4, 0, 1, 0, 1, 0, 4, 0, 8, 0, 10, 0, 1, 0, 8, 0, 10, 0, 8, 0, 0, 0)],
+"index_data": PackedByteArray("DQACAAYADQALAAIADgAEAAgADgAMAAQADAAGAAQADAANAAYACgAIAAAACgAOAAgAAQAOAAoAAQAJAA4ABQANAAwABQAHAA0ACQAMAA4ACQAFAAwABwALAA0ABwADAAsA"),
+"lods": [0.0122408, PackedByteArray("CwACAAYABAALAAYABwADAAsABQAHAAsABQALAAQACQAFAAQACQAEAAEAAQAEAAgACgABAAgACgAIAAAA")],
 "name": "DiggingArea",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 15,
-"vertex_data": PackedByteArray(0, 0, 85, 96, 254, 255, 0, 0, 0, 0, 67, 214, 0, 0, 0, 0, 255, 255, 198, 158, 254, 255, 0, 0, 255, 255, 190, 4, 0, 0, 0, 0, 255, 127, 84, 142, 254, 255, 0, 0, 255, 127, 83, 193, 0, 0, 0, 0, 255, 191, 84, 142, 254, 255, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 63, 190, 4, 254, 255, 0, 0, 255, 63, 208, 182, 0, 0, 0, 0, 0, 0, 134, 169, 255, 127, 0, 0, 255, 255, 198, 158, 255, 127, 0, 0, 255, 127, 236, 104, 255, 127, 0, 0, 255, 191, 0, 0, 255, 127, 0, 0, 255, 63, 20, 214, 255, 127, 0, 0)
+"vertex_data": PackedByteArray("AABVYP7/AAAAAEPWAAAAAP//xp7+/wAA//++BAAAAAD/f1SO/v8AAP9/U8EAAAAA/79Ujv7/AAD/v///AAAAAP8/vgT+/wAA/z/QtgAAAAAAAIap/38AAP//xp7/fwAA/3/saP9/AAD/vwAA/38AAP8/FNb/fwAA")
 }]
 blend_shape_mode = 0
 
@@ -34,17 +34,17 @@ blend_shape_mode = 0
 resource_name = "Soil_Cube_001"
 _surfaces = [{
 "aabb": AABB(-0.75, -0.00766709, -0.375, 1.5, 0.0187061, 0.75001),
-"attribute_data": PackedByteArray(0, 0, 255, 63, 0, 0, 0, 0, 255, 127, 255, 63, 255, 127, 0, 0, 255, 63, 255, 63, 255, 63, 255, 63, 255, 63, 0, 0, 255, 63, 0, 0, 255, 95, 255, 63, 255, 95, 255, 63, 255, 95, 0, 0, 255, 95, 0, 0, 255, 31, 255, 63, 255, 31, 255, 63, 255, 31, 0, 0, 255, 31, 0, 0, 0, 0, 255, 31, 0, 0, 255, 31, 255, 127, 255, 31, 255, 127, 255, 31, 255, 63, 255, 31, 255, 63, 255, 31, 255, 63, 255, 31, 255, 63, 255, 31, 255, 95, 255, 31, 255, 95, 255, 31, 255, 95, 255, 31, 255, 95, 255, 31, 255, 31, 255, 31, 255, 31, 255, 31, 255, 31, 255, 31, 255, 31, 255, 31),
+"attribute_data": PackedByteArray("AAD/PwAAAAD/f/8//38AAP8//z//P/8//z8AAP8/AAD/X/8//1//P/9fAAD/XwAA/x//P/8f/z//HwAA/x8AAAAA/x8AAP8f/3//H/9//x//P/8f/z//H/8//x//P/8f/1//H/9f/x//X/8f/1//H/8f/x//H/8f/x//H/8f/x8="),
 "format": 34896613399,
 "index_count": 48,
-"index_data": PackedByteArray(24, 0, 2, 0, 8, 0, 24, 0, 18, 0, 2, 0, 28, 0, 4, 0, 12, 0, 28, 0, 20, 0, 4, 0, 23, 0, 9, 0, 5, 0, 23, 0, 27, 0, 9, 0, 17, 0, 13, 0, 0, 0, 17, 0, 30, 0, 13, 0, 1, 0, 29, 0, 16, 0, 1, 0, 14, 0, 29, 0, 6, 0, 25, 0, 21, 0, 6, 0, 10, 0, 25, 0, 15, 0, 22, 0, 31, 0, 15, 0, 7, 0, 22, 0, 11, 0, 19, 0, 26, 0, 11, 0, 3, 0, 19, 0),
-"lods": [0.0122408, PackedByteArray(18, 0, 2, 0, 8, 0, 4, 0, 18, 0, 8, 0, 10, 0, 3, 0, 18, 0, 6, 0, 10, 0, 18, 0, 6, 0, 18, 0, 4, 0, 14, 0, 6, 0, 4, 0, 14, 0, 4, 0, 1, 0, 1, 0, 4, 0, 12, 0, 16, 0, 1, 0, 12, 0, 16, 0, 12, 0, 0, 0)],
+"index_data": PackedByteArray("GAACAAgAGAASAAIAHAAEAAwAHAAUAAQAFwAJAAUAFwAbAAkAEQANAAAAEQAeAA0AAQAdABAAAQAOAB0ABgAZABUABgAKABkADwAWAB8ADwAHABYACwATABoACwADABMA"),
+"lods": [0.0122408, PackedByteArray("EgACAAgABAASAAgACgADABIABgAKABIABgASAAQADgAGAAQADgAEAAEAAQAEAAwAEAABAAwAEAAMAAAA")],
 "material": SubResource("StandardMaterial3D_8h3uy"),
 "name": "DiggingArea",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
-"vertex_data": PackedByteArray(0, 0, 85, 96, 254, 255, 224, 190, 0, 0, 67, 214, 0, 0, 241, 191, 255, 255, 198, 158, 254, 255, 144, 192, 255, 255, 190, 4, 0, 0, 152, 191, 255, 127, 84, 142, 254, 255, 81, 191, 255, 127, 84, 142, 254, 255, 182, 192, 255, 127, 83, 193, 0, 0, 161, 190, 255, 127, 83, 193, 0, 0, 197, 191, 255, 191, 84, 142, 254, 255, 144, 192, 255, 191, 84, 142, 254, 255, 182, 192, 255, 191, 255, 255, 0, 0, 161, 190, 255, 191, 255, 255, 0, 0, 152, 191, 255, 63, 190, 4, 254, 255, 81, 191, 255, 63, 190, 4, 254, 255, 224, 190, 255, 63, 208, 182, 0, 0, 241, 191, 255, 63, 208, 182, 0, 0, 197, 191, 0, 0, 134, 169, 255, 127, 241, 191, 0, 0, 134, 169, 255, 127, 224, 190, 255, 255, 198, 158, 255, 127, 144, 192, 255, 255, 198, 158, 255, 127, 152, 191, 255, 127, 236, 104, 255, 127, 81, 191, 255, 127, 236, 104, 255, 127, 161, 190, 255, 127, 236, 104, 255, 127, 197, 191, 255, 127, 236, 104, 255, 127, 182, 192, 255, 191, 0, 0, 255, 127, 144, 192, 255, 191, 0, 0, 255, 127, 161, 190, 255, 191, 0, 0, 255, 127, 152, 191, 255, 191, 0, 0, 255, 127, 182, 192, 255, 63, 20, 214, 255, 127, 81, 191, 255, 63, 20, 214, 255, 127, 241, 191, 255, 63, 20, 214, 255, 127, 224, 190, 255, 63, 20, 214, 255, 127, 197, 191, 102, 255, 180, 127, 233, 255, 42, 128, 238, 254, 34, 130, 217, 254, 109, 127, 209, 255, 91, 128, 182, 254, 93, 127, 118, 255, 180, 127, 198, 254, 99, 127, 235, 254, 34, 130, 182, 254, 90, 127, 118, 255, 188, 127, 217, 254, 115, 127, 215, 255, 91, 128, 102, 255, 186, 127, 233, 255, 42, 128, 198, 254, 98, 127, 233, 255, 42, 128, 102, 255, 173, 127, 235, 254, 34, 130, 217, 254, 102, 127, 202, 255, 91, 128, 118, 255, 188, 127, 198, 254, 101, 127, 182, 254, 90, 127, 232, 254, 34, 130, 118, 255, 196, 127, 217, 254, 109, 127, 182, 254, 86, 127, 209, 255, 91, 128, 233, 255, 42, 128, 102, 255, 180, 127, 198, 254, 99, 127)
+"vertex_data": PackedByteArray("AABVYP7/4L4AAEPWAADxv///xp7+/5DA//++BAAAmL//f1SO/v9Rv/9/VI7+/7bA/39TwQAAob7/f1PBAADFv/+/VI7+/5DA/79Ujv7/tsD/v///AAChvv+///8AAJi//z++BP7/Ub//P74E/v/gvv8/0LYAAPG//z/QtgAAxb8AAIap/3/xvwAAhqn/f+C+///Gnv9/kMD//8ae/3+Yv/9/7Gj/f1G//3/saP9/ob7/f+xo/3/Fv/9/7Gj/f7bA/78AAP9/kMD/vwAA/3+hvv+/AAD/f5i//78AAP9/tsD/PxTW/39Rv/8/FNb/f/G//z8U1v9/4L7/PxTW/3/Fv2b/tH/p/yqA7v4igtn+bX/R/1uAtv5df3b/tH/G/mN/6/4igrb+Wn92/7x/2f5zf9f/W4Bm/7p/6f8qgMb+Yn/p/yqAZv+tf+v+IoLZ/mZ/yv9bgHb/vH/G/mV/tv5af+j+IoJ2/8R/2f5tf7b+Vn/R/1uA6f8qgGb/tH/G/mN/")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0uq0k")

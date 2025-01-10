@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dikjso18kisaq"]
+[gd_scene load_steps=12 format=4 uid="uid://dikjso18kisaq"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_x22k0"]
 [ext_resource type="Texture2D" uid="uid://bhaioulf8pfon" path="res://Textures/Environment/ToolTable.png" id="2_36rae"]
@@ -24,12 +24,12 @@ _surfaces = [{
 "aabb": AABB(-0.0742679, -0.0321758, -0.121513, 0.148536, 0.0643515, 0.243036),
 "format": 34896613377,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
 "name": "ToolTable.002",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 252, 255, 0, 0, 0, 0, 255, 255, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 252, 255, 0, 0, 255, 255, 255, 255, 252, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0)
+"vertex_data": PackedByteArray("AAAAAPz/AAAAAP///P8AAAAAAAAAAAAAAAD//wAAAAD//wAA/P8AAP/////8/wAA//8AAAAAAAD/////AAAAAA==")
 }]
 blend_shape_mode = 0
 
@@ -37,16 +37,16 @@ blend_shape_mode = 0
 resource_name = "ToolTable_Cube_071"
 _surfaces = [{
 "aabb": AABB(-0.0742679, -0.0321758, -0.121513, 0.148536, 0.0643515, 0.243036),
-"attribute_data": PackedByteArray(255, 238, 255, 216, 255, 247, 255, 203, 255, 231, 255, 196, 255, 232, 255, 216, 255, 231, 255, 202, 255, 231, 255, 203, 255, 238, 255, 203, 255, 247, 255, 216, 255, 231, 255, 223, 255, 232, 255, 203, 255, 231, 255, 217, 255, 231, 255, 216, 255, 239, 255, 203, 255, 223, 255, 196, 255, 216, 255, 203, 255, 223, 255, 202, 255, 223, 255, 203, 255, 222, 255, 203, 255, 239, 255, 216, 255, 223, 255, 223, 255, 216, 255, 216, 255, 223, 255, 217, 255, 223, 255, 216, 255, 222, 255, 216),
+"attribute_data": PackedByteArray("/+7/2P/3/8v/5//E/+j/2P/n/8r/5//L/+7/y//3/9j/5//f/+j/y//n/9n/5//Y/+//y//f/8T/2P/L/9//yv/f/8v/3v/L/+//2P/f/9//2P/Y/9//2f/f/9j/3v/Y"),
 "format": 34896613399,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0),
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
 "material": SubResource("StandardMaterial3D_arod5"),
 "name": "ToolTable.002",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 252, 255, 84, 213, 0, 0, 0, 0, 252, 255, 255, 255, 0, 0, 0, 0, 252, 255, 255, 255, 0, 0, 255, 255, 252, 255, 84, 213, 0, 0, 255, 255, 252, 255, 255, 255, 0, 0, 255, 255, 252, 255, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 84, 213, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 252, 255, 255, 255, 255, 255, 0, 0, 252, 255, 255, 255, 255, 255, 0, 0, 252, 255, 84, 213, 255, 255, 255, 255, 252, 255, 255, 255, 255, 255, 255, 255, 252, 255, 255, 255, 255, 255, 255, 255, 252, 255, 84, 213, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 84, 213, 84, 85, 170, 170, 255, 127, 255, 63, 255, 127, 255, 127, 84, 85, 170, 170, 255, 127, 255, 127, 255, 127, 255, 191, 84, 85, 170, 170, 255, 127, 255, 63, 255, 127, 255, 255, 84, 85, 170, 170, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 63, 255, 127, 255, 127, 170, 42, 170, 42, 255, 127, 255, 127, 255, 127, 255, 191, 170, 42, 170, 42, 255, 127, 255, 63, 255, 127, 255, 255, 170, 42, 170, 42, 255, 127, 255, 255, 255, 127, 255, 191, 170, 42, 170, 42)
+"vertex_data": PackedByteArray("AAAAAPz/VNUAAAAA/P///wAAAAD8////AAD///z/VNUAAP///P///wAA///8////AAAAAAAAVNUAAAAAAAD//wAAAAAAAP//AAD//wAAVNUAAP//AAD//wAA//8AAP////8AAPz//////wAA/P//////AAD8/1TV//////z//////////P/////////8/1TV//8AAAAA/////wAAAAD/////AAAAAFTV/////wAA////////AAD///////8AAFTVVFWqqv9//z//f/9/VFWqqv9//3//f/+/VFWqqv9//z//f///VFWqqv9/////f/+//3//P/9//3+qKqoq/3//f/9//7+qKqoq/3//P/9///+qKqoq/3////9//7+qKqoq")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xly1j")
