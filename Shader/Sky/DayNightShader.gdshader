@@ -31,7 +31,7 @@ float getSunMask(float sunViewDot, float sunRadius) {
 
 void sky() {
 	vec3 viewDirection = normalize(EYEDIR);
-	
+
 	// Angles
 	float sunViewDot = dot(sun_direction, viewDirection); // Used for Sun Mask
 	float moonViewDot = dot(moon_direction, viewDirection); // Used for Moon Mask
@@ -41,20 +41,20 @@ void sky() {
 	// Normalized Dot Products (0 - 1)
 	float sunViewDot01 = (sunViewDot + 1.0) * 0.5;
 	float sunHeight01 = (sunHeight + 1.0) * 0.5;
-	
+
     vec3 baseSkyColor = texture(baseSkyGradient, vec2(sunHeight01, 0.5)).rgb * 0.8;
 	vec3 horizonColor = texture(horizonSkyGradient, vec2(sunHeight01, 0.5)).rgb * 0.7;
 	float horizonMix = pow(1.0 - abs(1.0 * viewHeight), 4.0);
 	vec3 skyColor = baseSkyColor + horizonColor * horizonMix;
-	
+
 	// Drawing Sun
 	float sunMask = getSunMask(sunViewDot, sun_size);
 	vec3 _sunColor = sun_color * sunMask;
-	
+
 	// Drawing Moon
 	float moonMask = getSunMask(moonViewDot, moon_size);
 	vec3 _moonColor = moon_color * moonMask;
-	
+
 	vec3 cloudTextureColor = texture(cloudsTexture, SKY_COORDS).rgb * day_sky_color;
 	if (day_intensity > 0.001) {
 		skyColor = mix(skyColor, cloudTextureColor, pow(clamp(0.0, 1.0, sunHeight), 4.0));
@@ -64,5 +64,5 @@ void sky() {
 	}
 	skyColor += _sunColor + _moonColor;
 	COLOR = skyColor;
-	
+
 }

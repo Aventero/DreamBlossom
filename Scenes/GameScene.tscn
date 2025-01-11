@@ -1,4 +1,4 @@
-[gd_scene load_steps=1315 format=4 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=1316 format=4 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -54,26 +54,27 @@
 [ext_resource type="Texture2D" uid="uid://buuiah53s5e24" path="res://Textures/Environment/Foliage.png" id="51_uydf8"]
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="52_wravo"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="60_qb1j0"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
-offsets = PackedFloat32Array(0, 0.576355, 1)
-colors = PackedColorArray(0.0121432, 0.0301036, 0.0951002, 1, 0.0725612, 0.135587, 0.218719, 1, 6.76718e-05, 0.146118, 0.492855, 1)
+offsets = PackedFloat32Array(0, 0.266667, 0.346032, 0.438095, 0.514286, 0.584127, 0.71746, 0.863492, 1)
+colors = PackedColorArray(0.0629985, 0.0878118, 0.244211, 1, 0.0084837, 0.0255356, 0.15296, 1, 0.018468, 0.0209527, 0.0947653, 1, 0.0980707, 0.0467364, 0.391297, 1, 0.504021, 0.0873909, 0.131443, 1, 0.774792, 0.502405, 0.0571394, 1, 0.0948898, 0.0612798, 0.3274, 1, 0.16329, 0.108322, 0.591325, 1, 0, 0.193019, 0.38345, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q02xl"]
 gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
 shader = ExtResource("2_ktote")
-shader_parameter/day_sky_color = Color(0.371819, 0.298171, 0.716147, 1)
+shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
 shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
-shader_parameter/sun_direction = Vector3(0.0163426, 0.894278, -0.447214)
-shader_parameter/day_intensity = 0.999833
-shader_parameter/sun_color = Color(2.05, 1.782, 1.096, 1)
-shader_parameter/sun_size = 0.2
-shader_parameter/moon_direction = Vector3(-0.0163426, -0.894278, -0.447214)
+shader_parameter/sun_direction = Vector3(0.603802, 0.659866, -0.447214)
+shader_parameter/day_intensity = 0.737753
+shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
+shader_parameter/sun_size = 0.084
+shader_parameter/moon_direction = Vector3(-0.603802, -0.659866, -0.447214)
 shader_parameter/night_intensity = 1.22461e-16
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
@@ -83,9 +84,9 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.999833
+background_energy_multiplier = 0.737753
 sky = SubResource("Sky_eqxy8")
-ambient_light_color = Color(0.168978, 0.35464, 0.872666, 1)
+ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
 tonemap_mode = 2
 glow_enabled = true
@@ -97,10 +98,10 @@ glow_hdr_threshold = 2.72
 glow_hdr_scale = 2.24
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0, 0.213551, 0.226039, 1)
+fog_light_color = Color(7.09929e-07, 0.24992, 0.264099, 1)
 fog_light_energy = 0.0
 fog_density = 1.0
-fog_aerial_perspective = 0.497
+fog_aerial_perspective = 0.5
 fog_sky_affect = 0.0
 fog_depth_curve = 0.366018
 fog_depth_begin = 5.0
@@ -20036,17 +20037,19 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 5.9302
+time_of_day = 3.16936
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.999333, -0.0326581, 0.0163427, 0, 0.447512, 0.894277, -0.0365189, 0.893681, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.595187, -0.53026, 0.603801, 0, 0.751382, 0.659866, -0.803587, 0.392744, -0.447213, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.999833
+light_energy = 0.737753
 shadow_enabled = true
+shadow_normal_bias = 1.0
+shadow_blur = 0.9
 directional_shadow_split_1 = 0.016
 directional_shadow_split_2 = 0.047
 directional_shadow_split_3 = 0.134
@@ -20056,12 +20059,13 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447214, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89842e-17, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447213, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89842e-17, -0.447214, 0, 0, 0)
 visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 light_energy = 1.22461e-16
 shadow_enabled = true
-shadow_blur = 0.2
+shadow_normal_bias = 1.0
+shadow_blur = 0.9
 directional_shadow_split_1 = 0.016
 directional_shadow_split_2 = 0.047
 directional_shadow_split_3 = 0.134
@@ -20171,6 +20175,7 @@ transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1
 
 [node name="OrderDisplay" parent="." instance=ExtResource("22_s8pn7")]
 transform = Transform3D(1, 0, 0, 0, 0.987587, -0.157072, 0, 0.157072, 0.987587, 0, 1.55262, -1.35507)
+visible = false
 
 [node name="CookingArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
@@ -20183,6 +20188,7 @@ transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274
 
 [node name="RecipeBook" parent="CookingArea" instance=ExtResource("40_1g7i3")]
 transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
+visible = false
 
 [node name="Candle" parent="CookingArea" instance=ExtResource("30_r4hcs")]
 transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
@@ -20282,6 +20288,8 @@ transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.
 
 [node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
 transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.630592)
+min_insertion_angle = 0.149
+target_pull_distance = 0.2
 
 [node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
 transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 0.669052, 0.858456, 0.44779)
@@ -23720,6 +23728,7 @@ transform = Transform3D(-0.892742, -1.76597, -0.230755, 0.180024, 0.167322, -1.9
 mesh = SubResource("ArrayMesh_0g76e")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_yeofg")
+metadata/_edit_group_ = true
 
 [node name="Plane_382" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.71197, 0, 0, 0, 3.71197, 0, 0, 0, 3.71197, -0.027154, 0.00769781, -1.03464)
@@ -24033,6 +24042,15 @@ transform = Transform3D(-5.86889, -3.09018, -0.0746205, 0.00935239, 0.142376, -6
 mesh = SubResource("ArrayMesh_owdaa")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_yeofg")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("60_qb1j0")]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, -0.16547, 0.905939, 1.26276)
+screen_size = Vector2(3, 1)
+viewport_size = Vector2(300, 100)
+alpha_scissor_threshold = 0.625
+unshaded = true
+filter = false
+metadata/_edit_lock_ = true
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 

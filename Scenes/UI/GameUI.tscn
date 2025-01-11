@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsyv8sgc8dixa"]
+
+[sub_resource type="GDScript" id="GDScript_boolq"]
+script/source = "extends HSlider
+
+func adjust_3d_scale(scale_value: float):
+	ProjectSettings.set_setting(\"rendering/scaling_3d/scale\", scale_value)
+	ProjectSettings.save()
+
+	# For VR, you might need to trigger an XR interface update
+	var xr = XRServer.get_primary_interface()
+	if xr:
+		# This might help force a refresh of the VR rendering
+		xr.set_render_target_size_multiplier(scale_value)
+
+func _on_drag_ended(value_changed: bool) -> void:
+	if value_changed:
+		adjust_3d_scale(self.value)
+
+func _value_changed(new_value: float) -> void:
+	$\"../Label2\".text = str(self.value)
+"
+
+[node name="GameUi" type="CanvasLayer"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 300.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(9.32, 24.965)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resolution Size"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.2
+text = "1.0"
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+value = 0.25
+script = SubResource("GDScript_boolq")
+
+[connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HSlider" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HSlider" method="_on_drag_ended"]

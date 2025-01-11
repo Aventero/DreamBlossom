@@ -233,6 +233,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0414328, 0)
 
 [node name="Display" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.855807, 0, 0, 0, 0.568874, 0.639366, 0, -0.639366, 0.568874, 0, 0.135414, -0.500639)
+visible = false
 mesh = SubResource("QuadMesh_tv7xr")
 script = SubResource("GDScript_pr1w6")
 
