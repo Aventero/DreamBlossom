@@ -1,4 +1,4 @@
-[gd_scene load_steps=1316 format=4 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=1318 format=4 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="Texture2D" uid="uid://cqitadukeoxox" path="res://Textures/Environment/Tree.png" id="48_t7hl5"]
 [ext_resource type="Shader" path="res://Shader/wobble.gdshader" id="49_basjb"]
@@ -70,12 +71,12 @@ shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
-shader_parameter/sun_direction = Vector3(0.603802, 0.659866, -0.447214)
-shader_parameter/day_intensity = 0.737753
+shader_parameter/sun_direction = Vector3(0.336763, -0.828608, -0.447214)
+shader_parameter/day_intensity = 0.000603395
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(-0.603802, -0.659866, -0.447214)
-shader_parameter/night_intensity = 1.22461e-16
+shader_parameter/moon_direction = Vector3(-0.336763, 0.828608, -0.447214)
+shader_parameter/night_intensity = 0.926412
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -84,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.737753
+background_energy_multiplier = 0.926412
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -343,6 +344,9 @@ shadow_mesh = SubResource("ArrayMesh_mr7pr")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uyehh"]
 points = PackedVector3Array(-0.0703124, 0.117132, 0.468694, -0.21096, 0.117132, 0.632806, -0.0703124, -0.375, 0.468694, -0.0703124, 0.117132, -0.304746, -0.140636, 0.1875, 0.468694, -0.21096, -0.375, 0.632806, -0.23438, 0.1875, 0.562395, -0.609419, 0.117132, 0.632806, -0.0703124, -0.375, -0.304746, -0.21096, 0.117132, -0.46875, -0.140636, 0.1875, -0.304746, -0.609419, -0.375, 0.632806, -0.585999, 0.1875, 0.562395, -0.679743, 0.1875, 0.468694, -0.75, 0.117132, 0.468694, -0.21096, -0.375, -0.46875, -0.23438, 0.1875, -0.398447, -0.609419, 0.117132, -0.46875, -0.75, -0.375, 0.468694, -0.679743, 0.1875, -0.304746, -0.75, 0.117132, -0.304746, -0.609419, -0.375, -0.46875, -0.585999, 0.1875, -0.398447, -0.75, -0.375, -0.304746)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
+radius = 0.348894
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nao46"]
 resource_name = "Tree"
@@ -20037,16 +20041,17 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 3.16936
+time_of_day = 19.4745
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.595187, -0.53026, 0.603801, 0, 0.751382, 0.659866, -0.803587, 0.392744, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.447214, 0.000482716, -0.894427, 0, 0.999999, 0.000539693, 0.894427, 0.000241358, -0.447213, 0, 0, 0)
+visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.737753
+light_energy = 0.000603395
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20059,10 +20064,9 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447213, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89842e-17, -0.447214, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.798838, 0.498445, -0.336763, 0, 0.55983, 0.828609, 0.601545, 0.661924, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 1.22461e-16
+light_energy = 0.926412
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20296,18 +20300,73 @@ transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
 
-[node name="PotionRed" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
+[node name="PotionRedSnap" type="Area3D" parent="ToolArea/Potions"]
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("47_1c8xm")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionRed"
+initial_object = NodePath("PotionRed")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionRedSnap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103086, 0.160492, -0.228994)
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionRedSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionRed" parent="ToolArea/Potions/PotionRedSnap" groups=["PotionRed", "Returnable"] instance=ExtResource("52_vtd61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 type = 1
 infinite_drops = true
 
-[node name="PotionGreen" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
-transform = Transform3D(-0.317305, 0, -0.948324, 0, 1, 0, 0.948324, 0, -0.317305, 0.871379, 1.3195, -0.0400517)
+[node name="PotionGreenSnap" type="Area3D" parent="ToolArea/Potions"]
+transform = Transform3D(0.954267, 0, -0.298958, 0, 1, 0, 0.298958, 0, 0.954267, 0.871379, 1.3195, -0.0400517)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("47_1c8xm")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionGreen"
+initial_object = NodePath("PotionGreen")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionGreenSnap"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0.220326, 0.0534225, -0.00578776)
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionGreenSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionGreen" parent="ToolArea/Potions/PotionGreenSnap" groups=["PotionGreen", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 2
 infinite_drops = true
 
-[node name="PotionBlue" parent="ToolArea/Potions" groups=["Returnable"] instance=ExtResource("52_vtd61")]
+[node name="PotionBlueSnap" type="Area3D" parent="ToolArea/Potions"]
 transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("47_1c8xm")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionBlue"
+initial_object = NodePath("PotionBlue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionBlueSnap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00241822, -0.0474775, -0.221807)
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionBlueSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionBlue" parent="ToolArea/Potions/PotionBlueSnap" groups=["PotionBlue", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 4
 infinite_drops = true
 
@@ -24053,5 +24112,11 @@ filter = false
 metadata/_edit_lock_ = true
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
+[connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
+[connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
+[connection signal="body_entered" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_entered"]
+[connection signal="body_exited" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_exited"]
+[connection signal="body_entered" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_entered"]
+[connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
 
 [editable path="XROrigin3D"]

@@ -153,7 +153,7 @@ func _process(delta: float) -> void:
 	global_rotation = Vector3.ZERO
 "
 
-[node name="Potion" instance=ExtResource("1_6iw1p")]
+[node name="Potion" groups=["Potion"] instance=ExtResource("1_6iw1p")]
 collision_mask = 131079
 input_ray_pickable = false
 freeze_mode = 0
@@ -166,6 +166,7 @@ max_drop_size = 8.0
 drop_rumble = SubResource("Resource_gdcvt")
 release_mode = 0
 second_hand_grab = 1
+ranged_grab_speed = 2.0
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("ConvexPolygonShape3D_bj21r")
@@ -258,6 +259,5 @@ remote_path = NodePath("../Indicator")
 update_rotation = false
 
 [connection signal="dropped" from="." to="." method="_on_dropped"]
-[connection signal="picked_up" from="." to="." method="_on_picked_up"]
 
 [editable path="Drop/Drop"]

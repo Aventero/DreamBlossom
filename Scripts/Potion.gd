@@ -160,12 +160,26 @@ func _replace_with_empty() -> void:
 func _lerp_fill(percentage : float):
 	flask_fill.set_instance_shader_parameter("fill_percentage", percentage)
 
-func _on_picked_up(pickable: Variant) -> void:
+# Direct override of pick_up so we can get the "by" node
+func pick_up(by: Node3D) -> void:
+	super(by)
+	
+	# Dont despawn stomp by SnapZones
+	if by is XRToolsSnapZone:
+		return
+	
 	# Despawn stomp
 	if _stomp_tween and _stomp_tween.is_running():
 		_stomp_tween.kill()
 	_stomp_tween = create_tween()
 	_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
+#
+#func _on_picked_up(pickable: Variant) -> void:
+	## Despawn stomp
+	#if _stomp_tween and _stomp_tween.is_running():
+		#_stomp_tween.kill()
+	#_stomp_tween = create_tween()
+	#_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
 
 func _on_dropped(pickable: Variant) -> void:
 	# Spawn stomp

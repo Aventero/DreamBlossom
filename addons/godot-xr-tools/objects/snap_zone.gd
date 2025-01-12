@@ -67,9 +67,6 @@ func is_xr_class(name : String) -> bool:
 
 
 func _ready():
-	# Set collision shape radius
-	$CollisionShape3D.shape.radius = grab_distance
-
 	# Perform updates
 	_update_snap_mode()
 
@@ -258,7 +255,6 @@ func pick_up_object(target: Node3D) -> void:
 		has_picked_up.emit(picked_up_object)
 		highlight_updated.emit(self, false)
 
-
 # Called when the enabled property has been modified
 func _set_enabled(p_enabled: bool) -> void:
 	enabled = p_enabled
@@ -271,16 +267,12 @@ func _set_enabled(p_enabled: bool) -> void:
 # Called when the grab distance has been modified
 func _set_grab_distance(new_value: float) -> void:
 	grab_distance = new_value
-	if is_inside_tree() and $CollisionShape3D:
-		$CollisionShape3D.shape.radius = grab_distance
-
 
 # Called when the snap mode property has been modified
 func _set_snap_mode(new_value: SnapMode) -> void:
 	snap_mode = new_value
 	if is_inside_tree():
 		_update_snap_mode()
-
 
 # Handle changes to the snap mode
 func _update_snap_mode() -> void:

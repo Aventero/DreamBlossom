@@ -312,18 +312,25 @@ func pick_up(by: Node3D) -> void:
 		
 		# Construct the grab driver
 		if by.picked_up_ranged:
-			if ranged_grab_method == RangedMethod.LERP:
+			# Check for SnapZone > Should be lerped
+			if ranged_grab_method == RangedMethod.LERP or by is XRToolsSnapZone:
 				var grab := Grab.new(grabber, self, by_grab_point, false)
 				_grab_driver = XRToolsGrabDriver.create_lerp(self, grab, ranged_grab_speed)
-				grab.hand.visible = false
+				
+				if grab.hand:
+					grab.hand.visible = false
 			else:
 				var grab := Grab.new(grabber, self, by_grab_point, false)
 				_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
-				grab.hand.visible = false
+				
+				if grab.hand:
+					grab.hand.visible = false
 		else:
 			var grab := Grab.new(grabber, self, by_grab_point, true)
 			_grab_driver = XRToolsGrabDriver.create_snap(self, grab)
-			grab.hand.visible = false
+			
+			if grab.hand:
+				grab.hand.visible = false
 		
 		# Report picked up and grabbed
 		picked_up.emit(self)
@@ -340,7 +347,8 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 	if not grab:
 		return
 
-	grab.hand.visibility_change = true
+	if grab.hand:
+		grab.hand.visibility_change = true
 
 	# Remove the grab from the driver and release the grab
 	_grab_driver.remove_grab(grab)
