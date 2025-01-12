@@ -7,21 +7,21 @@ extends XRToolsPickable
 @export var type : TYPE = TYPE.EMPTY:
 	set(value):
 		_type = value
-		
+
 		# Wait for single frame so all nodes are loaded
 		await RenderingServer.frame_post_draw
-		
+
 		if _type != TYPE.EMPTY:
 			# Set label data
 			var label : Label3D = get_node("Indicator/PotionType")
 			label.text = str(type)
 			label.visible = true
-			
+
 			# Set fill color
 			var potion_fill : MeshInstance3D = get_node("Model/Fill")
 			potion_fill.set_surface_override_material(0, get_potion_data(value, PROPERTIES.FILL_MATERIAL))
 			potion_fill.visible = true
-			
+
 			# Set hanging drop color
 			var drop_material : StandardMaterial3D = get_node("Drop/Drop/Drop").get_surface_override_material(0).duplicate()
 			drop_material.albedo_color = get_potion_data(value, PROPERTIES.COLOR)
@@ -34,9 +34,10 @@ extends XRToolsPickable
 
 @export_category("Pouring Settings")
 @export var infinite_drops : bool = false
-@export var tilt_angle : float 
+@export var tilt_angle : float
 @export var drop_fill_speed : float = 1.0
 @export var max_drop_size : float = 8.0
+@export var drop_delay_after_drop : float = 0.5
 @export var drop_rumble : XRToolsRumbleEvent
 
 @onready var drop_model : Node3D = $Drop/Drop
@@ -48,6 +49,7 @@ extends XRToolsPickable
 var _max_drop_count : int
 var _current_drop_count : int
 var _drop_progress : float = 0.0
+var _drop_delay_after_drop: float = 0.5
 var _reduction_tween : Tween = null
 var _stomp_tween : Tween = null
 var _type : TYPE
@@ -73,87 +75,92 @@ enum PROPERTIES {
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	
+
 	# Do nothing if potion is currently empty
 	if _type == TYPE.EMPTY:
 		return
-	
+
 	# Update drop size
 	if _drop_progress > 0.0:
 		drop_model.visible = true
 		drop_model.scale = Vector3.ONE * lerp(0.0, max_drop_size, _drop_progress)
-	
+
 	# Skip update if not currently hold
 	if not is_picked_up():
 		return
-	
+
 	# Limit drops
 	if not infinite_drops and _current_drop_count <= 0:
 		return
-	
+
 	var angle : float = transform.basis.y.angle_to(Vector3.UP)
-	
+
+	_drop_delay_after_drop -= delta
+
 	if rad_to_deg(angle) > 95:
 		# Kill reduction tween if there is one
 		if _reduction_tween:
 			_reduction_tween.kill()
 			_reduction_tween = null
-		
+
 		# Update progress
-		_drop_progress += drop_fill_speed * delta
-		
+		if _drop_delay_after_drop <= 0:
+			_drop_progress += drop_fill_speed * delta
+
 		if _drop_progress >= 1.0:
 			# Reset drop progress
 			_drop_progress = 0.0
-			
+			_drop_delay_after_drop = drop_delay_after_drop
+
 			# Set hanging drop scale
 			drop_model.visible = false
 			drop_model.scale = Vector3(0.001, 0.001, 0.001)
-			
+
 			# Handle drop
 			_handle_drop()
 	else:
 		# Start reduction tween
 		if _reduction_tween and _reduction_tween.is_running():
 			_reduction_tween.kill()
-		
+
 		_reduction_tween = create_tween()
 		_reduction_tween.tween_property(self, "_drop_progress", 0.0, 0.1)
 		_reduction_tween.tween_callback(func(): drop_model.scale = Vector3(0.001, 0.001, 0.001))
 		_reduction_tween.tween_callback(func(): drop_model.visible = false)
 
 func _handle_drop() -> void:
-	var drop_instance : RigidBody3D = get_potion_data(_type, PROPERTIES.DROP).instantiate()
+	var drop_instance = get_potion_data(_type, PROPERTIES.DROP).instantiate()
 	get_parent().add_child(drop_instance)
-	
+
 	# Set position & rotation
 	drop_instance.global_position = $Drop.global_position
 	drop_instance.global_rotation = $Drop.global_rotation
-	
+	drop_instance.potion_holding_controller = [get_picked_up_by_controller()]
+
 	# Play drop rumble
 	XRToolsRumbleManager.add("potion_drop", drop_rumble, [get_picked_up_by_controller()])
-	
+
 	# Update fill shader
 	if not infinite_drops:
 		var old_fill_percentage : float = float(_current_drop_count) / float(_max_drop_count)
 		var new_fill_percentage : float = float(_current_drop_count - 1) / float(_max_drop_count)
-		
+
 		var fill_tween : Tween = create_tween()
 		fill_tween.tween_method(_lerp_fill, old_fill_percentage, new_fill_percentage, 0.2)
-		
+
 		# Reduce drop count
 		_current_drop_count -= 1
-		
+
 		if _current_drop_count <= 0:
 			fill_tween.tween_callback(_replace_with_empty).set_delay(0.1)
 
 func _replace_with_empty() -> void:
 	# Hide label
 	await hide_type_label().finished
-	
+
 	# Set type to empty
 	type = TYPE.EMPTY
-	
+
 	# Add self to Inactivity Manager
 	InactivityManager.get_instance().add_node(self, is_picked_up())
 
@@ -163,11 +170,11 @@ func _lerp_fill(percentage : float):
 # Direct override of pick_up so we can get the "by" node
 func pick_up(by: Node3D) -> void:
 	super(by)
-	
+
 	# Dont despawn stomp by SnapZones
 	if by is XRToolsSnapZone:
 		return
-	
+
 	# Despawn stomp
 	if _stomp_tween and _stomp_tween.is_running():
 		_stomp_tween.kill()
@@ -187,11 +194,11 @@ func _on_dropped(pickable: Variant) -> void:
 		_stomp_tween.kill()
 	_stomp_tween = create_tween()
 	_stomp_tween.tween_property(flask_stomp, "scale", Vector3(0.016, 0.016, 0.016), 0.1)
-	
+
 	# Start reduction tween
 	if _reduction_tween and _reduction_tween.is_running():
 		_reduction_tween.kill()
-	
+
 	_reduction_tween = create_tween()
 	_reduction_tween.tween_property(self, "_drop_progress", 0.0, 0.1)
 	_reduction_tween.tween_callback(func(): drop_model.scale = Vector3.ZERO)
@@ -210,20 +217,20 @@ func hide_type_label() -> Tween:
 func fill_potion(p_type : TYPE, drops_per_potion : int) -> void:
 	# Set type
 	type = p_type
-	
+
 	# Reset / Fill drop count
 	_max_drop_count = drops_per_potion
 	_current_drop_count = drops_per_potion
-	
+
 	# Lerp potion fill level to max
 	flask_fill.visible = true
 	var fill_tween : Tween = create_tween()
 	fill_tween.tween_method(_lerp_fill, 0.0, 1.0, 0.5)
-	
+
 	# Tween in type label
 	potion_type_label.text = str(_type)
 	show_type_label()
-	
+
 	# Remove self from inactivity manager
 	InactivityManager.get_instance().remove_node(self)
 

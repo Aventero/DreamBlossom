@@ -1,8 +1,16 @@
-[gd_scene load_steps=9 format=4 uid="uid://k38i05551xx3"]
+[gd_scene load_steps=11 format=4 uid="uid://k38i05551xx3"]
 
 [ext_resource type="Script" path="res://Scripts/PotionDrop.gd" id="1_mxpeb"]
 [ext_resource type="PackedScene" uid="uid://b5n4tkiy2iu5g" path="res://Particles/PotionSplash/PotionDropSplash.tscn" id="2_kr8d7"]
 [ext_resource type="PackedScene" uid="uid://dx3xx8wyr8tc0" path="res://Prefabs/Brewing/SplashDecal/SplashDecal.tscn" id="3_e7qfs"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="4_vw1b8"]
+
+[sub_resource type="Resource" id="Resource_d6ygm"]
+script = ExtResource("4_vw1b8")
+magnitude = 0.2
+active_during_pause = false
+indefinite = false
+duration_ms = 10
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pr5da"]
 size = Vector3(0.08, 0.08, 0.08)
@@ -43,11 +51,12 @@ shadow_mesh = SubResource("ArrayMesh_mdg80")
 
 [node name="PotionDrop" type="RigidBody3D"]
 collision_layer = 2048
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_mxpeb")
 splash_particles = ExtResource("2_kr8d7")
 splash_decal = ExtResource("3_e7qfs")
+drop_rumble = SubResource("Resource_d6ygm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)

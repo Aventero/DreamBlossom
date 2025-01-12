@@ -65,6 +65,7 @@ func _on_timeout():
 "
 
 [node name="DigSpotBase" type="AnimatableBody3D"]
+sync_to_physics = false
 script = ExtResource("1_vwm3m")
 remove_amount = 2.0
 watering_amount = 5

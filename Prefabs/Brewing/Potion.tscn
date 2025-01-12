@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_gdcvt"]
 script = ExtResource("3_ieyp2")
-magnitude = 0.3
+magnitude = 0.1
 active_during_pause = false
 indefinite = false
 duration_ms = 20
@@ -161,8 +161,9 @@ script = ExtResource("2_a0gms")
 type = 0
 infinite_drops = false
 tilt_angle = 95.0
-drop_fill_speed = 1.0
+drop_fill_speed = 4.0
 max_drop_size = 8.0
+drop_delay_after_drop = 0.35
 drop_rumble = SubResource("Resource_gdcvt")
 release_mode = 0
 second_hand_grab = 1

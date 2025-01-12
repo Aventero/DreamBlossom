@@ -20,7 +20,7 @@ func fill_recipe_output(data : RecipeOutputData):
 func _spawn_ingredient_ui(parent : Control, ingredient : Ingredient.Type, amount : int):
 	var ingredient_ui : IngredientUI = ingredient_ui.instantiate()
 	parent.add_child(ingredient_ui)
-	
+
 	# Fill ingredient ui with data
 	ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
 	ingredient_ui.set_amount(amount)
@@ -29,7 +29,7 @@ func clear_icons():
 	# Clear input icons
 	for child in input.get_children():
 		child.queue_free()
-	
+
 	# Clear output icons
 	for child in output.get_children():
 		child.queue_free()

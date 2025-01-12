@@ -11,12 +11,12 @@ var _max_lifetime : float = -1.0
 func _ready() -> void:
 	if start_on_ready:
 		_change_state(true)
-	
+
 	# Read max lifetime
 	for child in get_children():
 		if not child is GPUParticles3D:
 			return
-		
+
 		if child.lifetime > _max_lifetime:
 			_max_lifetime = child.lifetime
 

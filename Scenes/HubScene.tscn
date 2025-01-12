@@ -142,6 +142,7 @@ script = ExtResource("3_6u0xd")
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="XROrigin3D"]
 top_level = true
 script = ExtResource("6_64uky")
+player_height_max = 2.0
 
 [node name="Environment" type="Node3D" parent="."]
 

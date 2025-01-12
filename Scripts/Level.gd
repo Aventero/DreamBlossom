@@ -82,27 +82,27 @@ func next_order() -> bool:
 	# Get current quest from level
 	if get_child_count() <= 0:
 		return false
-	
+
 	var new_order : Order = get_child(0)
-	
+
 	if new_order != current_order:
 		current_order = new_order
 		current_order.completed.connect(_on_order_completed)
-		
+
 		# Emit new order signal
 		self.new_order.emit(current_order)
-	
+
 	return true
 
 func _on_order_completed(success : bool) -> void:
 	print("Order done")
 	current_order.queue_free()
 	current_order = null
-	
+
 	# Update current game statistics
 	if not success:
 		Statistics.failed_orders += 1
-	
+
 	# Check if level is completed (No more orders)
 	if get_child_count() == 1:
 		completed.emit()
@@ -115,5 +115,5 @@ func is_tool_active(tool : String) -> bool:
 			return active_tools & Tools.MusicBox != 0
 		"PickAxe":
 			return active_tools & Tools.PickAxe != 0
-	
+
 	return false

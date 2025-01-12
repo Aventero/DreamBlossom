@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://c1digqk2qon33" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
+[ext_resource type="Script" uid="uid://burad7u6c52wi" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="Texture2D" uid="uid://cqitadukeoxox" path="res://Textures/Environment/Tree.png" id="48_t7hl5"]
 [ext_resource type="Shader" path="res://Shader/wobble.gdshader" id="49_basjb"]
@@ -71,12 +71,12 @@ shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
 shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
-shader_parameter/sun_direction = Vector3(0.336763, -0.828608, -0.447214)
-shader_parameter/day_intensity = 0.000603395
+shader_parameter/sun_direction = Vector3(-0.875558, 0.182754, -0.447214)
+shader_parameter/day_intensity = 0.204325
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(-0.336763, 0.828608, -0.447214)
-shader_parameter/night_intensity = 0.926412
+shader_parameter/moon_direction = Vector3(0.875558, -0.182754, -0.447214)
+shader_parameter/night_intensity = 1.22461e-16
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -85,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.926412
+background_energy_multiplier = 0.204325
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -20041,17 +20041,16 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 19.4745
+time_of_day = 11.214
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447214, 0.000482716, -0.894427, 0, 0.999999, 0.000539693, 0.894427, 0.000241358, -0.447213, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.454874, 0.162752, -0.875557, 0, 0.983158, 0.182754, 0.890556, 0.0831298, -0.447214, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.000603395
+light_energy = 0.204325
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20064,9 +20063,10 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.798838, 0.498445, -0.336763, 0, 0.55983, 0.828609, 0.601545, 0.661924, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447213, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89843e-17, -0.447214, 0, 0, 0)
+visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.926412
+light_energy = 1.22461e-16
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20320,7 +20320,6 @@ max_db = 1.0
 max_distance = 100.0
 
 [node name="PotionRed" parent="ToolArea/Potions/PotionRedSnap" groups=["PotionRed", "Returnable"] instance=ExtResource("52_vtd61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 type = 1
 infinite_drops = true
 
