@@ -5,17 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://bqgc238nmfn4u" path="res://Textures/Particles/AirBubble.png" id="3_14f48"]
 [ext_resource type="PackedScene" uid="uid://dou3g7gi5ly7k" path="res://Models/Plants/Shellie/Shellie.blend" id="4_6kqr7"]
 [ext_resource type="PackedScene" uid="uid://b8css0km2tm8c" path="res://Prefabs/PlantEvents/Shellie/ShellieWatering.tscn" id="4_jnajs"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="5_annfc"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_bjhe2"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="5_annfc"]
+[ext_resource type="Script" uid="uid://blbvbwya176vi" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_bjhe2"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="7_27n7s"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="8_8lnms"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/ShellieWateringEvent.gd" id="9_gvlgp"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="10_lu1cx"]
+[ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="8_8lnms"]
+[ext_resource type="Script" uid="uid://etuxksq8e0od" path="res://Scripts/Farmland/Events/ShellieWateringEvent.gd" id="9_gvlgp"]
+[ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="10_lu1cx"]
 [ext_resource type="PackedScene" uid="uid://bjpxcuhfxy4br" path="res://Prefabs/Planting/Fruits/ShellieFruit.tscn" id="11_ta57h"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="12_cjc1v"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="12_tc71c"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="13_6kgdc"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="13_s0ayg"]
+[ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="12_tc71c"]
+[ext_resource type="Script" uid="uid://qoyk0048n44s" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="13_6kgdc"]
+[ext_resource type="Script" uid="uid://dek84er4s4jxp" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="13_s0ayg"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="14_7ev1t"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="14_i1sx4"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="15_gewcc"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="16_aq8ww"]
 [ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="17_fxq7n"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_oxw2q"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="17_r2pbb"]
+[ext_resource type="Script" uid="uid://d1nb3utitrlmi" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="17_r2pbb"]
 [ext_resource type="PackedScene" uid="uid://dimb8td3mgjuc" path="res://Prefabs/Particles/FallingLeafes/FallingLeafes_Shellie.tscn" id="18_m8y50"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_wqwdf"]
 [ext_resource type="PackedScene" uid="uid://b4ob23vicsetw" path="res://Prefabs/Particles/FallingLeafes/FallingLeafesLarge_Shellie.tscn" id="25_0du8i"]
@@ -118,17 +118,17 @@ resource_name = "Blubbie"
 render_priority = 0
 shader = SubResource("Shader_fimsa")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_vdyeh")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_vdyeh")
 
 [sub_resource type="Curve" id="Curve_x52at"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248503, 1), 0.0839398, 0.0839398, 0, 0, Vector2(0.643713, 0), -4.05855, 0.0, 0, 0]
@@ -3020,8 +3020,8 @@ tracks/73/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2lu10"]
 _data = {
-"Grow": SubResource("Animation_p0db7"),
-"RESET": SubResource("Animation_v7hfv")
+&"Grow": SubResource("Animation_p0db7"),
+&"RESET": SubResource("Animation_v7hfv")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofq1y"]

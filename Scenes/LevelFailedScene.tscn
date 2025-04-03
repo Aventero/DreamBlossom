@@ -1,20 +1,20 @@
 [gd_scene load_steps=33 format=3 uid="uid://b1n875dnd3ot4"]
 
-[ext_resource type="Script" path="res://Scripts/Scenes/LevelFailedBase.gd" id="1_mn5gl"]
-[ext_resource type="Shader" path="res://Shader/Sky/DayNightShader.gdshader" id="2_itkqp"]
+[ext_resource type="Script" uid="uid://404tu3wiptud" path="res://Scripts/Scenes/LevelFailedBase.gd" id="1_mn5gl"]
+[ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_itkqp"]
 [ext_resource type="Texture2D" uid="uid://u877wgbu7hwa" path="res://Textures/Environment/Sky/Clouds.png" id="3_838si"]
 [ext_resource type="Texture2D" uid="uid://bkqeqguoix2cy" path="res://Textures/Shader/SkyHorizonGradient.png" id="4_l03bg"]
 [ext_resource type="Texture2D" uid="uid://gsay7dt66edb" path="res://Textures/Environment/Sky/NightSky.png" id="5_xufce"]
-[ext_resource type="Script" path="res://Scenes/DayNightCycle.gd" id="6_bjnue"]
+[ext_resource type="Script" uid="uid://d1i3wjud78rmq" path="res://Scenes/DayNightCycle.gd" id="6_bjnue"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="7_121l0"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="8_jt4aj"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_area_button.gd" id="9_jp1ui"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="10_nfkku"]
+[ext_resource type="Script" uid="uid://b5htc8jjjmrpj" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="8_jt4aj"]
+[ext_resource type="Script" uid="uid://bn5548qeohxcd" path="res://addons/godot-xr-tools/interactables/interactable_area_button.gd" id="9_jp1ui"]
+[ext_resource type="Script" uid="uid://cik8ruh3e40kn" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="10_nfkku"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="11_et325"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="12_qm3y7"]
+[ext_resource type="Script" uid="uid://c8spvbllpgn7u" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="12_qm3y7"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="13_hjfct"]
 [ext_resource type="PackedScene" uid="uid://cctnea4mrykky" path="res://Prefabs/UI/LevelFailedFrameUI.tscn" id="14_c5vuk"]
-[ext_resource type="Script" path="res://Scripts/UI/LevelFailedFrameUI.gd" id="15_emgmw"]
+[ext_resource type="Script" uid="uid://cekbx5ivmo4x" path="res://Scripts/UI/LevelFailedFrameUI.gd" id="15_emgmw"]
 
 [sub_resource type="Gradient" id="Gradient_6f12i"]
 offsets = PackedFloat32Array(0, 0.278325, 1)
@@ -25,11 +25,11 @@ gradient = SubResource("Gradient_6f12i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nku28"]
 shader = ExtResource("2_itkqp")
-shader_parameter/day_sky_color = Color(1, 1, 1, 1)
 shader_parameter/nightSkyTexture = ExtResource("5_xufce")
 shader_parameter/cloudsTexture = ExtResource("3_838si")
 shader_parameter/horizonSkyGradient = ExtResource("4_l03bg")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_ddl5m")
+shader_parameter/day_sky_color = Color(1, 1, 1, 1)
 shader_parameter/sun_direction = Vector3(0.231495, -0.86395, -0.447214)
 shader_parameter/day_intensity = 1.22461e-16
 shader_parameter/sun_color = Color(10, 8, 1, 1)

@@ -1,4 +1,5 @@
 @icon("res://Textures/EditorIcons/Scissors.png")
+@tool
 class_name Scissors
 extends XRToolsPickable
 

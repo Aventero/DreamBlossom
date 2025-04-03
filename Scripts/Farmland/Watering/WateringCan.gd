@@ -1,4 +1,5 @@
 @icon("res://Textures/EditorIcons/WateringCan.png")
+@tool
 class_name WateringCan
 extends XRToolsPickable
 
@@ -38,12 +39,12 @@ func _process(delta):
 		time = 0.0
 		
 		# Spawn invisible water drops for collision detection
-		var water_drop : RigidBody3D = water_drop.instantiate()
+		var water_drop_instance : RigidBody3D = water_drop.instantiate()
 		
 		# Add drop not as child so watering can movement dont interfer with falling curve
-		add_sibling(water_drop)
+		add_sibling(water_drop_instance)
 		
-		water_drop.global_position = water_particles.global_position
-		water_drop.linear_velocity = -water_particles.global_transform.basis.z * velocity_strength
+		water_drop_instance.global_position = water_particles.global_position
+		water_drop_instance.linear_velocity = -water_particles.global_transform.basis.z * velocity_strength
 	else:
 		water_particles.emitting = false

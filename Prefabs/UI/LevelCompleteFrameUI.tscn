@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://crcu4nflusivj"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LevelCompleteFrameUI.gd" id="1_bpigs"]
+[ext_resource type="Script" uid="uid://btql4ft851fth" path="res://Scripts/UI/LevelCompleteFrameUI.gd" id="1_bpigs"]
 [ext_resource type="Texture2D" uid="uid://bvwmsx32yfcm5" path="res://Textures/Bobo/Bobo_White.png" id="2_yehn6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6gms"]

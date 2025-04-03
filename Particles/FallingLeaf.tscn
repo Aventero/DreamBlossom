@@ -19,8 +19,7 @@ metadata/_snap_count = 2
 curve = SubResource("Curve_ox0wp")
 
 [sub_resource type="Curve" id="Curve_iq4es"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -3,30 +3,30 @@
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_xrug7"]
 [ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Flamie/FlamieFruit.blend" id="2_kawg3"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Textures/Fruits/Flamie/Flamie.png" id="3_5ptct"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_cqu8f"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_glrd6"]
+[ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_cqu8f"]
+[ext_resource type="Script" uid="uid://blbvbwya176vi" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_glrd6"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="7_6pry3"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
+[ext_resource type="Script" uid="uid://dmh43qu0grfqr" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="9_5c5wj"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="10_xwg07"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="11_5ym1y"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="11_gjqbd"]
+[ext_resource type="Script" uid="uid://qoyk0048n44s" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="11_5ym1y"]
+[ext_resource type="Script" uid="uid://cnhc3cgvinq7l" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="11_gjqbd"]
 [ext_resource type="PackedScene" uid="uid://d7httil120fm" path="res://Prefabs/PlantEvents/Knosp/KnospFlamie.tscn" id="12_reiha"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="13_0tla4"]
 [ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="13_6y87b"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="14_h2h2n"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="14_h10hx"]
+[ext_resource type="Script" uid="uid://dek84er4s4jxp" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="14_h2h2n"]
+[ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="14_h10hx"]
 [ext_resource type="PackedScene" uid="uid://cl4tndyms65rq" path="res://Prefabs/Planting/Fruits/FlamieFruit.tscn" id="15_8ppun"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="15_mb15r"]
 [ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="15_u1al2"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="16_3yl4r"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="16_8x7s2"]
 [ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="16_ku3pk"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_2bt31"]
+[ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_2bt31"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_qbu5y"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_n20ja"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="24_5ielf"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="24_kj3ng"]
+[ext_resource type="Script" uid="uid://d1nb3utitrlmi" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="24_kj3ng"]
 [ext_resource type="PackedScene" uid="uid://dxnefxr42p1k4" path="res://Prefabs/Particles/FallingLeafes/FallingLeafes_Flamie.tscn" id="25_ssrgl"]
 [ext_resource type="PackedScene" uid="uid://ddyq37vwqy62h" path="res://Prefabs/Particles/FallingLeafes/FallingLeafesLarge_Flamie.tscn" id="25_v5he5"]
 
@@ -120,17 +120,17 @@ resource_name = "Fierie"
 render_priority = 0
 shader = SubResource("Shader_8iufi")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_5ptct")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_5ptct")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bpf4y"]
 _surfaces = [{
@@ -2615,8 +2615,8 @@ tracks/62/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rr21y"]
 _data = {
-"Grow": SubResource("Animation_0qocl"),
-"RESET": SubResource("Animation_tmuyj")
+&"Grow": SubResource("Animation_0qocl"),
+&"RESET": SubResource("Animation_tmuyj")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0rfn"]

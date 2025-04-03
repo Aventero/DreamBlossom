@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://doufuc3rcvke"]
 
 [ext_resource type="PackedScene" uid="uid://1eextyvtp7en" path="res://Prefabs/UI/PageUI.tscn" id="1_gh2q6"]
-[ext_resource type="Script" path="res://Scripts/Cooking/RecipeBook.gd" id="1_kir1n"]
+[ext_resource type="Script" uid="uid://b7ebmpxpwc1ir" path="res://Scripts/Cooking/RecipeBook.gd" id="1_kir1n"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="3_yereh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osq7s"]
@@ -19,7 +19,7 @@ size = Vector2(0.2, 0.266)
 script/source = "extends MeshInstance3D
 
 
-func _process(delta):
+func _process(_delta):
 	# Update quest display
 	var material_dup : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
 	material_dup.albedo_texture = $\"../Book Viewport\".get_texture()

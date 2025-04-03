@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://cc6ngdqie8o8c"]
 
-[ext_resource type="Script" path="res://addons/godot-xr-tools/effects/vignette.gd" id="1"]
+[ext_resource type="Script" uid="uid://dfuu4ppxcnuvt" path="res://addons/godot-xr-tools/effects/vignette.gd" id="1"]
 [ext_resource type="Material" uid="uid://cesiqdvdfojle" path="res://addons/godot-xr-tools/effects/vignette.tres" id="2_djtaj"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yyajy"]

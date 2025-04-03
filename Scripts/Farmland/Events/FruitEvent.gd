@@ -21,11 +21,11 @@ func initialize():
 	_max_picked = get_child_count()
 	
 	# Despawn old models
-	for fruit in despawn_models:
+	for fruit_model in despawn_models:
 		var tween : Tween = create_tween()
-		tween.tween_property(fruit, "scale", Vector3(1.1, 1.1, 1.1), scale_length)
-		tween.tween_callback(func(): fruit.visible = false)
-		tween.tween_callback(fruit.queue_free)
+		tween.tween_property(fruit_model, "scale", Vector3(1.1, 1.1, 1.1), scale_length)
+		tween.tween_callback(func(): fruit_model.visible = false)
+		tween.tween_callback(fruit_model.queue_free)
 	
 	# for each spawnpoint spawn a fruit
 	for child in get_children():

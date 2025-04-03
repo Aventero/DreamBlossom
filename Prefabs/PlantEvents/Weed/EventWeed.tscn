@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=4 uid="uid://bdx7y6tgfx10"]
 
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_ggb8v"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Weed/EventWeed.gd" id="2_yy5cd"]
+[ext_resource type="Script" uid="uid://cjjmkjiw2bsbt" path="res://Scripts/Farmland/Weed/EventWeed.gd" id="2_yy5cd"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_befj4"]
 [ext_resource type="PackedScene" uid="uid://5bul7ayyv75b" path="res://Prefabs/PlantEvents/Weed/EventWeedPullParticles.tscn" id="4_duxw7"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_wi6of"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="6_yak84"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="6_yak84"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_1cpbv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b53jb"]

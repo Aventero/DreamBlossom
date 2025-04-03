@@ -73,14 +73,14 @@ func _setup_order_ui():
 	order_timer.value = order.time
 
 func _spawn_ingredient_ui(ingredient : Ingredient.Type, amount : int):
-	var ingredient_ui : IngredientUI = ingredient_ui.instantiate()
-	$"Order Screen/Ingredients".add_child(ingredient_ui)
+	var _ingredient_ui : IngredientUI = ingredient_ui.instantiate()
+	$"Order Screen/Ingredients".add_child(_ingredient_ui)
 	
 	# Fill ingredient ui with data
-	ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
-	ingredient_ui.set_amount(amount)
+	_ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
+	_ingredient_ui.set_amount(amount)
 	
-	_ingredient_lookup[ingredient] = ingredient_ui
+	_ingredient_lookup[ingredient] = _ingredient_ui
 
 func _on_order_completed(success : bool):
 	if success:
@@ -101,15 +101,15 @@ func _on_order_completed(success : bool):
 
 func _on_update_request(ingredients : Dictionary):
 	for ingredient in ingredients:
-		var ingredient_ui : IngredientUI = _ingredient_lookup[ingredient]
+		var _ingredient_ui : IngredientUI = _ingredient_lookup[ingredient]
 		var difference : int = GameBase.level.current_order.get_remaining_amount(ingredient)
 		
 		# Update ingredient amount and show highlight if value changed
-		if ingredient_ui.set_amount(difference):
-			ingredient_ui.show_highlight(0.2, 15)
+		if _ingredient_ui.set_amount(difference):
+			_ingredient_ui.show_highlight(0.2, 15)
 		
 		if difference == 0:
-			ingredient_ui.set_complete()
+			_ingredient_ui.set_complete()
 
 func _on_seconds_timeout():
 	# Update Time / Timer

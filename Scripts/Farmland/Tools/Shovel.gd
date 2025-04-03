@@ -1,4 +1,5 @@
 @icon("res://Textures/EditorIcons/Shovel.png")
+@tool
 class_name Shovel
 extends XRToolsPickable
 
@@ -248,7 +249,7 @@ func _shovel_pull_animation(ratio):
 		cos(time * max_speed) * ratio * 0.1
 	)
 
-func _on_soil_trigger_body_entered(body):
+func _on_soil_trigger_body_entered(_body):
 	# Check if current angle of shovel is allowed for insertion
 	if not _insertion_angle_allowed():
 		return
@@ -262,8 +263,8 @@ func _on_soil_trigger_body_entered(body):
 		return
 
 	# Haptic feedback for shovel insert
-	var controller : XRController3D = get_picked_up_by_controller()
-	XRToolsRumbleManager.add(controller.name, put_rumble, [controller])
+	var pick_controller : XRController3D = get_picked_up_by_controller()
+	XRToolsRumbleManager.add(pick_controller.name, put_rumble, [pick_controller])
 
 	# Squish feedback of insertion
 	_insertion_squish()
@@ -347,7 +348,7 @@ func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 
 	pull_started.emit()
 
-func _on_pull_pickup_dropped(pickable: XRToolsPickable):
+func _on_pull_pickup_dropped(_pickable: XRToolsPickable):
 	# Reset pull handle to origin
 	pickable_pull.position = Vector3.ZERO
 	pickable_pull.rotation = pull_origin.rotation
@@ -367,7 +368,7 @@ func _on_picked_up(pickable : XRToolsPickable):
 	# Connect input change event from current controller
 	controller = pickable.get_picked_up_by_controller()
 
-func _on_dropped(pickable : XRToolsPickable):
+func _on_dropped(_pickable : XRToolsPickable):
 	indicator_instance.set_state(Indicator.STATE.HIDDEN)
 	shovel_intersection_indicator.visible = false
 

@@ -1,3 +1,4 @@
+@tool
 class_name Ingredient
 extends XRToolsPickable
 

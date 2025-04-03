@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddyq37vwqy62h"]
 
 [ext_resource type="Texture2D" uid="uid://bjymlecbl2i1x" path="res://Textures/Particles/LeafParticleRed.png" id="1_kful4"]
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_t4kw4"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="1_t4kw4"]
 
 [sub_resource type="Curve" id="Curve_87m4r"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262458, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26279, 0.0, 0, 0]
@@ -16,6 +16,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.4
 emission_ring_radius = 0.17
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 angular_velocity_min = -80.0

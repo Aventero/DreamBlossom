@@ -2,6 +2,7 @@
 class_name PlantEvent
 extends Node3D
 
+@warning_ignore("unused_signal")
 signal event_completed
 
 @export var icon_texture : Texture2D

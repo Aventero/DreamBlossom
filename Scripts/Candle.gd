@@ -1,9 +1,10 @@
+@tool
 class_name Candle
 extends XRToolsPickable
 
 @onready var fire : Fire = $Fire
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not fire or fire.extinguished:
 		return
 	
@@ -15,8 +16,8 @@ func _process(delta: float) -> void:
 	fire.global_rotation.z = 0.0
 	
 	# Scale flame
-	var scale = clamp(remap(angle, 0.785398, 1.919862, 1.0, 0.1), 0.1, 1.0)
-	fire.scale = Vector3(scale, scale, scale)
+	var new_scale = clamp(remap(angle, 0.785398, 1.919862, 1.0, 0.1), 0.1, 1.0)
+	fire.scale = Vector3(new_scale, new_scale, new_scale)
 	
 	# Check if flame should be extinguished
 	if angle > 1.919862:

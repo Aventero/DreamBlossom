@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://k1ig4nxq85cm"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DigSpot.gd" id="1_vwm3m"]
+[ext_resource type="Script" uid="uid://clrvb8llad4mt" path="res://Scripts/Farmland/Digspot/DigSpot.gd" id="1_vwm3m"]
 [ext_resource type="PackedScene" uid="uid://f5yvsw7glp6r" path="res://Particles/Shovel/ShovelPullComplete.tscn" id="2_y6nby"]
 [ext_resource type="PackedScene" uid="uid://20gwkcyaa0l2" path="res://Particles/Shovel/ShovelInsert.tscn" id="3_bevoi"]
-[ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="4_d7spc"]
+[ext_resource type="Script" uid="uid://dug0axjikex3n" path="res://Scripts/Utility/MaterialChanger.gd" id="4_d7spc"]
 [ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="5_pfhdn"]
-[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_frjcy"]
+[ext_resource type="Script" uid="uid://bwcow3t7hmjhv" path="res://Scripts/Utility/MaterialState.gd" id="6_frjcy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1311s"]
 albedo_texture = ExtResource("5_pfhdn")

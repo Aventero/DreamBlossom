@@ -1,7 +1,7 @@
 [gd_scene load_steps=63 format=3 uid="uid://dbigenword6yp"]
 
 [ext_resource type="Texture2D" uid="uid://bvwmsx32yfcm5" path="res://Textures/Bobo/Bobo_White.png" id="1_5ix4g"]
-[ext_resource type="Script" path="res://Scripts/UI/OrderDisplayUI.gd" id="1_y016w"]
+[ext_resource type="Script" uid="uid://dvlpd2iibkdpy" path="res://Scripts/UI/OrderDisplayUI.gd" id="1_y016w"]
 [ext_resource type="Texture2D" uid="uid://blfu0agb4dhju" path="res://Textures/Bobo/Bobo_Angry.png" id="2_4jo1n"]
 [ext_resource type="Texture2D" uid="uid://c2brwollsl8x0" path="res://Textures/Bobo/Bobo_Waiting.png" id="2_hvxfd"]
 [ext_resource type="Texture2D" uid="uid://cc84w1x7eq2f1" path="res://Textures/Bobo/Bobo_Incoming_Order.png" id="5_s38yx"]

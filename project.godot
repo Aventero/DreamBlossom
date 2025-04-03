@@ -12,15 +12,19 @@ config_version=5
 
 config/name="Dreamblossom"
 run/main_scene="res://Scenes/MainScene.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 
+[dotnet]
+
+project/assembly_name="Dreamblossom"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/godotopenxrvendors/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 
@@ -49,23 +53,23 @@ import/fbx/enabled=false
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
+common/enable_object_picking=false
 jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="mobile"
-driver/threads/thread_model=2
 textures/vram_compression/import_etc2_astc=true
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 shading/overrides/force_vertex_shading=true
 shading/overrides/force_lambert_over_burley=true
 textures/default_filters/use_nearest_mipmap_filter=true
+anti_aliasing/quality/msaa_3d=3
 scaling_3d/scale=0.8
 textures/decals/filter=2
 textures/light_projectors/filter=2
-anti_aliasing/quality/msaa_3d=3
 anti_aliasing/quality/use_debanding=true
 lights_and_shadows/positional_shadow/atlas_size=2048
 

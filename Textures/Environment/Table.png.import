@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b734i2f0s0cs3"
-path="res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.ctex"
+uid="uid://ccoxfd8enokme"
+path.s3tc="res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.s3tc.ctex"
+path.etc2="res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/Environment/Table.png"
-dest_files=["res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.ctex"]
+dest_files=["res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.s3tc.ctex", "res://.godot/imported/Table.png-8b1717067c9f095566bd17f8b1afcdaa.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

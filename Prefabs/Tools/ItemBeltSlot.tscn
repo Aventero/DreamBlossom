@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://day55jerktn6k"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Tools/ItemBeltSlot.gd" id="1_y8c65"]
+[ext_resource type="Script" uid="uid://dq4t8vtv8jimf" path="res://Scripts/Farmland/Tools/ItemBeltSlot.gd" id="1_y8c65"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pqxiy"]
 size = Vector3(0.02, 0.02, 0.02)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dmo00poipuk4w"]
 
-[ext_resource type="Script" path="res://addons/godot-xr-tools/staging/staging.gd" id="1_6s1ly"]
-[ext_resource type="Shader" path="res://addons/godot-xr-tools/staging/fade.gdshader" id="2_kf1ah"]
+[ext_resource type="Script" uid="uid://5v33drtvl8js" path="res://addons/godot-xr-tools/staging/staging.gd" id="1_6s1ly"]
+[ext_resource type="Shader" uid="uid://b5f3koy38kg8s" path="res://addons/godot-xr-tools/staging/fade.gdshader" id="2_kf1ah"]
 [ext_resource type="Environment" uid="uid://ckiwtcdsam7ed" path="res://addons/godot-xr-tools/staging/staging_env.tres" id="3_ukd6r"]
 [ext_resource type="PackedScene" uid="uid://c556h0flmnid5" path="res://Scenes/LoadingScene.tscn" id="4_tossv"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="6_g2p2x"]

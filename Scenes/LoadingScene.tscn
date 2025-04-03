@@ -8,6 +8,7 @@ transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("2_s6qt7")
 texture_filter = 0
+texture_repeat = false
 
 [node name="LoadingScreen" instance=ExtResource("1_pr7u4")]
 splash_screen = ExtResource("2_s6qt7")

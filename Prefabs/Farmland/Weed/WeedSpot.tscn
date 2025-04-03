@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpotBase.tscn" id="1_yhhyw"]
 [ext_resource type="PackedScene" uid="uid://c2e16pvwhohgx" path="res://Prefabs/Farmland/Weed/Weed.tscn" id="2_sxg6l"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="5_aama0"]
-[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="6_2xyoj"]
+[ext_resource type="Script" uid="uid://bwcow3t7hmjhv" path="res://Scripts/Utility/MaterialState.gd" id="6_2xyoj"]
 [ext_resource type="Texture2D" uid="uid://cui4qkyonsu5h" path="res://Textures/Farmland/DigSpot.png" id="8_6gsn4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5bw0i"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=21 format=4 uid="uid://mfpdeks8empd"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_x7ukq"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/BlubburuFruit.gd" id="2_0a1fi"]
+[ext_resource type="Script" uid="uid://bqxic82avgk1l" path="res://Scripts/Farmland/Fruits/BlubburuFruit.gd" id="2_0a1fi"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="4_0ak2h"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="5_q1f25"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="5_q1f25"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_2rp10"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o4tsq"]

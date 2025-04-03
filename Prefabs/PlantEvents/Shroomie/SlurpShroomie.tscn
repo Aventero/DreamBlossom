@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=4 uid="uid://blfgo0yoj5uox"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/SlurpShroomieEvent/SlurpShroomie.gd" id="1_wjceu"]
+[ext_resource type="Script" uid="uid://ba1e2r0u051am" path="res://Scripts/Farmland/Events/SlurpShroomieEvent/SlurpShroomie.gd" id="1_wjceu"]
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_csyhm"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_tf38i"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="2_tf38i"]
 [ext_resource type="Texture2D" uid="uid://cijrwi6wgne84" path="res://Textures/Particles/SlurpParticle.png" id="3_g2d2u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87x1i"]
@@ -70,7 +70,7 @@ shader_parameter/UV_multiplier = 1.0
 shader_parameter/UV_offset = Vector2(0, 0)
 
 [sub_resource type="Curve" id="Curve_47l6e"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.00353777), 0.0, 0.0, 0, 0, Vector2(0.173653, 0.988208), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=4 uid="uid://b3atgcxkd78m4"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_vpipe"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Tools/Scissors.gd" id="2_2idro"]
+[ext_resource type="Script" uid="uid://72c3ho1ye2jq" path="res://Scripts/Farmland/Tools/Scissors.gd" id="2_2idro"]
 [ext_resource type="PackedScene" uid="uid://bifc1qq7l3172" path="res://Models/Tools/Scissors.blend" id="3_lhxqj"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="5_3ej3m"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_v7xbm"]
+[ext_resource type="Script" uid="uid://cqwuam3yfserx" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_v7xbm"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="7_2xj1y"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="8_mhrvu"]
 

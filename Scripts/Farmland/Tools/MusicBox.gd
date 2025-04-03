@@ -1,4 +1,5 @@
 @icon("res://Textures/EditorIcons/MusicBox.png")
+@tool
 class_name MusicBox
 extends XRToolsPickable
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://ckulb7rpdxh1v"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Digspot/DiggingIndicator.gd" id="1_q6t32"]
-[ext_resource type="Shader" path="res://Shader/Halo_01.gdshader" id="2_cmbd0"]
+[ext_resource type="Script" uid="uid://by7fy62i8qk6b" path="res://Scripts/Farmland/Digspot/DiggingIndicator.gd" id="1_q6t32"]
+[ext_resource type="Shader" uid="uid://dl27ri0ckx8qx" path="res://Shader/Halo_01.gdshader" id="2_cmbd0"]
 [ext_resource type="Texture2D" uid="uid://crsh885652ill" path="res://Textures/Shader/Halo_01.png" id="3_72xu3"]
 [ext_resource type="Texture2D" uid="uid://dl1rkendj3xas" path="res://Textures/Shader/Lines.png" id="4_17btt"]
 
@@ -43,11 +43,11 @@ shadow_mesh = SubResource("ArrayMesh_rv18l")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1qmd"]
 render_priority = 0
 shader = ExtResource("2_cmbd0")
+shader_parameter/halo_01 = ExtResource("3_72xu3")
+shader_parameter/halo_02 = ExtResource("4_17btt")
 shader_parameter/object_height = 0.165
 shader_parameter/base_color = Color(0.505882, 0.733333, 0.988235, 1)
 shader_parameter/cursor = Vector3(0.01, 0, 0)
-shader_parameter/halo_01 = ExtResource("3_72xu3")
-shader_parameter/halo_02 = ExtResource("4_17btt")
 
 [node name="DiggingIndicator" type="Area3D"]
 collision_layer = 256

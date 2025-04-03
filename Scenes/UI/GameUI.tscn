@@ -7,17 +7,15 @@ func adjust_3d_scale(scale_value: float):
 	ProjectSettings.set_setting(\"rendering/scaling_3d/scale\", scale_value)
 	ProjectSettings.save()
 
-	# For VR, you might need to trigger an XR interface update
 	var xr = XRServer.get_primary_interface()
 	if xr:
-		# This might help force a refresh of the VR rendering
 		xr.set_render_target_size_multiplier(scale_value)
 
-func _on_drag_ended(value_changed: bool) -> void:
-	if value_changed:
+func _on_drag_ended(has_value_changed: bool) -> void:
+	if has_value_changed:
 		adjust_3d_scale(self.value)
 
-func _value_changed(new_value: float) -> void:
+func _value_changed(_new_value: float) -> void:
 	$\"../Label2\".text = str(self.value)
 "
 

@@ -24,7 +24,7 @@ var _retract_tween : Tween
 var _ignore_drop : bool = false
 var _controller : XRController3D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not grab_pickable.is_picked_up():
 		return
 	
@@ -88,7 +88,7 @@ func _on_grip_pickable_picked_up(pickable: XRToolsPickable) -> void:
 	if _retract_tween and _retract_tween.is_running():
 		_retract_tween.kill()
 
-func _on_grip_pickable_dropped(pickable: Variant) -> void:
+func _on_grip_pickable_dropped(_pickable: Variant) -> void:
 	# Remove rumble
 	XRToolsRumbleManager.clear("cauldron_pull", [_controller])
 	_controller = null

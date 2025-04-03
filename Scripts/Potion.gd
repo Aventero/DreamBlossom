@@ -188,7 +188,7 @@ func pick_up(by: Node3D) -> void:
 	#_stomp_tween = create_tween()
 	#_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
 
-func _on_dropped(pickable: Variant) -> void:
+func _on_dropped(_pickable: Variant) -> void:
 	# Spawn stomp
 	if _stomp_tween and _stomp_tween.is_running():
 		_stomp_tween.kill()
@@ -286,6 +286,6 @@ static var _potion_properties = {
 	}
 }
 
-static func get_potion_data(type : Potion.TYPE, property : Potion.PROPERTIES):
+static func get_potion_data(_type : Potion.TYPE, property : Potion.PROPERTIES):
 	var _property : String = PROPERTIES.keys()[property].to_lower()
-	return _potion_properties[type][_property]
+	return _potion_properties[_type][_property]

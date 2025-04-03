@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_8hftf"]
 [ext_resource type="PackedScene" uid="uid://6u1yd6nxnmah" path="res://Models/Tools/WateringCan.blend" id="2_7hytt"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_uu5vl"]
+[ext_resource type="Script" uid="uid://cqwuam3yfserx" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_uu5vl"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_2wstd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7yq7v"]

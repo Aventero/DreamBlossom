@@ -1,12 +1,12 @@
 [gd_scene load_steps=36 format=4 uid="uid://oy4mv3s1ayr7"]
 
 [ext_resource type="Texture2D" uid="uid://0gy63t2w51ki" path="res://Textures/Particles/Fire_01.png" id="1_1pe2x"]
-[ext_resource type="Script" path="res://Prefabs/PlantEvents/FireFairy/Fire.gd" id="1_ko301"]
+[ext_resource type="Script" uid="uid://cykkgimijqc6j" path="res://Prefabs/PlantEvents/FireFairy/Fire.gd" id="1_ko301"]
 [ext_resource type="Texture2D" uid="uid://dkkt0ia8qgcp6" path="res://Textures/Particles/Fire_02.png" id="2_1xh3i"]
 [ext_resource type="Texture2D" uid="uid://r3ph2vh5athv" path="res://Textures/Particles/Fire_03.png" id="3_i7fn0"]
 [ext_resource type="Texture2D" uid="uid://b2bqcilo2c73q" path="res://Textures/Particles/Fire_04.png" id="4_8frog"]
 [ext_resource type="Texture2D" uid="uid://b8jxr8cp6juwn" path="res://Textures/Particles/Fire_05.png" id="5_v0y31"]
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="7_4t0mm"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="7_4t0mm"]
 [ext_resource type="Texture2D" uid="uid://dcgnlsj0df2h8" path="res://Textures/Particles/FireSmoke01.png" id="8_rlgoj"]
 [ext_resource type="Texture2D" uid="uid://cg3g2cb5up2k0" path="res://Textures/Particles/FireSmoke02.png" id="9_vrtj3"]
 
@@ -103,17 +103,17 @@ frame_4/duration = 0.2
 render_priority = 0
 shader = SubResource("Shader_gwm1d")
 shader_parameter/albedo = Color(1.5, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("AnimatedTexture_86cut")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("AnimatedTexture_86cut")
 
 [sub_resource type="Curve" id="Curve_d1kj2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.263473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0251408, 0.0, 0, 0]

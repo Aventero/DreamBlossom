@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b30eqouqhr2gd"]
 
-[ext_resource type="Script" path="res://Scripts/Brewing/FlaskSpawner.gd" id="1_a6mb1"]
+[ext_resource type="Script" uid="uid://b1gtn6i6y3ik0" path="res://Scripts/Brewing/FlaskSpawner.gd" id="1_a6mb1"]
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="2_n6c7n"]
 [ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="3_01ms2"]
 

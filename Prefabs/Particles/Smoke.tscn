@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dfv5b3kl763lm" path="res://Textures/Particles/Smoke.png" id="1_quwkb"]
 
 [sub_resource type="Curve" id="Curve_5xaih"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.177215, 0.984887), -1.32353, -1.32353, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

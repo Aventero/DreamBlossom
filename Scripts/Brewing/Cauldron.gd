@@ -70,12 +70,12 @@ func _handle_drop(drop : PotionDrop) -> void:
 			_mixture.append(drop.type)
 		
 		# Jiggle fluid
-		_jiggle_cauldron(get_mixture())
+		_jiggle_cauldron(get_mixture(), true)
 	
 	# Update mixture display
 	_update_mixture_display(drop.type)
 
-func _update_mixture_display(type : int) -> void:
+func _update_mixture_display(_type : int) -> void:
 	var new_mixture : String = str(get_mixture())
 	
 	# Make text jiggle
@@ -93,7 +93,7 @@ func _handle_empty_potion(empty_potion : Potion) -> void:
 	empty_potion.fill_potion(get_mixture(), drops_per_potion)
 	
 	# Play potion jiggle effect
-	_jiggle_cauldron(-1)
+	_jiggle_cauldron(Potion.TYPE.EMPTY, false)
 
 func get_mixture() -> int:
 	var mix : int = 0
@@ -156,7 +156,7 @@ func _empty_cauldron() -> void:
 		
 		part_count += 1
 
-func _jiggle_cauldron(type : Potion.TYPE) -> void:
+func _jiggle_cauldron(type : Potion.TYPE, should_update_color: bool) -> void:
 	if _fluid_tween and _fluid_tween.is_running():
 		_fluid_tween.kill()
 	
@@ -165,8 +165,7 @@ func _jiggle_cauldron(type : Potion.TYPE) -> void:
 	_fluid_tween.tween_property(potion_fluid, "position:y", jiggle_height, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Update color of fluid
-	if type != -1:
-		#_fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_color(type), 0.1)
+	if should_update_color:
 		_fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_potion_data(type, Potion.PROPERTIES.COLOR), 0.1)
 	
 	_fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)

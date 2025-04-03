@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://dc0ufw1mg1d1g"]
 
 [ext_resource type="PackedScene" uid="uid://cme66uldrjl2i" path="res://addons/godot-xr-tools/interactables/interactable_area_button.tscn" id="1_7nxpo"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="2_qaxfq"]
+[ext_resource type="Script" uid="uid://cik8ruh3e40kn" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="2_qaxfq"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="3_0ctbi"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="4_xllal"]
+[ext_resource type="Script" uid="uid://c8spvbllpgn7u" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="4_xllal"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="5_01b28"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p3i6o"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5rd0p831wcpb"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_bss78"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="1_bss78"]
 [ext_resource type="Texture2D" uid="uid://5d6a6gffooln" path="res://Textures/Particles/KnospParticle.png" id="2_pjtdn"]
 
 [sub_resource type="Curve" id="Curve_hr4h6"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://k1ig4nxq85cm" path="res://Prefabs/Farmland/DigSpots/DigSpotBase.tscn" id="1_okxs7"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="2_5qhmp"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_j42wr"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="4_j42wr"]
 [ext_resource type="Texture2D" uid="uid://ctn71eky1wrve" path="res://Textures/Square.png" id="5_j0fmd"]
 [ext_resource type="Texture2D" uid="uid://dgm7dyn5upwue" path="res://Textures/Farmland/DigSpotHole.png" id="5_jaky1"]
 

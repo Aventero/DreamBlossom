@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=4 uid="uid://df1c66umw8kot"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_5qoqe"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/NommieFruit.gd" id="2_rejio"]
+[ext_resource type="Script" uid="uid://ruk5y2nckmwe" path="res://Scripts/Farmland/Fruits/NommieFruit.gd" id="2_rejio"]
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="2_wksp4"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="3_x8eyl"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_x8eyl"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_aqrxv"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3bcwr"]

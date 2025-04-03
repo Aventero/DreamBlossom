@@ -22,7 +22,8 @@ var _current_amount : int = 0
 func initialize():
 	# Decide on request potion type
 	if GameBase.level.enable_brewing:
-		requested_potion_type = randi_range(1, Potion.TYPE.size() - 1) # Get random potion from "all" potions
+		var random_index = randi_range(1, Potion.TYPE.size() - 1)
+		requested_potion_type = Potion.TYPE.values()[random_index]
 	else:
 		requested_potion_type = [Potion.TYPE.RED, Potion.TYPE.GREEN, Potion.TYPE.BLUE].pick_random() # Get random potion from "base" potions
 	

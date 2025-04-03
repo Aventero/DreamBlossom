@@ -14,6 +14,7 @@ var _time_of_day: float = 4.0
 @export var sun : DirectionalLight3D
 @export var moon : DirectionalLight3D
 
+@warning_ignore("unused_variable")
 var _time = 0.0;
 
 func set_time_of_day(value):
@@ -46,9 +47,9 @@ func calculate_moon_direction(hour: float) -> Vector3:
 func is_sky_body_visible(direction: Vector3) -> bool:
 	return direction.y > 0
 
-func update_shader_parameters(time_of_day: float) -> void:
-	var sun_direction = calculate_sun_direction(time_of_day)
-	var moon_direction = calculate_moon_direction(time_of_day)
+func update_shader_parameters(time_day: float) -> void:
+	var sun_direction = calculate_sun_direction(time_day)
+	var moon_direction = calculate_moon_direction(time_day)
 	sky_shader_material.set_shader_parameter("sun_direction", sun_direction.normalized())
 	sky_shader_material.set_shader_parameter("moon_direction", moon_direction.normalized())
 	if is_sky_body_visible(sun_direction):

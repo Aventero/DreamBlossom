@@ -1,24 +1,24 @@
 [gd_scene load_steps=37 format=3 uid="uid://dq7k7phd3i607"]
 
-[ext_resource type="Script" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
+[ext_resource type="Script" uid="uid://dbjmh3x88yvng" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
 [ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_krgwt"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_w4io7"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_6u0xd"]
-[ext_resource type="Script" uid="uid://bdktwnpsef3xt" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="3_we1bf"]
-[ext_resource type="Script" uid="uid://8swk8dxlu75q" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_jl6qw"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_64uky"]
+[ext_resource type="Script" uid="uid://b5htc8jjjmrpj" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_6u0xd"]
+[ext_resource type="Script" uid="uid://c1e40bk6h5fym" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="3_we1bf"]
+[ext_resource type="Script" uid="uid://cv8w8najbvjw6" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_jl6qw"]
+[ext_resource type="Script" uid="uid://1viu41acxrvu" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_64uky"]
 [ext_resource type="PackedScene" uid="uid://2x5g6x5e1k7" path="res://Prefabs/Planting/Blubburu/BlubburuPlant.tscn" id="8_02uq7"]
-[ext_resource type="Script" uid="uid://pegsgfng25a4" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="9_np802"]
+[ext_resource type="Script" uid="uid://cik8ruh3e40kn" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="9_np802"]
 [ext_resource type="PackedScene" uid="uid://dxhccbbkp1ghs" path="res://Prefabs/Planting/Flamie/FlamiePlant.tscn" id="9_wkoli"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="10_4mlpb"]
 [ext_resource type="PackedScene" uid="uid://4exhe7q8f0pk" path="res://Prefabs/Planting/Nommie/NommiePlant.tscn" id="10_5grbc"]
 [ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="11_a812u"]
-[ext_resource type="Script" uid="uid://be1uanqjooubo" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
+[ext_resource type="Script" uid="uid://c8spvbllpgn7u" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="12_12wo1"]
 [ext_resource type="PackedScene" uid="uid://v4beiflx1jg0" path="res://Prefabs/Planting/Shellie/ShelliePlant.tscn" id="12_w3ksd"]
 [ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="13_4ypwf"]
-[ext_resource type="Script" path="res://Scripts/Utility/ResourceSingelton.gd" id="14_y8p08"]
-[ext_resource type="Script" path="res://Scripts/LevelButton.gd" id="15_vmvpr"]
+[ext_resource type="Script" uid="uid://67uivsu5mnoh" path="res://Scripts/Utility/ResourceSingelton.gd" id="14_y8p08"]
+[ext_resource type="Script" uid="uid://c3teminr6t7ex" path="res://Scripts/LevelButton.gd" id="15_vmvpr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ymhto"]
 panorama = ExtResource("2_krgwt")
@@ -27,7 +27,6 @@ filter = false
 [sub_resource type="Sky" id="Sky_xr2ka"]
 sky_material = SubResource("PanoramaSkyMaterial_ymhto")
 process_mode = 3
-radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_8frxu"]
 background_mode = 2

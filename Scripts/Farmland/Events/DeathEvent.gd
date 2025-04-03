@@ -14,7 +14,7 @@ func initialize():
 	owner.emit_dying()
 	
 	# Quickly Play the animation backwards
-	var stage : Stage = get_parent_node_3d()
+	var _stage : Stage = get_parent_node_3d()
 	animation_player.speed_scale = 10
 	animation_player.play_backwards("Grow")
 

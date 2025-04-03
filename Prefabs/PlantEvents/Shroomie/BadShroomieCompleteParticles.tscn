@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq5jxbtrgx7fu"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_x0xif"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="1_x0xif"]
 [ext_resource type="Texture2D" uid="uid://c4feema514xoq" path="res://Textures/Particles/BadShroomieParticles.png" id="2_c5ih7"]
 
 [sub_resource type="Curve" id="Curve_b8y74"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.167665, 0.650943), -1.32353, -1.32353, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

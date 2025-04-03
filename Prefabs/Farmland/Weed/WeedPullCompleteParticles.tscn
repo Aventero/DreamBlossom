@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bhlcenkafo3d1"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="1_a07j7"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="1_a07j7"]
 [ext_resource type="Texture2D" uid="uid://v2r5d120efo0" path="res://Textures/Particles/LeafParticleGreen.png" id="2_vin1v"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k1o2w"]
@@ -34,7 +34,7 @@ func _on_finished():
 "
 
 [sub_resource type="Curve" id="Curve_jyt3r"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.176647, 0.420991), -1.32353, -1.32353, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cctnea4mrykky"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LevelFailedFrameUI.gd" id="1_4he0i"]
+[ext_resource type="Script" uid="uid://cekbx5ivmo4x" path="res://Scripts/UI/LevelFailedFrameUI.gd" id="1_4he0i"]
 [ext_resource type="Texture2D" uid="uid://blfu0agb4dhju" path="res://Textures/Bobo/Bobo_Angry.png" id="2_nyv4o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6gms"]

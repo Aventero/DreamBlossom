@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0jc6djndpovy"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
+[ext_resource type="Script" uid="uid://bai6ikll0dbnu" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="4_jennh"]
-[ext_resource type="Script" path="res://Scripts/Farmland/IconDisplay.gd" id="6_fcbyu"]
+[ext_resource type="Script" uid="uid://c8oa3t0eadndj" path="res://Scripts/Farmland/IconDisplay.gd" id="6_fcbyu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjk1"]
 transparency = 2

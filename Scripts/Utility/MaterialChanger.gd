@@ -42,10 +42,10 @@ func set_state_by_index(index : int):
 		
 		mesh.set_surface_override_material(0, material_states[index].material)
 
-func set_state_by_name(name : String):
+func set_state_by_name(_name : String):
 	# Check if material of name exists
 	for material_state in material_states:
-		if material_state.name == name:
+		if material_state.name == _name:
 			var index : int = material_states.find(material_state)
 			set_state_by_index(index)
 

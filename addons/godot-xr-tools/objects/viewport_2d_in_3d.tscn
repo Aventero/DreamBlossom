@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://clujaf3u776a3"]
 
-[ext_resource type="Script" uid="uid://bamj8vgx85ehp" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd" id="1"]
-[ext_resource type="Script" uid="uid://cb0e3esvh5sdv" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d_body.gd" id="2"]
+[ext_resource type="Script" uid="uid://d34oi56w2ij3q" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd" id="1"]
+[ext_resource type="Script" uid="uid://7s61i0wbi2v6" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d_body.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dsyv8sgc8dixa" path="res://Scenes/UI/GameUI.tscn" id="2_bbjvm"]
 
 [sub_resource type="QuadMesh" id="1"]

@@ -37,7 +37,7 @@ var hand : XRToolsCollisionHand
 var previous_hand_position : Vector3
 
 # Seed / Plant
-var seed : Seed = null
+var grow_seed : Seed = null
 var plant : Node3D = null
 
 # Watering
@@ -113,11 +113,11 @@ func _on_trigger_body_entered(body):
 	if hand_removal and body is XRToolsCollisionHand:
 		_handle_hand_movement(body)
 	
-	# Check if body is seed
-	if seed_insertion and not seed and body is Seed and body.planted == false:
-		# Ensure that seed is only planted once
-		seed = body
-		seed.planted = true
+	# Check if body is grow_seed
+	if seed_insertion and not grow_seed and body is Seed and body.planted == false:
+		# Ensure that grow_seed is only planted once
+		grow_seed = body
+		grow_seed.planted = true
 		
 		_handle_seed_insert()
 	
@@ -142,24 +142,24 @@ func _handle_hand_movement(body : Node3D):
 	previous_hand_position = body.global_position
 
 func _handle_seed_insert():
-	# Force player to drop seed
-	seed.drop()
+	# Force player to drop grow_seed
+	grow_seed.drop()
 	
-	# Disable pickable from seed
-	seed.enabled = false
-	seed.freeze = true
+	# Disable pickable from grow_seed
+	grow_seed.enabled = false
+	grow_seed.freeze = true
 	
 	# Disable inactivity manager
-	InactivityManager.get_instance().remove_node(seed)
+	InactivityManager.get_instance().remove_node(grow_seed)
 	
 	# Stop watering timer
 	dry_timer.stop()
 	
-	# Reset rotation and place seed to snap point
+	# Reset rotation and place grow_seed to snap point
 	var tween : Tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(seed, "rotation", Vector3.ZERO, 0.05)
-	tween.tween_property(seed, "global_position", seed_snap_point.global_position, 0.05)
+	tween.tween_property(grow_seed, "rotation", Vector3.ZERO, 0.05)
+	tween.tween_property(grow_seed, "global_position", seed_snap_point.global_position, 0.05)
 	
 	# Play jiggle animation for dig spot
 	play_jiggle()
@@ -170,7 +170,7 @@ func _handle_seed_insert():
 	particles.position = seed_snap_point.position + Vector3(0, 0.1, 0)
 	particles.emitting = true
 	
-	# Reparent seed after tween
+	# Reparent grow_seed after tween
 	tween.tween_callback(Callable(_reparent_seed_callback))
 	
 	# Spawn plant if water is enough
@@ -194,7 +194,7 @@ func _handle_water_drop():
 	# Watering amount was reached
 	watering_completed.emit()
 	
-	if seed == null:
+	if grow_seed == null:
 		# Start dry timer if not already started
 		dry_timer.start()
 		return
@@ -207,24 +207,24 @@ func _handle_water_drop():
 
 func _spawn_plant():
 	# Spawn plant
-	plant = ResourceSingleton.instance.get_resource(seed.plant).instantiate()
+	plant = ResourceSingleton.instance.get_resource(grow_seed.plant).instantiate()
 	plant.position = Vector3.ZERO
 	add_child(plant)
 	
-	# Remove seed
+	# Remove grow_seed
 	var tween : Tween = create_tween()
-	tween.tween_property(seed, "scale", Vector3.ZERO, 0.5)
-	tween.tween_callback(seed.queue_free)
+	tween.tween_property(grow_seed, "scale", Vector3.ZERO, 0.5)
+	tween.tween_callback(grow_seed.queue_free)
 	
 	# Update Lookup
 	DigSpotLookup.add(self, plant)
 
 func _reparent_seed_callback():
-	seed.get_parent().remove_child(seed)
-	seed_snap_point.add_child(seed)
+	grow_seed.get_parent().remove_child(grow_seed)
+	seed_snap_point.add_child(grow_seed)
 	
 	# Reset position to ZERO because of the reparenting
-	seed.position = Vector3.ZERO
+	grow_seed.position = Vector3.ZERO
 
 func play_jiggle(strength : float = 0.1, length : float = 0.2):
 	if jiggle_tween and jiggle_tween.is_running():

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_38664"]
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_nchgq"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/ShroomieFruit.gd" id="2_s2l3y"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="3_cikcm"]
+[ext_resource type="Script" uid="uid://gcymq4ejqy8y" path="res://Scripts/Farmland/Fruits/ShroomieFruit.gd" id="2_s2l3y"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_cikcm"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_t3dbe"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aby65"]

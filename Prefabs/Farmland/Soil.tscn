@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://cx8b2cp0171ha"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Grid/Grid.gd" id="1_et88f"]
+[ext_resource type="Script" uid="uid://esut80vkmw24" path="res://Scripts/Farmland/Grid/Grid.gd" id="1_et88f"]
 [ext_resource type="Texture2D" uid="uid://dcii5pj8feohm" path="res://Textures/Farmland/DiggingArea.png" id="2_6bppe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxybn"]

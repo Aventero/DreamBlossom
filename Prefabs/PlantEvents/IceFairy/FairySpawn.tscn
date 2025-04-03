@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ciajs30hmedpn"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FairySpawn.gd" id="1_fldel"]
+[ext_resource type="Script" uid="uid://pcycvldl6jvo" path="res://Scripts/Farmland/Events/FairySpawn.gd" id="1_fldel"]
 
 [node name="FairySpawn" type="Node3D"]
 script = ExtResource("1_fldel")

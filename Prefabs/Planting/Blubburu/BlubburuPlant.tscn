@@ -3,27 +3,27 @@
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_pse6x"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="2_2fcmw"]
 [ext_resource type="PackedScene" uid="uid://dyxeqetaldjif" path="res://Models/Plants/Blubburu/Blubburu.blend" id="3_rgm2t"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_icewp"]
+[ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_icewp"]
 [ext_resource type="PackedScene" uid="uid://c1t4hhady8t8" path="res://Prefabs/Particles/FallingLeafes/FallingLeafes_Blubburu.tscn" id="6_pivdr"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="9_0bi6h"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="9_aqyhd"]
+[ext_resource type="Script" uid="uid://blbvbwya176vi" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="9_0bi6h"]
+[ext_resource type="Script" uid="uid://d1nb3utitrlmi" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="9_aqyhd"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="10_0assc"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/PruneEvent/PruneEvent.gd" id="11_nb6qv"]
+[ext_resource type="Script" uid="uid://772y5bj7qycc" path="res://Scripts/Farmland/Events/PruneEvent/PruneEvent.gd" id="11_nb6qv"]
 [ext_resource type="PackedScene" uid="uid://cttivc1gdbb5y" path="res://Prefabs/PlantEvents/Prune/DeadLeaf.tscn" id="12_sjvyj"]
 [ext_resource type="Texture2D" uid="uid://duk7gbt0tw8qo" path="res://Textures/EditorIcons/PruneEvent.png" id="13_ofqrx"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="14_erlvj"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="14_ty8pd"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="14_xuvuu"]
+[ext_resource type="Script" uid="uid://cnhc3cgvinq7l" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="14_erlvj"]
+[ext_resource type="Script" uid="uid://dmh43qu0grfqr" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="14_ty8pd"]
+[ext_resource type="Script" uid="uid://qoyk0048n44s" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="14_xuvuu"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="15_4fmgu"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="15_n3esw"]
 [ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="16_g3s0n"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="16_o1o87"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
+[ext_resource type="Script" uid="uid://c7kqxkhfeu8j" path="res://Scripts/Farmland/Events/WateringEvent.gd" id="17_421n2"]
 [ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="18_0hdub"]
 [ext_resource type="PackedScene" uid="uid://ck1g5nye5nmn8" path="res://Prefabs/PlantEvents/Knosp/KnospBlubburu.tscn" id="18_phwou"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="18_v0q0r"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="19_anm5m"]
+[ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="19_af8bs"]
+[ext_resource type="Script" uid="uid://dek84er4s4jxp" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="19_anm5m"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="20_1l3hj"]
 [ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Planting/Fruits/BlubburuFruit.tscn" id="20_3dg6d"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="20_d7qg2"]
@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="21_c1dpi"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="21_dq64x"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="21_g8rrp"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="22_asydb"]
+[ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="22_asydb"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="22_cy4w6"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="24_p2ndi"]
 
@@ -123,17 +123,17 @@ resource_name = "Leaves.001"
 render_priority = 0
 shader = SubResource("Shader_ood7e")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_2fcmw")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_2fcmw")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qq4i7"]
 _surfaces = [{
@@ -3795,8 +3795,8 @@ tracks/95/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kh5o2"]
 _data = {
-"Grow": SubResource("Animation_scb8y"),
-"RESET": SubResource("Animation_uiok0")
+&"Grow": SubResource("Animation_scb8y"),
+&"RESET": SubResource("Animation_uiok0")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl6n5"]

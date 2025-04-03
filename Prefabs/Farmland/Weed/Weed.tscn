@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://c2e16pvwhohgx"]
 
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_adltx"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Weed/Weed.gd" id="2_fejng"]
+[ext_resource type="Script" uid="uid://yd3mbl4u3bl5" path="res://Scripts/Farmland/Weed/Weed.gd" id="2_fejng"]
 [ext_resource type="PackedScene" uid="uid://dqnourgpa1x8h" path="res://Prefabs/Farmland/Weed/WeedPullParticles.tscn" id="3_mqtlj"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_huomt"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_680ay"]

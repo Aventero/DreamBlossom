@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://deixlqjk2x6ue"]
 
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceCube.gd" id="1_brro3"]
+[ext_resource type="Script" uid="uid://lpfey7ips4vn" path="res://Scripts/Farmland/Events/IceFairyEvent/IceCube.gd" id="1_brro3"]
 [ext_resource type="PackedScene" uid="uid://dmk73oyqrbga1" path="res://Particles/Ice/IceHit.tscn" id="2_jia4v"]
 [ext_resource type="PackedScene" uid="uid://df6dujdwnq7sb" path="res://Particles/Ice/IceDestroy.tscn" id="3_81b5c"]
 

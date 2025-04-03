@@ -4,29 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="2_eky44"]
 [ext_resource type="PackedScene" uid="uid://ti35e4tpy6hx" path="res://Prefabs/Planting/Nommie/NommieGrowingFruit.tscn" id="3_3nw5c"]
 [ext_resource type="PackedScene" uid="uid://df1c66umw8kot" path="res://Prefabs/Planting/Fruits/NommieFruit.tscn" id="3_x11i0"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/Stage.gd" id="4_47ol3"]
+[ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_47ol3"]
 [ext_resource type="Texture2D" uid="uid://ihjymu8fa1g7" path="res://Textures/EventIcons/WaterIcon.png" id="6_suqks"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="7_eknbp"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="7_h8b0q"]
+[ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="7_eknbp"]
+[ext_resource type="Script" uid="uid://blbvbwya176vi" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="7_h8b0q"]
 [ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="8_2vmdq"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="9_esdep"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="9_fqocv"]
+[ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="9_esdep"]
+[ext_resource type="Script" uid="uid://dek84er4s4jxp" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="9_fqocv"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="9_gjg3d"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="10_uagbi"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="11_b7ely"]
 [ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="12_4rnbl"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="13_t7fw2"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="14_vfqbr"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="15_w1l62"]
+[ext_resource type="Script" uid="uid://cnhc3cgvinq7l" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="15_w1l62"]
 [ext_resource type="PackedScene" uid="uid://c3w0gho2ujed7" path="res://Prefabs/PlantEvents/Knosp/KnospNommie.tscn" id="16_qw1bo"]
 [ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="17_gbdlc"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="18_fqt52"]
+[ext_resource type="Script" uid="uid://dmh43qu0grfqr" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="18_fqt52"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="19_hsbs3"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieWatering/NommieWateringEvent.gd" id="20_dbgk5"]
+[ext_resource type="Script" uid="uid://d3gq7jok0twro" path="res://Scripts/Farmland/Events/NommieWatering/NommieWateringEvent.gd" id="20_dbgk5"]
 [ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="20_nq6kw"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotionEvent.gd" id="21_efj4t"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeedingEvent.gd" id="23_wguxe"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="24_gfvoo"]
+[ext_resource type="Script" uid="uid://crc2q38ur4cys" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotionEvent.gd" id="21_efj4t"]
+[ext_resource type="Script" uid="uid://c81lbq8k6070c" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeedingEvent.gd" id="23_wguxe"]
+[ext_resource type="Script" uid="uid://qoyk0048n44s" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="24_gfvoo"]
 [ext_resource type="Texture2D" uid="uid://b0j2pyrhms3mm" path="res://Textures/EditorIcons/SlurpShroomieEvent.png" id="24_vkyfw"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="25_l47ll"]
 [ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="26_sonoo"]
@@ -123,17 +123,17 @@ resource_name = "Nommie"
 render_priority = 0
 shader = SubResource("Shader_6gfda")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_eky44")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_eky44")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e3gij"]
 _surfaces = [{
@@ -1955,8 +1955,8 @@ tracks/43/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ptuwf"]
 _data = {
-"Grow": SubResource("Animation_vpa2t"),
-"RESET": SubResource("Animation_gt24u")
+&"Grow": SubResource("Animation_vpa2t"),
+&"RESET": SubResource("Animation_gt24u")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78odp"]

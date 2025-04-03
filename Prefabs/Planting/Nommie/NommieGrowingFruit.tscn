@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=4 uid="uid://ti35e4tpy6hx"]
 
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="1_lbt5m"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/NommieGrowingFruit.gd" id="1_wdsrn"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_bd17p"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotion.gd" id="4_cj6x0"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieWatering/NommieWatering.gd" id="5_saklj"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeeding.gd" id="6_3u6u3"]
+[ext_resource type="Script" uid="uid://c4rhcvq6e2ita" path="res://Scripts/Farmland/Fruits/NommieGrowingFruit.gd" id="1_wdsrn"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="2_bd17p"]
+[ext_resource type="Script" uid="uid://dtcutuxddexnw" path="res://Scripts/Farmland/Events/NommieFertilize/NommiePotion.gd" id="4_cj6x0"]
+[ext_resource type="Script" uid="uid://c87ccn00xmxul" path="res://Scripts/Farmland/Events/NommieWatering/NommieWatering.gd" id="5_saklj"]
+[ext_resource type="Script" uid="uid://c1uc8jcbjuto6" path="res://Scripts/Farmland/Events/NommieFeeding/NommieFeeding.gd" id="6_3u6u3"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_scq2f"]
 _surfaces = [{

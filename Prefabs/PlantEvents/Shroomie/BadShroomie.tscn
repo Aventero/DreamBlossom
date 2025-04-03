@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="1_qs2i6"]
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_s1r50"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/BadShroomieEvent/BadShroomie.gd" id="2_x1qtg"]
+[ext_resource type="Script" uid="uid://b22bh3xea5b3m" path="res://Scripts/Farmland/Events/BadShroomieEvent/BadShroomie.gd" id="2_x1qtg"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_c88ty"]
 [ext_resource type="PackedScene" uid="uid://dm872tjj58u6u" path="res://Prefabs/PlantEvents/Shroomie/BadShroomiePullPartices.tscn" id="3_wmaq2"]
 [ext_resource type="PackedScene" uid="uid://cq5jxbtrgx7fu" path="res://Prefabs/PlantEvents/Shroomie/BadShroomieCompleteParticles.tscn" id="4_7kjh2"]
-[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="6_cf44h"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="6_cf44h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfy4d"]
 resource_name = "Shroomie.001"

@@ -11,7 +11,7 @@ extends Area3D
 @export var enable_range_reset : bool = true
 
 @export_category("Range Reset")
-@export var range : float = 1.0
+@export var return_range : float = 1.0
 @export var range_origin : Vector3
 
 var reset_transforms = {}
@@ -21,13 +21,13 @@ var _returning_objects = []
 func _process(_delta):
 	# Draw debug lines if in editor
 	if debug_draw and Engine.is_editor_hint():
-		DebugDraw3D.draw_sphere(range_origin, range)
+		DebugDraw3D.draw_sphere(range_origin, return_range)
 	
 	if enable_range_reset and not Engine.is_editor_hint():
 		for node in reset_transforms:
 			var distance : float = node.global_position.distance_to(reset_transforms[node].origin)
 			
-			if distance < range:
+			if distance < return_range:
 				continue
 			
 			# Check if already returning
@@ -109,8 +109,3 @@ func update(clear_old : bool = true):
 		for node in returnables:
 			if not reset_transforms.has(node):
 				reset_transforms[node] = node.transform
-
-
-
-
-

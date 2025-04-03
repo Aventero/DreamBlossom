@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=4 uid="uid://dlb878yj7axv0"]
 
 [ext_resource type="PackedScene" uid="uid://cx8b2cp0171ha" path="res://Prefabs/Farmland/Soil.tscn" id="1_lu4fx"]
-[ext_resource type="Texture2D" uid="uid://b734i2f0s0cs3" path="res://Textures/Environment/Table.png" id="2_p0wf6"]
+[ext_resource type="Texture2D" uid="uid://ccoxfd8enokme" path="res://Textures/Environment/Table.png" id="2_p0wf6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pd1s3"]
 resource_name = "Table"
@@ -94,17 +94,17 @@ resource_name = "Table"
 render_priority = 0
 shader = SubResource("Shader_li5xd")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_p0wf6")
 shader_parameter/alpha_scissor_threshold = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_p0wf6")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6eyn5"]
 _surfaces = [{

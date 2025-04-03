@@ -11,12 +11,12 @@ func update(ingredients : Dictionary):
 		_spawn_ingredient_ui(ingredient, ingredients[ingredient])
 
 func _spawn_ingredient_ui(ingredient : Ingredient.Type, amount : int):
-	var ingredient_ui : IngredientUI = ingredient_ui.instantiate()
-	add_child(ingredient_ui)
+	var _ingredient_ui : IngredientUI = ingredient_ui.instantiate()
+	add_child(_ingredient_ui)
 	
 	# Fill ingredient ui with data
-	ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
-	ingredient_ui.set_amount(amount)
+	_ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
+	_ingredient_ui.set_amount(amount)
 
 func clear_ingredients():
 	for ingredient in get_children():

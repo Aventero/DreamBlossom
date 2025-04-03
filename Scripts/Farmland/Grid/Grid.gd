@@ -26,8 +26,8 @@ func _ready():
 		scale.z *= 1
 	
 	# Init data array
-	width_cells = width / cellsize
-	height_cells = height / cellsize
+	width_cells = int(width) / cellsize
+	height_cells = int(height) / cellsize
 	data.resize(width_cells * height_cells)
 	
 	center_offset = Vector3(width / 2.0, 0.0, height / 2.0)
@@ -59,8 +59,8 @@ func _draw_debug_grid():
 		else:
 			cube.position = Vector3(float(pos.x) * cellsize, 0, float(pos.y) * cellsize) + Vector3(cellsize/2.0, 0, cellsize/2.0)
 
-func get_cell(position : Vector3) -> GridCell:
-	position = to_local(position)
+func get_cell(_position : Vector3) -> GridCell:
+	position = to_local(_position)
 	
 	if centered:
 		position += center_offset
@@ -88,7 +88,7 @@ func _is_index_valid(index : int) -> bool:
 		return false
 	return true
 
-func get_placement_position(cell : GridCell, width : int) -> Vector3:
+func get_placement_position(cell : GridCell, _width : int) -> Vector3:
 	var local_position : Vector3 = Vector3(
 										float(cell.position.x) * cellsize,
 										0,
@@ -97,19 +97,19 @@ func get_placement_position(cell : GridCell, width : int) -> Vector3:
 	if centered:
 		local_position -= center_offset
 	
-	if width % 2 == 0:
+	if _width % 2 == 0:
 		local_position += Vector3(cellsize, 0, cellsize)
 	else:
 		local_position += Vector3(cellsize / 2.0, 0, cellsize / 2.0)
 	
 	return to_global(local_position)
 
-func is_placement_allowed(cell : GridCell, width : int) -> bool:
+func is_placement_allowed(cell : GridCell, _width : int) -> bool:
 	# Check on null reference
 	if not cell:
 		return false
 	
-	var cells : Array[GridCell] = get_cells(cell, width, false)
+	var cells : Array[GridCell] = get_cells(cell, _width, false)
 	
 	if cells.size() == 0:
 		return false
@@ -120,45 +120,45 @@ func is_placement_allowed(cell : GridCell, width : int) -> bool:
 	
 	return true
 
-func _get_cell(position : Vector2i) -> GridCell:
-	var index : int = position.y * width_cells + position.x
+func _get_cell(_position : Vector2i) -> GridCell:
+	var index : int = _position.y * width_cells + _position.x
 	
 	if _is_index_valid(index):
 		return data[index]
 	return null
 
-func _is_position_valid(position : Vector2i) -> bool:
-	if position.x < 0 or position.x >= width_cells:
+func _is_position_valid(_position : Vector2i) -> bool:
+	if _position.x < 0 or _position.x >= width_cells:
 		return false
 	
-	if position.y < 0 or position.y >= height_cells:
+	if _position.y < 0 or _position.y >= height_cells:
 		return false
 	
 	return true
 
-func set_state(cell : GridCell, width : int, state : GridCell.CELLSTATE) -> void:
+func set_state(cell : GridCell, _width : int, state : GridCell.CELLSTATE) -> void:
 	# Check on null reference
 	if not cell:
 		return
 	
-	var cells : Array[GridCell] = get_cells(cell, width)
+	var cells : Array[GridCell] = get_cells(cell, _width)
 	
 	for current_cell in cells:
 		current_cell.state = state
 
-func get_cells(cell : GridCell, width : int, break_on_null = true) -> Array[GridCell]:
+func get_cells(cell : GridCell, _width : int, break_on_null = true) -> Array[GridCell]:
 	# Check on null reference
 	if not cell:
 		return []
 	
-	var offset : int = floor(width / 2.0 - 0.5)
+	var offset : int = floor(_width / 2.0 - 0.5)
 	var corner : Vector2i = cell.position - Vector2i(offset, offset)
 	
 	var cells : Array[GridCell] = []
 	
 	# Check all cells if they are currently occupied
-	for y in range(0, width):
-		for x in range(0, width):
+	for y in range(0, _width):
+		for x in range(0, _width):
 			var cell_pos : Vector2i = corner + Vector2i(x, y)
 			
 			if not _is_position_valid(cell_pos):
@@ -176,7 +176,7 @@ func _get_cell_position(index : int):
 	
 	return Vector2i(x, y)
 
-func find_inbound_cell(cell : GridCell, width : int) -> GridCell:
+func find_inbound_cell(cell : GridCell, _width : int) -> GridCell:
 	# Get all surrounding cells inside of bounds
 	var surrounding_cells : Array[GridCell] = get_cells(cell, 5, false)
 	
@@ -184,7 +184,7 @@ func find_inbound_cell(cell : GridCell, width : int) -> GridCell:
 	var min_index : int = -1
 	
 	for i in surrounding_cells.size():
-		var nearby : Array[GridCell] = get_cells(surrounding_cells[i], width, true)
+		var nearby : Array[GridCell] = get_cells(surrounding_cells[i], _width, true)
 		
 		# This is the case if all found cells are in bounds
 		if nearby.size() > 0:

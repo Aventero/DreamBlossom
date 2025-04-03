@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4nba0qpi0uls" path="res://addons/godot-xr-tools/hands/model/Hand_Nails_low_L.gltf" id="1"]
 [ext_resource type="PackedScene" uid="uid://the6y7swe6j0" path="res://addons/godot-xr-tools/hands/animations/left/AnimationPlayer.tscn" id="2"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/hand.gd" id="3"]
+[ext_resource type="Script" uid="uid://ctqvvesrd11m2" path="res://addons/godot-xr-tools/hands/hand.gd" id="3"]
 [ext_resource type="Resource" uid="uid://dertgu7k8alls" path="res://addons/godot-xr-tools/hands/poses/pose_default_left.tres" id="3_ry7qg"]
 [ext_resource type="Material" uid="uid://dbvge3quu3bju" path="res://addons/godot-xr-tools/hands/materials/caucasian_hand.material" id="4"]
 [ext_resource type="Texture2D" uid="uid://prn4jrribjvi" path="res://Textures/Player/Hand_Glove_Leather.png" id="4_l6eds"]
@@ -152,41 +152,41 @@ bind/25/pose = Transform3D(1, -3.12371e-06, 3.13855e-06, 3.12364e-06, 1, 1.98203
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kw48d"]
 _data = {
-"Cup": ExtResource("7_2k3pv"),
-"Default pose": ExtResource("8_wynhh"),
-"Grip": ExtResource("9_8f4ut"),
-"Grip 1": ExtResource("10_r53xs"),
-"Grip 2": ExtResource("11_f68yo"),
-"Grip 3": ExtResource("12_6m8w2"),
-"Grip 4": ExtResource("13_hv3bu"),
-"Grip 5": ExtResource("14_36d31"),
-"Grip Shaft": ExtResource("15_4pbug"),
-"Hold": ExtResource("16_dnfep"),
-"Horns": ExtResource("17_0u6kt"),
-"Metal": ExtResource("18_iyp5f"),
-"Middle": ExtResource("19_pqo58"),
-"OK": ExtResource("20_t173y"),
-"Peace": ExtResource("21_x65fr"),
-"Pinch Flat": ExtResource("22_ycyoc"),
-"Pinch Large": ExtResource("23_wua8b"),
-"Pinch Middle": ExtResource("24_rwel1"),
-"Pinch Ring": ExtResource("25_61y05"),
-"Pinch Tight": ExtResource("26_aa1ad"),
-"Pinch Up": ExtResource("27_mwa5i"),
-"PingPong": ExtResource("28_sfhu4"),
-"Pinky": ExtResource("29_k6sps"),
-"Pistol": ExtResource("30_q52ki"),
-"Ring": ExtResource("31_6ux4g"),
-"Rounded": ExtResource("32_c13r6"),
-"Sign 1": ExtResource("33_r315t"),
-"Sign 2": ExtResource("34_cjwdn"),
-"Sign 3": ExtResource("35_xcrh1"),
-"Sign 4": ExtResource("36_6tiom"),
-"Sign 5": ExtResource("37_47l05"),
-"Sign_Point": ExtResource("38_x6edd"),
-"Straight": ExtResource("39_jj5wo"),
-"Surfer": ExtResource("40_7yf3j"),
-"Thumb": ExtResource("41_b6rql")
+&"Cup": ExtResource("7_2k3pv"),
+&"Default pose": ExtResource("8_wynhh"),
+&"Grip": ExtResource("9_8f4ut"),
+&"Grip 1": ExtResource("10_r53xs"),
+&"Grip 2": ExtResource("11_f68yo"),
+&"Grip 3": ExtResource("12_6m8w2"),
+&"Grip 4": ExtResource("13_hv3bu"),
+&"Grip 5": ExtResource("14_36d31"),
+&"Grip Shaft": ExtResource("15_4pbug"),
+&"Hold": ExtResource("16_dnfep"),
+&"Horns": ExtResource("17_0u6kt"),
+&"Metal": ExtResource("18_iyp5f"),
+&"Middle": ExtResource("19_pqo58"),
+&"OK": ExtResource("20_t173y"),
+&"Peace": ExtResource("21_x65fr"),
+&"Pinch Flat": ExtResource("22_ycyoc"),
+&"Pinch Large": ExtResource("23_wua8b"),
+&"Pinch Middle": ExtResource("24_rwel1"),
+&"Pinch Ring": ExtResource("25_61y05"),
+&"Pinch Tight": ExtResource("26_aa1ad"),
+&"Pinch Up": ExtResource("27_mwa5i"),
+&"PingPong": ExtResource("28_sfhu4"),
+&"Pinky": ExtResource("29_k6sps"),
+&"Pistol": ExtResource("30_q52ki"),
+&"Ring": ExtResource("31_6ux4g"),
+&"Rounded": ExtResource("32_c13r6"),
+&"Sign 1": ExtResource("33_r315t"),
+&"Sign 2": ExtResource("34_cjwdn"),
+&"Sign 3": ExtResource("35_xcrh1"),
+&"Sign 4": ExtResource("36_6tiom"),
+&"Sign 5": ExtResource("37_47l05"),
+&"Sign_Point": ExtResource("38_x6edd"),
+&"Straight": ExtResource("39_jj5wo"),
+&"Surfer": ExtResource("40_7yf3j"),
+&"Thumb": ExtResource("41_b6rql")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8h0g4"]

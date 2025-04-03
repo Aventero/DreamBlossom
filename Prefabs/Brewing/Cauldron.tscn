@@ -1,18 +1,18 @@
 [gd_scene load_steps=89 format=4 uid="uid://c78a1jfo7knpf"]
 
-[ext_resource type="Script" path="res://Scripts/Brewing/Cauldron.gd" id="1_4rxum"]
+[ext_resource type="Script" uid="uid://4bidcgmfunv8" path="res://Scripts/Brewing/Cauldron.gd" id="1_4rxum"]
 [ext_resource type="Texture2D" uid="uid://daw2f8acud4t8" path="res://Textures/Environment/Cauldron.png" id="2_vnfj3"]
-[ext_resource type="Shader" path="res://Shader/CauldronPotion.gdshader" id="3_ji1km"]
+[ext_resource type="Shader" uid="uid://ccb47oo4nrmd3" path="res://Shader/CauldronPotion.gdshader" id="3_ji1km"]
 [ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/Brewing/PotionNoise.png" id="4_kvknu"]
 [ext_resource type="Texture2D" uid="uid://d08hyvia0w3td" path="res://Textures/Particles/CouldronFire.png" id="4_m4ul7"]
 [ext_resource type="PackedScene" uid="uid://b1m3kqhs6gx7" path="res://Models/Log.blend" id="5_encwd"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="6_r7pt7"]
-[ext_resource type="Script" path="res://Scripts/ParticleCombiner.gd" id="7_5lvsu"]
-[ext_resource type="Script" path="res://Scripts/Lever.gd" id="9_8d6wc"]
+[ext_resource type="Script" uid="uid://dml5bdx8jaqb" path="res://Scripts/ParticleCombiner.gd" id="7_5lvsu"]
+[ext_resource type="Script" uid="uid://cph1udu6fte3i" path="res://Scripts/Lever.gd" id="9_8d6wc"]
 [ext_resource type="Texture2D" uid="uid://cg3g2cb5up2k0" path="res://Textures/Particles/FireSmoke02.png" id="9_sbiad"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="10_f8ijn"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="10_niq00"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="11_d68hx"]
+[ext_resource type="Script" uid="uid://c5qtrdokiracy" path="res://addons/godot-xr-tools/objects/pickable.gd" id="10_f8ijn"]
+[ext_resource type="Script" uid="uid://bsnq4fgg1oxat" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="10_niq00"]
+[ext_resource type="Script" uid="uid://cqwuam3yfserx" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="11_d68hx"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="12_0hfjq"]
 [ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="13_4jxc5"]
 
@@ -245,8 +245,8 @@ render_priority = 0
 shader = ExtResource("3_ji1km")
 shader_parameter/base_color = Color(0.933333, 0, 0.188235, 1)
 shader_parameter/alpha = 0.0
-shader_parameter/mix_amount = 1.8
 shader_parameter/potion_noise = ExtResource("4_kvknu")
+shader_parameter/mix_amount = 1.8
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2012f"]
 _surfaces = [{

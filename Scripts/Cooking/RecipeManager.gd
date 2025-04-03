@@ -18,12 +18,12 @@ func _ready():
 	
 	# Fill recipe lookup table
 	for recipe in get_children():
-		var hash : int = recipe.get_recipe_hash()
+		var recipe_hash : int = recipe.get_recipe_hash()
 		
-		if _recipe_lookup.has(hash):
-			_recipe_lookup[hash].append(recipe)
+		if _recipe_lookup.has(recipe_hash):
+			_recipe_lookup[recipe_hash].append(recipe)
 		else:
-			_recipe_lookup[hash] = [recipe]
+			_recipe_lookup[recipe_hash] = [recipe]
 
 func check_recipe(ingredients : Dictionary) -> PackedScene:
 	print(ingredients)
@@ -34,14 +34,14 @@ func check_recipe(ingredients : Dictionary) -> PackedScene:
 		ingredient_list.append(i)
 	
 	ingredient_list.sort()
-	var hash : int = ingredient_list.hash()
+	var ingredient_hash : int = ingredient_list.hash()
 	
 	# Check if hash can be a valid recipe
-	if not _recipe_lookup.has(hash):
+	if not _recipe_lookup.has(ingredient_hash):
 		print("[RECIPE] - No valid recipe found")
 		return null
 	
-	for recipe in _recipe_lookup[hash]:
+	for recipe in _recipe_lookup[ingredient_hash]:
 		var failed : bool = false
 		
 		# Check if amount is correct

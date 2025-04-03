@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://bx83sgte1vf7i"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_pbuuk"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Fruits/Orangie.gd" id="2_eftxm"]
+[ext_resource type="Script" uid="uid://bj525rb56dqmp" path="res://Scripts/Farmland/Fruits/Orangie.gd" id="2_eftxm"]
 [ext_resource type="Material" uid="uid://bt40ggbbcouyr" path="res://Materials/Leaves.tres" id="2_jm6f8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_niuta"]

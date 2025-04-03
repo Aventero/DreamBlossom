@@ -1,3 +1,5 @@
+@tool
+
 @icon("res://Textures/EditorIcons/Seed.png")
 class_name Seed
 extends XRToolsPickable

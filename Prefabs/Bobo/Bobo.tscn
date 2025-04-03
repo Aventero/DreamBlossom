@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpp7ey87i7834"]
 
-[ext_resource type="Script" path="res://Scripts/Bobo/Bobo.gd" id="1_1glds"]
+[ext_resource type="Script" uid="uid://da2xatedi8bo4" path="res://Scripts/Bobo/Bobo.gd" id="1_1glds"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_r7x4u"]
 

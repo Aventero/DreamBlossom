@@ -1,4 +1,5 @@
 @icon("res://Textures/EditorIcons/Scene.png")
+@tool
 class_name GameBase
 extends XRToolsSceneBase
 

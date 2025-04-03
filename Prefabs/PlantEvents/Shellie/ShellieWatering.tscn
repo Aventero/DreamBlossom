@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://b8css0km2tm8c"]
 
-[ext_resource type="Script" path="res://Scripts/Utility/MaterialChanger.gd" id="1_3ep5w"]
-[ext_resource type="Script" path="res://Scripts/Farmland/Events/ShellieWatering/ShellieWatering.gd" id="1_uitot"]
+[ext_resource type="Script" uid="uid://dug0axjikex3n" path="res://Scripts/Utility/MaterialChanger.gd" id="1_3ep5w"]
+[ext_resource type="Script" uid="uid://dk81v4v62ohl8" path="res://Scripts/Farmland/Events/ShellieWatering/ShellieWatering.gd" id="1_uitot"]
 [ext_resource type="Texture2D" uid="uid://54voijuwx3tf" path="res://Textures/Fruits/Shellie/Shellie.png" id="3_aggbd"]
-[ext_resource type="Script" path="res://Scripts/Utility/MaterialState.gd" id="3_xkqos"]
+[ext_resource type="Script" uid="uid://bwcow3t7hmjhv" path="res://Scripts/Utility/MaterialState.gd" id="3_xkqos"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsdsy"]
 resource_name = "Blubbie"

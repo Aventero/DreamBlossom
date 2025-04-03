@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://bl2p5tgx4b43p"]
 
-[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_rncyg"]
-[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_2xhvd"]
-[ext_resource type="Script" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="3_xu1bg"]
+[ext_resource type="Script" uid="uid://hunun33tsrt0" path="res://Scripts/Level.gd" id="1_rncyg"]
+[ext_resource type="Script" uid="uid://cpj8naljb5w8t" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_2xhvd"]
+[ext_resource type="Script" uid="uid://dywghgfiv8joo" path="res://Scripts/Maybe Deprecated/OrderRequirement.gd" id="3_xu1bg"]
 
 [sub_resource type="Resource" id="Resource_kwgqg"]
 script = ExtResource("3_xu1bg")
