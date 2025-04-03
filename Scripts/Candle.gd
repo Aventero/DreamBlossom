@@ -5,6 +5,9 @@ extends XRToolsPickable
 @onready var fire : Fire = $Fire
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	if not fire or fire.extinguished:
 		return
 	

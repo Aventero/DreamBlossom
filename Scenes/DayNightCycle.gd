@@ -48,6 +48,9 @@ func is_sky_body_visible(direction: Vector3) -> bool:
 	return direction.y > 0
 
 func update_shader_parameters(time_day: float) -> void:
+	if not sky_shader_material:
+		return 
+		
 	var sun_direction = calculate_sun_direction(time_day)
 	var moon_direction = calculate_moon_direction(time_day)
 	sky_shader_material.set_shader_parameter("sun_direction", sun_direction.normalized())

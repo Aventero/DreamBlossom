@@ -71,11 +71,11 @@ shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(0.158634, 0.880247, -0.447214)
-shader_parameter/day_intensity = 0.984146
+shader_parameter/sun_direction = Vector3(-0.0685198, 0.891799, -0.447214)
+shader_parameter/day_intensity = 0.997061
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(-0.158634, -0.880247, -0.447214)
+shader_parameter/moon_direction = Vector3(0.0685198, -0.891799, -0.447214)
 shader_parameter/night_intensity = 1.22461e-16
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
@@ -85,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.984146
+background_energy_multiplier = 0.997061
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -20041,16 +20041,16 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 5.31894
+time_of_day = 6.29291
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.942464, -0.294273, 0.158634, 0, 0.474515, 0.880247, -0.334308, 0.829601, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.988465, 0.135061, -0.0685197, 0, 0.452432, 0.891798, 0.151447, 0.881511, -0.447213, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.984146
+light_energy = 0.997061
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20110,7 +20110,6 @@ ingredients_textures = Array[ExtResource("8_f24wb")]([SubResource("Resource_rrwn
 visible = false
 collision_layer = 0
 collision_mask = 4
-return_range = null
 range_origin = Vector3(0, 1.5, 0)
 
 [node name="Collision" type="CollisionShape3D" parent="Managers/ReturnManager"]
