@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.4", "Mobile")
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 
+[debug_draw_3d]
+
+settings/updates/check_for_updates=false
+
 [dotnet]
 
 project/assembly_name="Dreamblossom"
@@ -52,8 +56,6 @@ import/fbx/enabled=false
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
-common/enable_object_picking=false
 jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]

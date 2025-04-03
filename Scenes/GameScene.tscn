@@ -71,12 +71,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.0685198, 0.891799, -0.447214)
-shader_parameter/day_intensity = 0.997061
+shader_parameter/sun_direction = Vector3(0.786407, -0.426104, -0.447214)
+shader_parameter/day_intensity = 0.000629204
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(0.0685198, -0.891799, -0.447214)
-shader_parameter/night_intensity = 1.22461e-16
+shader_parameter/moon_direction = Vector3(-0.786407, 0.426104, -0.447214)
+shader_parameter/night_intensity = 0.476399
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -85,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.997061
+background_energy_multiplier = 0.476399
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -20041,16 +20041,17 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 6.29291
+time_of_day = 22.1033
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.988465, 0.135061, -0.0685197, 0, 0.452432, 0.891798, 0.151447, 0.881511, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.447213, 0.000503363, -0.894426, 0, 0.999999, 0.000562777, 0.894426, 0.000251682, -0.447213, 0, 0, 0)
+visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.997061
+light_energy = 0.000629204
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20063,10 +20064,9 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447213, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894427, 4.89842e-17, -0.447214, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.494337, 0.3704, -0.786407, 0, 0.904674, 0.426105, 0.869271, 0.210639, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 1.22461e-16
+light_energy = 0.476399
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20107,9 +20107,9 @@ ingredients_textures = Array[ExtResource("8_f24wb")]([SubResource("Resource_rrwn
 [node name="Managers" type="Node3D" parent="."]
 
 [node name="ReturnManager" parent="Managers" instance=ExtResource("5_n3w7w")]
-visible = false
 collision_layer = 0
 collision_mask = 4
+return_range = 2.5
 range_origin = Vector3(0, 1.5, 0)
 
 [node name="Collision" type="CollisionShape3D" parent="Managers/ReturnManager"]
@@ -20344,6 +20344,7 @@ max_distance = 100.0
 [node name="PotionGreen" parent="ToolArea/Potions/PotionGreenSnap" groups=["PotionGreen", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 2
 infinite_drops = true
+metadata/_edit_lock_ = true
 
 [node name="PotionBlueSnap" type="Area3D" parent="ToolArea/Potions"]
 transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)

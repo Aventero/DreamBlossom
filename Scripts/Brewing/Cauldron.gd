@@ -156,7 +156,7 @@ func _empty_cauldron() -> void:
 		
 		part_count += 1
 
-func _jiggle_cauldron(type : Potion.TYPE, should_update_color: bool) -> void:
+func _jiggle_cauldron(type : Potion.TYPE, should_change_color : bool) -> void:
 	if _fluid_tween and _fluid_tween.is_running():
 		_fluid_tween.kill()
 	
@@ -165,7 +165,7 @@ func _jiggle_cauldron(type : Potion.TYPE, should_update_color: bool) -> void:
 	_fluid_tween.tween_property(potion_fluid, "position:y", jiggle_height, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Update color of fluid
-	if should_update_color:
+	if should_change_color:
 		_fluid_tween.tween_method(_update_fluid_color, _fluid_material.get_shader_parameter("base_color"), Potion.get_potion_data(type, Potion.PROPERTIES.COLOR), 0.1)
 	
 	_fluid_tween.tween_property(potion_fluid, "position:y", default_fluid_height, 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)

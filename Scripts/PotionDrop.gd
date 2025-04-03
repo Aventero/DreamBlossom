@@ -8,7 +8,7 @@ extends RigidBody3D
 var potion_holding_controller
 var _contact_point : Vector3
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	splash_drop()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -34,16 +34,16 @@ func splash_drop(override_position : Vector3 = Vector3.INF) -> void:
 		splash.global_position = override_position
 
 	# Decal
-	var splash_decal : Node3D = splash_decal.instantiate()
-	add_sibling(splash_decal)
+	var splash_decal_instance : Node3D = splash_decal.instantiate()
+	add_sibling(splash_decal_instance)
 
 	if !(potion_holding_controller == null):
 		XRToolsRumbleManager.add("potion_drop", drop_rumble, potion_holding_controller)
 
 	if override_position == Vector3.INF:
-		splash_decal.global_position = _contact_point
+		splash_decal_instance.global_position = _contact_point
 	else:
-		splash_decal.global_position = override_position
+		splash_decal_instance.global_position = override_position
 
 func cauldron_splash(spawn_point : Vector3) -> void:
 	# Destory collision to prevent further collisions

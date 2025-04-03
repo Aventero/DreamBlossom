@@ -26,8 +26,8 @@ func _ready():
 		scale.z *= 1
 	
 	# Init data array
-	width_cells = int(width) / cellsize
-	height_cells = int(height) / cellsize
+	width_cells = width / cellsize 
+	height_cells = height / cellsize
 	data.resize(width_cells * height_cells)
 	
 	center_offset = Vector3(width / 2.0, 0.0, height / 2.0)
@@ -59,14 +59,14 @@ func _draw_debug_grid():
 		else:
 			cube.position = Vector3(float(pos.x) * cellsize, 0, float(pos.y) * cellsize) + Vector3(cellsize/2.0, 0, cellsize/2.0)
 
-func get_cell(_position : Vector3) -> GridCell:
-	position = to_local(_position)
+func get_cell(cell_position : Vector3) -> GridCell:
+	cell_position = to_local(cell_position)
 	
 	if centered:
-		position += center_offset
+		cell_position += center_offset
 	
-	var column : int = int(floor(position.x / cellsize))
-	var row : int = int(floor(position.z / cellsize))
+	var column : int = int(floor(cell_position.x / cellsize))
+	var row : int = int(floor(cell_position.z / cellsize))
 	
 	# 2x2 Snapping
 	column = floor(column / 2.0) * 2.0
@@ -172,7 +172,7 @@ func get_cells(cell : GridCell, _width : int, break_on_null = true) -> Array[Gri
 
 func _get_cell_position(index : int):
 	var x : int = index % width_cells
-	var y : int = index / width_cells
+	var y : int = floori(index / width_cells)
 	
 	return Vector2i(x, y)
 

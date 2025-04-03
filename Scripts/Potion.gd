@@ -286,6 +286,6 @@ static var _potion_properties = {
 	}
 }
 
-static func get_potion_data(_type : Potion.TYPE, property : Potion.PROPERTIES):
+static func get_potion_data(potion_type : Potion.TYPE, property : Potion.PROPERTIES):
 	var _property : String = PROPERTIES.keys()[property].to_lower()
-	return _potion_properties[_type][_property]
+	return _potion_properties[potion_type][_property]

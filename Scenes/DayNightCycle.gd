@@ -14,9 +14,6 @@ var _time_of_day: float = 4.0
 @export var sun : DirectionalLight3D
 @export var moon : DirectionalLight3D
 
-@warning_ignore("unused_variable")
-var _time = 0.0;
-
 func set_time_of_day(value):
 	_time_of_day = value  # Stop unnecissary updates
 	update_shader_parameters(value)

@@ -196,7 +196,7 @@ func load_scene(p_scene_path : String, user_data = null, show_loading_screen : b
 			var progress := []
 			res = ResourceLoader.load_threaded_get_status(p_scene_path, progress)
 			
-			print("Loading... ", progress[0])
+			#print("Loading... ", progress[0])
 			
 			if res != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				break;

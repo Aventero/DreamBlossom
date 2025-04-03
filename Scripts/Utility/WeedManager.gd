@@ -116,25 +116,25 @@ func _on_spread_indicator_timer_timeout() -> void:
 	# Restart spread timer
 	spread_timer.start(spread_time)
 
-func queue_weed(weed : Weed) -> bool:
+func queue_weed(qued_weed : Weed) -> bool:
 	# Find nearby cell to spread to
-	var spreading_cell : GridCell = soil.get_nearby_free_cell(weed.cell)
+	var spreading_cell : GridCell = soil.get_nearby_free_cell(qued_weed.cell)
 
 	# Ignore spread if no free cell was found
 	if not spreading_cell:
 		return false
 
 	# Set data in weed
-	weed.setup_spread(spreading_cell)
+	qued_weed.setup_spread(spreading_cell)
 
 	# Reserve spreading cell
 	reserve_cell(spreading_cell)
 
 	# Start weed jiggle
-	weed.play_jiggle()
+	qued_weed.play_jiggle()
 
 	# Add to spreading weed list
-	spreading_weed.append(weed)
+	spreading_weed.append(qued_weed)
 
 	return true
 
@@ -185,19 +185,19 @@ func spawn_weed(cell : GridCell, ignore_particles : bool = false):
 	var tween : Tween = create_tween()
 	tween.tween_property(weed_digspot, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
 
-func _on_weed_removed(weed : Weed):
+func _on_weed_removed(weed_to_remove : Weed):
 	# Free occupied space on soil
-	free_cell(weed.cell)
+	free_cell(weed_to_remove.cell)
 	soil.current_weed_amount -= 1
 
 	# Check if weed was currently spreading
-	if spreading_weed.has(weed):
-		free_cell(weed.spreading_cell)
-		weed.spreading_cell = null
-		spreading_weed.erase(weed)
+	if spreading_weed.has(weed_to_remove):
+		free_cell(weed_to_remove.spreading_cell)
+		weed_to_remove.spreading_cell = null
+		spreading_weed.erase(weed_to_remove)
 
 	# Remove weed from weed instances
-	weed_instances.erase(weed)
+	weed_instances.erase(weed_to_remove)
 
 func setup_soil_arrangement(soil_setup : String):
 	var setup_array : PackedStringArray = soil_setup.split(",")

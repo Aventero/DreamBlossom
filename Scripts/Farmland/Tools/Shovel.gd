@@ -340,11 +340,11 @@ func _insertion_angle_allowed():
 
 func _on_pull_pickup_picked_up(pickable: XRToolsPickable):
 	# Add pull rumble haptic to correct controller
-	var controller : XRController3D = pickable.get_picked_up_by_controller()
+	var controller_pick : XRController3D = pickable.get_picked_up_by_controller()
 	XRToolsRumbleManager.add("pull_rumble", pull_rumble, [controller])
 
 	# Save current controller position as pull origin
-	pull_pickup_position = controller.global_position
+	pull_pickup_position = controller_pick.global_position
 
 	pull_started.emit()
 

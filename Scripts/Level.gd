@@ -83,10 +83,10 @@ func next_order() -> bool:
 	if get_child_count() <= 0:
 		return false
 
-	var new_order : Order = get_child(0)
+	var newest_order : Order = get_child(0)
 
-	if new_order != current_order:
-		current_order = new_order
+	if newest_order != current_order:
+		current_order = newest_order
 		current_order.completed.connect(_on_order_completed)
 
 		# Emit new order signal
