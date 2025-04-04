@@ -154,7 +154,8 @@ func _process(_delta: float) -> void:
 "
 
 [node name="Potion" groups=["Potion"] instance=ExtResource("1_6iw1p")]
-collision_mask = 131079
+collision_layer = 2055
+collision_mask = 133127
 input_ray_pickable = false
 freeze_mode = 0
 script = ExtResource("2_a0gms")
@@ -165,6 +166,7 @@ drop_fill_speed = 4.0
 max_drop_size = 8.0
 drop_delay_after_drop = 0.35
 drop_rumble = SubResource("Resource_gdcvt")
+picked_up_layer = 67587
 release_mode = 0
 second_hand_grab = 1
 ranged_grab_speed = 2.0
@@ -244,7 +246,6 @@ script = SubResource("GDScript_3awcx")
 
 [node name="PotionType" type="Label3D" parent="Indicator" index="0"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.127099, 0)
-visible = false
 billboard = 2
 texture_filter = 0
 text = "1"

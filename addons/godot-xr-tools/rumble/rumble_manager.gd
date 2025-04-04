@@ -98,7 +98,10 @@ func _process(delta: float) -> void:
 
 		# scale the final magnitude
 		magnitude *= XRToolsUserSettings.haptics_scale
-
+		
+		if not tracker_name:
+			return;
+			
 		# Make that tracker rumble
 		if magnitude > 0:
 			XRServer.primary_interface.trigger_haptic_pulse(

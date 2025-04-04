@@ -40,6 +40,7 @@ func setup(p_drops_per_potion : int) -> void:
 
 func _on_potion_drop_area_body_entered(body: Node3D) -> void:
 	# Check if object is potion drop
+	print("body ", body)
 	if body is PotionDrop:
 		_handle_drop(body)
 	

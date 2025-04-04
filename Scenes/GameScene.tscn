@@ -69,12 +69,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.608129, -0.65588, -0.447214)
+shader_parameter/sun_direction = Vector3(-0.033143, -0.893813, -0.447214)
 shader_parameter/day_intensity = 3.15788e-05
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(0.608129, 0.65588, -0.447214)
-shader_parameter/night_intensity = 0.733297
+shader_parameter/moon_direction = Vector3(0.033143, 0.893813, -0.447214)
+shader_parameter/night_intensity = 0.999313
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -83,7 +83,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.733297
+background_energy_multiplier = 0.999313
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -20086,15 +20086,57 @@ environment = SubResource("Environment_30re5")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
 
+[node name="Skeleton3D" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, -2.56581e-05, -0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, -0.0415175, -0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, 0.020971, 0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, -0.0116081, -0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, -0.00993208, -0.00794416, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, -0.0236108, -0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, -0.00929194, -0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, -0.000400032, 0.00636764, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, -0.00114471, -0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, 0.00193393, -0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, -0.00881294, -0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, 0.0101908, -0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, -0.00223624, -0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, 0.00812462, -0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252232, 0.00788073, -0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, 0.0203027, -0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, -0.000225721, -0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, 0.0216483, -0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, -0.00357275, -0.211953, 0.977249)
+
 [node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_yola1")
+
+[node name="Skeleton3D" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, 0.0415175, 0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, -0.020971, -0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, 0.0116081, 0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, 0.00993208, 0.00794419, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, 0.0236108, 0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, 0.00929192, 0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, 0.000400032, -0.00636763, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, 0.00114471, 0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, -0.00193393, 0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, 0.00881294, 0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, -0.0101908, 0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, 0.00223624, 0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, -0.00812462, 0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252233, -0.00788073, 0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, -0.0203027, 0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, 0.000225722, 0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, -0.0216483, 0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, 0.00357274, 0.211953, 0.977249)
 
 [node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_6gdqy")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 15.1442
+time_of_day = 17.8584
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
@@ -20117,9 +20159,9 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.592443, -0.528386, 0.608129, 0, 0.754865, 0.655881, -0.805614, 0.388571, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.997266, -0.0660593, 0.033143, 0, 0.44844, 0.893813, -0.0739074, 0.891369, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.733297
+light_energy = 0.999313
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9

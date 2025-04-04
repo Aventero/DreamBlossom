@@ -11,10 +11,8 @@ func _ready() -> void:
 	_spawn_flask()
 
 func _spawn_flask() -> void:
-	print("1Node still in tree: ", is_inside_tree())
-	print("spawning")
-	#spawnpoint.scale = Vector3(0.0001, 0.0001, 0.0001)
-	spawnpoint.scale = Vector3(1, 1, 1)
+	spawnpoint.scale = Vector3(0.0001, 0.0001, 0.0001)
+	#spawnpoint.scale = Vector3(1, 1, 1)
 	
 	# Instantiate flask
 	var empty_potion : Potion = flask.instantiate()
@@ -22,30 +20,29 @@ func _spawn_flask() -> void:
 	spawnpoint.add_child(empty_potion)
 	
 	# Lerp scale
-	#var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	#tween.tween_property(spawnpoint, "scale", Vector3.ONE, 1.0)
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(spawnpoint, "scale", Vector3.ONE, 1.0)
 	
 	# Connect pickup event
 	empty_potion.picked_up.connect(_flask_picked_up)
 	
 	# Disable collision with player hand
-	empty_potion.set_collision_mask_value(18, false)
-	empty_potion.set_collision_mask_value(3, false)
+	#empty_potion.set_collision_mask_value(18, false)
+	#empty_potion.set_collision_mask_value(3, false)
 	
 	# Freeze object
-	#empty_potion.freeze = true
-	
+	empty_potion.freeze = true
+
 	# Disable object while scaling
-	#empty_potion.enabled = false
-	print("Waiting for tween to finish...")
-	#await tween.finished
-	print("spawning done")
-	
+	empty_potion.enabled = false
+	await tween.finished
+
 	empty_potion.reparent(self)
 	empty_potion.enabled = true
 
 func _flask_picked_up(pickable : XRToolsPickable) -> void:
-	print("2Node still in tree: ", is_inside_tree())
+	pickable.freeze = false
+	
 	# Disconnect pickup event
 	pickable.picked_up.disconnect(_flask_picked_up)
 	
