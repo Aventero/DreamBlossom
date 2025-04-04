@@ -3,14 +3,14 @@ extends RemoteTransform3D
 
 
 ## Grab state
-enum State {
+enum GrabState {
 	LERP,
 	SNAP,
 }
 
 
 ## Drive state
-var state : State = State.SNAP
+var state : GrabState = GrabState.SNAP
 
 ## Target pickable
 var target : XRToolsPickable
@@ -30,15 +30,10 @@ var lerp_duration : float = 1.0
 ## Lerp time
 var lerp_time : float = 0.0
 
-var two_handed : bool = false
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta : float) -> void:
 	# Skip if no primary node
 	if not is_instance_valid(primary):
-		return
-
-	if two_handed and secondary == null:
 		return
 
 	# Set destination from primary grab
@@ -82,7 +77,7 @@ func _physics_process(delta : float) -> void:
 
 	# Handle update
 	match state:
-		State.LERP:
+		GrabState.LERP:
 			# Progress the lerp
 			lerp_time += delta
 			if lerp_time < lerp_duration:
@@ -92,7 +87,8 @@ func _physics_process(delta : float) -> void:
 					lerp_time / lerp_duration)
 			else:
 				# Lerp completed
-				state = State.SNAP
+				state = GrabState.SNAP
+				_update_weight()
 				if primary: primary.set_arrived()
 				if secondary: secondary.set_arrived()
 
@@ -115,7 +111,8 @@ func add_grab(p_grab : Grab) -> void:
 		secondary = p_grab
 
 	# If snapped then report arrived at the new grab
-	if state == State.SNAP:
+	if state == GrabState.SNAP:
+		_update_weight()
 		p_grab.set_arrived()
 
 
@@ -142,6 +139,9 @@ func remove_grab(p_grab : Grab) -> void:
 		print_verbose("%s> %s (secondary) released" % [target.name, p_grab.by.name])
 		secondary = null
 
+	if state == GrabState.SNAP:
+		_update_weight()
+
 
 # Discard the driver
 func discard():
@@ -163,10 +163,9 @@ static func create_lerp(
 	driver.name = p_target.name + "_driver"
 	driver.top_level = true
 	driver.process_physics_priority = -80
-	driver.state = State.LERP
+	driver.state = GrabState.LERP
 	driver.target = p_target
 	driver.primary = p_grab
-	# driver.global_transform = p_target.global_transform
 	driver.global_transform = p_target.global_transform
 
 	# Calculate the start and duration
@@ -177,8 +176,7 @@ static func create_lerp(
 
 	# Add the driver as a neighbor of the target as RemoteTransform3D nodes
 	# cannot be descendands of the targets they drive.
-	# p_target.get_parent().add_child(driver)
-	p_target.get_tree().get_root().add_child(driver)
+	p_target.get_parent().add_child(driver)
 	driver.remote_path = driver.get_path_to(p_target)
 
 	# Return the driver
@@ -197,21 +195,21 @@ static func create_snap(
 	driver.name = p_target.name + "_driver"
 	driver.top_level = true
 	driver.process_physics_priority = -80
-	driver.state = State.SNAP
+	driver.state = GrabState.SNAP
 	driver.target = p_target
 	driver.primary = p_grab
-	# driver.global_transform = p_grab.by.global_transform * p_grab.transform.inverse()
-	driver.global_transform = p_target.global_transform
+	driver.global_transform = p_grab.by.global_transform * p_grab.transform.inverse()
 
 	# Snapped to grab-point so report arrived
 	p_grab.set_arrived()
 
 	# Add the driver as a neighbor of the target as RemoteTransform3D nodes
 	# cannot be descendands of the targets they drive.
-	# p_target.get_parent().add_child(driver)
-	p_target.get_tree().get_root().add_child(driver)
+	p_target.get_parent().add_child(driver)
 	driver.remote_path = driver.get_path_to(p_target)
-	
+
+	driver._update_weight()
+
 	# Return the driver
 	return driver
 
@@ -222,3 +220,17 @@ static func _vote(a : float, b : float) -> float:
 		return 0.0
 
 	return b / (a + b)
+
+
+# Update the weight on collision hands
+func _update_weight():
+	if primary:
+		var weight : float = target.mass
+		if secondary:
+			# Each hand carries half the weight
+			weight = weight / 2.0
+			if secondary.collision_hand:
+				secondary.collision_hand.set_held_weight(weight)
+
+		if primary.collision_hand:
+			primary.collision_hand.set_held_weight(weight)

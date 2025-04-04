@@ -18,11 +18,11 @@ func _on_picked_up(picked_fruit : Fruit):
 		if is_instance_valid(fruit_event):
 			fruit_event.first_fruit_pickup(picked_fruit)
 
-func _on_xr_tools_highlight_visible_visibility_change(is_highlighted):
-	if not _first_pickup:
-		return
-	
-	outline_mesh.visible = !is_highlighted
+#func _on_xr_tools_highlight_visible_visibility_change(_visible):
+	#if not _first_pickup:
+		#return
+	#
+	#outline_mesh.visible = !_visible
 
 # Override with custom class / function
 func _on_action_pressed(_pickable):

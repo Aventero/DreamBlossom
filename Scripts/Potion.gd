@@ -215,6 +215,8 @@ func hide_type_label() -> Tween:
 	return tween
 
 func fill_potion(p_type : TYPE, drops_per_potion : int) -> void:
+	print("filling!!")
+
 	# Set type
 	type = p_type
 

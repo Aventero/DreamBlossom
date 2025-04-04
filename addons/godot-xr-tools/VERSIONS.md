@@ -1,3 +1,38 @@
+# 4.4.0
+- Minimum Godot version changed to 4.2
+- Add pickable action_released signal
+- Fix custom hand poses calling legacy remove_animation
+- Cleaned up StartXR
+- Allow grab-points and poses to work with different types of hand trackers
+- Add end_xr support to StartXR
+- Fixed vignette shader
+- Add visibility_changed notifications to Viewport2Din3D hosted scenes
+- Invisible Viewport2Din3D now disable physics and viewport updates
+- Add SnapPath
+- Improvements to collision hands so collision shapes of picked up objects
+  are added and we no longer have hands collide with dropped objects
+
+# 4.3.3
+- Fix Viewport2Din3D property forwarding
+
+# 4.3.2
+- Move fade logic into effect
+- Added collision fade support
+- Added fix for slowly sliding on slopes
+- Added fix for ground-control preventing jumping over objects
+- Added property forwarding for Viewport2Din3D
+- Added fix for open/close poses
+- Added rumble manager for haptic feedback
+- Fix unreliable wall-walking collision
+
+# 4.3.1
+- Fix saving project when using plugin-tools to set physics layers or enable OpenXR
+- Fix updating the editor-preview hand-pose
+- Fix jumping on slopes
+- Fix material warnings by converting binary .material files to .tres files
+- Fix staging to use threaded loading while starting the fade
+- Fix broken world-grab script
+
 # 4.3.0
 - Upgraded project to Godot 4.1 as the new minimum version.
 - Added reporting of stage load errors.

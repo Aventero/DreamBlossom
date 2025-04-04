@@ -67,6 +67,16 @@ func is_xr_class(name : String) -> bool:
 
 
 func _ready():
+	## Set collision shape radius
+	#if has_node("CollisionShape3D") and "radius" in $CollisionShape3D.shape:
+		#$CollisionShape3D.shape.radius = grab_distance
+
+	# Add important connections
+	if not body_entered.is_connected(_on_snap_zone_body_entered):
+		body_entered.connect(_on_snap_zone_body_exited)
+	if not body_exited.is_connected(_on_snap_zone_body_exited):
+		body_exited.connect(_on_snap_zone_body_exited)
+
 	# Perform updates
 	_update_snap_mode()
 
@@ -241,12 +251,13 @@ func pick_up_object(target: Node3D) -> void:
 
 	# Pick up our target. Note, target may do instant drop_and_free
 	picked_up_object = target
-	var player = get_node("AudioStreamPlayer3D")
-	if is_instance_valid(player):
-		if player.playing:
-			player.stop()
-		player.stream = stash_sound
-		player.play()
+	if has_node("AudioStreamPlayer3D"):
+		var player = get_node("AudioStreamPlayer3D")
+		if is_instance_valid(player):
+			if player.playing:
+				player.stop()
+			player.stream = stash_sound
+			player.play()
 
 	target.pick_up(self)
 
@@ -254,6 +265,7 @@ func pick_up_object(target: Node3D) -> void:
 	if is_instance_valid(picked_up_object):
 		has_picked_up.emit(picked_up_object)
 		highlight_updated.emit(self, false)
+
 
 # Called when the enabled property has been modified
 func _set_enabled(p_enabled: bool) -> void:
@@ -267,12 +279,16 @@ func _set_enabled(p_enabled: bool) -> void:
 # Called when the grab distance has been modified
 func _set_grab_distance(new_value: float) -> void:
 	grab_distance = new_value
+	#if is_inside_tree() and $CollisionShape3D:
+		#$CollisionShape3D.shape.radius = grab_distance
+
 
 # Called when the snap mode property has been modified
 func _set_snap_mode(new_value: SnapMode) -> void:
 	snap_mode = new_value
 	if is_inside_tree():
 		_update_snap_mode()
+
 
 # Handle changes to the snap mode
 func _update_snap_mode() -> void:

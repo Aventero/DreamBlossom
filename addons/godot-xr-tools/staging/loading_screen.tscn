@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqumugyvkct4r"]
+[gd_scene load_steps=14 format=3 uid="uid://bqumugyvkct4r"]
 
-[ext_resource type="Script" uid="uid://bgjgd3pgfyu2p" path="res://addons/godot-xr-tools/staging/loading_screen.gd" id="2"]
+[ext_resource type="Script" uid="uid://c2r81v2sdam7r" path="res://addons/godot-xr-tools/staging/loading_screen.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://da0rpt5ai2r42" path="res://Textures/Logo.png" id="2_2lren"]
 [ext_resource type="Shader" uid="uid://4i0pwdtfmtsv" path="res://addons/godot-xr-tools/staging/loading_screen/loading_screen_shader.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://clbtsf0ahb3fm" path="res://addons/godot-xr-tools/assets/misc/progress_bar.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ocyj01x5mtt7" path="res://addons/godot-xr-tools/assets/misc/Hold trigger to continue.png" id="5"]
@@ -12,12 +13,15 @@ _data = [Vector2(0.00207039, 0), 0.0, 1.00884, 0, 0, Vector2(1, 3.14), 0.313348,
 point_count = 2
 
 [sub_resource type="PlaneMesh" id="2"]
-size = Vector2(80, 60)
+lightmap_size_hint = Vector2i(942, 127)
+size = Vector2(188, 25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o2lp"]
 transparency = 1
 shading_mode = 0
+albedo_texture = ExtResource("2_2lren")
 texture_filter = 0
+texture_repeat = false
 
 [sub_resource type="ShaderMaterial" id="18"]
 render_priority = 0
@@ -42,6 +46,7 @@ albedo_texture = ExtResource("5")
 [node name="LoadingScreen" type="Node3D"]
 script = ExtResource("2")
 follow_speed = SubResource("21")
+splash_screen = ExtResource("2_2lren")
 
 [node name="SplashScreen" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 15, -50)

@@ -231,7 +231,6 @@ _surfaces = [{
 collision_mask = 7
 script = ExtResource("2_png0j")
 type = 4
-two_handed_grab = true
 second_hand_grab = 2
 
 [node name="CollisionShape3D" parent="." index="0"]

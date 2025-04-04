@@ -222,9 +222,9 @@ func _handle_complete_pull():
 
 	# Spawn dig spot
 	var dig_spot_instance = dig_spot.instantiate()
+	$"..".add_child(dig_spot_instance)
 	dig_spot_instance.global_position = current_cell_pos - Vector3(0.0, 0.1, 0.0)
 	dig_spot_instance.anchor_cell = current_cell
-	$"..".add_child(dig_spot_instance)
 
 	# Move digspot out of soil
 	var tween : Tween = create_tween()
@@ -301,8 +301,7 @@ func _on_soil_trigger_body_entered(_body):
 
 func _shovel_soil_insert():
 	# Disable pickup collider
-	shovel_pickup_collider.disabled = true
-
+	call_deferred("set_collider_state", true)
 	# Make player to drop shovel
 	drop()
 
@@ -313,7 +312,11 @@ func _shovel_soil_insert():
 	# Enable pull pickable
 	pickable_pull.enabled = true
 	pull_origin.visible = true
-	pull_pickup_collider.disabled = false
+	call_deferred("set_collider_state", false)
+	
+func set_collider_state(state) -> void:
+	shovel_pickup_collider.disabled = state
+	
 
 func _shovel_soil_leave():
 	# Disable pull pickable

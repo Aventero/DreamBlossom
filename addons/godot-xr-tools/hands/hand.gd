@@ -73,10 +73,6 @@ var _target_overrides := []
 # Current target (controller or override)
 var _target : Node3D
 
-# Should hand be visible after updating its transform
-var visibility_change : bool = false
-
-var function_pickup : XRToolsFunctionPickup
 
 ## Pose-override class
 class PoseOverride:
@@ -94,6 +90,7 @@ class PoseOverride:
 		who = w
 		priority = p
 		settings = s
+
 
 ## Target-override class
 class TargetOverride:
@@ -130,10 +127,6 @@ func _ready() -> void:
 	# Find our controller
 	_controller = XRTools.find_xr_ancestor(self, "*", "XRController3D")
 
-	# Find our Function Pickup
-	if not Engine.is_editor_hint():
-		function_pickup = get_node("../FunctionPickup")
-
 	# Find the relevant hand nodes
 	_hand_mesh = _find_child(self, "MeshInstance3D")
 	_animation_player = _find_child(self, "AnimationPlayer")
@@ -144,6 +137,7 @@ func _ready() -> void:
 	_update_hand_material_override()
 	_update_pose()
 	_update_target()
+
 
 ## This method checks for world-scale changes and scales itself causing the
 ## hand mesh and skeleton to scale appropriately. It then reads the grip and
@@ -163,26 +157,18 @@ func _physics_process(_delta: float) -> void:
 	if _controller:
 		var grip : float = _controller.get_float(grip_action)
 		var trigger : float = _controller.get_float(trigger_action)
-	
+
 		# Allow overriding of grip and trigger
 		if _force_grip >= 0.0: grip = _force_grip
 		if _force_trigger >= 0.0: trigger = _force_trigger
-	
+
 		$AnimationTree.set("parameters/Grip/blend_amount", grip)
 		$AnimationTree.set("parameters/Trigger/blend_amount", trigger)
-	
+
 	# Move to target
 	global_transform = _target.global_transform * _transform
 	force_update_transform()
-	
-	if visibility_change:
-		visibility_change = false
-		
-		# Should not turn visible if currently holding object
-		if function_pickup and function_pickup.picked_up_object:
-			return
-		
-		visible = true
+
 
 # This method verifies the hand has a valid configuration.
 func _get_configuration_warnings() -> PackedStringArray:
@@ -353,9 +339,9 @@ func _update_pose() -> void:
 		if open_name == "":
 			open_name = "open_hand"
 			if _animation_player.has_animation(open_name):
-				_animation_player.remove_animation(open_name)
+				_animation_player.get_animation_library("").remove_animation(open_name)
 
-			_animation_player.add_animation(open_name, open_pose)
+			_animation_player.get_animation_library("").add_animation(open_name, open_pose)
 
 		var open_hand_obj : AnimationNodeAnimation = _tree_root.get_node("OpenHand")
 		if open_hand_obj:
@@ -367,9 +353,9 @@ func _update_pose() -> void:
 		if closed_name == "":
 			closed_name = "closed_hand"
 			if _animation_player.has_animation(closed_name):
-				_animation_player.remove_animation(closed_name)
+				_animation_player.get_animation_library("").remove_animation(closed_name)
 
-			_animation_player.add_animation(closed_name, closed_pose)
+			_animation_player.get_animation_library("").add_animation(closed_name, closed_pose)
 
 		var closed_hand_obj : AnimationNodeAnimation = _tree_root.get_node("ClosedHand1")
 		if closed_hand_obj:

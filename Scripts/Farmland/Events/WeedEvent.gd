@@ -16,7 +16,7 @@ func initialize():
 		child.add_child(event_weed_instance)
 		
 		var initial_scale = event_weed_instance.scale
-		event_weed_instance.scale = Vector3.ZERO
+		event_weed_instance.scale = Vector3(0.001, 0.001, 0.001)
 		event_weed_instance.weed_event = self
 		
 		var tween : Tween = create_tween()

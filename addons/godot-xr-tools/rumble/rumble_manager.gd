@@ -1,6 +1,3 @@
-@icon("res://addons/godot-xr-tools/editor/icons/rumble.svg")
-@tool
-class_name XRToolsRumbleManager
 extends Node
 
 
@@ -15,27 +12,23 @@ extends Node
 
 
 ## Name in the OpenXR Action Map for haptics
-const HAPTIC_ACTION = "haptic"
+const HAPTIC_ACTION := &"haptic" # TODO: Migrate
 
+# Shorthand for all trackers, in use to be substituted with _queues.keys()
+const ALL_TRACKERS := [&"all"]
 
-## Initial "Wake-Up" Rumble Magnitude
-@export var wakeup_rumble : XRToolsRumbleEvent
 
 # A Queue Per Haptic device (Dictionary<StringName, XRToolsRumbleManagerQueue>)
 var _queues: Dictionary = {}
 
 
-# Keep track of singular instance
-static var _instance: XRToolsRumbleManager
-
-
 ## Add support for is_xr_class
-func is_xr_class(name: String) -> bool:
-	return name == "XRToolsRumbleManager"
+func is_xr_class(p_name: String) -> bool:
+	return p_name == "XRToolsRumbleManager"
 
 
 ## Get the default Haptics Scale value
-static func get_default_haptics_scale() -> float:
+func get_default_haptics_scale() -> float:
 	var default = 1.0
 
 	# Check if the project has overridden the addon's default
@@ -50,24 +43,10 @@ static func get_default_haptics_scale() -> float:
 
 
 ## Used to convert gamepad magnitudes to equivalent XR haptic magnitude
-static func combine_magnitudes(weak: float, strong: float) -> float:
+func combine_magnitudes(weak: float, strong: float) -> float:
 	if strong >= 0.01:
 		return 0.5 + clamp(strong / 2, 0.0, 0.5)
 	return clamp(weak / 2, 0.0, 0.5)
-
-
-# Enforce singleton
-func _enter_tree():
-	if not is_instance_valid(_instance):
-		_instance = self
-	else:
-		self.queue_free()
-
-
-# Clear instance if this is the singleton
-func _exit_tree():
-	if is_instance_valid(_instance) and _instance == self:
-		_instance = null
 
 
 # On Ready
@@ -81,9 +60,6 @@ func _ready():
 	# Create a queues for standard controllers
 	_queues[&"left_hand"] = XRToolsRumbleManagerQueue.new()
 	_queues[&"right_hand"] = XRToolsRumbleManagerQueue.new()
-
-	if wakeup_rumble:
-		_add("wakeup", wakeup_rumble, _queues.keys())
 
 
 # Determine how much to - and perform the - rumbles each tick
@@ -110,7 +86,7 @@ func _process(delta: float) -> void:
 
 			# If we've passed the threshold from positive to negative, the event is done
 			if !event.indefinite and haptic_queue.time_remaining[key] < 0:
-				_remove(key)
+				clear(key, [tracker_name])
 				continue
 
 			# Reduce the time remaining
@@ -129,69 +105,57 @@ func _process(delta: float) -> void:
 				HAPTIC_ACTION,
 				tracker_name, # if the tracker name isn't valid, it will error but continue
 				0,
-				magnitude * XRToolsUserSettings.haptics_scale,
+				magnitude,
 				0.1,
 				0)
 
 
-# actually set an event
-func _add(event_key: Variant, event: XRToolsRumbleEvent,
-					targets: Array = [&"left_hand", &"right_hand"]) -> void:
+# Add an event
+func add(event_key: Variant, event: XRToolsRumbleEvent,
+		trackers: Array = ALL_TRACKERS) -> void:
 	if not event_key:
-		push_error("Event key is invalid! ")
+		push_error("Event key is invalid!")
 		return
 
 	if not event:
-		_remove(event_key)
+		clear(event_key, trackers)
 		return
 
-	for target in targets:
-		if target is XRNode3D:
-			target = target.tracker
+	# Substitube the shorthand for all trackers with the real thing
+	if trackers == ALL_TRACKERS:
+		trackers = _queues.keys()
+
+	for tracker in trackers:
+		if tracker is XRNode3D:
+			tracker = tracker.tracker
 
 		# Create queue first time a target is suggested
-		if not _queues.has(target):
-			_queues[target] = XRToolsRumbleManagerQueue.new()
+		if not _queues.has(tracker):
+			_queues[tracker] = XRToolsRumbleManagerQueue.new()
 
-		_queues[target].events[event_key] = event
-		_queues[target].time_remaining[event_key] = event.duration_ms
-
-
-## Adds the event to the list of currently-active rumbles
-static func add(event_key: Variant, event: XRToolsRumbleEvent,
-								targets: Array = [&"left_hand", &"right_hand"]):
-	if is_instance_valid(_instance):
-		#gdlint:ignore = private-method-call
-		_instance._add(event_key, event, targets)
+		# Add the event and it's remaining time to the respective queues
+		_queues[tracker].events[event_key] = event
+		_queues[tracker].time_remaining[event_key] = event.duration_ms
 
 
-# Actually remove an event
-func _remove(event_key: Variant,
-			targets: Array = [&"left_hand", &"right_hand"]) -> void:
-	if event_key == null:
+# Remove an event
+func clear(event_key: Variant, trackers: Array = ALL_TRACKERS) -> void:
+	if not event_key:
+		push_error("Event key is invalid!")
 		return
 
-	for target in targets:
-		if target is XRNode3D:
-			target = target.tracker
-		_queues[target].events.erase(event_key)
-		_queues[target].time_remaining.erase(event_key)
+	# Substitube the shorthand for all trackers with the real thing
+	if trackers == ALL_TRACKERS:
+		trackers = _queues.keys()
 
+	for tracker in trackers:
+		if tracker is XRNode3D:
+			tracker = tracker.tracker
 
-# Actually remove an event from all queues
-func _remove_all(event_key: Variant) -> void:
-	_remove(event_key, _instance._queues.keys())
+		# Ignore if the queue doesn't exist
+		if not _queues.has(tracker):
+			continue
 
-
-## Removes the event from the list of currently-active rumbles
-static func clear(event_key: Variant, targets: Array = [&"left_hand", &"right_hand"]):
-	if is_instance_valid(_instance):
-		#gdlint:ignore = private-method-call
-		_instance._remove(event_key, targets)
-
-
-## Removes the event from the list of currently-active rumbles
-static func clear_all(event_key: Variant):
-	if is_instance_valid(_instance):
-		#gdlint:ignore = private-method-call
-		_instance._remove_all(event_key)
+		# Remove the event and it's remaining time from the respective queues
+		_queues[tracker].events.erase(event_key)
+		_queues[tracker].time_remaining.erase(event_key)

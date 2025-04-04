@@ -91,7 +91,7 @@ func _on_level_complete():
 		"time" : Statistics.elapsed_time,
 		"failed_orders" : Statistics.failed_orders,
 		"grown_plants" : Statistics.grown_plants
-	}, false)
+	})
 
 func level_failed():
 	await get_tree().create_timer(level_complete_fade_offset).timeout
@@ -103,4 +103,4 @@ func level_failed():
 	# Load level complete scene
 	load_scene("res://Scenes/LevelFailedScene.tscn", {
 		"prev_level_id" : level_id,
-	}, false)
+	})

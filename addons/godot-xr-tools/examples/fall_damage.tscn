@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2yejwiwab3wv"]
 
-[ext_resource type="Script" uid="uid://cowdk1pquf6m1" path="res://addons/godot-xr-tools/examples/fall_damage.gd" id="1"]
+[ext_resource type="Script" uid="uid://bigtrgx0ivd6q" path="res://addons/godot-xr-tools/examples/fall_damage.gd" id="1"]
 
 [node name="FallDamage" type="Node" groups=["movement_providers"]]
 script = ExtResource("1")

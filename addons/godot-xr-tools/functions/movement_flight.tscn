@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kyhaogt0a4q8"]
 
-[ext_resource type="Script" uid="uid://w27c6ru2062d" path="res://addons/godot-xr-tools/functions/movement_flight.gd" id="1"]
+[ext_resource type="Script" uid="uid://l16k0pih8d2y" path="res://addons/godot-xr-tools/functions/movement_flight.gd" id="1"]
 
 [node name="MovementFlight" type="Node" groups=["movement_providers"]]
 script = ExtResource("1")

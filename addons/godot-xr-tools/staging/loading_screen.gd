@@ -60,10 +60,6 @@ func _ready():
 
 
 func _process(delta):
-	# DEBUG KEY PRESS
-	if Input.is_key_pressed(KEY_1):
-		continue_pressed.emit()
-	
 	# Skip if in editor
 	if Engine.is_editor_hint():
 		return

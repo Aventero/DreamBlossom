@@ -48,6 +48,6 @@ func show_fairy():
 func hide_fairy():
 	# Tween size
 	var tween : Tween = create_tween()
-	tween.tween_property(_fairy_instance, "scale", Vector3.ZERO, 1.0)
+	tween.tween_property(_fairy_instance, "scale", Vector3(0.001, 0.001, 0.001,), 1.0)
 	tween.tween_callback(_fairy_instance.queue_free)
 	tween.tween_callback(func(): set_process(false))

@@ -20,15 +20,18 @@ extends CharacterBody3D
 ## track the players movement.
 
 
-## Signal emitted when the player jumps
+## Signal emitted when the player jumps.
 signal player_jumped()
 
-## Signal emitted when the player teleports
-signal player_teleported()
+## Signal emitted when the player teleports.
+signal player_teleported(delta_transform)
 
-## Signal emitted when the player bounces
+## Signal emitted when the player bounces.
 signal player_bounced(collider, magnitude)
 
+## Signal emitted when the player has moved (excluding teleport).
+## This only captures movement handled by the player body logic.
+signal player_moved(delta_transform)
 
 ## Enumeration indicating when ground control can be used
 enum GroundControl {
@@ -163,6 +166,9 @@ var _collision_node : CollisionShape3D
 # Player head shape cast
 var _head_shape_cast : ShapeCast3D
 
+# True while we're handling physics
+var _in_physics_movement : bool = false
+
 
 ## XROrigin3D node
 @onready var origin_node : XROrigin3D = XRHelpers.get_xr_origin(self)
@@ -262,6 +268,12 @@ func _physics_process(delta: float):
 		set_physics_process(false)
 		return
 
+	# We're handling physics right now
+	_in_physics_movement = true
+
+	# Remember where we are now
+	var current_transform : Transform3D = global_transform
+
 	# Calculate the players "up" direction and plane
 	up_player = origin_node.global_transform.basis.y
 
@@ -325,11 +337,21 @@ func _physics_process(delta: float):
 	# Orient the player towards (potentially modified) gravity
 	slew_up(-gravity.normalized(), 5.0 * delta)
 
+	# If we moved our player, emit signal
+	var delta_transform : Transform3D = global_transform * current_transform.inverse()
+	if delta_transform.origin.length() > 0.001:
+		player_moved.emit(delta_transform)
 
-## Teleport the player body
+	# And we're done!
+	_in_physics_movement = false
+
+## Teleport the player body.
+## This moves the player without checking for collisions.
 func teleport(target : Transform3D) -> void:
+	var inv_global_transform : Transform3D = global_transform.inverse()
+
 	# Get the player-to-origin transform
-	var player_to_origin = global_transform.inverse() * origin_node.global_transform
+	var player_to_origin : Transform3D = inv_global_transform * origin_node.global_transform
 
 	# Set the player
 	global_transform = target
@@ -338,7 +360,7 @@ func teleport(target : Transform3D) -> void:
 	origin_node.global_transform = target * player_to_origin
 
 	# Report the player teleported
-	player_teleported.emit()
+	player_teleported.emit(target * inv_global_transform)
 
 
 ## Request a jump
@@ -347,9 +369,9 @@ func request_jump(skip_jump_velocity := false):
 	if !on_ground:
 		return
 
-	# Skip if our vertical velocity is not essentially the same as the ground
+	# Skip if we have any vertical velocity with regards to the ground-plane
 	var ground_relative := velocity - ground_velocity
-	if abs(ground_relative.dot(up_player)) > 0.01:
+	if abs(ground_relative.dot(ground_vector)) > 0.01:
 		return
 
 	# Skip if jump disabled on this ground
@@ -371,14 +393,27 @@ func request_jump(skip_jump_velocity := false):
 	# Report the jump
 	emit_signal("player_jumped")
 
+
 ## This method moves the players body using the provided velocity. Movement
 ## providers may use this function if they are exclusively driving the player.
-func move_body(p_velocity: Vector3) -> Vector3:
+func move_player(p_velocity: Vector3) -> Vector3:
 	velocity = p_velocity
 	max_slides = 4
 	up_direction = ground_vector
 
+	# Get the player body location before we apply our movement.
+	var transform_before_movement : Transform3D = global_transform
+
 	move_and_slide()
+
+	if not _in_physics_movement:
+		# Apply the player-body movement to the XR origin
+		var movement := global_transform.origin - transform_before_movement.origin
+		origin_node.global_transform.origin += movement
+
+		var delta_transform : Transform3D = global_transform * transform_before_movement.inverse()
+		if delta_transform.origin.length() >  0.001:
+			player_moved.emit(delta_transform)
 
 	# Check if we collided with rigid bodies and apply impulses to them to move them out of the way
 	if push_rigid_bodies:
@@ -410,6 +445,8 @@ func move_body(p_velocity: Vector3) -> Vector3:
 
 ## This method rotates the player by rotating the [XROrigin3D] around the camera.
 func rotate_player(angle: float):
+	var inv_global_transform : Transform3D = global_transform.inverse()
+
 	var t1 := Transform3D()
 	var t2 := Transform3D()
 	var rot := Transform3D()
@@ -418,6 +455,9 @@ func rotate_player(angle: float):
 	t2.origin = camera_node.transform.origin
 	rot = rot.rotated(Vector3.DOWN, angle)
 	origin_node.transform = (origin_node.transform * t2 * rot * t1).orthonormalized()
+
+	if not _in_physics_movement:
+		player_moved.emit(global_transform * inv_global_transform)
 
 ## This method slews the players up vector by rotating the [ARVROrigin] around
 ## the players feet.
@@ -669,45 +709,53 @@ func _apply_velocity_and_control(delta: float):
 	var vertical_velocity := local_velocity - horizontal_velocity
 
 	# If the player is on the ground then give them control
-	if _can_apply_ground_control():
+	if _can_apply_ground_control() and ground_control_velocity.length() >= 0.1:
 		# If ground control is being supplied then update the horizontal velocity
 		var control_velocity := Vector3.ZERO
-		if abs(ground_control_velocity.x) > 0.1 or abs(ground_control_velocity.y) > 0.1:
-			var camera_transform := camera_node.global_transform
-			var dir_forward := camera_transform.basis.z.slide(up_gravity).normalized()
-			var dir_right := camera_transform.basis.x.slide(up_gravity).normalized()
-			control_velocity = (
-					dir_forward * -ground_control_velocity.y +
-					dir_right * ground_control_velocity.x
-			) * XRServer.world_scale
+		var camera_transform := camera_node.global_transform
+		var dir_forward := camera_transform.basis.z.slide(up_gravity).normalized()
+		var dir_right := camera_transform.basis.x.slide(up_gravity).normalized()
+		control_velocity = (
+				dir_forward * -ground_control_velocity.y +
+				dir_right * ground_control_velocity.x
+		) * XRServer.world_scale
 
-			# Apply control velocity to horizontal velocity based on traction
-			var current_traction := XRToolsGroundPhysicsSettings.get_move_traction(
-					ground_physics, default_physics)
-			var traction_factor: float = clamp(current_traction * delta, 0.0, 1.0)
-			horizontal_velocity = horizontal_velocity.lerp(control_velocity, traction_factor)
+		# Apply control velocity to horizontal velocity based on traction
+		var current_traction := XRToolsGroundPhysicsSettings.get_move_traction(
+				ground_physics, default_physics)
+		var traction_factor: float = clamp(current_traction * delta, 0.0, 1.0)
+		horizontal_velocity = horizontal_velocity.lerp(control_velocity, traction_factor)
 
-			# Prevent the player from moving up steep slopes
-			var current_max_slope := XRToolsGroundPhysicsSettings.get_move_max_slope(
-					ground_physics, default_physics)
-			if ground_angle > current_max_slope:
-				# Get a vector in the down-hill direction
-				var down_direction := ground_vector.slide(up_gravity).normalized()
-				var vdot: float = down_direction.dot(horizontal_velocity)
-				if vdot < 0:
-					horizontal_velocity -= down_direction * vdot
-		else:
-			# User is not trying to move, so apply the ground drag
-			var current_drag := XRToolsGroundPhysicsSettings.get_move_drag(
-					ground_physics, default_physics)
-			var drag_factor: float = clamp(current_drag * delta, 0, 1)
-			horizontal_velocity = horizontal_velocity.lerp(control_velocity, drag_factor)
+	# Prevent the player from moving up steep slopes
+	if on_ground:
+		var current_max_slope := XRToolsGroundPhysicsSettings.get_move_max_slope(
+				ground_physics, default_physics)
+		if ground_angle > current_max_slope:
+			# Get a vector in the down-hill direction
+			var down_direction := ground_vector.slide(up_gravity).normalized()
+			var vdot: float = down_direction.dot(horizontal_velocity)
+			if vdot < 0:
+				horizontal_velocity -= down_direction * vdot
 
 	# Combine the velocities back to a 3-space velocity
 	local_velocity = horizontal_velocity + vertical_velocity
 
 	# Move the player body with the desired velocity
-	velocity = move_body(local_velocity + ground_velocity)
+	velocity = move_player(local_velocity + ground_velocity)
+
+	# Apply ground-friction after the move
+	if _can_apply_ground_control() and ground_control_velocity.length() < 0.1:
+		# User is not trying to move, so apply the ground drag
+		var current_drag := XRToolsGroundPhysicsSettings.get_move_drag(
+				ground_physics, default_physics)
+		var drag_factor: float = clamp(current_drag * delta, 0, 1)
+
+		# Apply drag to horizontal velocity relative to ground
+		local_velocity = velocity - ground_velocity
+		horizontal_velocity = local_velocity.slide(up_gravity)
+		vertical_velocity = local_velocity - horizontal_velocity
+		horizontal_velocity = horizontal_velocity.lerp(Vector3.ZERO, drag_factor)
+		velocity = horizontal_velocity + vertical_velocity + ground_velocity
 
 	# Perform bounce test if a collision occurred
 	if get_slide_collision_count():

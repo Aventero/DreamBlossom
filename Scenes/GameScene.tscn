@@ -1,10 +1,9 @@
-[gd_scene load_steps=1318 format=4 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=1327 format=4 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_oidr1"]
 [ext_resource type="Texture2D" uid="uid://u877wgbu7hwa" path="res://Textures/Environment/Sky/Clouds.png" id="3_hcn1d"]
-[ext_resource type="Script" uid="uid://b5htc8jjjmrpj" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="4_b5jo2"]
 [ext_resource type="Script" uid="uid://d1i3wjud78rmq" path="res://Scenes/DayNightCycle.gd" id="4_ko70n"]
 [ext_resource type="Texture2D" uid="uid://bkqeqguoix2cy" path="res://Textures/Shader/SkyHorizonGradient.png" id="4_o7bce"]
 [ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="5_n3w7w"]
@@ -43,7 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://w6eurr5p0d0m" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
-[ext_resource type="Script" uid="uid://5amnsrgby5ws" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
+[ext_resource type="Script" uid="uid://cnq25saegbvnv" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
 [ext_resource type="Texture2D" uid="uid://cqitadukeoxox" path="res://Textures/Environment/Tree.png" id="48_t7hl5"]
 [ext_resource type="Shader" uid="uid://i5i3h31gm88i" path="res://Shader/wobble.gdshader" id="49_basjb"]
@@ -55,7 +54,6 @@
 [ext_resource type="Texture2D" uid="uid://buuiah53s5e24" path="res://Textures/Environment/Foliage.png" id="51_uydf8"]
 [ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="52_wravo"]
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="60_qb1j0"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.266667, 0.346032, 0.438095, 0.514286, 0.584127, 0.71746, 0.863492, 1)
@@ -71,12 +69,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(0.786407, -0.426104, -0.447214)
-shader_parameter/day_intensity = 0.000629204
+shader_parameter/sun_direction = Vector3(-0.608129, -0.65588, -0.447214)
+shader_parameter/day_intensity = 3.15788e-05
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
 shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(-0.786407, 0.426104, -0.447214)
-shader_parameter/night_intensity = 0.476399
+shader_parameter/moon_direction = Vector3(0.608129, 0.65588, -0.447214)
+shader_parameter/night_intensity = 0.733297
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -85,7 +83,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.476399
+background_energy_multiplier = 0.733297
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.0853001, 0.231379, 0.680136, 1)
 ambient_light_sky_contribution = 0.9
@@ -109,19 +107,67 @@ fog_depth_begin = 5.0
 fog_depth_end = 15.0
 adjustment_saturation = 1.25
 
-[sub_resource type="GDScript" id="GDScript_mo61k"]
-script/source = "extends XROrigin3D
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01wpx"]
+animation = &"Grip"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rvx5h"]
+animation = &"Grip"
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gnabl"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_L", "Armature/Skeleton3D:Little_Intermediate_L", "Armature/Skeleton3D:Little_Metacarpal_L", "Armature/Skeleton3D:Little_Proximal_L", "Armature/Skeleton3D:Middle_Distal_L", "Armature/Skeleton3D:Middle_Intermediate_L", "Armature/Skeleton3D:Middle_Metacarpal_L", "Armature/Skeleton3D:Middle_Proximal_L", "Armature/Skeleton3D:Ring_Distal_L", "Armature/Skeleton3D:Ring_Intermediate_L", "Armature/Skeleton3D:Ring_Metacarpal_L", "Armature/Skeleton3D:Ring_Proximal_L", "Armature/Skeleton3D:Thumb_Distal_L", "Armature/Skeleton3D:Thumb_Metacarpal_L", "Armature/Skeleton3D:Thumb_Proximal_L", "Armature/Skeleton:Little_Distal_L", "Armature/Skeleton:Little_Intermediate_L", "Armature/Skeleton:Little_Proximal_L", "Armature/Skeleton:Middle_Distal_L", "Armature/Skeleton:Middle_Intermediate_L", "Armature/Skeleton:Middle_Proximal_L", "Armature/Skeleton:Ring_Distal_L", "Armature/Skeleton:Ring_Intermediate_L", "Armature/Skeleton:Ring_Proximal_L", "Armature/Skeleton:Thumb_Distal_L", "Armature/Skeleton:Thumb_Proximal_L"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3m7m8"]
+animation = &"Grip 5"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-"
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6yhpj"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_L", "Armature/Skeleton3D:Index_Intermediate_L", "Armature/Skeleton3D:Index_Metacarpal_L", "Armature/Skeleton3D:Index_Proximal_L", "Armature/Skeleton:Index_Distal_L", "Armature/Skeleton:Index_Intermediate_L", "Armature/Skeleton:Index_Proximal_L"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yola1"]
+graph_offset = Vector2(-536, 11)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_01wpx")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_rvx5h")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_gnabl")
+nodes/Grip/position = Vector2(0, 20)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_3m7m8")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_6yhpj")
+nodes/Trigger/position = Vector2(-360, 20)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_btbwo"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8kd31"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mev8l"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wcenn"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_p5hnb"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_R", "Armature/Skeleton3D:Index_Intermediate_R", "Armature/Skeleton3D:Index_Metacarpal_R", "Armature/Skeleton3D:Index_Proximal_R", "Armature/Skeleton:Index_Distal_R", "Armature/Skeleton:Index_Intermediate_R", "Armature/Skeleton:Index_Proximal_R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6gdqy"]
+graph_offset = Vector2(-552.664, 107.301)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_btbwo")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_8kd31")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_mev8l")
+nodes/Grip/position = Vector2(0, 40)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_wcenn")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_p5hnb")
+nodes/Trigger/position = Vector2(-360, 40)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
 
 [sub_resource type="Resource" id="Resource_rrwnh"]
 script = ExtResource("8_f24wb")
@@ -346,7 +392,6 @@ shadow_mesh = SubResource("ArrayMesh_mr7pr")
 points = PackedVector3Array(-0.0703124, 0.117132, 0.468694, -0.21096, 0.117132, 0.632806, -0.0703124, -0.375, 0.468694, -0.0703124, 0.117132, -0.304746, -0.140636, 0.1875, 0.468694, -0.21096, -0.375, 0.632806, -0.23438, 0.1875, 0.562395, -0.609419, 0.117132, 0.632806, -0.0703124, -0.375, -0.304746, -0.21096, 0.117132, -0.46875, -0.140636, 0.1875, -0.304746, -0.609419, -0.375, 0.632806, -0.585999, 0.1875, 0.562395, -0.679743, 0.1875, 0.468694, -0.75, 0.117132, 0.468694, -0.21096, -0.375, -0.46875, -0.23438, 0.1875, -0.398447, -0.609419, 0.117132, -0.46875, -0.75, -0.375, 0.468694, -0.679743, 0.1875, -0.304746, -0.75, 0.117132, -0.304746, -0.609419, -0.375, -0.46875, -0.585999, 0.1875, -0.398447, -0.75, -0.375, -0.304746)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
-radius = 0.348894
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nao46"]
 resource_name = "Tree"
@@ -20039,19 +20084,27 @@ script = ExtResource("1_r2msa")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_30re5")
 
+[node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
+
+[node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_yola1")
+
+[node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_6gdqy")
+
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
-time_of_day = 22.1033
+time_of_day = 15.1442
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447213, 0.000503363, -0.894426, 0, 0.999999, 0.000562777, 0.894426, 0.000251682, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.447212, 2.5263e-05, -0.894425, 0, 0.999998, 2.82449e-05, 0.894425, 1.26315e-05, -0.447213, 0, 0, 0)
 visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.000629204
+light_energy = 3.15788e-05
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20064,9 +20117,9 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.494337, 0.3704, -0.786407, 0, 0.904674, 0.426105, 0.869271, 0.210639, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.592443, -0.528386, 0.608129, 0, 0.754865, 0.655881, -0.805614, 0.388571, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.476399
+light_energy = 0.733297
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_blur = 0.9
@@ -20077,28 +20130,6 @@ directional_shadow_blend_splits = true
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 63.0
 sky_mode = 1
-
-[node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
-script = SubResource("GDScript_mo61k")
-
-[node name="XRCamera3D" parent="XROrigin3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09149, 0)
-current = true
-
-[node name="Left Hand" parent="XROrigin3D" index="1"]
-transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
-
-[node name="FunctionPickup" parent="XROrigin3D/Left Hand/CollisionHandLeft" index="2"]
-ranged_enable = false
-
-[node name="CollisionHandRight" parent="XROrigin3D/Right Hand" index="0"]
-hand = 1
-
-[node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="2"]
-ranged_enable = false
-
-[node name="XRToolsRumbleManager" type="Node" parent="XROrigin3D"]
-script = ExtResource("4_b5jo2")
 
 [node name="TextureLoader" type="Node" parent="."]
 script = ExtResource("7_q25ib")
@@ -20178,7 +20209,6 @@ transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1
 
 [node name="OrderDisplay" parent="." instance=ExtResource("22_s8pn7")]
 transform = Transform3D(1, 0, 0, 0, 0.987587, -0.157072, 0, 0.157072, 0.987587, 0, 1.55262, -1.35507)
-visible = false
 
 [node name="CookingArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
@@ -20310,7 +20340,6 @@ snap_require = "PotionRed"
 initial_object = NodePath("PotionRed")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionRedSnap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103086, 0.160492, -0.228994)
 shape = SubResource("SphereShape3D_3oa2u")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionRedSnap"]
@@ -20333,7 +20362,6 @@ snap_require = "PotionGreen"
 initial_object = NodePath("PotionGreen")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionGreenSnap"]
-transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0.220326, 0.0534225, -0.00578776)
 shape = SubResource("SphereShape3D_3oa2u")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionGreenSnap"]
@@ -20357,7 +20385,6 @@ snap_require = "PotionBlue"
 initial_object = NodePath("PotionBlue")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionBlueSnap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00241822, -0.0474775, -0.221807)
 shape = SubResource("SphereShape3D_3oa2u")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionBlueSnap"]
@@ -20370,6 +20397,7 @@ type = 4
 infinite_drops = true
 
 [node name="Environment" type="Node3D" parent="."]
+visible = false
 
 [node name="Tree_Round_001" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(243.194, 5.61717, 0.836124, -5.61851, 243.195, 0.383203, -0.827052, -0.402411, 243.259, -0.397601, 0.0365124, 6.56566)
@@ -24101,15 +24129,6 @@ mesh = SubResource("ArrayMesh_owdaa")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_yeofg")
 
-[node name="Viewport2Din3D" parent="." instance=ExtResource("60_qb1j0")]
-transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, -0.16547, 0.905939, 1.26276)
-screen_size = Vector2(3, 1)
-viewport_size = Vector2(300, 100)
-alpha_scissor_threshold = 0.625
-unshaded = true
-filter = false
-metadata/_edit_lock_ = true
-
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
@@ -24119,3 +24138,7 @@ metadata/_edit_lock_ = true
 [connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
 
 [editable path="XROrigin3D"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r"]

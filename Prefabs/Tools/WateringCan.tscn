@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqg63xo3abxvn" path="res://Prefabs/Tools/WaterDrop.tscn" id="3_3bmx2"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_gb2ho"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_mbsu1"]
-[ext_resource type="Script" uid="uid://cqwuam3yfserx" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_1qjvm"]
+[ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_1qjvm"]
 [ext_resource type="Material" uid="uid://yskd5jdqu2th" path="res://Materials/Water.tres" id="8_g1rv5"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="8_ue0f2"]
 [ext_resource type="PackedScene" uid="uid://6u1yd6nxnmah" path="res://Models/Tools/WateringCan.blend" id="9_5gk08"]

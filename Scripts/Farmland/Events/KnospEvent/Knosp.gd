@@ -24,11 +24,11 @@ func _on_pull_pickup_dropped(pickable):
 	# Enable outline
 	outline_mesh.visible = true
 
-func _on_xr_tools_highlight_visible_visibility_change(_visible):
-	if picked_by:
-		return
-	
-	outline_mesh.visible = !_visible
+#func _on_xr_tools_highlight_visible_visibility_change(_visible):
+	#if picked_by:
+		#return
+	#
+	#outline_mesh.visible = !_visible
 
 func _on_pull_completed():
 	outline_mesh.queue_free()

@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Dreamblossom"
-run/main_scene="res://Scenes/MainScene.tscn"
+run/main_scene="uid://bv7evvnex2o3t"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
 
 [debug_draw_3d]
 
@@ -56,6 +57,7 @@ import/fbx/enabled=false
 
 [physics]
 
+common/enable_object_picking=false
 jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]

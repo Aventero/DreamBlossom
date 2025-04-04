@@ -1,42 +1,40 @@
-[gd_scene load_steps=15 format=3 uid="uid://l2n30mpbkdyw"]
+[gd_scene load_steps=13 format=3 uid="uid://l2n30mpbkdyw"]
 
 [ext_resource type="PackedScene" uid="uid://bxipj7hyjwy6f" path="res://addons/godot-xr-tools/hands/animations/right/AnimationPlayer.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://dunu03tc5vdbh" path="res://addons/godot-xr-tools/hands/model/Hand_Nails_low_R.gltf" id="2"]
-[ext_resource type="Script" uid="uid://ctqvvesrd11m2" path="res://addons/godot-xr-tools/hands/hand.gd" id="3"]
+[ext_resource type="Script" uid="uid://bpo03v803asva" path="res://addons/godot-xr-tools/hands/hand.gd" id="3"]
 [ext_resource type="Resource" uid="uid://dmpjtk0l8vh6v" path="res://addons/godot-xr-tools/hands/poses/pose_default_right.tres" id="3_f67ka"]
-[ext_resource type="Material" uid="uid://dbvge3quu3bju" path="res://addons/godot-xr-tools/hands/materials/caucasian_hand.material" id="4"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="4_s5h3g"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://m85b1gogdums" path="res://addons/godot-xr-tools/hands/animations/right/hand_blend_tree.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://c70f3xqhy8l2y" path="res://addons/godot-xr-tools/hands/blend/pixel_hand_r.blend" id="42_jjmq2"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_70m0w"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ao0x"]
 animation = &"Grip"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x6b3d"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pdeq"]
 animation = &"Grip"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o00w2"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ed6h4"]
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_85g1b"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ja5n"]
 animation = &"Grip 5"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_md43o"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_hspyh"]
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Index_Distal_R", "Armature/Skeleton3D:Index_Intermediate_R", "Armature/Skeleton3D:Index_Metacarpal_R", "Armature/Skeleton3D:Index_Proximal_R", "Armature/Skeleton:Index_Distal_R", "Armature/Skeleton:Index_Intermediate_R", "Armature/Skeleton:Index_Proximal_R"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vqod6"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sse2s"]
 graph_offset = Vector2(-552.664, 107.301)
-nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_70m0w")
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_1ao0x")
 nodes/ClosedHand1/position = Vector2(-600, 300)
-nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_x6b3d")
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_8pdeq")
 nodes/ClosedHand2/position = Vector2(-360, 300)
-nodes/Grip/node = SubResource("AnimationNodeBlend2_o00w2")
+nodes/Grip/node = SubResource("AnimationNodeBlend2_ed6h4")
 nodes/Grip/position = Vector2(0, 40)
-nodes/OpenHand/node = SubResource("AnimationNodeAnimation_85g1b")
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_1ja5n")
 nodes/OpenHand/position = Vector2(-600, 100)
-nodes/Trigger/node = SubResource("AnimationNodeBlend2_md43o")
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_hspyh")
 nodes/Trigger/position = Vector2(-360, 40)
 node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
 
@@ -57,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0301117, -0.0514389, 0.1504
 [node name="Skeleton3D" parent="pixel_hand_r/Armature" index="0"]
 bones/0/rotation = Quaternion(-0.706517, -6.47275e-06, -6.47275e-06, 0.707696)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.323537, 2.56592e-05, 0.0272204, 0.945824)
+bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
 bones/2/rotation = Quaternion(-0.0904441, 0.0415175, 0.166293, 0.981042)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.0466199, -0.020971, -0.0103276, 0.998639)
@@ -99,55 +97,9 @@ bones/25/rotation = Quaternion(0.706524, 6.4852e-06, 8.69198e-06, 0.707689)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../pixel_hand_r")
-tree_root = SubResource("AnimationNodeBlendTree_vqod6")
+tree_root = SubResource("AnimationNodeBlendTree_sse2s")
 anim_player = NodePath("../pixel_hand_r/AnimationPlayer")
 parameters/Grip/blend_amount = 0.0
 parameters/Trigger/blend_amount = 0.0
 
-[node name="Hand_Nails_low_R" parent="." instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15)
-visible = false
-
-[node name="Skeleton3D" parent="Hand_Nails_low_R/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.706517, -6.47275e-06, -6.47275e-06, 0.707696)
-bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.323537, 2.56575e-05, 0.0272204, 0.945824)
-bones/2/rotation = Quaternion(-0.0459503, 0.0271357, 0.0752572, 0.995735)
-bones/3/rotation = Quaternion(0.0556407, -0.0103261, -0.0139847, 0.9983)
-bones/4/rotation = Quaternion(-0.0757687, 0.019257, 0.0337124, 0.996369)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.111223, 0.00277812, -0.117574, 0.986812)
-bones/7/rotation = Quaternion(-0.0136832, 0.0246682, 0.235071, 0.971569)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.014226, 0.0119908, 0.134541, 0.990733)
-bones/9/rotation = Quaternion(-0.0522884, 0.000557213, -0.103621, 0.993241)
-bones/10/rotation = Quaternion(-0.0358546, -4.20051e-05, -0.0499776, 0.998107)
-bones/11/rotation = Quaternion(-0.0119466, -0.000966737, 0.0105008, 0.999873)
-bones/12/rotation = Quaternion(0.0394554, -0.00492874, 0.137827, 0.989658)
-bones/13/rotation = Quaternion(-0.0139315, 0.000142422, 0.168612, 0.985584)
-bones/14/rotation = Quaternion(0.0136882, -7.99237e-05, -0.168411, 0.985622)
-bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.0711949, -1.57336e-05, -0.0180856, 0.997298)
-bones/16/rotation = Quaternion(-0.0510567, 0.00202299, -0.0418045, 0.997818)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.0173263, -0.0186085, 0.160829, 0.986655)
-bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(-0.0113518, -0.0126214, 0.131984, 0.991107)
-bones/18/scale = Vector3(1, 1, 1)
-bones/19/rotation = Quaternion(0.0330517, 0.00671975, -0.126351, 0.991412)
-bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(-0.0917695, -2.45622e-05, -0.0284477, 0.995374)
-bones/20/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(-0.089286, -0.00316807, 0.00673912, 0.995978)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/rotation = Quaternion(0.0449258, -0.032808, 0.185059, 0.981152)
-bones/23/rotation = Quaternion(-0.0180548, -0.0114553, 0.107075, 0.994021)
-bones/23/scale = Vector3(1, 1, 1)
-bones/24/rotation = Quaternion(0.0158363, 0.0193397, -0.153777, 0.987789)
-
-[node name="mesh_Hand_Nails_low_R" parent="Hand_Nails_low_R/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("4")
-
 [editable path="pixel_hand_r"]
-[editable path="Hand_Nails_low_R"]

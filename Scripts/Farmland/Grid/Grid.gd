@@ -26,7 +26,9 @@ func _ready():
 		scale.z *= 1
 	
 	# Init data array
+	@warning_ignore("narrowing_conversion")
 	width_cells = width / cellsize 
+	@warning_ignore("narrowing_conversion")
 	height_cells = height / cellsize
 	data.resize(width_cells * height_cells)
 	
@@ -172,7 +174,8 @@ func get_cells(cell : GridCell, _width : int, break_on_null = true) -> Array[Gri
 
 func _get_cell_position(index : int):
 	var x : int = index % width_cells
-	var y : int = floori(index / width_cells)
+	@warning_ignore("integer_division")
+	var y : int = index / width_cells
 	
 	return Vector2i(x, y)
 

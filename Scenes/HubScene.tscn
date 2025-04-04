@@ -1,19 +1,19 @@
-[gd_scene load_steps=37 format=3 uid="uid://dq7k7phd3i607"]
+[gd_scene load_steps=49 format=3 uid="uid://dq7k7phd3i607"]
 
 [ext_resource type="Script" uid="uid://dbjmh3x88yvng" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
 [ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_krgwt"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_w4io7"]
-[ext_resource type="Script" uid="uid://b5htc8jjjmrpj" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_6u0xd"]
-[ext_resource type="Script" uid="uid://c1e40bk6h5fym" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="3_we1bf"]
-[ext_resource type="Script" uid="uid://cv8w8najbvjw6" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_jl6qw"]
-[ext_resource type="Script" uid="uid://1viu41acxrvu" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_64uky"]
+[ext_resource type="Script" uid="uid://dp7jnfycf48dq" path="res://addons/godot-xr-tools/rumble/rumble_manager.gd" id="3_6u0xd"]
+[ext_resource type="Script" uid="uid://b4dntppd4b54e" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="3_we1bf"]
+[ext_resource type="Script" uid="uid://ccbllnfrppcoa" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="4_jl6qw"]
+[ext_resource type="Script" uid="uid://dhatg4chjvhoh" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_64uky"]
 [ext_resource type="PackedScene" uid="uid://2x5g6x5e1k7" path="res://Prefabs/Planting/Blubburu/BlubburuPlant.tscn" id="8_02uq7"]
-[ext_resource type="Script" uid="uid://cik8ruh3e40kn" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="9_np802"]
+[ext_resource type="Script" uid="uid://bo7dmqec2jin7" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="9_np802"]
 [ext_resource type="PackedScene" uid="uid://dxhccbbkp1ghs" path="res://Prefabs/Planting/Flamie/FlamiePlant.tscn" id="9_wkoli"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="10_4mlpb"]
 [ext_resource type="PackedScene" uid="uid://4exhe7q8f0pk" path="res://Prefabs/Planting/Nommie/NommiePlant.tscn" id="10_5grbc"]
 [ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="11_a812u"]
-[ext_resource type="Script" uid="uid://c8spvbllpgn7u" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
+[ext_resource type="Script" uid="uid://be32sxd0wqfab" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="12_12wo1"]
 [ext_resource type="PackedScene" uid="uid://v4beiflx1jg0" path="res://Prefabs/Planting/Shellie/ShelliePlant.tscn" id="12_w3ksd"]
 [ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="13_4ypwf"]
@@ -56,6 +56,68 @@ func _ready():
 func _process(_delta):
 	pass
 "
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vdfo"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5logw"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_btn2x"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_L", "Armature/Skeleton3D:Little_Intermediate_L", "Armature/Skeleton3D:Little_Metacarpal_L", "Armature/Skeleton3D:Little_Proximal_L", "Armature/Skeleton3D:Middle_Distal_L", "Armature/Skeleton3D:Middle_Intermediate_L", "Armature/Skeleton3D:Middle_Metacarpal_L", "Armature/Skeleton3D:Middle_Proximal_L", "Armature/Skeleton3D:Ring_Distal_L", "Armature/Skeleton3D:Ring_Intermediate_L", "Armature/Skeleton3D:Ring_Metacarpal_L", "Armature/Skeleton3D:Ring_Proximal_L", "Armature/Skeleton3D:Thumb_Distal_L", "Armature/Skeleton3D:Thumb_Metacarpal_L", "Armature/Skeleton3D:Thumb_Proximal_L", "Armature/Skeleton:Little_Distal_L", "Armature/Skeleton:Little_Intermediate_L", "Armature/Skeleton:Little_Proximal_L", "Armature/Skeleton:Middle_Distal_L", "Armature/Skeleton:Middle_Intermediate_L", "Armature/Skeleton:Middle_Proximal_L", "Armature/Skeleton:Ring_Distal_L", "Armature/Skeleton:Ring_Intermediate_L", "Armature/Skeleton:Ring_Proximal_L", "Armature/Skeleton:Thumb_Distal_L", "Armature/Skeleton:Thumb_Proximal_L"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx7vb"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ugaak"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_L", "Armature/Skeleton3D:Index_Intermediate_L", "Armature/Skeleton3D:Index_Metacarpal_L", "Armature/Skeleton3D:Index_Proximal_L", "Armature/Skeleton:Index_Distal_L", "Armature/Skeleton:Index_Intermediate_L", "Armature/Skeleton:Index_Proximal_L"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m36sf"]
+graph_offset = Vector2(-536, 11)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_3vdfo")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_5logw")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_btn2x")
+nodes/Grip/position = Vector2(0, 20)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_yx7vb")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_ugaak")
+nodes/Trigger/position = Vector2(-360, 20)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptvko"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wj0b"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_p4imw"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_82qdy"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_kmow6"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_R", "Armature/Skeleton3D:Index_Intermediate_R", "Armature/Skeleton3D:Index_Metacarpal_R", "Armature/Skeleton3D:Index_Proximal_R", "Armature/Skeleton:Index_Distal_R", "Armature/Skeleton:Index_Intermediate_R", "Armature/Skeleton:Index_Proximal_R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_et0tk"]
+graph_offset = Vector2(-552.664, 107.301)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_ptvko")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_4wj0b")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_p4imw")
+nodes/Grip/position = Vector2(0, 40)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_82qdy")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_kmow6")
+nodes/Trigger/position = Vector2(-360, 40)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4rlj"]
 size = Vector3(5, 0.1, 5)
@@ -122,14 +184,20 @@ current = true
 [node name="Left Hand" parent="XROrigin3D" index="1"]
 transform = Transform3D(0.999973, 0.00622694, -0.00389296, -0.00622598, 0.999981, 0.000256767, 0.00389448, -0.000232517, 0.999992, -0.2, 1, 0)
 
-[node name="FunctionPickup" parent="XROrigin3D/Left Hand/CollisionHandLeft" index="2"]
+[node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_m36sf")
+
+[node name="FunctionPickup" parent="XROrigin3D/Left Hand/CollisionHandLeft" index="1"]
 ranged_enable = false
 
 [node name="MovementDirect" type="Node" parent="XROrigin3D/Left Hand" index="2" groups=["movement_providers"]]
 script = ExtResource("3_we1bf")
 strafe = true
 
-[node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="2"]
+[node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_et0tk")
+
+[node name="FunctionPickup" parent="XROrigin3D/Right Hand/CollisionHandRight" index="1"]
 ranged_enable = false
 
 [node name="MovementTurn" type="Node" parent="XROrigin3D/Right Hand" index="2" groups=["movement_providers"]]
@@ -158,6 +226,7 @@ mesh = SubResource("BoxMesh_i07l1")
 
 [node name="Ceiling" type="StaticBody3D" parent="Environment/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Ceiling"]
 shape = SubResource("BoxShape3D_x4rlj")
@@ -166,7 +235,7 @@ shape = SubResource("BoxShape3D_x4rlj")
 mesh = SubResource("BoxMesh_i07l1")
 
 [node name="Wall" type="StaticBody3D" parent="Environment/House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.25019, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49727, 1.25666, -0.00643468)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Wall"]
 shape = SubResource("BoxShape3D_olq40")
@@ -219,9 +288,10 @@ resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "P
 script = ExtResource("14_y8p08")
 
 [node name="Level Selection" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0441369, 0.275713, -0.237029)
 
 [node name="Level Sandbox" type="Node3D" parent="Level Selection"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.42984, 1.40324, -1.34845)
+transform = Transform3D(0.750596, -0.131418, 0.647561, 0, 0.980022, 0.198889, -0.660762, -0.149285, 0.7356, -0.432736, 0.958607, -0.423743)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level Sandbox"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -253,11 +323,13 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level Sandbox"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.154084, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.128956, 0)
 text = "No danger - Just planting"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 1" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31397, 1.40324, -2.43743)
+transform = Transform3D(0.978289, 0, -0.207246, 0, 1, 0, 0.207246, 0, 0.978289, 0.0837286, 1.41494, -0.558569)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 1"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -290,13 +362,14 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 1"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.154084, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.128956, 0)
 text = "Shroomie
-
 Shovel, Watering Can"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 2" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.759797, 1.40324, -2.43743)
+transform = Transform3D(0.479473, 0, -0.877557, 0, 1, 0, 0.877557, 0, 0.479473, 0.479496, 1.41494, -0.193093)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 2"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -329,15 +402,15 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 2"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.222796, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.197668, 0)
 text = "Shroomie, Blubburu
-
 Shovel, Watering Can
-
 Weed"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 3" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20156, 1.40324, -2.43743)
+transform = Transform3D(-0.45231, 0, -0.891861, 0, 1, 0, 0.891861, 0, -0.45231, 0.450012, 1.41494, 0.372034)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 3"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -370,17 +443,15 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 3"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.289473, 0)
-text = "Shroomie, Blubburu,
-Flamie
-
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.264345, 0)
+text = "Shroomie, Blubburu, Flamie
 Shovel, Watering Can,
-Scissors
-
-Weed"
+Scissors Weed"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 4" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.351209, 1.40324, -2.43743)
+transform = Transform3D(0.978289, 0.0434815, -0.202633, 3.72529e-09, 0.977743, 0.209806, 0.207246, -0.205251, 0.956515, 0.0661348, 0.936794, -0.538834)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 4"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -413,7 +484,7 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 4"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.289473, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.264345, 0)
 text = "Shroomie, Blubburu,
 Flamie, Shellie
 
@@ -421,9 +492,11 @@ Shovel, Watering Can,
 Scissors
 
 Weed, Koriko"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 5" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.902261, 1.40324, -2.43743)
+transform = Transform3D(0.479473, 0.2259, -0.847983, 0, 0.9663, 0.25742, 0.877557, -0.123426, 0.463315, 0.467481, 0.936794, -0.205038)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 5"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -456,7 +529,7 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 5"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.320677, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.295549, 0)
 text = "Shroomie, Blubburu,
 Flamie, Shellie,
 Pumkie
@@ -465,9 +538,11 @@ Shovel, Watering Can,
 Scissors, Music Box
 
 Weed, Koriko"
+font_size = 28
+line_spacing = 2.0
 
 [node name="Level 6" type="Node3D" parent="Level Selection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47787, 1.40324, -2.43743)
+transform = Transform3D(-0.45231, 0.185535, -0.872349, 0, 0.978122, 0.208031, 0.891861, 0.0940946, -0.442415, 0.457082, 0.936794, 0.376887)
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 6"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
@@ -500,7 +575,7 @@ right_pose = SubResource("Resource_f836c")
 shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 6"]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.356723, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.331595, 0)
 text = "Shroomie, Blubburu,
 Flamie, Shellie,
 Pumkie, Nommie
@@ -510,6 +585,8 @@ Scissors, Music Box,
 PickAxe
 
 Weed, Koriko"
+font_size = 28
+line_spacing = 2.0
 
 [connection signal="button_pressed" from="Level Selection/Level Sandbox/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 1/LevelButton" to="." method="_on_load_scene_button_pressed"]
@@ -520,3 +597,7 @@ Weed, Koriko"
 [connection signal="button_pressed" from="Level Selection/Level 6/LevelButton" to="." method="_on_load_scene_button_pressed"]
 
 [editable path="XROrigin3D"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r"]

@@ -11,4 +11,4 @@ func scene_loaded(user_data = null):
 	level_complete_UI.set_data(user_data["time"], user_data["failed_orders"], user_data["grown_plants"])
 
 func _on_hub_button_button_pressed(button: Variant) -> void:
-	load_scene("res://Scenes/HubScene.tscn", null, true, false)
+	load_scene("res://Scenes/HubScene.tscn", null)

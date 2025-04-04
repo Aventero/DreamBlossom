@@ -22,13 +22,17 @@ signal request_exit_to_main_menu
 ## this signal directly.
 ##
 ## The [param user_data] parameter is passed through staging to the new scenes.
-signal request_load_scene(p_scene_path, user_data, show_loading_screen, request_continue)
+signal request_load_scene(p_scene_path, user_data)
 
 ## This signal is used to request the staging reload this scene. Developers
 ## should use [method reset_scene] rather than emitting this signal directly.
 ##
 ## The [param user_data] parameter is passed through staging to the new scenes.
 signal request_reset_scene(user_data)
+
+## This signal is used to request the staging quit the XR experience. Developers
+## should use [method quit] rather than emitting this signal directly.
+signal request_quit
 
 
 # This file contains methods with parameters that are unused; however they are
@@ -44,9 +48,11 @@ signal request_reset_scene(user_data)
 func _ready() -> void:
 	pass
 
+
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsSceneBase"
+
 
 ## This method center the player on the [param p_transform] transform.
 func center_player_on(p_transform : Transform3D):
@@ -175,8 +181,8 @@ func exit_to_main_menu() -> void:
 ##
 ## See [method scene_loaded] for options to provide advanced scene-transition
 ## functionality.
-func load_scene(p_scene_path : String, user_data = null, show_loading_screen : bool = true, request_continue : bool = true) -> void:
-	emit_signal("request_load_scene", p_scene_path, user_data, show_loading_screen, request_continue)
+func load_scene(p_scene_path : String, user_data = null) -> void:
+	emit_signal("request_load_scene", p_scene_path, user_data)
 
 
 ## This function is used to reset the current scene. The default
@@ -190,3 +196,12 @@ func load_scene(p_scene_path : String, user_data = null, show_loading_screen : b
 ## Any [param user_data] provided is passed into the new scene.
 func reset_scene(user_data = null) -> void:
 	emit_signal("request_reset_scene", user_data)
+
+
+## This function is used to quit the XR experience. The default
+## implementation sends the [signal request_quit] which triggers
+## the XR experience to end.
+##
+## Custom scene classes can override this method to add their logic.
+func quit() -> void:
+	emit_signal("request_quit")

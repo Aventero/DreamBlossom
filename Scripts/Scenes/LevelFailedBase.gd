@@ -13,7 +13,7 @@ func scene_loaded(user_data = null):
 	_level_id = user_data["prev_level_id"]
 
 func _on_hub_button_button_pressed(_button: Variant) -> void:
-	load_scene("res://Scenes/HubScene.tscn", null, true, false)
+	load_scene("res://Scenes/HubScene.tscn", null)
 
 func _on_retry_button_button_pressed(_button: Variant) -> void:
 	load_scene("res://Scenes/GameScene.tscn", {

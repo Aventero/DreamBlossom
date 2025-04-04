@@ -11,10 +11,13 @@ var fire_fairy_event : FireFairyEvent
 var extinguished : bool = false
 
 func _on_trigger_body_entered(_body: Node3D) -> void:
+	if extinguished:
+		return
+		
 	extinguished = true
 	
-	# Disable trigger
-	water_trigger.disabled = true
+	# Defer disabling the trigger to avoid physics errors
+	call_deferred("_disable_water_trigger")
 	
 	# Stop particles
 	particle_combiner.stop()
@@ -31,6 +34,10 @@ func _on_trigger_body_entered(_body: Node3D) -> void:
 	# Wait for particles to finish
 	await get_tree().create_timer(particle_combiner.get_max_lifetime()).timeout
 	queue_free()
+
+# This function will be called after physics processing is complete
+func _disable_water_trigger() -> void:
+	water_trigger.disabled = true
 
 func play_smoke() -> void:
 	# Disappear particles

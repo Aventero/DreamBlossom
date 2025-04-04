@@ -87,9 +87,11 @@ func _update_mixture_display(_type : int) -> void:
 func _handle_empty_potion(empty_potion : Potion) -> void:
 	# Do nothing if cauldron is empty
 	if _mixture.is_empty():
+		print("empty cauldron")
 		return
 	
 	# Fill potion with given potion type
+	print("filling?")
 	empty_potion.fill_potion(get_mixture(), drops_per_potion)
 	
 	# Play potion jiggle effect

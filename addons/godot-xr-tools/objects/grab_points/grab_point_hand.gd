@@ -107,8 +107,16 @@ func _set_hand(new_value : Hand) -> void:
 
 
 func _set_hand_pose(new_value : XRToolsHandPoseSettings) -> void:
+	# Unsubscribe from the old hand-pose changed signal
+	if Engine.is_editor_hint() and hand_pose:
+		hand_pose.changed.disconnect(_update_editor_preview)
+
+	# Save the hand pose
 	hand_pose = new_value
-	if Engine.is_editor_hint():
+
+	# Update the editor preview
+	if Engine.is_editor_hint() and hand_pose:
+		hand_pose.changed.connect(_update_editor_preview)
 		_update_editor_preview()
 
 
@@ -155,12 +163,15 @@ func _is_correct_hand(grabber : Node3D) -> bool:
 	if not controller:
 		return false
 
+	# Get the positional tracker
+	var tracker := XRServer.get_tracker(controller.tracker) as XRPositionalTracker
+
 	# If left hand then verify left controller
-	if hand == Hand.LEFT and controller.tracker != "left_hand":
+	if hand == Hand.LEFT and tracker.hand != XRPositionalTracker.TRACKER_HAND_LEFT:
 		return false
 
 	# If right hand then verify right controller
-	if hand == Hand.RIGHT and controller.tracker != "right_hand":
+	if hand == Hand.RIGHT and tracker.hand != XRPositionalTracker.TRACKER_HAND_RIGHT:
 		return false
 
 	# Controller matches hand

@@ -26,8 +26,8 @@ func _on_pull_completed():
 	tween.tween_property(self, "scale", Vector3.ZERO, 0.2)
 	tween.tween_callback(queue_free)
 
-func _on_xr_tools_highlight_visible_visibility_change(_visible):
-	if picked_by:
-		return
-	
-	outline_mesh.visible = !_visible
+#func _on_xr_tools_highlight_visible_visibility_change(_visible):
+	#if picked_by:
+		#return
+	#
+	#outline_mesh.visible = !_visible
