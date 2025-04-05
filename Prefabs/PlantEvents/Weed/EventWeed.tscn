@@ -123,6 +123,4 @@ mesh = SubResource("ArrayMesh_8dem7")
 skeleton = NodePath("../../../../Model/Event Weed")
 surface_material_override/0 = ExtResource("9_1cpbv")
 
-[connection signal="visibility_changed" from="Pull Origin/Pull Pickup/XRToolsHighlightVisible" to="." method="_on_xr_tools_highlight_visible_visibility_changed"]
-
 [editable path="Pull Origin/Pull Pickup"]
