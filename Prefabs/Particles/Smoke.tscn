@@ -46,7 +46,6 @@ func _on_finished():
 
 [node name="Vanish Smoke" type="GPUParticles3D"]
 emitting = false
-amount = 16
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60

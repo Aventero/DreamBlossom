@@ -26,6 +26,7 @@ settings/physics_interpolation/enable_warnings=false
 [debug_draw_3d]
 
 settings/updates/check_for_updates=false
+settings/stdout/verbose_stdout=true
 
 [dotnet]
 

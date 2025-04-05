@@ -31,9 +31,11 @@ turbulence_influence_max = 0.05
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+shading_mode = 0
 albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
 albedo_texture = ExtResource("2_e8ryr")
 texture_filter = 0
+texture_repeat = false
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -42,7 +44,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_oyrij"]
 material = SubResource("StandardMaterial3D_dvrbe")
-size = Vector2(0.015, 0.019)
+size = Vector2(0.03, 0.038)
 
 [node name="FallingLeafes_Pumkie" type="Node3D"]
 script = ExtResource("1_fqvsy")

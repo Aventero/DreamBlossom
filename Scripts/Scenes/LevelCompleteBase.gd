@@ -1,3 +1,4 @@
+@tool
 @icon("res://Textures/EditorIcons/Scene.png")
 class_name LevelCompleteBase
 extends XRToolsSceneBase

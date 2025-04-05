@@ -120,6 +120,4 @@ mesh = SubResource("ArrayMesh_e1inq")
 skeleton = NodePath("../../../../Model/BadShroomie")
 surface_material_override/0 = ExtResource("3_c88ty")
 
-[connection signal="visibility_change" from="Pull Origin/Pull Pickup/XRToolsHighlightVisible" to="." method="_on_xr_tools_highlight_visible_visibility_change"]
-
 [editable path="Pull Origin/Pull Pickup"]

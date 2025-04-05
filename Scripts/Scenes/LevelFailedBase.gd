@@ -1,5 +1,3 @@
-@tool
-
 @icon("res://Textures/EditorIcons/Scene.png")
 class_name LevelFailedBase
 extends XRToolsSceneBase

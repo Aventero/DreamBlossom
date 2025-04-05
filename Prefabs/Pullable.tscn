@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgxxukodos7os"]
+[gd_scene load_steps=9 format=3 uid="uid://bgxxukodos7os"]
 
 [ext_resource type="Script" uid="uid://cthk15hluy7u" path="res://Scripts/Pullable.gd" id="1_dghgf"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_jfit8"]
@@ -26,6 +26,9 @@ active_during_pause = false
 indefinite = false
 duration_ms = 50
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_hbiww"]
+radius = 0.25
+
 [node name="Pullable" type="Node3D"]
 script = ExtResource("1_dghgf")
 pickup_rumble = SubResource("Resource_323t7")
@@ -41,8 +44,10 @@ freeze = true
 freeze_mode = 0
 ranged_grab_method = 0
 
+[node name="CollisionShape3D" parent="Pull Origin/Pull Pickup" index="0"]
+shape = SubResource("SphereShape3D_hbiww")
+
 [node name="XRToolsHighlightVisible" type="Node3D" parent="Pull Origin/Pull Pickup"]
-visible = false
 script = ExtResource("2_55nwt")
 
 [connection signal="dropped" from="Pull Origin/Pull Pickup" to="." method="_on_pull_pickup_dropped"]

@@ -26,8 +26,9 @@ func setup_spread(spread_cell : GridCell) -> void:
 
 func cleanup():
 	if spreading_cell:
-		# Disconnect from cell event
-		spreading_cell.state_change.disconnect(_state_changed)
+		if spreading_cell.state_change.has_connections():
+			# Disconnect from cell event
+			spreading_cell.state_change.disconnect(_state_changed)
 
 func _state_changed(state):
 	if not state == GridCell.CELLSTATE.OCCUPIED:

@@ -32,9 +32,10 @@ turbulence_influence_max = 0.075
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
+shading_mode = 0
 albedo_texture = ExtResource("1_ju6wa")
 texture_filter = 0
+texture_repeat = false
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -43,7 +44,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_4n4df"]
 material = SubResource("StandardMaterial3D_4uvpf")
-size = Vector2(0.015, 0.019)
+size = Vector2(0.03, 0.038)
 
 [sub_resource type="Curve" id="Curve_j06f7"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262458, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26279, 0.0, 0, 0]
@@ -73,6 +74,7 @@ turbulence_influence_max = 0.02
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+shading_mode = 0
 albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
 albedo_texture = ExtResource("2_s31y4")
 texture_filter = 0
@@ -84,7 +86,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_f0e3x"]
 material = SubResource("StandardMaterial3D_g288i")
-size = Vector2(0.015, 0.019)
+size = Vector2(0.03, 0.038)
 
 [node name="FallingLeafes_Shellie" type="Node3D"]
 process_mode = 3

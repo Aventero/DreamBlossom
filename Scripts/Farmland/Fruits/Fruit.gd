@@ -2,12 +2,16 @@
 class_name Fruit
 extends Ingredient
 
-@onready var outline_mesh : Node3D = $Model/Outline
-
+var outline_mesh : Node3D
 var fruit_event : FruitEvent
-
 var _first_pickup : bool = true
 
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return;
+		
+	outline_mesh = $Model/Outline
+	
 func _on_picked_up(picked_fruit : Fruit):
 	if _first_pickup:
 		_first_pickup = false

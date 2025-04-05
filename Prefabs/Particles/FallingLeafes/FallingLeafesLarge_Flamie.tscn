@@ -31,9 +31,11 @@ turbulence_influence_max = 0.05
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+shading_mode = 0
 albedo_color = Color(0.6, 0.6, 0.6, 1)
 albedo_texture = ExtResource("1_kful4")
 texture_filter = 0
+texture_repeat = false
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -42,7 +44,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_04lsr"]
 material = SubResource("StandardMaterial3D_tspd6")
-size = Vector2(0.015, 0.019)
+size = Vector2(0.03, 0.038)
 
 [node name="FallingLeafesLarge_Flamie" type="Node3D"]
 script = ExtResource("1_t4kw4")

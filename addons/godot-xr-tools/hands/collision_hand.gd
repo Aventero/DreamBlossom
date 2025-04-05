@@ -412,7 +412,7 @@ func _update_hand_skeleton():
 
 # Update our finger digits when our skeleton updates
 func _on_skeleton_updated():
-	if not hand_skeleton:
+	if not hand_skeleton or not is_inside_tree():
 		return
 
 	var bone_count = hand_skeleton.get_bone_count()
