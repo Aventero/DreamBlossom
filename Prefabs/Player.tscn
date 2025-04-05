@@ -162,6 +162,7 @@ tree_root = SubResource("AnimationNodeBlendTree_tkui5")
 
 [node name="MovementTurn" type="Node" parent="Right Hand" groups=["movement_providers"]]
 script = ExtResource("7_3ygst")
+turn_mode = 2
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="."]
 top_level = true

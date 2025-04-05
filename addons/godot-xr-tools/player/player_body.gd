@@ -640,14 +640,20 @@ func _update_body_under_camera(delta : float):
 	var curr_transform := global_transform
 	var camera_transform := camera_node.global_transform
 	curr_transform.basis = origin_node.global_transform.basis
-	curr_transform.origin = camera_transform.origin
+	#curr_transform.origin = camera_transform.origin
+	curr_transform.origin = Vector3(
+		origin_node.global_transform.origin.x,
+		camera_transform.origin.y,
+		origin_node.global_transform.origin.z
+	)
 	curr_transform.origin += up_player * (player_head_height - player_height)
 
-	# The camera/eyes are towards the front of the body, so move the body back slightly
+	# The camera/eyes are towards the front of the body
 	var forward_dir := _estimate_body_forward_dir()
 	if forward_dir.length() > 0.01:
 		curr_transform = curr_transform.looking_at(curr_transform.origin + forward_dir, up_player)
-		curr_transform.origin -= forward_dir.normalized() * eye_forward_offset * player_radius
+		# so move the body back slightly (no, dont pls)
+		#curr_transform.origin -= forward_dir.normalized() * 1 * player_radius
 
 	# Set the body position
 	global_transform = curr_transform
