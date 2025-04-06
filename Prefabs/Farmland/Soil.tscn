@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcii5pj8feohm" path="res://Textures/Farmland/DiggingArea.png" id="2_6bppe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxybn"]
-size = Vector3(1.5, 0.0196875, 0.75)
+size = Vector3(1.5, 0.012196, 0.75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h3uy"]
 resource_name = "DiggingArea"
@@ -49,19 +49,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0uq0k")
 
-[node name="Soil" type="StaticBody3D" groups=["Soil"]]
-collision_mask = 65536
+[node name="Soil" type="Area3D" groups=["Soil"]]
+collision_mask = 65537
 script = ExtResource("1_et88f")
 flip_z = true
 centered = true
 width = 1.5
 height = 0.75
 
-[node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0100777, 0.00363159)
+[node name="Collision" type="CollisionShape3D" parent="." groups=["Soil"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00237605, 0.00363159)
 shape = SubResource("BoxShape3D_jxybn")
 
-[node name="DiggingArea" type="MeshInstance3D" parent="."]
+[node name="DiggingArea" type="MeshInstance3D" parent="." groups=["Soil"]]
 layers = 129
 mesh = SubResource("ArrayMesh_metgf")
 skeleton = NodePath("")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

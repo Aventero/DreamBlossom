@@ -12,3 +12,5 @@ transform = Transform3D(-1.66157e-08, 0.0771556, -0.372211, 0, 0.372211, 0.07715
 double_sided = false
 texture_filter = 0
 texture = ExtResource("3_1ulf0")
+
+[editable path="Bag"]

@@ -5,9 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://s2rpgvgaadg1" path="res://Textures/Fruits/Blubburu/BlubburuIcon.png" id="3_lnrdo"]
 
 [node name="BlubburuSeedBag" instance=ExtResource("1_33m0r")]
+freeze = true
+freeze_mode = 0
 item = ExtResource("2_mqqik")
+ranged_grab_method = 0
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="3"]
 transform = Transform3D(-1.8595e-08, 0.0863463, -0.416548, 0, 0.416548, 0.0863463, 0.425403, 3.77432e-09, -1.82079e-08, -0.0810206, 0.0432118, 4.36212e-10)
 texture_filter = 0
 texture = ExtResource("3_lnrdo")
+
+[editable path="Bag"]

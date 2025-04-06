@@ -5,13 +5,10 @@
 [ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_hqpad"]
 
 [node name="ItemBag" instance=ExtResource("1_mjm3g")]
-freeze = true
-freeze_mode = 0
 script = ExtResource("2_3nut5")
 item = null
 jiggle_strength = 0.1
 jiggle_duration = 0.1
-ranged_grab_method = 0
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="1"]
 visible = false

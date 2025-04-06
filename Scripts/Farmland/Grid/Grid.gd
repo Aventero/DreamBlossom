@@ -1,6 +1,6 @@
 @icon("res://Textures/EditorIcons/Grid.png")
 class_name PlantGrid
-extends StaticBody3D
+extends Area3D
 
 @export var debug_grid : bool
 @export var flip_z : bool
@@ -226,3 +226,8 @@ func get_nearby_free_cell(cell : GridCell) -> GridCell:
 	
 	# Return random free cell
 	return possible_cells[randi_range(0, possible_cells.size() - 1)]
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is Shovel:
+		print("shovel has entered. ", body)
+		body.on_soil_trigger_body_entered(body)

@@ -110,6 +110,11 @@ func _process(delta):
 		_handle_shovel_pull()
 
 func _handle_shovel():
+	print(intersection_raycast.is_colliding())
+	if intersection_raycast.is_colliding():
+		print(intersection_raycast.get_collider())
+		print("soil?", intersection_raycast.get_collider().is_in_group("Soil"))
+	
 	if not intersection_raycast.is_colliding() or \
 		not intersection_raycast.get_collider().is_in_group("Soil") or \
 		not _insertion_angle_allowed():
@@ -123,7 +128,7 @@ func _handle_shovel():
 		return
 
 	var hit : Node3D = intersection_raycast.get_collider()
-
+	
 	# Update intersection indicator
 	shovel_intersection_indicator.visible = true
 	shovel_intersection_indicator.global_position = intersection_raycast.get_collision_point() + Vector3(0.0, 0.02, 0.0)
@@ -249,7 +254,7 @@ func _shovel_pull_animation(ratio):
 		cos(time * max_speed) * ratio * 0.1
 	)
 
-func _on_soil_trigger_body_entered(_body):
+func on_soil_trigger_body_entered(_body):
 	# Check if current angle of shovel is allowed for insertion
 	if not _insertion_angle_allowed():
 		return

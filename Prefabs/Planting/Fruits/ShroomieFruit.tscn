@@ -109,5 +109,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.092, -0.05)
 mesh = SubResource("ArrayMesh_sqkpc")
 skeleton = NodePath("../../Model")
 surface_material_override/0 = ExtResource("3_t3dbe")
-
-[connection signal="visibility_change" from="XRToolsHighlightVisible" to="." method="_on_xr_tools_highlight_visible_visibility_change"]

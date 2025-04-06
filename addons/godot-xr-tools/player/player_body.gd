@@ -559,7 +559,7 @@ func _update_body_under_camera(delta : float):
 					+ (player_height_offset * XRServer.world_scale),
 			player_height_min * XRServer.world_scale,
 			player_height_max * XRServer.world_scale)
-
+	
 	# Manage any player height overriding such as:
 	# - Slewing between software override heights
 	# - Slewing the lerp between player and software-override heights
@@ -641,12 +641,11 @@ func _update_body_under_camera(delta : float):
 	var camera_transform := camera_node.global_transform
 	curr_transform.basis = origin_node.global_transform.basis
 	#curr_transform.origin = camera_transform.origin
-	var fixed_player_height: float = 1.1
 
 	# Position the body using the origin's position but adjusted for height
 	curr_transform.origin = Vector3(
 		origin_node.global_transform.origin.x,
-		origin_node.global_transform.origin.y - (fixed_player_height/2.0),  
+		origin_node.global_transform.origin.y - (player_height/2.0),  
 		origin_node.global_transform.origin.z
 	)
 

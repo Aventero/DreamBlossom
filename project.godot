@@ -62,6 +62,9 @@ import/fbx/enabled=false
 
 [physics]
 
+common/physics_ticks_per_second=30
+3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 common/enable_object_picking=false
 jolt_3d/collisions/areas_detect_static_bodies=true
 

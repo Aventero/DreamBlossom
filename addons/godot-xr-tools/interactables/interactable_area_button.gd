@@ -52,6 +52,9 @@ func is_xr_class(name : String) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	collision_mask = 0
+	set_collision_mask_value(32, true)
+	
 	# Connect area signals
 	if area_entered.connect(_on_button_entered):
 		push_error("Unable to connect button area signal")

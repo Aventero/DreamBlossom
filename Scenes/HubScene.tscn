@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dq7k7phd3i607"]
+[gd_scene load_steps=37 format=3 uid="uid://dq7k7phd3i607"]
 
 [ext_resource type="Script" uid="uid://dbjmh3x88yvng" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
 [ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_krgwt"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="13_4ypwf"]
 [ext_resource type="Script" uid="uid://67uivsu5mnoh" path="res://Scripts/Utility/ResourceSingelton.gd" id="14_y8p08"]
 [ext_resource type="Script" uid="uid://c3teminr6t7ex" path="res://Scripts/LevelButton.gd" id="15_vmvpr"]
+[ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="16_w7e7g"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ymhto"]
 panorama = ExtResource("2_krgwt")
@@ -91,6 +92,16 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_3vdfo"]
 material = SubResource("StandardMaterial3D_n15gj")
 
+[sub_resource type="GDScript" id="GDScript_w7e7g"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	var xr_interface: OpenXRInterface = XRServer.find_interface('OpenXR')
+	print(xr_interface.is_foveation_supported())
+	print(xr_interface.get_action_sets())
+	print(xr_interface.get_action_sets())
+"
+
 [node name="Hub" type="Node3D"]
 script = ExtResource("1_bg8q6")
 
@@ -113,7 +124,6 @@ environment = SubResource("Environment_8frxu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/House/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192933, 0)
 shape = SubResource("BoxShape3D_x4rlj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Floor"]
@@ -167,6 +177,7 @@ transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114
 shape = SubResource("BoxShape3D_olq40")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/House/Wall2"]
+visible = false
 mesh = SubResource("BoxMesh_f432d")
 
 [node name="Wall3" type="StaticBody3D" parent="Environment/House"]
@@ -195,7 +206,7 @@ text = "Sandbox"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level Sandbox"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 button = NodePath("Button")
 
@@ -234,7 +245,7 @@ text = "Level 1"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 1
 button = NodePath("Button")
@@ -275,7 +286,7 @@ text = "Level 2"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 2
 button = NodePath("Button")
@@ -317,7 +328,7 @@ text = "Level 3"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 3
 button = NodePath("Button")
@@ -359,7 +370,7 @@ text = "Level 4"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 4"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 4
 button = NodePath("Button")
@@ -405,7 +416,7 @@ text = "Level 5"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 5"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 5
 button = NodePath("Button")
@@ -452,7 +463,7 @@ text = "Level 6"
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 6"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 131072
+collision_mask = 2147483648
 script = ExtResource("15_vmvpr")
 level_id = 6
 button = NodePath("Button")
@@ -571,6 +582,12 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.244143, -0.0884929, 0.0404871, 0, 0.891165, 0.105669, -0.0485542, -0.444965, 0.203579, 0.25054, 0.33887, 0.366993)
 mesh = SubResource("BoxMesh_2sauf")
 skeleton = NodePath("../..")
+
+[node name="Plot" parent="." instance=ExtResource("16_w7e7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.99494)
+
+[node name="Node3D" type="Node3D" parent="."]
+script = SubResource("GDScript_w7e7g")
 
 [connection signal="button_pressed" from="Level Selection/Level Sandbox/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 1/LevelButton" to="." method="_on_load_scene_button_pressed"]

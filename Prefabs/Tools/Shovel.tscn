@@ -65,7 +65,7 @@ script = ExtResource("6_mqylq")
 closed_pose = ExtResource("8_5mmx3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wyfb4"]
-size = Vector3(0.0625, 0.034, 0.0982941)
+size = Vector3(0.0625, 0.034, 0.197585)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x22t0"]
 size = Vector3(0.124756, 0.0442701, 0.417975)
@@ -147,7 +147,7 @@ hand_pose = SubResource("Resource_wcc0c")
 collision_layer = 65536
 
 [node name="Trigger" type="CollisionShape3D" parent="SoilTrigger" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0491471, 0.0165384, 3.7284e-11)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0987923, 0.0165384, -2.13278e-09)
 shape = SubResource("BoxShape3D_wyfb4")
 
 [node name="PullOrigin" type="Node3D" parent="." index="6"]
@@ -155,7 +155,6 @@ shape = SubResource("BoxShape3D_wyfb4")
 [node name="PullPickup" parent="PullOrigin" index="0" instance=ExtResource("1_ho1dq")]
 collision_mask = 131072
 freeze = true
-freeze_mode = 0
 enabled = false
 ranged_grab_method = 0
 
@@ -181,8 +180,9 @@ target = NodePath("../../../GrabPointHandLeft")
 
 [node name="InsertionHitDetection" type="RayCast3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0235836, 0)
-visible = false
 target_position = Vector3(3, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Intersection Point" type="MeshInstance3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)

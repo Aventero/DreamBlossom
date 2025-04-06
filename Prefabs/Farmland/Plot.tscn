@@ -719,9 +719,9 @@ data = PackedVector3Array(-0.8438, 0, 0.4688, -0.8438, 0.1172, -0.4688, -0.8438,
 [node name="Soil" parent="." instance=ExtResource("1_lu4fx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.828896, 0)
 
-[node name="Soil Particle Collision" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.813, 0)
-size = Vector3(1.5, 0.01, 0.75)
+[node name="Soil Particle Collision" type="GPUParticlesCollisionBox3D" parent="." groups=["Soil"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.827946, 0)
+size = Vector3(1.5, 0.0295709, 0.75)
 
 [node name="Table" type="Node3D" parent="."]
 
@@ -837,9 +837,9 @@ layers = 129
 mesh = SubResource("ArrayMesh_yelgt")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Table/Legs"]
+[node name="LegBody3D" type="StaticBody3D" parent="Table/Legs"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/Legs/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/Legs/LegBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mbk7r")
 
 [node name="StoneTable" type="MeshInstance3D" parent="Table"]
@@ -848,7 +848,7 @@ layers = 129
 mesh = SubResource("ArrayMesh_vfq4n")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Table/StoneTable"]
+[node name="TableBody3D" type="StaticBody3D" parent="Table/StoneTable"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StoneTable/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StoneTable/TableBody3D"]
 shape = SubResource("ConcavePolygonShape3D_a8kl7")
