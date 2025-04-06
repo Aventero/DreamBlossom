@@ -71,3 +71,5 @@ shape = SubResource("SphereShape3D_m0286")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0148183, 0)
 mesh = SubResource("ArrayMesh_oc8dy")
 skeleton = NodePath("")
+
+[editable path="Pull Origin/Pull Pickup"]

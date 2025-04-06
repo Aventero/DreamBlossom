@@ -4159,7 +4159,7 @@ transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.02
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_kh5o2")
+&"": SubResource("AnimationLibrary_kh5o2")
 }
 
 [node name="IconDisplay" parent="." index="3"]

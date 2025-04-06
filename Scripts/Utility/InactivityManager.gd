@@ -76,7 +76,7 @@ func _despawn_node(node : Node3D) -> void:
 	
 	# Tween scale to zero
 	var tween : Tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
-	tween.tween_property(node, "scale", Vector3.ZERO, 0.5)
+	tween.tween_property(node, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
 	
 	# Free node after tween finished
 	await tween.finished

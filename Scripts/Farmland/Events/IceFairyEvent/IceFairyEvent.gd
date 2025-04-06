@@ -34,7 +34,7 @@ func initialize():
 		var ice_cube_instance = ice_cube.instantiate()
 		child.add_child(ice_cube_instance)
 		
-		ice_cube_instance.scale = Vector3.ZERO
+		ice_cube_instance.scale = Vector3(0.001, 0.001, 0.001)
 		ice_cube_instance.ice_fairy_event = self
 		ice_cube_instance.hits_required = randi_range(min_cube_hits, max_cube_hits)
 		

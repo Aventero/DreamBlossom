@@ -21,7 +21,7 @@ func splash_drop(override_position : Vector3 = Vector3.INF) -> void:
 
 	# Vanish drop
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	tween.tween_callback(queue_free)
 
 	# Spawn splash particles
@@ -51,7 +51,7 @@ func cauldron_splash(spawn_point : Vector3) -> void:
 
 	# Vanish drop
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	tween.tween_callback(queue_free)
 
 	# Spawn splash particles

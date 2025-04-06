@@ -97,7 +97,6 @@ pull_particles = ExtResource("4_duxw7")
 pull_particles_offset = Vector3(0, 0.05, 0)
 pull_complete_particles = ExtResource("4_befj4")
 pull_complete_particles_offset = Vector3(0, 0.1, 0)
-draw_debug = null
 
 [node name="Event Weed" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_n7mp3")

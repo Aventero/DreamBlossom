@@ -7,7 +7,7 @@ extends PlantEvent
 @export_category("Spawn Settings")
 @export var delayed_spawn : bool = true
 @export var scale_by_spawn : bool = true
-@export var start_scale : Vector3 = Vector3.ZERO
+@export var start_scale : Vector3 = Vector3(0.001, 0.001, 0.001)
 @export var scale_length : float = 1.0
 @export var despawn_models : Array[Node3D]
 

@@ -31,7 +31,7 @@ func _on_body_entered(body: Node3D) -> void:
 	body.enabled = false
 	
 	var ingredient_tween : Tween = create_tween()
-	ingredient_tween.tween_property(body, "scale", Vector3.ZERO, 0.2)
+	ingredient_tween.tween_property(body, "scale", Vector3(0.001, 0.001, 0.001), 0.2)
 	ingredient_tween.tween_callback(body.queue_free)
 	
 	# Wait for eating animation to finish

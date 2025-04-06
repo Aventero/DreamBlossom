@@ -24,12 +24,6 @@ func _on_pull_pickup_dropped(pickable):
 	# Enable outline
 	outline_mesh.visible = true
 
-#func _on_xr_tools_highlight_visible_visibility_change(_visible):
-	#if picked_by:
-		#return
-	#
-	#outline_mesh.visible = !_visible
-
 func _on_pull_completed():
 	outline_mesh.queue_free()
 	
@@ -49,5 +43,5 @@ func _pull_animation(ratio):
 
 func remove_on_plant_die():
 	var removal : Tween = create_tween()
-	removal.tween_property(self, "scale", Vector3.ZERO, 0.2)
+	removal.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.2)
 	removal.tween_callback(queue_free)

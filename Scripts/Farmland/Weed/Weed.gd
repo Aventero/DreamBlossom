@@ -81,6 +81,8 @@ func _on_pull_pickup_dropped(pickable):
 			spreading_blocked = true
 
 func _on_pull_completed():
+	print("_on_pull_completed in WEED.tscn")
+	
 	# Free spreading cell
 	cleanup()
 	
@@ -96,7 +98,7 @@ func _on_pull_completed():
 	remove_tween.tween_callback(_digspot.queue_free)
 	
 	var tween : Tween = create_tween()
-	tween.tween_property($Model, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property($Model, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 
 func _on_grab():
 	if not _digspot:

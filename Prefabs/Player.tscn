@@ -84,7 +84,6 @@ tracker = &"left_hand"
 collision_mask = 0
 hand_skeleton = NodePath("LeftHand/Hand_Nails_low_L/pixel_hand_l/Armature/Skeleton3D")
 max_pickup_force = 300.0
-push_bodies = false
 
 [node name="LeftHand" parent="Left Hand/CollisionHandLeft" instance=ExtResource("1_3dtk1")]
 
@@ -128,7 +127,6 @@ tracker = &"right_hand"
 collision_mask = 0
 hand_skeleton = NodePath("RightHand/pixel_hand_r/Armature/Skeleton3D")
 max_pickup_force = 300.0
-push_bodies = false
 
 [node name="RightHand" parent="Right Hand/CollisionHandRight" instance=ExtResource("2_cxmrd")]
 
@@ -165,6 +163,7 @@ script = ExtResource("7_3ygst")
 turn_mode = 2
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2538, 0)
 top_level = true
 script = ExtResource("6_gg3t4")
 

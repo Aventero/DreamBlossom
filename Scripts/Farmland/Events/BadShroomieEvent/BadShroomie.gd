@@ -19,15 +19,6 @@ func _on_pull_pickup_dropped(pickable):
 	outline_mesh.visible = true
 
 func _on_pull_completed():
-	bad_shroomie_event.shroomie_removed()
-	outline_mesh.queue_free()
-	
-	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.1)
-	tween.tween_callback(queue_free)
-
-#func _on_xr_tools_highlight_visible_visibility_change(_visible):
-	#if picked_by:
-		#return
-	#
-	#outline_mesh.visible = !_visible
+	if bad_shroomie_event:
+		bad_shroomie_event.shroomie_removed()
+	visible = false

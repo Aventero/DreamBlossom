@@ -21,7 +21,7 @@ func initialize():
 		var fire_instance = fire.instantiate()
 		child.add_child(fire_instance)
 		
-		fire_instance.scale = Vector3.ZERO
+		fire_instance.scale = Vector3(0.001, 0.001, 0.001)
 		fire_instance.fire_fairy_event = self
 		
 		# Appear squish

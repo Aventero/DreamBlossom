@@ -179,14 +179,14 @@ func pick_up(by: Node3D) -> void:
 	if _stomp_tween and _stomp_tween.is_running():
 		_stomp_tween.kill()
 	_stomp_tween = create_tween()
-	_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
+	_stomp_tween.tween_property(flask_stomp, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 #
 #func _on_picked_up(pickable: Variant) -> void:
 	## Despawn stomp
 	#if _stomp_tween and _stomp_tween.is_running():
 		#_stomp_tween.kill()
 	#_stomp_tween = create_tween()
-	#_stomp_tween.tween_property(flask_stomp, "scale", Vector3.ZERO, 0.1)
+	#_stomp_tween.tween_property(flask_stomp, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 
 func _on_dropped(_pickable: Variant) -> void:
 	# Spawn stomp
@@ -211,7 +211,7 @@ func show_type_label() -> Tween:
 
 func hide_type_label() -> Tween:
 	var tween : Tween = create_tween()
-	tween.tween_property(potion_type_label, "scale", Vector3.ZERO, 0.25)
+	tween.tween_property(potion_type_label, "scale", Vector3(0.001, 0.001, 0.001), 0.25)
 	return tween
 
 func fill_potion(p_type : TYPE, drops_per_potion : int) -> void:

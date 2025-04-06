@@ -17,7 +17,7 @@ func initialize():
 		
 		var initial_scale = slurp_shroomie_instance.scale
 		slurp_shroomie_instance.rotation = Vector3.ZERO
-		slurp_shroomie_instance.scale = Vector3.ZERO
+		slurp_shroomie_instance.scale = Vector3(0.001, 0.001, 0.001)
 		slurp_shroomie_instance.slurp_event = self
 		
 		var tween : Tween = create_tween()

@@ -33,7 +33,7 @@ func _on_ingredient_trigger_body_entered(ingredient):
 	ingredient.freeze = true
 	
 	var tween : Tween = create_tween()
-	tween.tween_property(ingredient, "scale", Vector3.ZERO, 0.5)
+	tween.tween_property(ingredient, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
 	
 	await tween.finished
 	

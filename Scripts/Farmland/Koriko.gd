@@ -45,7 +45,7 @@ func _on_feed_area_body_entered(body):
 	
 	# Despawn ingredient
 	var tween : Tween = create_tween()
-	tween.tween_property(ingredient, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property(ingredient, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	await tween.finished
 	
 	ingredient.drop()
@@ -101,7 +101,7 @@ func _play_fed_vanish():
 	
 	# Scale down
 	_tween.chain().tween_callback(func(): manager.spawn_smoke(global_position))
-	_tween.tween_property(self, "scale", Vector3.ZERO, 0.1)
+	_tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	
 	await _tween.finished
 	

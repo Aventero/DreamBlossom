@@ -130,7 +130,7 @@ surface_material_override/0 = ExtResource("8_ue0f2")
 [node name="Water Particles" type="GPUParticles3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 0.987521, -0.157486, 0, 0.157486, 0.987521, 0, 0.130625, -0.19644)
 emitting = false
-amount = 20
+amount = 50
 fixed_fps = 60
 collision_base_size = 0.02
 process_material = SubResource("ParticleProcessMaterial_k0v60")

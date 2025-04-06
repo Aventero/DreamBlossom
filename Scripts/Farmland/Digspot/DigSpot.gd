@@ -213,7 +213,7 @@ func _spawn_plant():
 	
 	# Remove grow_seed
 	var tween : Tween = create_tween()
-	tween.tween_property(grow_seed, "scale", Vector3.ZERO, 0.5)
+	tween.tween_property(grow_seed, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
 	tween.tween_callback(grow_seed.queue_free)
 	
 	# Update Lookup

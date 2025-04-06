@@ -19,7 +19,7 @@ func show_icon(icon : Texture2D, icon_position : Vector3):
 	
 	position = icon_position
 	visible = true
-	scale = Vector3.ZERO
+	scale = Vector3(0.001, 0.001, 0.001)
 	
 	# Set new render texture to icon
 	icon_rect.texture = icon
@@ -40,7 +40,7 @@ func show_icon(icon : Texture2D, icon_position : Vector3):
 func hide_icon():
 	# Tween to correct size
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.2)
+	tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.2)
 	tween.tween_callback(Callable(_tween_callback_hide))
 
 func _tween_callback_hide():

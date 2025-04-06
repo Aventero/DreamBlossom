@@ -26,7 +26,7 @@ func initialize():
 		var knosp_instance = knosp.instantiate()
 		child.add_child(knosp_instance)
 		
-		knosp_instance.scale = Vector3.ZERO
+		knosp_instance.scale = Vector3(0.001, 0.001, 0.001)
 		knosp_instance.set_event(self)
 		
 		var tween : Tween = create_tween()

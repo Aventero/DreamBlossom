@@ -13,7 +13,7 @@ func _ready():
 	set_process(false)
 	
 	# Scale up placeholder
-	placeholder.scale = Vector3.ZERO
+	placeholder.scale = Vector3(0.001, 0.001, 0.001)
 	var tween : Tween = create_tween()
 	tween.tween_property(placeholder, "scale", Vector3.ONE, 0.1)
 
@@ -40,7 +40,7 @@ func set_item(item : XRToolsPickable):
 	
 	# Disable placeholder
 	var tween : Tween = create_tween()
-	tween.tween_property(placeholder, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property(placeholder, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	tween.tween_callback(func(): placeholder.visible = false)
 	
 	item.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
@@ -65,5 +65,5 @@ func _on_pick_up(item : XRToolsPickable):
 func remove():
 	# Disable placeholder
 	var tween : Tween = create_tween()
-	tween.tween_property(placeholder, "scale", Vector3.ZERO, 0.1)
+	tween.tween_property(placeholder, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 	tween.tween_callback(queue_free)

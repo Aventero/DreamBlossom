@@ -19,15 +19,11 @@ func _on_pull_pickup_dropped(pickable):
 	outline_mesh.visible = true
 
 func _on_pull_completed():
-	weed_event.pulled_weed()
-	outline_mesh.queue_free()
+	if weed_event:
+		weed_event.pulled_weed()
+		
+	visible = false
 	
-	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.2)
-	tween.tween_callback(queue_free)
-
-#func _on_xr_tools_highlight_visible_visibility_change(_visible):
-	#if picked_by:
-		#return
-	#
-	#outline_mesh.visible = !_visible
+	#var tween = create_tween()
+	#tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.3)
+	#tween.tween_callback(Callable(_hide_weed))

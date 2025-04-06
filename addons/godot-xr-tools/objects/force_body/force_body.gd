@@ -22,7 +22,7 @@ class ForceBodyCollision:
 
 
 ## Enables or disables pushing bodies
-@export var push_bodies : bool = true
+@export var push_bodies : bool = false
 
 ## Control the stiffness of the body
 @export var stiffness : float = 10.0
@@ -74,7 +74,7 @@ func move_and_slide(move : Vector3) -> ForceBodyCollision:
 		var next_move := collision.get_remainder().slide(normal)
 
 		# Handle pushing bodies
-		if push_bodies:
+		if false:
 			var body := collider as RigidBody3D
 			if body:
 				# Calculate the momentum lost by the collision
@@ -122,7 +122,8 @@ func rotate_and_collide( \
 	# Convert collision exceptions to a RID array
 	var exception_rids : Array[RID]
 	for collision_exception in get_collision_exceptions():
-		exception_rids.push_back(collision_exception.get_rid())
+		if collision_exception and is_instance_valid(collision_exception):
+			exception_rids.push_back(collision_exception.get_rid())
 
 	# Prevent collisions with ourselves
 	exception_rids.push_back(get_rid())

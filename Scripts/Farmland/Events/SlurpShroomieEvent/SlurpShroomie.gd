@@ -46,7 +46,7 @@ func _on_potion_trigger_body_entered(body : Variant):
 		# Play vanish
 		var tween : Tween = create_tween()
 		tween.tween_property($Model, "scale", Vector3(1.2, 1.2, 1.2), 0.1)
-		tween.tween_property($Model, "scale", Vector3.ZERO, 0.2)
+		tween.tween_property($Model, "scale", Vector3(0.001, 0.001, 0.001), 0.2)
 		
 		# Disable outline
 		outline_mesh.visible = false

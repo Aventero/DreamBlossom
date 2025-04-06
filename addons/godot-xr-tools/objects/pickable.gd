@@ -257,6 +257,7 @@ func drop_and_free():
 
 # Called when this object is picked up
 func pick_up(by: Node3D) -> void:
+	print("Attempting to pick up %s by %s" % [name, by.name])
 	# Skip if not enabled
 	if not enabled:
 		return
@@ -333,10 +334,13 @@ func pick_up(by: Node3D) -> void:
 	# Report picked up and grabbed
 	picked_up.emit(self)
 	grabbed.emit(self, by)
+	
+	print("%s was picked up by %s" % [name, by.name])
 
 
 # Called when this object is dropped
 func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3) -> void:
+	print("Attempting to let go of %s by %s" % [name, by.name])
 	# Skip if not picked up
 	if not is_picked_up():
 		return
@@ -385,7 +389,7 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 
 	# let interested parties know
 	dropped.emit(self)
-
+	print("%s was dropped by %s" % [name, by.name])
 
 ## Get the node currently holding this object
 func get_picked_up_by() -> Node3D:

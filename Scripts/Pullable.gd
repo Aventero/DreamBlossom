@@ -47,6 +47,7 @@ func _process(delta):
 		_handle_pull()
 
 func _handle_pull():
+	print("PULL")
 	# Calculate current pull distance to origin (Vector Zero)
 	distance = pickable_pull.position.length()
 	
@@ -104,7 +105,7 @@ func _handle_pull():
 
 # Override with custom function
 func _on_pull_completed():
-	pass
+	print("COMPLETE")
 
 # Override with custom animation
 func _pull_animation(ratio):
@@ -121,6 +122,7 @@ func _pull_animation(ratio):
 	)
 
 func _on_pull_pickup_dropped(_pickable):
+	print("_on_pull_pickup_dropped")
 	pickable_pull.enabled = false
 	
 	var tween : Tween = create_tween().set_parallel(true)

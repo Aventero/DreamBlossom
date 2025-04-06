@@ -332,7 +332,6 @@ script = ExtResource("1_r2msa")
 environment = SubResource("Environment_30re5")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0634069, 0, 1.73683)
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("4_ko70n")
@@ -549,7 +548,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
 script = ExtResource("29_n5npg")
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
-transform = Transform3D(0.459487, 0, -0.888184, 0, 1, 0, 0.888184, 0, 0.459487, 0.528193, 0.86449, 0.553849)
+transform = Transform3D(0.459487, 0, -0.888184, 0, 1, 0, 0.888184, 0, 0.459487, 0.528193, 0.898578, 0.553849)
 
 [node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("34_opvkw")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0.900121, 0.581508)

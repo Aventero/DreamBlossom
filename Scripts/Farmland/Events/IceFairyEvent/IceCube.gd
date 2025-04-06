@@ -45,7 +45,7 @@ func _on_pickaxe_trigger_body_entered(pickaxe_end):
 		
 		# Hide cube
 		var tween : Tween  = create_tween()
-		tween.tween_property($Model, "scale", Vector3.ZERO, 0.1)
+		tween.tween_property($Model, "scale", Vector3(0.001, 0.001, 0.001), 0.1)
 		
 		await complete_particles_instance.complete
 		

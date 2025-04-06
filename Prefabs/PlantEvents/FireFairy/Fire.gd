@@ -24,7 +24,7 @@ func _on_trigger_body_entered(_body: Node3D) -> void:
 	
 	# Disappear tween
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.5)
+	tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
 	
 	play_smoke()
 	

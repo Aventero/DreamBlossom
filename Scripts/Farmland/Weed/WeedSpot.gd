@@ -80,7 +80,9 @@ func _handle_pull():
 		pickable_pull.drop()
 		pickable_pull.enabled = false
 		
+		print("QUEING FREE!!")
 		weed.queue_free()
+		print("AFTER THE FREEING")
 		
 		# Remove weed from soil logically
 		WeedManager.get_instance().remove_weed(cell, cell.grid)
@@ -92,6 +94,8 @@ func _handle_pull():
 
 func _free_callback():
 	queue_free()
+	print("FREED THE SPOT in _free_callback")
+	
 
 func _weed_pull_animation(ratio):
 	weed.position = Vector3(
