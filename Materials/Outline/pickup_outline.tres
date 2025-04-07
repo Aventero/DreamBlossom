@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cq1x3i8pni2ak"]
+
+[resource]
+render_priority = 127
+shading_mode = 0
+albedo_color = Color(0.89, 0.549575, 0.4895, 1)
+billboard_keep_scale = true
+grow_amount = -0.01

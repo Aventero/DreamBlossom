@@ -520,7 +520,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101
 shape = SubResource("ConvexPolygonShape3D_uyehh")
 
 [node name="Shroomie" parent="CookingArea" instance=ExtResource("31_1qxux")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.847475, -0.559639)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.780494, -0.559639)
 
 [node name="ToolArea" type="Node3D" parent="."]
 

@@ -4,16 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_nchgq"]
 [ext_resource type="Script" uid="uid://gcymq4ejqy8y" path="res://Scripts/Farmland/Fruits/ShroomieFruit.gd" id="2_s2l3y"]
 [ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_cikcm"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_t3dbe"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="4_cuxr1"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aby65"]
 points = PackedVector3Array(0.0344105, 0.1036, 0.0344105, -0.0547275, 0.0212, -0.0547275, -0.025984, -6.93889e-18, -0.025984, 0.0553185, 0.0848107, -0.0553185, 0.0547275, 0.0212, 0.0547275, -0.055303, 0.0848116, 0.055303, -0.055303, 0.0848116, -0.055303, -0.0547275, 0.0212, 0.0547275, 0.0547275, 0.0212, -0.0547275, 0.0553185, 0.0848107, 0.0553185, -0.0344105, 0.1036, -0.0344105, 0.025984, -6.93889e-18, 0.025984, -0.0344105, 0.1036, 0.0344105, 0.0344105, 0.1036, -0.0344105, 0.025984, -6.93889e-18, -0.025984, -0.025984, -6.93889e-18, 0.025984)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ay0mi"]
 resource_name = "Shroomie.001"
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("2_nchgq")
 texture_filter = 2
+texture_repeat = false
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ryvkb"]
 _surfaces = [{
@@ -105,7 +107,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245745, 0.0916862, -0.049
 [node name="GrabPointHandRight" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.092, -0.05)
 
+[node name="XRToolsHighlightVisible" parent="." index="4"]
+visible = true
+
 [node name="Hightlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
 mesh = SubResource("ArrayMesh_sqkpc")
 skeleton = NodePath("../../Model")
-surface_material_override/0 = ExtResource("3_t3dbe")
+surface_material_override/0 = ExtResource("4_cuxr1")
