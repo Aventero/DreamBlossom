@@ -108,6 +108,10 @@ mesh = SubResource("ArrayMesh_tvjp1")
 skeleton = NodePath("../BadShroomie")
 surface_material_override/0 = SubResource("ShaderMaterial_iyepv")
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Model" index="2"]
+transform = Transform3D(1.01599, 0, 0, 0, 1.01599, 0, 0, 0, 1.01599, 0, 0, 0)
+remote_path = NodePath("../../Pull Origin/Pull Pickup/XRToolsHighlightVisible/Highlight")
+
 [node name="Pull Origin" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0474236, 0)
 
@@ -115,7 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0474236, 0)
 shape = SubResource("SphereShape3D_0vmdi")
 
 [node name="Highlight" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0474236, 0)
+transform = Transform3D(1.01599, 0, 0, 0, 1.01599, 0, 0, 0, 1.01599, 0, -0.0474236, 0)
 mesh = SubResource("ArrayMesh_e1inq")
 skeleton = NodePath("../../../../Model/BadShroomie")
 surface_material_override/0 = ExtResource("3_c88ty")

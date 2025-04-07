@@ -6,3 +6,4 @@
 visible = false
 script = ExtResource("1")
 hand = 1
+snap_hand = false

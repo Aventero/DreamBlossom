@@ -38,8 +38,6 @@ complete_rumble = SubResource("Resource_8u5bq")
 
 [node name="Pull Pickup" parent="Pull Origin" instance=ExtResource("3_dhfgb")]
 freeze = true
-freeze_mode = 0
-ranged_grab_method = 0
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="Pull Origin/Pull Pickup"]
 script = ExtResource("4_hbiww")

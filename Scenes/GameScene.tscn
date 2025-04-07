@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=78 format=4 uid="uid://fnefk1snbbap"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://buxsxfl08780x" path="res://Prefabs/Farmland/ItemBags/SeedBags/NommieSeedBag.tscn" id="28_fuv11"]
 [ext_resource type="Script" uid="uid://kymhimjjtd0k" path="res://Scripts/Farmland/Tools/ToolEnabler.gd" id="29_n5npg"]
 [ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="30_r4hcs"]
+[ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Planting/Fruits/ShroomieFruit.tscn" id="31_1qxux"]
 [ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="31_yrpf0"]
 [ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
@@ -391,12 +392,12 @@ shape = SubResource("BoxShape3D_v1xlr")
 
 [node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plot") instance=ExtResource("6_8t4s2")]
 transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
+plot = NodePath("../../Plot")
 spread_time = 10.0
 spread_indicator_time = 4.0
 spread_release_grace_time = 1.0
 spread_chance = 0.25
 obstacle_chance = 0.5
-plot = NodePath("../../Plot")
 
 [node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
 
@@ -468,6 +469,7 @@ visible = false
 
 [node name="Candle" parent="CookingArea" instance=ExtResource("30_r4hcs")]
 transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
+ranged_grab_method = 1
 
 [node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
@@ -517,6 +519,9 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
 shape = SubResource("ConvexPolygonShape3D_uyehh")
 
+[node name="Shroomie" parent="CookingArea" instance=ExtResource("31_1qxux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.847475, -0.559639)
+
 [node name="ToolArea" type="Node3D" parent="."]
 
 [node name="ToolTable" parent="ToolArea" instance=ExtResource("31_yrpf0")]
@@ -529,30 +534,33 @@ script = ExtResource("22_wos47")
 [node name="ShroomieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("27_2vc3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983311, 1.31364, 0.402015)
 freeze = true
-ranged_grab_method = 0
+second_hand_grab = 0
 
 [node name="BlubburuSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("24_yqt5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.982239, 1.31424, 0.571799)
 freeze_mode = 1
+second_hand_grab = 0
 
 [node name="FlamieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("25_7iamt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.987446, 1.30993, 0.732673)
 freeze_mode = 1
+ranged_grab_method = 1
+second_hand_grab = 0
 
 [node name="ShellieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("26_1y0nt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95032, 1.08007, 0.397698)
 freeze = true
-ranged_grab_method = 0
+second_hand_grab = 0
 
 [node name="PumkieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("27_h6dsn")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.955668, 1.07998, 0.570088)
 freeze = true
-ranged_grab_method = 0
+second_hand_grab = 0
 
 [node name="NommieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("28_fuv11")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.955118, 1.08404, 0.734646)
 freeze = true
-ranged_grab_method = 0
+second_hand_grab = 0
 
 [node name="Variable Tools" type="Node3D" parent="ToolArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
@@ -566,6 +574,8 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0
 
 [node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
 transform = Transform3D(-0.509538, 0, -0.860449, 0, 1, 0, 0.860449, 0, -0.509538, 0.409234, 0.860584, 0.781112)
+ranged_grab_method = 1
+second_hand_grab = 0
 
 [node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
@@ -603,6 +613,7 @@ max_distance = 100.0
 [node name="PotionRed" parent="ToolArea/Potions/PotionRedSnap" groups=["PotionRed", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 1
 infinite_drops = true
+ranged_grab_method = 1
 
 [node name="PotionGreenSnap" type="Area3D" parent="ToolArea/Potions"]
 transform = Transform3D(0.954267, 0, -0.298958, 0, 1, 0, 0.298958, 0, 0.954267, 0.871379, 1.3195, -0.0400517)
@@ -625,6 +636,7 @@ max_distance = 100.0
 [node name="PotionGreen" parent="ToolArea/Potions/PotionGreenSnap" groups=["PotionGreen", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 2
 infinite_drops = true
+ranged_grab_method = 1
 metadata/_edit_lock_ = true
 
 [node name="PotionBlueSnap" type="Area3D" parent="ToolArea/Potions"]
@@ -648,6 +660,7 @@ max_distance = 100.0
 [node name="PotionBlue" parent="ToolArea/Potions/PotionBlueSnap" groups=["PotionBlue", "Returnable"] instance=ExtResource("52_vtd61")]
 type = 4
 infinite_drops = true
+ranged_grab_method = 1
 
 [node name="Environment" parent="." instance=ExtResource("48_ai1t1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0064286, 0)
