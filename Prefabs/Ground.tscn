@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://s1xg8n5hogye"]
+
+[ext_resource type="PackedScene" uid="uid://b6t04dtis25nv" path="res://Models/Environment/Ground.blend" id="1_gkeeh"]
+
+[node name="Ground" instance=ExtResource("1_gkeeh")]
+
+[node name="Plane_754" parent="." index="0"]
+layers = 2

@@ -18009,7 +18009,6 @@ resource_name = "EnvRocks"
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-cull_mode = 2
 albedo_texture = ExtResource("8_sd3sa")
 texture_filter = 2
 
@@ -22813,12 +22812,13 @@ skeleton = NodePath("")
 
 [node name="Plane_767" type="MeshInstance3D" parent="."]
 transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, 0, 0)
-layers = 129
+layers = 1048575
 mesh = SubResource("ArrayMesh_qwxxr")
 skeleton = NodePath("")
 
 [node name="Plane_749" type="MeshInstance3D" parent="."]
-transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, 0, 0)
+transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, -12.1462, 0)
+visible = false
 layers = 129
 mesh = SubResource("ArrayMesh_8tnnv")
 skeleton = NodePath("")

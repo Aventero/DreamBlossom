@@ -10,6 +10,7 @@ var _time_of_day: float = 4.0
 		return _time_of_day
 
 @export_range(0.01, 1.0, 0.01) var base_brightness: float = 0.1
+@export_range(0.01, 1.0, 0.01) var intro_brightness: float = 1.0
 @export var sky_shader_material: ShaderMaterial
 @export var world_environment: WorldEnvironment
 @export var sun : DirectionalLight3D
@@ -60,7 +61,7 @@ func update_shader_parameters(time_day: float) -> void:
 	if is_sky_body_visible(sun_direction):
 		$Sun.look_at($Sun.global_transform.origin - sun_direction, Vector3.UP)
 		$Sun.visible = true
-		var power = max(sun_direction.y, base_brightness)
+		var power = max(sun_direction.y, base_brightness) * intro_brightness
 		sky_shader_material.set_shader_parameter("day_intensity", power)
 		sun.light_energy = power
 		world_environment.environment.background_energy_multiplier = power
@@ -70,7 +71,7 @@ func update_shader_parameters(time_day: float) -> void:
 	if is_sky_body_visible(moon_direction):
 		$Moon.look_at($Moon.global_transform.origin - moon_direction, Vector3.UP)
 		$Moon.visible = true
-		var power = max(moon_direction.y, base_brightness)
+		var power = max(moon_direction.y, base_brightness) * intro_brightness
 		sky_shader_material.set_shader_parameter("night_intensity", max(moon_direction.y, 0.0))
 		moon.light_energy = power
 		world_environment.environment.background_energy_multiplier = power

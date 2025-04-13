@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b3oandoeottvt"]
+
+[ext_resource type="Texture2D" uid="uid://buuiah53s5e24" path="res://Textures/Environment/Foliage.png" id="1_yn10r"]
+
+[resource]
+resource_name = "Foliage"
+transparency = 2
+alpha_scissor_threshold = 0.033
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_yn10r")
+texture_filter = 2
