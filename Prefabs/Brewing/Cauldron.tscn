@@ -11,9 +11,9 @@
 [ext_resource type="Script" uid="uid://cph1udu6fte3i" path="res://Scripts/Lever.gd" id="9_8d6wc"]
 [ext_resource type="Texture2D" uid="uid://cg3g2cb5up2k0" path="res://Textures/Particles/FireSmoke02.png" id="9_sbiad"]
 [ext_resource type="Script" uid="uid://b24v6edmqkx5p" path="res://addons/godot-xr-tools/objects/pickable.gd" id="10_f8ijn"]
-[ext_resource type="Script" uid="uid://drkh5x1ph1oj7" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="10_niq00"]
-[ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="11_d68hx"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="12_0hfjq"]
+[ext_resource type="Script" uid="uid://crhw6el3ug0j7" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="10_niq00"]
+[ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="11_d68hx"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="12_0hfjq"]
 [ext_resource type="PackedScene" uid="uid://b30eqouqhr2gd" path="res://Prefabs/Brewing/FlaskSpawner.tscn" id="13_4jxc5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ih2ph"]

@@ -64,12 +64,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
 shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(0.342282, 0.826343, -0.447214)
+shader_parameter/sun_direction = Vector3(0.826343, -0.342282, -0.447214)
 shader_parameter/day_intensity = 0.92388
 shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
-shader_parameter/sun_size = 0.084
-shader_parameter/moon_direction = Vector3(-0.342282, -0.826343, -0.447214)
-shader_parameter/night_intensity = 1.22461e-16
+shader_parameter/sun_size = 0.0
+shader_parameter/moon_direction = Vector3(-0.826343, 0.342282, -0.447214)
+shader_parameter/night_intensity = 0.382683
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.06
 
@@ -78,7 +78,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.92388
+background_energy_multiplier = 0.75
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.9
@@ -346,6 +346,7 @@ moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
 transform = Transform3D(-0.794102, -0.502235, 0.342282, 0, 0.563167, 0.826341, -0.60778, 0.656202, -0.447213, 0, 0, 0)
+visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
 light_energy = 0.92388
 shadow_enabled = true
@@ -360,8 +361,7 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447214, 9.79685e-17, -0.894428, 0, 1, 1.09532e-16, 0.894428, 4.89842e-17, -0.447214, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.475964, 0.301026, -0.826344, 0, 0.939597, 0.342283, 0.879466, 0.162914, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 light_energy = 0.75
 shadow_enabled = true
@@ -664,7 +664,6 @@ ranged_grab_method = 1
 
 [node name="Environment" parent="." instance=ExtResource("48_ai1t1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0064286, 0)
-visible = false
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
