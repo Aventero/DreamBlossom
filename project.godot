@@ -40,6 +40,12 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addon
 
 import/fbx/enabled=false
 
+[gui]
+
+theme/custom_font="uid://yvhqtmkucbc0"
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+
 [layer_names]
 
 3d_render/layer_8="DropDecail"

@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=4 uid="uid://b6y1o1da4uelj"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_skdb8"]
+[ext_resource type="PackedScene" uid="uid://dgw24nv5ntyk" path="res://Models/Mobs/Blossy.blend" id="2_3fk7k"]
+[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_37y0o"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_xs4fr"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="5_pnhhk"]
+[ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_d05mc"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="7_pnhhk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3fk7k"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pnhhk"]
+_surfaces = [{
+"aabb": AABB(-0.0664775, -0.0533573, -0.0580564, 0.135311, 0.110906, 0.111903),
+"attribute_data": PackedByteArray("mpiZPs3MzD7NzMw+zczMPs3MzD6amJk+mpiZPpqYmT6amJk+zczMPs3ITD6amJk+mpiZPpqYmT7NyEw+zczMPs3IzD3NzMw+zchMPs3MzD7NyEw+mpiZPs3IzD2amJk+mpiZPs3MzD7NyEw+mpiZPpqYmT6amJk+zchMPs3MzD7NyEw+zcrMPpqYmT7Nysw+mpiZPgD//z7NyEw+AP//Ps3MTD7NyEw+mpiZPs3ITD6amJk+mpiZPs3MTD6amJk+szKzPs3MzD6zMrM+mpiZPpqYGT7NzMw+mpgZPpqYmT7NyEw+5mTmPpqYmT7mZOY+zcxMPgD9fz6amJk+AP1/PpqYGT6amJk+mpgZPs3MzD6zMrM+mpiZPrMysz7NzMw+"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("GAAZAAIAGAACAAEABAAGAAUABAAFAAcAGgAbAAoAGgAKAAkADAAOAA0ADAANAA8AHAAdABEAHAARABAAEwAdABwAEwASAB0AHgAfABUAHgAVABQAFwAfAB4AFwAWAB8ACAALACAACAAgACEAAAADACIAAAAiACMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("XepTvd9xWL18bFw9+eFcvUFcWL1lc2W9yv5evVyCZz1yU2W9OQdWvb5sZz0qjlw9+eFcvUFcWL1lc2W9kY5dPcqaaT2prG29yv5evVyCZz1yU2W9dqtfPc5DVr2VzG29dqtfPc5DVr2VzG29J6NoPWlZVr1oE1Q9YYZmPSOFaT1nM1Q9kY5dPcqaaT2prG29J6NoPWlZVr1oE1Q9OQdWvb5sZz0qjlw9YYZmPSOFaT1nM1Q9XepTvd9xWL18bFw9XepTvd9xWL18bFw9J6NoPWlZVr1oE1Q9dqtfPc5DVr2VzG29+eFcvUFcWL1lc2W9YYZmPSOFaT1nM1Q9OQdWvb5sZz0qjlw9yv5evVyCZz1yU2W9kY5dPcqaaT2prG29uRWHvSWNWr0qR/O6YCWIveccaT3GQO+6mfiMPevzV707YBy74eeLPdG3az08XBq7uRWHvSWNWr0qR/O6mfiMPevzV707YBy74eeLPdG3az08XBq7YCWIveccaT3GQO+64eeLPdG3az08XBq7mfiMPevzV707YBy7YCWIveccaT3GQO+6uRWHvSWNWr0qR/O6rBmUfw4AVXOGALdo8/9rC4YAt2jz/2sLrBmUfw4AVXMFADT+YAKyvwUANP5gArK/BQA0/mACsr8FADT+YAKyv33/vplVmfw/0ehjgChpC0DR6GOAKGkLQH3/vplVmfw/xYH5f2j/LMHFgfl/aP8swcWB+X9o/yzBxYH5f2j/LMGigJsAZf8uwaKAmwBl/y7BooCbAGX/LsGigJsAZf8uwWR/X/9eArK/ZH9f/14Csr9kf1//XgKyv2R/X/9eArK/hgC3aPP/awuGALdo8/9rC9HoY4AoaQtA0ehjgChpC0CigJsAZf8uwaKAmwBl/y7BZH9f/14Csr9kf1//XgKyv33/vplVmfw/ff++mVWZ/D+sGZR/DgBVc6wZlH8OAFVz")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnhhk"]
+render_priority = 0
+shader = ExtResource("3_37y0o")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color_difference = 0.4
+shader_parameter/speed = 4.0
+shader_parameter/UV_multiplier = 1.0
+shader_parameter/UV_offset = Vector2(0, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xs4fr"]
+_surfaces = [{
+"aabb": AABB(-0.0774258, -0.063535, -0.0684136, 0.157208, 0.131261, 0.132617),
+"attribute_data": PackedByteArray("mpiZPs3MzD7NzMw+zczMPs3MzD6amJk+mpiZPpqYmT6amJk+zczMPs3ITD6amJk+mpiZPpqYmT7NyEw+zczMPs3IzD3NzMw+zchMPs3MzD7NyEw+mpiZPs3IzD2amJk+mpiZPs3MzD7NyEw+mpiZPpqYmT6amJk+zchMPs3MzD7NyEw+zcrMPpqYmT7Nysw+mpiZPgD//z7NyEw+AP//Ps3MTD7NyEw+mpiZPs3ITD6amJk+mpiZPs3MTD6amJk+szKzPs3MzD6zMrM+mpiZPpqYGT7NzMw+mpgZPpqYmT7NyEw+5mTmPpqYmT7mZOY+zcxMPgD9fz6amJk+AP1/PpqYGT6amJk+mpgZPs3MzD6zMrM+mpiZPrMysz7NzMw+"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("GAAZAAIAGAACAAEABAAGAAUABAAFAAcAGgAbAAoAGgAKAAkADAAOAA0ADAANAA8AHAAdABEAHAARABAAEwAdABwAEwASAB0AHgAfABUAHgAVABQAFwAfAB4AFwAWAB8ACAALACAACAAgACEAAAADACIAAAAiACMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("yCBuvR1cfL2iaYM9kwiAvZxLfL09X4S9H0KBvcKQhT20TIS9EZRwvYKIhT0cfYM9kwiAvZxLfL09X4S9fMR3PXPChj3vCYy9H0KBvcKQhT20TIS93Dd6PSjoeb1sHIy93Dd6PSjoeb1sHIy9TBSGPZv4eb1XWXc91NqEPSC6hj2ifnc9fMR3PXPChj3vCYy9TBSGPZv4eb1XWXc9EZRwvYKIhT0cfYM91NqEPSC6hj2ifnc9yCBuvR1cfL2iaYM9yCBuvR1cfL2iaYM9TBSGPZv4eb1XWXc93Dd6PSjoeb1sHIy9kwiAvZxLfL09X4S91NqEPSC6hj2ifnc9EZRwvYKIhT0cfYM9H0KBvcKQhT20TIS9fMR3PXPChj3vCYy91U+dvaEegr3Ubna7b5GevUsxiT17DXS7r2SjPcWcgL3gm/+56SGiPQm0ij2Qd+y51U+dvaEegr3Ubna7r2SjPcWcgL3gm/+56SGiPQm0ij2Qd+y5b5GevUsxiT17DXS76SGiPQm0ij2Qd+y5r2SjPcWcgL3gm/+5b5GevUsxiT17DXS71U+dvaEegr3Ubna7rBmUfw4AVXOGALdo8/9rC4YAt2jz/2sLrBmUfw4AVXMFADT+YAKyvwUANP5gArK/BQA0/mACsr8FADT+YAKyv33/vplVmfw/0ehjgChpC0DR6GOAKGkLQH3/vplVmfw/xYH5f2j/LMHFgfl/aP8swcWB+X9o/yzBxYH5f2j/LMGigJsAZf8uwaKAmwBl/y7BooCbAGX/LsGigJsAZf8uwWR/X/9eArK/ZH9f/14Csr9kf1//XgKyv2R/X/9eArK/hgC3aPP/awuGALdo8/9rC9HoY4AoaQtA0ehjgChpC0CigJsAZf8uwaKAmwBl/y7BZH9f/14Csr9kf1//XgKyv33/vplVmfw/ff++mVWZ/D+sGZR/DgBVc6wZlH8OAFVz")
+}]
+
+[node name="Blossy" instance=ExtResource("1_skdb8")]
+freeze = true
+release_mode = 1
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050393, 0)
+shape = SubResource("BoxShape3D_3fk7k")
+
+[node name="Blossy" parent="." index="1" instance=ExtResource("2_3fk7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000263009, 0)
+
+[node name="Outline" type="MeshInstance3D" parent="Blossy/Cube_005" index="0"]
+mesh = SubResource("ArrayMesh_pnhhk")
+surface_material_override/0 = SubResource("ShaderMaterial_pnhhk")
+
+[node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("4_xs4fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245745, 0.0916862, -0.0495802)
+
+[node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("5_pnhhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.092, -0.05)
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="." index="4"]
+script = ExtResource("6_d05mc")
+
+[node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(-0.926276, -0.00436689, 0.0130522, -0.00436359, 0.926368, 0.000264923, -0.0130533, 0.000203413, -0.926286, 0.00117599, 0.0482447, -0.00201755)
+mesh = SubResource("ArrayMesh_xs4fr")
+skeleton = NodePath("../../Blossy/Cube_005")
+surface_material_override/0 = ExtResource("7_pnhhk")
+
+[editable path="Blossy"]

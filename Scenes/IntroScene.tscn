@@ -1,4 +1,4 @@
-[gd_scene load_steps=1317 format=4 uid="uid://cp4weqexqyej0"]
+[gd_scene load_steps=1319 format=4 uid="uid://cp4weqexqyej0"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_pquu2"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_00i8l"]
@@ -61,7 +61,8 @@
 [ext_resource type="Texture2D" uid="uid://by80yt2sy8pha" path="res://Textures/Environment/TreeLeaves.png" id="53_as1bl"]
 [ext_resource type="Material" uid="uid://cqbe7cidelnog" path="res://Materials/Environment/EnvRocks.tres" id="57_v0l8j"]
 [ext_resource type="PackedScene" uid="uid://b5ageb2kc1fmm" path="res://Models/Mobs/Blossom.blend" id="61_as1bl"]
-[ext_resource type="PackedScene" uid="uid://dgw24nv5ntyk" path="res://Models/Mobs/Blossy.blend" id="62_31t65"]
+[ext_resource type="Texture2D" uid="uid://crkunlx58vypa" path="res://Textures/UI/Frame.png" id="63_ccbjs"]
+[ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
@@ -77,12 +78,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.401883, -0.799056, -0.447214)
-shader_parameter/day_intensity = 0.4
+shader_parameter/sun_direction = Vector3(-0.531398, -0.719455, -0.447214)
+shader_parameter/day_intensity = 0.5
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
 shader_parameter/sun_size = 0.0
-shader_parameter/moon_direction = Vector3(0.401883, 0.799056, -0.447214)
-shader_parameter/night_intensity = 0.893371
+shader_parameter/moon_direction = Vector3(0.531398, 0.719455, -0.447214)
+shader_parameter/night_intensity = 0.804376
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.05
 
@@ -91,7 +92,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.0893371
+background_energy_multiplier = 0.0402188
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -19961,6 +19962,9 @@ shadow_mesh = SubResource("ArrayMesh_6878x")
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yi6c"]
 size = Vector3(37.0232, 0.25, 38.6445)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_h56t6"]
+viewport_path = NodePath("Blossy/Textbox/SubViewport")
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_pquu2")
 
@@ -19971,9 +19975,9 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 22.22
+time_of_day = 21.57
 base_brightness = 0.5
-intro_brightness = 0.1
+intro_brightness = 0.05
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
@@ -19984,10 +19988,10 @@ sunrise_start = 5.0
 sunrise_end = 8.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447243, 0.0104715, -0.894347, 0, 0.99993, 0.0117076, 0.894409, 0.00523619, -0.447212, 0, 0, 0)
+transform = Transform3D(-0.448718, 0.0731395, -0.890672, 0, 0.996644, 0.0818413, 0.893671, 0.0367238, -0.447212, 0, 0, 0)
 visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.4
+light_energy = 0.5
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -20001,9 +20005,9 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.743799, -0.534092, 0.401883, 0, 0.601256, 0.799056, -0.668406, 0.594335, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.643902, -0.550461, 0.531399, 0, 0.694538, 0.719456, -0.765111, 0.463257, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.0893371
+light_energy = 0.0402188
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -20048,30 +20052,37 @@ obstacle_chance = 0.5
 
 [node name="Spawnpoint1" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.8617, 0, -0.507418, 0, 1, 0, 0.507418, 0, 0.8617, 0.77485, 0.91463, -1.17053)
+visible = false
 aabb = AABB(-0.1, -0.1, -0.1, 0.2, 0.2, 0.2)
 
 [node name="Spawnpoint2" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.884532, 0, 0.466479, 0, 1, 0, -0.466479, 0, 0.884532, -0.783108, 0.914296, -1.17668)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint3" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.543555, 0, 0.839373, 0, 1, 0, -0.839373, 0, 0.543555, -0.809922, 0.914411, -0.350212)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint4" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.8497, 0, -0.527267, 0, 1, 0, 0.527267, 0, 0.8497, 0.549694, 0.914356, -0.35636)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint5" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(-0.393332, 0, 0.919397, 0, 1, 0, -0.919397, 0, -0.393332, -0.916839, 0.663163, 0.22085)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint6" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(-0.697741, 0, -0.716351, 0, 1, 0, 0.716351, 0, -0.697741, 0.494977, 0.912426, 0.676683)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint7" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.923492, 0, 0.383618, 0, 1, 0, -0.383618, 0, 0.923492, -0.0845595, 0.914849, -0.35754)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="DigSpotLookup" type="Node" parent="."]
@@ -20162,6 +20173,7 @@ shape = SubResource("ConvexPolygonShape3D_uyehh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.780494, -0.559639)
 
 [node name="ToolArea" type="Node3D" parent="."]
+visible = false
 
 [node name="ToolTable" parent="ToolArea" instance=ExtResource("32_e8j2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
@@ -24037,12 +24049,74 @@ shape = SubResource("BoxShape3D_7yi6c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015788, -0.035488, -0.831708)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0176656, 1.4646, -0.464723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0176656, 1.47218, -0.445798)
 light_color = Color(1, 0.78279, 0.973629, 1)
-omni_range = 1.751
+omni_range = 1.664
+omni_attenuation = 0.49
 
-[node name="Blossy" parent="." instance=ExtResource("62_31t65")]
-transform = Transform3D(0.986515, -0.0289048, 0.161098, 0.0042901, 0.988511, 0.151091, -0.163614, -0.148363, 0.975305, 0.00722761, 0.999714, -0.760146)
+[node name="Blossy" parent="." instance=ExtResource("63_h56t6")]
+transform = Transform3D(0.997007, 0.0465282, 0.0617389, -0.0450376, 0.998665, -0.0253188, -0.0628342, 0.0224619, 0.997771, 0.0144549, 1.00116, -0.784493)
+
+[node name="Textbox" type="Sprite3D" parent="Blossy"]
+transform = Transform3D(0.997007, -0.0450377, -0.0628344, 0.0465281, 0.998664, 0.0224623, 0.061739, -0.0253186, 0.997772, -0.0277459, 0.289782, -0.00445276)
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = SubResource("ViewportTexture_h56t6")
+
+[node name="SubViewport" type="SubViewport" parent="Blossy/Textbox"]
+own_world_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(1024, 512)
+
+[node name="PanelContainer" type="PanelContainer" parent="Blossy/Textbox/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -75.0
+offset_right = 211.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Blossy/Textbox/SubViewport/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("63_ccbjs")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Blossy/Textbox/SubViewport/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="Blossy/Textbox/SubViewport/PanelContainer/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/line_spacing = 20
+theme_override_font_sizes/font_size = 48
+text = "Hey!
+Pick me up! ... Please?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]

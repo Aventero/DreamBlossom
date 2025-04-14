@@ -17,7 +17,7 @@ albedo_texture = ExtResource("2_nchgq")
 texture_filter = 2
 texture_repeat = false
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ryvkb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cuxr1"]
 _surfaces = [{
 "aabb": AABB(-0.0554956, 0, -0.0554956, 0.110991, 0.103565, 0.110991),
 "format": 34896613377,
@@ -47,7 +47,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("dBxhNIrjlMB0HGE0iuP//3QcYTSK4/+/tS6T1EnR//+1LpPUSdEnwLUuk9RJ0f9/tS6T1EnRqL10HGE0dBz8xXQcYTR0HP9/dBxhNHQc/7+1LpPUtS7//7Uuk9S1LgzAtS6T1LUu//+1LpPUtS5WworjYTSK4///iuNhNIrj/7+K42E0iuP//0nRk9RJ0f9/SdGT1EnRqL1J0ZPUSdFZwEnRk9RJ0f+/iuNhNHQc//+K42E0dBz/v4rjYTR0HP9/SdGT1LUu//9J0ZPUtS5WwknRk9S1Lv+/SdGT1LUu/78AAGE0AAD//wAAYTQAAEXFAABhNAAA//8AAGE0/////wAAYTT//4rAAABhNP///3///2E0AAD/v///YTQAAP////9hNAAA/7///2E0////v///YTT///9///9hNP///78cRLqy4rv//xxEurLiu/+/HES6suK7/38cRLqyHET//xxEurIcRP+/HES6shxE///iu7qy4rv/v+K7urLiu/9/4ru6suK7/7/iu7qyHET/v+K7urIcRP//4ru6shxE/78AALPR/////wAAs9H//zTAAACz0f///38AALPR//+ovQAAs9EAAP//AACz0QAA/78AALPRAAD//wAAs9EAAFbC//+z0QAA/////7PRAABWwv//s9EAAAHA//+z0QAA/7///7PR////f///s9H//6i9//+z0f//KMD//7PR////v7Uu//9J0f//tS7//0nR/3+1Lv//SdH/v7Uu//+1Lv//tS7//7Uu//+1Lv//tS7/v0nR//9J0f9/SdH//0nR/79J0f//SdH/v0nR//+1Lv//SdH//7Uu/79J0f//tS7/v3QcurJ0HP+/dBy6snQc/390HLqydBz/v3QcurKK4/+/dBy6sorj//90HLqyiuP/v4rjurJ0HP//iuO6snQc/7+K47qydBz/f4rjurKK4///iuO6sorj/7+K47qyiuP//xxEAAAcRP//HEQAABxE/78cRAAAHET//xxEAADiu///HEQAAOK7/78cRAAA4rv/f+K7AAAcRP+/4rsAABxE///iuwAAHET/v+K7AADiu/+/4rsAAOK7/3/iuwAA4rv/v2wM15j///9//38AAP8//393/wx4/3///////3//HP25/3////9/AAD/P/9/VfGXiv///3////9//z//fwAA/3////9//3///////39i8Q2E/38AAP8//38AAP9//3///////3////9/kPgJeP9/AAD/P/9/1hust////3//P/9/FAwpmP9///8AAP9/////f/9/AAAAAP9//3////9/AAD/P/9/AAD/f/9/////P/9/AAD/f////38AAP9//3////9/AAAAAP9/////f/9/AAD/P/9/TP7Ydf9///////9//z//f7z3kYf///9/////f////3////9/hffSdf9/AAD/f///////f8L3roD/fwAA/z//f/9///////9//z//f////3////9//3///////3//fwAA////f////3//fwAAAAD/f/9/////fwAAAAD/f////3//fwAA/z//fwAA/3//f////z//fwAA/3////9//z//fwAA/3////9//z//fwAA/3//f///AAD/f////3//fwAAAAD/f/9/////fwAA")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ryvkb")
+shadow_mesh = SubResource("ArrayMesh_cuxr1")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ptk0v"]
 _surfaces = [{
@@ -106,9 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245745, 0.0916862, -0.049
 
 [node name="GrabPointHandRight" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.092, -0.05)
-
-[node name="XRToolsHighlightVisible" parent="." index="4"]
-visible = true
 
 [node name="Hightlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
 mesh = SubResource("ArrayMesh_sqkpc")

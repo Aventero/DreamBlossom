@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dphhvu20eg4cs"]
+
+[ext_resource type="Texture2D" uid="uid://crkunlx58vypa" path="res://Textures/UI/Frame.png" id="1_14fh4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h56t6"]
+viewport_path = NodePath("Blossy/Textbox/SubViewport")
+
+[node name="Textbox" type="Sprite3D"]
+transform = Transform3D(0.997007, -0.0450377, -0.0628344, 0.0465281, 0.998664, 0.0224623, 0.061739, -0.0253186, 0.997772, 0, 0, 0)
+pixel_size = 0.001
+billboard = 1
+texture = SubResource("ViewportTexture_h56t6")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -75.0
+offset_right = 211.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_14fh4")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="SubViewport/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(96.8, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Hey!
+Pull  me up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
