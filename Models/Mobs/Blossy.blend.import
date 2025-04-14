@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5ageb2kc1fmm"
-path="res://.godot/imported/Blossom.blend-a7caed62c1a7f350b4998aca80e7293c.scn"
+uid="uid://dgw24nv5ntyk"
+path="res://.godot/imported/Blossy.blend-f1af7c431308af82b9f139060d7383b3.scn"
 
 [deps]
 
-source_file="res://Models/Mobs/Blossom.blend"
-dest_files=["res://.godot/imported/Blossom.blend-a7caed62c1a7f350b4998aca80e7293c.scn"]
+source_file="res://Models/Mobs/Blossy.blend"
+dest_files=["res://.godot/imported/Blossy.blend-f1af7c431308af82b9f139060d7383b3.scn"]
 
 [params]
 
@@ -33,7 +33,7 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-blender/nodes/visible=1
+blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://snrxs8kaf2cr"]
+
+[ext_resource type="PackedScene" uid="uid://b5ageb2kc1fmm" path="res://Models/Mobs/Blossom.blend" id="1_dmfd1"]
+
+[node name="Blossom" instance=ExtResource("1_dmfd1")]
