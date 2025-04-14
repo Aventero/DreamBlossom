@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b6y1o1da4uelj"]
+[gd_scene load_steps=17 format=4 uid="uid://b6y1o1da4uelj"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_skdb8"]
 [ext_resource type="PackedScene" uid="uid://dgw24nv5ntyk" path="res://Models/Mobs/Blossy.blend" id="2_3fk7k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="5_pnhhk"]
 [ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="6_d05mc"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="7_pnhhk"]
+[ext_resource type="Texture2D" uid="uid://bmyt2hwi03ebq" path="res://Textures/Mobs/FaceAnimation.png" id="8_d05mc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3fk7k"]
 size = Vector3(0.1, 0.1, 0.1)
@@ -46,6 +47,68 @@ _surfaces = [{
 "vertex_data": PackedByteArray("yCBuvR1cfL2iaYM9kwiAvZxLfL09X4S9H0KBvcKQhT20TIS9EZRwvYKIhT0cfYM9kwiAvZxLfL09X4S9fMR3PXPChj3vCYy9H0KBvcKQhT20TIS93Dd6PSjoeb1sHIy93Dd6PSjoeb1sHIy9TBSGPZv4eb1XWXc91NqEPSC6hj2ifnc9fMR3PXPChj3vCYy9TBSGPZv4eb1XWXc9EZRwvYKIhT0cfYM91NqEPSC6hj2ifnc9yCBuvR1cfL2iaYM9yCBuvR1cfL2iaYM9TBSGPZv4eb1XWXc93Dd6PSjoeb1sHIy9kwiAvZxLfL09X4S91NqEPSC6hj2ifnc9EZRwvYKIhT0cfYM9H0KBvcKQhT20TIS9fMR3PXPChj3vCYy91U+dvaEegr3Ubna7b5GevUsxiT17DXS7r2SjPcWcgL3gm/+56SGiPQm0ij2Qd+y51U+dvaEegr3Ubna7r2SjPcWcgL3gm/+56SGiPQm0ij2Qd+y5b5GevUsxiT17DXS76SGiPQm0ij2Qd+y5r2SjPcWcgL3gm/+5b5GevUsxiT17DXS71U+dvaEegr3Ubna7rBmUfw4AVXOGALdo8/9rC4YAt2jz/2sLrBmUfw4AVXMFADT+YAKyvwUANP5gArK/BQA0/mACsr8FADT+YAKyv33/vplVmfw/0ehjgChpC0DR6GOAKGkLQH3/vplVmfw/xYH5f2j/LMHFgfl/aP8swcWB+X9o/yzBxYH5f2j/LMGigJsAZf8uwaKAmwBl/y7BooCbAGX/LsGigJsAZf8uwWR/X/9eArK/ZH9f/14Csr9kf1//XgKyv2R/X/9eArK/hgC3aPP/awuGALdo8/9rC9HoY4AoaQtA0ehjgChpC0CigJsAZf8uwaKAmwBl/y7BZH9f/14Csr9kf1//XgKyv33/vplVmfw/ff++mVWZ/D+sGZR/DgBVc6wZlH8OAFVz")
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d05mc"]
+atlas = ExtResource("8_d05mc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lplru"]
+atlas = ExtResource("8_d05mc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmkyy"]
+atlas = ExtResource("8_d05mc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lplru"]
+animations = [{
+"frames": [{
+"duration": 25.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lplru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmkyy")
+}, {
+"duration": 12.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lplru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmkyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lplru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmkyy")
+}, {
+"duration": 24.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}, {
+"duration": 24.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lplru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmkyy")
+}, {
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_d05mc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Blossy" instance=ExtResource("1_skdb8")]
 freeze = true
 release_mode = 1
@@ -75,5 +138,12 @@ transform = Transform3D(-0.926276, -0.00436689, 0.0130522, -0.00436359, 0.926368
 mesh = SubResource("ArrayMesh_xs4fr")
 skeleton = NodePath("../../Blossy/Cube_005")
 surface_material_override/0 = ExtResource("7_pnhhk")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="5"]
+transform = Transform3D(0.474, 0, 0, 0, 0.474, 0, 0, 0, 0.474, 0, 0.0658814, 0.0528403)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_lplru")
+autoplay = "default"
+frame_progress = 0.722115
 
 [editable path="Blossy"]
