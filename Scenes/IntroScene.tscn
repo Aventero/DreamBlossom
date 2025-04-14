@@ -20080,6 +20080,7 @@ script = ExtResource("22_qfwj1")
 
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
+visible = false
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -20089,12 +20090,15 @@ shape = SubResource("BoxShape3D_7yi6c")
 
 [node name="Bobo" parent="." instance=ExtResource("24_p3ug8")]
 transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
+visible = false
 
 [node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
 transform = Transform3D(1, 0, 0, 0, 0.987587, -0.157072, 0, 0.157072, 0.987587, 0, 1.55262, -1.35507)
+visible = false
 
 [node name="CookingArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
+visible = false
 
 [node name="CookingChest" parent="CookingArea" instance=ExtResource("26_ov5pe")]
 transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
@@ -20162,6 +20166,7 @@ shape = SubResource("ConvexPolygonShape3D_uyehh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.780494, -0.559639)
 
 [node name="ToolArea" type="Node3D" parent="."]
+visible = false
 
 [node name="ToolTable" parent="ToolArea" instance=ExtResource("32_e8j2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
