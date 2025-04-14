@@ -58,6 +58,9 @@ func update_shader_parameters(time_day: float) -> void:
 	var moon_direction = calculate_moon_direction(time_day)
 	sky_shader_material.set_shader_parameter("sun_direction", sun_direction.normalized())
 	sky_shader_material.set_shader_parameter("moon_direction", moon_direction.normalized())
+	sky_shader_material.set_shader_parameter("sun_size", 0.1)
+	sky_shader_material.set_shader_parameter("moon_size", 0.06)
+	
 	if is_sky_body_visible(sun_direction):
 		$Sun.look_at($Sun.global_transform.origin - sun_direction, Vector3.UP)
 		$Sun.visible = true
@@ -67,6 +70,7 @@ func update_shader_parameters(time_day: float) -> void:
 		world_environment.environment.background_energy_multiplier = power
 	else:
 		$Sun.visible = false
+		sky_shader_material.set_shader_parameter("sun_size", 0.01)
 
 	if is_sky_body_visible(moon_direction):
 		$Moon.look_at($Moon.global_transform.origin - moon_direction, Vector3.UP)
@@ -77,3 +81,4 @@ func update_shader_parameters(time_day: float) -> void:
 		world_environment.environment.background_energy_multiplier = power
 	else:
 		$Moon.visible = false
+		sky_shader_material.set_shader_parameter("moon_size", 0.01)

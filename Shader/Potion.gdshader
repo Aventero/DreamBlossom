@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled;
+render_mode unshaded, blend_mix, cull_disabled;
 
 instance uniform float fill_percentage;
 
