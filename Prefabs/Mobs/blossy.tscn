@@ -131,10 +131,10 @@ mesh = SubResource("ArrayMesh_gmkyy")
 skeleton = NodePath("../../Blossy/Cube_005")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="5"]
-transform = Transform3D(0.474, 0, 0, 0, 0.474, 0, 0, 0, 0.474, 0, 0.0658814, 0.0619939)
+transform = Transform3D(0.474, 0, 0, 0, 0.474, 0, 0, 0, 0.474, 0, 0.0658814, 0.0610392)
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_lplru")
 autoplay = "default"
-frame_progress = 0.472588
+frame_progress = 0.504008
 
 [editable path="Blossy"]

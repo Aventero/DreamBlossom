@@ -1,4 +1,4 @@
-[gd_scene load_steps=1319 format=4 uid="uid://cp4weqexqyej0"]
+[gd_scene load_steps=1320 format=4 uid="uid://cp4weqexqyej0"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_pquu2"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_00i8l"]
@@ -63,6 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://snrxs8kaf2cr" path="res://Prefabs/Mobs/blossomFlower.tscn" id="61_ccbjs"]
 [ext_resource type="Texture2D" uid="uid://crkunlx58vypa" path="res://Textures/UI/Frame.png" id="63_ccbjs"]
 [ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
+[ext_resource type="Script" uid="uid://b2ecieginrdv1" path="res://Scenes/UI/typewriter.gd" id="64_h56t6"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
@@ -78,21 +79,21 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.531398, -0.719455, -0.447214)
-shader_parameter/day_intensity = 0.5
+shader_parameter/sun_direction = Vector3(0.0771769, 0.891091, -0.447214)
+shader_parameter/day_intensity = 0.99627
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
-shader_parameter/sun_size = 0.0
-shader_parameter/moon_direction = Vector3(0.531398, 0.719455, -0.447214)
-shader_parameter/night_intensity = 0.804376
+shader_parameter/sun_size = 0.08
+shader_parameter/moon_direction = Vector3(-0.0771769, -0.891091, -0.447214)
+shader_parameter/night_intensity = 0.00523596
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
-shader_parameter/moon_size = 0.05
+shader_parameter/moon_size = 0.0
 
 [sub_resource type="Sky" id="Sky_eqxy8"]
 sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.0402188
+background_energy_multiplier = 0.99627
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -19975,9 +19976,8 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 21.57
+time_of_day = 11.67
 base_brightness = 0.5
-intro_brightness = 0.05
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
@@ -19988,10 +19988,9 @@ sunrise_start = 5.0
 sunrise_end = 8.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.448718, 0.0731395, -0.890672, 0, 0.996644, 0.0818413, 0.893671, 0.0367238, -0.447212, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.985432, -0.151538, 0.0771766, 0, 0.453823, 0.891088, -0.170059, 0.87811, -0.447212, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.5
+light_energy = 0.99627
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -20005,9 +20004,10 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.643902, -0.550461, 0.531399, 0, 0.694538, 0.719456, -0.765111, 0.463257, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447219, -0.00418875, 0.894416, 0, 0.999988, 0.00468319, -0.894427, 0.00209441, -0.447214, 0, 0, 0)
+visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.0402188
+light_energy = 0.025
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -24058,9 +24058,9 @@ omni_attenuation = 0.49
 transform = Transform3D(0.997007, 0.0465282, 0.0617389, -0.0450376, 0.998665, -0.0253188, -0.0628342, 0.0224619, 0.997771, 0.0144549, 1.00116, -0.784493)
 
 [node name="Textbox" type="Sprite3D" parent="Blossy"]
-transform = Transform3D(0.997007, -0.0450378, -0.0628344, 0.0465281, 0.998665, 0.0224623, 0.061739, -0.0253186, 0.997772, -0.00518295, 0.200385, 0.00331718)
+transform = Transform3D(0.997007, -0.0450378, -0.0628344, 0.0465281, 0.998665, 0.0224623, 0.061739, -0.0253186, 0.997772, -0.0066317, 0.232509, 0.00250274)
 pixel_size = 0.001
-billboard = 2
+billboard = 1
 double_sided = false
 texture_filter = 0
 texture = SubResource("ViewportTexture_h56t6")
@@ -24090,13 +24090,11 @@ size_flags_vertical = 3
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("63_ccbjs")
-region_rect = Rect2(0, 0, 96, 96)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 192, 192)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 
 [node name="MarginContainer" type="MarginContainer" parent="Blossy/Textbox/SubViewport/PanelContainer"]
 layout_mode = 2
@@ -24111,12 +24109,12 @@ custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 theme_override_constants/line_spacing = 20
 theme_override_font_sizes/font_size = 48
-text = "Hey!
-Pick me up! ... Please?"
+text = "Hey.. would u mind picking me up?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-uppercase = true
+script = ExtResource("64_h56t6")
+character_display_time = 0.07
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
