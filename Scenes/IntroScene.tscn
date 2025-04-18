@@ -1,4 +1,4 @@
-[gd_scene load_steps=1320 format=4 uid="uid://cp4weqexqyej0"]
+[gd_scene load_steps=1321 format=4 uid="uid://cp4weqexqyej0"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_pquu2"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_00i8l"]
@@ -64,6 +64,7 @@
 [ext_resource type="PackedScene" uid="uid://ceoak20m03kqt" path="res://Scenes/textbox_container.tscn" id="63_2314q"]
 [ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
 [ext_resource type="Script" uid="uid://bhbumjxuhesv3" path="res://Scripts/Tutorial/TriggerManager.gd" id="65_2314q"]
+[ext_resource type="PackedScene" uid="uid://ducw4rcae7wjl" path="res://Models/Mobs/Bobo.blend" id="65_ibkqg"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
@@ -24056,11 +24057,62 @@ blossy_pickable = NodePath("../Blossy")
 [node name="Stick_001" parent="BlossomFlower" index="0"]
 transform = Transform3D(0.985885, 0.104479, -0.130826, -0.0868961, 0.987222, 0.133571, 0.14311, -0.120317, 0.982366, -0.0060754, -0.00334728, 0.00872107)
 
+[node name="Leaf_015" parent="BlossomFlower" index="1"]
+transform = Transform3D(-0.331616, 0.168076, -0.928322, 0.137179, 0.982135, 0.128816, 0.933388, -0.0846291, -0.348749, 0.0789846, 0.219569, 0.0214439)
+
+[node name="Leaf_014" parent="BlossomFlower" index="2"]
+transform = Transform3D(0.94649, 0.231123, -0.225254, -0.267874, 0.95188, -0.14889, 0.180003, 0.201263, 0.962856, 0.0301835, 0.298617, -0.0745458)
+
+[node name="Leaf_013" parent="BlossomFlower" index="3"]
+transform = Transform3D(0.662834, 0.408451, 0.62755, 0.0167838, 0.829797, -0.557814, -0.748579, 0.38027, 0.543162, -0.0110283, 0.0173442, -0.0362541)
+
+[node name="Leaf_012" parent="BlossomFlower" index="4"]
+transform = Transform3D(-0.881836, 0.249317, 0.400258, -0.0216113, 0.826543, -0.562459, -0.47106, -0.504647, -0.723487, -0.00133153, 0.0139561, 0.0287181)
+
+[node name="Leaf_009" parent="BlossomFlower" index="5"]
+transform = Transform3D(0.184495, -0.625843, -0.757814, 0.0250274, 0.773792, -0.632945, 0.982515, 0.0978093, 0.158424, 0.0171806, -0.00215155, 0.00121886)
+
+[node name="Leaf_005" parent="BlossomFlower" index="6"]
+transform = Transform3D(-0.988389, -0.065013, 0.137336, 0.0199416, 0.840522, 0.54141, -0.150632, 0.537862, -0.829466, 0.0289398, 0.463373, -0.00865374)
+
+[node name="Leaf_004" parent="BlossomFlower" index="7"]
+transform = Transform3D(0.34132, -0.464506, 0.81715, 0.198749, 0.885367, 0.420267, -0.918695, 0.0189618, 0.394513, 0.00880157, 0.445182, -0.067522)
+
+[node name="Leaf" parent="BlossomFlower" index="8"]
+transform = Transform3D(-0.719166, 0.142915, 0.679982, 0.253675, 0.965072, 0.0654593, -0.646876, 0.21957, -0.730301, -0.030673, 0.259466, 0.018932)
+
+[node name="Blossom_003" parent="BlossomFlower" index="9"]
+transform = Transform3D(-0.757759, 0.0539819, -0.650298, -0.28364, 0.870253, 0.402752, 0.587665, 0.489639, -0.64413, -0.000923059, 1.01625, 0.00297658)
+
 [node name="Stick_002" parent="BlossomFlower" index="10"]
 transform = Transform3D(-0.967276, 0.22777, -0.111797, -0.225067, -0.973663, -0.0364034, -0.117144, -0.0100504, 0.993064, 0.0429506, 0.410763, -0.0441487)
 
 [node name="Stick_004" parent="BlossomFlower" index="11"]
 transform = Transform3D(-0.526212, 0.113945, -0.842685, -0.127492, 0.969209, 0.210665, 0.840742, 0.21829, -0.495482, -0.0313922, 0.762739, -0.0431108)
+
+[node name="Leaf_001" parent="BlossomFlower" index="12"]
+transform = Transform3D(-0.130173, 0.146376, -0.980627, 0.00935009, 0.98918, 0.146412, 0.991447, 0.00988998, -0.130134, 0.075237, 0.463728, -0.0278381)
+
+[node name="Leaf_002" parent="BlossomFlower" index="13"]
+transform = Transform3D(-0.0414477, 0.0765164, -0.996207, 0.149685, 0.986286, 0.0695268, 0.987865, -0.146236, -0.0523327, -0.000370713, 0.756994, -0.027838)
+
+[node name="Leaf_003" parent="BlossomFlower" index="14"]
+transform = Transform3D(0.290093, -0.376791, 0.879701, -0.0298676, 0.915217, 0.401853, -0.956532, -0.142849, 0.254245, -0.0590001, 0.71787, -0.0770825)
+
+[node name="Blossom_001" parent="BlossomFlower" index="15"]
+transform = Transform3D(-0.657505, -0.739561, -0.144003, -0.573682, 0.367499, 0.732006, -0.488442, 0.56391, -0.665905, -0.0505041, 0.787846, -0.00407439)
+
+[node name="Blossom_002" parent="BlossomFlower" index="16"]
+transform = Transform3D(-0.872899, 0.0539814, -0.484905, -0.196996, 0.870252, 0.451501, 0.446363, 0.489639, -0.749008, 0.000688453, 1.04223, 0.0175932)
+
+[node name="Leaf_006" parent="BlossomFlower" index="17"]
+transform = Transform3D(0.401995, -0.578607, 0.709657, 0.511778, 0.784657, 0.349854, -0.759265, 0.222547, 0.611546, -0.011203, 1.02569, 0.0124585)
+
+[node name="Leaf_007" parent="BlossomFlower" index="18"]
+transform = Transform3D(0.815215, 0.229154, -0.531897, 0.104339, 0.845258, 0.524073, 0.569683, -0.482729, 0.665157, 0.0285737, 1.01297, 0.0124585)
+
+[node name="Leaf_008" parent="BlossomFlower" index="19"]
+transform = Transform3D(-0.629627, 0.606711, -0.485253, -0.0237292, 0.609295, 0.792589, 0.776535, 0.51055, -0.369232, 0.00392557, 1.00663, 0.0384014)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BlossomFlower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018776, 1.50767, 0.38591)
@@ -24114,6 +24166,9 @@ event_name_at = Dictionary[int, String]({
 
 [node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="TriggerManager"]
 transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
+
+[node name="Bobo2" parent="." instance=ExtResource("65_ibkqg")]
+transform = Transform3D(0.447806, 0, 0.894131, 0, 1, 0, -0.894131, 0, 0.447806, -1.72516, 0.0371627, -1.10685)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
