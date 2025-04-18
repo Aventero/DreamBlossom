@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6y1o1da4uelj"]
+[gd_scene load_steps=17 format=4 uid="uid://b6y1o1da4uelj"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_skdb8"]
 [ext_resource type="PackedScene" uid="uid://dgw24nv5ntyk" path="res://Models/Mobs/Blossy.blend" id="2_3fk7k"]
+[ext_resource type="Script" uid="uid://c5o7kotpil6cn" path="res://Prefabs/Mobs/blossy.gd" id="2_lplru"]
 [ext_resource type="Material" uid="uid://dpaax4ixvdosq" path="res://Materials/Outline.tres" id="3_d05mc"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_xs4fr"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="5_pnhhk"]
@@ -102,6 +103,7 @@ animations = [{
 
 [node name="Blossy" instance=ExtResource("1_skdb8")]
 freeze = true
+script = ExtResource("2_lplru")
 release_mode = 1
 
 [node name="CollisionShape3D" parent="." index="0"]

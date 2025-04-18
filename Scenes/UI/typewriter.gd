@@ -1,4 +1,5 @@
 @tool
+class_name TypeWriter
 extends Label
 signal text_completed
 
@@ -15,11 +16,12 @@ func _ready() -> void:
 	add_child(_timer)
 	_timer.one_shot = true
 	_timer.timeout.connect(_display_next_character)
-	
-	display_text("Some text")
 
 func show_text():
-	display_text("Hey.. would u mind picking me up?")
+	display_text("Hey..\n would u mind picking me up? \n or \n not")
+
+func is_displaying() -> bool:
+	return _current_position < _full_text.length()
 
 # Start the typing effect with new text
 func display_text(new_text: String) -> void:
@@ -27,19 +29,19 @@ func display_text(new_text: String) -> void:
 	_current_position = 0
 	text = ""
 	
-	# Start displaying characters
 	_timer.start(character_display_time)
 
 func _display_next_character() -> void:
 	if _current_position < _full_text.length():
 		text += _full_text[_current_position]
 		_current_position += 1
+		custom_minimum_size.x = min(800, 100 + _current_position * 20)
 		_timer.start(character_display_time)
 	else:
-		emit_signal("text_completed")
+		text_completed.emit()
 
 func show_full_text() -> void:
 	text = _full_text
 	_current_position = _full_text.length()
 	_timer.stop()
-	emit_signal("text_completed")
+	text_completed.emit()
