@@ -24168,7 +24168,7 @@ event_name_at = Dictionary[int, String]({
 transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
 
 [node name="Bobo2" parent="." instance=ExtResource("65_ibkqg")]
-transform = Transform3D(0.447806, 0, 0.894131, 0, 1, 0, -0.894131, 0, 0.447806, -1.72516, 0.0371627, -1.10685)
+transform = Transform3D(0.909338, 0, 0.416059, 0, 1, 0, -0.416059, 0, 0.909338, -1.44478, 0, -2.21181)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhng8xmnvxwi7"]
+
+[ext_resource type="PackedScene" uid="uid://ducw4rcae7wjl" path="res://Models/Mobs/Bobo.blend" id="1_ys6kk"]
+
+[node name="Bobo2" instance=ExtResource("1_ys6kk")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0.444444, 0.0581291, 0.373061)
+bones/1/position = Vector3(-0.444444, 0.0581291, 0.373061)
+bones/2/position = Vector3(0.444402, 0.0478643, -0.403175)
+bones/3/position = Vector3(-0.4444, 0.0479755, -0.402085)
+bones/4/position = Vector3(0, 0.566756, -1.89441)
+bones/4/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/5/rotation = Quaternion(1, 2.27192e-28, -1.19209e-07, -2.98023e-08)
+bones/6/position = Vector3(2.29339e-08, 1.02022, 0.191153)
+bones/6/rotation = Quaternion(-0.730833, -8.11473e-08, 8.73268e-08, 0.682556)
+bones/7/rotation = Quaternion(0.98607, -3.37077e-07, -2.23343e-06, 0.16633)
+bones/8/rotation = Quaternion(-0.90463, -0.0980108, -0.0747818, 0.407978)
+bones/9/rotation = Quaternion(0.460171, -0.00145714, 0.216892, 0.860929)
+bones/10/rotation = Quaternion(-0.737712, 0.0626784, -0.106573, 0.663698)
+bones/11/rotation = Quaternion(-0.90463, 0.0980109, 0.0747821, 0.407978)
+bones/12/rotation = Quaternion(0.460171, 0.00145717, -0.216892, 0.860929)
+bones/13/rotation = Quaternion(-0.737712, -0.0626784, 0.106573, 0.663697)
+bones/14/rotation = Quaternion(-0.37428, 1.21951e-07, 5.60309e-08, 0.927316)
+bones/15/rotation = Quaternion(-0.564576, -0.0445329, -0.118261, 0.81565)
+bones/16/rotation = Quaternion(0.581525, 0.0244618, 0.2303, 0.779867)
+bones/17/rotation = Quaternion(-0.903189, 0.066713, -0.112128, 0.408933)
+bones/18/rotation = Quaternion(0.0935694, -5.71934e-09, 1.00896e-08, 0.995613)
+bones/19/rotation = Quaternion(0.326858, -5.27872e-09, -1.72977e-08, 0.945074)
+bones/20/rotation = Quaternion(0.21201, -4.14799e-09, -1.25678e-08, 0.977267)
+bones/21/rotation = Quaternion(-0.220717, -3.72497e-09, 1.22288e-08, 0.975338)
+bones/22/rotation = Quaternion(-0.565463, 0.044658, 0.118437, 0.815003)
+bones/23/rotation = Quaternion(0.581939, -0.024399, -0.23063, 0.779462)
+bones/24/rotation = Quaternion(-0.902943, -0.0668067, 0.112276, 0.40942)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="14"]
+bone_name = "Head_2"
+bone_idx = 7
