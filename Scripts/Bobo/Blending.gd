@@ -123,8 +123,8 @@ func munch(repeat_count: int = 5) -> void:
 		tween.tween_interval(0.1)
 	
 	# Finish with satisfied expression
-	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Reduce happy expression
 	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Fade out happy expression
 
@@ -140,13 +140,11 @@ func close_mouth() -> void:
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(head, "blend_shapes/Mouth", 0.0, 0.5)
 	
-	# ATTACK - with squish
 	var attack_tween = tween.chain()
 	attack_tween.set_ease(Tween.EASE_OUT)
 	attack_tween.set_trans(Tween.TRANS_BACK)
 	attack_tween.tween_property(head, "blend_shapes/Squish", 0.5, 0.1)
 	
-	# Return from squish with elastic bounce
 	var bounce_tween = tween.chain()
 	bounce_tween.set_ease(Tween.EASE_OUT)
 	bounce_tween.set_trans(Tween.TRANS_BACK)
@@ -154,5 +152,3 @@ func close_mouth() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-	#head.set_blend_shape_value(head.find_blend_shape_by_name("Mouth"), blend_open)
-	#head.set_blend_shape_value(head.find_blend_shape_by_name("Blink"), blend_open)
