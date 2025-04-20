@@ -64,7 +64,7 @@
 [ext_resource type="PackedScene" uid="uid://ceoak20m03kqt" path="res://Scenes/textbox_container.tscn" id="63_2314q"]
 [ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
 [ext_resource type="Script" uid="uid://bhbumjxuhesv3" path="res://Scripts/Tutorial/TriggerManager.gd" id="65_2314q"]
-[ext_resource type="PackedScene" uid="uid://ducw4rcae7wjl" path="res://Models/Mobs/Bobo.blend" id="65_ibkqg"]
+[ext_resource type="PackedScene" uid="uid://fbk7sxto6rte" path="res://bobo_2.tscn" id="65_ibkqg"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
 offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
@@ -24168,7 +24168,6 @@ event_name_at = Dictionary[int, String]({
 transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
 
 [node name="Bobo2" parent="." instance=ExtResource("65_ibkqg")]
-transform = Transform3D(0.909338, 0, 0.416059, 0, 1, 0, -0.416059, 0, 0.909338, -1.44478, 0, -2.21181)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
