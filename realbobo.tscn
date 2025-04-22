@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://65ren1aynfk5" path="res://Scripts/Bobo/Blending.gd" id="2_l7kfl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q270a"]
-size = Vector3(0.626526, 0.95374, 0.567348)
+size = Vector3(0.626526, 1.08039, 0.469718)
 
 [node name="Bobo" instance=ExtResource("1_q270a")]
 transform = Transform3D(0.999999, 0.00147564, -0.000608615, -0.00147633, 0.999998, -0.00112791, 0.000606952, 0.0011288, 0.999999, 0, 0, 0)
@@ -45,15 +45,15 @@ bones/30/rotation = Quaternion(0.762015, -9.48031e-05, -0.200944, 0.615592)
 bones/31/rotation = Quaternion(-0.730234, -0.0915849, 0.0304958, 0.676344)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 0.000263256, -0.000706275, -0.000753732, 0.35426, -0.935146, 4.02253e-06, 0.935147, 0.35426, 0, 1.24395, 0.559801)
+transform = Transform3D(1, 0.000263255, -0.000706274, -0.000753731, 0.35426, -0.935146, 4.02232e-06, 0.935147, 0.35426, 4.61853e-14, 1.24396, 0.559802)
 bone_name = "Head_2"
 bone_idx = 7
 
 [node name="Ingredient Trigger" type="Area3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.917193, -0.398445, 0, 0.398445, 0.917192, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.917192, -0.398445, 0, 0.398445, 0.917192, 0, 0, 0)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/Ingredient Trigger" index="0"]
-transform = Transform3D(0.999923, -1.5425e-08, -1.38214e-07, -2.4389e-08, 0.90768, -0.419461, 7.17864e-08, 0.419464, 0.907677, -0.0055239, 0.317291, 0.0911205)
+transform = Transform3D(1, -7.93906e-09, -7.53222e-08, -2.43909e-08, 0.907756, -0.419499, 7.17046e-08, 0.419499, 0.907756, -0.00552392, 0.339951, 0.193022)
 shape = SubResource("BoxShape3D_q270a")

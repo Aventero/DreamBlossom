@@ -161,7 +161,7 @@ func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)
 
-func _on_ingredient_trigger_body_entered(ingredient):
+func _on_ingredient_trigger_body_entered(ingredient: Ingredient):
 	# Check if order is existing and order is currently running
 	if not GameBase.level.current_order or GameBase.level.current_order and not GameBase.level.current_order.is_running():
 		return
@@ -177,16 +177,18 @@ func _on_ingredient_trigger_body_entered(ingredient):
 	GameBase.level.current_order.add_to_order(ingredient.type)
 	
 	# Play eating animation
-	munch(3)
+	var tween = create_tween()
+	tween.tween_callback(open_mouth)
+	tween.tween_interval(1.0)
+	tween.tween_callback(munch.bind(3))
 	
 	# Despawn ingredient
 	ingredient.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	ingredient.freeze = true
 	
-	var tween : Tween = create_tween()
-	tween.tween_property(ingredient, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
-	
-	await tween.finished
+	var indigrent_tween : Tween = create_tween()
+	indigrent_tween.tween_property(ingredient, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
+	await indigrent_tween.finished
 	
 	if ingredient and not ingredient.is_queued_for_deletion():
 		ingredient.queue_free()
