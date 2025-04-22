@@ -34,7 +34,7 @@ project/assembly_name="Dreamblossom"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/godot-xr-tools/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 
@@ -76,7 +76,7 @@ jolt_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 textures/lossless_compression/force_png=true
@@ -86,8 +86,8 @@ shading/overrides/force_lambert_over_burley=true
 textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/quality/msaa_3d=3
 scaling_3d/scale=0.8
-textures/decals/filter=0
-textures/light_projectors/filter=0
+textures/decals/filter=4
+textures/light_projectors/filter=4
 anti_aliasing/quality/screen_space_aa=1
 
 [xr]
