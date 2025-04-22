@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://cp4weqexqyej0"]
+[gd_scene load_steps=90 format=4 uid="uid://cp4weqexqyej0"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_pquu2"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_00i8l"]
@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="28_77opt"]
 [ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="29_m2l00"]
 [ext_resource type="Texture2D" uid="uid://w6eurr5p0d0m" path="res://Textures/Environment/Rocks.png" id="30_00hx1"]
-[ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Planting/Fruits/ShroomieFruit.tscn" id="31_eql3q"]
 [ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="32_e8j2b"]
 [ext_resource type="Script" uid="uid://bx3mxb3x0bxt7" path="res://Scripts/Farmland/Seeds/SeedBagsEnabler.gd" id="33_gr3yr"]
 [ext_resource type="PackedScene" uid="uid://qfk5xbklb4np" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShroomieSeedBag.tscn" id="34_k5cle"]
@@ -51,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://bqc273c7ufm2u" path="res://Prefabs/RealEnvironemtn.tscn" id="49_254s0"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="53_6ojh6"]
 [ext_resource type="PackedScene" uid="uid://cuechsdt8ob0m" path="res://Prefabs/shield.tscn" id="56_7eudh"]
+[ext_resource type="PackedScene" uid="uid://cpxghwcmct20q" path="res://Prefabs/clock.tscn" id="57_4cmys"]
 [ext_resource type="PackedScene" uid="uid://snrxs8kaf2cr" path="res://Prefabs/Mobs/blossomFlower.tscn" id="61_ccbjs"]
 [ext_resource type="PackedScene" uid="uid://ceoak20m03kqt" path="res://Scenes/textbox_container.tscn" id="63_2314q"]
 [ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
@@ -71,21 +71,21 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.775765, -0.445184, -0.447214)
-shader_parameter/day_intensity = 0.69
+shader_parameter/sun_direction = Vector3(-0.516214, 0.730426, -0.447214)
+shader_parameter/day_intensity = 0.816642
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
-shader_parameter/sun_size = 0.0
-shader_parameter/moon_direction = Vector3(0.775765, 0.445184, -0.447214)
-shader_parameter/night_intensity = 0.497731
+shader_parameter/sun_size = 0.08
+shader_parameter/moon_direction = Vector3(0.516214, -0.730426, -0.447214)
+shader_parameter/night_intensity = 0.028794
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
-shader_parameter/moon_size = 0.05
+shader_parameter/moon_size = 0.0
 
 [sub_resource type="Sky" id="Sky_eqxy8"]
 sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.69
+background_energy_multiplier = 0.816642
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -106,9 +106,9 @@ fog_sun_scatter = 0.03
 fog_density = 1.0
 fog_aerial_perspective = 0.2
 fog_sky_affect = 0.0
-fog_depth_curve = 0.63728
+fog_depth_curve = 0.87055
 fog_depth_begin = 0.0
-fog_depth_end = 18.0
+fog_depth_end = 15.0
 volumetric_fog_ambient_inject = 0.61
 volumetric_fog_sky_affect = 0.167
 adjustment_saturation = 1.25
@@ -145,6 +145,13 @@ texture = ExtResource("15_ccbjs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31t65"]
 size = Vector3(20, 0.1, 20)
+
+[sub_resource type="Curve3D" id="Curve3D_7eudh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.01428, -1.17238e-07, -10.7171, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.82, 0, -0.21, 0, 0, 0, -1.117, 0, -0.52),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvd5p"]
 resource_name = "Rock"
@@ -392,7 +399,7 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 19.99
+time_of_day = 14.35
 base_brightness = 0.69
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
@@ -404,10 +411,9 @@ sunrise_start = 5.0
 sunrise_end = 8.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447257, 0.0125655, -0.894314, 0, 0.9999, 0.014049, 0.894404, 0.00628354, -0.447212, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.654786, 0.552065, -0.516213, 0, 0.68299, 0.730424, 0.755813, 0.478273, -0.447212, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.69
+light_energy = 0.816642
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -422,7 +428,8 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.499436, -0.385685, 0.775766, 0, 0.895438, 0.445185, -0.866354, 0.22234, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447363, -0.0230332, 0.894058, 0, 0.999667, 0.0257541, -0.894355, 0.0115214, -0.447214, 0, 0, 0)
+visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 light_energy = 0.69
 shadow_enabled = true
@@ -515,13 +522,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
 visible = false
 
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
+curve = SubResource("Curve3D_7eudh")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.248074, 0, -0.968668, 0, 1, 0, 0.968668, 0, -0.248074, -1.117, 0, -0.52)
+progress = 13.2
+rotation_mode = 1
+
+[node name="Bobo2" parent="Path3D/PathFollow3D" instance=ExtResource("65_ibkqg")]
+transform = Transform3D(-0.998191, 0.00147564, -0.0600926, 0.00140514, 0.999998, 0.00121543, 0.0600947, 0.0011288, -0.998191, 0, 0, 0)
+
 [node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
-transform = Transform3D(1, 0, 0, 0, 0.987587, -0.157072, 0, 0.157072, 0.987587, 0, 1.55262, -1.35507)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00378711, 0, 0.00378711, 0.999993, 0, 1.84455, -1.29436)
 
 [node name="CookingArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
-visible = false
 
 [node name="CookingChest" parent="CookingArea" instance=ExtResource("26_ov5pe")]
 transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
@@ -584,9 +601,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
 shape = SubResource("ConvexPolygonShape3D_uyehh")
-
-[node name="Shroomie" parent="CookingArea" instance=ExtResource("31_eql3q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.780494, -0.559639)
 
 [node name="Environment" parent="." instance=ExtResource("49_254s0")]
 
@@ -751,7 +765,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015788, -0.035488, -0.83170
 blossy_pickable = NodePath("../Blossy")
 
 [node name="Stick_001" parent="BlossomFlower" index="0"]
-transform = Transform3D(0.985885, 0.104479, -0.130826, -0.086896, 0.987222, 0.133571, 0.14311, -0.120317, 0.982366, -0.0060754, -0.00334728, 0.00872107)
+transform = Transform3D(0.985885, 0.104479, -0.130826, -0.0868959, 0.987222, 0.133571, 0.14311, -0.120317, 0.982366, -0.0060754, -0.00334728, 0.00872107)
 
 [node name="Leaf_015" parent="BlossomFlower" index="1"]
 transform = Transform3D(-0.331616, 0.168076, -0.928322, 0.137179, 0.982135, 0.128816, 0.933388, -0.0846291, -0.348749, 0.0789846, 0.219569, 0.0214439)
@@ -812,6 +826,7 @@ transform = Transform3D(-0.629627, 0.606711, -0.485253, -0.0237292, 0.609295, 0.
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BlossomFlower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018776, 1.50767, 0.38591)
+visible = false
 light_color = Color(1, 0.78279, 0.973629, 1)
 omni_range = 1.664
 omni_attenuation = 0.49
@@ -862,11 +877,11 @@ event_name_at = Dictionary[int, String]({
 [node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="TriggerManager"]
 transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
 
-[node name="Bobo2" parent="." instance=ExtResource("65_ibkqg")]
-transform = Transform3D(0.27221, 0.00147564, 0.962236, 0.000684493, 0.999998, -0.00172719, -0.962237, 0.0011288, 0.272209, -2.058, 0, -0.477)
+[node name="Shield" parent="." instance=ExtResource("56_7eudh")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
 
-[node name="Shield2" parent="." instance=ExtResource("56_7eudh")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.50854, -1.42255)
+[node name="Clock" parent="Shield" instance=ExtResource("57_4cmys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.466956)
 
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]

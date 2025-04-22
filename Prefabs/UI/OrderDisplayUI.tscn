@@ -6,12 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c2brwollsl8x0" path="res://Textures/Bobo/Bobo_Waiting.png" id="2_hvxfd"]
 [ext_resource type="Texture2D" uid="uid://cc84w1x7eq2f1" path="res://Textures/Bobo/Bobo_Incoming_Order.png" id="5_s38yx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6gms"]
-bg_color = Color(0.027451, 0.0705882, 0.117647, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgbk2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vr3s"]
 atlas = ExtResource("2_hvxfd")
@@ -413,7 +408,7 @@ func _ready():
 [node name="Order Display" type="Panel"]
 offset_right = 800.0
 offset_bottom = 503.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_m6gms")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vgbk2")
 script = ExtResource("1_y016w")
 
 [node name="Awaiting Screen" type="CenterContainer" parent="."]
@@ -612,7 +607,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.0443967
+rotation = 0.04043
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("1_5ix4g")
 expand_mode = 2
@@ -635,7 +630,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.0443967
+rotation = 0.04043
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("1_5ix4g")
 expand_mode = 2
@@ -690,7 +685,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.0443967
+rotation = 0.04043
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("2_4jo1n")
 expand_mode = 2
@@ -713,7 +708,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.0443967
+rotation = 0.04043
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("2_4jo1n")
 expand_mode = 2
