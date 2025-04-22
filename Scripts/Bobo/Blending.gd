@@ -10,6 +10,10 @@ extends Node3D
 @export_tool_button("OpenMouth") var open = open_mouth
 @export_tool_button("CloseMouth") var close = close_mouth
 
+@export var max_order_fails : int = 3
+
+var _failed_orders : int = 0
+
 func blink() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -152,3 +156,59 @@ func close_mouth() -> void:
 
 func _process(_delta: float) -> void:
 	pass
+
+func setup() -> void:
+	# Connect new_order event from current level
+	GameBase.level.new_order.connect(_on_new_order)
+
+func _on_ingredient_trigger_body_entered(ingredient):
+	# Check if order is existing and order is currently running
+	if not GameBase.level.current_order or GameBase.level.current_order and not GameBase.level.current_order.is_running():
+		return
+	
+	if not ingredient is Ingredient:
+		return
+	
+	# Check if ingredient is still required in order
+	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
+		return
+	
+	# Add ingredient to order
+	GameBase.level.current_order.add_to_order(ingredient.type)
+	
+	# Play eating animation
+	munch(3)
+	
+	# Despawn ingredient
+	ingredient.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	ingredient.freeze = true
+	
+	var tween : Tween = create_tween()
+	tween.tween_property(ingredient, "scale", Vector3(0.001, 0.001, 0.001), 0.5)
+	
+	await tween.finished
+	
+	if ingredient and not ingredient.is_queued_for_deletion():
+		ingredient.queue_free()
+
+func _on_new_order(order : Order) -> void:
+	# Connect complete event
+	order.completed.connect(_on_order_complete)
+
+func _on_order_complete(success : bool) -> void:
+	if success:
+		return
+	
+	# Update failed orders counter
+	_failed_orders += 1
+	
+	if _failed_orders >= max_order_fails:
+		_bobo_death()
+
+func _bobo_death() -> void:
+	print("Bobo killed you. Oh my.")
+	
+	# TODO - Play jumpscare
+	
+	# Load level failed scene
+	owner.level_failed()

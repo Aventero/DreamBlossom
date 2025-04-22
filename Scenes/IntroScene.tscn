@@ -148,7 +148,7 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="Curve3D" id="Curve3D_7eudh"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.01428, -1.17238e-07, -10.7171, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.82, 0, -0.21, 0, 0, 0, -1.117, 0, -0.52),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.82, 0, -0.21, 0, 0, 0, -1.23144, 7.10543e-15, -0.549307),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -527,8 +527,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.248074, 0, -0.968668, 0, 1, 0, 0.968668, 0, -0.248074, -1.117, 0, -0.52)
-progress = 13.2
+transform = Transform3D(-0.248071, 0, -0.968658, 0, 1, 0, 0.968658, 0, -0.248071, -1.23144, 3.55271e-15, -0.549307)
+progress = 17.6151
 rotation_mode = 1
 
 [node name="Bobo2" parent="Path3D/PathFollow3D" instance=ExtResource("65_ibkqg")]
