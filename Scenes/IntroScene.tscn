@@ -148,7 +148,7 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="Curve3D" id="Curve3D_7eudh"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.82, 0, -0.21, 0, 0, 0, -1.23144, 7.10543e-15, -0.549307),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.43, 0, -0.21, 0, 0, 0, -1.18043, 1.37363e-06, -1.01826),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -411,7 +411,7 @@ sunrise_start = 5.0
 sunrise_end = 8.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.654786, 0.552065, -0.516213, 0, 0.68299, 0.730424, 0.755813, 0.478273, -0.447212, 0, 0, 0)
+transform = Transform3D(-0.654786, 0.552065, -0.516213, 0, 0.68299, 0.730424, 0.755813, 0.478272, -0.447212, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
 light_energy = 0.816642
 shadow_enabled = true
@@ -527,7 +527,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.248071, 0, -0.968656, 0, 1, 0, 0.968656, 0, -0.248071, -1.23144, 3.55271e-15, -0.549307)
+transform = Transform3D(-0.438798, 0, -0.898492, 0, 1, 0, 0.898492, 0, -0.438798, -1.18043, 1.37363e-06, -1.01826)
 progress = 17.6151
 rotation_mode = 1
 
