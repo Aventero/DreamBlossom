@@ -148,7 +148,7 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="Curve3D" id="Curve3D_7eudh"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -3.70325, 1.11071e-05, -7.02184, -0.43, 0, -0.21, 0, 0, 0, -1.18043, 1.37363e-06, -1.01826),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -4.50138, 1.05556e-05, -6.99395, -0.43, 0, -0.21, 0, 0, 0, -1.26041, 1.37363e-06, -1.05732),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -527,12 +527,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.438798, 0, -0.898492, 0, 1, 0, 0.898492, 0, -0.438798, -1.18043, 1.37363e-06, -1.01826)
-progress = 17.6151
+transform = Transform3D(-0.438796, 0, -0.898486, 0, 1, 0, 0.898486, 0, -0.438796, -1.26041, 1.37363e-06, -1.05732)
+progress = 17.0236
 rotation_mode = 1
 
 [node name="Bobo2" parent="Path3D/PathFollow3D" instance=ExtResource("65_ibkqg")]
-transform = Transform3D(-0.998191, 0.00147564, -0.0600926, 0.00140514, 0.999998, 0.00121543, 0.0600947, 0.0011288, -0.998191, 0, 0, 0)
+transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
 
 [node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
 transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00378711, 0, 0.00378711, 0.999993, 0, 1.84455, -1.29436)
@@ -765,7 +765,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015788, -0.035488, -0.83170
 blossy_pickable = NodePath("../Blossy")
 
 [node name="Stick_001" parent="BlossomFlower" index="0"]
-transform = Transform3D(0.985885, 0.104479, -0.130826, -0.0868959, 0.987222, 0.133571, 0.14311, -0.120317, 0.982366, -0.0060754, -0.00334728, 0.00872107)
+transform = Transform3D(0.985885, 0.104479, -0.130826, -0.0868958, 0.987222, 0.133571, 0.14311, -0.120317, 0.982366, -0.0060754, -0.00334728, 0.00872107)
 
 [node name="Leaf_015" parent="BlossomFlower" index="1"]
 transform = Transform3D(-0.331616, 0.168076, -0.928322, 0.137179, 0.982135, 0.128816, 0.933388, -0.0846291, -0.348749, 0.0789846, 0.219569, 0.0214439)
