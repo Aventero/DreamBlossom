@@ -290,7 +290,7 @@ sprite_frames = SubResource("SpriteFrames_4cn5f")
 autoplay = "default"
 frame_progress = 0.882705
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" node_paths=PackedStringArray("timer")]
 texture_filter = 1
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
@@ -299,3 +299,7 @@ theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("3_4xhnv")
+timer = NodePath("../../../Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -17,7 +17,7 @@ static var level_id : int
 @onready var cauldron : Cauldron = $"ToolArea/Cauldron"
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
 @onready var order_display : OrderDisplay = $OrderDisplay
-@onready var bobo : Bobo = $Bobo
+@onready var bobo : Bobo = $BoboPath3D/BoboPathFollow3D/Bobo
 
 @onready var hands : Array[XRToolsFunctionPickup] = [
 	$"XROrigin3D/Left Hand/CollisionHandLeft/FunctionPickup",

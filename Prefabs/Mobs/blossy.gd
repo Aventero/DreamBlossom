@@ -29,5 +29,5 @@ func squish():
 	tween.tween_property(self, "scale", Vector3(0.9, 1.1, 0.9), 0.1)
 	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.1)
 
-func _on_action_pressed(pickable: XRToolsPickable) -> void:
+func _on_action_pressed(_pickable: XRToolsPickable) -> void:
 	squish()

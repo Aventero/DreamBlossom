@@ -1,5 +1,4 @@
 @icon("res://Textures/Bobo/Bobo.png")
-class_name Bobo
 extends Node3D
 
 @export var max_order_fails : int = 3

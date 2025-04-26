@@ -1,18 +1,49 @@
 @tool
 extends Node3D
+class_name Bobo
+
+signal bobo_sat_down
 
 @export_range(0.0, 1.0) var blend_open: float = 0
+@export var player_camera: Camera3D
 @onready var head: MeshInstance3D = $Armature/Skeleton3D/Head
+@onready var animation_tree: AnimationTree = $AnimationTree
+@export var nose_bone: BoneAttachment3D
+
+# Blending
 @export_tool_button("Blink") var blinking = blink
 @export_tool_button("Yawn") var yawning = yawn
 @export_tool_button("Attack") var attacking = attack
 @export_tool_button("Munch") var munching = munch.bind(3)
 @export_tool_button("OpenMouth") var open = open_mouth
 @export_tool_button("CloseMouth") var close = close_mouth
-
 @export var max_order_fails : int = 3
 
 var _failed_orders : int = 0
+
+# Animations
+
+# Head 
+@export var head_turn_influence: float = 0.5
+@export var head_turn_speed: float = 2.0
+@onready var skeleton: Skeleton3D = $Armature/Skeleton3D
+@onready var head_bone: int = skeleton.find_bone("Head_2")
+var current_head_pose: Transform3D
+var target_head_pose: Transform3D
+
+# Eye
+@export var eye_look_weight: float = 10
+@export var eye_turn_speed: float = 5.0
+
+# Blinking, yawning, breathing
+var blink_timer: float = 0.0
+var next_blink_time: float = randf_range(2.0, 7.0)
+var yawn_timer: float = 0.0
+var next_yawn_time: float = randf_range(30.0, 60.0)
+var breathe_timer: float = 0.0
+var next_breath_time: float = 8.0
+var is_yawning = false
+
 
 func blink() -> void:
 	var tween = create_tween()
@@ -26,6 +57,7 @@ func blink() -> void:
 	tween.tween_property(head, "blend_shapes/Blink", 0.0, 0.2)
 
 func yawn() -> void:
+	is_yawning = true
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
@@ -48,7 +80,19 @@ func yawn() -> void:
 	tween.parallel().tween_property(head, "blend_shapes/Blink", 0.0, 0.4)
 	tween.parallel().tween_property(head, "blend_shapes/Nose", 0.0, 0.4)
 	tween.parallel().tween_property(head, "blend_shapes/Sad", 0.0, 0.4)
-	
+	tween.tween_callback(func(): is_yawning = false)
+
+func breathe() -> void:
+	if is_yawning:
+		return
+		
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Nose", 0.7, 2.0)
+	tween.tween_interval(1.0)
+	tween.tween_property(head, "blend_shapes/Nose", 0.0, 3.0)
+
 func attack() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -154,9 +198,98 @@ func close_mouth() -> void:
 	bounce_tween.set_trans(Tween.TRANS_BACK)
 	bounce_tween.tween_property(head, "blend_shapes/Squish", 0.0, 0.25)
 
-func _process(_delta: float) -> void:
-	pass
+func sit_down() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(animation_tree, "parameters/WalkToSit/blend_position", 1.0, 3.0).from(-1.0)
+	tween.tween_callback(bobo_sat_down.emit.bind())
 
+
+func _ready() -> void:
+	if skeleton:
+		current_head_pose = skeleton.get_bone_global_pose(head_bone)
+
+func _process(delta: float) -> void:
+	# chance to blink
+	handle_random_blinking(delta)
+	handle_random_yawning(delta)
+	handle_breathing(delta)
+	
+	if player_camera:
+		head_movement(delta)
+		look_at_player_camera(delta)
+
+func handle_random_blinking(delta: float) -> void:
+	blink_timer += delta
+	if blink_timer >= next_blink_time:
+		blink()
+		blink_timer = 0.0
+		next_blink_time = randf_range(2.0, 7.0)
+
+func handle_random_yawning(delta: float) -> void:
+	yawn_timer += delta
+	if yawn_timer >= next_yawn_time:
+		yawn()
+		yawn_timer = 0.0
+		next_yawn_time = randf_range(30.0, 90.0)
+
+func handle_breathing(delta: float) -> void:
+	breathe_timer += delta
+	if breathe_timer >= next_breath_time:
+		breathe_timer = 0
+		breathe()
+
+func head_movement(delta: float) -> void:
+	# Get the current animated pose
+	var animated_pose: Transform3D = skeleton.get_bone_global_pose(head_bone)
+	
+	# Target position in local space
+	var local_target = skeleton.global_transform.affine_inverse() * player_camera.global_position
+	
+	# Create the target pose that looks at the player while preserving the up direction
+	target_head_pose = animated_pose.looking_at(local_target, Vector3.UP)
+	
+	# Interpolate between current and target poses using delta
+	current_head_pose = current_head_pose.interpolate_with(target_head_pose, delta * head_turn_speed)
+	
+	# Apply the override with partial weight
+	skeleton.set_bone_global_pose_override(head_bone, current_head_pose, head_turn_influence, true)
+
+func look_at_player_camera(delta: float) -> void:
+	# Get direction to player_camera
+	var direction = nose_bone.global_transform.origin.direction_to(player_camera.global_transform.origin)
+	var distance = nose_bone.global_transform.origin.distance_to(player_camera.global_transform.origin)
+	
+	# Only look if player_camera is within range
+	var max_look_distance = 10.0
+	if distance > max_look_distance:
+		# Reset look values when player_camera is too far
+		head.set("blend_shapes/LookHorizontal", 0)
+		head.set("blend_shapes/LookVertical", 0)
+		return
+	
+	var local_direction = nose_bone.global_transform.basis.inverse() * direction
+	
+	# Calculate horizontal and vertical components
+	# X is left/right, Y is up/down, Z is forward/back
+	var horizontal = local_direction.x
+	var vertical = local_direction.y
+	
+	# Gradually adjust the blend shape values for smooth look
+	var current_look_h = head.get("blend_shapes/LookHorizontal")
+	var current_look_v = head.get("blend_shapes/LookVertical")
+	
+	var strength = (1.0 - (distance / max_look_distance)) * eye_look_weight
+	var target_look_h = clamp(horizontal * strength, -1.0, 1.0)
+	var target_look_v = clamp(vertical * strength, -1.0, 1.0)
+	
+	# Use lerp for smooth movement
+	head.set("blend_shapes/LookHorizontal", lerp(current_look_h, target_look_h, delta * eye_turn_speed))
+	head.set("blend_shapes/LookVertical", lerp(current_look_v, target_look_v, delta * eye_turn_speed))
+
+
+# Game mechanics ####
 func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)

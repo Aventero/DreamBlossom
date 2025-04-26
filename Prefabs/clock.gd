@@ -19,7 +19,7 @@ func _update_clock_rotation():
 	var angle = time_of_day * 360.0 / 24.0
 	clock_hand.rotation.y = -deg_to_rad(angle)
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		# You can uncomment the below code to see the clock animate in the editor
 		# var new_time = fmod(time_of_day + delta * rotation_speed, 24)
