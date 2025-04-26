@@ -541,18 +541,18 @@ script = ExtResource("22_qfwj1")
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="BoboPath3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" node_paths=PackedStringArray("bobo")]
-transform = Transform3D(-0.438787, 0, -0.898468, 0, 1, 0, 0.898468, 0, -0.438787, -1.26041, 1.37363e-06, -1.05732)
+[node name="BoboPathFollow3D" type="PathFollow3D" parent="BoboPath3D" node_paths=PackedStringArray("bobo")]
+transform = Transform3D(-0.438787, 0, -0.898467, 0, 1, 0, 0.898467, 0, -0.438787, -1.26041, 1.37363e-06, -1.05732)
 progress = 17.0236
 rotation_mode = 1
 script = ExtResource("26_4cmys")
-bobo = NodePath("Bobo2")
+bobo = NodePath("Bobo")
 
-[node name="Bobo2" parent="Path3D/PathFollow3D" instance=ExtResource("65_ibkqg")]
+[node name="Bobo" parent="BoboPath3D/BoboPathFollow3D" instance=ExtResource("65_ibkqg")]
 transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
 
 [node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
