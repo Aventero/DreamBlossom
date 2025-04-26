@@ -24,6 +24,7 @@ var _time_of_day: float = 4.0
 @export var sunrise_end: float = 10.0    # When sunrise is complete
 @export var sunset_start: float = 15.0  # When sunset begins
 @export var sunset_end: float = 19.0    # When sunset is complete
+@export var fog_level_view: float = 10.0 
 
 func get_sunrise_factor() -> float:
 	# Before sunrise starts
@@ -109,6 +110,9 @@ func update_shader_parameters(time_day: float) -> void:
 	sky_shader_material.set_shader_parameter("moon_direction", moon_direction.normalized())
 	sky_shader_material.set_shader_parameter("sun_size", get_daylight_factor() * sun_size)
 	sky_shader_material.set_shader_parameter("moon_size", (1.0 - get_daylight_factor()) * moon_size)
+	var light_factor = (get_daylight_factor() + -(1.0 - get_daylight_factor()))
+	world_environment.environment.fog_depth_end = 12.0 + light_factor * 5.0
+	fog_level_view = world_environment.environment.fog_depth_end
 	
 	if is_sky_body_visible(sun_direction):
 		$Sun.look_at($Sun.global_transform.origin - sun_direction, Vector3.UP)

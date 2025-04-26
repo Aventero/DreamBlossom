@@ -23,8 +23,8 @@
 [ext_resource type="Script" uid="uid://dqkwbmlcc4wdd" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="21_pey0q"]
 [ext_resource type="Script" uid="uid://dbsc3hppcskh1" path="res://Scripts/Statistics.gd" id="22_qfwj1"]
 [ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="23_gocdt"]
-[ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="24_p3ug8"]
 [ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="25_lxsdg"]
+[ext_resource type="Script" uid="uid://flheggjts21a" path="res://Scripts/Tutorial/PathFollower.gd" id="26_4cmys"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="26_ov5pe"]
 [ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="27_rra32"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="28_77opt"]
@@ -71,12 +71,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(0.0117077, 0.894351, -0.447214)
-shader_parameter/day_intensity = 0.999914
+shader_parameter/sun_direction = Vector3(-0.584437, 0.677077, -0.447214)
+shader_parameter/day_intensity = 0.756995
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
 shader_parameter/sun_size = 0.08
-shader_parameter/moon_direction = Vector3(-0.0117077, -0.894351, -0.447214)
-shader_parameter/night_intensity = 0.109734
+shader_parameter/moon_direction = Vector3(0.584437, -0.677077, -0.447214)
+shader_parameter/night_intensity = 0.0444912
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.0
 
@@ -85,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.999914
+background_energy_multiplier = 0.756995
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -101,14 +101,13 @@ glow_hdr_scale = 1.0
 glow_hdr_luminance_cap = 2.0
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.0137094, 0, 0.0926804, 1)
+fog_light_color = Color(0.038849, 0.0165402, 0.167356, 1)
 fog_sun_scatter = 0.03
 fog_density = 1.0
-fog_aerial_perspective = 0.2
-fog_sky_affect = 0.509
-fog_depth_curve = 6.49802
-fog_depth_begin = 3.0
-fog_depth_end = 10.0
+fog_aerial_perspective = 1.0
+fog_depth_curve = 3.86374
+fog_depth_begin = 0.0
+fog_depth_end = 17.0
 volumetric_fog_ambient_inject = 0.61
 volumetric_fog_sky_affect = 0.167
 adjustment_saturation = 1.25
@@ -399,8 +398,8 @@ environment = SubResource("Environment_30re5")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 11.95
-base_brightness = 0.69
+time_of_day = 14.72
+base_brightness = 0.5
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
@@ -409,11 +408,12 @@ sun_size = 0.08
 moon_size = 0.05
 sunrise_start = 5.0
 sunrise_end = 8.0
+fog_level_view = 17.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.999656, -0.0234054, 0.0117077, 0, 0.447366, 0.894348, -0.0261702, 0.894042, -0.447212, 0, 0, 0)
+transform = Transform3D(-0.607699, 0.537711, -0.584435, 0, 0.73591, 0.677075, 0.794166, 0.411458, -0.447212, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.999914
+light_energy = 0.756995
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -428,10 +428,10 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.449384, -0.0876805, 0.889027, 0, 0.99517, 0.0981495, -0.893341, 0.0441066, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447569, 0.0355858, -0.893543, 0, 0.999206, 0.0397942, 0.894252, 0.0178106, -0.447214, 0, 0, 0)
 visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.69
+light_energy = 0.5
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -450,6 +450,29 @@ script = ExtResource("8_7eudh")
 ingredients_textures = Array[ExtResource("9_4cmys")]([SubResource("Resource_rrwnh"), SubResource("Resource_n7ng4"), SubResource("Resource_28ykq"), SubResource("Resource_m38ty"), SubResource("Resource_iswfo"), SubResource("Resource_ru1rl")])
 
 [node name="Managers" type="Node3D" parent="."]
+
+[node name="TriggerManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "tool_table")]
+script = ExtResource("65_2314q")
+pickable = NodePath("../../Blossy")
+type_writer = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label")
+pickup_sprite_animation = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/CenterContainer/PickupAnimation")
+squish_sprite_animation = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/CenterContainer/SquishAnimation")
+something_behind_notifier = NodePath("SomethingBehind")
+tool_table = NodePath("../../ToolArea/ToolTable")
+initial_text = "Who are you? 
+Could u pick me up?"
+pickup_message = "Thanks.. I will speak if you squish me
+... Try it!"
+dropped_message = "Pick me up."
+squish_messages = Array[String](["It's nice to talk is it not?", "Ouch..
+Wait huh..?", "Look behind you.", "Can u hear that?", "Something is coming closer.", "Careful.", "(bobo appears)", "(bobo wants to be fed)", "(Fed bobo)"])
+event_name_at = Dictionary[int, String]({
+0: "bobo_appears",
+2: "look_behind"
+})
+
+[node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="Managers/TriggerManager"]
+transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
 
 [node name="ReturnManager" parent="Managers" instance=ExtResource("16_h56t6")]
 collision_layer = 0
@@ -518,18 +541,16 @@ script = ExtResource("22_qfwj1")
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
-[node name="Bobo" parent="." instance=ExtResource("24_p3ug8")]
-transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
-visible = false
-
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.438796, 0, -0.898486, 0, 1, 0, 0.898486, 0, -0.438796, -1.26041, 1.37363e-06, -1.05732)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" node_paths=PackedStringArray("bobo")]
+transform = Transform3D(-0.438787, 0, -0.898468, 0, 1, 0, 0.898468, 0, -0.438787, -1.26041, 1.37363e-06, -1.05732)
 progress = 17.0236
 rotation_mode = 1
+script = ExtResource("26_4cmys")
+bobo = NodePath("Bobo2")
 
 [node name="Bobo2" parent="Path3D/PathFollow3D" instance=ExtResource("65_ibkqg")]
 transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
@@ -855,34 +876,13 @@ size = Vector2i(1024, 512)
 custom_minimum_size = Vector2(280, 0)
 text = "Some text"
 
-[node name="TriggerManager" type="Node3D" parent="." node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "tool_table")]
-script = ExtResource("65_2314q")
-pickable = NodePath("../Blossy")
-type_writer = NodePath("../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label")
-pickup_sprite_animation = NodePath("../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/CenterContainer/PickupAnimation")
-squish_sprite_animation = NodePath("../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/CenterContainer/SquishAnimation")
-something_behind_notifier = NodePath("SomethingBehind")
-tool_table = NodePath("../ToolArea/ToolTable")
-initial_text = "Who are you? 
-Could u pick me up?"
-pickup_message = "Thanks.. I will speak if you squish me
-... Try it!"
-dropped_message = "Pick me up ... please?"
-squish_messages = Array[String](["It's nice to talk isn't it?", "Ouch..
-Wait huh..?", "Whats that behind you?"])
-event_name_at = Dictionary[int, String]({
-2: "look_behind"
-})
-
-[node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="TriggerManager"]
-transform = Transform3D(0.372086, 0, 0, 0, 0.372087, 0, 0, 0, 0.372086, -3.57146, 1.6527, 2.26942)
-
 [node name="Shield" parent="." instance=ExtResource("56_7eudh")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
 
 [node name="Clock" parent="Shield" instance=ExtResource("57_4cmys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.466956)
 
+[connection signal="screen_entered" from="Managers/TriggerManager/SomethingBehind" to="Managers/TriggerManager" method="_on_something_behind_screen_entered"]
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
@@ -891,7 +891,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.466956)
 [connection signal="body_entered" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
 [connection signal="action_pressed" from="Blossy" to="Blossy" method="_on_action_pressed"]
-[connection signal="screen_entered" from="TriggerManager/SomethingBehind" to="TriggerManager" method="_on_something_behind_screen_entered"]
 
 [editable path="BlossomFlower"]
 [editable path="Blossy"]
