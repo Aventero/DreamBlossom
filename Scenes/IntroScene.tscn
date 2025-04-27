@@ -71,12 +71,12 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.584437, 0.677077, -0.447214)
-shader_parameter/day_intensity = 0.756995
+shader_parameter/sun_direction = Vector3(0.424724, 0.787153, -0.447214)
+shader_parameter/day_intensity = 0.880063
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
 shader_parameter/sun_size = 0.08
-shader_parameter/moon_direction = Vector3(0.584437, -0.677077, -0.447214)
-shader_parameter/night_intensity = 0.0444912
+shader_parameter/moon_direction = Vector3(-0.424724, -0.787153, -0.447214)
+shader_parameter/night_intensity = 1.22461e-16
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
 shader_parameter/moon_size = 0.0
 
@@ -85,7 +85,7 @@ sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.756995
+background_energy_multiplier = 0.880063
 sky = SubResource("Sky_eqxy8")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -213,6 +213,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
+radius = 0.241231
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvd5p"]
 resource_name = "Rock"
@@ -400,8 +403,8 @@ shadow_mesh = SubResource("ArrayMesh_mr7pr")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uyehh"]
 points = PackedVector3Array(-0.0703124, 0.117132, 0.468694, -0.21096, 0.117132, 0.632806, -0.0703124, -0.375, 0.468694, -0.0703124, 0.117132, -0.304746, -0.140636, 0.1875, 0.468694, -0.21096, -0.375, 0.632806, -0.23438, 0.1875, 0.562395, -0.609419, 0.117132, 0.632806, -0.0703124, -0.375, -0.304746, -0.21096, 0.117132, -0.46875, -0.140636, 0.1875, -0.304746, -0.609419, -0.375, 0.632806, -0.585999, 0.1875, 0.562395, -0.679743, 0.1875, 0.468694, -0.75, 0.117132, 0.468694, -0.21096, -0.375, -0.46875, -0.23438, 0.1875, -0.398447, -0.609419, 0.117132, -0.46875, -0.75, -0.375, 0.468694, -0.679743, 0.1875, -0.304746, -0.75, 0.117132, -0.304746, -0.609419, -0.375, -0.46875, -0.585999, 0.1875, -0.398447, -0.75, -0.375, -0.304746)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
-radius = 0.241231
+[sub_resource type="ViewportTexture" id="ViewportTexture_h56t6"]
+viewport_path = NodePath("Blossy/Textbox/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77vmx"]
 resource_name = "EnvRocks"
@@ -447,9 +450,6 @@ shadow_mesh = SubResource("ArrayMesh_6878x")
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yi6c"]
 size = Vector3(37.0232, 0.25, 38.6445)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h56t6"]
-viewport_path = NodePath("Blossy/Textbox/SubViewport")
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_pquu2")
 
@@ -483,32 +483,52 @@ bones/23/rotation = Quaternion(0.00687177, -0.00357275, -0.211953, 0.977249)
 tree_root = SubResource("AnimationNodeBlendTree_as1bl")
 
 [node name="Skeleton3D" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.706517, -6.47275e-06, -6.47275e-06, 0.707696)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
 bones/2/rotation = Quaternion(-0.0904441, 0.0415175, 0.166293, 0.981042)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.0466199, -0.020971, -0.0103276, 0.998639)
+bones/4/rotation = Quaternion(-0.0757688, 0.019257, 0.0337124, 0.996369)
+bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.00128455, 0.0116081, 0.0168259, 0.99979)
+bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.102925, 0.00993208, 0.00794419, 0.994608)
+bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.012859, 0.0236108, 0.323258, 0.945929)
+bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0120575, 0.00929192, 0.247472, 0.968775)
+bones/9/rotation = Quaternion(-0.0522884, 0.000557216, -0.103621, 0.993241)
 bones/10/rotation = Quaternion(-0.0357539, 0.000400032, -0.00636763, 0.99934)
 bones/11/rotation = Quaternion(-0.00264964, 0.00114471, 0.125992, 0.992027)
 bones/12/rotation = Quaternion(0.0394225, -0.00193393, 0.228074, 0.972843)
 bones/13/rotation = Quaternion(-0.0123395, 0.00881294, 0.280669, 0.959685)
+bones/14/rotation = Quaternion(0.0136882, -7.99253e-05, -0.168411, 0.985622)
+bones/14/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(-0.0702656, -0.0101908, 0.0243307, 0.99718)
 bones/16/rotation = Quaternion(-0.0320634, 0.00223624, 0.0686366, 0.997124)
+bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(0.0253452, -0.00812462, 0.249005, 0.968136)
+bones/17/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(0.00252233, -0.00788073, 0.243204, 0.96994)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(0.0330517, 0.00671975, -0.126351, 0.991412)
+bones/19/scale = Vector3(1, 1, 1)
 bones/20/rotation = Quaternion(-0.0917369, -0.0203027, 0.010183, 0.995524)
+bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.0625182, 0.000225722, 0.115393, 0.991351)
 bones/22/rotation = Quaternion(0.0585786, -0.0216483, 0.269905, 0.96086)
+bones/22/scale = Vector3(1, 1, 1)
 bones/23/rotation = Quaternion(0.00687177, 0.00357274, 0.211953, 0.977249)
+bones/23/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.706524, 6.4852e-06, 8.69198e-06, 0.707689)
 
 [node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_5e51q")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 14.72
+time_of_day = 10.11
 base_brightness = 0.5
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
@@ -521,9 +541,9 @@ sunrise_end = 8.0
 fog_level_view = 17.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.607699, 0.537711, -0.584435, 0, 0.73591, 0.677075, 0.794166, 0.411458, -0.447212, 0, 0, 0)
+transform = Transform3D(-0.725103, -0.542063, 0.424723, 0, 0.616757, 0.78715, -0.688639, 0.570765, -0.447212, 0, 0, 0)
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.756995
+light_energy = 0.880063
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -538,7 +558,7 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447569, 0.0355858, -0.893543, 0, 0.999206, 0.0397942, 0.894252, 0.0178106, -0.447214, 0, 0, 0)
+transform = Transform3D(-0.447215, 9.79683e-17, -0.894429, 0, 0.999998, 1.09532e-16, 0.894429, 4.89842e-17, -0.447214, 0, 0, 0)
 visible = false
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
 light_energy = 0.5
@@ -561,7 +581,7 @@ ingredients_textures = Array[ExtResource("9_4cmys")]([SubResource("Resource_rrwn
 
 [node name="Managers" type="Node3D" parent="."]
 
-[node name="TriggerManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot")]
+[node name="TriggerManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot", "order_view", "shield")]
 script = ExtResource("65_2314q")
 pickable = NodePath("../../Blossy")
 type_writer = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label")
@@ -572,6 +592,8 @@ bobo_appears_notifier = NodePath("BoboAppears")
 bobo_follower = NodePath("../../BoboPath3D/BoboPathFollow3D")
 bobo = NodePath("../../BoboPath3D/BoboPathFollow3D/Bobo")
 plot = NodePath("../../Plot")
+order_view = NodePath("../../OrderDisplay")
+shield = NodePath("../../Shield")
 initial_text = "Who are you? 
 Could u pick me up?"
 pickup_message = "Thanks.. I will speak if you squish me
@@ -656,13 +678,25 @@ script = ExtResource("22_qfwj1")
 
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
+visible = false
+
+[node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
+transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00378711, 0, 0.00378711, 0.999993, 0, 1.84455, -1.29436)
+visible = false
+
+[node name="Shield" parent="." instance=ExtResource("56_7eudh")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
+visible = false
+
+[node name="Clock" parent="Shield" instance=ExtResource("57_4cmys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.466956)
 
 [node name="BoboPath3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="BoboPathFollow3D" type="PathFollow3D" parent="BoboPath3D" node_paths=PackedStringArray("bobo")]
-transform = Transform3D(-0.438785, 0, -0.898464, 0, 1, 0, 0.898464, 0, -0.438785, -1.26041, 1.37363e-06, -1.05732)
+transform = Transform3D(-0.438784, 0, -0.898461, 0, 1, 0, 0.898461, 0, -0.438784, -1.26041, 1.37363e-06, -1.05732)
 progress = 17.0236
 rotation_mode = 1
 script = ExtResource("26_4cmys")
@@ -671,127 +705,51 @@ bobo = NodePath("Bobo")
 [node name="Bobo" parent="BoboPath3D/BoboPathFollow3D" node_paths=PackedStringArray("player_camera") instance=ExtResource("65_ibkqg")]
 transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
 player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
-head_turn_influence = 0.5
 eye_look_weight = 5.0
-eye_turn_speed = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/0/position = Vector3(0.374864, 0.0616672, 0.602508)
-bones/0/rotation = Quaternion(0.73248, 0.0251986, -1.60558e-06, 0.680322)
-bones/1/position = Vector3(-0.374864, 0.0616672, 0.602508)
-bones/1/rotation = Quaternion(0.73248, -0.0251986, 1.60558e-06, 0.680322)
-bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
-bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
-bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
-bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
-bones/4/position = Vector3(-0.00284809, 0.607473, -2.59401)
-bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(2.51982e-10, 1.55178, 0.129288)
-bones/6/rotation = Quaternion(-0.853585, 0.00247073, -0.0016093, 0.520945)
-bones/7/rotation = Quaternion(0.0212951, 0.503158, 0.863745, -0.0179941)
-bones/12/rotation = Quaternion(-0.754464, 0.0259027, 0.0166321, 0.65562)
-bones/13/rotation = Quaternion(0.359162, 0.00113106, 0.0426172, 0.932301)
-bones/14/rotation = Quaternion(-0.720683, 0.0151946, -0.0970839, 0.686266)
-bones/15/rotation = Quaternion(-0.750648, -0.0350277, -0.019514, 0.659485)
-bones/16/rotation = Quaternion(0.348043, -0.00113625, -0.0412979, 0.936568)
-bones/17/rotation = Quaternion(-0.716184, -0.00877626, 0.100202, 0.690626)
-bones/18/rotation = Quaternion(-0.314196, 2.65921e-10, 8.01238e-08, 0.949358)
-bones/23/rotation = Quaternion(-0.922891, -0.0629315, -0.138758, 0.353637)
-bones/24/rotation = Quaternion(0.874506, -0.000687725, 0.0791356, 0.478515)
-bones/25/rotation = Quaternion(-0.743203, 0.0577575, 0.0281211, 0.665975)
-bones/26/rotation = Quaternion(0.419043, -0.000948131, -0.00164552, 0.907965)
-bones/27/rotation = Quaternion(0.0377577, -1.47778e-10, -8.64386e-09, 0.999287)
-bones/28/rotation = Quaternion(0.219329, 2.85474e-11, -5.01456e-08, 0.975651)
-bones/29/rotation = Quaternion(0.140819, 1.2631e-10, -3.25211e-08, 0.990035)
-bones/30/rotation = Quaternion(-0.922197, 0.0619676, 0.125709, 0.36043)
-bones/31/rotation = Quaternion(0.872796, 0.000692235, -0.0789808, 0.481653)
-bones/32/rotation = Quaternion(-0.745271, -0.0521724, -0.0200896, 0.664414)
+bones/4/position = Vector3(0.0929994, 0.613815, -2.59745)
+bones/6/position = Vector3(1.57422e-09, 1.54622, 0.129288)
+bones/6/rotation = Quaternion(-0.846747, -0.00118899, 0.000675426, 0.531995)
+bones/7/rotation = Quaternion(0.0255623, 0.503201, 0.863555, -0.0201923)
+bones/12/rotation = Quaternion(-0.766517, 0.0322499, 0.018153, 0.641157)
+bones/13/rotation = Quaternion(0.364473, 0.00112852, 0.0432474, 0.930208)
+bones/14/rotation = Quaternion(-0.720631, 0.0102682, -0.100402, 0.685934)
+bones/15/rotation = Quaternion(-0.768221, -0.0281609, -0.0168855, 0.639342)
+bones/16/rotation = Quaternion(0.369288, -0.00112619, -0.0438188, 0.928281)
+bones/17/rotation = Quaternion(-0.722496, -0.0133704, 0.0989283, 0.684131)
+bones/18/rotation = Quaternion(-0.32198, 2.47134e-10, 8.01002e-08, 0.946747)
+bones/23/rotation = Quaternion(-0.922496, -0.0622543, -0.125945, 0.359532)
+bones/24/rotation = Quaternion(0.868164, -0.000704262, 0.0785618, 0.49002)
+bones/25/rotation = Quaternion(-0.740754, 0.052018, 0.0205704, 0.669444)
+bones/26/rotation = Quaternion(0.405954, 0.00781702, -0.026288, 0.913482)
+bones/27/rotation = Quaternion(0.0397458, -9.48912e-10, -8.08956e-09, 0.99921)
+bones/28/rotation = Quaternion(0.228906, -2.06461e-10, -5.48718e-08, 0.973449)
+bones/29/rotation = Quaternion(0.147121, -1.55519e-09, -3.55648e-08, 0.989118)
+bones/30/rotation = Quaternion(-0.922855, 0.0627085, 0.131876, 0.356393)
+bones/31/rotation = Quaternion(0.868336, 0.000703775, -0.0785772, 0.489713)
+bones/32/rotation = Quaternion(-0.739728, -0.0546524, -0.0242908, 0.670243)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Blink = -0.0682558
-blend_shapes/LookVertical = -0.460357
-blend_shapes/LookHorizontal = -0.168274
+blend_shapes/Blink = 0.0
+blend_shapes/Nose = 0.709968
+blend_shapes/Suprise = 0.4
+blend_shapes/LookVertical = -0.356669
+blend_shapes/LookHorizontal = -0.152478
+blend_shapes/Squish = 0.101424
+blend_shapes/Stretch = 0.110001
 
 [node name="HeadAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.99861, 0.0296395, 0.0435796, 0.0299969, 0.999521, 0.00757038, -0.0433344, 0.00886711, -0.999021, 0.00527618, 1.65488, 0.562814)
+transform = Transform3D(-0.998526, 0.0294091, 0.045601, 0.0302592, 0.999379, 0.0180648, -0.0450415, 0.0194181, -0.998794, 0.00458955, 1.64202, 0.564857)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.99853, -0.0312048, -0.0443165, 0.0297599, 0.999015, -0.0328973, 0.0452995, 0.0315301, 0.998475, -0.0462702, 1.84122, 1.46836)
-
-[node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
-transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00378711, 0, 0.00378711, 0.999993, 0, 1.84455, -1.29436)
-
-[node name="CookingArea" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
-
-[node name="CookingChest" parent="CookingArea" instance=ExtResource("26_ov5pe")]
-transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
-
-[node name="CookingButton" parent="CookingArea/CookingChest" instance=ExtResource("27_rra32")]
-transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274516, 0.426609, 0.071738, 0.280397)
-
-[node name="RecipeBook" parent="CookingArea" instance=ExtResource("28_77opt")]
-transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
-visible = false
-
-[node name="Candle" parent="CookingArea" instance=ExtResource("29_m2l00")]
-transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
-ranged_grab_method = 1
-
-[node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
-
-[node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
-layers = 129
-mesh = SubResource("ArrayMesh_h6ffo")
-skeleton = NodePath("")
-
-[node name="Rock" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
-transform = Transform3D(0.572679, 0.292153, 0.990433, -0.644507, 0.506938, 0.00852391, -0.552184, -0.2887, 1.01725, -0.0778272, -0.222884, -0.365752)
-layers = 129
-mesh = SubResource("ArrayMesh_pval3")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock/ActualRock/Rock"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock/ActualRock/Rock/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_yt8j3")
-
-[node name="Rock2" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
-transform = Transform3D(0.00398746, -0.00796057, -2.22869, -1.01334, 0.794934, -0.0169322, 1.24749, 0.645751, -0.00663054, -0.522226, -0.159592, 0.674088)
-layers = 129
-mesh = SubResource("ArrayMesh_pq4o7")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock/ActualRock/Rock2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock/ActualRock/Rock2/StaticBody3D"]
-transform = Transform3D(1, 2.98023e-08, 0, -1.19209e-07, 1, -4.65661e-10, 0, 5.82077e-11, 1, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_m6eh3")
-
-[node name="Rock3" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
-transform = Transform3D(0.249475, 0, -0.312669, 0, 0.4, 0, 0.312669, 0, 0.249475, -0.31455, 0.13709, -0.185621)
-layers = 129
-mesh = SubResource("ArrayMesh_27sti")
-skeleton = NodePath("")
-
-[node name="Rock4" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
-transform = Transform3D(0.0211634, 0, -0.330505, 0, 0.331182, 0, 0.330505, 0, 0.0211634, -0.499544, 0.147079, -0.143808)
-layers = 129
-mesh = SubResource("ArrayMesh_dh3e5")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
-shape = SubResource("ConvexPolygonShape3D_uyehh")
-
-[node name="Environment" parent="." instance=ExtResource("49_254s0")]
+transform = Transform3D(0.998429, -0.0314808, -0.0463315, 0.0294737, 0.998624, -0.0433848, 0.0476336, 0.0419511, 0.997981, -0.0488301, 1.81884, 1.4722)
 
 [node name="ToolArea" type="Node3D" parent="."]
 
 [node name="ToolTable" parent="ToolArea" instance=ExtResource("32_e8j2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
+visible = false
 
 [node name="Seed Bags" type="Node3D" parent="ToolArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583562, 0, 0.0296309)
@@ -933,16 +891,71 @@ type = 4
 infinite_drops = true
 ranged_grab_method = 1
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="CookingArea" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
+visible = false
 
-[node name="TheGroun" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, 0, 0)
-mesh = SubResource("ArrayMesh_v0l8j")
+[node name="CookingChest" parent="CookingArea" instance=ExtResource("26_ov5pe")]
+transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
+
+[node name="CookingButton" parent="CookingArea/CookingChest" instance=ExtResource("27_rra32")]
+transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274516, 0.426609, 0.071738, 0.280397)
+
+[node name="RecipeBook" parent="CookingArea" instance=ExtResource("28_77opt")]
+transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
+visible = false
+
+[node name="Candle" parent="CookingArea" instance=ExtResource("29_m2l00")]
+transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
+ranged_grab_method = 1
+
+[node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
+
+[node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
+layers = 129
+mesh = SubResource("ArrayMesh_h6ffo")
 skeleton = NodePath("")
 
-[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
-shape = SubResource("BoxShape3D_7yi6c")
+[node name="Rock" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
+transform = Transform3D(0.572679, 0.292153, 0.990433, -0.644507, 0.506938, 0.00852391, -0.552184, -0.2887, 1.01725, -0.0778272, -0.222884, -0.365752)
+layers = 129
+mesh = SubResource("ArrayMesh_pval3")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock/ActualRock/Rock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock/ActualRock/Rock/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_yt8j3")
+
+[node name="Rock2" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
+transform = Transform3D(0.00398746, -0.00796057, -2.22869, -1.01334, 0.794934, -0.0169322, 1.24749, 0.645751, -0.00663054, -0.522226, -0.159592, 0.674088)
+layers = 129
+mesh = SubResource("ArrayMesh_pq4o7")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock/ActualRock/Rock2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock/ActualRock/Rock2/StaticBody3D"]
+transform = Transform3D(1, 2.98023e-08, 0, -1.19209e-07, 1, -4.65661e-10, 0, 5.82077e-11, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_m6eh3")
+
+[node name="Rock3" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
+transform = Transform3D(0.249475, 0, -0.312669, 0, 0.4, 0, 0.312669, 0, 0.249475, -0.31455, 0.13709, -0.185621)
+layers = 129
+mesh = SubResource("ArrayMesh_27sti")
+skeleton = NodePath("")
+
+[node name="Rock4" type="MeshInstance3D" parent="CookingArea/ChestRock/ActualRock"]
+transform = Transform3D(0.0211634, 0, -0.330505, 0, 0.331182, 0, 0.330505, 0, 0.0211634, -0.499544, 0.147079, -0.143808)
+layers = 129
+mesh = SubResource("ArrayMesh_dh3e5")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
+shape = SubResource("ConvexPolygonShape3D_uyehh")
 
 [node name="BlossomFlower" parent="." node_paths=PackedStringArray("blossy_pickable") instance=ExtResource("61_ccbjs")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.015788, -0.035488, -0.831708)
@@ -1044,22 +1057,31 @@ custom_minimum_size = Vector2(280, 0)
 text = "Some text"
 blossy_visible_on_screen_notifier = NodePath("../../../../../../Blossy/VisibleOnScreenNotifier3D")
 
-[node name="Shield" parent="." instance=ExtResource("56_7eudh")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
+[node name="Environment" parent="." instance=ExtResource("49_254s0")]
+metadata/_edit_lock_ = true
 
-[node name="Clock" parent="Shield" instance=ExtResource("57_4cmys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.466956)
+[node name="Ground2" type="StaticBody3D" parent="Environment"]
+
+[node name="TheGroun" type="MeshInstance3D" parent="Environment/Ground2"]
+transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, 0, 0)
+mesh = SubResource("ArrayMesh_v0l8j")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Environment/Ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
+shape = SubResource("BoxShape3D_7yi6c")
 
 [connection signal="screen_entered" from="Managers/TriggerManager/SomethingBehind" to="Managers/TriggerManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TriggerManager/BoboAppears" to="Managers/TriggerManager" method="_on_something_behind_screen_entered"]
 [connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/TriggerManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
-[connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_exited"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
+[connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="action_pressed" from="Blossy" to="Blossy" method="_on_action_pressed"]
 
 [editable path="XROrigin3D"]

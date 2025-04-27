@@ -11,7 +11,7 @@ signal bobo_sat_down
 @export var nose_bone: BoneAttachment3D
 
 # Blending
-@export_tool_button("Blink") var blinking = blink
+@export_tool_button("hit_shield") var blinking = hit_shield
 @export_tool_button("Yawn") var yawning = yawn
 @export_tool_button("Attack") var attacking = attack
 @export_tool_button("Munch") var munching = munch.bind(3)
@@ -22,7 +22,6 @@ signal bobo_sat_down
 var _failed_orders : int = 0
 
 # Animations
-
 # Head 
 @export var head_turn_influence: float = 0.5
 @export var head_turn_speed: float = 2.0
@@ -42,11 +41,64 @@ var yawn_timer: float = 0.0
 var next_yawn_time: float = randf_range(30.0, 60.0)
 var breathe_timer: float = 0.0
 var next_breath_time: float = 8.0
-var is_yawning = false
+var emotion_timer: float = 0.0
+var next_emotion_time: float = randf_range(5.0, 10.0)
+var active_tweens = []
+var active_emotion_tweens = []
+var is_yawning: bool = false
 
+# TWEENS
+func create_tracked_tween(is_emotion: bool = false) -> Tween:
+	var tween = create_tween()
+	if is_emotion: active_emotion_tweens.append(tween)
+	active_tweens.append(tween)
+	tween.finished.connect(func(): active_tweens.erase(tween))
+	return tween
+
+func smile() -> void:
+	var tween = create_tracked_tween(true)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Happy", 0.4, 1.0)
+	tween.tween_interval(5.0)
+	tween.tween_property(head, "blend_shapes/Happy", 0.0, 1.0)
+
+func sadness() -> void:
+	var tween = create_tracked_tween(true)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Sad", 0.4, 1.0)
+	tween.tween_interval(5.0)
+	tween.tween_property(head, "blend_shapes/Sad", 0.0, 1.0)
+	
+func angry() -> void:
+	var tween = create_tracked_tween(true)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Anger", 0.2, 1.0)
+	tween.tween_interval(1.0)
+	tween.tween_property(head, "blend_shapes/Anger", 0.0, 1.0)
+	
+func suprised() -> void:
+	var tween = create_tracked_tween(true)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Suprise", 0.4, 1.0)
+	tween.tween_interval(3.0)
+	tween.tween_property(head, "blend_shapes/Suprise", 0.0, 1.0)
+
+func reset_emotions() -> void:
+	var tween = create_tracked_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Happy", 0.0, 1.0)
+	tween.tween_property(head, "blend_shapes/Anger", 0.0, 1.0)
+	tween.tween_property(head, "blend_shapes/Sad", 0.0, 1.0)
+	tween.tween_property(head, "blend_shapes/Suprise", 0.0, 1.0)
 
 func blink() -> void:
-	var tween = create_tween()
+	if is_yawning: return
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(head, "blend_shapes/Blink", 1.0, 0.1)
@@ -58,7 +110,11 @@ func blink() -> void:
 
 func yawn() -> void:
 	is_yawning = true
-	var tween = create_tween()
+	for active_tween in active_tweens:
+		active_tween.kill()
+	active_tweens.clear()
+	
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	
@@ -71,30 +127,39 @@ func yawn() -> void:
 	tween.parallel().tween_property(head, "blend_shapes/Sad", 1.0, 0.8)
 	
 	# Hold the yawn for a moment
-	tween.tween_interval(0.4)
+	tween.tween_interval(1.4)
+	tween.parallel().tween_property(head, "blend_shapes/Mouth", 0.7, 1.4)
+	
 	
 	# Close mouth gradually
-	tween.tween_property(head, "blend_shapes/Mouth", 0.0, 0.7)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(head, "blend_shapes/Mouth", 0.05, 1.0)
 	
 	# Open eyes fully after mouth is mostly closed
 	tween.parallel().tween_property(head, "blend_shapes/Blink", 0.0, 0.4)
 	tween.parallel().tween_property(head, "blend_shapes/Nose", 0.0, 0.4)
 	tween.parallel().tween_property(head, "blend_shapes/Sad", 0.0, 0.4)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.chain().tween_property(head, "blend_shapes/Mouth", 0.0, 0.4)
 	tween.tween_callback(func(): is_yawning = false)
+	reset_emotions()
 
 func breathe() -> void:
-	if is_yawning:
-		return
-		
-	var tween = create_tween()
+	if is_yawning: return
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(head, "blend_shapes/Nose", 0.7, 2.0)
+	tween.parallel().tween_property(head, "blend_shapes/Stretch", 0.1, 2.0)
+	tween.parallel().tween_property(head, "blend_shapes/Squish", 0.1, 2.0)
 	tween.tween_interval(1.0)
-	tween.tween_property(head, "blend_shapes/Nose", 0.0, 3.0)
+	tween.tween_property(head, "blend_shapes/Nose", 0.0, 2.0)
+	tween.parallel().tween_property(head, "blend_shapes/Stretch", 0.0, 3.0)
+	tween.parallel().tween_property(head, "blend_shapes/Squish", 0.0, 2.0)
 
 func attack() -> void:
-	var tween = create_tween()
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	
@@ -136,7 +201,7 @@ func attack() -> void:
 	tween.parallel().tween_property(head, "blend_shapes/Blink", 0.0, 0.3)
 
 func munch(repeat_count: int = 5) -> void:
-	var tween = create_tween()
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	
@@ -177,13 +242,13 @@ func munch(repeat_count: int = 5) -> void:
 	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Fade out happy expression
 
 func open_mouth() -> void:
-	var tween = create_tween()
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(head, "blend_shapes/Mouth", 0.6, 0.5)
 
 func close_mouth() -> void:
-	var tween = create_tween()
+	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(head, "blend_shapes/Mouth", 0.0, 0.5)
@@ -198,27 +263,28 @@ func close_mouth() -> void:
 	bounce_tween.set_trans(Tween.TRANS_BACK)
 	bounce_tween.tween_property(head, "blend_shapes/Squish", 0.0, 0.25)
 
-func sit_down() -> void:
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(animation_tree, "parameters/WalkToSit/blend_position", 1.0, 3.0).from(-1.0)
-	tween.tween_callback(bobo_sat_down.emit.bind())
 
+func handle_random_emotion(delta: float) -> void:
+	emotion_timer += delta
+	if emotion_timer < next_emotion_time:
+		return
 
-func _ready() -> void:
-	if skeleton:
-		current_head_pose = skeleton.get_bone_global_pose(head_bone)
-
-func _process(delta: float) -> void:
-	# chance to blink
-	handle_random_blinking(delta)
-	handle_random_yawning(delta)
-	handle_breathing(delta)
+	emotion_timer = 0.0
+	next_emotion_time = randf_range(10.0, 20.0)
 	
-	if player_camera:
-		head_movement(delta)
-		look_at_player_camera(delta)
+	var rand = randf_range(0.0, 1.0)
+	var is_smile = rand < 0.4
+	var is_sad = rand > 0.4 && rand < 0.6
+	var is_angry = rand > 0.6 && rand < 0.8
+	var is_suprise = rand > 0.8 && rand < 1.0
+	if is_smile: 
+		smile()
+	if is_sad: 
+		sadness()
+	if is_angry: 
+		angry()
+	if is_suprise: 
+		suprised()
 
 func handle_random_blinking(delta: float) -> void:
 	blink_timer += delta
@@ -240,6 +306,25 @@ func handle_breathing(delta: float) -> void:
 		breathe_timer = 0
 		breathe()
 
+# SYSTEM
+
+func _ready() -> void:
+	if skeleton:
+		current_head_pose = skeleton.get_bone_global_pose(head_bone)
+
+func _process(delta: float) -> void:
+	# chance to blink
+	handle_random_blinking(delta)
+	handle_random_yawning(delta)
+	handle_breathing(delta)
+	handle_random_emotion(delta)
+	
+	if player_camera:
+		head_movement(delta)
+		look_at_player_camera(delta)
+
+
+# ANIMATION
 func head_movement(delta: float) -> void:
 	# Get the current animated pose
 	var animated_pose: Transform3D = skeleton.get_bone_global_pose(head_bone)
@@ -288,8 +373,21 @@ func look_at_player_camera(delta: float) -> void:
 	head.set("blend_shapes/LookHorizontal", lerp(current_look_h, target_look_h, delta * eye_turn_speed))
 	head.set("blend_shapes/LookVertical", lerp(current_look_v, target_look_v, delta * eye_turn_speed))
 
+func sit_down() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(animation_tree, "parameters/StateMachine/walk_to_sit/blend_position", 1.0, 3.0).from(-1.0)
+	tween.tween_callback(bobo_sat_down.emit.bind())
 
-# Game mechanics ####
+func hit_shield() -> void:
+	var state_machine = animation_tree.get("parameters/StateMachine/playback")
+	state_machine.travel("shield_bash")
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	print("Animation finished: ", anim_name)
+
+# Game mechanics
 func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)

@@ -10,6 +10,8 @@ extends Node3D
 @export var bobo_follower: BoboFollower
 @export var bobo: Bobo
 @export var plot: Node3D
+@export var order_view: Node3D
+@export var shield: Node3D
 
 @export_group("Messaging")
 @export_multiline var initial_text: String
@@ -84,6 +86,8 @@ func event_polling(event_name: String) -> bool:
 	if event_name == "look_behind":
 		if something_behind_notifier.is_on_screen():
 			plot.visible = true
+			order_view.visible = true
+			shield.visible = true
 			type_writer.display_text("Oh.. it was just the tree")
 			something_behind_notifier.visible = false
 			is_squish_blocked = false
