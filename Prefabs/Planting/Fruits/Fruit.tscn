@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c47qumedr4bq3" path="res://Scripts/Farmland/Fruits/Fruit.gd" id="2_h05vf"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_uwq2k"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_bc4h1"]
-[ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_16fea"]
+[ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_16fea"]
 
 [node name="Fruit" groups=["Fruit", "Ingredient"] instance=ExtResource("1_0k27w")]
 collision_mask = 131079
@@ -12,7 +12,6 @@ freeze = true
 script = ExtResource("2_h05vf")
 type = 0
 release_mode = 0
-second_hand_grab = 1
 
 [node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("3_uwq2k")]
 
@@ -21,7 +20,6 @@ second_hand_grab = 1
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="3"]
 visible = false
 script = ExtResource("5_16fea")
-metadata/_custom_type_script = "uid://fx3fyvoqoyr8"
 
 [connection signal="action_pressed" from="." to="." method="_on_action_pressed"]
 [connection signal="action_released" from="." to="." method="_on_action_released"]

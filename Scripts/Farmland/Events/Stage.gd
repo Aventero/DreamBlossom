@@ -18,6 +18,10 @@ func check_feasibility() -> void:
 
 # Started once the timer runs out
 func start_events():
+	if get_child_count() == 0:
+		stage_complete.emit()
+		return
+	
 	# Pick random event
 	current_event = get_children().pick_random()
 

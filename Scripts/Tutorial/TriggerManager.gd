@@ -12,6 +12,9 @@ extends Node3D
 @export var plot: Node3D
 @export var order_view: Node3D
 @export var shield: Node3D
+@export var grid: PlantGrid
+@export var spawn_digpot: PackedScene
+@export var blubburu: PackedScene
 
 @export_group("Messaging")
 @export_multiline var initial_text: String
@@ -28,6 +31,10 @@ var is_done_polling: bool = false
 var is_event_completed: bool = false
 
 func _ready() -> void:
+
+	
+
+	# signals	
 	pickable.action_pressed.connect(_on_squish)
 	pickable.picked_up.connect(_on_picked_up)
 	pickable.dropped.connect(_on_dropped)
@@ -52,6 +59,18 @@ func _on_squish(_pickable):
 		current_message_pos += 1
 		
 func _on_picked_up(_pickable):
+	# Grid cell things
+	var current_cell : GridCell = grid.get_cell_by_index(19)
+	current_cell.grid.set_state(current_cell, 2, GridCell.CELLSTATE.OCCUPIED)
+	var current_cell_pos = grid.get_placement_position(current_cell, 2)
+
+	# Spawn dig spot
+	var dig_spot_instance: DigSpot = spawn_digpot.instantiate()
+	$"..".add_child(dig_spot_instance)
+	dig_spot_instance.global_position = current_cell_pos
+	dig_spot_instance.anchor_cell = current_cell
+	dig_spot_instance._spawn_plant_no_seed("TutorialBlubburuPlant")
+	
 	# Has to learn squishing (first pick up)
 	if current_message_pos == 0:
 		type_writer.display_text(pickup_message)

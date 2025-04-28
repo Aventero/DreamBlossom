@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=4 uid="uid://4qvb4piv61b4"]
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_md1d4"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_5wlqc"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="3_5wlqc"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="3_ri61w"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jul5e"]

@@ -1,0 +1,4191 @@
+[gd_scene load_steps=102 format=4 uid="uid://bp0v6l6rn2t2r"]
+
+[ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_wi7el"]
+[ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="2_73jcm"]
+[ext_resource type="PackedScene" uid="uid://dyxeqetaldjif" path="res://Models/Plants/Blubburu/Blubburu.blend" id="3_tiyxu"]
+[ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_k0cqm"]
+[ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="31_ex7s7"]
+[ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Planting/Fruits/BlubburuFruit.tscn" id="32_u2xcj"]
+[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="33_c630p"]
+[ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="34_6yc03"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu4pi"]
+resource_name = "Leaves.001"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_73jcm")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_i3j1a"]
+_surfaces = [{
+"aabb": AABB(-0.0178371, -1.08909e-08, -0.0178371, 0.0356742, 0.365437, 0.0356842),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAOz/AAAAAP//7P8AAAAAAAAAAAAAAAD//wAAAAD//wAA7P8AAP/////s/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_js63g"]
+resource_name = "BlubburuFlower_Cube_079"
+_surfaces = [{
+"aabb": AABB(-0.0178371, -1.08909e-08, -0.0178371, 0.0356742, 0.365437, 0.0356842),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAOz//78AAAAA7P//vwAAAADs//9/AAD//+z//78AAP//7P//fwAA///s////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAOz//7///wAA7P//f///AADs//+//////+z//3//////7P/////////s//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_i3j1a")
+
+[sub_resource type="Shader" id="Shader_ood7e"]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform float alpha_scissor_threshold;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+instance uniform float stength = 1.0;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	// Foliage
+	VERTEX.x += sin(TIME * 2.0 + VERTEX.y * 50.0) * 0.075 * length(VERTEX) * stength;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrfht"]
+resource_name = "Leaves.001"
+render_priority = 0
+shader = SubResource("Shader_ood7e")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_73jcm")
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qq4i7"]
+_surfaces = [{
+"aabb": AABB(-0.0124543, -4.82694e-09, -0.0124543, 0.0249085, 0.161965, 0.0249185),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAOT/AAAAAP//5P8AAAAAAAAAAAAAAAD//wAAAAD//wAA5P8AAP/////k/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_py0q1"]
+resource_name = "BlubburuFlower_Cube_007"
+_surfaces = [{
+"aabb": AABB(-0.0124543, -4.82694e-09, -0.0124543, 0.0249085, 0.161965, 0.0249185),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAOT//78AAAAA5P//vwAAAADk//9/AAD//+T//78AAP//5P//fwAA///k////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAOT//7///wAA5P//f///AADk//+//////+T//3//////5P/////////k//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qq4i7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_owiyh"]
+_surfaces = [{
+"aabb": AABB(-0.00618549, -2.39733e-09, -0.00618548, 0.012371, 0.0804411, 0.012381),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAMr/AAAAAP//yv8AAAAAAAAAAAAAAAD//wAAAAD//wAAyv8AAP/////K/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_76vjr"]
+resource_name = "BlubburuFlower_Cube_008"
+_surfaces = [{
+"aabb": AABB(-0.00618549, -2.39733e-09, -0.00618548, 0.012371, 0.0804411, 0.012381),
+"attribute_data": PackedByteArray("/2v/H/+A/wH/aP8f/2sAAP9oAAD/hP8B/2j/H/+A/wX/a/8f/2gAAP9rAAD/hP8F/4T/Af9r/x//aP8f/2sAAP+A/wH/aAAA/4T/Bf9o/x//a/8f/2gAAP+A/wX/awAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAMr//78AAAAAyv//vwAAAADK//9/AAD//8r//78AAP//yv//fwAA///K////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAMr//7///wAAyv//f///AADK//+//////8r//3//////yv/////////K//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_owiyh")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1pf2w"]
+_surfaces = [{
+"aabb": AABB(-0.00618549, -2.39733e-09, -0.00618548, 0.012371, 0.0804411, 0.012381),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAMr/AAAAAP//yv8AAAAAAAAAAAAAAAD//wAAAAD//wAAyv8AAP/////K/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nf2rs"]
+resource_name = "BlubburuFlower_Cube_009"
+_surfaces = [{
+"aabb": AABB(-0.00618549, -2.39733e-09, -0.00618548, 0.012371, 0.0804411, 0.012381),
+"attribute_data": PackedByteArray("/2v/H/+A/wH/aP8f/2sAAP9oAAD/hP8B/2j/H/+A/wX/a/8f/2gAAP9rAAD/hP8F/4T/Af9r/x//aP8f/2sAAP+A/wH/aAAA/4T/Bf9o/x//a/8f/2gAAP+A/wX/awAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAMr//78AAAAAyv//vwAAAADK//9/AAD//8r//78AAP//yv//fwAA///K////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAMr//7///wAAyv//f///AADK//+//////8r//3//////yv/////////K//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1pf2w")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w2mii"]
+_surfaces = [{
+"aabb": AABB(-0.0106709, -4.13575e-09, -0.0106709, 0.0213417, 0.138773, 0.0213517),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAOD/AAAAAP//4P8AAAAAAAAAAAAAAAD//wAAAAD//wAA4P8AAP/////g/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p2ub2"]
+resource_name = "BlubburuFlower_Cube_011"
+_surfaces = [{
+"aabb": AABB(-0.0106709, -4.13575e-09, -0.0106709, 0.0213417, 0.138773, 0.0213517),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAOD//78AAAAA4P//vwAAAADg//9/AAD//+D//78AAP//4P//fwAA///g////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAOD//7///wAA4P//f///AADg//+//////+D//3//////4P/////////g//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_w2mii")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7c70p"]
+_surfaces = [{
+"aabb": AABB(-0.00529975, -2.05405e-09, -0.00529975, 0.0105995, 0.0689223, 0.0106095),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAMH/AAAAAP//wf8AAAAAAAAAAAAAAAD//wAAAAD//wAAwf8AAP/////B/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fgmdv"]
+resource_name = "BlubburuFlower_Cube_012"
+_surfaces = [{
+"aabb": AABB(-0.00529975, -2.05405e-09, -0.00529975, 0.0105995, 0.0689223, 0.0106095),
+"attribute_data": PackedByteArray("/2v/H/+A/wH/aP8f/2sAAP9oAAD/hP8B/2j/H/+A/wX/a/8f/2gAAP9rAAD/hP8F/4T/Af9r/x//aP8f/2sAAP+A/wH/aAAA/4T/Bf9o/x//a/8f/2gAAP+A/wX/awAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAMH//78AAAAAwf//vwAAAADB//9/AAD//8H//78AAP//wf//fwAA///B////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAMH//7///wAAwf//f///AADB//+//////8H//3//////wf/////////B//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7c70p")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ngysl"]
+_surfaces = [{
+"aabb": AABB(-0.00529975, -2.05405e-09, -0.00529975, 0.0105995, 0.0689223, 0.0106095),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAMH/AAAAAP//wf8AAAAAAAAAAAAAAAD//wAAAAD//wAAwf8AAP/////B/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0w22r"]
+resource_name = "BlubburuFlower_Cube_013"
+_surfaces = [{
+"aabb": AABB(-0.00529975, -2.05405e-09, -0.00529975, 0.0105995, 0.0689223, 0.0106095),
+"attribute_data": PackedByteArray("/2v/H/+A/wH/aP8f/2sAAP9oAAD/hP8B/2j/H/+A/wX/a/8f/2gAAP9rAAD/hP8F/4T/Af9r/x//aP8f/2sAAP+A/wH/aAAA/4T/Bf9o/x//a/8f/2gAAP+A/wX/awAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAMH//78AAAAAwf//vwAAAADB//9/AAD//8H//78AAP//wf//fwAA///B////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAMH//7///wAAwf//f///AADB//+//////8H//3//////wf/////////B//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ngysl")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xy8se"]
+_surfaces = [{
+"aabb": AABB(-0.0133185, -8.13193e-09, -0.0133185, 0.026637, 0.272862, 0.026647),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAOb/AAAAAP//5v8AAAAAAAAAAAAAAAD//wAAAAD//wAA5v8AAP/////m/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2eahj"]
+resource_name = "BlubburuFlower_Cube_014"
+_surfaces = [{
+"aabb": AABB(-0.0133185, -8.13193e-09, -0.0133185, 0.026637, 0.272862, 0.026647),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAOb//78AAAAA5v//vwAAAADm//9/AAD//+b//78AAP//5v//fwAA///m////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAOb//7///wAA5v//f///AADm//+//////+b//3//////5v/////////m//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xy8se")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fhnuy"]
+_surfaces = [{
+"aabb": AABB(-0.00929928, -3.60416e-09, -0.00929928, 0.0185986, 0.120935, 0.0186086),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAANv/AAAAAP//2/8AAAAAAAAAAAAAAAD//wAAAAD//wAA2/8AAP/////b/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yftnw"]
+resource_name = "BlubburuFlower_Cube_015"
+_surfaces = [{
+"aabb": AABB(-0.00929928, -3.60416e-09, -0.00929928, 0.0185986, 0.120935, 0.0186086),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAANv//78AAAAA2///vwAAAADb//9/AAD//9v//78AAP//2///fwAA///b////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AANv//7///wAA2///f///AADb//+//////9v//3//////2//////////b//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fhnuy")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o0k70"]
+_surfaces = [{
+"aabb": AABB(-0.00796767, -3.08806e-09, -0.00796766, 0.0159353, 0.103618, 0.0159453),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAANX/AAAAAP//1f8AAAAAAAAAAAAAAAD//wAAAAD//wAA1f8AAP/////V/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aulpq"]
+resource_name = "BlubburuFlower_Cube_018"
+_surfaces = [{
+"aabb": AABB(-0.00796767, -3.08806e-09, -0.00796766, 0.0159353, 0.103618, 0.0159453),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAANX//78AAAAA1f//vwAAAADV//9/AAD//9X//78AAP//1f//fwAA///V////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AANX//7///wAA1f//f///AADV//+//////9X//3//////1f/////////V//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o0k70")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c7v1t"]
+_surfaces = [{
+"aabb": AABB(-0.010269, -3.98e-09, -0.010269, 0.0205381, 0.133547, 0.020548),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAN//AAAAAP//3/8AAAAAAAAAAAAAAAD//wAAAAD//wAA3/8AAP/////f/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4kesf"]
+resource_name = "BlubburuFlower_Cube_021"
+_surfaces = [{
+"aabb": AABB(-0.010269, -3.98e-09, -0.010269, 0.0205381, 0.133547, 0.020548),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAN///78AAAAA3///vwAAAADf//9/AAD//9///78AAP//3///fwAA///f////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAN///7///wAA3///f///AADf//+//////9///3//////3//////////f//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_c7v1t")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dgj2y"]
+_surfaces = [{
+"aabb": AABB(-0.0355309, 0, -0.0355309, 0.0710617, 0.0160903, 0.0710718),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("AADW//X/AAD//9b/9f8AAAAA1v8AAAAA///W/wAAAAD/fwAA+n8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rbvqp"]
+resource_name = "BlubburuFlower_Plane_032"
+_surfaces = [{
+"aabb": AABB(-0.0355309, 0, -0.0355309, 0.0710617, 0.0160903, 0.0710718),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83"),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AADW//X/UNEAANb/9f/Pwf//1v/1/8/B///W//X/UNEAANb/AACurgAA1v8AAM/B///W/wAAz8H//9b/AACurv9/AAD6f8/B/38AAPp/UNH/fwAA+n+urv9/AAD6f8/B////f2nZtGy07JSm////f////39p2bRstOyUpv///3+07JSm////f////39p2bRs")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dgj2y")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pb00l"]
+_surfaces = [{
+"aabb": AABB(-0.0110072, -4.2661e-09, -0.0110072, 0.0220144, 0.143147, 0.0220244),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAOH/AAAAAP//4f8AAAAAAAAAAAAAAAD//wAAAAD//wAA4f8AAP/////h/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tebkd"]
+resource_name = "BlubburuFlower_Cube_022"
+_surfaces = [{
+"aabb": AABB(-0.0110072, -4.2661e-09, -0.0110072, 0.0220144, 0.143147, 0.0220244),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAOH//78AAAAA4f//vwAAAADh//9/AAD//+H//78AAP//4f//fwAA///h////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AAOH//7///wAA4f//f///AADh//+//////+H//3//////4f/////////h//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pb00l")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nflrf"]
+_surfaces = [{
+"aabb": AABB(-0.0792401, -1.97117e-09, -0.0792401, 0.15848, 0.0190687, 0.15849),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("BQAJAAIABwALAAEACAAMAAMABgAKAAAAAgAJAAYABQAEAAkABQAMAAQAAAAKAAcACQAKAAYACQAEAAoAAQALAAgACgALAAcACgAEAAsACwAMAAgACwAEAAwAAwAMAAUA"),
+"lods": [0.0256106, PackedByteArray("BQAGAAIABgAFAAAAAAAFAAcABwAFAAgAAwAIAAUAAQAHAAgA")],
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 13,
+"vertex_data": PackedByteArray("AADLc/r/AAD//8tz+v8AAAAAy3MAAAAA///LcwAAAAD/fwAA/X8AAP9///8AAAAAAAD///1/AAD/f///+v8AAP/////9fwAA/z////4/AAD/P////L8AAP+////8vwAA/7////4/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uv0nb"]
+resource_name = "BlubburuFlower_Plane_046"
+_surfaces = [{
+"aabb": AABB(-0.0792401, -1.97117e-09, -0.0792401, 0.15848, 0.0190687, 0.15849),
+"attribute_data": PackedByteArray("/z//P/9P/z//P/8v/0//L/9H/zf/R/83/0f/N/9H/zf/R/8v/0f/L/9H/y//P/83/z//N/8//zf/R/8//0f/P/9H/z//T/83/0//N/9P/zf/Q/8z/0P/M/9D/zP/Q/87/0P/O/9D/zv/S/87/0v/O/9L/zv/S/8z/0v/M/9L/zM="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("CAAUAAIAEAAcAAEAEgAfAAMADAAXAAAAAgAUAAsACQAGABUACQAeAAYAAAAXAA4AFgAZAA0AFgAHABkAAQAcABMAGAAbAA8AGAAFABsAGgAdABEAGgAEAB0AAwAfAAoA"),
+"lods": [0.0256106, PackedByteArray("CAALAAIACwAIAAAAAAAIAA4ADgAIABEAAwARAAgAAQAOABEA")],
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("AADLc/r/5rr//8tz+v/mugAAy3MAAHLF///LcwAAcsX/fwAA/X+QwP9/AAD9f57J/38AAP1/X7b/fwAA/X+QwP9///8AAHLF/3///wAAX7b/f///AAByxQAA///9f3LFAAD///1/5roAAP///X+QwP9////6/+a6/3////r/nsn/f///+v/muv/////9f5DA//////1/csX//////X/muv8////+P3LF/z////4/X7b/P////j+QwP8////8v+a6/z////y/nsn/P////L+QwP+////8v5DA/7////y/nsn/v////L/muv+////+P5DA/7////4/X7b/v////j9yxaH4wY888KF4hPgKjvPxhHi484uY////f////39y57lzhPgKjv///3/z8YR4hPgKjqH4wY9y57lzofjBj////3888KF4uPOLmPPxhHg88KF4hPgKjv///39y57lzofjBj////39y57lzuPOLmP///3888KF4uPOLmP///3/z8YR4")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nflrf")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c68b4"]
+_surfaces = [{
+"aabb": AABB(-0.00946358, -3.66783e-09, -0.00946358, 0.0189272, 0.123072, 0.0189372),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAANz/AAAAAP//3P8AAAAAAAAAAAAAAAD//wAAAAD//wAA3P8AAP/////c/wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vovhr"]
+resource_name = "BlubburuFlower_Cube_023"
+_surfaces = [{
+"aabb": AABB(-0.00946358, -3.66783e-09, -0.00946358, 0.0189272, 0.123072, 0.0189372),
+"attribute_data": PackedByteArray("/3P/H/+A/wH/b/8f/3MAAP9vAAD/hP8B/2//H/+A/wX/c/8f/28AAP9zAAD/hP8F/4T/Af9z/x//b/8f/3MAAP+A/wH/bwAA/4T/Bf9v/x//c/8f/28AAP+A/wX/cwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAAJAAMAAAAGAAkACAAVAAoACAATABUAFAARABcAFAAOABEADQAEAA8ADQACAAQABwAMABIABwABAAwAFgAFAAsAFgAQAAUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAANz//78AAAAA3P//vwAAAADc//9/AAD//9z//78AAP//3P//fwAA///c////AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//AAD//wAA/78AAP//AAD//wAA//8AAP////8AANz//7///wAA3P//f///AADc//+//////9z//3//////3P/////////c//+///8AAAAA/7///wAAAAD/////AAAAAP+//////wAA////////AAD///////8AAP+//3///wAA/3//f////3////9/////f/+//3///wAA/3//f////3////9/////f/+/AAD/f/9/////fwAA/3////9//7//fwAAAAD/f/9/////fwAA/3////9//7//fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_c68b4")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8qx0s"]
+_surfaces = [{
+"aabb": AABB(-0.112257, -0.00322079, -0.112257, 0.224514, 0.0280906, 0.224524),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("BgAEAAIACAAEAAEABwAEAAMABQAEAAAAAwAEAAYAAAAEAAgAAgAEAAUAAQAEAAcA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AADn//z/AAD//8qs/P8AAAAAwbwAAAAA//8pswAAAAD/f1od/n8AAEEBAAD+fwAA/38AAEEBAAC9/gAA/n8AAP9/AAC6/gAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_q70ks"]
+resource_name = "BlubburuFlower_Plane_060"
+_surfaces = [{
+"aabb": AABB(-0.112257, -0.00322079, -0.112257, 0.224514, 0.0280906, 0.224524),
+"attribute_data": PackedByteArray("/yD/fv8g/37/Lv9+/y7/fv8g/3D/IP9w/y7/cP8u/3D/J/93/yf/d/8n/3f/J/93/yf/d/8n/3f/J/93/yf/d/8g/3f/IP93/yf/cP8n/3D/Lv93/y7/d/8n/37/J/9+"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EwAOAAUAFgAJAAIAFAAMAAcAEQALAAAABgAIABIAAQAPABcABAAKABAAAwANABUA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AADn//z//skAAOf//P9uv///yqz8/xe////KrPz/08YAAMG8AACRuAAAwbwAAIXB//8pswAAfcH//ymzAADvuP9/Wh3+f33B/39aHf5/F7//f1od/n+RuP9/Wh3+f/7J/39aHf5/77j/f1od/n/Txv9/Wh3+f4XB/39aHf5/br9BAQAA/n+RuEEBAAD+f/7J/38AAEEBfcH/fwAAQQGFwb3+AAD+f++4vf4AAP5/08b/fwAAuv4Xv/9/AAC6/m6/MP43g2Lm4XJH9qCSqPwwfjL+9YNv7Jd2Bfe6kg/8M34F97qSR/agkjL+9YMw/jeDD/wzfqj8MH5v7Jd2YubhcjL+9YMw/jeDBfe6km/sl3YP/DN+qPwwfkf2oJJi5uFy")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8qx0s")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_avnet"]
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("BgAEAAIACAAEAAEABwAEAAMABQAEAAAAAwAEAAYAAAAEAAgAAgAEAAUAAQAEAAcA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("CATr//b7AAD2+zrl9vsAAAgEWuoIBAAA9vtF5wgEAAD/fwAA/38AAAAAu63/fwAA/3+7rQAAAAD//7ut/38AAP9/u63//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1yv1h"]
+resource_name = "BlubburuFlower_Plane_065"
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"attribute_data": PackedByteArray("/yD/fv8g/37/Lv9+/y7/fv8g/3D/IP9w/y7/cP8u/3D/J/93/yf/d/8n/3f/J/93/yf/d/8n/3f/J/93/yf/d/8g/3f/IP93/yf/cP8n/3D/Lv93/y7/d/8n/37/J/9+"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EwAMAAQAFgALAAMAFQAJAAYAEAAOAAEABwAKABIAAAANABcABQAPABEAAgAIABQA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("CATr//b7RdMIBOv/9vtHy/b7OuX2+5PI9vs65fb7TdMIBFrqCAR5rQgEWuoIBHC79vtF5wgEv7v2+0XnCARmrf9/AAD/f5PI/38AAP9/v7v/fwAA/39mrf9/AAD/f03T/38AAP9/ea3/fwAA/39F0/9/AAD/f0fL/38AAP9/cLsAALut/39HywAAu63/f3C7/3+7rQAAZq3/f7utAAB5rf//u63/f5PI//+7rf9/v7v/f7ut//9N0/9/u63//0XTL+r5c2XZcGql6nWntfffj1zm8nOx09BryOsrrE30pJil6nWnyOsrrE30pJi199+PXObycy/q+XNl2XBqsdPQa2XZcGqx09BrTfSkmFzm8nOl6nWnyOsrrLX3348v6vlz")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_avnet")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_22f70"]
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("BgAEAAIACAAEAAEABwAEAAMABQAEAAAAAwAEAAYAAAAEAAgAAgAEAAUAAQAEAAcA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("CATr//b7AAD2+zrl9vsAAAgEWuoIBAAA9vtF5wgEAAD/fwAA/38AAAAAu63/fwAA/3+7rQAAAAD//7ut/38AAP9/u63//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dqhlg"]
+resource_name = "BlubburuFlower_Plane_066"
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"attribute_data": PackedByteArray("/yD/fv8g/37/Lv9+/y7/fv8g/3D/IP9w/y7/cP8u/3D/J/93/yf/d/8n/3f/J/93/yf/d/8n/3f/J/93/yf/d/8g/3f/IP93/yf/cP8n/3D/Lv93/y7/d/8n/37/J/9+"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EwAMAAQAFgALAAMAFQAJAAYAEAAOAAEABwAKABIAAAANABcABQAPABEAAgAIABQA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("CATr//b7RdMIBOv/9vtHy/b7OuX2+5PI9vs65fb7TdMIBFrqCAR5rQgEWuoIBHC79vtF5wgEv7v2+0XnCARmrf9/AAD/f5PI/38AAP9/v7v/fwAA/39mrf9/AAD/f03T/38AAP9/ea3/fwAA/39F0/9/AAD/f0fL/38AAP9/cLsAALut/39HywAAu63/f3C7/3+7rQAAZq3/f7utAAB5rf//u63/f5PI//+7rf9/v7v/f7ut//9N0/9/u63//0XTL+r5c2XZcGql6nWntfffj1zm8nOx09BryOsrrE30pJil6nWnyOsrrE30pJi199+PXObycy/q+XNl2XBqsdPQa2XZcGqx09BrTfSkmFzm8nOl6nWnyOsrrLX3348v6vlz")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_22f70")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kq7gb"]
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("BgAEAAIACAAEAAEABwAEAAMABQAEAAAAAwAEAAYAAAAEAAgAAgAEAAUAAQAEAAcA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("CATr//b7AAD2+zrl9vsAAAgEWuoIBAAA9vtF5wgEAAD/fwAA/38AAAAAu63/fwAA/3+7rQAAAAD//7ut/38AAP9/u63//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oda4r"]
+resource_name = "BlubburuFlower_Plane_067"
+_surfaces = [{
+"aabb": AABB(-0.0439766, 0, -0.0439766, 0.0879532, 0.0331853, 0.0879532),
+"attribute_data": PackedByteArray("/yD/fv8g/37/Lv9+/y7/fv8g/3D/IP9w/y7/cP8u/3D/J/93/yf/d/8n/3f/J/93/yf/d/8n/3f/J/93/yf/d/8g/3f/IP93/yf/cP8n/3D/Lv93/y7/d/8n/37/J/9+"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EwAMAAQAFgALAAMAFQAJAAYAEAAOAAEABwAKABIAAAANABcABQAPABEAAgAIABQA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("CATr//b7RdMIBOv/9vtHy/b7OuX2+5PI9vs65fb7TdMIBFrqCAR5rQgEWuoIBHC79vtF5wgEv7v2+0XnCARmrf9/AAD/f5PI/38AAP9/v7v/fwAA/39mrf9/AAD/f03T/38AAP9/ea3/fwAA/39F0/9/AAD/f0fL/38AAP9/cLsAALut/39HywAAu63/f3C7/3+7rQAAZq3/f7utAAB5rf//u63/f5PI//+7rf9/v7v/f7ut//9N0/9/u63//0XTL+r5c2XZcGql6nWntfffj1zm8nOx09BryOsrrE30pJil6nWnyOsrrE30pJi199+PXObycy/q+XNl2XBqsdPQa2XZcGqx09BrTfSkmFzm8nOl6nWnyOsrrLX3348v6vlz")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kq7gb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo04n"]
+resource_name = "Leaves.003"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_73jcm")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_32n2f"]
+_surfaces = [{
+"aabb": AABB(-0.0235016, -0.0107388, -0.0541618, 0.0478883, 0.0148034, 0.0602839),
+"format": 34896613377,
+"index_count": 21,
+"index_data": PackedByteArray("BgAFAAcAAwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"lods": [0.0122222, PackedByteArray("BgAFAAQABAAFAAEAAwAGAAQAAwACAAYAAAADAAQA")],
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("4wwok9/+AACf+olW//8AAMpLAAAAAAAAAADbp0NrAAChfbS54/8AAP//tLl+cQAAr62DFJsJAAChff//fnEAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_53ph0"]
+resource_name = "BlubburuFlower_Plane_053"
+_surfaces = [{
+"aabb": AABB(-0.0235016, -0.0107388, -0.0541618, 0.0478883, 0.0148034, 0.0602839),
+"attribute_data": PackedByteArray("/xL/HP8a/xz/Ff8R/xJ/F/8Sfxf/Fv8c/xb/HP8afxf/Gn8X/xj/Ef8Y/xH/Fn8X/xZ/F/8Wfxf/Fn8X/xp/Fw=="),
+"format": 34896613399,
+"index_count": 21,
+"index_data": PackedByteArray("CgAHAA0ABAAJAAwABAACAAkAAAALAAUAAAADAAsABgAIAAEABgAOAAgA"),
+"lods": [0.0122222, PackedByteArray("CQAPAAUABQAPAAEAAwAJAAUAAwACAAkAAAADAAUA")],
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("4wwok9/+3ryf+olW//+YuspLAAAAAF7TAADbp0NrzbwAANunQ2te06F9tLnj/+u8oX20ueP/krr//7S5fnGw0v//tLl+cY+6r62DFJsJXtOvrYMUmwmw0qF9//9+cde8oX3//35xXtOhff//fnGw0qF9//9+cYq6//+0uX5xb8En9c6S+eixdU/064vF87iS2fMcjAj22pIA6W910/CodgPpTXWe9M6L0/Codo/0xZIj9PyL0/CodgvpDXXA7IV1")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_32n2f")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_846m7"]
+_surfaces = [{
+"aabb": AABB(-0.0593595, -0.0315878, -0.118064, 0.0990392, 0.0558662, 0.118064),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfz/3PvAAAo/N/QKvIAAAAAz3V+BwAAAg0QxoxeAADQl76Q//8AAP//9q0/UwAAX4kAAAAAAAAgmHV6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ktqnq"]
+resource_name = "BlubburuFlower_Plane_058"
+_surfaces = [{
+"aabb": AABB(-0.0593595, -0.0315878, -0.118064, 0.0990392, 0.0558662, 0.118064),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfz/3PvF8ko/N/QKvKKxQAAz3V+B0rUAg0QxoxejdQCDRDGjF6gyNCXvpD//3/F0Je+kP//b8n///atP1OgxV+JAAAAAJ/UIJh1ehlilcUgmHV6GWLr1CCYdXoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_846m7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p8gtj"]
+_surfaces = [{
+"aabb": AABB(-0.00829217, -0.0173312, -0.0514545, 0.0611552, 0.0252099, 0.0568256),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("CAADAAYABAACAAgACAACAAcAAAAIAAUABQAGAAEABQAIAAYABwADAAgABAAIAAAA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("HAS4q6T2AADS0dqiltkAAHk0X9UFNQAAqfcAAAAAAAAAAInDWH0AAGONRqP//wAA//87hWiMAACFXXjFGgAAAGmG//8xgAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k883s"]
+resource_name = "BlubburuFlower_Plane_063"
+_surfaces = [{
+"aabb": AABB(-0.00829217, -0.0173312, -0.0514545, 0.0611552, 0.0252099, 0.0568256),
+"attribute_data": PackedByteArray("TTISHU0yEh31OqYbZzTRFYg8XxOIPF8TZjJqGGYyahjqN2od6jdqHbs8uRi7PLkYHDbJExw2yRPCN70Ywje9GMI3vRjCN70Ywje9GMI3vRg="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EgAEAAsABwADAA8ADwADAAwAAQAQAAgACQAKAAIACQARAAoADQAFABMABgAOAAAA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("HAS4q6T2zbwcBLirpPZSs9LR2qKW2UG6eTRf1QU1K8Sp9wAAAACw0an3AAAAAHfPAACJw1h9zbwAAInDWH0zxGONRqP//1KzY41Go///Qbr//zuFaIxBuv//O4VojLDRhV14xRoAJMSFXXjFGgB3z2mG//8xgM28aYb//zGALMRphv//MYBSs2mG//8xgEG6aYb//zGAsNFphv//MYB3zx74/JQ//6l/n+B2d/P5Ao4j3/dvh9phbB74/JSR+vSNP/+pf5/gd3ef4HV3I9/3b1v5EI6H2mFsHvj8lAn6AI4//6l/n+B2dyPf92+H2mFs")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_p8gtj")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xu4m7"]
+_surfaces = [{
+"aabb": AABB(-0.00791721, -0.0165475, -0.0491278, 0.0583898, 0.0240699, 0.054256),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("CAADAAYABAACAAgACAACAAcAAAAIAAUABQAGAAEABQAIAAYABwADAAgABAAIAAAA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("HAS4q6T2AADS0dqiltkAAHk0X9UFNQAAqfcAAAAAAAAAAInDWH0AAGONRqP//wAA//87hWiMAACFXXjFGgAAAGmG//8xgAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gy0f7"]
+resource_name = "BlubburuFlower_Plane_068"
+_surfaces = [{
+"aabb": AABB(-0.00791721, -0.0165475, -0.0491278, 0.0583898, 0.0240699, 0.054256),
+"attribute_data": PackedByteArray("TTISHU0yEh31OqYbZzTRFYg8XxOIPF8TZjJqGGYyahjqN2od6jdqHbs8uRi7PLkYHDbJExw2yRPCN70Ywje9GMI3vRjCN70Ywje9GMI3vRg="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("EgAEAAsABwADAA8ADwADAAwAAQAQAAgACQAKAAIACQARAAoADQAFABMABgAOAAAA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("HAS4q6T2zbwcBLirpPZSs9LR2qKW2UG6eTRf1QU1K8Sp9wAAAACw0an3AAAAAHfPAACJw1h9zbwAAInDWH0zxGONRqP//1KzY41Go///Qbr//zuFaIxBuv//O4VojLDRhV14xRoAJMSFXXjFGgB3z2mG//8xgM28aYb//zGALMRphv//MYBSs2mG//8xgEG6aYb//zGAsNFphv//MYB3zx74/JQ//6l/n+B2d/P5Ao4j3/dvh9phbB74/JSR+vSNP/+pf5/gd3ef4HV3I9/3b1v5EI6H2mFsHvj8lAn6AI4//6l/n+B2dyPf92+H2mFs")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xu4m7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mx6l6"]
+_surfaces = [{
+"aabb": AABB(-0.0196309, -0.00897013, -0.0452415, 0.0400013, 0.0123653, 0.0503553),
+"format": 34896613377,
+"index_count": 21,
+"index_data": PackedByteArray("BgAFAAcAAwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"lods": [0.0102092, PackedByteArray("BgAFAAQABAAFAAEAAwAGAAQAAwACAAYAAAADAAQA")],
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("4wwok9/+AACf+olW//8AAMpLAAAAAAAAAADbp0NrAAChfbS54/8AAP//tLl+cQAAr62DFJsJAAChff//fnEAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vk2oo"]
+resource_name = "BlubburuFlower_Plane_070"
+_surfaces = [{
+"aabb": AABB(-0.0196309, -0.00897013, -0.0452415, 0.0400013, 0.0123653, 0.0503553),
+"attribute_data": PackedByteArray("/xL/HP8a/xz/Ff8R/xJ/F/8Sfxf/Fv8c/xb/HP8afxf/Gn8X/xj/Ef8Y/xH/Fn8X/xZ/F/8Wfxf/Fn8X/xp/Fw=="),
+"format": 34896613399,
+"index_count": 21,
+"index_data": PackedByteArray("CgAHAA0ABAAJAAwABAACAAkAAAALAAUAAAADAAsABgAIAAEABgAOAAgA"),
+"lods": [0.0102092, PackedByteArray("CQAPAAUABQAPAAEAAwAJAAUAAwACAAkAAAADAAUA")],
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("4wwok9/+3ryf+olW//+YuspLAAAAAF7TAADbp0NrzbwAANunQ2te06F9tLnj/+u8oX20ueP/krr//7S5fnGw0v//tLl+cY+6r62DFJsJXtOvrYMUmwmw0qF9//9+cde8oX3//35xXtOhff//fnGw0qF9//9+cYq6//+0uX5xb8En9c6S+eixdU/064vF87iS2fMcjAj22pIA6W910/CodgPpTXWe9M6L0/Codo/0xZIj9PyL0/CodgvpDXXA7IV1")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mx6l6")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_iofij"]
+_surfaces = [{
+"aabb": AABB(-0.0303825, -0.0161679, -0.06043, 0.0506921, 0.0285994, 0.06043),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfo/3PvAAAo/NbQKvIAAAAAynV+BwAAAg0HxoxeAADQl7iQ//8AAP//7q0/UwAAX4kAAAAAAAAgmHB6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_snuv0"]
+resource_name = "BlubburuFlower_Plane_071"
+_surfaces = [{
+"aabb": AABB(-0.0303825, -0.0161679, -0.06043, 0.0506921, 0.0285994, 0.06043),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfo/3PvF8ko/NbQKvKKxQAAynV+B0rUAg0HxoxejdQCDQfGjF6gyNCXuJD//3/F0Je4kP//b8n//+6tP1OgxV+JAAAAAJ/UIJhwehlilcUgmHB6GWLr1CCYcHoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_iofij")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_011f6"]
+_surfaces = [{
+"aabb": AABB(-0.0422777, -0.0132538, -0.0353725, 0.04794, 0.0155476, 0.0412788),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("CAADAAYACAAHAAMABAAHAAgABAACAAcAAAAIAAUAAAAEAAgABQAGAAEABQAIAAYA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("iVbY6u//AACm/jfacP0AAJ8PAAAnBgAAnulw6/NSAAAAAH6ORpEAAD96ROd7/wAA//+J2QmLAAA+evy4AAAAADZy//8BjQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rg4k3"]
+resource_name = "BlubburuFlower_Plane_072"
+_surfaces = [{
+"aabb": AABB(-0.0422777, -0.0132538, -0.0353725, 0.04794, 0.0155476, 0.0412788),
+"attribute_data": PackedByteArray("/yX/G/8s/xv/If8S/yv/Ff8h/xf/If8Xfyf/G38n/xv/LP4X/yz+F/8m/xL/Jv8S/yb/F/8m/xf/Jv8X/yb/Fw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("DgADAAgADgALAAMABAAKAAwABAACAAoAAAANAAYAAAAFAA0ABwAJAAEABwAPAAkA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("iVbY6u//iMCm/jfacP1/vp8PAAAnBozNnulw6/NSKcQAAH6ORpG2zQAAfo5GkZfAP3pE53v/fMA/ekTne/9/vv//idkJiynE//+J2QmLf74+evy4AABlzT56/LgAACnENnL//wGNjs02cv//AY2RwDZy//8BjSjENnL//wGNgL7g9FGYf/hve7ztfqI//iJ+0u45onX1TZhk9FOYfviZewP+r31++It7sOzAomT+o37L7XqiPPVPmGH+en59+LN7")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_011f6")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8lkdh"]
+_surfaces = [{
+"aabb": AABB(-0.0196309, -0.00897013, -0.0452415, 0.0400013, 0.0123653, 0.0503553),
+"format": 34896613377,
+"index_count": 21,
+"index_data": PackedByteArray("BgAFAAcAAwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"lods": [0.0102092, PackedByteArray("BgAFAAQABAAFAAEAAwAGAAQAAwACAAYAAAADAAQA")],
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("4wwok9/+AACf+olW//8AAMpLAAAAAAAAAADbp0NrAAChfbS54/8AAP//tLl+cQAAr62DFJsJAAChff//fnEAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sves4"]
+resource_name = "BlubburuFlower_Plane_074"
+_surfaces = [{
+"aabb": AABB(-0.0196309, -0.00897013, -0.0452415, 0.0400013, 0.0123653, 0.0503553),
+"attribute_data": PackedByteArray("/xL/HP8a/xz/Ff8R/xJ/F/8Sfxf/Fv8c/xb/HP8afxf/Gn8X/xj/Ef8Y/xH/Fn8X/xZ/F/8Wfxf/Fn8X/xp/Fw=="),
+"format": 34896613399,
+"index_count": 21,
+"index_data": PackedByteArray("CgAHAA0ABAAJAAwABAACAAkAAAALAAUAAAADAAsABgAIAAEABgAOAAgA"),
+"lods": [0.0102092, PackedByteArray("CQAPAAUABQAPAAEAAwAJAAUAAwACAAkAAAADAAUA")],
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("4wwok9/+3ryf+olW//+YuspLAAAAAF7TAADbp0NrzbwAANunQ2te06F9tLnj/+u8oX20ueP/krr//7S5fnGw0v//tLl+cY+6r62DFJsJXtOvrYMUmwmw0qF9//9+cde8oX3//35xXtOhff//fnGw0qF9//9+cYq6//+0uX5xb8En9c6S+eixdU/064vF87iS2fMcjAj22pIA6W910/CodgPpTXWe9M6L0/Codo/0xZIj9PyL0/CodgvpDXXA7IV1")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8lkdh")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3fxcv"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yypbw"]
+resource_name = "BlubburuFlower_Plane_076"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3fxcv")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a4nxq"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vlcc6"]
+resource_name = "BlubburuFlower_Plane_077"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_a4nxq")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xdbh1"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vjwbd"]
+resource_name = "BlubburuFlower_Plane_078"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xdbh1")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o1ot3"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_51ujh"]
+resource_name = "BlubburuFlower_Plane_079"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o1ot3")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t5kmn"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f42p2"]
+resource_name = "BlubburuFlower_Plane_080"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_t5kmn")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2f6f7"]
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfr/3PvAAAo/NnQKvIAAAAAzHV+BwAAAg0KxoxeAADQl7qQ//8AAP//8a0/UwAAX4kAAAAAAAAgmHJ6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_63blv"]
+resource_name = "BlubburuFlower_Plane_081"
+_surfaces = [{
+"aabb": AABB(-0.0363582, -0.0193478, -0.0723154, 0.0606623, 0.0342223, 0.0723154),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfr/3PvF8ko/NnQKvKKxQAAzHV+B0rUAg0KxoxejdQCDQrGjF6gyNCXupD//3/F0Je6kP//b8n///GtP1OgxV+JAAAAAJ/UIJhyehlilcUgmHJ6GWLr1CCYcnoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2f6f7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rsoeq"]
+_surfaces = [{
+"aabb": AABB(-0.0302935, 0, -0.0302935, 0.0605869, 0.01372, 0.060597),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAACAAJAAcABQAJAAYABgAJAAgABwAJAAUA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("AADP//T/AAD//8//9P8AAAAAz/8AAAAA///P/wAAAAD/fwAA+n8AAHsRX/5FiQAA5Ylf/kvuAACFdl/+4BAAAO/uX/7mdQAANYCtIZZ/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xgpjv"]
+resource_name = "BlubburuFlower_Plane_094"
+_surfaces = [{
+"aabb": AABB(-0.0302935, 0, -0.0302935, 0.0605869, 0.01372, 0.060597),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEAEwAVABAADAAWAA8ADgAUABIAEQAXAA0A"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AADP//T/UNEAAM//9P/Pwf//z//0/8/B///P//T/UNEAAM//AACurgAAz/8AAM/B///P/wAAz8H//8//AACurv9/AAD6f8/B/38AAPp/UNH/fwAA+n+urv9/AAD6f8/BexFf/kWJv9l7EV/+RYkswOWJX/5L7ojO5Ylf/kvuv9mFdl/+4BAhsYV2X/7gECzA7+5f/uZ1iM7v7l/+5nUhsTWArSGWf4jONYCtIZZ/IbE1gK0hln+/2TWArSGWfyzA////f2nZtGy07JSm////f////39p2bRstOyUpv///3+07JSm////f////39p2bRs2NFbkI3GwYUwzbat2NFbkCa/26mNxsGFMM22rSa/26kwzbatJr/bqdjRW5CNxsGF")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_rsoeq")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uh83q"]
+_surfaces = [{
+"aabb": AABB(-0.0376155, 0, -0.0376155, 0.0752311, 0.0170337, 0.0752411),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAACAAJAAcABQAJAAYABgAJAAgABwAJAAUA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("AADY//b/AAD//9j/9v8AAAAA2P8AAAAA///Y/wAAAAD/fwAA+38AAHsRaP5GiQAA5Ylo/k3uAACFdmj+4BAAAO/uaP7ndQAANYCuIZd/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ytkqk"]
+resource_name = "BlubburuFlower_Plane_097"
+_surfaces = [{
+"aabb": AABB(-0.0376155, 0, -0.0376155, 0.0752311, 0.0170337, 0.0752411),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEAEwAVABAADAAWAA8ADgAUABIAEQAXAA0A"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AADY//b/UNEAANj/9v/Pwf//2P/2/8/B///Y//b/UNEAANj/AACurgAA2P8AAM/B///Y/wAAz8H//9j/AACurv9/AAD7f8/B/38AAPt/UNH/fwAA+3+urv9/AAD7f8/BexFo/kaJv9l7EWj+RokswOWJaP5N7ojO5Ylo/k3uv9mFdmj+4BAhsYV2aP7gECzA7+5o/ud1iM7v7mj+53UhsTWAriGXf4jONYCuIZd/IbE1gK4hl3+/2TWAriGXfyzA////f2nZtGy07JSm////f////39p2bRstOyUpv///3+07JSm////f////39p2bRs2NFbkI3GwYUwzbat2NFbkCa/26mNxsGFMM22rSa/26kwzbatJr/bqdjRW5CNxsGF")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_uh83q")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wy254"]
+_surfaces = [{
+"aabb": AABB(-0.0436646, 0, -0.0436647, 0.0873293, 0.0197714, 0.0873393),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("AADd//f/AAD//93/9/8AAAAA3f8AAAAA///d/wAAAAD/fwAA+38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1djkj"]
+resource_name = "BlubburuFlower_Plane_099"
+_surfaces = [{
+"aabb": AABB(-0.0436646, 0, -0.0436647, 0.0873293, 0.0197714, 0.0873393),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83"),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AADd//f/UNEAAN3/9//Pwf//3f/3/8/B///d//f/UNEAAN3/AACurgAA3f8AAM/B///d/wAAz8H//93/AACurv9/AAD7f8/B/38AAPt/UNH/fwAA+3+urv9/AAD7f8/B////f2nZtGy07JSm////f////39p2bRstOyUpv///3+07JSm////f////39p2bRs")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wy254")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s6jv7"]
+_surfaces = [{
+"aabb": AABB(-0.061313, 1.55408e-08, -0.061313, 0.122626, 0.0197614, 0.122626),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAACAAJAAcABQAJAAYABgAJAAgABwAJAAUA"),
+"lods": [0.0254607, PackedByteArray("AwABAAIAAgABAAAABQAHAAYABgAHAAgA")],
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("vz5r+D/BAAA/wWv4P8EAAL8+a/i/PgAAP8Fr+L8+AAD/fy1B/38AAAAA/v+rcAAAq3D///7/AABTj/7/AAAAAP////9TjwAA/38AAP9/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jqkbw"]
+resource_name = "BlubburuFlower_Plane_101"
+_surfaces = [{
+"aabb": AABB(-0.061313, 1.55408e-08, -0.061313, 0.122626, 0.0197614, 0.122626),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/1//P/9P/y//X/8//0//Lw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEAEgAUABAADQAXAA8ADgAVABMAEQAWAAwA"),
+"lods": [0.0254607, PackedByteArray("BgAYABkAGQAYAAAADAAbABoAGgAbABIA")],
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("vz5r+D/BUNG/Pmv4P8HPwT/Ba/g/wc/BP8Fr+D/BUNG/Pmv4vz6urr8+a/i/Ps/BP8Fr+L8+z8E/wWv4vz6urv9/LUH/f8/B/38tQf9/UNH/fy1B/3+urv9/LUH/f8/BAAD+/6twTMIAAP7/q3B+1qtw///+/+bPq3D///7/ftZTj/7/AAArulOP/v8AAEzC/////1OPK7r/////U4/mz/9/AAD/fyu6/38AAP9/5s//fwAA/39Mwv9/AAD/f37WP8Fr+D/Bmse/Pmv4vz6Wuqtw///+//rQU4/+/wAA/cT///9/adm0bLTslKb///9/////f2nZtGy07JSm////f7TslKb///9/////f2nZtGxfvYSSIsdLlhnEPqsix0uWKbkOq1+9hJIpuQ6rGcQ+qym5DqsZxD6rX72EkiLHS5b5+6iWgfuBe6HKnaGowOKf")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_s6jv7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qrtbc"]
+_surfaces = [{
+"aabb": AABB(-0.0593595, -0.0315878, -0.118064, 0.0990392, 0.0558662, 0.118064),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AwAGAAcAAwACAAYAAAAHAAQAAAADAAcABAAFAAEABAAHAAUA"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("2jfz/3PvAAAo/N/QKvIAAAAAz3V+BwAAAg0QxoxeAADQl76Q//8AAP//9q0/UwAAX4kAAAAAAAAgmHV6GWIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xbmk4"]
+resource_name = "BlubburuFlower_Plane_105"
+_surfaces = [{
+"aabb": AABB(-0.0593595, -0.0315878, -0.118064, 0.0990392, 0.0558662, 0.118064),
+"attribute_data": PackedByteArray("ICP7DP8q/wz/If8C/yEAB/8hAAfzJv8M8yb/DP8q/wb5JvwCBycABwcnAAcHJwAH"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AwAIAAoAAwACAAgAAAALAAYAAAAEAAsABQAHAAEABQAJAAcA"),
+"material": SubResource("StandardMaterial3D_eo04n"),
+"name": "Leaves.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("2jfz/3PvF8ko/N/QKvKKxQAAz3V+B0rUAg0QxoxejdQCDRDGjF6gyNCXvpD//3/F0Je+kP//b8n///atP1OgxV+JAAAAAJ/UIJh1ehlilcUgmHV6GWLr1CCYdXoZYufIktu2cMb3sZ0f4X9pSuK9bCbbO26J97id2ttickT4pZ2Q4oBtCfisnaPjfHBo275v")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qrtbc")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2dt4i"]
+_surfaces = [{
+"aabb": AABB(-0.0304857, 0, -0.0304858, 0.0609715, 0.013807, 0.0609815),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AwAEAAIAAAAEAAEAAQAEAAMAAgAEAAAA"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("AADP//T/AAD//8//9P8AAAAAz/8AAAAA///P/wAAAAD/fwAA+n8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5b322"]
+resource_name = "BlubburuFlower_Plane_106"
+_surfaces = [{
+"aabb": AABB(-0.0304857, 0, -0.0304858, 0.0609715, 0.013807, 0.0609815),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83"),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("BwAKAAQAAAAJAAMAAgAIAAYABQALAAEA"),
+"material": SubResource("StandardMaterial3D_bu4pi"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AADP//T/UNEAAM//9P/Pwf//z//0/8/B///P//T/UNEAAM//AACurgAAz/8AAM/B///P/wAAz8H//8//AACurv9/AAD6f8/B/38AAPp/UNH/fwAA+n+urv9/AAD6f8/B////f2nZtGy07JSm////f////39p2bRstOyUpv///3+07JSm////f////39p2bRs")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2dt4i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c32kw"]
+resource_name = "Leaves.001"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_73jcm")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ybihn"]
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("CAAEAAUABgAEAAcABwAEAAgABQAEAAYAAwAFAAIAAwAIAAUAAQAIAAMAAQAHAAgAAgAGAAAAAgAFAAYAAAAHAAEAAAAGAAcA"),
+"lods": [0.0158289, PackedByteArray("BwAEAAUAAgAFAAQAAwAHAAUAAwAFAAIAAQAHAAMAAgAEAAAAAAAHAAEAAAAEAAcA"), 0.0259216, PackedByteArray("AwAEAAIAAgAEAAAAAwABAAQAAAAEAAEA")],
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AADh//n/AAD//+H/+f8AAAAA4f8AAAAA///h/wAAAAD/f3EH/H8AAP8/AAD+PwAA/z8AAPu/AAD/vwAA+78AAP+/AAD+PwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aqmyq"]
+resource_name = "BlubburuFlower_Plane_002"
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/1P/M/9T/zP/U/8z/1P/M/9T/zv/U/87/1P/O/9T/zv/W/87/1v/O/9b/zv/W/87/1v/M/9b/zP/W/8z/1v/M/9P/z//X/8//0//L/9f/y//V/83/0//P/9f/z//T/8v/1//L/9X/zf/U/8z/1P/M/9b/zs="),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("GgAJAA4AEgAKABYAFwALABsADAAIABAABwANAAQABwAZAA0AAgAYAAYAAgAUABgABQATAAEABQAPABMAAAAVAAMAAAARABUA"),
+"lods": [0.0158289, PackedByteArray("KAAlACYAIwAmACUAJAAoACYAJAAnACMAIgAoACQAIwAlACEAIQAoACIAIQAlACgA"), 0.0259216, PackedByteArray("HwAgAB4AHgAgABwAHwAdACAAHAAgAB0A")],
+"material": SubResource("StandardMaterial3D_c32kw"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 41,
+"vertex_data": PackedByteArray("AADh//n/Y9kAAOH/+f/Vw///4f/5/9XD///h//n/Y9kAAOH/AACapgAA4f8AANXD///h/wAA1cP//+H/AACapv9/cQf8fwDA/39xB/x/2cD/f3EH/H8lv/9/cQf8fwDA/z8AAP4/AMD/PwAA/j+apv8/AAD+P9nA/z8AAP4/1cP/PwAA+78AwP8/AAD7v2PZ/z8AAPu/Jb//PwAA+7/Vw/+/AAD7v9XD/78AAPu/Y9n/vwAA+78lv/+/AAD7vwDA/78AAP4/1cP/vwAA/j+apv+/AAD+P9nA/78AAP4/AMAAAOH/+f89zf//4f/5//fOAADh/wAA37T//+H/AACuuf9/cQf8f23CAADh//n/5c///+H/+f9F0AAA4f8AAOG2///h/wAAhLj/f3EH/H9Qxv8/AAD+P/u//z8AAP4/nKb/vwAA+7/Wz////3/Yzexm6+Ymsv///3////9/2M3sZuvmJrL///9/r/6egv///3////9/YP2wfq/+noL///9/////f9jN7Gav/p6C////f////3/Yzexm6+Ymsv///3////9/YP2wfuvmJrL///9/////f2D9sH6Q7ZFt5vBqo7but27R8uitGP4gg9Hz0XPi77mjtei2aPzz0a0A7QNsMO0GbP//joIE+Iuc")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ybihn")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ic6td"]
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("CAAEAAUABgAEAAcABwAEAAgABQAEAAYAAwAFAAIAAwAIAAUAAQAIAAMAAQAHAAgAAgAGAAAAAgAFAAYAAAAHAAEAAAAGAAcA"),
+"lods": [0.0158289, PackedByteArray("BwAEAAUAAgAFAAQAAwAHAAUAAwAFAAIAAQAHAAMAAgAEAAAAAAAHAAEAAAAEAAcA"), 0.0259216, PackedByteArray("AwAEAAIAAgAEAAAAAwABAAQAAAAEAAEA")],
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AADh//n/AAD//+H/+f8AAAAA4f8AAAAA///h/wAAAAD/f3EH/H8AAP8/AAD+PwAA/z8AAPu/AAD/vwAA+78AAP+/AAD+PwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vp771"]
+resource_name = "BlubburuFlower_Plane_003"
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/1P/M/9T/zP/U/8z/1P/M/9T/zv/U/87/1P/O/9T/zv/W/87/1v/O/9b/zv/W/87/1v/M/9b/zP/W/8z/1v/M/9P/z//X/8//0//L/9f/y//V/83/0//P/9f/z//T/8v/1//L/9X/zf/U/8z/1P/M/9b/zs="),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("GgAJAA4AEgAKABYAFwALABsADAAIABAABwANAAQABwAZAA0AAgAYAAYAAgAUABgABQATAAEABQAPABMAAAAVAAMAAAARABUA"),
+"lods": [0.0158289, PackedByteArray("KAAlACYAIwAmACUAJAAoACYAJAAnACMAIgAoACQAIwAlACEAIQAoACIAIQAlACgA"), 0.0259216, PackedByteArray("HwAgAB4AHgAgABwAHwAdACAAHAAgAB0A")],
+"material": SubResource("StandardMaterial3D_c32kw"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 41,
+"vertex_data": PackedByteArray("AADh//n/Y9kAAOH/+f/Vw///4f/5/9XD///h//n/Y9kAAOH/AACapgAA4f8AANXD///h/wAA1cP//+H/AACapv9/cQf8fwDA/39xB/x/2cD/f3EH/H8lv/9/cQf8fwDA/z8AAP4/AMD/PwAA/j+apv8/AAD+P9nA/z8AAP4/1cP/PwAA+78AwP8/AAD7v2PZ/z8AAPu/Jb//PwAA+7/Vw/+/AAD7v9XD/78AAPu/Y9n/vwAA+78lv/+/AAD7vwDA/78AAP4/1cP/vwAA/j+apv+/AAD+P9nA/78AAP4/AMAAAOH/+f89zf//4f/5//fOAADh/wAA37T//+H/AACuuf9/cQf8f23CAADh//n/5c///+H/+f9F0AAA4f8AAOG2///h/wAAhLj/f3EH/H9Qxv8/AAD+P/u//z8AAP4/nKb/vwAA+7/Wz////3/Yzexm6+Ymsv///3////9/2M3sZuvmJrL///9/r/6egv///3////9/YP2wfq/+noL///9/////f9jN7Gav/p6C////f////3/Yzexm6+Ymsv///3////9/YP2wfuvmJrL///9/////f2D9sH6Q7ZFt5vBqo7but27R8uitGP4gg9Hz0XPi77mjtei2aPzz0a0A7QNsMO0GbP//joIE+Iuc")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ic6td")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yhgcp"]
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("CAAEAAUABgAEAAcABwAEAAgABQAEAAYAAwAFAAIAAwAIAAUAAQAIAAMAAQAHAAgAAgAGAAAAAgAFAAYAAAAHAAEAAAAGAAcA"),
+"lods": [0.0158289, PackedByteArray("BwAEAAUAAgAFAAQAAwAHAAUAAwAFAAIAAQAHAAMAAgAEAAAAAAAHAAEAAAAEAAcA"), 0.0259216, PackedByteArray("AwAEAAIAAgAEAAAAAwABAAQAAAAEAAEA")],
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AADh//n/AAD//+H/+f8AAAAA4f8AAAAA///h/wAAAAD/f3EH/H8AAP8/AAD+PwAA/z8AAPu/AAD/vwAA+78AAP+/AAD+PwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hce8l"]
+resource_name = "BlubburuFlower_Plane_004"
+_surfaces = [{
+"aabb": AABB(-0.061905, -0.000647085, -0.061905, 0.12381, 0.0222592, 0.12382),
+"attribute_data": PackedByteArray("/0//P/9P/z//X/8//1//P/9P/y//T/8v/1//L/9f/y//V/83/1f/N/9X/zf/V/83/1P/M/9T/zP/U/8z/1P/M/9T/zv/U/87/1P/O/9T/zv/W/87/1v/O/9b/zv/W/87/1v/M/9b/zP/W/8z/1v/M/9P/z//X/8//0//L/9f/y//V/83/0//P/9f/z//T/8v/1//L/9X/zf/U/8z/1P/M/9b/zs="),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("GgAJAA4AEgAKABYAFwALABsADAAIABAABwANAAQABwAZAA0AAgAYAAYAAgAUABgABQATAAEABQAPABMAAAAVAAMAAAARABUA"),
+"lods": [0.0158289, PackedByteArray("KAAlACYAIwAmACUAJAAoACYAJAAnACMAIgAoACQAIwAlACEAIQAoACIAIQAlACgA"), 0.0259216, PackedByteArray("HwAgAB4AHgAgABwAHwAdACAAHAAgAB0A")],
+"material": SubResource("StandardMaterial3D_c32kw"),
+"name": "Leaves.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 41,
+"vertex_data": PackedByteArray("AADh//n/Y9kAAOH/+f/Vw///4f/5/9XD///h//n/Y9kAAOH/AACapgAA4f8AANXD///h/wAA1cP//+H/AACapv9/cQf8fwDA/39xB/x/2cD/f3EH/H8lv/9/cQf8fwDA/z8AAP4/AMD/PwAA/j+apv8/AAD+P9nA/z8AAP4/1cP/PwAA+78AwP8/AAD7v2PZ/z8AAPu/Jb//PwAA+7/Vw/+/AAD7v9XD/78AAPu/Y9n/vwAA+78lv/+/AAD7vwDA/78AAP4/1cP/vwAA/j+apv+/AAD+P9nA/78AAP4/AMAAAOH/+f89zf//4f/5//fOAADh/wAA37T//+H/AACuuf9/cQf8f23CAADh//n/5c///+H/+f9F0AAA4f8AAOG2///h/wAAhLj/f3EH/H9Qxv8/AAD+P/u//z8AAP4/nKb/vwAA+7/Wz////3/Yzexm6+Ymsv///3////9/2M3sZuvmJrL///9/r/6egv///3////9/YP2wfq/+noL///9/////f9jN7Gav/p6C////f////3/Yzexm6+Ymsv///3////9/YP2wfuvmJrL///9/////f2D9sH6Q7ZFt5vBqo7but27R8uitGP4gg9Hz0XPi77mjtei2aPzz0a0A7QNsMO0GbP//joIE+Iuc")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_yhgcp")
+
+[sub_resource type="Animation" id="Animation_scb8y"]
+resource_name = "Grow"
+length = 30.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Leaf_003:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.25, 10, 27.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Blossom:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.75, 15.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Leaf_007:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5, 11.75, 23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Leaf_001:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.25, 10.25, 23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Leaf_007:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7, 10.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.36999, -0.151822, 0.151908), Vector3(0.533219, -0.215134, 0.293322)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Leaf_001:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6, 10.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.20868, 2.11048, -0.206031), Vector3(0.572697, 2.5284, -0.115042)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Stick_001:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.75, 8, 29.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1, 1.1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Stick_001:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.75, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.140084, -0.764089, -0.222094), Vector3(0.129857, 0.298396, -0.228159)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Stick:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2, 5.75, 9.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0.5, 1), Vector3(1, 1, 1), Vector3(1, 1.1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/Stick:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.75, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.246076, 1.83167, -0.257603), Vector3(0.129857, 3.00843, -0.228159)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/Leaf_006:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(6.75, 11.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/Leaf_006:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(8, 11.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.13448, -2.96504, -2.42656), Vector3(-1.32261, -2.79939, -2.54842)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model/Stick_009:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(6.5, 7, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/Stick_009:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(8, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.259153, -0.506521, 1.56683), Vector3(-0.131536, -0.504996, 1.56692)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/Leaf:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(13.25, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Model/Leaf:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(16.25, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.638813, -0.229534, 0.649599), Vector3(-0.831192, -0.66979, 0.349623)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Model/Stick_008:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(11.25, 11.5, 16, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1), Vector3(1, 1.1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Model/Stick_011:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(11.75, 12, 20),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Model/Stick_003:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(12.75, 13, 19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Model/Stick_002:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(12, 12.25, 15.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1), Vector3(1, 1.25, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Model/Stick_004:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(15, 15.25, 21),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Model/Stick_005:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(14.75, 15, 19.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Model/Stick_010:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(12, 12.25, 16.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1), Vector3(1, 1.25, 1)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Model/Stick_006:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(16.5, 16.75, 21),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Model/Stick_007:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(17.5, 17.75, 21.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Model/Stick_012:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(4.75, 5, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Model/Stick_012:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(9.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0553898, -1.1234, -1.76399)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Model/Leaf_009:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(20, 26.5349),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Model/Leaf_009:rotation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(20.5, 26.5349),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.160529, 1.17416, 0.954989), Vector3(-0.487503, 1.30366, -0.642298)]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Model/Leaf_012:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(16.75, 26.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/Leaf_012:rotation")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(17.5, 26.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.21587, 0.328069, -0.979415), Vector3(-1.0064, 0.231832, 0.196307)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Model/Leaf_002:scale")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(10.75, 18.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Model/Leaf_002:rotation")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(12, 18.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.14736, 2.69585, 0.214233), Vector3(-0.519047, 3.09062, -0.208307)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Model/Leaf_018:scale")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(15.75, 24.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Model/Leaf_018:rotation")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(17, 24.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.808106, 2.63332, 0.462315), Vector3(-0.186856, 2.43706, 0.161266)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Model/Blossom_010:scale")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(10.25, 16.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Model/Blossom_010:rotation")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(11.25, 16.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0856953, 2.21982, -0.028202), Vector3(-0.0605413, 0.233001, -0.0669128)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Model/Blossom_003:scale")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(19.25, 19.5, 24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.0526316, 0.0526316, 0.0526316), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("Model/Blossom_003:rotation")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(19.5, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.499499, -1.22767, -0.5361), Vector3(0.351622, 0.799794, 0.63705)]
+}
+tracks/39/type = "value"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("Model/Blossom_006:scale")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(21.25, 24.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/40/type = "value"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("Model/Blossom_006:rotation")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"times": PackedFloat32Array(21.5, 24.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.10973, -1.30357, -0.364558), Vector3(0.765612, 0.790441, 1.62791)]
+}
+tracks/41/type = "value"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("Model/Stick_007:rotation")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = {
+"times": PackedFloat32Array(18.75, 21.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.55194, -0.653969, 0.599962), Vector3(0, 0, 0.791472)]
+}
+tracks/42/type = "value"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("Model/Blossom_005:scale")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = {
+"times": PackedFloat32Array(19.25, 26.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/43/type = "value"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("Model/Blossom_005:rotation")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = {
+"times": PackedFloat32Array(19.75, 26.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0422117, -0.606326, -1.09337), Vector3(0.983676, 1.62414, 0.59396)]
+}
+tracks/44/type = "value"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("Model/Blossom_004:scale")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"times": PackedFloat32Array(20.75, 27.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/45/type = "value"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("Model/Blossom_004:rotation")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = {
+"times": PackedFloat32Array(22, 27.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.27803, 1.94255, 0.195389), Vector3(0.418353, 0.299535, -1.25579)]
+}
+tracks/46/type = "value"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Model/Blossom_007:scale")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"times": PackedFloat32Array(22, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Model/Blossom_007:rotation")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(23, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.989407, -2.76403, -0.831175), Vector3(0.204711, -0.21287, 0.78652)]
+}
+tracks/48/type = "value"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Model/Leaf_015:scale")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"times": PackedFloat32Array(15.25, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Model/Leaf_015:rotation")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(16.5, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.779215, 1.69354, 1.05916), Vector3(-0.419646, 1.01898, 0.115974)]
+}
+tracks/50/type = "value"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("Model/Leaf_014:scale")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"times": PackedFloat32Array(16, 24.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/51/type = "value"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("Model/Leaf_014:rotation")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"times": PackedFloat32Array(16.75, 24.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.485408, -2.84598, -0.93554), Vector3(-0.419646, -2.03694, 0.115974)]
+}
+tracks/52/type = "value"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("Model/Blossom_001:scale")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(20, 24.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/53/type = "value"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("Model/Blossom_001:rotation")
+tracks/53/interp = 1
+tracks/53/loop_wrap = true
+tracks/53/keys = {
+"times": PackedFloat32Array(20.75, 24.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.19113, 1.46544, -0.0622175), Vector3(-0.0614133, -0.0837183, 0.0334222)]
+}
+tracks/54/type = "value"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("Model/Leaf_005:scale")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/keys = {
+"times": PackedFloat32Array(11.25, 14.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2)]
+}
+tracks/55/type = "value"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("Model/Leaf_005:rotation")
+tracks/55/interp = 1
+tracks/55/loop_wrap = true
+tracks/55/keys = {
+"times": PackedFloat32Array(11.5, 14.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.30552, 0.344553, -2.4623), Vector3(0.255013, 1.16425, -1.78318)]
+}
+tracks/56/type = "value"
+tracks/56/imported = false
+tracks/56/enabled = true
+tracks/56/path = NodePath("Model/Blossom_002:scale")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = {
+"times": PackedFloat32Array(19.75, 27),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.35, 1.35, 1.35)]
+}
+tracks/57/type = "value"
+tracks/57/imported = false
+tracks/57/enabled = true
+tracks/57/path = NodePath("Model/Blossom_002:rotation")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = {
+"times": PackedFloat32Array(20.75, 27),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.185487, 3.12125, 0.33255), Vector3(-0.0168667, 0.427767, -0.378739)]
+}
+tracks/58/type = "value"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("Model/Leaf_008:scale")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"times": PackedFloat32Array(5, 12.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.5, 1.5, 1.5)]
+}
+tracks/59/type = "value"
+tracks/59/imported = false
+tracks/59/enabled = true
+tracks/59/path = NodePath("Model/Leaf_008:rotation")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = {
+"times": PackedFloat32Array(6, 12.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.23569, 2.87805, 0.516617), Vector3(-0.522403, 2.95654, 0.11728), Vector3(-0.530201, 3.05316, -0.669349)]
+}
+tracks/60/type = "value"
+tracks/60/imported = false
+tracks/60/enabled = true
+tracks/60/path = NodePath("Model/Leaf_011:scale")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = {
+"times": PackedFloat32Array(14, 24, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/61/type = "value"
+tracks/61/imported = false
+tracks/61/enabled = true
+tracks/61/path = NodePath("Model/Leaf_011:rotation")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = {
+"times": PackedFloat32Array(15, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.887644, 2.49771, 1.64836), Vector3(-0.250422, 1.76192, 0.454374)]
+}
+tracks/62/type = "value"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath("Model/Leaf_010:scale")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(17, 28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/63/type = "value"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("Model/Leaf_010:rotation")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = {
+"times": PackedFloat32Array(18, 28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.914518, -1.49906, 1.49485), Vector3(-0.700386, -2.55364, -0.0337882)]
+}
+tracks/64/type = "value"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("Model/Leaf_013:scale")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(16.25, 20.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/65/type = "value"
+tracks/65/imported = false
+tracks/65/enabled = true
+tracks/65/path = NodePath("Model/Leaf_013:rotation")
+tracks/65/interp = 1
+tracks/65/loop_wrap = true
+tracks/65/keys = {
+"times": PackedFloat32Array(17, 20.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.906248, 1.01041, 1.07673), Vector3(-0.630661, 0.782406, -0.1603)]
+}
+tracks/66/type = "value"
+tracks/66/imported = false
+tracks/66/enabled = true
+tracks/66/path = NodePath("Model/Leaf_004:scale")
+tracks/66/interp = 1
+tracks/66/loop_wrap = true
+tracks/66/keys = {
+"times": PackedFloat32Array(4.75, 9, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.15, 1.15, 1.15)]
+}
+tracks/67/type = "value"
+tracks/67/imported = false
+tracks/67/enabled = true
+tracks/67/path = NodePath("Model/Leaf_004:rotation")
+tracks/67/interp = 1
+tracks/67/loop_wrap = true
+tracks/67/keys = {
+"times": PackedFloat32Array(5.75, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.533161, 1.84559, 1.85571), Vector3(-1.20957, 1.27209, 2.32527)]
+}
+tracks/68/type = "value"
+tracks/68/imported = false
+tracks/68/enabled = true
+tracks/68/path = NodePath("Model/Leaf_017:scale")
+tracks/68/interp = 1
+tracks/68/loop_wrap = true
+tracks/68/keys = {
+"times": PackedFloat32Array(10.25, 19.25, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.1, 1, 1)]
+}
+tracks/69/type = "value"
+tracks/69/imported = false
+tracks/69/enabled = true
+tracks/69/path = NodePath("Model/Leaf_017:rotation")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/keys = {
+"times": PackedFloat32Array(11.25, 19.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.930736, -1.78542, -1.16668), Vector3(-0.701981, -0.989567, 0.00914533)]
+}
+tracks/70/type = "value"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("Model/Leaf_016:scale")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(10.5, 21.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/71/type = "value"
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/path = NodePath("Model/Leaf_016:rotation")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/keys = {
+"times": PackedFloat32Array(11.75, 21.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.81569, 2.42793, -0.0955452), Vector3(-0.267961, 1.81791, 0.432307)]
+}
+tracks/72/type = "value"
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/path = NodePath("Model/Blossom_008:scale")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/keys = {
+"times": PackedFloat32Array(10.25, 18.25, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/73/type = "value"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("Model/Blossom_008:rotation")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = {
+"times": PackedFloat32Array(11.25, 18.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.168807, -1.95274, -0.134807), Vector3(0.18962, 0.00688834, -0.103287)]
+}
+tracks/74/type = "value"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("Model/Leaf_003:rotation")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = {
+"times": PackedFloat32Array(3.5, 10.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.270299, 0), Vector3(0, 0, 0)]
+}
+tracks/75/type = "value"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("Model/Blossom:rotation")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = {
+"times": PackedFloat32Array(3, 14.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.393397, 0), Vector3(0, 0, 0)]
+}
+tracks/76/type = "value"
+tracks/76/imported = false
+tracks/76/enabled = true
+tracks/76/path = NodePath("Model/Leaf_021:scale")
+tracks/76/interp = 1
+tracks/76/loop_wrap = true
+tracks/76/keys = {
+"times": PackedFloat32Array(3.5, 8, 16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/77/type = "value"
+tracks/77/imported = false
+tracks/77/enabled = true
+tracks/77/path = NodePath("Model/Leaf_021:rotation")
+tracks/77/interp = 1
+tracks/77/loop_wrap = true
+tracks/77/keys = {
+"times": PackedFloat32Array(4.5, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.646311, 0.949727, 1.11226), Vector3(-0.373544, 0.801447, -0.292552)]
+}
+tracks/78/type = "value"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("Model/Leaf_019:scale")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"times": PackedFloat32Array(14, 23, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3)]
+}
+tracks/79/type = "value"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("Model/Leaf_019:rotation")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = {
+"times": PackedFloat32Array(14.75, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.529457, 0.763777, 0.603741), Vector3(-0.306052, 0.46041, -0.495223)]
+}
+tracks/80/type = "value"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("Model/Leaf_020:scale")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(14.75, 19.5, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.25, 1.25, 1.25), Vector3(1.5, 1.5, 1.5)]
+}
+tracks/81/type = "value"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("Model/Leaf_020:rotation")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = {
+"times": PackedFloat32Array(16, 19.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.564714, -1.77913, -0.689455), Vector3(0.0386853, -1.54726, 0.747909)]
+}
+tracks/82/type = "value"
+tracks/82/imported = false
+tracks/82/enabled = true
+tracks/82/path = NodePath("Model/Stick_006:rotation")
+tracks/82/interp = 1
+tracks/82/loop_wrap = true
+tracks/82/keys = {
+"times": PackedFloat32Array(17, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.27833, -0.528931, -0.931149), Vector3(0.506373, 0.0719321, -0.854892)]
+}
+tracks/83/type = "value"
+tracks/83/imported = false
+tracks/83/enabled = true
+tracks/83/path = NodePath("Model/Stick_010:rotation")
+tracks/83/interp = 1
+tracks/83/loop_wrap = true
+tracks/83/keys = {
+"times": PackedFloat32Array(12.5, 16.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.725077, -0.165513, 0.101831), Vector3(-0.609897, 0.380446, -0.222745)]
+}
+tracks/84/type = "value"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("Model/Stick_008:rotation")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = {
+"times": PackedFloat32Array(12.75, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.882581, 1.04129, -1.62753), Vector3(-0.0606388, 1.08732, -1.60688)]
+}
+tracks/85/type = "value"
+tracks/85/imported = false
+tracks/85/enabled = true
+tracks/85/path = NodePath("Model/Stick_005:rotation")
+tracks/85/interp = 1
+tracks/85/loop_wrap = true
+tracks/85/keys = {
+"times": PackedFloat32Array(15.75, 19.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.454633, -0.922716, -0.321002), Vector3(0, 0, -0.549988)]
+}
+tracks/86/type = "value"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("Model/Stick_004:rotation")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
+"times": PackedFloat32Array(15.5, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.435071, 0.178881, 0.963562), Vector3(0.97994, -1.55473, -0.379477)]
+}
+tracks/87/type = "value"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("Model/Stick_002:rotation")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = {
+"times": PackedFloat32Array(13, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.243524, -2.61637, -0.414887), Vector3(-0.38304, -2.9569, -0.326687)]
+}
+tracks/88/type = "value"
+tracks/88/imported = false
+tracks/88/enabled = true
+tracks/88/path = NodePath("Model/Blubburu2:scale")
+tracks/88/interp = 1
+tracks/88/loop_wrap = true
+tracks/88/keys = {
+"times": PackedFloat32Array(16, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/89/type = "value"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("Model/Blubburu:scale")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = {
+"times": PackedFloat32Array(13, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/90/type = "value"
+tracks/90/imported = false
+tracks/90/enabled = true
+tracks/90/path = NodePath("Model/Blubburu3:scale")
+tracks/90/interp = 1
+tracks/90/loop_wrap = true
+tracks/90/keys = {
+"times": PackedFloat32Array(20, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/91/type = "value"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("Model/Blubburu:rotation")
+tracks/91/interp = 2
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(14.25, 18, 22, 25.75, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0266199, -0.939247, -0.214004), Vector3(0.116491, -1.25659, -0.214079), Vector3(-0.0673528, -1.0861, -0.21943), Vector3(-0.0915603, -1.31039, -0.200011), Vector3(0.0266199, -0.939247, -0.214004)]
+}
+tracks/92/type = "value"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("Model/Blubburu3:rotation")
+tracks/92/interp = 2
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(20.25, 23.75, 27, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00162425, 0.814433, -0.0354213), Vector3(0.177734, 0.80801, -0.0359884), Vector3(-0.10042, 0.817948, -0.0357463), Vector3(-0.00162425, 0.814433, -0.0354213)]
+}
+tracks/93/type = "value"
+tracks/93/imported = false
+tracks/93/enabled = true
+tracks/93/path = NodePath("Model/Blubburu2:rotation")
+tracks/93/interp = 2
+tracks/93/loop_wrap = true
+tracks/93/keys = {
+"times": PackedFloat32Array(16, 17.5, 23.75, 25, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0760728, 2.58851, 0.0874825), Vector3(0.106099, 2.14696, 0.0466547), Vector3(0.0760728, 2.58851, 0.0874825), Vector3(0.106099, 2.14696, 0.0466547), Vector3(0.0760728, 2.58851, 0.0874825)]
+}
+tracks/94/type = "value"
+tracks/94/imported = false
+tracks/94/enabled = true
+tracks/94/path = NodePath("Model/Stick_003:rotation")
+tracks/94/interp = 1
+tracks/94/loop_wrap = true
+tracks/94/keys = {
+"times": PackedFloat32Array(14, 19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.493434, -1.04981, -0.334418), Vector3(0.573957, -0.665076, -0.13673)]
+}
+tracks/95/type = "value"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("Model/Stick_011:rotation")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(13, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0979615, 0.400999, -0.530559), Vector3(-0.248243, 0.128194, -0.483153)]
+}
+
+[sub_resource type="Animation" id="Animation_uiok0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Leaf_003:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Blossom:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Leaf_007:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Leaf_001:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Leaf_007:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.814162, -0.268732, 0.0439822)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Leaf_001:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.976299, 2.19581, -0.129756)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Stick_001:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Stick_001:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.129857, 0.298396, -0.228159)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Stick:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/Stick:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.129857, 3.00843, -0.228159)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/Leaf_006:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/Leaf_006:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.32261, -2.79939, -2.54842)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model/Stick_009:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/Stick_009:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.131536, -0.504996, 1.56692)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/Leaf:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Model/Leaf:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.831192, -0.66979, 0.349623)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Model/Stick_008:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Model/Stick_011:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Model/Stick_003:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Model/Stick_002:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Model/Stick_004:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Model/Stick_005:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Model/Stick_010:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Model/Stick_006:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Model/Stick_007:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Model/Stick_012:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Model/Stick_012:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0553898, -1.1234, -1.76399)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Model/Leaf_009:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Model/Leaf_009:rotation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.354203, 1.26917, -0.54246)]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Model/Leaf_012:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/Leaf_012:rotation")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.714122, 0.410626, -0.0742102)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Model/Leaf_002:scale")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Model/Leaf_002:rotation")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.470374, 2.90788, 0.172873)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Model/Leaf_018:scale")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Model/Leaf_018:rotation")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.186856, 2.43706, 0.161266)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Model/Blossom_010:scale")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Model/Blossom_010:rotation")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.078375, -0.084294, -0.0447052)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Model/Blossom_003:scale")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("Model/Blossom_003:rotation")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.351622, 0.799794, 0.63705)]
+}
+tracks/39/type = "value"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("Model/Blossom_006:scale")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/40/type = "value"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("Model/Blossom_006:rotation")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.619966, 0.337706, 1.03479)]
+}
+tracks/41/type = "value"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("Model/Stick_007:rotation")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.791472)]
+}
+tracks/42/type = "value"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("Model/Blossom_005:scale")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/43/type = "value"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("Model/Blossom_005:rotation")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.453741, 1.52962, 0.102843)]
+}
+tracks/44/type = "value"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("Model/Blossom_004:scale")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/45/type = "value"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("Model/Blossom_004:rotation")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.625145, 0.403138, -0.53954)]
+}
+tracks/46/type = "value"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Model/Blossom_007:scale")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Model/Blossom_007:rotation")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.204711, -0.21287, 0.78652)]
+}
+tracks/48/type = "value"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Model/Leaf_015:scale")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Model/Leaf_015:rotation")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.419646, 1.01898, 0.115974)]
+}
+tracks/50/type = "value"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("Model/Leaf_014:scale")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/51/type = "value"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("Model/Leaf_014:rotation")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.419646, -2.03694, 0.115974)]
+}
+tracks/52/type = "value"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("Model/Blossom_001:scale")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/53/type = "value"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("Model/Blossom_001:rotation")
+tracks/53/interp = 1
+tracks/53/loop_wrap = true
+tracks/53/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0614133, -0.0837183, 0.0334222)]
+}
+tracks/54/type = "value"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("Model/Leaf_005:scale")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/55/type = "value"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("Model/Leaf_005:rotation")
+tracks/55/interp = 1
+tracks/55/loop_wrap = true
+tracks/55/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.255013, 1.16425, -1.78318)]
+}
+tracks/56/type = "value"
+tracks/56/imported = false
+tracks/56/enabled = true
+tracks/56/path = NodePath("Model/Blossom_002:scale")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/57/type = "value"
+tracks/57/imported = false
+tracks/57/enabled = true
+tracks/57/path = NodePath("Model/Blossom_002:rotation")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0168667, 0.427767, -0.378739)]
+}
+tracks/58/type = "value"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("Model/Leaf_008:scale")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/59/type = "value"
+tracks/59/imported = false
+tracks/59/enabled = true
+tracks/59/path = NodePath("Model/Leaf_008:rotation")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.522403, 2.95654, 0.11728)]
+}
+tracks/60/type = "value"
+tracks/60/imported = false
+tracks/60/enabled = true
+tracks/60/path = NodePath("Model/Leaf_011:scale")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/61/type = "value"
+tracks/61/imported = false
+tracks/61/enabled = true
+tracks/61/path = NodePath("Model/Leaf_011:rotation")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.250422, 1.76192, 0.454374)]
+}
+tracks/62/type = "value"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath("Model/Leaf_010:scale")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/63/type = "value"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("Model/Leaf_010:rotation")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.700386, -2.55364, -0.0337882)]
+}
+tracks/64/type = "value"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("Model/Leaf_013:scale")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/65/type = "value"
+tracks/65/imported = false
+tracks/65/enabled = true
+tracks/65/path = NodePath("Model/Leaf_013:rotation")
+tracks/65/interp = 1
+tracks/65/loop_wrap = true
+tracks/65/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.630661, 0.782406, -0.1603)]
+}
+tracks/66/type = "value"
+tracks/66/imported = false
+tracks/66/enabled = true
+tracks/66/path = NodePath("Model/Leaf_004:scale")
+tracks/66/interp = 1
+tracks/66/loop_wrap = true
+tracks/66/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/67/type = "value"
+tracks/67/imported = false
+tracks/67/enabled = true
+tracks/67/path = NodePath("Model/Leaf_004:rotation")
+tracks/67/interp = 1
+tracks/67/loop_wrap = true
+tracks/67/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.20957, 1.27209, 2.32527)]
+}
+tracks/68/type = "value"
+tracks/68/imported = false
+tracks/68/enabled = true
+tracks/68/path = NodePath("Model/Leaf_017:scale")
+tracks/68/interp = 1
+tracks/68/loop_wrap = true
+tracks/68/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/69/type = "value"
+tracks/69/imported = false
+tracks/69/enabled = true
+tracks/69/path = NodePath("Model/Leaf_017:rotation")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.701981, -0.989567, 0.00914533)]
+}
+tracks/70/type = "value"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("Model/Leaf_016:scale")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/71/type = "value"
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/path = NodePath("Model/Leaf_016:rotation")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.267961, 1.81791, 0.432307)]
+}
+tracks/72/type = "value"
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/path = NodePath("Model/Blossom_008:scale")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/73/type = "value"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("Model/Blossom_008:rotation")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.18962, 0.00688834, -0.103287)]
+}
+tracks/74/type = "value"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("Model/Leaf_003:rotation")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/75/type = "value"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("Model/Blossom:rotation")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/76/type = "value"
+tracks/76/imported = false
+tracks/76/enabled = true
+tracks/76/path = NodePath("Model/Leaf_021:scale")
+tracks/76/interp = 1
+tracks/76/loop_wrap = true
+tracks/76/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/77/type = "value"
+tracks/77/imported = false
+tracks/77/enabled = true
+tracks/77/path = NodePath("Model/Leaf_021:rotation")
+tracks/77/interp = 1
+tracks/77/loop_wrap = true
+tracks/77/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.373544, 0.801447, -0.292552)]
+}
+tracks/78/type = "value"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("Model/Leaf_019:scale")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.97561, 0.97561, 0.97561)]
+}
+tracks/79/type = "value"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("Model/Leaf_019:rotation")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.306052, 0.46041, -0.495223)]
+}
+tracks/80/type = "value"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("Model/Leaf_020:scale")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/81/type = "value"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("Model/Leaf_020:rotation")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0386853, -1.54726, 0.372489)]
+}
+tracks/82/type = "value"
+tracks/82/imported = false
+tracks/82/enabled = true
+tracks/82/path = NodePath("Model/Stick_006:rotation")
+tracks/82/interp = 1
+tracks/82/loop_wrap = true
+tracks/82/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.506373, 0.0719321, -0.854892)]
+}
+tracks/83/type = "value"
+tracks/83/imported = false
+tracks/83/enabled = true
+tracks/83/path = NodePath("Model/Stick_010:rotation")
+tracks/83/interp = 1
+tracks/83/loop_wrap = true
+tracks/83/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.609897, 0.380446, -0.222745)]
+}
+tracks/84/type = "value"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("Model/Stick_008:rotation")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0606388, 1.08732, -1.60688)]
+}
+tracks/85/type = "value"
+tracks/85/imported = false
+tracks/85/enabled = true
+tracks/85/path = NodePath("Model/Stick_005:rotation")
+tracks/85/interp = 1
+tracks/85/loop_wrap = true
+tracks/85/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.549988)]
+}
+tracks/86/type = "value"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("Model/Stick_004:rotation")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.97994, -1.55473, -0.379477)]
+}
+tracks/87/type = "value"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("Model/Stick_002:rotation")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.38304, -2.9569, -0.326687)]
+}
+tracks/88/type = "value"
+tracks/88/imported = false
+tracks/88/enabled = true
+tracks/88/path = NodePath("Model/Blubburu2:scale")
+tracks/88/interp = 1
+tracks/88/loop_wrap = true
+tracks/88/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/89/type = "value"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("Model/Blubburu:scale")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/90/type = "value"
+tracks/90/imported = false
+tracks/90/enabled = true
+tracks/90/path = NodePath("Model/Blubburu3:scale")
+tracks/90/interp = 1
+tracks/90/loop_wrap = true
+tracks/90/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/91/type = "value"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("Model/Blubburu:rotation")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0266199, -0.939247, -0.214004)]
+}
+tracks/92/type = "value"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("Model/Blubburu3:rotation")
+tracks/92/interp = 1
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.00162425, 0.814433, -0.0354213)]
+}
+tracks/93/type = "value"
+tracks/93/imported = false
+tracks/93/enabled = true
+tracks/93/path = NodePath("Model/Blubburu2:rotation")
+tracks/93/interp = 1
+tracks/93/loop_wrap = true
+tracks/93/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0760728, 2.58851, 0.0874825)]
+}
+tracks/94/type = "value"
+tracks/94/imported = false
+tracks/94/enabled = true
+tracks/94/path = NodePath("Model/Stick_003:rotation")
+tracks/94/interp = 1
+tracks/94/loop_wrap = true
+tracks/94/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.573957, -0.665076, -0.13673)]
+}
+tracks/95/type = "value"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("Model/Stick_011:rotation")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.248243, 0.128194, -0.483153)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kh5o2"]
+_data = {
+&"Grow": SubResource("Animation_scb8y"),
+&"RESET": SubResource("Animation_uiok0")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl6n5"]
+resource_name = "Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.509804, 0.345098, 0.521569, 1)
+albedo_texture = ExtResource("2_73jcm")
+texture_filter = 2
+
+[node name="Blubburu" instance=ExtResource("1_wi7el")]
+
+[node name="Model" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00405089, 0)
+
+[node name="Stick_001" type="MeshInstance3D" parent="Model" index="0"]
+transform = Transform3D(0.922428, 0.253272, 0.291512, -0.22428, 0.965883, -0.129492, -0.314363, 0.054067, 0.947762, -0.0142352, 0.0145334, -0.000119313)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_js63g")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_010" type="MeshInstance3D" parent="Model" index="1"]
+transform = Transform3D(0.952546, -0.00232695, 0.304386, -0.18108, 0.799456, 0.572783, -0.244676, -0.60072, 0.761097, 0.0650632, 0.337832, 0.00772206)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_py0q1")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_006" type="MeshInstance3D" parent="Model" index="2"]
+transform = Transform3D(0.628303, 0.775426, 0.0628511, -0.659817, 0.573941, -0.485009, -0.412161, 0.263262, 0.872248, 0.0698546, 0.443619, -0.0668598)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_76vjr")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_007" type="MeshInstance3D" parent="Model" index="3"]
+transform = Transform3D(0.702799, -0.711389, 0, 0.711389, 0.702799, 0, 0, 0, 1, 0.0565523, 0.423597, -0.0522563)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_nf2rs")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_002" type="MeshInstance3D" parent="Model" index="4"]
+transform = Transform3D(-0.953029, -0.250444, -0.170336, -0.297652, 0.878476, 0.373742, 0.0560351, 0.406888, -0.911758, 0.0462513, 0.284527, 0.0221556)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_p2ub2")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_004" type="MeshInstance3D" parent="Model" index="5"]
+transform = Transform3D(0.322516, -0.765333, -0.557001, -0.206359, 0.517441, -0.830464, 0.923796, 0.38278, 0.00894969, 0.0154073, 0.366686, 0.0645929)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_fgmdv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_005" type="MeshInstance3D" parent="Model" index="6"]
+transform = Transform3D(0.852531, 0.522677, 0, -0.522677, 0.852531, 0, 0, 0, 1, 0.0309917, 0.365838, 0.0575054)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_0w22r")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick" type="MeshInstance3D" parent="Model" index="7"]
+transform = Transform3D(-0.96935, -0.207435, 0.131652, -0.22428, 0.965883, -0.129492, -0.100299, -0.15505, -0.982802, -0.0072973, 0.0414546, -0.000767571)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_2eahj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_003" type="MeshInstance3D" parent="Model" index="8"]
+transform = Transform3D(0.825198, -0.224689, -0.518231, -0.114463, 0.831922, -0.542959, 0.553125, 0.507367, 0.660781, -0.0586298, 0.282854, -0.0308525)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_yftnw")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_011" type="MeshInstance3D" parent="Model" index="9"]
+transform = Transform3D(0.892861, 0.432946, 0.123924, -0.450332, 0.858389, 0.245701, 1.04308e-07, -0.275184, 0.961392, -0.0413633, 0.243052, -0.0347662)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_aulpq")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_012" type="MeshInstance3D" parent="Model" index="10"]
+transform = Transform3D(-0.132044, 0.414988, -0.900194, -0.979891, -0.1917, 0.0553615, -0.149593, 0.889402, 0.431956, 0.0424109, 0.183746, 0.0195167)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_4kesf")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_007" type="MeshInstance3D" parent="Model" index="11"]
+transform = Transform3D(0.659968, -0.722255, -0.206855, 0.693118, 0.691565, -0.203284, 0.289877, -0.00921367, 0.95702, 9.63046e-05, 0.479308, -0.0512982)
+layers = 13
+mesh = SubResource("ArrayMesh_rbvqp")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_008" type="MeshInstance3D" parent="Model" index="12"]
+transform = Transform3D(0.0368506, 0.466493, 0.883757, -0.997512, -0.0360095, 0.0606016, 0.0600939, -0.883792, 0.464006, 0.0528637, 0.270816, 0.00632602)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_tebkd")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom" type="MeshInstance3D" parent="Model" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00596795, 0.037527, 0.00590228)
+layers = 13
+instance_shader_parameters/stength = 1.0
+mesh = SubResource("ArrayMesh_uv0nb")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Stick_009" type="MeshInstance3D" parent="Model" index="14"]
+transform = Transform3D(0.0668462, -0.874924, -0.479625, 0.991354, 0.00384279, 0.131157, -0.112909, -0.484245, 0.867616, -0.0432024, 0.173167, -0.0323417)
+layers = 13
+instance_shader_parameters/stength = 0.05
+mesh = SubResource("ArrayMesh_vovhr")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_003" type="MeshInstance3D" parent="Model" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00691472, 0.0376888, 0.0014651)
+layers = 13
+material_override = SubResource("ShaderMaterial_mrfht")
+instance_shader_parameters/stength = 1.0
+mesh = SubResource("ArrayMesh_q70ks")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_005" type="MeshInstance3D" parent="Model" index="16"]
+transform = Transform3D(-0.309846, 0.337715, 0.888788, -0.945918, -0.203974, -0.252258, 0.096098, -0.918882, 0.382651, 0.0632406, 0.273749, 7.30953e-05)
+layers = 13
+mesh = SubResource("ArrayMesh_1yv1h")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_004" type="MeshInstance3D" parent="Model" index="17"]
+transform = Transform3D(-0.852983, 0.397908, 0.337771, 0.257514, -0.24206, 0.935464, 0.453989, 0.884916, 0.104006, 0.0418124, 0.187005, 0.020593)
+layers = 13
+mesh = SubResource("ArrayMesh_dqhlg")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_006" type="MeshInstance3D" parent="Model" index="18"]
+transform = Transform3D(0.599264, -0.796296, -0.0824297, -0.137315, -0.203683, 0.96936, -0.788687, -0.569583, -0.231403, -0.0382084, 0.172456, -0.0303669)
+layers = 13
+mesh = SubResource("ArrayMesh_oda4r")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_002" type="MeshInstance3D" parent="Model" index="19"]
+transform = Transform3D(-0.976368, 0.0639398, 0.20644, 0.153332, 0.878112, 0.45322, -0.152299, 0.474163, -0.867165, -0.0556043, 0.248961, -0.0188948)
+layers = 13
+mesh = SubResource("ArrayMesh_53ph0")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_007" type="MeshInstance3D" parent="Model" index="20"]
+transform = Transform3D(0.954687, -0.235268, -0.182266, 0.0301831, 0.685814, -0.727151, 0.296076, 0.6887, 0.661839, -0.00162522, 0.0414302, -0.0151876)
+layers = 13
+mesh = SubResource("ArrayMesh_ktqnq")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_008" type="MeshInstance3D" parent="Model" index="21"]
+transform = Transform3D(-0.986917, 0.0238357, 0.159457, 0.101405, 0.860669, 0.498964, -0.125347, 0.508606, -0.851826, 0.0191933, 0.208707, 0.0153554)
+layers = 13
+mesh = SubResource("ArrayMesh_k883s")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_019" type="MeshInstance3D" parent="Model" index="22"]
+transform = Transform3D(0.831085, 0.300444, 0.413335, -0.442092, 0.818513, 0.293948, -0.256256, -0.437703, 0.833405, 0.044518, 0.210197, -0.00422426)
+layers = 13
+mesh = SubResource("ArrayMesh_k883s")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_009" type="MeshInstance3D" parent="Model" index="23"]
+transform = Transform3D(0.425398, -0.130278, 0.89558, -0.484198, 0.803276, 0.346843, -0.764584, -0.581184, 0.278632, -0.020895, 0.292404, -0.0574916)
+layers = 13
+mesh = SubResource("ArrayMesh_gy0f7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_021" type="MeshInstance3D" parent="Model" index="24"]
+transform = Transform3D(0.741711, -0.0503767, 0.668825, -0.268509, 0.891481, 0.364917, -0.614628, -0.450249, 0.647695, 0.0151465, 0.143735, -0.00822837)
+layers = 13
+mesh = SubResource("ArrayMesh_gy0f7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_010" type="MeshInstance3D" parent="Model" index="25"]
+transform = Transform3D(-0.843679, 0.329172, -0.424088, -0.0258293, 0.764157, 0.644513, 0.536225, 0.554716, -0.636201, 0.0448629, 0.328311, 0.0537812)
+layers = 13
+mesh = SubResource("ArrayMesh_vk2oo")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_011" type="MeshInstance3D" parent="Model" index="26"]
+transform = Transform3D(-0.277472, -0.13524, 0.951167, 0.42521, 0.870509, 0.247813, -0.861514, 0.473207, -0.184037, 0.038074, 0.28171, 0.0215624)
+layers = 13
+mesh = SubResource("ArrayMesh_snuv0")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_012" type="MeshInstance3D" parent="Model" index="27"]
+transform = Transform3D(0.933732, -0.192748, 0.30165, -0.0560269, 0.753589, 0.654954, -0.353562, -0.628452, 0.692851, -0.0767888, 0.330417, -0.0114114)
+layers = 13
+mesh = SubResource("ArrayMesh_rg4k3")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_020" type="MeshInstance3D" parent="Model" index="28"]
+transform = Transform3D(0.00784872, -0.0445783, -0.998975, 0.363663, 0.930728, -0.0386757, 0.931498, -0.362986, 0.0235165, -0.0300491, 0.19949, -0.0273399)
+layers = 13
+mesh = SubResource("ArrayMesh_rg4k3")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_013" type="MeshInstance3D" parent="Model" index="29"]
+transform = Transform3D(0.766481, -0.297185, 0.569375, -0.128911, 0.797284, 0.589679, -0.629197, -0.525376, 0.572792, 0.0516269, 0.427252, -0.0740591)
+layers = 13
+mesh = SubResource("ArrayMesh_sves4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_015" type="MeshInstance3D" parent="Model" index="30"]
+transform = Transform3D(0.480565, -0.405294, 0.777685, 0.105674, 0.907099, 0.407437, -0.870569, -0.113619, 0.478749, 0.0980017, 0.267409, -0.098632)
+layers = 13
+mesh = SubResource("ArrayMesh_yypbw")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_014" type="MeshInstance3D" parent="Model" index="31"]
+transform = Transform3D(-0.40431, 0.413529, -0.815799, 0.105674, 0.907099, 0.407437, 0.908497, 0.078522, -0.410448, 0.113321, 0.267229, -0.0912949)
+layers = 13
+mesh = SubResource("ArrayMesh_vlcc6")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_016" type="MeshInstance3D" parent="Model" index="32"]
+transform = Transform3D(-0.329661, -0.130623, 0.935019, 0.404015, 0.875597, 0.264766, -0.853285, 0.465045, -0.235877, 0.0798427, 0.159658, 0.112164)
+layers = 13
+mesh = SubResource("ArrayMesh_vjwbd")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_017" type="MeshInstance3D" parent="Model" index="33"]
+transform = Transform3D(0.553964, 0.534651, -0.638178, 0.00698295, 0.763533, 0.645732, 0.832511, -0.362169, 0.419236, 0.0934234, 0.159807, 0.109535)
+layers = 13
+mesh = SubResource("ArrayMesh_51ujh")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_018" type="MeshInstance3D" parent="Model" index="34"]
+transform = Transform3D(-0.771348, 0.00358073, 0.636404, 0.157773, 0.969844, 0.185771, -0.616547, 0.243701, -0.748652, -0.120882, 0.167218, -0.0679798)
+layers = 13
+mesh = SubResource("ArrayMesh_f42p2")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf" type="MeshInstance3D" parent="Model" index="35"]
+transform = Transform3D(0.893623, 0.162339, -0.418431, 0.230873, 0.63322, 0.738735, 0.384885, -0.756755, 0.52838, -0.111537, 0.16822, -0.0778904)
+layers = 13
+mesh = SubResource("ArrayMesh_63blv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_002" type="MeshInstance3D" parent="Model" index="36"]
+transform = Transform3D(0.847999, 0.329932, 0.414781, -0.369697, 0.928999, 0.0168659, -0.379767, -0.167645, 0.909765, 0.000437322, 0.331923, -0.0635419)
+layers = 13
+mesh = SubResource("ArrayMesh_xgpjv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_003" type="MeshInstance3D" parent="Model" index="37"]
+transform = Transform3D(0.707105, -0.215937, 0.67333, 0.558432, 0.75467, -0.344421, -0.433769, 0.619551, 0.654218, -0.0882939, 0.381313, 0.0329496)
+layers = 13
+mesh = SubResource("ArrayMesh_ytkqk")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_004" type="MeshInstance3D" parent="Model" index="38"]
+transform = Transform3D(0.671221, 0.669527, 0.318113, -0.416582, 0.695689, -0.585215, -0.613125, 0.260288, 0.745874, 0.132167, 0.491162, -0.0422616)
+layers = 13
+mesh = SubResource("ArrayMesh_1djkj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_005" type="MeshInstance3D" parent="Model" index="39"]
+transform = Transform3D(0.0859089, 0.431419, 0.898052, 0.0922738, 0.894065, -0.438331, -0.992021, 0.120523, 0.0369993, 0.0651147, 0.420244, 0.0562259)
+layers = 13
+mesh = SubResource("ArrayMesh_jqkbw")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Leaf_001" type="MeshInstance3D" parent="Model" index="40"]
+transform = Transform3D(-0.667118, 0.590463, 0.45421, -0.0724716, 0.555384, -0.82843, -0.741419, -0.585578, -0.327715, -0.0138661, 0.0408079, 0.0173604)
+layers = 13
+mesh = SubResource("ArrayMesh_xbmk4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_006" type="MeshInstance3D" parent="Model" index="41"]
+transform = Transform3D(0.647364, -0.712882, 0.269664, 0.699753, 0.415663, -0.581007, 0.302101, 0.564822, 0.767927, -0.0363394, 0.40241, 0.0924745)
+layers = 13
+mesh = SubResource("ArrayMesh_5b322")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_010" type="MeshInstance3D" parent="Model" index="42"]
+transform = Transform3D(0.995159, 0.051117, -0.0839358, -0.0445531, 0.995934, 0.0782948, 0.0875967, -0.0741762, 0.993391, -0.11376, 0.183868, -0.07513)
+layers = 13
+instance_shader_parameters/stength = 1.0
+mesh = SubResource("ArrayMesh_aqmyq")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_001" type="MeshInstance3D" parent="Model" index="43"]
+transform = Transform3D(0.996113, -0.0281696, -0.0834629, 0.033353, 0.997557, 0.0613747, 0.0815301, -0.0639199, 0.994619, 0.108428, 0.279781, -0.0957029)
+layers = 13
+instance_shader_parameters/stength = 1.0
+mesh = SubResource("ArrayMesh_vp771")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blossom_008" type="MeshInstance3D" parent="Model" index="44"]
+transform = Transform3D(0.994513, 0.104392, 0.00676482, -0.101255, 0.976842, -0.188486, -0.0262846, 0.186767, 0.982053, 0.0897533, 0.17558, 0.113272)
+layers = 13
+instance_shader_parameters/stength = 1.0
+mesh = SubResource("ArrayMesh_hce8l")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_mrfht")
+
+[node name="Blubburu2" parent="Model" index="45" instance=ExtResource("3_tiyxu")]
+transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185243, -0.848448, -0.11376, 0.183868, -0.07513)
+
+[node name="Blubburu3" parent="Model" index="46" instance=ExtResource("3_tiyxu")]
+transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354139, 0.999371, 0.00162425, -0.726841, -0.0268718, 0.68628, 0.108397, 0.278461, -0.0956674)
+
+[node name="Blubburu" parent="Model" index="47" instance=ExtResource("3_tiyxu")]
+transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.0266168, 0.785365, 0.186766, 0.590187, 0.0897533, 0.17558, 0.113272)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_kh5o2")
+}
+
+[node name="IconDisplay" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.693585, 1.50186e-08)
+
+[node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
+script = ExtResource("4_k0cqm")
+animation_time = 10.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.516, 0)
+
+[node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
+script = ExtResource("4_k0cqm")
+animation_time = 12.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.694, 0)
+
+[node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
+script = ExtResource("4_k0cqm")
+animation_time = 8.0
+animation_name = "Grow"
+icon_position = Vector3(0, 0.694, 0)
+
+[node name="FruitEvent" type="Node3D" parent="Stage Fruit" index="0" node_paths=PackedStringArray("despawn_models")]
+script = ExtResource("31_ex7s7")
+fruit = ExtResource("32_u2xcj")
+delayed_spawn = false
+start_scale = Vector3(1.1, 1.1, 1.1)
+scale_length = 0.1
+despawn_models = [NodePath("../../Model/Blubburu"), NodePath("../../Model/Blubburu2"), NodePath("../../Model/Blubburu3")]
+icon_texture = ExtResource("33_c630p")
+
+[node name="Spawnpoint 1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
+transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185242, -0.848448, -0.11376, 0.179817, -0.07513)
+
+[node name="Spawnpoint 2" type="Node3D" parent="Stage Fruit/FruitEvent" index="1"]
+transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354139, 0.999371, 0.00162425, -0.726841, -0.0268718, 0.68628, 0.108397, 0.27441, -0.0956674)
+
+[node name="Spawnpoint 3" type="Node3D" parent="Stage Fruit/FruitEvent" index="2"]
+transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.0266168, 0.785365, 0.186766, 0.590187, 0.0897533, 0.171529, 0.113272)
+
+[node name="Stage Death" type="Node3D" parent="." index="8" groups=["Stage"]]
+script = ExtResource("4_k0cqm")
+animation_name = "Grow"
+should_play_animation = false
+
+[node name="DeathEvent" type="Node3D" parent="Stage Death" index="0" node_paths=PackedStringArray("plant_model")]
+script = ExtResource("34_6yc03")
+plant_model = NodePath("../../Model")
+death_material = SubResource("StandardMaterial3D_vl6n5")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="Stage Death/DeathEvent" method="_on_animation_player_animation_finished"]
+[connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]
+[connection signal="stage_complete" from="Stage Fruit" to="." method="_on_stage_complete"]

@@ -52,6 +52,5 @@ func initialize():
 # check when a fruit is picked
 func first_fruit_pickup(_picked_fruit : Fruit):
 	_picked += 1
-	
 	if _picked >= _max_picked:
 		event_completed.emit()

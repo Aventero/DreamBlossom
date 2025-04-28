@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dq7k7phd3i607"]
+[gd_scene load_steps=38 format=3 uid="uid://dq7k7phd3i607"]
 
 [ext_resource type="Script" uid="uid://dbjmh3x88yvng" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
 [ext_resource type="Texture2D" uid="uid://ybnikcj2ey1a" path="res://Textures/Environment/Sky/ForestSky.png" id="2_krgwt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxhccbbkp1ghs" path="res://Prefabs/Planting/Flamie/FlamiePlant.tscn" id="9_wkoli"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="10_4mlpb"]
 [ext_resource type="PackedScene" uid="uid://4exhe7q8f0pk" path="res://Prefabs/Planting/Nommie/NommiePlant.tscn" id="10_5grbc"]
+[ext_resource type="PackedScene" uid="uid://bp0v6l6rn2t2r" path="res://Prefabs/Planting/Blubburu/TutorialBlubburuPlant.tscn" id="10_8n0vo"]
 [ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="11_a812u"]
 [ext_resource type="Script" uid="uid://cuhb7qev2mwm7" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="12_12wo1"]
@@ -190,7 +191,7 @@ shape = SubResource("BoxShape3D_olq40")
 mesh = SubResource("BoxMesh_f432d")
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "PumkiePlant", "ShelliePlant", "ShroomiePlant"), [ExtResource("8_02uq7"), ExtResource("9_wkoli"), ExtResource("10_5grbc"), ExtResource("11_a812u"), ExtResource("12_w3ksd"), ExtResource("13_4ypwf")]]
+resources = [PackedStringArray("BlubburuPlant", "FlamiePlant", "NommiePlant", "PumkiePlant", "ShelliePlant", "ShroomiePlant", "TutorialBlubburuPlant"), [ExtResource("8_02uq7"), ExtResource("9_wkoli"), ExtResource("10_5grbc"), ExtResource("11_a812u"), ExtResource("12_w3ksd"), ExtResource("13_4ypwf"), ExtResource("10_8n0vo")]]
 script = ExtResource("14_y8p08")
 
 [node name="Level Selection" type="Node3D" parent="."]

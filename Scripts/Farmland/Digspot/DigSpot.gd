@@ -205,9 +205,21 @@ func _handle_water_drop():
 	
 	dry_timer.stop()
 
-func _spawn_plant():
+func _spawn_plant_no_seed(plant_name: String):
+	# Spawn plant
+	plant = ResourceSingleton.instance.get_resource(plant_name).instantiate()
+	
+	plant.position = Vector3.ZERO
+	add_child(plant)
+	
+	# Update Lookup
+	DigSpotLookup.add(self, plant)
+
+
+func _spawn_plant(plant_name: String = ""):
 	# Spawn plant
 	plant = ResourceSingleton.instance.get_resource(grow_seed.plant).instantiate()
+	
 	plant.position = Vector3.ZERO
 	add_child(plant)
 	
