@@ -59,18 +59,8 @@ func _on_squish(_pickable):
 		current_message_pos += 1
 		
 func _on_picked_up(_pickable):
-	# Grid cell things
-	var current_cell : GridCell = grid.get_cell_by_index(19)
-	current_cell.grid.set_state(current_cell, 2, GridCell.CELLSTATE.OCCUPIED)
-	var current_cell_pos = grid.get_placement_position(current_cell, 2)
+	spawn_dig_spot_with_plant("TutorialBlubburuPlant")
 
-	# Spawn dig spot
-	var dig_spot_instance: DigSpot = spawn_digpot.instantiate()
-	$"..".add_child(dig_spot_instance)
-	dig_spot_instance.global_position = current_cell_pos
-	dig_spot_instance.anchor_cell = current_cell
-	dig_spot_instance._spawn_plant_no_seed("TutorialBlubburuPlant")
-	
 	# Has to learn squishing (first pick up)
 	if current_message_pos == 0:
 		type_writer.display_text(pickup_message)
@@ -81,7 +71,18 @@ func _on_picked_up(_pickable):
 	pickup_sprite_animation.visible = false
 	type_writer.display_text(squish_messages[current_message_pos - 1])
 	type_writer.show_full_text()
-	
+
+func spawn_dig_spot_with_plant(plant_name: String) -> void:
+	# Spawn dig spot
+	var current_cell : GridCell = grid.get_cell_by_index(19)
+	current_cell.grid.set_state(current_cell, 2, GridCell.CELLSTATE.OCCUPIED)
+	var current_cell_pos = grid.get_placement_position(current_cell, 2)
+	var dig_spot_instance: DigSpot = spawn_digpot.instantiate()
+	$"..".add_child(dig_spot_instance)
+	dig_spot_instance.global_position = current_cell_pos
+	dig_spot_instance.anchor_cell = current_cell
+	dig_spot_instance._spawn_plant_no_seed(plant_name)
+
 func _on_dropped(_pickable):
 	pickup_sprite_animation.visible = true
 	type_writer.display_text(dropped_message)

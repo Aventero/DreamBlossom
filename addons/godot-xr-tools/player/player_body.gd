@@ -198,7 +198,6 @@ func is_xr_class(name : String) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Set as toplevel means our PlayerBody is positioned in global space.
 	# It is not moved when its parent moves.
 	set_as_top_level(true)
 

@@ -14,6 +14,9 @@ var stages : Array[Stage] = []
 var current_stage : int = 0
 var tween : Tween
 
+func _enter_tree() -> void:
+	visible = false
+
 func _ready():
 	# Search for stages in plant
 	for child in get_children():
@@ -32,13 +35,15 @@ func _ready():
 	
 	# Start first stage
 	if auto_grow:
-		start_stage(current_stage)
+		call_deferred("start_stage", current_stage)
 
 func check_feasibility():
 	for stage in stages:
 		stage.check_feasibility()
 
 func start_stage(index : int):
+	visible = true
+	
 	var stage : Stage = stages[index]
 	
 	if stage.should_play_animation:

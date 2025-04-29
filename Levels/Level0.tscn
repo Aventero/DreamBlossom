@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0c6r8k3dyeul"]
+[gd_scene load_steps=5 format=3 uid="uid://cxo0hs47iup6v"]
 
 [ext_resource type="Script" uid="uid://hunun33tsrt0" path="res://Scripts/Level.gd" id="1_510fn"]
 [ext_resource type="Script" uid="uid://cpj8naljb5w8t" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_qyhw8"]
@@ -9,18 +9,10 @@ script = ExtResource("3_2n186")
 type = 0
 amount = 1
 
-[node name="LevelSandbox" type="Node3D"]
+[node name="LevelTutorial" type="Node3D"]
 script = ExtResource("1_510fn")
-active_plants = 63
-active_tools = 127
-spread_time = 20.0
-spread_indicator_time = 5.0
-spread_release_grace_time = 1.0
-spread_chance = 0.2
-obstacle_spawn_chance = 0.5
-soil_setup = "WWWWWWWWWW,,,,,,,,,,,,,,,,,,,,,"
-enable_brewing = true
-enable_cooking = true
+active_tools = 7
+soil_setup = "R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R, , , , ,R,R,R,R, , , , ,R,R"
 time_between_orders = 1e+08
 
 [node name="Empty Order" type="Timer" parent="."]

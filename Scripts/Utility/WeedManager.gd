@@ -185,6 +185,11 @@ func spawn_weed(cell : GridCell, ignore_particles : bool = false):
 	var tween : Tween = create_tween()
 	tween.tween_property(weed_digspot, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
 
+func spawn_rock(cell : GridCell, _ignore_particles : bool = false):
+	# Occupy space on soil
+	occupy_cell(cell)
+
+
 func _on_weed_removed(weed_to_remove : Weed):
 	# Free occupied space on soil
 	free_cell(weed_to_remove.cell)
@@ -207,7 +212,8 @@ func setup_soil_arrangement(soil_setup : String):
 	for cell in setup_array:
 		match cell:
 			"W": spawn_weed(soil.get_cell_by_index(index), true)
-
+			"R": spawn_rock(soil.get_cell_by_index(index), true)
+			
 		index += 1
 
 func is_spreading() -> bool:
