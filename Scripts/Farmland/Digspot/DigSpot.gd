@@ -205,7 +205,7 @@ func _handle_water_drop():
 	
 	dry_timer.stop()
 
-func _spawn_plant_no_seed(plant_name: String):
+func _spawn_plant_no_seed(plant_name: String) -> Plant:
 	# Spawn plant
 	ResourceSingleton.instance.get_resource(plant_name)
 	plant = ResourceSingleton.instance.get_resource(plant_name).instantiate()
@@ -214,6 +214,7 @@ func _spawn_plant_no_seed(plant_name: String):
 	
 	# Update Lookup
 	DigSpotLookup.add(self, plant)
+	return plant
 
 func _spawn_plant():
 	# Spawn plant

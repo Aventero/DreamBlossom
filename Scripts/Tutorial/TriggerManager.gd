@@ -31,10 +31,6 @@ var is_done_polling: bool = false
 var is_event_completed: bool = false
 
 func _ready() -> void:
-
-	
-
-	# signals	
 	pickable.action_pressed.connect(_on_squish)
 	pickable.picked_up.connect(_on_picked_up)
 	pickable.dropped.connect(_on_dropped)
@@ -59,7 +55,6 @@ func _on_squish(_pickable):
 		current_message_pos += 1
 		
 func _on_picked_up(_pickable):
-	spawn_dig_spot_with_plant("TutorialBlubburuPlant")
 
 	# Has to learn squishing (first pick up)
 	if current_message_pos == 0:
@@ -81,7 +76,8 @@ func spawn_dig_spot_with_plant(plant_name: String) -> void:
 	$"..".add_child(dig_spot_instance)
 	dig_spot_instance.global_position = current_cell_pos
 	dig_spot_instance.anchor_cell = current_cell
-	dig_spot_instance._spawn_plant_no_seed(plant_name)
+	var plant: Plant = dig_spot_instance._spawn_plant_no_seed(plant_name)
+	plant.stage_complete.connect(_on_plant_stage_complete)
 
 func _on_dropped(_pickable):
 	pickup_sprite_animation.visible = true
@@ -108,7 +104,7 @@ func event_polling(event_name: String) -> bool:
 			plot.visible = true
 			order_view.visible = true
 			shield.visible = true
-			type_writer.display_text("Oh.. it was just the tree")
+			type_writer.display_text("Ach.. das war nur ein Baum.")
 			something_behind_notifier.visible = false
 			is_squish_blocked = false
 			is_event_completed = true
@@ -117,16 +113,31 @@ func event_polling(event_name: String) -> bool:
 	if event_name == "bobo_appears":
 		if bobo_appears_notifier.is_on_screen():
 			is_squish_blocked = true
-			type_writer.display_text("What is that creature.")
+			type_writer.display_text("Wer ist diese Kreatur?")
 			bobo_follower.move_bobo(0.5, 1.0)
 			return true 
-			
+	
+	if event_name == "spawn_plant":
+		spawn_dig_spot_with_plant("TutorialBlubburuPlant")
+		return true
+
 	return false
 
 func event_end(_event_name: String) -> void:
 	is_squish_blocked = false
 	current_event = "none"
-	
+
+func _on_plant_stage_complete(stage: int) -> void:
+	match stage:
+		0:
+			type_writer.display_text("Es wächst.")
+		1: 
+			# All stages done
+			type_writer.display_text("Los nimm die Früchte und füttere ihn.")
+		2:
+			# Fruit event complete
+			is_event_completed = true
+
 func _on_bobo_path_follow_3d_bobo_done_moving() -> void:
 	if current_event == "bobo_appears":
 		is_event_completed = true

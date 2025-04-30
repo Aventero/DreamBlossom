@@ -470,8 +470,50 @@ environment = SubResource("Environment_30re5")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("6_lhf7q")]
 
+[node name="Skeleton3D" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, -2.56581e-05, -0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, -0.0415175, -0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, 0.020971, 0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, -0.0116081, -0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, -0.00993208, -0.00794416, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, -0.0236108, -0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, -0.00929194, -0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, -0.000400032, 0.00636764, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, -0.00114471, -0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, 0.00193393, -0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, -0.00881294, -0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, 0.0101908, -0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, -0.00223624, -0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, 0.00812462, -0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252232, 0.00788073, -0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, 0.0203027, -0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, -0.000225721, -0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, 0.0216483, -0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, -0.00357275, -0.211953, 0.977249)
+
 [node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_ccbjs")
+
+[node name="Skeleton3D" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, 0.0415175, 0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, -0.020971, -0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, 0.0116081, 0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, 0.00993208, 0.00794419, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, 0.0236108, 0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, 0.00929192, 0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, 0.000400032, -0.00636763, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, 0.00114471, 0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, -0.00193393, 0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, 0.00881294, 0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, -0.0101908, 0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, 0.00223624, 0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, -0.00812462, 0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252233, -0.00788073, 0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, -0.0203027, 0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, 0.000225722, 0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, -0.0216483, 0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, 0.00357274, 0.211953, 0.977249)
 
 [node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_pey0q")
@@ -547,16 +589,21 @@ shield = NodePath("../../Shield")
 grid = NodePath("../../Plot/Soil")
 spawn_digpot = ExtResource("25_6ojh6")
 blubburu = ExtResource("26_v0l8j")
-initial_text = "Who are you? 
-Could u pick me up?"
-pickup_message = "Thanks.. I will speak if you squish me
-... Try it!"
-dropped_message = "Pick me up."
-squish_messages = Array[String](["It's nice to talk.. rightt?", "Ouch..
-Wait huh..?", "What is that?", "Look behind you.", "Can u hear that?", "Something is coming closer.", "Be careful.", "Oh no...", "(bobo wants to be fed)", "(Fed bobo)"])
+initial_text = "Was bist du?
+Bitte zieh mich raus!"
+pickup_message = "Danke.. Ich spreche wenn du mich drückst.
+.. probier es aus!"
+dropped_message = "Greif mich!"
+squish_messages = Array[String](["Schön zu reden, oder?", "Aua..
+Warte.. hmm?", "Was ist das...?", "Schau mal hinter dir.", "Tut mir leid.", "Warte... 
+kannst du das hören?", "Da kommt etwas näher..", "Pass auf!", "Er greift ...nicht an?", "Aber er sieht hungrig aus.", "Hier.. vieleicht mag er Früchte?", "Essen scheint ihn zu beruhigen
+Aber .. er braucht mehr Futter.", "Suche samen und pflanze sie schnell an!", "Hier sollten noch...
+Samen und Werkzeug herum liegen.
+ ", ""])
 event_name_at = Dictionary[int, String]({
 3: "look_behind",
-6: "bobo_appears"
+6: "bobo_appears",
+10: "spawn_plant"
 })
 
 [node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="Managers/TriggerManager"]
@@ -658,40 +705,51 @@ player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
 eye_look_weight = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/4/position = Vector3(-0.0747485, 0.585436, -2.57912)
-bones/6/position = Vector3(-7.57889e-10, 1.55603, 0.129288)
-bones/6/rotation = Quaternion(-0.857012, -0.0024075, -0.00125686, 0.515289)
-bones/7/rotation = Quaternion(0.0191761, 0.505704, 0.862335, -0.0165848)
-bones/12/rotation = Quaternion(-0.742795, 0.0331131, 0.0180054, 0.668457)
-bones/13/rotation = Quaternion(0.342055, 0.00113895, 0.0405874, 0.938802)
-bones/14/rotation = Quaternion(-0.715463, 0.00767864, -0.0997802, 0.691446)
-bones/15/rotation = Quaternion(-0.744705, -0.0308524, -0.017428, 0.666453)
-bones/16/rotation = Quaternion(0.344848, -0.0011377, -0.0409187, 0.937766)
-bones/17/rotation = Quaternion(-0.715592, -0.0138625, 0.0971367, 0.691593)
-bones/18/rotation = Quaternion(-0.315802, 4.34288e-10, 8.01926e-08, 0.948825)
-bones/23/rotation = Quaternion(-0.918394, -0.0624958, -0.131872, 0.367772)
-bones/24/rotation = Quaternion(0.8773, -0.000680276, 0.0793886, 0.47333)
-bones/25/rotation = Quaternion(-0.751334, 0.054169, 0.0219754, 0.657328)
-bones/26/rotation = Quaternion(0.42468, -0.00834592, 0.0256493, 0.904942)
-bones/27/rotation = Quaternion(0.0366532, -1.13262e-09, -8.55198e-09, 0.999328)
-bones/28/rotation = Quaternion(0.2164, -1.74628e-10, -5.12813e-08, 0.976305)
-bones/29/rotation = Quaternion(0.138773, 5.74673e-10, -3.1654e-08, 0.990324)
-bones/30/rotation = Quaternion(-0.919147, 0.0631034, 0.138595, 0.363289)
-bones/31/rotation = Quaternion(0.876842, 0.000681513, -0.079347, 0.474185)
-bones/32/rotation = Quaternion(-0.747617, -0.0605687, -0.0293947, 0.660709)
+bones/0/position = Vector3(0.374864, 0.0616672, 0.602508)
+bones/0/rotation = Quaternion(0.73248, 0.0251986, -1.60558e-06, 0.680322)
+bones/1/position = Vector3(-0.374864, 0.0616672, 0.602508)
+bones/1/rotation = Quaternion(0.73248, -0.0251986, 1.60558e-06, 0.680322)
+bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
+bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
+bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
+bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
+bones/4/position = Vector3(0.0121016, 0.608643, -2.59468)
+bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
+bones/6/position = Vector3(4.68133e-10, 1.55087, 0.129288)
+bones/6/rotation = Quaternion(-0.852787, 0.00243659, -0.00155027, 0.522251)
+bones/7/rotation = Quaternion(0.0220693, 0.503178, 0.863706, -0.0183252)
+bones/12/rotation = Quaternion(-0.756317, 0.0259975, 0.0166289, 0.653477)
+bones/13/rotation = Quaternion(0.361013, 0.00113018, 0.0428369, 0.931576)
+bones/14/rotation = Quaternion(-0.72111, 0.0151749, -0.0972478, 0.685793)
+bones/15/rotation = Quaternion(-0.752632, -0.0348326, -0.0194199, 0.657233)
+bones/16/rotation = Quaternion(0.350194, -0.00113526, -0.0415531, 0.935754)
+bones/17/rotation = Quaternion(-0.716824, -0.0088189, 0.100317, 0.689943)
+bones/18/rotation = Quaternion(-0.314971, 3.33359e-10, 8.00749e-08, 0.949101)
+bones/23/rotation = Quaternion(-0.923067, -0.0629048, -0.138154, 0.353418)
+bones/24/rotation = Quaternion(0.873882, -0.000689381, 0.0790792, 0.479663)
+bones/25/rotation = Quaternion(-0.742628, 0.0574944, 0.0278601, 0.66665)
+bones/26/rotation = Quaternion(0.417484, 0.000291528, -0.00607975, 0.908664)
+bones/27/rotation = Quaternion(0.037958, -8.9354e-11, -8.68377e-09, 0.999279)
+bones/28/rotation = Quaternion(0.220725, 4.6957e-11, -5.25498e-08, 0.975336)
+bones/29/rotation = Quaternion(0.141698, -2.53081e-11, -3.33124e-08, 0.98991)
+bones/30/rotation = Quaternion(-0.922355, 0.0619547, 0.125371, 0.360146)
+bones/31/rotation = Quaternion(0.872198, 0.000693782, -0.0789267, 0.482744)
+bones/32/rotation = Quaternion(-0.744693, -0.0519768, -0.0199422, 0.665082)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
 blend_shapes/Nose = 0.7
-blend_shapes/LookVertical = -0.567845
-blend_shapes/LookHorizontal = -0.157373
+blend_shapes/Happy = 0.432583
+blend_shapes/Anger = 0.0
+blend_shapes/LookVertical = -0.44233
+blend_shapes/LookHorizontal = -0.165195
 blend_shapes/Squish = 0.1
 blend_shapes/Stretch = 0.1
 
 [node name="HeadAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.998784, 0.0228427, 0.0436991, 0.0229831, 0.999732, 0.00271077, -0.0436255, 0.00371181, -0.999041, 0.00196178, 1.66823, 0.560928)
+transform = Transform3D(-0.998573, 0.0302709, 0.043991, 0.0306776, 0.999492, 0.00859797, -0.0437084, 0.00993524, -0.998995, 0.00523478, 1.65293, 0.563102)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.998297, -0.0380006, -0.0442638, 0.0367812, 0.99893, -0.0280446, 0.0452822, 0.0263688, 0.998626, -0.0510061, 1.85889, 1.4655)
+transform = Transform3D(0.99853, -0.0305829, -0.0447438, 0.0290772, 0.999001, -0.0339238, 0.0457366, 0.032573, 0.998422, -0.0465617, 1.83835, 1.46883)
 
 [node name="ToolArea" type="Node3D" parent="."]
 
@@ -1017,6 +1075,7 @@ shape = SubResource("BoxShape3D_7yi6c")
 [connection signal="screen_entered" from="Managers/TriggerManager/SomethingBehind" to="Managers/TriggerManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TriggerManager/BoboAppears" to="Managers/TriggerManager" method="_on_something_behind_screen_entered"]
 [connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/TriggerManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
+[connection signal="level_failed" from="BoboPath3D/BoboPathFollow3D/Bobo" to="." method="level_failed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_entered"]

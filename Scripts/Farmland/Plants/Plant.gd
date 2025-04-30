@@ -3,6 +3,7 @@ class_name Plant
 extends Node3D
  
 signal dying
+signal stage_complete(stage: int)
 
 @export var auto_grow : bool = true
 
@@ -62,8 +63,8 @@ func _on_stage_timer_timeout():
 	stages[current_stage].start_events()
 
 func _on_stage_complete():
+	stage_complete.emit(current_stage)
 	current_stage += 1
-	
 	if current_stage < stages.size():
 		start_stage(current_stage)
 

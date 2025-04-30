@@ -47,6 +47,9 @@ var active_tweens = []
 var active_emotion_tweens = []
 var is_yawning: bool = false
 
+# Game State
+signal level_failed
+
 # TWEENS
 func create_tracked_tween(is_emotion: bool = false) -> Tween:
 	var tween = create_tween()
@@ -440,8 +443,4 @@ func _on_order_complete(success : bool) -> void:
 
 func _bobo_death() -> void:
 	print("Bobo killed you. Oh my.")
-	
-	# TODO - Play jumpscare
-	
-	# Load level failed scene
-	owner.level_failed()
+	level_failed.emit()
