@@ -26,8 +26,6 @@ func _ready():
 			_recipe_lookup[recipe_hash] = [recipe]
 
 func check_recipe(ingredients : Dictionary) -> PackedScene:
-	print(ingredients)
-	
 	# Calculate hash of ingredients
 	var ingredient_list : Array = []
 	for i in ingredients.keys():

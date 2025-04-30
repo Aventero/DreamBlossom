@@ -35,7 +35,7 @@ func _on_order_timeout():
 func is_required(type : Ingredient.Type) -> bool:
 	return _requirements_lookup.has(type)
 
-func add_to_order(type : Ingredient.Type) -> void:
+func progress_order(type : Ingredient.Type) -> void:
 	var update : bool = false
 
 	# Update given ingredients dictionary
@@ -71,28 +71,3 @@ func get_remaining_amount(type : Ingredient.Type) -> int:
 
 func is_running() -> bool:
 	return _running
-
-#func get_required_fruits() -> Array:
-	#return _requirements_lookup.keys()
-#
-#func check_completion(current_state : Dictionary) -> bool:
-	#var keys : Array = _requirements_lookup.keys()
-	#
-	#for key in keys:
-		## Check if required fruit is there
-		#if not current_state.has(key):
-			#completed.emit(false)
-			#return false
-		#
-		## Check if required fruit amount is reached
-		#if current_state[key] < _requirements_lookup[key]:
-			#completed.emit(false)
-			#return false
-	#
-	## Stop quest timer
-	#stop()
-	#
-	## Emit completed event
-	#completed.emit(true)
-	#return true
-#

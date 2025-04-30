@@ -39,7 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
 [ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="36_eqljc"]
 [ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
-[ext_resource type="PackedScene" uid="uid://cpp7ey87i7834" path="res://Prefabs/Bobo/Bobo.tscn" id="38_1hlk4"]
+[ext_resource type="PackedScene" uid="uid://bxokdwcvqi6f2" path="res://realbobo.tscn" id="38_1hlk4"]
 [ext_resource type="Texture2D" uid="uid://w6eurr5p0d0m" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
 [ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
 [ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]

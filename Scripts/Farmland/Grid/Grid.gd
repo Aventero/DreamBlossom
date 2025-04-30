@@ -229,5 +229,4 @@ func get_nearby_free_cell(cell : GridCell) -> GridCell:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Shovel:
-		print("shovel has entered. ", body)
 		body.on_soil_trigger_body_entered(body)

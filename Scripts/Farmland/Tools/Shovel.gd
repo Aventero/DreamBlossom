@@ -110,11 +110,6 @@ func _process(delta):
 		_handle_shovel_pull()
 
 func _handle_shovel():
-	print(intersection_raycast.is_colliding())
-	if intersection_raycast.is_colliding():
-		print(intersection_raycast.get_collider())
-		print("soil?", intersection_raycast.get_collider().is_in_group("Soil"))
-	
 	if not intersection_raycast.is_colliding() or \
 		not intersection_raycast.get_collider().is_in_group("Soil") or \
 		not _insertion_angle_allowed():

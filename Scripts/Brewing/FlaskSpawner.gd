@@ -36,5 +36,4 @@ func _flask_picked_up(pickable : XRToolsPickable) -> void:
 	InactivityManager.get_instance().add_node(pickable, true)
 
 func _on_timeout() -> void:
-	print("3Node still in tree: ", is_inside_tree())
 	_spawn_flask()

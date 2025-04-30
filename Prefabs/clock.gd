@@ -5,23 +5,39 @@ extends Node3D
 @export_range(0.0, 24.0, 1.0) var time_of_day: float = 0.0:
 	set(value):
 		time_of_day = value
-		_update_clock_rotation()
+		_update_clock_rotation(value)
 
 # Reference to the clock hand mesh
 @export var clock_hand: Node3D
+@export var day_cycle_manager: DayCycleManager
 
 func _ready():
 	if clock_hand:
-		_update_clock_rotation()
+		_update_clock_rotation(0)
 
-func _update_clock_rotation():
+func _update_clock_rotation(hour: float):
 	# For a 24-hour clock, each hour represents 15 degrees (360/24)
-	var angle = time_of_day * 360.0 / 24.0
-	clock_hand.rotation.y = -deg_to_rad(angle)
+	var angle = hour * (360.0 / 24.0)
+	var tween = create_tween()
+	
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	
+	# First squish down and widen
+	tween.tween_property(clock_hand, "scale", Vector3(0.9, 1.5, 0.9), 0.4)
+	
+	# Snap Handqyyyyyyyyyyyyyyyyyyyyyyy
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(clock_hand, "rotation", Vector3(0, -deg_to_rad(angle), 0), 0.1)
+	tween.parallel().tween_property(clock_hand, "scale", Vector3(1.2, 1.2, 1.2), 0.1)
+	tween.tween_property(clock_hand, "scale", Vector3(1.0, 1.0, 1.0), 0.1) # scale back
+	
+	# Squish clock
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "scale", Vector3(1.01, 1.0, 1.01), 0.1)
+	tween.tween_property(self, "scale", Vector3(0.99, 1.0, 0.99), 0.2)
+	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
 
-func _process(_delta):
-	if Engine.is_editor_hint():
-		# You can uncomment the below code to see the clock animate in the editor
-		# var new_time = fmod(time_of_day + delta * rotation_speed, 24)
-		# time_of_day = int(new_time)
-		pass
+func _on_day_cycle_manager_hour_progressed(current_hour: Variant) -> void:
+	_update_clock_rotation(current_hour)

@@ -38,14 +38,11 @@ size = Vector2i(800, 503)
 
 [node name="Order Display" parent="Order Viewport" instance=ExtResource("1_cslj7")]
 
-[node name="Inital Timer" type="Timer" parent="."]
+[node name="Inital Timer (NOT USED)" type="Timer" parent="."]
 wait_time = 10.0
-one_shot = true
-autostart = true
 
 [node name="Between Orders Timer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="order_completed" from="Order Viewport/Order Display" to="." method="_on_order_display_order_completed"]
-[connection signal="timeout" from="Inital Timer" to="." method="start_order"]
 [connection signal="timeout" from="Between Orders Timer" to="." method="start_order"]

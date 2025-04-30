@@ -25,20 +25,23 @@ func _process(_delta):
 	
 	if enable_range_reset and not Engine.is_editor_hint():
 		for node in reset_transforms:
-			var distance : float = node.global_position.distance_to(reset_transforms[node].origin)
-			
-			if distance < return_range:
-				continue
-			
-			# Check if already returning
-			if node in _returning_objects:
-				continue
-			_returning_objects.append(node)
-			
-			# Tween scale / Animation
-			var tween : Tween = create_tween()
-			tween.tween_property(node, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
-			tween.tween_callback(Callable(_restore_transform).bind(node))
+			if is_instance_valid(node):
+				var distance : float = node.global_position.distance_to(reset_transforms[node].origin)
+				if distance < return_range:
+					continue
+				
+				# Check if already returning
+				if node in _returning_objects:
+					continue
+				_returning_objects.append(node)
+				
+				# Tween scale / Animation
+				var tween : Tween = create_tween()
+				tween.tween_property(node, "scale", Vector3(0.1, 0.1, 0.1), 0.1)
+				tween.tween_callback(Callable(_restore_transform).bind(node))
+			else:
+				# Node is no longer valid, remove it from tracking
+				reset_transforms.erase(node)
 
 func _on_body_entered(body : RigidBody3D):
 	if not enable_area_reset:
@@ -88,6 +91,20 @@ func _get_data():
 	for node in returnables:
 		if not node.is_queued_for_deletion():
 			reset_transforms[node] = node.transform
+
+func add_returnable(node: Node3D) -> bool:
+	if not is_instance_valid(node):
+		print("ReturnManager: Attempted to add invalid node")
+		return false
+	
+	# Add to group if not already in it
+	if not node.is_in_group(group_name):
+		node.add_to_group(group_name)
+	
+	# Store its transform
+	reset_transforms[node] = node.global_transform
+	
+	return true
 
 func update(clear_old : bool = true):
 	if clear_old:

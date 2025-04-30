@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuechsdt8ob0m"]
+[gd_scene load_steps=3 format=3 uid="uid://cuechsdt8ob0m"]
 
 [ext_resource type="PackedScene" uid="uid://blewrwab77dq3" path="res://Models/Environment/Shield.blend" id="1_3l4nu"]
+[ext_resource type="PackedScene" uid="uid://c41bidhh1glm8" path="res://clock_new.tscn" id="2_xgli4"]
 
 [node name="Shield" instance=ExtResource("1_3l4nu")]
+
+[node name="Clock2" parent="." index="11" instance=ExtResource("2_xgli4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.462146)

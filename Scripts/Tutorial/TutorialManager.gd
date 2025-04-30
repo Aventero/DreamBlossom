@@ -48,10 +48,11 @@ func _on_squish(_pickable):
 		event_start(event_name_at[current_message_pos])
 	
 	# double press shows full text
-	if type_writer.is_displaying():
-		type_writer.show_full_text()
-	else:
-		type_writer.display_text(squish_messages[current_message_pos])
+	#if type_writer.is_displaying():
+		#type_writer.show_full_text()
+	#else:
+	type_writer.display_text(squish_messages[current_message_pos])
+	if current_message_pos < squish_messages.size(): 
 		current_message_pos += 1
 		
 func _on_picked_up(_pickable):
@@ -120,6 +121,9 @@ func event_polling(event_name: String) -> bool:
 	if event_name == "spawn_plant":
 		spawn_dig_spot_with_plant("TutorialBlubburuPlant")
 		return true
+		
+	if event_name == "blossy_respawn":
+		return true
 
 	return false
 
@@ -133,7 +137,7 @@ func _on_plant_stage_complete(stage: int) -> void:
 			type_writer.display_text("Es wächst.")
 		1: 
 			# All stages done
-			type_writer.display_text("Los nimm die Früchte und füttere ihn.")
+			type_writer.display_text("Nimm die Früchte und füttere ihn.")
 		2:
 			# Fruit event complete
 			is_event_completed = true

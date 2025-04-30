@@ -7,6 +7,7 @@ signal stage_complete(stage: int)
 
 @export var auto_grow : bool = true
 
+@export var animation_speed: float = 2.0
 @onready var stage_timer : Timer = $StageTimer
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var plant_model : Node3D = $Model
@@ -19,6 +20,8 @@ func _enter_tree() -> void:
 	visible = false
 
 func _ready():
+	animation_player.speed_scale = animation_speed
+	
 	# Search for stages in plant
 	for child in get_children():
 		if child.is_in_group("Stage"):
@@ -49,7 +52,7 @@ func start_stage(index : int):
 	
 	if stage.should_play_animation:
 		# Play the animation
-		stage_timer.start(stage.animation_time)
+		stage_timer.start(stage.animation_time / animation_player.speed_scale)
 		animation_player.play(stage.animation_name)
 	else:
 		# Start events immediatly

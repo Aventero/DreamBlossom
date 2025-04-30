@@ -77,6 +77,13 @@ enum Tools {
 
 var current_order : Order = null
 
+func get_orders() -> Array[Order]:
+	var orders: Array[Order] = []
+	for child in get_children():
+		if child is Order:
+			orders.append(child)
+	return orders
+	
 # Get most current quest from this level
 func next_order() -> bool:
 	# Get current quest from level

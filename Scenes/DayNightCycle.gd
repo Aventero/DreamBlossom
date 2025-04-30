@@ -1,12 +1,12 @@
 @tool
 extends Node3D
+class_name DayNightCycle
 
 var _time_of_day: float = 4.0
 @export_range(0, 24, 0.01) var time_of_day: float = 0.0:
 	set(value):
 		if Engine.is_editor_hint():
 			set_time_of_day(value)
-			print(1 - get_daylight_factor())
 	get:
 		return _time_of_day
 
@@ -64,19 +64,19 @@ func set_time_of_day(value):
 	_time_of_day = value  # Stop unnecissary updates
 	update_shader_parameters(value)
 
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		update_shader_parameters(_time_of_day)
-		return
-	
-	# Convert delta to hours (assuming 1 real second = 1 minute in game)
-	var time_delta = delta / 20.0
-	_time_of_day += time_delta
-
-	if _time_of_day >= 24.0:
-		_time_of_day = 0.0
-
-	update_shader_parameters(_time_of_day)
+#func _process(delta: float) -> void:
+	#if Engine.is_editor_hint():
+		#update_shader_parameters(_time_of_day)
+		#return
+	#
+	## Convert delta to hours (assuming 1 real second = 1 minute in game)
+	#var time_delta = delta / 20.0
+	#_time_of_day += time_delta
+#
+	#if _time_of_day >= 24.0:
+		#_time_of_day = 0.0
+#
+	#update_shader_parameters(_time_of_day)
 
 func calculate_sun_direction(hour: float) -> Vector3:
 	var shifted_hour = hour - 6.0

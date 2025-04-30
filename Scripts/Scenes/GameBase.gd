@@ -18,7 +18,7 @@ static var level_id : int
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
 @onready var order_display : OrderDisplay = $OrderDisplay
 @onready var bobo : Bobo = $BoboPath3D/BoboPathFollow3D/Bobo
-
+@onready var day_cycle_manager: DayCycleManager = $Managers/DayCycleManager
 @onready var hands : Array[XRToolsFunctionPickup] = [
 	$"XROrigin3D/Left Hand/CollisionHandLeft/FunctionPickup",
 	$"XROrigin3D/Right Hand/CollisionHandRight/FunctionPickup"
@@ -67,6 +67,7 @@ func scene_loaded(user_data = null):
 	
 	# Update return manager
 	return_manager.update(true)
+	day_cycle_manager.setup()
 
 func _load_level(level_nr : int) -> void:
 	print("Loading ", level_nr)

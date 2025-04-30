@@ -68,10 +68,8 @@ func resume() -> void:
 
 # Connected to screen_entered signal
 func _on_blossy_visible() -> void:
-	print("BLOSSY VISIBLE")
 	resume()
 	
 # Connected to screen_exited signal
 func _on_blossy_not_visible() -> void:
-	print("BLOSSY NOT VISIBLE")
 	pause()
