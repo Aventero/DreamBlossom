@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://biu06nwqfqv47" path="res://Scripts/Farmland/Fruits/FlamieFruit.gd" id="2_sk0ts"]
 [ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="2_spvjf"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Textures/Fruits/Flamie/Flamie.png" id="3_ytckv"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="5_l50jw"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="5_l50jw"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_taxtm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uofs0"]

@@ -11,6 +11,7 @@ collision_mask = 131079
 freeze = true
 script = ExtResource("2_h05vf")
 type = 0
+picked_up_layer = 65540
 release_mode = 0
 
 [node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("3_uwq2k")]

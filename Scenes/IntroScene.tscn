@@ -712,40 +712,56 @@ player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
 eye_look_weight = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/4/position = Vector3(-0.0458092, 0.603646, -2.59178)
-bones/6/position = Vector3(-3.92701e-10, 1.55449, 0.129288)
-bones/6/rotation = Quaternion(-0.855215, 0.00128909, -0.0028263, 0.518264)
-bones/7/rotation = Quaternion(0.0186529, 0.502275, 0.864332, -0.0173623)
-bones/12/rotation = Quaternion(-0.749755, 0.0258243, 0.0167262, 0.661)
-bones/13/rotation = Quaternion(0.353843, 0.00113356, 0.041986, 0.934362)
-bones/14/rotation = Quaternion(-0.719557, 0.0138467, -0.0971934, 0.687458)
-bones/15/rotation = Quaternion(-0.746381, -0.0353081, -0.0197905, 0.664287)
-bones/16/rotation = Quaternion(0.34215, -0.00113891, -0.0405986, 0.938767)
-bones/17/rotation = Quaternion(-0.714122, -0.0103234, 0.0991838, 0.692882)
-bones/18/rotation = Quaternion(-0.312216, 4.66475e-10, 7.99993e-08, 0.950011)
-bones/23/rotation = Quaternion(-0.922251, -0.0628995, -0.138522, 0.355399)
-bones/24/rotation = Quaternion(0.875688, -0.000684583, 0.0792427, 0.47633)
-bones/25/rotation = Quaternion(-0.745434, 0.0566135, 0.026798, 0.663631)
-bones/26/rotation = Quaternion(0.420331, -0.00615121, 0.0129908, 0.907257)
-bones/27/rotation = Quaternion(0.0375388, -3.43019e-10, -8.62564e-09, 0.999295)
-bones/28/rotation = Quaternion(0.218119, 2.31345e-10, -5.59817e-08, 0.975922)
-bones/29/rotation = Quaternion(0.140536, 5.4246e-10, -3.10611e-08, 0.990076)
-bones/30/rotation = Quaternion(-0.921895, 0.0620784, 0.12714, 0.360683)
-bones/31/rotation = Quaternion(0.873089, 0.000691455, -0.0790074, 0.481116)
-bones/32/rotation = Quaternion(-0.74539, -0.0541299, -0.0221122, 0.664059)
+bones/0/position = Vector3(0.492656, 0.109334, -0.0178843)
+bones/0/rotation = Quaternion(0.779274, 0.023959, 0.000532827, 0.626225)
+bones/1/position = Vector3(-0.521274, 0.0802214, 0.697306)
+bones/1/rotation = Quaternion(0.540514, -0.00321584, 0.000469188, 0.841329)
+bones/2/position = Vector3(0.502189, 0.101767, -0.837073)
+bones/2/rotation = Quaternion(0.740014, 0.0251963, 0.00027836, 0.672119)
+bones/3/position = Vector3(-0.518119, 0.0533089, -0.378209)
+bones/3/rotation = Quaternion(0.713563, -0.0241069, 0.00827636, 0.700127)
+bones/4/position = Vector3(-0.175169, 0.580891, -2.2694)
+bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
+bones/6/position = Vector3(7.60079e-09, 1.50966, 0.307035)
+bones/6/rotation = Quaternion(-0.714619, 0.0199857, -0.0187763, 0.698977)
+bones/7/rotation = Quaternion(0.00536459, 0.718096, 0.695863, -0.00917805)
+bones/12/rotation = Quaternion(-0.781841, -0.0929848, -0.0260641, 0.615953)
+bones/13/rotation = Quaternion(0.558649, 0.00100301, 0.0662878, 0.826751)
+bones/14/rotation = Quaternion(-0.906454, 0.0707733, -0.0178845, 0.415947)
+bones/15/rotation = Quaternion(-0.910102, -0.00462739, 0.00262938, 0.41435)
+bones/16/rotation = Quaternion(0.452057, -0.0010802, -0.0536399, 0.890374)
+bones/17/rotation = Quaternion(-0.891244, -0.00443554, 0.0342584, 0.452207)
+bones/18/rotation = Quaternion(-0.0953175, 0.0232229, 0.0343037, 0.994585)
+bones/23/rotation = Quaternion(-0.916253, -0.0652466, -0.124938, 0.374985)
+bones/24/rotation = Quaternion(0.737703, -0.000965517, 0.0667562, 0.671816)
+bones/25/rotation = Quaternion(-0.876368, 0.0446789, 0.0146907, 0.47934)
+bones/26/rotation = Quaternion(-0.517874, -0.00113214, -0.0196582, 0.855231)
+bones/27/rotation = Quaternion(0.12661, -1.10284e-09, -3.8285e-08, 0.991953)
+bones/28/rotation = Quaternion(0.515574, 2.14629e-09, -1.20149e-07, 0.856845)
+bones/29/rotation = Quaternion(0.337645, -4.49055e-09, -8.86681e-08, 0.941274)
+bones/30/rotation = Quaternion(-0.925772, 0.0413164, -0.0610928, 0.370819)
+bones/31/rotation = Quaternion(0.561343, 0.00118714, -0.050797, 0.826022)
+bones/32/rotation = Quaternion(-0.757342, -0.0182575, 0.059092, 0.650083)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.685348
-blend_shapes/LookVertical = -0.504111
-blend_shapes/LookHorizontal = -0.174358
-blend_shapes/Squish = 0.0979069
-blend_shapes/Stretch = 0.109989
+blend_shapes/Nose = 0.7
+blend_shapes/Sad = 0.4
+blend_shapes/LookVertical = -0.52844
+blend_shapes/LookHorizontal = -0.353486
+blend_shapes/Squish = 0.1
+blend_shapes/Stretch = 0.1
 
 [node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.998467, -0.0340898, 0.0435957, 0.0321711, -0.283442, -0.958449, 0.0450302, 0.958383, -0.281911, -0.000487044, 1.66149, 0.562056)
+transform = Transform3D(0.999302, -0.0265289, 0.0263053, 0.0210047, -0.18333, -0.982827, 0.0308959, 0.982693, -0.182645, -0.00385531, 1.43971, 0.74238)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.998467, -0.0335801, -0.0439907, 0.0321723, 0.998959, -0.0323299, 0.0450306, 0.0308651, 0.998508, -0.0473037, 1.84707, 1.46754)
+transform = Transform3D(0.999302, -0.0187581, -0.0323102, 0.0210058, 0.997277, 0.0706935, 0.0308961, -0.0713228, 0.996975, -0.0369719, 1.71767, 1.62452)
+
+[node name="AnimationTree" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="2"]
+parameters/StateMachine/walk_to_sit/blend_position = -1.15691
+
+[node name="Blubburu" parent="BoboPath3D" instance=ExtResource("59_v0l8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.574834, 0.970539, -0.499111)
 
 [node name="ToolArea" type="Node3D" parent="."]
 
@@ -1069,12 +1085,6 @@ metadata/_edit_lock_ = true
 [node name="GroundCollision" type="CollisionShape3D" parent="Environment/Ground2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
 shape = SubResource("BoxShape3D_7yi6c")
-
-[node name="Blubburu2" parent="." instance=ExtResource("59_v0l8j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227316, 1.1259, -0.326858)
-
-[node name="Blubburu" parent="." instance=ExtResource("59_v0l8j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.311959, 1.13617, -0.389822)
 
 [connection signal="screen_entered" from="Managers/TutorialManager/SomethingBehind" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TutorialManager/BoboAppears" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]

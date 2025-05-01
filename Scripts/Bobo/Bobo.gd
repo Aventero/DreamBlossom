@@ -11,7 +11,7 @@ signal bobo_sat_down
 @export var nose_bone: BoneAttachment3D
 
 # Blending
-@export_tool_button("hit_shield") var blinking = hit_shield
+@export_tool_button("hit_shield") var blinking = sit_down
 @export_tool_button("Yawn") var yawning = yawn
 @export_tool_button("Attack") var attacking = attack
 @export_tool_button("Munch") var munching = munch.bind(3)
@@ -46,6 +46,8 @@ var next_emotion_time: float = randf_range(5.0, 10.0)
 var active_tweens = []
 var active_emotion_tweens = []
 var is_yawning: bool = false
+var is_waiting_for_food: bool = false
+var open_mouth_tween: Tween
 
 # Game State
 signal level_failed
@@ -112,6 +114,7 @@ func blink() -> void:
 	tween.tween_property(head, "blend_shapes/Blink", 0.0, 0.2)
 
 func yawn() -> void:
+	if is_waiting_for_food: return
 	is_yawning = true
 	for active_tween in active_tweens:
 		active_tween.kill()
@@ -244,21 +247,22 @@ func munch(repeat_count: int = 5) -> void:
 	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Reduce happy expression
 	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Fade out happy expression
 
-func open_mouth() -> void:
+func open_mouth() -> Tween:
+	# Bobo is still having his mouth open 
+	
 	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(head, "blend_shapes/Mouth", 0.6, 0.5)
-
+	return tween
 
 func play_eating_animation(munches: int) -> void:
 	# Play eating animation
 	var tween = create_tween()
-	tween.tween_callback(open_mouth)
-	tween.tween_interval(1.0)
 	tween.tween_callback(munch.bind(3))
 
-func close_mouth() -> void:
+func close_mouth() -> Tween:
+	open_mouth().kill()
 	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_BACK)
@@ -273,6 +277,7 @@ func close_mouth() -> void:
 	bounce_tween.set_ease(Tween.EASE_OUT)
 	bounce_tween.set_trans(Tween.TRANS_BACK)
 	bounce_tween.tween_property(head, "blend_shapes/Squish", 0.0, 0.25)
+	return tween
 
 func handle_random_emotion(delta: float) -> void:
 	emotion_timer += delta
@@ -319,6 +324,9 @@ func handle_breathing(delta: float) -> void:
 # SYSTEM
 
 func _ready() -> void:
+	# Make bobo walk in the beginning
+	animation_tree.set("parameters/StateMachine/walk_to_sit/blend_position", -1)
+	
 	if skeleton:
 		current_head_pose = skeleton.get_bone_global_pose(head_bone)
 
@@ -332,7 +340,6 @@ func _process(delta: float) -> void:
 	if player_camera:
 		head_movement(delta)
 		look_at_player_camera(delta)
-
 
 # ANIMATION
 func head_movement(delta: float) -> void:
@@ -384,11 +391,22 @@ func look_at_player_camera(delta: float) -> void:
 	head.set("blend_shapes/LookVertical", lerp(current_look_v, target_look_v, delta * eye_turn_speed))
 
 func sit_down() -> void:
+	# Make sure animation_tree is active
+	animation_tree.active = true
+	
+	# Set the initial blend position if it's not already set
+	animation_tree["parameters/StateMachine/walk_to_sit/blend_position"] = -1.0
+	
+	# Configure the tween
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
+	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(animation_tree, "parameters/StateMachine/walk_to_sit/blend_position", 1.0, 3.0).from(-1.0)
-	tween.tween_callback(bobo_sat_down.emit.bind())
+	
+	# Use a longer duration for smoother blending
+	tween.tween_method(func(val: float): animation_tree["parameters/StateMachine/walk_to_sit/blend_position"] = val, -1.0, 1.0, 3.0)
+	
+	# Emit the signal when done
+	tween.tween_callback(func(): bobo_sat_down.emit())
 
 func hit_shield() -> void:
 	var state_machine = animation_tree.get("parameters/StateMachine/playback")
@@ -404,24 +422,34 @@ func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)
 
-func _on_ingredient_trigger_body_entered(ingredient: Ingredient):
-	print("INGREDIENT", ingredient)
-	# Check if order is existing and order is currently running
-	if not GameBase.level.current_order or GameBase.level.current_order and not GameBase.level.current_order.is_running():
-		print("Curreont order runnignb?", GameBase.level.current_order.is_running())
+func _on_ingredient_open_mouth_entered(ingredient: Node3D):
+	is_waiting_for_food = true
+	open_mouth()
+
+func _on_open_mouth_trigger_body_exited(body: Node3D) -> void:
+	close_mouth().tween_callback(func(): is_waiting_for_food = false)
+
+func _on_ingredient_trigger_body_entered(ingredient: Node3D):
+	if not ingredient is Ingredient:
+		print("Not a ingredient: ", ingredient.name)
 		return
 	
-	if not ingredient is Ingredient:
-		print("Its not a ingredient")
-		return
+	if not GameBase.level: print("There is no level")
+	
+	if not GameBase.level.current_order: print("there is no order")
+	
+	# Check if order is existing and order is currently running
+	#if GameBase.level.current_order.is_running():
+		#print("Curreont order runnignb?", GameBase.level.current_order.is_running())
+		#return
 	
 	# Check if ingredient is still required in order
-	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
-		print("Ingredient is not required")
-		return
+	#if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
+		#print("Ingredient is not required")
+		#return
 	
 	# Can be eaten -> Order progress
-	GameBase.level.current_order.progress_order(ingredient.type)
+	#GameBase.level.current_order.progress_order(ingredient.type)
 	
 	play_eating_animation(3)
 	despawn_ingredient(ingredient)
