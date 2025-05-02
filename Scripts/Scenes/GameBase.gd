@@ -16,7 +16,7 @@ static var level_id : int
 @onready var cooking_chest : CookingChest = $CookingArea/CookingChest
 @onready var cauldron : Cauldron = $"ToolArea/Cauldron"
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
-@onready var order_display : OrderDisplay = $OrderDisplay
+@onready var order_display : OrderDisplay = $Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay
 @onready var bobo : Bobo = $BoboPath3D/BoboPathFollow3D/Bobo
 @onready var day_cycle_manager: DayCycleManager = $Managers/DayCycleManager
 @onready var hands : Array[XRToolsFunctionPickup] = [
@@ -30,6 +30,7 @@ func scene_loaded(user_data = null):
 	# Load level
 	_load_level(user_data["level"])
 	level_id = user_data["level"]
+	
 	
 	# Apply level settings
 	seed_bags.load_seed_bags(level.active_plants)
@@ -68,7 +69,7 @@ func scene_loaded(user_data = null):
 	# Update return manager
 	return_manager.update(true)
 	day_cycle_manager.setup()
-
+	
 func _load_level(level_nr : int) -> void:
 	print("Loading ", level_nr)
 	

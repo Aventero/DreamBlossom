@@ -46,7 +46,7 @@ transitions = ["Start", "walk_to_sit", SubResource("AnimationNodeStateMachineTra
 graph_offset = Vector2(-146, 50)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m2324"]
-graph_offset = Vector2(-750.932, 1.78857)
+graph_offset = Vector2(-533.15, -2.03)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ff8xn")
 nodes/StateMachine/position = Vector2(-80, 20)
 nodes/output/position = Vector2(160, 20)
@@ -67,36 +67,36 @@ bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
 bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
 bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
 bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
-bones/4/position = Vector3(0.0111673, 0.578892, -2.57298)
+bones/4/position = Vector3(-1.70981e-17, 0.574239, -2.56973)
 bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(2.40874e-10, 1.55183, 0.129288)
-bones/6/rotation = Quaternion(-0.857068, -0.00267736, 0.00163119, 0.515194)
-bones/7/rotation = Quaternion(0.0293567, 0.5182, 0.854702, -0.00951875)
-bones/12/rotation = Quaternion(-0.744837, 0.0416761, 0.0162575, 0.665745)
-bones/13/rotation = Quaternion(0.3457, 0.00113731, 0.0410199, 0.937447)
-bones/14/rotation = Quaternion(-0.715691, 0.00178685, -0.103255, 0.69074)
-bones/15/rotation = Quaternion(-0.74891, -0.0311185, -0.0137308, 0.661799)
-bones/16/rotation = Quaternion(0.357527, -0.00113185, -0.0424232, 0.932938)
-bones/17/rotation = Quaternion(-0.72053, -0.00977392, 0.099365, 0.686198)
-bones/18/rotation = Quaternion(-0.33462, 3.81702e-10, 7.99483e-08, 0.942353)
-bones/23/rotation = Quaternion(-0.908832, -0.063018, -0.134212, 0.389924)
-bones/24/rotation = Quaternion(0.88185, -0.000667883, 0.0798003, 0.464728)
-bones/25/rotation = Quaternion(-0.759897, 0.059456, 0.0242716, 0.646864)
-bones/26/rotation = Quaternion(0.465307, 0.00151776, -0.000535579, 0.885148)
-bones/27/rotation = Quaternion(0.0298798, -6.50278e-11, -6.42628e-09, 0.999554)
-bones/28/rotation = Quaternion(0.18653, 2.67925e-10, -4.31412e-08, 0.982449)
-bones/29/rotation = Quaternion(0.119431, 3.18902e-11, -2.7136e-08, 0.992843)
-bones/30/rotation = Quaternion(-0.909671, 0.0645391, 0.149102, 0.382234)
-bones/31/rotation = Quaternion(0.883005, 0.000664723, -0.0799047, 0.462511)
-bones/32/rotation = Quaternion(-0.757367, -0.0666797, -0.033578, 0.648708)
+bones/6/position = Vector3(0, 1.55284, 0.129288)
+bones/6/rotation = Quaternion(-0.857735, -6.12846e-08, 1.0225e-07, 0.514093)
+bones/7/rotation = Quaternion(0.0268379, 0.511954, 0.858498, -0.0128426)
+bones/12/rotation = Quaternion(-0.74523, 0.036849, 0.014856, 0.665623)
+bones/13/rotation = Quaternion(0.349855, 0.00113541, 0.0415129, 0.935883)
+bones/14/rotation = Quaternion(-0.717617, 0.00537942, -0.101354, 0.689002)
+bones/15/rotation = Quaternion(-0.74523, -0.0368489, -0.0148559, 0.665623)
+bones/16/rotation = Quaternion(0.349855, -0.00113542, -0.0415129, 0.935883)
+bones/17/rotation = Quaternion(-0.717617, -0.0053794, 0.101354, 0.689002)
+bones/18/rotation = Quaternion(-0.335558, -4.79616e-14, 8.00032e-08, 0.94202)
+bones/23/rotation = Quaternion(-0.908121, -0.0639423, -0.142481, 0.388494)
+bones/24/rotation = Quaternion(0.88342, -0.000663567, 0.0799423, 0.461712)
+bones/25/rotation = Quaternion(-0.759913, 0.0637784, 0.0293461, 0.646222)
+bones/26/rotation = Quaternion(0.467027, 1.05116e-07, -1.72467e-08, 0.884243)
+bones/27/rotation = Quaternion(0.029174, 2.71103e-14, -6.95562e-09, 0.999574)
+bones/28/rotation = Quaternion(0.185588, -7.16094e-15, -4.42475e-08, 0.982628)
+bones/29/rotation = Quaternion(0.118411, 8.6875e-15, -2.82315e-08, 0.992965)
+bones/30/rotation = Quaternion(-0.908121, 0.0639425, 0.142481, 0.388494)
+bones/31/rotation = Quaternion(0.88342, 0.000663576, -0.0799423, 0.461713)
+bones/32/rotation = Quaternion(-0.759913, -0.0637785, -0.0293462, 0.646222)
 
 [node name="Head" parent="Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.708028
-blend_shapes/Squish = 0.101147
-blend_shapes/Stretch = 0.101147
+blend_shapes/Nose = -0.0194032
+blend_shapes/Squish = -0.00277189
+blend_shapes/Stretch = -0.00277189
 
 [node name="MouthAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.998938, -0.0348714, 0.0301144, 0.0196462, -0.26883, -0.962988, 0.0416764, 0.962556, -0.267859, -0.000720853, 1.66605, 0.560694)
+transform = Transform3D(0.999355, -0.0302756, 0.0193312, 0.0100752, -0.280311, -0.959857, 0.034479, 0.959432, -0.279825, -1.70432e-05, 1.66819, 0.560455)
 bone_name = "Mouth"
 bone_idx = 10
 
@@ -117,7 +117,7 @@ transform = Transform3D(1.00004, -1.86265e-07, 1.52737e-07, 5.21541e-08, 1.00004
 shape = SubResource("SphereShape3D_q270a")
 
 [node name="NoseAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.998938, -0.0203381, -0.0413441, 0.0196474, 0.999662, -0.017045, 0.0416767, 0.0162146, 0.998999, -0.0423092, 1.86555, 1.46347)
+transform = Transform3D(0.999354, -0.0110642, -0.0341751, 0.0100763, 0.999531, -0.028945, 0.0344793, 0.0285819, 0.998997, -0.0331589, 1.85695, 1.46588)
 bone_name = "Nose"
 bone_idx = 11
 
@@ -127,10 +127,15 @@ speed_scale = 1.533
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_m2324")
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/walk_to_sit/blend_position = 1.0
+parameters/StateMachine/walk_to_sit/blend_position = -1
+
+[node name="ShieldHitTimer" type="Timer" parent="." index="3"]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="Armature/Skeleton3D/MouthAttachement/Ingredient Trigger" to="." method="_on_ingredient_trigger_body_entered"]
 [connection signal="body_entered" from="Armature/Skeleton3D/MouthAttachement/Open Mouth Trigger" to="." method="_on_ingredient_open_mouth_entered"]
 [connection signal="body_exited" from="Armature/Skeleton3D/MouthAttachement/Open Mouth Trigger" to="." method="_on_open_mouth_trigger_body_exited"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="ShieldHitTimer" to="." method="_on_shield_hit_timer_timeout"]

@@ -3,6 +3,7 @@ extends Node3D
 class_name Bobo
 
 signal bobo_sat_down
+signal bobo_ate(amount: int)
 
 @export_range(0.0, 1.0) var blend_open: float = 0
 @export var player_camera: Camera3D
@@ -11,7 +12,7 @@ signal bobo_sat_down
 @export var nose_bone: BoneAttachment3D
 
 # Blending
-@export_tool_button("hit_shield") var blinking = sit_down
+@export_tool_button("hit_shield") var blinking = hit_shield
 @export_tool_button("Yawn") var yawning = yawn
 @export_tool_button("Attack") var attacking = attack
 @export_tool_button("Munch") var munching = munch.bind(3)
@@ -48,6 +49,7 @@ var active_emotion_tweens = []
 var is_yawning: bool = false
 var is_waiting_for_food: bool = false
 var open_mouth_tween: Tween
+var ingredients_eaten: int = 0
 
 # Game State
 signal level_failed
@@ -411,16 +413,20 @@ func sit_down() -> void:
 func hit_shield() -> void:
 	var state_machine = animation_tree.get("parameters/StateMachine/playback")
 	state_machine.travel("shield_bash")
+	$ShieldHitTimer.start()
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	# completed the shield bash
 	if anim_name == "Shield":
-		$"../../../OrderDisplay".start_order()
+		$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
+	print(GameBase.level.current_order)
 
 # Game mechanics
 func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)
+	print("GameBase.level:", GameBase.level)
+	print("GameBase.level.ordewr:", GameBase.level.current_order)
 
 func _on_ingredient_open_mouth_entered(ingredient: Node3D):
 	is_waiting_for_food = true
@@ -430,9 +436,9 @@ func _on_open_mouth_trigger_body_exited(body: Node3D) -> void:
 	close_mouth().tween_callback(func(): is_waiting_for_food = false)
 
 func _on_ingredient_trigger_body_entered(ingredient: Node3D):
-	if not ingredient is Ingredient:
-		print("Not a ingredient: ", ingredient.name)
-		return
+	#if not ingredient is Ingredient:
+	#	print("Not a ingredient: ", ingredient.name)
+	#	return
 	
 	if not GameBase.level: print("There is no level")
 	
@@ -452,8 +458,10 @@ func _on_ingredient_trigger_body_entered(ingredient: Node3D):
 	#GameBase.level.current_order.progress_order(ingredient.type)
 	
 	play_eating_animation(3)
-	despawn_ingredient(ingredient)
-
+	#despawn_ingredient(ingredient)
+	ingredients_eaten += 1
+	bobo_ate.emit(ingredients_eaten)
+	
 func despawn_ingredient(ingredient: Ingredient) -> void:
 	# Despawn ingredient
 	ingredient.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
@@ -488,3 +496,12 @@ func _on_order_complete(success : bool) -> void:
 func _bobo_death() -> void:
 	print("Bobo killed you. Oh my.")
 	level_failed.emit()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == KEY_F:
+			_on_ingredient_trigger_body_entered(self)
+
+func _on_shield_hit_timer_timeout() -> void:
+	# impact on shield
+	print("IMPACT")

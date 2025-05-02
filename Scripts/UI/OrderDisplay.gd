@@ -20,5 +20,5 @@ func start_order():
 
 func _on_order_display_order_completed():
 	# Start timer between orders
-	between_timer.start(time_between_orders)
+	between_timer.start(time_between_orders)	
 	

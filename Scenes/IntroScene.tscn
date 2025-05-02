@@ -585,7 +585,7 @@ bobo_appears_notifier = NodePath("BoboAppears")
 bobo_follower = NodePath("../../BoboPath3D/BoboPathFollow3D")
 bobo = NodePath("../../BoboPath3D/BoboPathFollow3D/Bobo")
 plot = NodePath("../../Plot")
-order_view = NodePath("../../OrderDisplay")
+order_view = NodePath("../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay")
 shield = NodePath("../../Shield")
 grid = NodePath("../../Plot/Soil")
 spawn_digpot = ExtResource("25_6ojh6")
@@ -686,14 +686,26 @@ script = ExtResource("22_qfwj1")
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
-[node name="OrderDisplay" parent="." instance=ExtResource("25_lxsdg")]
-transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00378711, 0, 0.00378711, 0.999993, 0, 1.84455, -1.29436)
-
 [node name="Shield" parent="." instance=ExtResource("56_7eudh")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
 
-[node name="Clock2" parent="Shield" index="11" node_paths=PackedStringArray("day_cycle_manager")]
-day_cycle_manager = NodePath("../../Managers/DayCycleManager")
+[node name="Chain_0" parent="Shield" index="0"]
+transform = Transform3D(0.369284, 0, 0, 0, 0.369284, 0, 0, 0, 0.369284, 0.00454826, 0.00581809, -1.2968)
+
+[node name="Chain_1" parent="Shield/Chain_0" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00757694, -0.00581186, 0.712115)
+
+[node name="Chain_2" parent="Shield/Chain_0/Chain_1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00568961, 0.195105)
+
+[node name="Chain_3" parent="Shield/Chain_0/Chain_1/Chain_2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.436437)
+
+[node name="Shield" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
+transform = Transform3D(3.53181, 0, 0, 0, 2.70794, 0, 0, 0, 2.70794, 0.0136763, -0.0172326, 0.316601)
+
+[node name="OrderDisplay" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2" index="2" instance=ExtResource("25_lxsdg")]
+transform = Transform3D(0.766729, 0, 0, 0, 0.00378707, 0.999994, 0, -0.999994, 0.00378707, -0.00521426, 0.0379831, -0.453996)
 
 [node name="BoboPath3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
@@ -712,53 +724,49 @@ player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
 eye_look_weight = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/0/position = Vector3(0.492656, 0.109334, -0.0178843)
-bones/0/rotation = Quaternion(0.779274, 0.023959, 0.000532827, 0.626225)
-bones/1/position = Vector3(-0.521274, 0.0802214, 0.697306)
-bones/1/rotation = Quaternion(0.540514, -0.00321584, 0.000469188, 0.841329)
-bones/2/position = Vector3(0.502189, 0.101767, -0.837073)
-bones/2/rotation = Quaternion(0.740014, 0.0251963, 0.00027836, 0.672119)
-bones/3/position = Vector3(-0.518119, 0.0533089, -0.378209)
-bones/3/rotation = Quaternion(0.713563, -0.0241069, 0.00827636, 0.700127)
-bones/4/position = Vector3(-0.175169, 0.580891, -2.2694)
+bones/0/position = Vector3(0.490884, 0.121696, -0.0355673)
+bones/0/rotation = Quaternion(0.827021, 0.0227586, 0.00149466, 0.561709)
+bones/1/position = Vector3(-0.521342, 0.0773854, 0.693676)
+bones/1/rotation = Quaternion(0.625498, -0.0120679, 0.00700165, 0.780101)
+bones/2/position = Vector3(0.499701, 0.0867852, -0.916701)
+bones/2/rotation = Quaternion(0.745662, 0.0251926, 0.000490727, 0.665848)
+bones/3/position = Vector3(-0.513345, 0.0506312, -0.39291)
+bones/3/rotation = Quaternion(0.713991, -0.0245923, 0.00311837, 0.699716)
+bones/4/position = Vector3(-0.150253, 0.578815, -2.25262)
 bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(7.60079e-09, 1.50966, 0.307035)
-bones/6/rotation = Quaternion(-0.714619, 0.0199857, -0.0187763, 0.698977)
-bones/7/rotation = Quaternion(0.00536459, 0.718096, 0.695863, -0.00917805)
-bones/12/rotation = Quaternion(-0.781841, -0.0929848, -0.0260641, 0.615953)
-bones/13/rotation = Quaternion(0.558649, 0.00100301, 0.0662878, 0.826751)
-bones/14/rotation = Quaternion(-0.906454, 0.0707733, -0.0178845, 0.415947)
-bones/15/rotation = Quaternion(-0.910102, -0.00462739, 0.00262938, 0.41435)
-bones/16/rotation = Quaternion(0.452057, -0.0010802, -0.0536399, 0.890374)
-bones/17/rotation = Quaternion(-0.891244, -0.00443554, 0.0342584, 0.452207)
-bones/18/rotation = Quaternion(-0.0953175, 0.0232229, 0.0343037, 0.994585)
-bones/23/rotation = Quaternion(-0.916253, -0.0652466, -0.124938, 0.374985)
-bones/24/rotation = Quaternion(0.737703, -0.000965517, 0.0667562, 0.671816)
-bones/25/rotation = Quaternion(-0.876368, 0.0446789, 0.0146907, 0.47934)
-bones/26/rotation = Quaternion(-0.517874, -0.00113214, -0.0196582, 0.855231)
-bones/27/rotation = Quaternion(0.12661, -1.10284e-09, -3.8285e-08, 0.991953)
-bones/28/rotation = Quaternion(0.515574, 2.14629e-09, -1.20149e-07, 0.856845)
-bones/29/rotation = Quaternion(0.337645, -4.49055e-09, -8.86681e-08, 0.941274)
-bones/30/rotation = Quaternion(-0.925772, 0.0413164, -0.0610928, 0.370819)
-bones/31/rotation = Quaternion(0.561343, 0.00118714, -0.050797, 0.826022)
-bones/32/rotation = Quaternion(-0.757342, -0.0182575, 0.059092, 0.650083)
+bones/6/position = Vector3(1.49516e-08, 1.47821, 0.31345)
+bones/6/rotation = Quaternion(-0.689809, 0.0133426, -0.0124777, 0.723761)
+bones/7/rotation = Quaternion(0.00853236, 0.74232, 0.669868, -0.0128628)
+bones/12/rotation = Quaternion(-0.809373, -0.084575, -0.0179018, 0.580898)
+bones/13/rotation = Quaternion(0.590065, 0.000975792, 0.0700155, 0.804313)
+bones/14/rotation = Quaternion(-0.883347, 0.0714435, -0.029996, 0.46227)
+bones/15/rotation = Quaternion(-0.935254, 0.00682643, 0.0101516, 0.353765)
+bones/16/rotation = Quaternion(0.497028, -0.0010503, -0.058976, 0.865727)
+bones/17/rotation = Quaternion(-0.849869, 0.00163213, 0.041031, 0.525392)
+bones/18/rotation = Quaternion(-0.095496, 0.0198576, 0.0294406, 0.994796)
+bones/23/rotation = Quaternion(-0.898243, -0.0629303, -0.0936972, 0.424759)
+bones/24/rotation = Quaternion(0.681263, -0.00104835, 0.0616487, 0.729438)
+bones/25/rotation = Quaternion(-0.875036, 0.0431544, 0.00512513, 0.482104)
+bones/26/rotation = Quaternion(-0.56135, 0.00579145, -0.013567, 0.827447)
+bones/27/rotation = Quaternion(0.123167, -2.53336e-09, -2.61007e-08, 0.992386)
+bones/28/rotation = Quaternion(0.505929, -6.3299e-09, -1.80472e-07, 0.862575)
+bones/29/rotation = Quaternion(0.331182, 1.3415e-09, -7.29953e-08, 0.943567)
+bones/30/rotation = Quaternion(-0.929528, 0.0427892, -0.0477566, 0.363133)
+bones/31/rotation = Quaternion(0.528313, 0.00121829, -0.047808, 0.847701)
+bones/32/rotation = Quaternion(-0.748269, -0.0257757, 0.0528119, 0.660788)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.7
-blend_shapes/Sad = 0.4
-blend_shapes/LookVertical = -0.52844
-blend_shapes/LookHorizontal = -0.353486
-blend_shapes/Squish = 0.1
-blend_shapes/Stretch = 0.1
+blend_shapes/Nose = 0.0
+blend_shapes/LookVertical = -0.454127
+blend_shapes/LookHorizontal = -0.353076
+blend_shapes/Squish = 0.0
+blend_shapes/Stretch = 0.0
 
 [node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.999302, -0.0265289, 0.0263053, 0.0210047, -0.18333, -0.982827, 0.0308959, 0.982693, -0.182645, -0.00385531, 1.43971, 0.74238)
+transform = Transform3D(0.999251, -0.0243154, 0.0300974, 0.0252899, -0.178263, -0.983657, 0.0292833, 0.983682, -0.177515, -0.00348116, 1.40053, 0.741893)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999302, -0.0187581, -0.0323102, 0.0210058, 0.997277, 0.0706935, 0.0308961, -0.0713228, 0.996975, -0.0369719, 1.71767, 1.62452)
-
-[node name="AnimationTree" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="2"]
-parameters/StateMachine/walk_to_sit/blend_position = -1.15691
+transform = Transform3D(0.999251, -0.0229861, -0.0311256, 0.0252911, 0.996802, 0.0758062, 0.0292836, -0.0765366, 0.996636, -0.03644, 1.68299, 1.62261)
 
 [node name="Blubburu" parent="BoboPath3D" instance=ExtResource("59_v0l8j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.574834, 0.970539, -0.499111)
@@ -1088,8 +1096,8 @@ shape = SubResource("BoxShape3D_7yi6c")
 
 [connection signal="screen_entered" from="Managers/TutorialManager/SomethingBehind" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TutorialManager/BoboAppears" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
-[connection signal="hour_progressed" from="Managers/DayCycleManager" to="Shield/Clock2" method="_on_day_cycle_manager_hour_progressed"]
 [connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/TutorialManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
+[connection signal="bobo_ate" from="BoboPath3D/BoboPathFollow3D/Bobo" to="Managers/TutorialManager" method="_on_bobo_bobo_ate"]
 [connection signal="level_failed" from="BoboPath3D/BoboPathFollow3D/Bobo" to="." method="level_failed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]

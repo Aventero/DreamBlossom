@@ -17,6 +17,7 @@ func setup():
 		# Ignore infinite orders
 		if (order.time < 1000): 
 			_total_order_time += order.time
+	print("_total_order_time", _total_order_time)
 
 func reset_day():
 	_total_order_time = 0

@@ -134,7 +134,7 @@ func event_end(_event_name: String) -> void:
 func _on_plant_stage_complete(stage: int) -> void:
 	match stage:
 		0:
-			type_writer.display_text("Es wächst.")
+			type_writer.display_text("...")
 		1: 
 			# All stages done
 			type_writer.display_text("Nimm die Früchte und füttere ihn.")
@@ -146,3 +146,6 @@ func _on_bobo_path_follow_3d_bobo_done_moving() -> void:
 	if current_event == "bobo_appears":
 		is_event_completed = true
 		bobo.sit_down()
+
+func _on_bobo_bobo_ate(amount: int) -> void:
+	if amount == 3: bobo.hit_shield()
