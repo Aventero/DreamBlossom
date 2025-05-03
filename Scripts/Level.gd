@@ -4,6 +4,7 @@ extends Node3D
 
 ## Emit when new order started
 signal new_order(order : Order)
+signal started_first_order(order: Order)
 
 ## Emit when level is completed
 signal completed
@@ -76,6 +77,10 @@ enum Tools {
 }
 
 var current_order : Order = null
+var _first_order: Order
+
+func _ready() -> void:
+	_first_order = get_child(0)
 
 func get_orders() -> Array[Order]:
 	var orders: Array[Order] = []
@@ -98,6 +103,9 @@ func next_order() -> bool:
 
 		# Emit new order signal
 		self.new_order.emit(current_order)
+	
+	if newest_order == _first_order:
+		self.started_first_order.emit()
 
 	return true
 

@@ -146,6 +146,9 @@ func _on_bobo_path_follow_3d_bobo_done_moving() -> void:
 	if current_event == "bobo_appears":
 		is_event_completed = true
 		bobo.sit_down()
+		
 
 func _on_bobo_bobo_ate(amount: int) -> void:
-	if amount == 3: bobo.hit_shield()
+	if amount == 3: 
+		bobo.hit_shield()
+		bobo.heart.start_hunger()

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://830vxop4jk4s"]
+
+[ext_resource type="PackedScene" uid="uid://dgylkk63nmekc" path="res://Models/Mobs/Heart.blend" id="1_cd887"]
+[ext_resource type="Material" uid="uid://dgk4b54nbsjy7" path="res://Materials/Glass.tres" id="2_25koj"]
+[ext_resource type="Script" uid="uid://d10vprjryyk3u" path="res://Prefabs/Mobs/heart.gd" id="2_ogtr1"]
+[ext_resource type="Shader" uid="uid://b2c7q45y60ha5" path="res://Shader/Heart.gdshader" id="3_ogtr1"]
+[ext_resource type="Texture2D" uid="uid://djmsexscxfktj" path="res://Textures/NoiseBig.png" id="4_ogtr1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25koj"]
+render_priority = 0
+shader = ExtResource("3_ogtr1")
+shader_parameter/min_height = -0.2
+shader_parameter/max_height = 0.2
+shader_parameter/potion_noise = ExtResource("4_ogtr1")
+shader_parameter/base_color = Color(1, 0, 0, 1)
+shader_parameter/surface_color = Color(1, 0.230363, 0.230363, 1)
+shader_parameter/line_color = Color(1, 0.736755, 0.736755, 1)
+shader_parameter/fresnel_color = Color(1, 0.888014, 0.888014, 1)
+shader_parameter/line_width = 0.011
+shader_parameter/mix_amount = 1.0
+
+[node name="Heart2" instance=ExtResource("1_cd887")]
+transform = Transform3D(1, 0, 0, 0, 0.624084, -0.781357, 0, 0.781357, 0.624084, 0, 0, 0)
+script = ExtResource("2_ogtr1")
+
+[node name="Heart" parent="." index="0"]
+transform = Transform3D(-0.780882, -2.78917e-07, 7.75622e-08, -1.04257e-07, 0.979846, 0.697179, -1.50194e-07, 0.769975, -0.887209, 0, 0.00293847, -0.373681)
+surface_material_override/0 = ExtResource("2_25koj")
+
+[node name="HeartFill" parent="Heart" index="0"]
+instance_shader_parameters/fill_percentage = 0.5
+surface_material_override/0 = SubResource("ShaderMaterial_25koj")
+
+[node name="HungerTimer" type="Timer" parent="." index="5"]
+wait_time = 5.0
+
+[connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]

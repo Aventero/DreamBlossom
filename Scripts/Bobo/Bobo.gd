@@ -5,6 +5,7 @@ class_name Bobo
 signal bobo_sat_down
 signal bobo_ate(amount: int)
 
+@export var shield: Shield
 @export_range(0.0, 1.0) var blend_open: float = 0
 @export var player_camera: Camera3D
 @onready var head: MeshInstance3D = $Armature/Skeleton3D/Head
@@ -19,6 +20,7 @@ signal bobo_ate(amount: int)
 @export_tool_button("OpenMouth") var open = open_mouth
 @export_tool_button("CloseMouth") var close = close_mouth
 @export var max_order_fails : int = 3
+@export var heart: Heart
 
 var _failed_orders : int = 0
 
@@ -416,15 +418,13 @@ func hit_shield() -> void:
 	$ShieldHitTimer.start()
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	# completed the shield bash
-	if anim_name == "Shield":
-		$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
 	print(GameBase.level.current_order)
 
 # Game mechanics
 func setup() -> void:
 	# Connect new_order event from current level
 	GameBase.level.new_order.connect(_on_new_order)
+	GameBase.level.started_first_order.connect(_on_first_order_started)
 	print("GameBase.level:", GameBase.level)
 	print("GameBase.level.ordewr:", GameBase.level.current_order)
 
@@ -436,30 +436,31 @@ func _on_open_mouth_trigger_body_exited(body: Node3D) -> void:
 	close_mouth().tween_callback(func(): is_waiting_for_food = false)
 
 func _on_ingredient_trigger_body_entered(ingredient: Node3D):
-	#if not ingredient is Ingredient:
-	#	print("Not a ingredient: ", ingredient.name)
-	#	return
+	if not ingredient is Ingredient:
+		print("Not a ingredient: ", ingredient.name)
+		return
 	
 	if not GameBase.level: print("There is no level")
 	
 	if not GameBase.level.current_order: print("there is no order")
 	
 	# Check if order is existing and order is currently running
-	#if GameBase.level.current_order.is_running():
-		#print("Curreont order runnignb?", GameBase.level.current_order.is_running())
-		#return
+	if GameBase.level.current_order.is_running():
+		print("Curreont order runnignb?", GameBase.level.current_order.is_running())
+		return
 	
 	# Check if ingredient is still required in order
-	#if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
-		#print("Ingredient is not required")
-		#return
+	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
+		print("Ingredient is not required")
+		return
 	
 	# Can be eaten -> Order progress
-	#GameBase.level.current_order.progress_order(ingredient.type)
+	GameBase.level.current_order.progress_order(ingredient.type)
 	
 	play_eating_animation(3)
-	#despawn_ingredient(ingredient)
+	despawn_ingredient(ingredient)
 	ingredients_eaten += 1
+	heart.feed_heart(5)
 	bobo_ate.emit(ingredients_eaten)
 	
 func despawn_ingredient(ingredient: Ingredient) -> void:
@@ -474,10 +475,11 @@ func despawn_ingredient(ingredient: Ingredient) -> void:
 	if ingredient and not ingredient.is_queued_for_deletion():
 		ingredient.queue_free()
 
+# Connect complete event
 func _on_new_order(order : Order) -> void:
-	# Connect complete event
 	order.completed.connect(_on_order_complete)
 
+# Some order is complete
 func _on_order_complete(success : bool) -> void:
 	if success:
 		return
@@ -493,6 +495,7 @@ func _on_order_complete(success : bool) -> void:
 	if _failed_orders >= max_order_fails:
 		_bobo_death()
 
+# Player has to die
 func _bobo_death() -> void:
 	print("Bobo killed you. Oh my.")
 	level_failed.emit()
@@ -502,6 +505,25 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_F:
 			_on_ingredient_trigger_body_entered(self)
 
+# Bobo hits the shield
 func _on_shield_hit_timer_timeout() -> void:
-	# impact on shield
-	print("IMPACT")
+	# starts first or next order.
+	shield.shield_hit()
+	$ShieldHitApexTimer.start()
+	
+# Shield apex -> the order starts
+func _on_shield_hit_apex_timer_timeout() -> void:
+	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
+	print("Started order: ", GameBase.level.current_order)
+
+# First order has started
+func _on_first_order_started() -> void:
+	heart.start_hunger()
+
+# Player dies
+func _on_heart_hunger_zero() -> void:
+	_bobo_death()
+
+# Initial start of the order process
+func _on_bobo_sat_down() -> void:
+	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
