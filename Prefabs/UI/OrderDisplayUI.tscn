@@ -1,12 +1,13 @@
-[gd_scene load_steps=63 format=3 uid="uid://dbigenword6yp"]
+[gd_scene load_steps=61 format=3 uid="uid://dbigenword6yp"]
 
 [ext_resource type="Texture2D" uid="uid://bvwmsx32yfcm5" path="res://Textures/Bobo/Bobo_White.png" id="1_5ix4g"]
 [ext_resource type="Script" uid="uid://dvlpd2iibkdpy" path="res://Scripts/UI/OrderDisplayUI.gd" id="1_y016w"]
 [ext_resource type="Texture2D" uid="uid://blfu0agb4dhju" path="res://Textures/Bobo/Bobo_Angry.png" id="2_4jo1n"]
 [ext_resource type="Texture2D" uid="uid://c2brwollsl8x0" path="res://Textures/Bobo/Bobo_Waiting.png" id="2_hvxfd"]
+[ext_resource type="Texture2D" uid="uid://crkunlx58vypa" path="res://Textures/UI/Frame.png" id="4_nlkhx"]
 [ext_resource type="Texture2D" uid="uid://cc84w1x7eq2f1" path="res://Textures/Bobo/Bobo_Incoming_Order.png" id="5_s38yx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgbk2"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlkhx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vr3s"]
 atlas = ExtResource("2_hvxfd")
@@ -240,13 +241,6 @@ func _ready():
 	play(\"Waiting\")
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o83oi"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kck06"]
 atlas = ExtResource("5_s38yx")
 region = Rect2(0, 0, 107, 122)
@@ -374,25 +368,12 @@ func _ready():
 	play(\"Incoming\")
 "
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_wk7yb"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p623p"]
-bg_color = Color(0.109804, 0.192157, 0.282353, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 40.0
-expand_margin_bottom = 40.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fd05"]
-bg_color = Color(0.878431, 0.882353, 0.866667, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 40.0
-expand_margin_bottom = 40.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o83oi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="GDScript" id="GDScript_na60p"]
 script/source = "@tool
@@ -408,53 +389,72 @@ func _ready():
 [node name="Order Display" type="Panel"]
 offset_right = 800.0
 offset_bottom = 503.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vgbk2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nlkhx")
 script = ExtResource("1_y016w")
 
-[node name="Awaiting Screen" type="CenterContainer" parent="."]
+[node name="BG" type="NinePatchRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("4_nlkhx")
+draw_center = false
+region_rect = Rect2(0, 0, 192, 193)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Awaiting Screen"]
+[node name="Awaiting Screen" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -188.5
+offset_right = 304.0
+offset_bottom = 188.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Awaiting Screen"]
 layout_mode = 2
+theme_override_constants/margin_top = 150
 
-[node name="Bobo" type="Control" parent="Awaiting Screen/VBoxContainer"]
-custom_minimum_size = Vector2(250, 250)
+[node name="VBoxContainer" type="VBoxContainer" parent="Awaiting Screen/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
 
-[node name="Bobo" type="AnimatedSprite2D" parent="Awaiting Screen/VBoxContainer/Bobo"]
-position = Vector2(282, 141.47)
+[node name="Bobo" type="MarginContainer" parent="Awaiting Screen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 108.07)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Bobo" type="AnimatedSprite2D" parent="Awaiting Screen/MarginContainer/VBoxContainer/Bobo"]
 scale = Vector2(2.6, 2.6)
 sprite_frames = SubResource("SpriteFrames_jvepu")
 animation = &"Waiting"
-frame_progress = 0.792959
+frame_progress = 0.388647
 script = SubResource("GDScript_k0u2w")
 
-[node name="Line Margin" type="MarginContainer" parent="Awaiting Screen/VBoxContainer"]
+[node name="Awaiting" type="Label" parent="Awaiting Screen/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="Line" type="Panel" parent="Awaiting Screen/VBoxContainer/Line Margin"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
-
-[node name="Awaiting" type="Label" parent="Awaiting Screen/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "AWAITING ORDER..."
+theme_override_font_sizes/font_size = 64
+text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Incoming Screen" type="CenterContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -470,11 +470,11 @@ custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 
 [node name="Bobo" type="AnimatedSprite2D" parent="Incoming Screen/VBoxContainer/Bobo"]
-position = Vector2(274, 114.625)
+position = Vector2(267, 126)
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_5cixd")
 animation = &"Incoming"
-frame_progress = 0.47232
+frame_progress = 0.0479518
 script = SubResource("GDScript_s85si")
 
 [node name="Line Margin" type="MarginContainer" parent="Incoming Screen/VBoxContainer"]
@@ -491,13 +491,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
 
 [node name="Incoming" type="Label" parent="Incoming Screen/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "INCOMING ORDER!"
+theme_override_font_sizes/font_size = 64
+text = "BESTELLUNG!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Order Screen" type="VBoxContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -506,73 +506,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
 
-[node name="Order Name" type="Label" parent="Order Screen"]
-custom_minimum_size = Vector2(0, 100)
+[node name="MarginContainer" type="MarginContainer" parent="Order Screen"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "<Order Name>"
+size_flags_vertical = 8
+theme_override_constants/margin_top = 40
+
+[node name="Order Name" type="Label" parent="Order Screen/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.203922, 0.109804, 0.152941, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "3 x Blubburu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Line Margin" type="MarginContainer" parent="Order Screen"]
+[node name="Underline" type="MarginContainer" parent="Order Screen"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = -10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Line" type="Panel" parent="Order Screen/Line Margin"]
+[node name="Line" type="Panel" parent="Order Screen/Underline"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
 
-[node name="Ingredients" type="HBoxContainer" parent="Order Screen"]
-custom_minimum_size = Vector2(0, 190)
+[node name="BG" type="NinePatchRect" parent="Order Screen/Underline"]
+texture_filter = 1
 layout_mode = 2
+texture = ExtResource("4_nlkhx")
+draw_center = false
+region_rect = Rect2(0, 0, 192, 193)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="IngredientMargin" type="MarginContainer" parent="Order Screen"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Ingredients" type="HBoxContainer" parent="Order Screen/IngredientMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Line Margin2" type="MarginContainer" parent="Order Screen"]
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-
-[node name="Line" type="Panel" parent="Order Screen/Line Margin2"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
-
-[node name="MarginContainer" type="MarginContainer" parent="Order Screen"]
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="Timer Row" type="HBoxContainer" parent="Order Screen/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Timer" type="HSlider" parent="Order Screen/MarginContainer/Timer Row"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_icons/grabber = SubResource("CanvasTexture_wk7yb")
-theme_override_styles/slider = SubResource("StyleBoxFlat_p623p")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8fd05")
-
-[node name="Time" type="Label" parent="Order Screen/MarginContainer/Timer Row"]
-custom_minimum_size = Vector2(102, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "--"
-horizontal_alignment = 1
-clip_text = true
-
-[node name="Seconds" type="Timer" parent="Order Screen/MarginContainer/Timer Row"]
-
 [node name="Complete Screen" type="CenterContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -584,6 +572,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Line Margin" type="MarginContainer" parent="Complete Screen/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
@@ -597,7 +586,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
 
 [node name="Complete Line" type="HBoxContainer" parent="Complete Screen/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 35
+theme_override_constants/separation = -55
 
 [node name="Bobo Pivot" type="Control" parent="Complete Screen/VBoxContainer/Complete Line"]
 custom_minimum_size = Vector2(169, 169)
@@ -605,9 +594,11 @@ layout_mode = 2
 
 [node name="Bobo" type="TextureRect" parent="Complete Screen/VBoxContainer/Complete Line/Bobo Pivot"]
 layout_mode = 2
-offset_right = 169.0
-offset_bottom = 169.0
-rotation = 0.04043
+offset_left = 3.38083
+offset_top = 113.34
+offset_right = 172.381
+offset_bottom = 282.34
+rotation = -0.0304691
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("1_5ix4g")
 expand_mode = 2
@@ -616,9 +607,11 @@ script = SubResource("GDScript_na60p")
 
 [node name="Complete" type="Label" parent="Complete Screen/VBoxContainer/Complete Line"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "ORDER
-COMPLETE"
+theme_override_constants/line_spacing = 25
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 64
+text = "BESTELLUNG
+FERTIG!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -628,9 +621,11 @@ layout_mode = 2
 
 [node name="Bobo" type="TextureRect" parent="Complete Screen/VBoxContainer/Complete Line/Bobo Pivot2"]
 layout_mode = 2
-offset_right = 169.0
-offset_bottom = 169.0
-rotation = 0.04043
+offset_left = 3.38083
+offset_top = 113.34
+offset_right = 172.381
+offset_bottom = 282.34
+rotation = -0.0304691
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("1_5ix4g")
 expand_mode = 2
@@ -638,6 +633,7 @@ stretch_mode = 5
 script = SubResource("GDScript_na60p")
 
 [node name="Line Margin2" type="MarginContainer" parent="Complete Screen/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
@@ -650,6 +646,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
 
 [node name="Failed Screen" type="CenterContainer" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -685,7 +682,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.04043
+rotation = -0.0304691
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("2_4jo1n")
 expand_mode = 2
@@ -708,7 +705,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 169.0
 offset_bottom = 169.0
-rotation = 0.04043
+rotation = -0.0304691
 pivot_offset = Vector2(84, 84)
 texture = ExtResource("2_4jo1n")
 expand_mode = 2
@@ -726,5 +723,3 @@ theme_override_constants/margin_bottom = 25
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o83oi")
-
-[connection signal="timeout" from="Order Screen/MarginContainer/Timer Row/Seconds" to="." method="_on_seconds_timeout"]

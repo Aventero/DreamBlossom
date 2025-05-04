@@ -15,12 +15,17 @@ extends Node3D
 @export var grid: PlantGrid
 @export var spawn_digpot: PackedScene
 @export var blubburu: PackedScene
+@export var order_display: OrderDisplay
+@export var blossy: Blossy
 
 @export_group("Messaging")
 @export_multiline var initial_text: String
 @export_multiline var pickup_message: String
+@export_multiline var pickup_message_respawn: String
 @export_multiline var dropped_message: String
+@export_multiline var dropped_message_respawn: String
 @export_multiline var squish_messages: Array[String]
+@export_multiline var squish_messages_respawn: Array[String]
 
 @export_group("Event")
 @export var event_name_at: Dictionary[int, String]
@@ -38,6 +43,12 @@ func _ready() -> void:
 	pickup_sprite_animation.visible = true
 	
 func _on_squish(_pickable):
+	if blossy.can_respawn:
+		type_writer.display_text(squish_messages[current_message_pos])
+		if current_message_pos < squish_messages_respawn.size(): 
+			current_message_pos += 1
+		return
+	
 	# Just always hide after squishing
 	squish_sprite_animation.visible = false 
 	if is_squish_blocked:
@@ -56,6 +67,11 @@ func _on_squish(_pickable):
 		current_message_pos += 1
 		
 func _on_picked_up(_pickable):
+	if blossy.can_respawn:
+		# Do other dialog
+		current_message_pos = 0
+		type_writer.display_text(pickup_message)
+		return
 
 	# Has to learn squishing (first pick up)
 	if current_message_pos == 0:
@@ -81,10 +97,18 @@ func spawn_dig_spot_with_plant(plant_name: String) -> void:
 	plant.stage_complete.connect(_on_plant_stage_complete)
 
 func _on_dropped(_pickable):
-	pickup_sprite_animation.visible = true
+	if blossy.can_respawn:
+		type_writer.display_text(dropped_message_respawn)
+		return
+		
+	if current_message_pos == 0: 
+		pickup_sprite_animation.visible = true
 	type_writer.display_text(dropped_message)
 
 func _process(_delta: float) -> void:
+	if blossy.can_respawn: 
+		return
+	
 	if is_event_completed:
 		event_end(current_event)
 
@@ -123,6 +147,8 @@ func event_polling(event_name: String) -> bool:
 		return true
 		
 	if event_name == "blossy_respawn":
+		blossy.enable_respawn()
+		is_event_completed = true
 		return true
 
 	return false
@@ -146,7 +172,6 @@ func _on_bobo_path_follow_3d_bobo_done_moving() -> void:
 	if current_event == "bobo_appears":
 		is_event_completed = true
 		bobo.sit_down()
-		
 
 func _on_bobo_bobo_ate(amount: int) -> void:
 	if amount == 3: 

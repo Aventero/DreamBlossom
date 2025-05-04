@@ -520,6 +520,7 @@ tree_root = SubResource("AnimationNodeBlendTree_qfwj1")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
+time_of_day = 4.0
 base_brightness = 0.5
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
@@ -571,7 +572,7 @@ ingredients_textures = Array[ExtResource("9_4cmys")]([SubResource("Resource_rrwn
 
 [node name="Managers" type="Node3D" parent="."]
 
-[node name="TutorialManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot", "order_view", "shield", "grid")]
+[node name="TutorialManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot", "order_view", "shield", "grid", "order_display", "blossy")]
 script = ExtResource("65_2314q")
 pickable = NodePath("../../Blossy")
 type_writer = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label")
@@ -587,23 +588,29 @@ shield = NodePath("../../Shield")
 grid = NodePath("../../Plot/Soil")
 spawn_digpot = ExtResource("25_6ojh6")
 blubburu = ExtResource("26_v0l8j")
+order_display = NodePath("../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay")
+blossy = NodePath("../../Blossy")
 initial_text = "Was bist du?
 Bitte zieh mich raus!"
 pickup_message = "Danke.. Ich spreche wenn du mich drückst.
 .. probier es aus!"
+pickup_message_respawn = "Hi. Was ist?"
 dropped_message = "Greif mich!"
+dropped_message_respawn = "Ich geh wieder zurück."
 squish_messages = Array[String](["Schön zu reden, oder?", "Aua..
 Warte.. hmm?", "Was ist das...?", "Schau mal hinter dir.", "Ich dachte da wäre was...", "Warte... 
 kannst du das hören?", "Da kommt etwas näher..", "Pass auf!", "Er greift ...nicht an?", "Aber er sieht hungrig aus.", "Hier.. vieleicht mag er Früchte?", "Wie?...
 Ist das eine Bestellung?", "Suche samen und pflanze sie ein!", "Hier sollte irgendwo ein paar
 Samen und Werkzeug herum liegen.
- ", "Ich setze mich zum Beet, 
-damit du platz hast."])
+ ", "Ich setze mich zum Beet.", "Kannst mich loslassen..."])
+squish_messages_respawn = Array[String](["Die Schaufel in die Erde 
+stecken und ziehen!", "Danach die Pflanze Giesen.", "Sorg dann dafür das sie auch wächst.", "Meist stört die Pflanze irgendwas.", "Er isst dich wenn du ihn 
+nicht schnell genug fütterst.", "Du musst den Tag und Nacht überstehen.", "Brauchst du noch etwas?"])
 event_name_at = Dictionary[int, String]({
 3: "look_behind",
 6: "bobo_appears",
 10: "spawn_plant",
-14: "blossy_respawn"
+15: "blossy_respawn"
 })
 
 [node name="SomethingBehind" type="VisibleOnScreenNotifier3D" parent="Managers/TutorialManager"]
@@ -687,19 +694,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
 
 [node name="Chain_0" parent="Shield" index="0"]
-transform = Transform3D(0.369284, 0, 0, 0, 0.369279, -0.0019293, 0, 0.0019293, 0.369279, 0.00454826, 0.00581809, -1.2968)
+transform = Transform3D(0.369284, 0, 0, 0, 0.369284, 0.000157479, 0, -0.000157479, 0.369284, 0.00454826, 0.00581809, -1.2968)
 
 [node name="Chain_1" parent="Shield/Chain_0" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999968, -0.00783657, 0, 0.00783657, 0.999968, -0.00757694, -0.00581186, 0.712115)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.000639667, 0, -0.000639667, 0.999999, -0.00757694, -0.00581186, 0.712115)
 
 [node name="Chain_2" parent="Shield/Chain_0/Chain_1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999947, -0.0104487, 0, 0.0104487, 0.999947, 0, -0.00568961, 0.195105)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000852892, 0, -0.000852892, 1, 0, -0.00568961, 0.195105)
 
 [node name="Chain_3" parent="Shield/Chain_0/Chain_1/Chain_2" index="0"]
-transform = Transform3D(0.999876, -0.0156727, -2.35469e-11, 0.0156713, 0.999792, -0.0130607, 0.000204697, 0.0130591, 0.999915, 0, 0, 0.436437)
+transform = Transform3D(0.999997, 0.00127934, -2.28112e-10, -0.00127933, 0.999999, 0.00106611, 1.36414e-06, -0.00106611, 1, 0, 0, 0.436437)
 
 [node name="Shield" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
-transform = Transform3D(3.53137, -0.0423742, 0.00424373, 0.0553461, 2.70728, -0.0424408, -0.00466731, 0.042502, 2.70761, 0.0136763, -0.0172326, 0.316601)
+transform = Transform3D(3.5318, 0.00346482, -0.000346438, -0.00451835, 2.70794, 0.00346439, 0.000457616, -0.00346393, 2.70796, 0.0136763, -0.0172326, 0.316601)
 
 [node name="OrderDisplay" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2" index="2" instance=ExtResource("25_lxsdg")]
 transform = Transform3D(0.766729, 0, 0, 0, 0.00378707, 0.999994, 0, -0.999994, 0.00378707, -0.00521426, 0.0379831, -0.453996)
@@ -709,7 +716,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="BoboPathFollow3D" type="PathFollow3D" parent="BoboPath3D" node_paths=PackedStringArray("bobo")]
-transform = Transform3D(-0.514433, 0, -0.857388, 0, 1, 0, 0.857388, 0, -0.514433, -1.22917, 8.96793e-07, -0.861992)
+transform = Transform3D(-0.514432, 0, -0.857388, 0, 1, 0, 0.857388, 0, -0.514432, -1.22917, 8.96795e-07, -0.861993)
 progress = 17.1751
 rotation_mode = 1
 script = ExtResource("26_4cmys")
@@ -722,55 +729,62 @@ player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
 eye_look_weight = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/4/position = Vector3(-0.0908412, 0.596762, -2.58743)
-bones/6/position = Vector3(-9.40047e-10, 1.5568, 0.129288)
-bones/6/rotation = Quaternion(-0.856272, -0.0019562, -0.00544606, 0.516494)
-bones/7/rotation = Quaternion(0.0153527, 0.500128, 0.865647, -0.0170917)
-bones/12/rotation = Quaternion(-0.745125, 0.0262244, 0.0169799, 0.666192)
-bones/13/rotation = Quaternion(0.347705, 0.00113639, 0.0412577, 0.936695)
-bones/14/rotation = Quaternion(-0.718494, 0.00986995, -0.0983856, 0.688469)
-bones/15/rotation = Quaternion(-0.74371, -0.0348988, -0.0199475, 0.667292)
-bones/16/rotation = Quaternion(0.337377, -0.00114103, -0.0400323, 0.940517)
-bones/17/rotation = Quaternion(-0.711648, -0.0146824, 0.096955, 0.695659)
-bones/18/rotation = Quaternion(-0.310464, 1.00271e-09, 7.99987e-08, 0.950585)
-bones/23/rotation = Quaternion(-0.921297, -0.062654, -0.135185, 0.359182)
-bones/24/rotation = Quaternion(0.876436, -0.000682565, 0.0793104, 0.474941)
-bones/25/rotation = Quaternion(-0.748961, 0.0523099, 0.0219229, 0.660182)
-bones/26/rotation = Quaternion(0.417584, -0.0140075, 0.0316436, 0.907979)
-bones/27/rotation = Quaternion(0.0371983, -6.46601e-10, -8.59732e-09, 0.999308)
-bones/28/rotation = Quaternion(0.218872, 1.17551e-09, -5.45013e-08, 0.975754)
-bones/29/rotation = Quaternion(0.141141, 1.09632e-09, -2.9448e-08, 0.98999)
-bones/30/rotation = Quaternion(-0.921961, 0.0624332, 0.1307, 0.359175)
-bones/31/rotation = Quaternion(0.872934, 0.000691852, -0.0789934, 0.481399)
-bones/32/rotation = Quaternion(-0.743258, -0.0586862, -0.0271677, 0.665872)
+bones/0/position = Vector3(0.5094, 0.103827, 0.466126)
+bones/0/rotation = Quaternion(0.732785, 0.0230918, 0.00268522, 0.680063)
+bones/1/position = Vector3(-0.502569, 0.132887, 0.384127)
+bones/1/rotation = Quaternion(0.74277, -0.0266409, 0.00267833, 0.669011)
+bones/2/position = Vector3(0.517094, 0.0799106, -0.396401)
+bones/2/rotation = Quaternion(0.701202, 0.0251717, -0.00113201, 0.712517)
+bones/3/position = Vector3(-0.52288, 0.0781867, -0.393864)
+bones/3/rotation = Quaternion(0.530822, -0.0259339, -0.0144903, 0.846963)
+bones/4/position = Vector3(-0.0402973, 0.569652, -2.16521)
+bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
+bones/6/position = Vector3(-5.76538e-09, 1.56597, 0.306044)
+bones/6/rotation = Quaternion(-0.697079, 0.0037378, -0.00475237, 0.716969)
+bones/7/rotation = Quaternion(0.0256777, 0.714371, 0.698444, -0.0344968)
+bones/12/rotation = Quaternion(-0.896054, -0.0553404, -0.00533342, 0.440451)
+bones/13/rotation = Quaternion(0.512794, 0.00103892, 0.0608468, 0.856352)
+bones/14/rotation = Quaternion(-0.824524, 0.0496426, -0.0346857, 0.562577)
+bones/15/rotation = Quaternion(-0.888834, 0.0321948, 0.00346886, 0.457084)
+bones/16/rotation = Quaternion(0.539808, -0.0010183, -0.0640522, 0.839347)
+bones/17/rotation = Quaternion(-0.844255, -0.0298142, 0.0489129, 0.532872)
+bones/18/rotation = Quaternion(-0.0962445, 0.00498473, 0.00794835, 0.995314)
+bones/23/rotation = Quaternion(-0.934817, -0.0510598, -0.0263144, 0.350455)
+bones/24/rotation = Quaternion(0.536984, -0.00121038, 0.0485927, 0.842191)
+bones/25/rotation = Quaternion(-0.751938, 0.0345957, -0.0185756, 0.658064)
+bones/26/rotation = Quaternion(-0.594812, -0.0002165, -0.003002, 0.803859)
+bones/27/rotation = Quaternion(0.129263, -3.51187e-10, -2.33194e-08, 0.99161)
+bones/28/rotation = Quaternion(0.523555, -7.70732e-10, -1.61066e-07, 0.851992)
+bones/29/rotation = Quaternion(0.343061, -3.09162e-10, -8.05106e-08, 0.939313)
+bones/30/rotation = Quaternion(-0.925247, 0.0464015, -0.00394517, 0.376497)
+bones/31/rotation = Quaternion(0.512499, 0.00123228, -0.0463769, 0.857434)
+bones/32/rotation = Quaternion(-0.874808, -0.0455858, 0.0238126, 0.481732)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.0660879
-blend_shapes/Happy = 0.427514
+blend_shapes/Nose = 0.723065
 blend_shapes/Anger = 0.0
-blend_shapes/LookVertical = -0.637091
-blend_shapes/LookHorizontal = 0.747863
-blend_shapes/Squish = 0.00944113
-blend_shapes/Stretch = 0.00944113
+blend_shapes/LookVertical = -0.00748145
+blend_shapes/LookHorizontal = 0.788085
+blend_shapes/Squish = 0.103295
+blend_shapes/Stretch = 0.103295
 
 [node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.997758, 0.0640213, 0.0194588, 0.0370571, -0.286548, -0.957349, -0.0557148, 0.955924, -0.288278, -0.00337184, 1.66704, 0.561895)
+transform = Transform3D(0.996565, 0.0828089, -0.0012648, 0.0144995, -0.18949, -0.981776, -0.0815394, 0.978384, -0.19004, 0.000142903, 1.42061, 0.736346)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.997758, -0.0349902, 0.057036, 0.0370583, 0.998678, -0.035613, -0.0557145, 0.0376469, 0.997736, 0.0404516, 1.84961, 1.46814)
+transform = Transform3D(0.996565, -0.0196801, 0.0804462, 0.0145007, 0.997815, 0.0644677, -0.0815392, -0.0630797, 0.994672, 0.0683304, 1.69308, 1.61818)
 
 [node name="HeartAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.998066, 0.0232475, -0.0576434, 0.0226915, 0.99969, 0.0102827, 0.0578646, 0.0089548, -0.998284, 0.00156296, 1.66582, 0.561434)
+transform = Transform3D(-0.99596, 0.0378608, -0.0814317, 0.0451571, 0.994944, -0.0897099, 0.0776234, -0.0930246, -0.992633, 0.00504712, 1.41926, 0.735902)
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement" index="0"]
 transform = Transform3D(-0.999126, 0.00571597, -0.0414486, 0.0290283, 0.808133, -0.588285, 0.0301334, -0.588972, -0.807592, -0.0342545, -0.814063, -0.739737)
-feed_level = 45
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" index="0"]
-transform = Transform3D(-0.885185, -1.22763e-07, -6.77899e-08, -1.09768e-07, 0.814432, 0.725345, -2.52932e-08, 0.761831, -0.775427, 0, 0.00293847, -0.373681)
+transform = Transform3D(-0.926743, -1.19502e-07, -6.67961e-08, -1.18819e-07, 0.802176, 0.663464, -2.2157e-08, 0.696563, -0.764058, 0, 0.00293847, -0.373681)
 
-[node name="HeartFill" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart/Heart" index="0"]
-instance_shader_parameters/fill_percentage = 0.45
+[node name="AnimationTree" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="2"]
+parameters/StateMachine/walk_to_sit/blend_position = -1
 
 [node name="ShieldHitTimer" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="3"]
 wait_time = 2.7
@@ -1054,9 +1068,10 @@ light_color = Color(1, 0.78279, 0.973629, 1)
 omni_range = 1.664
 omni_attenuation = 0.49
 
-[node name="Blossy" parent="." node_paths=PackedStringArray("textbox") instance=ExtResource("63_h56t6")]
-transform = Transform3D(0.997007, 0.0465281, 0.0617387, -0.0450376, 0.998664, -0.0253182, -0.0628342, 0.0224619, 0.997771, 0.0250857, 1.22934, -0.779361)
+[node name="Blossy" parent="." node_paths=PackedStringArray("textbox", "spawnpoint") instance=ExtResource("63_h56t6")]
+transform = Transform3D(0.999358, 0, 0.035824, 0, 1, 0, -0.035824, 0, 0.999358, 0.0196419, 1.22286, -0.756941)
 textbox = NodePath("Textbox")
+spawnpoint = NodePath("../BlossyRespawn")
 picked_up_layer = 65540
 ranged_grab_method = 1
 
@@ -1101,6 +1116,9 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
 shape = SubResource("BoxShape3D_7yi6c")
 
+[node name="BlossyRespawn" type="Node3D" parent="."]
+transform = Transform3D(0.900076, 0, -0.435734, 0, 1, 0, 0.435734, 0, 0.900076, 0.510708, 1.07906, -0.940255)
+
 [connection signal="screen_entered" from="Managers/TutorialManager/SomethingBehind" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TutorialManager/BoboAppears" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
 [connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/TutorialManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
@@ -1114,6 +1132,7 @@ shape = SubResource("BoxShape3D_7yi6c")
 [connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
 [connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
 [connection signal="action_pressed" from="Blossy" to="Blossy" method="_on_action_pressed"]
+[connection signal="dropped" from="Blossy" to="Blossy" method="_on_dropped"]
 
 [editable path="XROrigin3D"]
 [editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand"]

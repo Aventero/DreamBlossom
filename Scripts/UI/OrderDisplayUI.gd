@@ -14,10 +14,6 @@ signal order_completed
 @onready var awaiting_screen : Control = $"Awaiting Screen"
 @onready var incoming_screen : Control = $"Incoming Screen"
 
-@onready var order_time : Label = $"Order Screen/MarginContainer/Timer Row/Time"
-@onready var order_timer : Slider = $"Order Screen/MarginContainer/Timer Row/Timer"
-@onready var seconds_timer : Timer = $"Order Screen/MarginContainer/Timer Row/Seconds"
-
 @onready var ingredient_ui = preload("res://Prefabs/UI/IngredientUI.tscn")
 
 var _current_screen : Control
@@ -41,8 +37,7 @@ func start_order():
 	GameBase.level.current_order.completed.connect(_on_order_completed)
 	GameBase.level.current_order.request_update.connect(_on_update_request)
 	
-	# Start timer
-	seconds_timer.start()
+	# Start ORDER
 	GameBase.level.current_order.start_order()
 
 func _show_screen(screen : Control):
@@ -61,20 +56,15 @@ func _setup_order_ui():
 	var order : Order = GameBase.level.current_order
 	
 	# Order name
-	$"Order Screen/Order Name".text = order.name
+	$"Order Screen/MarginContainer/Order Name".text = order.name
 	
 	# Ingredients
 	for ingredient in order.requirements:
 		_spawn_ingredient_ui(ingredient.type, ingredient.amount)
 	
-	# Time / Timer
-	order_time.text = str(order.time)
-	order_timer.max_value = order.time
-	order_timer.value = order.time
-
 func _spawn_ingredient_ui(ingredient : Ingredient.Type, amount : int):
 	var _ingredient_ui : IngredientUI = ingredient_ui.instantiate()
-	$"Order Screen/Ingredients".add_child(_ingredient_ui)
+	$"Order Screen/IngredientMargin/Ingredients".add_child(_ingredient_ui)
 	
 	# Fill ingredient ui with data
 	_ingredient_ui.set_icon(TextureLoader.get_instance().get_ingredient_icon(ingredient))
@@ -83,20 +73,21 @@ func _spawn_ingredient_ui(ingredient : Ingredient.Type, amount : int):
 	_ingredient_lookup[ingredient] = _ingredient_ui
 
 func _on_order_completed(success : bool):
-	if success:
-		# Show completed screen
-		await _show_screen(complete_screen).finished
-		await get_tree().create_timer(completed_duration).timeout
-	else:
-		# Show failed screen
-		await _show_screen(failed_screen).finished
-		await get_tree().create_timer(failed_duration).timeout
+	#if success:
+	# Show completed screen
+	await _show_screen(complete_screen).finished
+	await get_tree().create_timer(completed_duration).timeout
+	
+	#else:
+		## Show failed screen
+		#await _show_screen(failed_screen).finished
+		#await get_tree().create_timer(failed_duration).timeout
 	
 	await _show_screen(awaiting_screen).finished
 	order_completed.emit()
 	
 	# Clear old order screen
-	for ingredient in $"Order Screen/Ingredients".get_children():
+	for ingredient in $"Order Screen/IngredientMargin/Ingredients".get_children():
 		ingredient.queue_free()
 
 func _on_update_request(ingredients : Dictionary):
@@ -110,12 +101,3 @@ func _on_update_request(ingredients : Dictionary):
 		
 		if difference == 0:
 			_ingredient_ui.set_complete()
-
-func _on_seconds_timeout():
-	# Update Time / Timer
-	order_timer.value -= 1
-	order_time.text = str(order_timer.value)
-	
-	# Stop timer if 0 is reached
-	if order_timer.value == 0:
-		seconds_timer.stop()
