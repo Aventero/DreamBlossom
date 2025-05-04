@@ -66,7 +66,7 @@ const NEAR_GROUND_DISTANCE := 1.0
 @export var player_height_min : float = 0.6
 
 ## Maximum player height
-@export var player_height_max : float = 1.5
+@export var player_height_max : float = 2.5
 
 ## Slew-rate for player height overriding (button-crouch)
 @export var player_height_rate : float = 4.0
@@ -198,6 +198,7 @@ func is_xr_class(name : String) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Set as toplevel means our PlayerBody is positioned in global space.
 	# It is not moved when its parent moves.
 	set_as_top_level(true)
 
@@ -558,7 +559,7 @@ func _update_body_under_camera(delta : float):
 					+ (player_height_offset * XRServer.world_scale),
 			player_height_min * XRServer.world_scale,
 			player_height_max * XRServer.world_scale)
-	
+
 	# Manage any player height overriding such as:
 	# - Slewing between software override heights
 	# - Slewing the lerp between player and software-override heights
@@ -640,6 +641,9 @@ func _update_body_under_camera(delta : float):
 	var camera_transform := camera_node.global_transform
 	curr_transform.basis = origin_node.global_transform.basis
 	#curr_transform.origin = camera_transform.origin
+	curr_transform.origin += up_player * (player_head_height - player_height)
+
+	#curr_transform.origin = camera_transform.origin
 
 	# Position the body using the origin's position but adjusted for height
 	curr_transform.origin = Vector3(
@@ -648,12 +652,11 @@ func _update_body_under_camera(delta : float):
 		origin_node.global_transform.origin.z
 	)
 
-	# The camera/eyes are towards the front of the body
+	# The camera/eyes are towards the front of the body, so move the body back slightly
 	var forward_dir := _estimate_body_forward_dir()
 	if forward_dir.length() > 0.01:
 		curr_transform = curr_transform.looking_at(curr_transform.origin + forward_dir, up_player)
-		# so move the body back slightly (no, dont pls)
-		#curr_transform.origin -= forward_dir.normalized() * 1 * player_radius
+		curr_transform.origin -= forward_dir.normalized() * player_radius
 
 	# Set the body position
 	global_transform = curr_transform

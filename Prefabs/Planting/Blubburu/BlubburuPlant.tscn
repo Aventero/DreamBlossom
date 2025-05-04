@@ -4421,7 +4421,6 @@ script = ExtResource("22_asydb")
 plant_model = NodePath("../../Model")
 death_material = SubResource("StandardMaterial3D_vl6n5")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="Stage Death/DeathEvent" method="_on_animation_player_animation_finished"]
 [connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage Fruit" to="." method="_on_stage_complete"]

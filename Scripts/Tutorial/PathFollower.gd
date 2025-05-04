@@ -1,11 +1,12 @@
 extends PathFollow3D
 class_name BoboFollower
 
-@export var bobo: Node3D
+@export var bobo: Bobo
 signal bobo_done_moving
 var signal_emitted = false
 	
 func move_bobo(from: float, to: float) -> void:
+	bobo.set_walk_blending(-1)
 	signal_emitted = false
 	
 	# Set initial position
@@ -20,6 +21,6 @@ func update_progress(value: float) -> void:
 	progress_ratio = value
 	
 	# Emit the signal when we reach 90% of the path
-	if progress_ratio >= 0.9 and not signal_emitted:
+	if progress_ratio >= 0.96 and not signal_emitted:
 		signal_emitted = true
 		bobo_done_moving.emit()

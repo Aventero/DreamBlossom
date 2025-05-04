@@ -17,6 +17,8 @@ var sway_tween: Tween
 @export_range(0.3, 5.0, 0.1) var heartspeed: float = 2.0
 
 func _ready() -> void:
+	stop_hunger()
+	scale = Vector3(1.0, 1.0, 1.0)
 	start_heartbeat()
 	start_sway()
 	feed_level = initial_hunger_level

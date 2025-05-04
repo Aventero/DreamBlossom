@@ -13,21 +13,17 @@ signal stage_complete
 var current_event : PlantEvent
 
 func check_feasibility() -> void:
-	for event in get_children():
+	for event: PlantEvent in get_children():
 		event.check_feasibility()
 
 # Started once the timer runs out
 func start_events():
-	if get_child_count() == 0:
-		stage_complete.emit()
-		return
-	
 	# Pick random event
 	current_event = get_children().pick_random()
 
 	# Initalize event
-	current_event.initialize()
 	current_event.event_completed.connect(Callable(_on_event_completed))
+	current_event.initialize()
 	
 	if current_event.icon_texture:
 		icon_display.show_icon(current_event.icon_texture, icon_position)

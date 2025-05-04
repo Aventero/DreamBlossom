@@ -10,12 +10,12 @@ extends Node3D
 @export var bobo_follower: BoboFollower
 @export var bobo: Bobo
 @export var plot: Node3D
-@export var order_view: Node3D
 @export var shield: Node3D
 @export var grid: PlantGrid
 @export var spawn_digpot: PackedScene
 @export var blubburu: PackedScene
 @export var order_display: OrderDisplay
+@export var tool_area: Node3D
 @export var blossy: Blossy
 
 @export_group("Messaging")
@@ -127,7 +127,7 @@ func event_polling(event_name: String) -> bool:
 	if event_name == "look_behind":
 		if something_behind_notifier.is_on_screen():
 			plot.visible = true
-			order_view.visible = true
+			order_display.visible = false
 			shield.visible = true
 			type_writer.display_text("Ach.. das war nur ein Baum.")
 			something_behind_notifier.visible = false
@@ -138,7 +138,7 @@ func event_polling(event_name: String) -> bool:
 	if event_name == "bobo_appears":
 		if bobo_appears_notifier.is_on_screen():
 			is_squish_blocked = true
-			type_writer.display_text("Wer ist diese Kreatur?")
+			type_writer.display_text("Was ist das?")
 			bobo_follower.move_bobo(0.5, 1.0)
 			return true 
 	
@@ -147,6 +147,8 @@ func event_polling(event_name: String) -> bool:
 		return true
 		
 	if event_name == "blossy_respawn":
+		current_message_pos = 0
+		blossy.drop()
 		blossy.enable_respawn()
 		is_event_completed = true
 		return true
@@ -177,3 +179,9 @@ func _on_bobo_bobo_ate(amount: int) -> void:
 	if amount == 3: 
 		bobo.hit_shield()
 		bobo.heart.start_hunger()
+		tool_area.visible = true
+		
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == KEY_P:
+			spawn_dig_spot_with_plant("TutorialBlubburuPlant")

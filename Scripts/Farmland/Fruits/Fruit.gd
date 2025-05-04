@@ -9,8 +9,8 @@ var _first_pickup : bool = true
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return;
-	#var game_base: GameBase = get_node("/root/Staging/Scene/World")
-	#game_base.return_manager.add_returnable(self)
+	var game_base: GameBase = get_node("/root/Staging/Scene/World")
+	game_base.return_manager.add_returnable(self)
 	outline_mesh = $Model/Outline
 	
 func _on_picked_up(picked_fruit : Fruit):

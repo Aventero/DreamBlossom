@@ -21,6 +21,7 @@ signal bobo_ate(amount: int)
 @export_tool_button("CloseMouth") var close = close_mouth
 @export var max_order_fails : int = 3
 @export var heart: Heart
+@export var is_tutorial: bool = false
 
 var _failed_orders : int = 0
 
@@ -50,6 +51,7 @@ var active_tweens = []
 var active_emotion_tweens = []
 var is_yawning: bool = false
 var is_waiting_for_food: bool = false
+var is_eating: bool = false
 var open_mouth_tween: Tween
 var ingredients_eaten: int = 0
 
@@ -118,7 +120,7 @@ func blink() -> void:
 	tween.tween_property(head, "blend_shapes/Blink", 0.0, 0.2)
 
 func yawn() -> void:
-	if is_waiting_for_food: return
+	if is_waiting_for_food or is_eating: return
 	is_yawning = true
 	for active_tween in active_tweens:
 		active_tween.kill()
@@ -210,47 +212,57 @@ func attack() -> void:
 	tween.parallel().tween_property(head, "blend_shapes/Nose", 0.0, 0.3)
 	tween.parallel().tween_property(head, "blend_shapes/Blink", 0.0, 0.3)
 
-func munch(repeat_count: int = 5) -> void:
-	var tween = create_tracked_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
+func munch(repeat_count: int = 3) -> void:
+	is_eating = true
+	for active_tween in active_tweens:
+		active_tween.kill()
+	active_tweens.clear()
+	
+	var munch_tween = create_tracked_tween()
+	munch_tween.set_ease(Tween.EASE_IN_OUT)
+	munch_tween.set_trans(Tween.TRANS_SINE)
 	
 	# Start with happy expression
-	tween.tween_property(head, "blend_shapes/Happy", 1.0, 0.3)
-	tween.tween_interval(0.15)
-	
+	munch_tween.tween_property(head, "blend_shapes/Happy", 1.0, 0.1)
 	# Repeat the munching cycle
 	for i in range(repeat_count):
-		# Open mouth
-		var open_tween = tween.chain()
-		open_tween.tween_property(head, "blend_shapes/Mouth", 0.1, 0.15)
-		open_tween.tween_property(head, "blend_shapes/Stretch", 0.2, 0.15)
-		tween.tween_interval(0.08)
+		# Set smooth transitions
+		munch_tween.set_trans(Tween.TRANS_SINE)  # Use sine for organic movement
+		munch_tween.set_ease(Tween.EASE_IN_OUT)  # Smooth easing
 		
-		# Close mouth with squish (impact)
-		var close_tween = tween.parallel()
-		close_tween.tween_property(head, "blend_shapes/Mouth", 0.0, 0.1)
-		tween.tween_property(head, "blend_shapes/Stretch", 0.0, 0.1)
+		# Open mouth (group related animations properly)
+		var open_sequence = munch_tween.parallel()
+		open_sequence.tween_property(head, "blend_shapes/Mouth", 0.1, 0.1)
+		open_sequence.tween_property(head, "blend_shapes/Stretch", 0.2, 0.1)
 		
-		# Close Squish
-		var squish_tween = tween.parallel()
-		squish_tween.tween_property(head, "blend_shapes/Squish", 0.2, 0.05)
+		# Small pause at maximum open
+		munch_tween.tween_interval(0.01)
 		
-		# Hold the closed mouth squish position briefly
-		tween.tween_interval(0.05)
+		# Close mouth (properly chained after opening completes)
+		var close_sequence = munch_tween.parallel()
+		close_sequence.tween_property(head, "blend_shapes/Mouth", 0.0, 0.07)
+		close_sequence.tween_property(head, "blend_shapes/Stretch", 0.0, 0.07)
 		
-		# Release squish gradually
-		tween.tween_property(head, "blend_shapes/Squish", 0.0, 0.15)
+		# Add squish after closing completes (proper chaining)
+		munch_tween.chain().tween_property(head, "blend_shapes/Squish", 0.2, 0.05)
 		
-		# Pause between munches
-		tween.tween_interval(0.1)
+		# Hold squish with a proper interval
+		munch_tween.tween_interval(0.05)
+		
+		# Release squish with proper easing for organic movement
+		munch_tween.set_ease(Tween.EASE_OUT)
+		munch_tween.tween_property(head, "blend_shapes/Squish", 0.0, 0.07)
+		
+		# Ensure all animations complete before next cycle
+		munch_tween.tween_interval(0.05)
 	
 	# Finish with satisfied expression
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Reduce happy expression
-	tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Fade out happy expression
-
+	munch_tween.set_ease(Tween.EASE_OUT)
+	munch_tween.set_trans(Tween.TRANS_BACK)
+	munch_tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Reduce happy expression
+	munch_tween.tween_property(head, "blend_shapes/Happy", 0.0, 0.2)  # Fade out happy expression
+	munch_tween.tween_callback(func(): is_eating = false)
+	
 func open_mouth() -> Tween:
 	# Bobo is still having his mouth open 
 	
@@ -284,6 +296,9 @@ func close_mouth() -> Tween:
 	return tween
 
 func handle_random_emotion(delta: float) -> void:
+	if is_eating:
+		return
+		
 	emotion_timer += delta
 	if emotion_timer < next_emotion_time:
 		return
@@ -326,13 +341,13 @@ func handle_breathing(delta: float) -> void:
 		breathe()
 
 # SYSTEM
-
 func _ready() -> void:
 	# Make bobo walk in the beginning
-	animation_tree.set("parameters/StateMachine/walk_to_sit/blend_position", -1)
-	
 	if skeleton:
 		current_head_pose = skeleton.get_bone_global_pose(head_bone)
+
+func set_walk_blending(blend: float) -> void:
+	animation_tree.set("parameters/StateMachine/walk_to_sit/blend_position", blend)
 
 func _process(delta: float) -> void:
 	# chance to blink
@@ -429,38 +444,50 @@ func setup() -> void:
 	print("GameBase.level.ordewr:", GameBase.level.current_order)
 
 func _on_ingredient_open_mouth_entered(ingredient: Node3D):
+	if not ingredient is Ingredient:
+		print("Not a ingredient: ", ingredient.name)
 	is_waiting_for_food = true
 	open_mouth()
 
 func _on_open_mouth_trigger_body_exited(body: Node3D) -> void:
 	close_mouth().tween_callback(func(): is_waiting_for_food = false)
 
+func check_order_requirements(ingredient: Ingredient) -> bool:
+	if not GameBase.level: 
+		print("There is no level")
+		return false
+	
+	if not GameBase.level.current_order: 
+		print("There is no order")
+		return false
+	
+	# Check if order is existing and order is currently running
+	if GameBase.level.current_order.is_running():
+		print("Order is running?", GameBase.level.current_order.is_running())
+		return false
+	
+	# Check if ingredient is still required in order
+	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
+		print("Ingredient is not required")
+		return true
+		
+	return false
+
 func _on_ingredient_trigger_body_entered(ingredient: Node3D):
 	if not ingredient is Ingredient:
 		print("Not a ingredient: ", ingredient.name)
 		return
 	
-	if not GameBase.level: print("There is no level")
-	
-	if not GameBase.level.current_order: print("there is no order")
-	
-	# Check if order is existing and order is currently running
-	if GameBase.level.current_order.is_running():
-		print("Curreont order runnignb?", GameBase.level.current_order.is_running())
-		return
-	
-	# Check if ingredient is still required in order
-	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
-		print("Ingredient is not required")
-		return
-	
 	# Can be eaten -> Order progress
-	GameBase.level.current_order.progress_order(ingredient.type)
+	if check_order_requirements(ingredient):
+		GameBase.level.current_order.progress_order(ingredient.type)
+		heart.feed_heart(10)
+	else:
+		heart.feed_heart(5)
 	
 	play_eating_animation(3)
 	despawn_ingredient(ingredient)
 	ingredients_eaten += 1
-	heart.feed_heart(5)
 	bobo_ate.emit(ingredients_eaten)
 	
 func despawn_ingredient(ingredient: Ingredient) -> void:
@@ -497,7 +524,7 @@ func _on_order_complete(success : bool) -> void:
 
 # Player has to die
 func _bobo_death() -> void:
-	print("Bobo killed you. Oh my.")
+	if is_tutorial: return
 	level_failed.emit()
 
 func _input(event: InputEvent) -> void:
@@ -505,6 +532,7 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_F:
 			_on_ingredient_trigger_body_entered(self)
 
+			
 # Bobo hits the shield
 func _on_shield_hit_timer_timeout() -> void:
 	# starts first or next order.
@@ -513,17 +541,15 @@ func _on_shield_hit_timer_timeout() -> void:
 	
 # Shield apex -> the order starts
 func _on_shield_hit_apex_timer_timeout() -> void:
+	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".visible = true
 	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
 	print("Started order: ", GameBase.level.current_order)
 
 # First order has started
 func _on_first_order_started() -> void:
+	print("FIRST ORDER HAS STARTED, STARTING HUNGER")
 	heart.start_hunger()
 
 # Player dies
 func _on_heart_hunger_zero() -> void:
 	_bobo_death()
-
-# Initial start of the order process
-func _on_bobo_sat_down() -> void:
-	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()

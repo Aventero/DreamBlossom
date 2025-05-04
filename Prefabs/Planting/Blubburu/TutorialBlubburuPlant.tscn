@@ -1,9 +1,10 @@
-[gd_scene load_steps=102 format=4 uid="uid://bp0v6l6rn2t2r"]
+[gd_scene load_steps=103 format=4 uid="uid://bp0v6l6rn2t2r"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_wi7el"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="2_73jcm"]
 [ext_resource type="PackedScene" uid="uid://dyxeqetaldjif" path="res://Models/Plants/Blubburu/Blubburu.blend" id="3_tiyxu"]
 [ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_k0cqm"]
+[ext_resource type="Script" uid="uid://jxx8g0njrqp2" path="res://Scripts/Farmland/Events/EmptyEvent.gd" id="5_5feki"]
 [ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="31_ex7s7"]
 [ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Planting/Fruits/BlubburuFruit.tscn" id="32_u2xcj"]
 [ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="33_c630p"]
@@ -4146,11 +4147,19 @@ animation_time = 10.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.516, 0)
 
+[node name="PlantEvent" type="Node3D" parent="Stage1" index="0"]
+script = ExtResource("5_5feki")
+metadata/_custom_type_script = "uid://c0fhsk44wqxef"
+
 [node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
 animation_time = 12.0
 animation_name = "Grow"
 icon_position = Vector3(0, 0.694, 0)
+
+[node name="PlantEvent" type="Node3D" parent="Stage2" index="0"]
+script = ExtResource("5_5feki")
+metadata/_custom_type_script = "uid://c0fhsk44wqxef"
 
 [node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
@@ -4186,7 +4195,6 @@ script = ExtResource("34_6yc03")
 plant_model = NodePath("../../Model")
 death_material = SubResource("StandardMaterial3D_vl6n5")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="Stage Death/DeathEvent" method="_on_animation_player_animation_finished"]
 [connection signal="stage_complete" from="Stage1" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage2" to="." method="_on_stage_complete"]
 [connection signal="stage_complete" from="Stage Fruit" to="." method="_on_stage_complete"]

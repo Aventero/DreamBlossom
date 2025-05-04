@@ -80,9 +80,11 @@ func _process(delta):
 	
 	# Check if "remove motion" is complete
 	if progress > remove_amount:
+		print("progress > remove_amount")
 		remove_self()
 
 func remove_self():
+	print("REMOVING SELF")
 	# Free occupied cells in grid
 	anchor_cell.grid.set_state(anchor_cell, 2, GridCell.CELLSTATE.FREE)
 	

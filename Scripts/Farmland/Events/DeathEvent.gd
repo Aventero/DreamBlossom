@@ -17,6 +17,7 @@ func initialize():
 	var _stage : Stage = get_parent_node_3d()
 	animation_player.speed_scale = 10
 	animation_player.play_backwards("Grow")
+	animation_player.connect("animation_finished", _on_animation_player_animation_finished)
 
 func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material):
 	# Set the material on each mesh
@@ -26,5 +27,6 @@ func assign_material_to_all_meshes(node : Node3D, material_to_assign : Material)
 		assign_material_to_all_meshes(child, material_to_assign)
 
 func _on_animation_player_animation_finished(_anim_name):
+	print("_on_animation_player_animation_finished: ", _anim_name)
 	# Die once the animation is back at the start
 	DigSpotLookup.get_dig_spot(self.owner).remove_self()

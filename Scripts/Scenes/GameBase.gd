@@ -60,9 +60,6 @@ func scene_loaded(user_data = null):
 	else:
 		cauldron.setup(level.drops_per_potion)
 	
-	# Set order settings
-	order_display.setup(level.time_between_orders)
-	
 	# Setup bobo
 	bobo.setup()
 	

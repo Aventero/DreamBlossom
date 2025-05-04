@@ -11,7 +11,8 @@ amount = 3
 
 [node name="LevelTutorial" type="Node3D"]
 script = ExtResource("1_510fn")
-active_tools = 7
+active_plants = 2
+active_tools = 0
 soil_setup = "R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R, , , , ,R,R,R,R, , , , ,R,R"
 time_between_orders = 3.0
 

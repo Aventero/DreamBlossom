@@ -987,6 +987,7 @@ mesh = SubResource("ArrayMesh_vfq4n")
 skeleton = NodePath("")
 
 [node name="TableBody3D" type="StaticBody3D" parent="Table/StoneTable"]
+collision_layer = 1073741825
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StoneTable/TableBody3D"]
 shape = SubResource("ConcavePolygonShape3D_a8kl7")
