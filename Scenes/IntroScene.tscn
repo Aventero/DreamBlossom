@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://cp4weqexqyej0"]
+[gd_scene load_steps=107 format=4 uid="uid://cp4weqexqyej0"]
 
 [ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_pquu2"]
 [ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_00i8l"]
@@ -53,6 +53,8 @@
 [ext_resource type="PackedScene" uid="uid://bqc273c7ufm2u" path="res://Prefabs/RealEnvironemtn.tscn" id="49_254s0"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="53_6ojh6"]
 [ext_resource type="PackedScene" uid="uid://cuechsdt8ob0m" path="res://Prefabs/shield.tscn" id="56_7eudh"]
+[ext_resource type="AudioStream" uid="uid://dfu8si1qpigxo" path="res://Audio/atmo-forest-wind-01.mp3" id="59_jgd5b"]
+[ext_resource type="AudioStream" uid="uid://pj75rsu18v4c" path="res://Audio/atmo-nature-forest-daytime-breeze-02.mp3" id="60_as1bl"]
 [ext_resource type="PackedScene" uid="uid://snrxs8kaf2cr" path="res://Prefabs/Mobs/blossomFlower.tscn" id="61_ccbjs"]
 [ext_resource type="PackedScene" uid="uid://ceoak20m03kqt" path="res://Scenes/textbox_container.tscn" id="63_2314q"]
 [ext_resource type="PackedScene" uid="uid://b6y1o1da4uelj" path="res://Prefabs/Mobs/blossy.tscn" id="63_h56t6"]
@@ -113,65 +115,65 @@ volumetric_fog_ambient_inject = 0.61
 volumetric_fog_sky_affect = 0.167
 adjustment_saturation = 1.25
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ojh6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jgd5b"]
 animation = &"Grip"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v0l8j"]
-animation = &"Grip"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jgd5b"]
-filter_enabled = true
-filters = ["Armature/Skeleton3D:Little_Distal_L", "Armature/Skeleton3D:Little_Intermediate_L", "Armature/Skeleton3D:Little_Metacarpal_L", "Armature/Skeleton3D:Little_Proximal_L", "Armature/Skeleton3D:Middle_Distal_L", "Armature/Skeleton3D:Middle_Intermediate_L", "Armature/Skeleton3D:Middle_Metacarpal_L", "Armature/Skeleton3D:Middle_Proximal_L", "Armature/Skeleton3D:Ring_Distal_L", "Armature/Skeleton3D:Ring_Intermediate_L", "Armature/Skeleton3D:Ring_Metacarpal_L", "Armature/Skeleton3D:Ring_Proximal_L", "Armature/Skeleton3D:Thumb_Distal_L", "Armature/Skeleton3D:Thumb_Metacarpal_L", "Armature/Skeleton3D:Thumb_Proximal_L", "Armature/Skeleton:Little_Distal_L", "Armature/Skeleton:Little_Intermediate_L", "Armature/Skeleton:Little_Proximal_L", "Armature/Skeleton:Middle_Distal_L", "Armature/Skeleton:Middle_Intermediate_L", "Armature/Skeleton:Middle_Proximal_L", "Armature/Skeleton:Ring_Distal_L", "Armature/Skeleton:Ring_Intermediate_L", "Armature/Skeleton:Ring_Proximal_L", "Armature/Skeleton:Thumb_Distal_L", "Armature/Skeleton:Thumb_Proximal_L"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_as1bl"]
-animation = &"Grip 5"
+animation = &"Grip"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_31t65"]
 filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_L", "Armature/Skeleton3D:Little_Intermediate_L", "Armature/Skeleton3D:Little_Metacarpal_L", "Armature/Skeleton3D:Little_Proximal_L", "Armature/Skeleton3D:Middle_Distal_L", "Armature/Skeleton3D:Middle_Intermediate_L", "Armature/Skeleton3D:Middle_Metacarpal_L", "Armature/Skeleton3D:Middle_Proximal_L", "Armature/Skeleton3D:Ring_Distal_L", "Armature/Skeleton3D:Ring_Intermediate_L", "Armature/Skeleton3D:Ring_Metacarpal_L", "Armature/Skeleton3D:Ring_Proximal_L", "Armature/Skeleton3D:Thumb_Distal_L", "Armature/Skeleton3D:Thumb_Metacarpal_L", "Armature/Skeleton3D:Thumb_Proximal_L", "Armature/Skeleton:Little_Distal_L", "Armature/Skeleton:Little_Intermediate_L", "Armature/Skeleton:Little_Proximal_L", "Armature/Skeleton:Middle_Distal_L", "Armature/Skeleton:Middle_Intermediate_L", "Armature/Skeleton:Middle_Proximal_L", "Armature/Skeleton:Ring_Distal_L", "Armature/Skeleton:Ring_Intermediate_L", "Armature/Skeleton:Ring_Proximal_L", "Armature/Skeleton:Thumb_Distal_L", "Armature/Skeleton:Thumb_Proximal_L"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ccbjs"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_h56t6"]
+filter_enabled = true
 filters = ["Armature/Skeleton3D:Index_Distal_L", "Armature/Skeleton3D:Index_Intermediate_L", "Armature/Skeleton3D:Index_Metacarpal_L", "Armature/Skeleton3D:Index_Proximal_L", "Armature/Skeleton:Index_Distal_L", "Armature/Skeleton:Index_Intermediate_L", "Armature/Skeleton:Index_Proximal_L"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ccbjs"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2314q"]
 graph_offset = Vector2(-536, 11)
-nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_6ojh6")
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_jgd5b")
 nodes/ClosedHand1/position = Vector2(-600, 300)
-nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_v0l8j")
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_as1bl")
 nodes/ClosedHand2/position = Vector2(-360, 300)
-nodes/Grip/node = SubResource("AnimationNodeBlend2_jgd5b")
+nodes/Grip/node = SubResource("AnimationNodeBlend2_31t65")
 nodes/Grip/position = Vector2(0, 20)
-nodes/OpenHand/node = SubResource("AnimationNodeAnimation_as1bl")
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_ccbjs")
 nodes/OpenHand/position = Vector2(-600, 100)
-nodes/Trigger/node = SubResource("AnimationNodeBlend2_31t65")
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_h56t6")
 nodes/Trigger/position = Vector2(-360, 20)
 node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h56t6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ibkqg"]
 animation = &"Grip"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2314q"]
-animation = &"Grip"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ibkqg"]
-filter_enabled = true
-filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5e51q"]
-animation = &"Grip 5"
+animation = &"Grip"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qoojf"]
 filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pey0q"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qfwj1"]
+filter_enabled = true
 filters = ["Armature/Skeleton3D:Index_Distal_R", "Armature/Skeleton3D:Index_Intermediate_R", "Armature/Skeleton3D:Index_Metacarpal_R", "Armature/Skeleton3D:Index_Proximal_R", "Armature/Skeleton:Index_Distal_R", "Armature/Skeleton:Index_Intermediate_R", "Armature/Skeleton:Index_Proximal_R"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pey0q"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gocdt"]
 graph_offset = Vector2(-552.664, 107.301)
-nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_h56t6")
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_ibkqg")
 nodes/ClosedHand1/position = Vector2(-600, 300)
-nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_2314q")
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_5e51q")
 nodes/ClosedHand2/position = Vector2(-360, 300)
-nodes/Grip/node = SubResource("AnimationNodeBlend2_ibkqg")
+nodes/Grip/node = SubResource("AnimationNodeBlend2_qoojf")
 nodes/Grip/position = Vector2(0, 40)
-nodes/OpenHand/node = SubResource("AnimationNodeAnimation_5e51q")
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_pey0q")
 nodes/OpenHand/position = Vector2(-600, 100)
-nodes/Trigger/node = SubResource("AnimationNodeBlend2_qoojf")
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_qfwj1")
 nodes/Trigger/position = Vector2(-360, 40)
 node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
 
@@ -491,7 +493,7 @@ bones/22/rotation = Quaternion(0.0585786, 0.0216483, -0.269905, 0.96086)
 bones/23/rotation = Quaternion(0.00687177, -0.00357275, -0.211953, 0.977249)
 
 [node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
-tree_root = SubResource("AnimationNodeBlendTree_ccbjs")
+tree_root = SubResource("AnimationNodeBlendTree_2314q")
 
 [node name="Skeleton3D" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r/Armature" index="0"]
 bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
@@ -515,7 +517,7 @@ bones/22/rotation = Quaternion(0.0585786, -0.0216483, 0.269905, 0.96086)
 bones/23/rotation = Quaternion(0.00687177, 0.00357274, 0.211953, 0.977249)
 
 [node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
-tree_root = SubResource("AnimationNodeBlendTree_pey0q")
+tree_root = SubResource("AnimationNodeBlendTree_gocdt")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
@@ -571,7 +573,7 @@ ingredients_textures = Array[ExtResource("9_4cmys")]([SubResource("Resource_rrwn
 
 [node name="Managers" type="Node3D" parent="."]
 
-[node name="TutorialManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot", "shield", "grid", "order_display", "tool_area", "blossy")]
+[node name="TutorialManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("pickable", "type_writer", "pickup_sprite_animation", "squish_sprite_animation", "something_behind_notifier", "bobo_appears_notifier", "bobo_follower", "bobo", "plot", "shield", "grid", "order_display", "tool_area", "blossy", "day_cycle_manager")]
 script = ExtResource("65_2314q")
 pickable = NodePath("../../Blossy")
 type_writer = NodePath("../../Blossy/Textbox/SubViewport/VBoxContainer/PanelContainer/MarginContainer/Label")
@@ -589,6 +591,7 @@ blubburu = ExtResource("26_v0l8j")
 order_display = NodePath("../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay")
 tool_area = NodePath("../../ToolArea")
 blossy = NodePath("../../Blossy")
+day_cycle_manager = NodePath("../DayCycleManager")
 initial_text = "Was bist du?
 Bitte zieh mich raus!"
 pickup_message = "Drück mich, damit ich spreche.
@@ -744,25 +747,24 @@ surface_material_override/0 = null
 
 [node name="Shield" parent="." instance=ExtResource("56_7eudh")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
-visible = false
 
 [node name="Chain_0" parent="Shield" index="0"]
-transform = Transform3D(0.369284, 0, 0, 0, 0.369279, -0.00192938, 0, 0.00192938, 0.369279, 0.00454826, 0.00581809, -1.2968)
+transform = Transform3D(0.369284, 0, 0, 0, 0.369283, 8.33736e-05, 0, -8.33736e-05, 0.369283, 0.00454826, 0.00581809, -1.2968)
 
 [node name="Chain_1" parent="Shield/Chain_0" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999969, -0.00783691, 0, 0.00783691, 0.999969, -0.00757694, -0.00581186, 0.712115)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.000338657, 0, -0.000338657, 0.999999, -0.00757694, -0.00581186, 0.712115)
 
 [node name="Chain_2" parent="Shield/Chain_0/Chain_1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999946, -0.0104491, 0, 0.0104491, 0.999946, 0, -0.00568961, 0.195105)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000451543, 0, -0.000451543, 1, 0, -0.00568961, 0.195105)
 
 [node name="Chain_3" parent="Shield/Chain_0/Chain_1/Chain_2" index="0"]
-transform = Transform3D(0.999874, -0.0156733, -3.77119e-10, 0.015672, 0.999791, -0.0130613, 0.000204714, 0.0130597, 0.999916, 0, 0, 0.436437)
+transform = Transform3D(0.999996, 0.000677314, -5.76223e-11, -0.000677312, 0.999999, 0.000564429, 3.82352e-07, -0.000564428, 1, 0, 0, 0.436437)
 
 [node name="Shield" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
-transform = Transform3D(3.53136, -0.0423761, 0.00424394, 0.0553483, 2.70728, -0.0424429, -0.00466745, 0.0425039, 2.70763, 0.0136763, -0.0172326, 0.316601)
+transform = Transform3D(2.708, 0.0018343, -0.000183417, -0.00183417, 2.708, 0.00183417, 0.000184659, -0.00183405, 2.708, 0.0136763, -0.0172326, 0.316601)
 
 [node name="OrderDisplay" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2" index="2" instance=ExtResource("25_lxsdg")]
-transform = Transform3D(0.766729, 0, 0, 0, 0.00378707, 0.999994, 0, -0.999994, 0.00378707, -0.00521426, 0.0379831, -0.453996)
+transform = Transform3D(1, 0, 0, 0, 0.00378711, 0.999993, 0, -0.999993, 0.00378711, -0.00521426, 0.0379831, -0.453996)
 visible = false
 
 [node name="BoboPath3D" type="Path3D" parent="."]
@@ -776,67 +778,63 @@ rotation_mode = 1
 script = ExtResource("26_4cmys")
 bobo = NodePath("Bobo")
 
-[node name="Bobo" parent="BoboPath3D/BoboPathFollow3D" node_paths=PackedStringArray("shield", "player_camera") instance=ExtResource("65_ibkqg")]
+[node name="Bobo" parent="BoboPath3D/BoboPathFollow3D" node_paths=PackedStringArray("shield", "player_camera", "day_cycle_manager") instance=ExtResource("65_ibkqg")]
 transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
 shield = NodePath("../../../Shield")
 player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
+day_cycle_manager = NodePath("../../../Managers/DayCycleManager")
 is_tutorial = true
 eye_look_weight = 5.0
 
 [node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
-bones/0/position = Vector3(0.374864, 0.0616672, 0.602508)
-bones/0/rotation = Quaternion(0.73248, 0.0251986, -1.60558e-06, 0.680322)
-bones/1/position = Vector3(-0.374864, 0.0616672, 0.602508)
-bones/1/rotation = Quaternion(0.73248, -0.0251986, 1.60558e-06, 0.680322)
-bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
-bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
-bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
-bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
-bones/4/position = Vector3(0.0567338, 0.597878, -2.58627)
-bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(1.0236e-09, 1.54853, 0.129288)
-bones/6/rotation = Quaternion(-0.852589, -0.00640331, 0.00389929, 0.522529)
-bones/7/rotation = Quaternion(0.0327515, 0.519416, 0.853877, -0.00535611)
-bones/12/rotation = Quaternion(-0.751556, 0.0460903, 0.0190465, 0.657782)
-bones/13/rotation = Quaternion(0.345677, 0.00113731, 0.0410172, 0.937456)
-bones/14/rotation = Quaternion(-0.714409, -0.00102519, -0.105235, 0.691769)
-bones/15/rotation = Quaternion(-0.760984, -0.0217947, -0.0125823, 0.648282)
-bones/16/rotation = Quaternion(0.373225, -0.00112426, -0.0442859, 0.926683)
-bones/17/rotation = Quaternion(-0.725019, -0.016594, 0.0967487, 0.681698)
-bones/18/rotation = Quaternion(-0.330776, 2.56537e-10, 7.98103e-08, 0.943709)
-bones/23/rotation = Quaternion(-0.91375, -0.0614688, -0.119244, 0.383489)
-bones/24/rotation = Quaternion(0.875085, -0.000686226, 0.0791881, 0.477446)
-bones/25/rotation = Quaternion(-0.754029, 0.0509658, 0.0155942, 0.654675)
-bones/26/rotation = Quaternion(0.445878, 0.00595314, -0.0101337, 0.895017)
-bones/27/rotation = Quaternion(0.0328343, 3.96917e-10, -1.05881e-08, 0.999461)
-bones/28/rotation = Quaternion(0.200465, -6.09227e-10, -5.54005e-08, 0.979701)
-bones/29/rotation = Quaternion(0.128273, -1.04248e-10, -3.14764e-08, 0.991739)
-bones/30/rotation = Quaternion(-0.915779, 0.0646238, 0.153705, 0.365442)
-bones/31/rotation = Quaternion(0.879287, 0.000674871, -0.0795683, 0.469599)
-bones/32/rotation = Quaternion(-0.748253, -0.0669869, -0.037009, 0.658985)
+bones/4/position = Vector3(0.0765853, 0.61289, -2.59698)
+bones/6/position = Vector3(1.44616e-09, 1.54676, 0.129288)
+bones/6/rotation = Quaternion(-0.848148, 0.0004463, -0.000329914, 0.529759)
+bones/7/rotation = Quaternion(0.0246933, 0.50314, 0.863618, -0.020108)
+bones/12/rotation = Quaternion(-0.764832, 0.0291633, 0.0174564, 0.643333)
+bones/13/rotation = Quaternion(0.365497, 0.00112803, 0.0433689, 0.929801)
+bones/14/rotation = Quaternion(-0.721535, 0.0126561, -0.099107, 0.685131)
+bones/15/rotation = Quaternion(-0.76413, -0.0309437, -0.0180203, 0.644067)
+bones/16/rotation = Quaternion(0.363453, -0.00112902, -0.0431264, 0.930613)
+bones/17/rotation = Quaternion(-0.720679, -0.0114444, 0.0996919, 0.685968)
+bones/18/rotation = Quaternion(-0.319507, 3.97441e-10, 8.01051e-08, 0.947584)
+bones/23/rotation = Quaternion(-0.923237, -0.0625255, -0.130617, 0.355898)
+bones/24/rotation = Quaternion(0.869205, -0.000701576, 0.078656, 0.488155)
+bones/25/rotation = Quaternion(-0.740421, 0.0539566, 0.0234028, 0.669565)
+bones/26/rotation = Quaternion(0.407014, 0.00607303, -0.0231837, 0.913108)
+bones/27/rotation = Quaternion(0.0393564, -5.17315e-10, -8.4595e-09, 0.999225)
+bones/28/rotation = Quaternion(0.228025, 6.61957e-10, -5.33644e-08, 0.973655)
+bones/29/rotation = Quaternion(0.146537, -4.73441e-10, -3.48034e-08, 0.989205)
+bones/30/rotation = Quaternion(-0.923109, 0.0623429, 0.128148, 0.357158)
+bones/31/rotation = Quaternion(0.868854, 0.000702481, -0.0786241, 0.488785)
+bones/32/rotation = Quaternion(-0.740779, -0.0529484, -0.0219293, 0.669299)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.298138
-blend_shapes/Happy = 0.4
-blend_shapes/LookVertical = -0.796993
-blend_shapes/LookHorizontal = 0.864371
-blend_shapes/Squish = 0.0425912
-blend_shapes/Stretch = 0.103102
+blend_shapes/Blink = 0.521828
+blend_shapes/Nose = 0.767426
+blend_shapes/Happy = 0.0
+blend_shapes/LookVertical = -0.466865
+blend_shapes/LookHorizontal = 0.771096
+blend_shapes/Squish = 0.109632
+blend_shapes/Stretch = 0.10632
 
 [node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.998086, 0.0521694, 0.0331845, 0.0461129, -0.270549, -0.961601, -0.0411881, 0.961291, -0.272437, -0.00144678, 1.65856, 0.562407)
+transform = Transform3D(0.998031, 0.0613517, 0.0130124, 0.0304767, -0.293098, -0.955596, -0.0548136, 0.954111, -0.294391, -0.000264232, 1.64604, 0.564808)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.998086, -0.0452798, 0.0421032, 0.0461141, 0.998754, -0.0190585, -0.0411878, 0.0209636, 0.998931, 0.026723, 1.85604, 1.46614)
+transform = Transform3D(0.998031, -0.0280787, 0.0560801, 0.0304778, 0.998636, -0.0423931, -0.0548132, 0.0440188, 0.997525, 0.0441841, 1.8225, 1.47223)
 
 [node name="HeartAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.999008, 0.0133776, -0.0424556, 0.0136564, 0.999887, -0.00628216, 0.0423668, -0.00685573, -0.999078, 0.00350614, 1.65738, 0.562041)
+transform = Transform3D(-0.997925, 0.030185, -0.0568631, 0.0292577, 0.999426, 0.0170716, 0.0573457, 0.0153725, -0.998236, 0.00466229, 1.64479, 0.564342)
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement" index="0"]
 transform = Transform3D(-0.999124, 0.00571593, -0.0414486, 0.0290282, 0.808133, -0.588284, 0.0301334, -0.588972, -0.807591, -0.0342545, -0.814063, -0.739737)
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" index="0"]
-transform = Transform3D(-0.892473, -1.2314e-07, -6.32666e-08, -1.17336e-07, 0.832873, 0.591501, -1.78816e-08, 0.680745, -0.723685, 0, 0.00293847, -0.373681)
+transform = Transform3D(-1, -1.13017e-07, -6.64708e-08, -1.29106e-07, 0.760337, 0.649528, -2.28678e-08, 0.649528, -0.760337, 0, 0.00293847, -0.373681)
+
+[node name="BoboHeartBeat" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" index="6"]
+transform = Transform3D(0.999998, -0.00147633, 0.000606949, 0.00147564, 0.999999, 0.00112881, -0.000608617, -0.0011279, 0.999999, 0, 0, 0)
 
 [node name="ShieldHitTimer" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="3"]
 wait_time = 2.7
@@ -1150,7 +1148,7 @@ transform = Transform3D(-0.719166, 0.142915, 0.679982, 0.253675, 0.965072, 0.065
 transform = Transform3D(-0.757759, 0.0539819, -0.650298, -0.28364, 0.870253, 0.402752, 0.587665, 0.489639, -0.64413, -0.000923059, 1.01625, 0.00297658)
 
 [node name="Stick_002" parent="BlossomFlower" index="10"]
-transform = Transform3D(-0.967276, 0.22777, -0.111797, -0.225067, -0.973663, -0.0364033, -0.117144, -0.0100503, 0.993064, 0.0429506, 0.410763, -0.0441487)
+transform = Transform3D(-0.967276, 0.22777, -0.111797, -0.225067, -0.973663, -0.0364032, -0.117144, -0.0100501, 0.993064, 0.0429506, 0.410763, -0.0441487)
 
 [node name="Stick_004" parent="BlossomFlower" index="11"]
 transform = Transform3D(-0.526212, 0.113945, -0.842685, -0.127492, 0.969209, 0.210665, 0.840742, 0.21829, -0.495482, -0.0313922, 0.762739, -0.0431108)
@@ -1237,8 +1235,24 @@ shape = SubResource("BoxShape3D_7yi6c")
 [node name="BlossyRespawn" type="Node3D" parent="."]
 transform = Transform3D(0.900076, 0, -0.435734, 0, 1, 0, 0.435734, 0, 0.900076, 0.510708, 1.07906, -0.940255)
 
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="ForestWind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("59_jgd5b")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("60_as1bl")
+volume_db = -30.0
+pitch_scale = 0.5
+autoplay = true
+parameters/looping = true
+
 [connection signal="screen_entered" from="Managers/TutorialManager/SomethingBehind" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
 [connection signal="screen_entered" from="Managers/TutorialManager/BoboAppears" to="Managers/TutorialManager" method="_on_something_behind_screen_entered"]
+[connection signal="hour_progressed" from="Managers/DayCycleManager" to="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2" method="_on_day_cycle_manager_hour_progressed"]
 [connection signal="order_completed" from="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay/Order Viewport/Order Display" to="BoboPath3D/BoboPathFollow3D/Bobo" method="_on_order_display_order_completed"]
 [connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/TutorialManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
 [connection signal="bobo_ate" from="BoboPath3D/BoboPathFollow3D/Bobo" to="Managers/TutorialManager" method="_on_bobo_bobo_ate"]

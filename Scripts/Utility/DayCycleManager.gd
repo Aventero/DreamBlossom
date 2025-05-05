@@ -11,13 +11,10 @@ var _day_completed: bool = false
 var _time_of_day: float = 0.0
 var _last_hour: int = 0
 var _day_progress: float = 0.0
+var time_tweener: Tween
 
 func setup():
-	for order in GameBase.level.get_orders():
-		# Ignore infinite orders
-		if (order.time < 1000): 
-			_total_order_time += order.time
-	print("_total_order_time", _total_order_time)
+	_total_order_time = GameBase.level.day_length
 
 func reset_day():
 	_total_order_time = 0
@@ -30,6 +27,11 @@ func stop_day():
 	_is_stoppped = true
 	
 func start_day():
+	# Make sure there is no tweening going on
+	if time_tweener and time_tweener.is_valid():
+		time_tweener.kill()
+		
+	print("Start day, total time: ", _total_order_time / 60.0, " minutes")
 	_is_stoppped = false
 
 func set_day_start_time(time_of_day: float) -> void:
@@ -47,13 +49,21 @@ func _process(delta):
 	day_night_cycle.time_of_day += time_increment
 	
 	# check once the day is over (player wins the level) 
-	_time_of_day += fmod(_time_of_day + time_increment, 24.0)
+	_time_of_day += time_increment
 	_day_progress = _time_of_day / 24.0
 	
 	var current_hour: int = floor(_time_of_day)
 	if current_hour != _last_hour:
+		_last_hour = current_hour
 		hour_progressed.emit(current_hour)
+		print("Hour progressed current:", current_hour)
 	
 	if _day_progress >= 1.0 and not _day_completed:
 		_day_completed = true
 		day_ended.emit()
+
+func tween_to_time(start_time: float, end_time: float, duration: float) -> void:
+	if time_tweener and time_tweener.is_valid():
+		time_tweener.kill()
+	time_tweener = create_tween()
+	time_tweener.tween_property(day_night_cycle, "time_of_day", end_time, duration).from(start_time)

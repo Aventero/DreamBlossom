@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8l60rnugru40"]
+[gd_scene load_steps=4 format=3 uid="uid://c8l60rnugru40"]
 
 [ext_resource type="Script" uid="uid://b24v6edmqkx5p" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://coiwtd1ook0xk" path="res://Audio/PickUpDouble.mp3" id="2_pkg17"]
+[ext_resource type="AudioStream" uid="uid://cka2ihobm7fp0" path="res://Audio/PickUpSingle.mp3" id="3_l2yo4"]
 
 [node name="PickableObject" type="RigidBody3D"]
 collision_layer = 4
@@ -10,3 +12,9 @@ script = ExtResource("1")
 second_hand_grab = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="PickUpDouble" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_pkg17")
+
+[node name="PickUpSingle" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_l2yo4")

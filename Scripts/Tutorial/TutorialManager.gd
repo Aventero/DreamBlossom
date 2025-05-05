@@ -17,6 +17,7 @@ extends Node3D
 @export var order_display: OrderDisplay
 @export var tool_area: Node3D
 @export var blossy: Blossy
+@export var day_cycle_manager: DayCycleManager
 
 @export_group("Messaging")
 @export_multiline var initial_text: String
@@ -133,6 +134,7 @@ func event_polling(event_name: String) -> bool:
 			something_behind_notifier.visible = false
 			is_squish_blocked = false
 			is_event_completed = true
+			day_cycle_manager.tween_to_time(0.0,  2.0, 20.0)
 			return true
 			
 	if event_name == "bobo_appears":
@@ -140,10 +142,12 @@ func event_polling(event_name: String) -> bool:
 			is_squish_blocked = true
 			type_writer.display_text("Was ist das?")
 			bobo_follower.move_bobo(0.5, 1.0)
+			day_cycle_manager.tween_to_time(2.0,  4.0, 20.0)
 			return true 
 	
 	if event_name == "spawn_plant":
 		spawn_dig_spot_with_plant("TutorialBlubburuPlant")
+		day_cycle_manager.tween_to_time(4.0, 6.0, 20.0)
 		return true
 		
 	if event_name == "blossy_respawn":
@@ -177,7 +181,6 @@ func _on_bobo_path_follow_3d_bobo_done_moving() -> void:
 func _on_bobo_bobo_ate(amount: int) -> void:
 	if amount == 3: 
 		bobo.hit_shield()
-		bobo.heart.start_hunger()
 		tool_area.visible = true
 		
 func _input(event: InputEvent) -> void:

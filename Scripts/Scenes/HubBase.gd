@@ -5,7 +5,8 @@ class_name HubBase
 extends XRToolsSceneBase
 
 var pressed : bool = false
-static var level_completed = 0
+static var level_completed: int = 0
+static var difficulty: float = 1.0
 
 func scene_loaded(user_data = null):
 	super(user_data)
@@ -22,7 +23,20 @@ func show_buttons() -> void:
 	if level_completed == 0:
 		$"Level Selection/Tutorial".visible = true
 		$"Level Selection/Tutorial".process_mode = Node.PROCESS_MODE_INHERIT
+		
+		$"Level Selection/DifficultyEasy".visible = false
+		$"Level Selection/DifficultyEasy".process_mode = Node.PROCESS_MODE_DISABLED
+		$"Level Selection/DifficultyNormal".visible = false
+		$"Level Selection/DifficultyNormal".process_mode = Node.PROCESS_MODE_DISABLED
+		$"Level Selection/DifficultyHard".visible = false
+		$"Level Selection/DifficultyHard".process_mode = Node.PROCESS_MODE_DISABLED
 	if level_completed > 0:
+		$"Level Selection/DifficultyEasy".visible = true
+		$"Level Selection/DifficultyEasy".process_mode = Node.PROCESS_MODE_INHERIT
+		$"Level Selection/DifficultyNormal".visible = true
+		$"Level Selection/DifficultyNormal".process_mode = Node.PROCESS_MODE_INHERIT
+		$"Level Selection/DifficultyHard".visible = true
+		$"Level Selection/DifficultyHard".process_mode = Node.PROCESS_MODE_INHERIT
 		$"Level Selection/Tutorial".visible = false
 		$"Level Selection/Tutorial".process_mode = Node.PROCESS_MODE_DISABLED
 		$"Level Selection/Level 1".visible = true
@@ -55,3 +69,7 @@ func _on_load_scene_button_pressed(button : LevelButton) -> void:
 	load_scene("res://Scenes/IntroScene.tscn", {
 		"level": button.level_id
 	})
+
+func _on_difficulty_button_button_pressed(button: DifficultyButton) -> void:
+	difficulty = button.difficulty_setting
+	print("Set difficulty to: ", difficulty)

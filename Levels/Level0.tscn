@@ -15,13 +15,30 @@ active_plants = 2
 active_tools = 0
 soil_setup = "R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R, , , , ,R,R,R,R, , , , ,R,R"
 time_between_orders = 3.0
+tick_time = 10
+hunger_tick = 6
 
-[node name="3Blubburu" type="Timer" parent="."]
+[node name="Drei Blubburus" type="Timer" parent="."]
 script = ExtResource("2_qyhw8")
 time = 180
 requirements = Array[ExtResource("3_2n186")]([SubResource("Resource_hu76m")])
 
-[node name="6Blubburu2" type="Timer" parent="."]
+[node name="Mehr Blubburus" type="Timer" parent="."]
+script = ExtResource("2_qyhw8")
+time = 180
+requirements = Array[ExtResource("3_2n186")]([SubResource("Resource_hu76m")])
+
+[node name="Blubburus?" type="Timer" parent="."]
+script = ExtResource("2_qyhw8")
+time = 180
+requirements = Array[ExtResource("3_2n186")]([SubResource("Resource_hu76m")])
+
+[node name="Blubburus?!" type="Timer" parent="."]
+script = ExtResource("2_qyhw8")
+time = 180
+requirements = Array[ExtResource("3_2n186")]([SubResource("Resource_hu76m")])
+
+[node name="Blubburus???" type="Timer" parent="."]
 script = ExtResource("2_qyhw8")
 time = 180
 requirements = Array[ExtResource("3_2n186")]([SubResource("Resource_hu76m")])

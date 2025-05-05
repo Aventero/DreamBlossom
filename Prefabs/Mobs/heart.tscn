@@ -1,10 +1,140 @@
-[gd_scene load_steps=7 format=3 uid="uid://830vxop4jk4s"]
+[gd_scene load_steps=26 format=3 uid="uid://830vxop4jk4s"]
 
 [ext_resource type="PackedScene" uid="uid://dgylkk63nmekc" path="res://Models/Mobs/Heart.blend" id="1_cd887"]
 [ext_resource type="Material" uid="uid://dgk4b54nbsjy7" path="res://Materials/Glass.tres" id="2_25koj"]
 [ext_resource type="Script" uid="uid://d10vprjryyk3u" path="res://Prefabs/Mobs/heart.gd" id="2_ogtr1"]
 [ext_resource type="Shader" uid="uid://b2c7q45y60ha5" path="res://Shader/Heart.gdshader" id="3_ogtr1"]
+[ext_resource type="Texture2D" uid="uid://dihrh3djjtigp" path="res://Textures/Particles/Heart.png" id="4_bs3cd"]
 [ext_resource type="Texture2D" uid="uid://djmsexscxfktj" path="res://Textures/NoiseBig.png" id="4_ogtr1"]
+[ext_resource type="Texture2D" uid="uid://cg3g2cb5up2k0" path="res://Textures/Particles/FireSmoke02.png" id="5_5vosa"]
+[ext_resource type="AudioStream" uid="uid://g7ytpc21y1rn" path="res://Audio/HeartBeat.mp3" id="8_h3tjf"]
+
+[sub_resource type="Curve" id="Curve_h3tjf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249275, 1), 0.0, 0.0, 0, 0, Vector2(0.681159, 0.769451), -0.982643, -0.982643, 0, 0, Vector2(1, 0), -3.49179, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_764s0"]
+curve = SubResource("Curve_h3tjf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rlt83"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+direction = Vector3(0, 1, 0.5)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.7
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.299998
+radial_accel_max = 0.499998
+damping_min = 0.1
+damping_max = 0.8
+scale_curve = SubResource("CurveTexture_764s0")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.033
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wh1b7"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.736, 1.814, 0.608, 1)
+albedo_texture = ExtResource("4_bs3cd")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_0ukjg"]
+material = SubResource("StandardMaterial3D_wh1b7")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_5vosa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249275, 1), 0.0, 0.0, 0, 0, Vector2(0.681159, 0.769451), -0.982643, -0.982643, 0, 0, Vector2(1, 0), -3.49179, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h3tjf"]
+curve = SubResource("Curve_5vosa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_764s0"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+direction = Vector3(0, 1, 0.5)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.7
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.299998
+radial_accel_max = 0.499998
+damping_min = 0.1
+damping_max = 0.8
+scale_curve = SubResource("CurveTexture_h3tjf")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.033
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rlt83"]
+load_path = "res://.godot/imported/Heart.png-9133b93616fb97bbfeeda1c6ffb55cfa.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ukjg"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("CompressedTexture2D_rlt83")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8ilbq"]
+material = SubResource("StandardMaterial3D_0ukjg")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_wh1b7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0318841, 1), 0.0, 0.0, 0, 0, Vector2(0.681159, 0.769451), -0.982643, -0.982643, 0, 0, Vector2(1, 0), -3.49179, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_0ukjg"]
+curve = SubResource("Curve_wh1b7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ilbq"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 0.05
+initial_velocity_max = 0.1
+gravity = Vector3(0, -0.6, 0)
+radial_accel_min = 0.299998
+radial_accel_max = 0.499998
+scale_curve = SubResource("CurveTexture_0ukjg")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.033
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlt83"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(1.67, 0.325, 0.373, 1)
+albedo_texture = ExtResource("5_5vosa")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_764s0"]
+material = SubResource("StandardMaterial3D_rlt83")
+size = Vector2(0.05, 0.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25koj"]
 render_priority = 0
@@ -22,16 +152,52 @@ shader_parameter/mix_amount = 1.0
 [node name="Heart2" instance=ExtResource("1_cd887")]
 transform = Transform3D(1, 0, 0, 0, 0.624084, -0.781357, 0, 0.781357, 0.624084, 0, 0, 0)
 script = ExtResource("2_ogtr1")
+heartspeed = 3.0
 
 [node name="Heart" parent="." index="0"]
-transform = Transform3D(-0.780882, -2.78917e-07, 7.75622e-08, -1.04257e-07, 0.979846, 0.697179, -1.50194e-07, 0.769975, -0.887209, 0, 0.00293847, -0.373681)
+transform = Transform3D(-1, -1.10717e-07, -6.44332e-08, -1.2515e-07, 0.73703, 0.67586, -2.73402e-08, 0.67586, -0.73703, 0, 0.00293847, -0.373681)
 surface_material_override/0 = ExtResource("2_25koj")
 
-[node name="HeartFill" parent="Heart" index="0"]
-instance_shader_parameters/fill_percentage = 0.5
+[node name="FedCorrect" type="GPUParticles3D" parent="Heart" index="0"]
+transform = Transform3D(2.019, 2.30841e-08, -2.67213e-07, -1.84424e-08, 0.944255, 0.17687, 3.08013e-07, -0.0947765, 1.76215, 2.55509e-08, -0.0201083, -0.323442)
+emitting = false
+amount = 15
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_rlt83")
+draw_pass_1 = SubResource("QuadMesh_0ukjg")
+
+[node name="FedIncorrect" type="GPUParticles3D" parent="Heart" index="1"]
+transform = Transform3D(2.019, 2.30841e-08, -2.67213e-07, -1.84424e-08, 0.944255, 0.17687, 3.08013e-07, -0.0947765, 1.76215, 2.55509e-08, -0.0201083, -0.323442)
+emitting = false
+amount = 7
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_764s0")
+draw_pass_1 = SubResource("QuadMesh_8ilbq")
+
+[node name="HeartHunger" type="GPUParticles3D" parent="Heart" index="2"]
+transform = Transform3D(-1.98, -1.42339e-08, 1.24617e-07, 0, 0.932899, 0.248781, -1.73097e-07, 0.162817, -1.42545, -1.86011e-08, -0.00419272, -0.320042)
+emitting = false
+amount = 40
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_8ilbq")
+draw_pass_1 = SubResource("QuadMesh_764s0")
+
+[node name="HeartFill" parent="Heart" index="3"]
+instance_shader_parameters/fill_percentage = 1.0
 surface_material_override/0 = SubResource("ShaderMaterial_25koj")
 
 [node name="HungerTimer" type="Timer" parent="." index="5"]
-wait_time = 5.0
+
+[node name="BoboHeartBeat" type="AudioStreamPlayer3D" parent="." index="6"]
+transform = Transform3D(0.999998, -0.00147633, 0.000606949, 0.00147564, 0.999999, 0.00112881, -0.000608617, -0.0011279, 0.999999, 0, 0, 0)
+stream = ExtResource("8_h3tjf")
+volume_db = -40.0
+unit_size = 5.0
 
 [connection signal="timeout" from="HungerTimer" to="." method="_on_hunger_timer_timeout"]

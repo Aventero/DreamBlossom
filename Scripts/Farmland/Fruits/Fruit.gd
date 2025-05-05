@@ -5,6 +5,7 @@ extends Ingredient
 var outline_mesh : Node3D
 var fruit_event : FruitEvent
 var _first_pickup : bool = true
+@export var feed_amount: int = 10
 
 func _ready() -> void:
 	if Engine.is_editor_hint():

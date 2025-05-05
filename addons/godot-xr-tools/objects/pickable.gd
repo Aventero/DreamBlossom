@@ -331,6 +331,7 @@ func pick_up(by: Node3D) -> void:
 			grab.hand.visible = false
 
 	# Report picked up and grabbed
+	$PickUpDouble.play()
 	picked_up.emit(self)
 	grabbed.emit(self, by)
 	print("%s was picked up by %s" % [name, by.name])
@@ -386,6 +387,7 @@ func let_go(by: Node3D, p_linear_velocity: Vector3, p_angular_velocity: Vector3)
 
 	# let interested parties know
 	dropped.emit(self)
+	$PickUpSingle.play()
 
 ## Get the node currently holding this object
 func get_picked_up_by() -> Node3D:

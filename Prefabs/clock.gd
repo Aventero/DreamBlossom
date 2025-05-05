@@ -40,4 +40,5 @@ func _update_clock_rotation(hour: float):
 	tween.tween_property(self, "scale", Vector3(1.0, 1.0, 1.0), 0.2)
 
 func _on_day_cycle_manager_hour_progressed(current_hour: Variant) -> void:
-	_update_clock_rotation(current_hour)
+	print("_update", current_hour)
+	_update_clock_rotation(int(current_hour))

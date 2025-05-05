@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ruk5y2nckmwe" path="res://Scripts/Farmland/Fruits/NommieFruit.gd" id="2_rejio"]
 [ext_resource type="Texture2D" uid="uid://b6ngrnol8f3vu" path="res://Textures/Fruits/Nommie/Nommie.png" id="2_wksp4"]
 [ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_x8eyl"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_aqrxv"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="4_aqrxv"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3bcwr"]
 points = PackedVector3Array(0.0620354, 0.067062, 0.0261513, 0.0422281, 0.0477088, 0.0677707, 0.0627266, 0.0477204, 0.0676347, 0.0628775, -0.0112731, 0.0401313, 0.0620354, 0.0468683, 0.0167373, 0.0424543, 0.0104263, -0.0102803, -0.0646886, 0.067062, 0.0261513, 0.0424543, -0.0151718, 0.088969, -0.0448813, 0.0477088, 0.0677707, 0.0628775, -0.0112731, 0.0677707, 0.0424543, -0.0521741, 0.0514008, 0.0307409, -0.0104444, 0.0102768, -0.0454343, 0.0104263, -0.0102803, -0.0646886, 0.0468683, 0.0167373, -0.0655181, -0.0112731, 0.0401313, -0.0653798, 0.0477204, 0.0676347, -0.0454343, -0.0151718, 0.088969, 0.0307409, -0.0438281, 0.0431721, -0.0454343, -0.0521741, 0.0514008, -0.0337083, -0.0104444, 0.0102768, -0.0655181, -0.0112731, 0.0677707, -0.0337083, -0.0438281, 0.0431721)
@@ -197,6 +197,7 @@ _surfaces = [{
 
 [node name="Nommie" instance=ExtResource("1_5qoqe")]
 script = ExtResource("2_rejio")
+feed_amount = 20
 type = 5
 
 [node name="CollisionShape3D" parent="." index="0"]

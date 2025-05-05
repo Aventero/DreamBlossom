@@ -11,6 +11,7 @@ signal bobo_ate(amount: int)
 @onready var head: MeshInstance3D = $Armature/Skeleton3D/Head
 @onready var animation_tree: AnimationTree = $AnimationTree
 @export var nose_bone: BoneAttachment3D
+@export var day_cycle_manager: DayCycleManager
 
 # Blending
 @export_tool_button("hit_shield") var blinking = hit_shield
@@ -120,6 +121,7 @@ func blink() -> void:
 	tween.tween_property(head, "blend_shapes/Blink", 0.0, 0.2)
 
 func yawn() -> void:
+	
 	if is_waiting_for_food or is_eating: return
 	is_yawning = true
 	for active_tween in active_tweens:
@@ -129,7 +131,7 @@ func yawn() -> void:
 	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
-	
+	$BoboMhhLong.play()
 	# Close eyes partially during yawn
 	tween.tween_property(head, "blend_shapes/Blink", 0.8, 0.5)
 	
@@ -477,18 +479,18 @@ func _on_ingredient_trigger_body_entered(ingredient: Node3D):
 	if not ingredient is Ingredient:
 		print("Not a ingredient: ", ingredient.name)
 		return
-	
 	# Can be eaten -> Order progress
 	if check_order_requirements(ingredient):
 		GameBase.level.current_order.progress_order(ingredient.type)
-		heart.feed_heart(10)
+		heart.feed_heart(ingredient.feed_amount, true)
 	else:
-		heart.feed_heart(5)
+		heart.feed_heart(ingredient.feed_amount / 2, false)
 	
 	play_eating_animation(3)
 	despawn_ingredient(ingredient)
 	ingredients_eaten += 1
 	bobo_ate.emit(ingredients_eaten)
+	$BoboNom.play()
 	
 func despawn_ingredient(ingredient: Ingredient) -> void:
 	# Despawn ingredient
@@ -532,11 +534,10 @@ func _bobo_death() -> void:
 	level_failed.emit()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.keycode == KEY_F:
-			_on_ingredient_trigger_body_entered(self)
+			hit_shield()
 
-			
 # Bobo hits the shield
 func _on_shield_hit_timer_timeout() -> void:
 	# starts first or next order.
@@ -551,8 +552,9 @@ func _on_shield_hit_apex_timer_timeout() -> void:
 
 # First order has started
 func _on_first_order_started() -> void:
-	print("FIRST ORDER HAS STARTED, STARTING HUNGER")
 	heart.start_hunger()
+	day_cycle_manager.set_day_start_time(6.00)
+	day_cycle_manager.start_day()
 
 # Player dies
 func _on_heart_hunger_zero() -> void:

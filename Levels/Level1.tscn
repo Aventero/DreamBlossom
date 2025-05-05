@@ -37,6 +37,7 @@ inital_spawn_chance = 0.1
 stack_spawn_chance = 0.05
 time_until_death = 30.0
 time_between_orders = 10.0
+hunger_tick = 10
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("1_6v35p")

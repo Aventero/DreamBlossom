@@ -12,13 +12,14 @@ var heartbeat_tween: Tween
 var sway_tween: Tween
 
 # Amount from 0 - 1
-@export_range(0.0, 100.0, 1.0) var initial_hunger_level: int = 50
-@export_range(0.0, 100.0, 1.0) var feed_level: int = 50
-@export_range(0.3, 5.0, 0.1) var heartspeed: float = 2.0
+@export_range(0.0, 100.0, 1.0) var initial_hunger_level: int = 100
+@export_range(0.0, 100.0, 1.0) var feed_level: int = 100
+@export_range(0.2, 5.0, 0.1) var heartspeed: float = 2.0
 
 func _ready() -> void:
 	stop_hunger()
-	scale = Vector3(1.0, 1.0, 1.0)
+	$Heart.scale = Vector3(1.0, 1.0, 1.0)
+	$HungerTimer.stop()
 	start_heartbeat()
 	start_sway()
 	feed_level = initial_hunger_level
@@ -49,10 +50,13 @@ func _heartbeat_animation() -> void:
 	var original_scale = $Heart.scale
 	
 	# retract
+	var feed: float = (float(feed_level) / 100)
+	heartspeed = feed * 3.0
 	var time_speed = clamp(heartspeed, 0.7, 1.3)
+	
 	# squish
 	heartbeat_tween.tween_property($Heart, "scale", original_scale * Vector3(1.1, 0.9, 0.9), 0.15 * time_speed)
-	
+	heartbeat_tween.tween_callback(play_heart_beat_sound)
 	# stretch 
 	heartbeat_tween.tween_property($Heart, "scale", original_scale * Vector3(0.9, 1.1, 1.05), 0.12 * time_speed)
 	
@@ -67,6 +71,9 @@ func _heartbeat_animation() -> void:
 	
 	# Chain a callback to continue the heartbeat
 	heartbeat_tween.tween_callback(_heartbeat_animation)
+
+func play_heart_beat_sound() -> void:
+	$BoboHeartBeat.play()
 
 func start_sway() -> void:
 	if sway_tween and sway_tween.is_valid():
@@ -84,25 +91,31 @@ func sway(sway_amount: float, sway_time: float, forward_dir: int) -> void:
 	sway_tween.tween_property($Heart, "rotation_degrees:x", -45.0 + sway_amount * forward_dir, sway_time)
 
 # feeing, amount is out of 100
-func feed_heart(amount: int) -> void:
+func feed_heart(amount: int, is_correct: bool) -> void:
+	if is_correct:
+		$Heart/FedCorrect.emitting = true
+	else:
+		$Heart/FedIncorrect.emitting = true
+	
 	feed_level += amount
 	$Heart/HeartFill.set_instance_shader_parameter("fill_percentage", float(feed_level) * 0.01)
 	print("Feeding: ", amount, " to bobo, now at: ", feed_level)
 
 func hunger(amount: int) -> void:
+	$Heart/HeartHunger.emitting = true
+	var prev_feed_level: int = feed_level
 	feed_level -= amount
 	$Heart/HeartFill.set_instance_shader_parameter("fill_percentage", float(feed_level) * 0.01)
 	print("Hunger: -", amount, " to bobo, now at: ", feed_level)
-	if feed_level <= 0:
+	# grace tick, one time the level can get below 0 
+	if feed_level < 0 and prev_feed_level < 0:
 		hunger_zero.emit()
 
 func start_hunger() -> void:
-	$HungerTimer.start()
+	$HungerTimer.start(GameBase.level.tick_time)
 	
 func stop_hunger() -> void:
 	$HungerTimer.stop()
 
 func _on_hunger_timer_timeout() -> void:
-	hunger(5)
-
-	
+	hunger(GameBase.level.hunger_tick)

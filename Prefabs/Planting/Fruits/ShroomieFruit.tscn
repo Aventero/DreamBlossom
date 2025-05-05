@@ -86,6 +86,7 @@ _surfaces = [{
 
 [node name="Shroomie" instance=ExtResource("1_38664")]
 script = ExtResource("2_s2l3y")
+feed_amount = 15
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("ConvexPolygonShape3D_aby65")

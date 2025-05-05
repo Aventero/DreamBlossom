@@ -219,6 +219,7 @@ _surfaces = [{
 
 [node name="Blubburu" instance=ExtResource("1_x7ukq")]
 script = ExtResource("2_0a1fi")
+feed_amount = 15
 type = 1
 
 [node name="CollisionShape3D" parent="." index="0"]

@@ -3,7 +3,6 @@ class_name BlubburuFruit
 extends Fruit
 
 @onready var model : Node3D = $Model
-
 var _squish_tween : Tween
 
 func _on_action_pressed(_pickable):

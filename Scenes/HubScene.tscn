@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://dq7k7phd3i607"]
+[gd_scene load_steps=109 format=4 uid="uid://dq7k7phd3i607"]
 
 [ext_resource type="Script" uid="uid://dbjmh3x88yvng" path="res://Scripts/Scenes/HubBase.gd" id="1_bg8q6"]
 [ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_w4io7"]
@@ -20,11 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://u877wgbu7hwa" path="res://Textures/Environment/Sky/Clouds.png" id="17_btn2x"]
 [ext_resource type="Texture2D" uid="uid://bkqeqguoix2cy" path="res://Textures/Shader/SkyHorizonGradient.png" id="18_yx7vb"]
 [ext_resource type="Texture2D" uid="uid://gsay7dt66edb" path="res://Textures/Environment/Sky/NightSky.png" id="19_ugaak"]
+[ext_resource type="Script" uid="uid://ryn73b8221m8" path="res://Scenes/DifficultyButton.gd" id="20_4wj0b"]
 [ext_resource type="Script" uid="uid://d1i3wjud78rmq" path="res://Scenes/DayNightCycle.gd" id="20_m36sf"]
 [ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="21_btn2x"]
 [ext_resource type="Texture2D" uid="uid://cqitadukeoxox" path="res://Textures/Environment/Tree.png" id="22_ugaak"]
 [ext_resource type="Texture2D" uid="uid://by80yt2sy8pha" path="res://Textures/Environment/TreeLeaves.png" id="23_m36sf"]
 [ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="25_ptvko"]
+[ext_resource type="AudioStream" uid="uid://dfu8si1qpigxo" path="res://Audio/atmo-forest-wind-01.mp3" id="27_82qdy"]
+[ext_resource type="AudioStream" uid="uid://pj75rsu18v4c" path="res://Audio/atmo-nature-forest-daytime-breeze-02.mp3" id="28_kmow6"]
 
 [sub_resource type="Gradient" id="Gradient_ptvko"]
 offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
@@ -1181,11 +1184,9 @@ environment = SubResource("Environment_p4imw")
 
 [node name="Candle" parent="Environment" instance=ExtResource("25_ptvko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.448201, 0.501741, -0.845425)
-ranged_grab_method = 1
 
 [node name="Candle2" parent="Environment" instance=ExtResource("25_ptvko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120284, 0.220393, -0.431646)
-ranged_grab_method = 1
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.459703, 1.09858, -0.501078)
@@ -1398,6 +1399,127 @@ script = ExtResource("14_y8p08")
 
 [node name="Level Selection" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0441369, 0.275713, -0.237029)
+
+[node name="DifficultyEasy" type="Node3D" parent="Level Selection"]
+process_mode = 4
+transform = Transform3D(0.695142, 0.186786, 0.694183, 0.0093348, 0.963227, -0.268526, -0.718812, 0.193144, 0.667834, -0.426753, 1.70806, -0.31553)
+visible = false
+
+[node name="Diff" type="Label3D" parent="Level Selection/DifficultyEasy"]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
+outline_size = 0
+
+[node name="DifficultyButton" type="Area3D" parent="Level Selection/DifficultyEasy"]
+transform = Transform3D(0.996087, -0.0871408, -0.0146977, -0.00231899, 0.140485, -0.99008, 0.0883413, 0.98624, 0.139733, 0.00128643, 0, -0.00375736)
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("20_4wj0b")
+difficulty_setting = 0.5
+button = NodePath("Button")
+
+[node name="Collision" type="CollisionShape3D" parent="Level Selection/DifficultyEasy/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255249, 0)
+shape = SubResource("BoxShape3D_p3i6o")
+
+[node name="Button" type="MeshInstance3D" parent="Level Selection/DifficultyEasy/DifficultyButton"]
+mesh = SubResource("BoxMesh_agb10")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="Level Selection/DifficultyEasy/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247621, 0)
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("9_np802")
+left_pose = SubResource("Resource_7yv7s")
+right_pose = SubResource("Resource_f836c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Selection/DifficultyEasy/DifficultyButton/XRToolsHandPoseArea"]
+shape = SubResource("SphereShape3D_81ety")
+
+[node name="Level Description" type="Label3D" parent="Level Selection/DifficultyEasy"]
+transform = Transform3D(0.284532, 0.0104105, -0.0550741, 0.0112916, 0.268465, 0.109083, 0.0549003, -0.109171, 0.262997, 0.00102914, -0.0923442, -0.00958346)
+modulate = Color(0.355317, 1, 0.455881, 1)
+text = "Easy"
+outline_size = 0
+
+[node name="DifficultyNormal" type="Node3D" parent="Level Selection"]
+process_mode = 4
+transform = Transform3D(0.828368, 0.0896419, 0.552966, 0.00162122, 0.986726, -0.162388, -0.560182, 0.135414, 0.817225, -0.263586, 1.73618, -0.423301)
+visible = false
+
+[node name="Diff" type="Label3D" parent="Level Selection/DifficultyNormal"]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
+outline_size = 0
+
+[node name="DifficultyButton" type="Area3D" parent="Level Selection/DifficultyNormal"]
+transform = Transform3D(0.996087, -0.0883264, -0.00282782, -0.00231899, 0.00586319, -0.99998, 0.0883413, 0.996074, 0.00563507, 0.00128643, 0, -0.00375736)
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("20_4wj0b")
+button = NodePath("Button")
+
+[node name="Collision" type="CollisionShape3D" parent="Level Selection/DifficultyNormal/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255249, 0)
+shape = SubResource("BoxShape3D_p3i6o")
+
+[node name="Button" type="MeshInstance3D" parent="Level Selection/DifficultyNormal/DifficultyButton"]
+mesh = SubResource("BoxMesh_agb10")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="Level Selection/DifficultyNormal/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247621, 0)
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("9_np802")
+left_pose = SubResource("Resource_7yv7s")
+right_pose = SubResource("Resource_f836c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Selection/DifficultyNormal/DifficultyButton/XRToolsHandPoseArea"]
+shape = SubResource("SphereShape3D_81ety")
+
+[node name="Level Description" type="Label3D" parent="Level Selection/DifficultyNormal"]
+transform = Transform3D(0.28733, 0.0062455, -0.0387623, 0.00470868, 0.27876, 0.0798182, 0.0389789, -0.0797127, 0.276091, -0.000530906, -0.0892126, -0.000887504)
+text = "Normal"
+outline_size = 0
+
+[node name="DifficultyHard" type="Node3D" parent="Level Selection"]
+process_mode = 4
+transform = Transform3D(0.873399, 0.0491051, 0.484525, 0, 0.994904, -0.10083, -0.487006, 0.0880653, 0.868946, -0.0765301, 1.70971, -0.509572)
+visible = false
+
+[node name="Diff" type="Label3D" parent="Level Selection/DifficultyHard"]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
+outline_size = 0
+
+[node name="DifficultyButton" type="Area3D" parent="Level Selection/DifficultyHard"]
+transform = Transform3D(0.996087, -0.0882975, 0.00361782, -0.00231899, -0.067041, -0.997747, 0.0883413, 0.993835, -0.0669838, 0.00128643, 0, -0.00375736)
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("20_4wj0b")
+difficulty_setting = 1.5
+button = NodePath("Button")
+
+[node name="Collision" type="CollisionShape3D" parent="Level Selection/DifficultyHard/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255249, 0)
+shape = SubResource("BoxShape3D_p3i6o")
+
+[node name="Button" type="MeshInstance3D" parent="Level Selection/DifficultyHard/DifficultyButton"]
+mesh = SubResource("BoxMesh_agb10")
+
+[node name="XRToolsHandPoseArea" type="Area3D" parent="Level Selection/DifficultyHard/DifficultyButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247621, 0)
+collision_layer = 2097152
+collision_mask = 0
+script = ExtResource("9_np802")
+left_pose = SubResource("Resource_7yv7s")
+right_pose = SubResource("Resource_f836c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Selection/DifficultyHard/DifficultyButton/XRToolsHandPoseArea"]
+shape = SubResource("SphereShape3D_81ety")
+
+[node name="Level Description" type="Label3D" parent="Level Selection/DifficultyHard"]
+transform = Transform3D(0.289459, -4.65661e-10, -0.017699, 0.00212263, 0.287907, 0.0347146, 0.0175713, -0.0347794, 0.28737, 0.000467796, -0.0910769, -0.0110524)
+modulate = Color(1, 0.34874, 0.34874, 1)
+text = "Hard"
+outline_size = 0
 
 [node name="Tutorial" type="Node3D" parent="Level Selection"]
 transform = Transform3D(0.873959, 0, 0.486, 0, 1, 0, -0.486, 0, 0.873958, -0.192611, 1.22922, -0.392671)
@@ -1726,6 +1848,24 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
 shape = SubResource("BoxShape3D_ugaak")
 
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="ForestWind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("27_82qdy")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("28_kmow6")
+volume_db = -30.0
+pitch_scale = 0.5
+autoplay = true
+parameters/looping = true
+
+[connection signal="button_pressed" from="Level Selection/DifficultyEasy/DifficultyButton" to="." method="_on_difficulty_button_button_pressed"]
+[connection signal="button_pressed" from="Level Selection/DifficultyNormal/DifficultyButton" to="." method="_on_difficulty_button_button_pressed"]
+[connection signal="button_pressed" from="Level Selection/DifficultyHard/DifficultyButton" to="." method="_on_difficulty_button_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Tutorial/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 1/LevelButton" to="." method="_on_load_scene_button_pressed"]
 [connection signal="button_pressed" from="Level Selection/Level 2/LevelButton" to="." method="_on_load_scene_button_pressed"]

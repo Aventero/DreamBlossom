@@ -17,9 +17,6 @@ func _ready():
 	autostart = false
 	one_shot = true
 
-	# Connect order failed event
-	timeout.connect(_on_order_timeout)
-
 	# Fill lookup
 	for requirement in requirements:
 		_requirements_lookup[requirement.type] = requirement.amount

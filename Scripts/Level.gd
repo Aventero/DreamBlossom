@@ -1,3 +1,4 @@
+@tool
 @icon("res://Textures/EditorIcons/Stage.png")
 class_name Level
 extends Node3D
@@ -58,6 +59,38 @@ signal completed
 @export_group("Order Settings")
 @export var time_between_orders : float = 0.0
 
+## Day Time
+var _day_length: int = 300
+@export var day_length: int = 300:
+	set(value):
+		_day_length = value
+		hunger_tick = get_hunger_tick()
+	get:
+		return _day_length
+
+var _death_time: int = 150
+## Time it takes until the player would die without feeding
+@export var death_time: int = 150:
+	set(value):
+		_death_time = value
+		hunger_tick = get_hunger_tick()
+	get:
+		return _death_time
+
+var _tick_time: int = 15
+## Seconds it takes for each hunger tick to hunger
+@export var tick_time: int = 15:
+	set(value):
+		_tick_time = value
+		hunger_tick = get_hunger_tick()
+	get:
+		return _tick_time
+
+## Hunger Tick per second
+@export var hunger_tick: int:
+	get:
+		return get_hunger_tick()
+
 # Not Implemented
 @export_group("Not implemented yet")
 
@@ -79,7 +112,13 @@ enum Tools {
 var current_order : Order = null
 var _first_order: Order
 
+func get_hunger_tick() -> int:
+	return int((100.0 / float(death_time)) * tick_time)
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+		
 	_first_order = get_child(0)
 
 func get_orders() -> Array[Order]:

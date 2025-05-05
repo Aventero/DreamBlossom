@@ -5,8 +5,7 @@ class_name DayNightCycle
 var _time_of_day: float = 4.0
 @export_range(0, 24, 0.01) var time_of_day: float = 0.0:
 	set(value):
-		if Engine.is_editor_hint():
-			set_time_of_day(value)
+		set_time_of_day(value)
 	get:
 		return _time_of_day
 
@@ -64,20 +63,6 @@ func set_time_of_day(value):
 	_time_of_day = value  # Stop unnecissary updates
 	update_shader_parameters(value)
 
-#func _process(delta: float) -> void:
-	#if Engine.is_editor_hint():
-		#update_shader_parameters(_time_of_day)
-		#return
-	#
-	## Convert delta to hours (assuming 1 real second = 1 minute in game)
-	#var time_delta = delta / 20.0
-	#_time_of_day += time_delta
-#
-	#if _time_of_day >= 24.0:
-		#_time_of_day = 0.0
-#
-	#update_shader_parameters(_time_of_day)
-
 func calculate_sun_direction(hour: float) -> Vector3:
 	var shifted_hour = hour - 6.0
 	if shifted_hour < 0:
@@ -113,7 +98,6 @@ func update_shader_parameters(time_day: float) -> void:
 	var light_factor = (get_daylight_factor() + -(1.0 - get_daylight_factor()))
 	world_environment.environment.fog_depth_end = 12.0 + light_factor * 5.0
 	fog_level_view = world_environment.environment.fog_depth_end
-	
 	if is_sky_body_visible(sun_direction):
 		$Sun.look_at($Sun.global_transform.origin - sun_direction, Vector3.UP)
 		$Sun.visible = true
