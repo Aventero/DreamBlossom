@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://cgbntkrrppll8"]
+[gd_scene load_steps=17 format=4 uid="uid://cgbntkrrppll8"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_ul6e6"]
 [ext_resource type="Script" uid="uid://cwpnkrmo02k1i" path="res://Scripts/Candle.gd" id="2_0pulu"]
 [ext_resource type="Texture2D" uid="uid://bhaioulf8pfon" path="res://Textures/Environment/ToolTable.png" id="2_s5ar4"]
-[ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_tiski"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="6_wlr7j"]
+[ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="5_tiski"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="6_wlr7j"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_fpmvv"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="7_v1whd"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="8_vqpmr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rtxbn"]
 size = Vector3(0.07, 0.162578, 0.07)
@@ -127,3 +129,11 @@ surface_material_override/0 = ExtResource("6_wlr7j")
 
 [node name="Fire" parent="." index="4" instance=ExtResource("7_v1whd")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.161743, 0)
+
+[node name="GrabPointHandRight" parent="." index="5" instance=ExtResource("7_fpmvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, 0.117, -0.0519601)
+editor_preview_mode = 1
+
+[node name="GrabPointHandLeft" parent="." index="6" instance=ExtResource("8_vqpmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0.117, -0.0519601)
+editor_preview_mode = 1

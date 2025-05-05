@@ -272,7 +272,7 @@ func open_mouth() -> Tween:
 	tween.tween_property(head, "blend_shapes/Mouth", 0.6, 0.5)
 	return tween
 
-func play_eating_animation(munches: int) -> void:
+func play_eating_animation(_munches: int) -> void:
 	# Play eating animation
 	var tween = create_tween()
 	tween.tween_callback(munch.bind(3))
@@ -432,7 +432,7 @@ func hit_shield() -> void:
 	state_machine.travel("shield_bash")
 	$ShieldHitTimer.start()
 
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+func _on_animation_tree_animation_finished(_anim_name: StringName) -> void:
 	print(GameBase.level.current_order)
 
 # Game mechanics
@@ -449,7 +449,7 @@ func _on_ingredient_open_mouth_entered(ingredient: Node3D):
 	is_waiting_for_food = true
 	open_mouth()
 
-func _on_open_mouth_trigger_body_exited(body: Node3D) -> void:
+func _on_open_mouth_trigger_body_exited(_body: Node3D) -> void:
 	close_mouth().tween_callback(func(): is_waiting_for_food = false)
 
 func check_order_requirements(ingredient: Ingredient) -> bool:
@@ -462,16 +462,16 @@ func check_order_requirements(ingredient: Ingredient) -> bool:
 		return false
 	
 	# Check if order is existing and order is currently running
-	if GameBase.level.current_order.is_running():
-		print("Order is running?", GameBase.level.current_order.is_running())
+	if not GameBase.level.current_order.is_running():
+		print("Order not running")
 		return false
 	
 	# Check if ingredient is still required in order
 	if not GameBase.level.current_order.is_required(ingredient.type) or GameBase.level.current_order.get_remaining_amount(ingredient.type) == 0:
 		print("Ingredient is not required")
-		return true
+		return false
 		
-	return false
+	return true
 
 func _on_ingredient_trigger_body_entered(ingredient: Node3D):
 	if not ingredient is Ingredient:
@@ -492,6 +492,7 @@ func _on_ingredient_trigger_body_entered(ingredient: Node3D):
 	
 func despawn_ingredient(ingredient: Ingredient) -> void:
 	# Despawn ingredient
+	ingredient.drop()
 	ingredient.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	ingredient.freeze = true
 	
@@ -505,6 +506,9 @@ func despawn_ingredient(ingredient: Ingredient) -> void:
 # Connect complete event
 func _on_new_order(order : Order) -> void:
 	order.completed.connect(_on_order_complete)
+
+func _on_order_display_order_completed() -> void:
+	hit_shield()
 
 # Some order is complete
 func _on_order_complete(success : bool) -> void:

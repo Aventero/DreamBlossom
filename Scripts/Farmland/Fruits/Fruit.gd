@@ -9,8 +9,7 @@ var _first_pickup : bool = true
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return;
-	var game_base: GameBase = get_node("/root/Staging/Scene/World")
-	game_base.return_manager.add_returnable(self)
+	super()
 	outline_mesh = $Model/Outline
 	
 func _on_picked_up(picked_fruit : Fruit):
@@ -22,6 +21,12 @@ func _on_picked_up(picked_fruit : Fruit):
 		
 		if is_instance_valid(fruit_event):
 			fruit_event.first_fruit_pickup(picked_fruit)
+		
+		await get_tree().create_timer(0.1).timeout.connect(deferred_return_add.bind(self))
+
+func deferred_return_add(returnable) -> void:
+	var game_base: GameBase = get_node("/root/Staging/Scene/World")
+	game_base.return_manager.add_returnable(returnable)
 
 # Override with custom class / function
 func _on_action_pressed(_pickable):

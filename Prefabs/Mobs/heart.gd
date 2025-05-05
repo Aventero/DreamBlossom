@@ -74,8 +74,8 @@ func start_sway() -> void:
 		
 	sway_tween = create_tween()
 	sway_tween.set_loops()
-	sway(10.0, 3.0, 1.0)
-	sway(10.0, 3.0, -1.0)
+	sway(10.0, 3.0, 1)
+	sway(10.0, 3.0, -1)
 
 func sway(sway_amount: float, sway_time: float, forward_dir: int) -> void:
 	forward_dir = sign(forward_dir)

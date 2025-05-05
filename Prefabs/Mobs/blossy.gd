@@ -9,6 +9,8 @@ var can_respawn = false
 var squish_tween: Tween
 
 func _ready() -> void:
+	super()
+
 	if Engine.is_editor_hint():
 		return
 	enabled = false

@@ -184,6 +184,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wtpwd")
 
 [node name="Fill" type="MeshInstance3D" parent="Model" index="2"]
 transform = Transform3D(0.86, 0, 0, 0, 0.86, 0, 0, 0, 0.86, 0, 0.0440235, 0)
+visible = false
 instance_shader_parameters/fill_percentage = 1.0
 mesh = SubResource("ArrayMesh_peid5")
 skeleton = NodePath("")

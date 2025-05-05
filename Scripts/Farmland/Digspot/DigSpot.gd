@@ -157,11 +157,8 @@ func _handle_seed_insert():
 	# Stop watering timer
 	dry_timer.stop()
 	
-	# Reset rotation and place grow_seed to snap point
-	var tween : Tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(grow_seed, "rotation", Vector3.ZERO, 0.05)
-	tween.tween_property(grow_seed, "global_position", seed_snap_point.global_position, 0.05)
+	grow_seed.rotation = Vector3.ZERO
+	grow_seed.global_position = seed_snap_point.global_position
 	
 	# Play jiggle animation for dig spot
 	play_jiggle()
@@ -173,7 +170,7 @@ func _handle_seed_insert():
 	particles.emitting = true
 	
 	# Reparent grow_seed after tween
-	tween.tween_callback(Callable(_reparent_seed_callback))
+	_reparent_seed_callback()
 	
 	# Spawn plant if water is enough
 	if current_water >= watering_amount:

@@ -527,21 +527,21 @@ func _estimate_body_forward_dir() -> Vector3:
 	else:
 		forward = camera_forward.slide(up_player).normalized()
 
-	if (left_hand_node and left_hand_node.get_is_active()
-		and right_hand_node and right_hand_node.get_is_active()
-		and body_forward_mix > 0.0):
-		# See if we can mix in our estimated forward vector based on controller position
-		# Note, in Godot 4.0 we should check tracker confidence
-
-		var tangent = right_hand_node.global_transform.origin - left_hand_node.global_transform.origin
-		tangent = tangent.slide(up_player).normalized()
-		var hands_forward = up_player.cross(tangent).normalized()
-
-		# Rotate our forward towards our hand direction but not more than 60 degrees
-		var dot = forward.dot(hands_forward)
-		var cross = forward.cross(hands_forward).normalized()
-		var angle = clamp(acos(dot) * body_forward_mix, 0.0, 0.33 * PI)
-		forward = forward.rotated(cross, angle)
+	#if (left_hand_node and left_hand_node.get_is_active()
+		#and right_hand_node and right_hand_node.get_is_active()
+		#and body_forward_mix > 0.0):
+		## See if we can mix in our estimated forward vector based on controller position
+		## Note, in Godot 4.0 we should check tracker confidence
+#
+		#var tangent = right_hand_node.global_transform.origin - left_hand_node.global_transform.origin
+		#tangent = tangent.slide(up_player).normalized()
+		#var hands_forward = up_player.cross(tangent).normalized()
+#
+		## Rotate our forward towards our hand direction but not more than 60 degrees
+		#var dot = forward.dot(hands_forward)
+		#var cross = forward.cross(hands_forward).normalized()
+		#var angle = clamp(acos(dot) * body_forward_mix, 0.0, 0.33 * PI)
+		#forward = forward.rotated(cross, angle)
 
 	return forward
 
@@ -641,7 +641,7 @@ func _update_body_under_camera(delta : float):
 	var camera_transform := camera_node.global_transform
 	curr_transform.basis = origin_node.global_transform.basis
 	#curr_transform.origin = camera_transform.origin
-	curr_transform.origin += up_player * (player_head_height - player_height)
+	#curr_transform.origin += up_player * (player_head_height - player_height)
 
 	#curr_transform.origin = camera_transform.origin
 

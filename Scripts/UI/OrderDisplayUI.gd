@@ -72,7 +72,7 @@ func _spawn_ingredient_ui(ingredient : Ingredient.Type, amount : int):
 	
 	_ingredient_lookup[ingredient] = _ingredient_ui
 
-func _on_order_completed(success : bool):
+func _on_order_completed(_success : bool):
 	#if success:
 	# Show completed screen
 	await _show_screen(complete_screen).finished
@@ -91,13 +91,14 @@ func _on_order_completed(success : bool):
 		ingredient.queue_free()
 
 func _on_update_request(ingredients : Dictionary):
+	print("_on_update_request")
 	for ingredient in ingredients:
 		var _ingredient_ui : IngredientUI = _ingredient_lookup[ingredient]
 		var difference : int = GameBase.level.current_order.get_remaining_amount(ingredient)
 		
 		# Update ingredient amount and show highlight if value changed
 		if _ingredient_ui.set_amount(difference):
-			_ingredient_ui.show_highlight(0.2, 15)
+			_ingredient_ui.show_highlight(1.0, 15)
 		
 		if difference == 0:
 			_ingredient_ui.set_complete()

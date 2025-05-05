@@ -80,6 +80,7 @@ func _on_level_complete():
 	await get_tree().create_timer(level_complete_fade_offset).timeout
 	
 	# TODO - Trigger gorgeous confetti effect
+	HubBase.level_completed += 1
 	
 	# Make sure to let go of all things before loading new scene
 	for hand in hands:

@@ -44,7 +44,7 @@ func _ready() -> void:
 	
 func _on_squish(_pickable):
 	if blossy.can_respawn:
-		type_writer.display_text(squish_messages[current_message_pos])
+		type_writer.display_text(squish_messages_respawn[current_message_pos])
 		if current_message_pos < squish_messages_respawn.size(): 
 			current_message_pos += 1
 		return
@@ -77,6 +77,7 @@ func _on_picked_up(_pickable):
 	if current_message_pos == 0:
 		type_writer.display_text(pickup_message)
 		squish_sprite_animation.visible = true
+		pickup_sprite_animation.visible = false
 		return
 	
 	# Otherwise display current (previous) text again
@@ -101,10 +102,9 @@ func _on_dropped(_pickable):
 		type_writer.display_text(dropped_message_respawn)
 		return
 		
-	if current_message_pos == 0: 
-		pickup_sprite_animation.visible = true
-	type_writer.display_text(dropped_message)
-
+	if current_message_pos >= 3:
+		type_writer.display_text(dropped_message)
+	
 func _process(_delta: float) -> void:
 	if blossy.can_respawn: 
 		return
@@ -147,7 +147,6 @@ func event_polling(event_name: String) -> bool:
 		return true
 		
 	if event_name == "blossy_respawn":
-		current_message_pos = 0
 		blossy.drop()
 		blossy.enable_respawn()
 		is_event_completed = true
