@@ -1518,28 +1518,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_386" parent="Tree_Small_006" index="0"]
+[node name="Leaf_387" parent="Tree_Small_006" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_387" parent="Tree_Small_006" index="1"]
+[node name="Leaf_394" parent="Tree_Small_006" index="2"]
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_389" parent="Tree_Small_006" index="3"]
-visible = false
-
-[node name="Leaf_391" parent="Tree_Small_006" index="5"]
-surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
-
-[node name="Leaf_393" parent="Tree_Small_006" index="6"]
-visible = false
-
-[node name="Leaf_394" parent="Tree_Small_006" index="7"]
-surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
-
-[node name="Leaf_395" parent="Tree_Small_006" index="8"]
-surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
-
-[node name="Leaf_396" parent="Tree_Small_006" index="9"]
+[node name="Leaf_395" parent="Tree_Small_006" index="3"]
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
 [node name="Tree_Small_009" parent="." index="15"]
@@ -1663,59 +1648,59 @@ surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 [node name="Tree_Small_012" parent="." index="17"]
 surface_material_override/0 = SubResource("ShaderMaterial_2u235")
 
-[node name="Leaf_428" parent="Tree_Small_012" index="0"]
+[node name="Leaf_428" parent="Tree_Small_012" index="6"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_429" parent="Tree_Small_012" index="1"]
+[node name="Leaf_429" parent="Tree_Small_012" index="7"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_430" parent="Tree_Small_012" index="2"]
+[node name="Leaf_430" parent="Tree_Small_012" index="8"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_431" parent="Tree_Small_012" index="3"]
+[node name="Leaf_431" parent="Tree_Small_012" index="9"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_432" parent="Tree_Small_012" index="4"]
+[node name="Leaf_432" parent="Tree_Small_012" index="10"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_433" parent="Tree_Small_012" index="5"]
+[node name="Leaf_433" parent="Tree_Small_012" index="11"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_434" parent="Tree_Small_012" index="6"]
+[node name="Leaf_434" parent="Tree_Small_012" index="12"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_435" parent="Tree_Small_012" index="7"]
+[node name="Leaf_435" parent="Tree_Small_012" index="13"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_436" parent="Tree_Small_012" index="8"]
+[node name="Leaf_436" parent="Tree_Small_012" index="14"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_437" parent="Tree_Small_012" index="9"]
+[node name="Leaf_437" parent="Tree_Small_012" index="15"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_438" parent="Tree_Small_012" index="10"]
+[node name="Leaf_438" parent="Tree_Small_012" index="16"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_439" parent="Tree_Small_012" index="11"]
+[node name="Leaf_439" parent="Tree_Small_012" index="17"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_440" parent="Tree_Small_012" index="12"]
+[node name="Leaf_440" parent="Tree_Small_012" index="18"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 
-[node name="Leaf_441" parent="Tree_Small_012" index="13"]
+[node name="Leaf_441" parent="Tree_Small_012" index="19"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_kdr1q")
 

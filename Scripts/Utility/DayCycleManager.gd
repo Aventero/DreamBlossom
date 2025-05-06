@@ -1,6 +1,7 @@
 class_name DayCycleManager
 extends Node3D
 
+signal day_started
 signal day_ended
 signal hour_progressed(current_hour)
 
@@ -33,6 +34,7 @@ func start_day():
 		
 	print("Start day, total time: ", _total_order_time / 60.0, " minutes")
 	_is_stoppped = false
+	day_started.emit()
 
 func set_day_start_time(time_of_day: float) -> void:
 	# Set a time from 0 - 24 (6 = morning)

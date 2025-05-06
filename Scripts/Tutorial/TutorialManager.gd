@@ -59,10 +59,6 @@ func _on_squish(_pickable):
 	if current_message_pos in event_name_at:
 		event_start(event_name_at[current_message_pos])
 	
-	# double press shows full text
-	#if type_writer.is_displaying():
-		#type_writer.show_full_text()
-	#else:
 	type_writer.display_text(squish_messages[current_message_pos])
 	if current_message_pos < squish_messages.size(): 
 		current_message_pos += 1
@@ -149,12 +145,6 @@ func event_polling(event_name: String) -> bool:
 		spawn_dig_spot_with_plant("TutorialBlubburuPlant")
 		day_cycle_manager.tween_to_time(4.0, 6.0, 20.0)
 		return true
-		
-	if event_name == "blossy_respawn":
-		blossy.drop()
-		blossy.enable_respawn()
-		is_event_completed = true
-		return true
 
 	return false
 
@@ -182,6 +172,13 @@ func _on_bobo_bobo_ate(amount: int) -> void:
 	if amount == 3: 
 		bobo.hit_shield()
 		tool_area.visible = true
+		$"../../Clock2".visible = true
+		
+		# Blossy respawns, Textboxes dissappear
+		type_writer.should_hide_in_time = true
+		blossy.enable_respawn()
+		blossy.drop()
+		type_writer.display_text("Eine bestellung...? Suche Samen und Pflanze sie ein!")
 		
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuechsdt8ob0m"]
+[gd_scene load_steps=4 format=3 uid="uid://cuechsdt8ob0m"]
 
 [ext_resource type="PackedScene" uid="uid://blewrwab77dq3" path="res://Models/Environment/Shield.blend" id="1_3l4nu"]
 [ext_resource type="Script" uid="uid://bqifa05idvyuj" path="res://Prefabs/Shield.gd" id="2_34unw"]
-[ext_resource type="PackedScene" uid="uid://c41bidhh1glm8" path="res://clock_new.tscn" id="2_xgli4"]
 
 [sub_resource type="Curve" id="Curve_34unw"]
 _limits = [0.0, 1.5, 0.0, 1.0]
@@ -14,19 +13,16 @@ script = ExtResource("2_34unw")
 curve = SubResource("Curve_34unw")
 
 [node name="Chain_0" parent="." index="0"]
-transform = Transform3D(0.369284, 0, 0, 0, 0.369284, -0.000148655, 0, 0.000148655, 0.369284, 0.00454826, 0.00581809, -1.2968)
+transform = Transform3D(0.369284, 0, 0, 0, 0.369284, 0.00031054, 0, -0.00031054, 0.369284, 0.00454826, 0.00581809, -1.2968)
 
 [node name="Chain_1" parent="Chain_0" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, -0.000603821, 0, 0.000603821, 0.999999, -0.00757694, -0.00581186, 0.712115)
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0.00126138, 0, -0.00126138, 0.999998, -0.00757694, -0.00581186, 0.712115)
 
 [node name="Chain_2" parent="Chain_0/Chain_1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -0.000805096, 0, 0.000805096, 1, 0, -0.00568961, 0.195105)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00168185, 0, -0.00168185, 0.999999, 0, -0.00568961, 0.195105)
 
 [node name="Chain_3" parent="Chain_0/Chain_1/Chain_2" index="0"]
-transform = Transform3D(0.999998, -0.00151924, -6.90284e-11, 0.00151924, 0.999998, -0.00100637, 1.52899e-06, 0.00100637, 0.999999, 0, 0, 0.436437)
+transform = Transform3D(0.999996, 0.00252277, -6.95461e-11, -0.00252276, 0.999994, 0.00210231, 5.3037e-06, -0.0021023, 0.999997, 0, 0, 0.436437)
 
 [node name="Shield" parent="Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
-transform = Transform3D(2.708, -0.00411361, 0.00041141, 0.0041141, 2.70799, -0.0032703, -0.000406442, 0.00327092, 2.708, 0.0136763, -0.0172326, 0.316601)
-
-[node name="Clock2" parent="Chain_0/Chain_1/Chain_2/Chain_3/Shield" index="0" instance=ExtResource("2_xgli4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.12872)
+transform = Transform3D(2.70799, 0.00683337, -0.000683165, -0.00683164, 2.70798, 0.00683166, 0.0007004, -0.0068299, 2.70799, 0.0136763, -0.0172326, 0.316601)

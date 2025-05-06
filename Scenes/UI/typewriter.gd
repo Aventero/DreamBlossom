@@ -8,6 +8,10 @@ signal text_completed
 @export var timer: Timer
 @export_tool_button("Start") var display_stuff = show_text
 
+## Time it takes for it to hide (when enabled)
+@export var hide_delay: float = 5.0 
+@export var should_hide_in_time: bool = false
+
 var _full_text: String = ""
 var _current_position: int = 0
 var _paused: bool = false
@@ -29,6 +33,7 @@ func is_displaying() -> bool:
 
 # Start the typing effect with new text
 func display_text(new_text: String) -> void:
+	visible = true
 	_full_text = new_text
 	_current_position = 0
 	text = ""
@@ -49,6 +54,7 @@ func _display_next_character() -> void:
 		text_completed.emit()
 
 func show_full_text() -> void:
+	visible = true
 	text = _full_text
 	_current_position = _full_text.length()
 	timer.stop()
@@ -73,3 +79,10 @@ func _on_blossy_visible() -> void:
 # Connected to screen_exited signal
 func _on_blossy_not_visible() -> void:
 	pause()
+
+func _on_text_completed() -> void:
+	if should_hide_in_time:
+		$"../../../HideTextTimer".start(hide_delay)
+
+func _on_hide_text_timer_timeout() -> void:
+	visible = false

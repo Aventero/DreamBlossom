@@ -16,7 +16,7 @@ static var level_id : int
 @onready var cooking_chest : CookingChest = $CookingArea/CookingChest
 @onready var cauldron : Cauldron = $"ToolArea/Cauldron"
 @onready var recipe_book : RecipeBook = $CookingArea/RecipeBook
-@onready var order_display : OrderDisplay = $Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay
+@onready var order_display : OrderDisplay = $Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/OrderDisplay
 @onready var bobo : Bobo = $BoboPath3D/BoboPathFollow3D/Bobo
 @onready var day_cycle_manager: DayCycleManager = $Managers/DayCycleManager
 @onready var hands : Array[XRToolsFunctionPickup] = [

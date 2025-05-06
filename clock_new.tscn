@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c41bidhh1glm8"]
+[gd_scene load_steps=15 format=3 uid="uid://c41bidhh1glm8"]
 
 [ext_resource type="PackedScene" uid="uid://md2avb6xc53a" path="res://Models/Environment/Clock.blend" id="1_43356"]
 [ext_resource type="Script" uid="uid://c7dcob184ta6p" path="res://Prefabs/clock.gd" id="2_6e4yl"]
 [ext_resource type="Texture2D" uid="uid://c3t6cq0bpskb1" path="res://Textures/Environment/Shield.png" id="3_7tqgl"]
+[ext_resource type="Texture2D" uid="uid://db6n4xnm8xlhu" path="res://Textures/Escape.png" id="4_g6cs5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6cs5"]
 resource_name = "Shield"
@@ -21,6 +22,63 @@ albedo_texture = ExtResource("3_7tqgl")
 texture_filter = 2
 texture_repeat = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltagh"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw821"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohi6t"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vgc4"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wusp6"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu5ii"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foscn"]
+atlas = ExtResource("4_g6cs5")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_00gbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltagh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw821")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohi6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vgc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wusp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu5ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foscn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="Clock2" node_paths=PackedStringArray("clock_hand") instance=ExtResource("1_43356")]
 script = ExtResource("2_6e4yl")
 clock_hand = NodePath("ClockStick")
@@ -29,5 +87,14 @@ clock_hand = NodePath("ClockStick")
 surface_material_override/0 = SubResource("StandardMaterial3D_g6cs5")
 
 [node name="ClockStick" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0594444, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117427, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_7tqgl")
+
+[node name="Clock_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_g6cs5")
+
+[node name="EscapeSprite" type="AnimatedSprite3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.019496, -0.622469)
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_00gbo")
+frame = 6

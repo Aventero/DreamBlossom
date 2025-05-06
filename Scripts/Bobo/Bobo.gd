@@ -546,8 +546,8 @@ func _on_shield_hit_timer_timeout() -> void:
 	
 # Shield apex -> the order starts
 func _on_shield_hit_apex_timer_timeout() -> void:
-	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".visible = true
-	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/Clock2/OrderDisplay".start_order()
+	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/OrderDisplay".visible = true
+	$"../../../Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/OrderDisplay".start_order()
 	print("Started order: ", GameBase.level.current_order)
 
 # First order has started

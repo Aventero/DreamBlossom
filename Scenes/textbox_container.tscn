@@ -300,6 +300,13 @@ horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("3_4xhnv")
 timer = NodePath("../../../Timer")
+hide_delay = null
+should_hide_in_time = null
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HideTextTimer" type="Timer" parent="."]
+
+[connection signal="text_completed" from="PanelContainer/MarginContainer/Label" to="PanelContainer/MarginContainer/Label" method="_on_text_completed"]
+[connection signal="timeout" from="HideTextTimer" to="PanelContainer/MarginContainer/Label" method="_on_hide_text_timer_timeout"]
