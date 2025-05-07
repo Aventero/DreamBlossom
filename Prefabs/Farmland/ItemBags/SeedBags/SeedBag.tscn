@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x1opqidmf7s" path="res://Prefabs/Farmland/ItemBags/ItemBag.tscn" id="1_g6ymg"]
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="2_gepsy"]
 [ext_resource type="PackedScene" uid="uid://bj1s20g8oeoe2" path="res://Models/Tools/SeedBag.blend" id="3_h0eqo"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="4_hccvd"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="4_hccvd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8hy5u"]
 radius = 0.05

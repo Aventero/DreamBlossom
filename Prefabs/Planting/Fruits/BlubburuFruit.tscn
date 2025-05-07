@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://mfpdeks8empd"]
+[gd_scene load_steps=20 format=4 uid="uid://mfpdeks8empd"]
 
 [ext_resource type="PackedScene" uid="uid://c1bfy8pftq17h" path="res://Prefabs/Planting/Fruits/Fruit.tscn" id="1_x7ukq"]
 [ext_resource type="Script" uid="uid://bqxic82avgk1l" path="res://Scripts/Farmland/Fruits/BlubburuFruit.gd" id="2_0a1fi"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="3_vubcb"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="4_0ak2h"]
-[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="5_q1f25"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="9_2rp10"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o4tsq"]
@@ -22,21 +22,10 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_450lx"]
-render_priority = 0
-shader = ExtResource("5_q1f25")
-shader_parameter/base_color = Color(1, 1, 1, 1)
-shader_parameter/color_difference = 0.4
-shader_parameter/speed = 4.0
-shader_parameter/UV_multiplier = 1.0
-shader_parameter/UV_offset = Vector2(0, 0)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46144"]
 resource_name = "Leaves.001"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("4_0ak2h")
 texture_filter = 2
 
@@ -230,7 +219,7 @@ shape = SubResource("ConvexPolygonShape3D_o4tsq")
 [node name="Outline" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_fjrr4")
 skeleton = NodePath("../Body")
-surface_material_override/0 = SubResource("ShaderMaterial_450lx")
+surface_material_override/0 = ExtResource("3_vubcb")
 
 [node name="Eyes" type="MeshInstance3D" parent="Model" index="1"]
 mesh = SubResource("ArrayMesh_d7fb3")
@@ -265,3 +254,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.085, -0.057)
 mesh = SubResource("ArrayMesh_my316")
 skeleton = NodePath("../../Model/Body")
 surface_material_override/0 = ExtResource("9_2rp10")
+
+[node name="PickUpSingle" parent="." index="6"]
+pitch_scale = 1.0

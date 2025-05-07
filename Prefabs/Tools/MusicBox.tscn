@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_qrvtc"]
 [ext_resource type="Script" uid="uid://dvfynubfd41eh" path="res://Scripts/Farmland/Tools/MusicBox.gd" id="2_jkbs3"]
 [ext_resource type="PackedScene" uid="uid://1qxno1rot6rq" path="res://Models/Tools/Jukebox.blend" id="3_kxgj4"]
-[ext_resource type="Script" uid="uid://cv7vj7xm6qbwb" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
+[ext_resource type="Script" uid="uid://fx3fyvoqoyr8" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_wadoy"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="5_7vs1a"]
 [ext_resource type="Texture2D" uid="uid://cfvy1nmdhb3jv" path="res://Textures/Tools/Range.png" id="7_0a8fx"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="7_6rsry"]

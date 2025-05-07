@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_bcasd"]
 [ext_resource type="Script" uid="uid://dpmx3tnn38mpi" path="res://Scripts/Farmland/Events/KnospEvent/Knosp.gd" id="2_wjc8j"]
 [ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="3_s7ro5"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="6_eybhg"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="6_eybhg"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mwmmq"]
 _surfaces = [{

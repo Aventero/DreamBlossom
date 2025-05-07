@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfesrqr5mn6xn" path="res://Prefabs/Planting/Seeds/Seed.tscn" id="1_dyrry"]
 [ext_resource type="Texture2D" uid="uid://c08y6cbua51jb" path="res://Textures/Fruits/Shroomie/Shroomie.png" id="2_7uue6"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="3_sl1ta"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="3_sl1ta"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2u0tf"]
 points = PackedVector3Array(0.0344105, 0.1036, 0.0344105, -0.0547275, 0.0212, -0.0547275, -0.025984, -6.93889e-18, -0.025984, 0.0553185, 0.0848107, -0.0553185, 0.0547275, 0.0212, 0.0547275, -0.055303, 0.0848116, 0.055303, -0.055303, 0.0848116, -0.055303, -0.0547275, 0.0212, 0.0547275, 0.0547275, 0.0212, -0.0547275, 0.0553185, 0.0848107, 0.0553185, -0.0344105, 0.1036, -0.0344105, 0.025984, -6.93889e-18, 0.025984, -0.0344105, 0.1036, 0.0344105, 0.0344105, 0.1036, -0.0344105, 0.025984, -6.93889e-18, -0.025984, -0.025984, -6.93889e-18, 0.025984)

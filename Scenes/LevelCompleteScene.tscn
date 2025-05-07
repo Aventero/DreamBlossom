@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cx6x530smdyof" path="res://addons/godot-xr-tools/interactables/interactable_area_button.gd" id="9_4u8i6"]
 [ext_resource type="Script" uid="uid://b83rr7av06drw" path="res://addons/godot-xr-tools/objects/hand_pose_area.gd" id="10_elpx1"]
 [ext_resource type="Animation" uid="uid://cevirj0eagdrq" path="res://addons/godot-xr-tools/hands/animations/left/Sign 1.res" id="11_r0w8k"]
-[ext_resource type="Script" uid="uid://cuhb7qev2mwm7" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="12_uahvl"]
+[ext_resource type="Script" uid="uid://be32sxd0wqfab" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="12_uahvl"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="13_11ors"]
 [ext_resource type="PackedScene" uid="uid://crcu4nflusivj" path="res://Prefabs/UI/LevelCompleteFrameUI.tscn" id="14_tc8y5"]
 [ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="15_8wphh"]

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://4exhe7q8f0pk" path="res://Prefabs/Planting/Nommie/NommiePlant.tscn" id="10_5grbc"]
 [ext_resource type="PackedScene" uid="uid://bp0v6l6rn2t2r" path="res://Prefabs/Planting/Blubburu/TutorialBlubburuPlant.tscn" id="10_8n0vo"]
 [ext_resource type="PackedScene" uid="uid://oplgwacernt1" path="res://Prefabs/Planting/Pumkie/PumkiePlant.tscn" id="11_a812u"]
-[ext_resource type="Script" uid="uid://cuhb7qev2mwm7" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
+[ext_resource type="Script" uid="uid://be32sxd0wqfab" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="11_tpl5m"]
 [ext_resource type="Animation" uid="uid://bcwx6a6mhsoj2" path="res://addons/godot-xr-tools/hands/animations/right/Sign 1.res" id="12_12wo1"]
 [ext_resource type="PackedScene" uid="uid://v4beiflx1jg0" path="res://Prefabs/Planting/Shellie/ShelliePlant.tscn" id="12_w3ksd"]
 [ext_resource type="PackedScene" uid="uid://glujk3jsap01" path="res://Prefabs/Planting/Shroomie/ShroomiePlant.tscn" id="13_4ypwf"]

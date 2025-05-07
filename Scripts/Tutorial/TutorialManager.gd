@@ -99,7 +99,7 @@ func _on_dropped(_pickable):
 		type_writer.display_text(dropped_message_respawn)
 		return
 		
-	if current_message_pos >= 3:
+	if current_message_pos <= 3:
 		type_writer.display_text(dropped_message)
 	
 func _process(_delta: float) -> void:

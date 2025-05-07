@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dpkv7ougcnn1i" path="res://Scripts/PotionDrop.gd" id="1_mxpeb"]
 [ext_resource type="PackedScene" uid="uid://b5n4tkiy2iu5g" path="res://Particles/PotionSplash/PotionDropSplash.tscn" id="2_kr8d7"]
 [ext_resource type="PackedScene" uid="uid://dx3xx8wyr8tc0" path="res://Prefabs/Brewing/SplashDecal/SplashDecal.tscn" id="3_e7qfs"]
-[ext_resource type="Script" uid="uid://drkh5x1ph1oj7" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="4_vw1b8"]
+[ext_resource type="Script" uid="uid://crhw6el3ug0j7" path="res://addons/godot-xr-tools/rumble/rumble_event.gd" id="4_vw1b8"]
 
 [sub_resource type="Resource" id="Resource_d6ygm"]
 script = ExtResource("4_vw1b8")

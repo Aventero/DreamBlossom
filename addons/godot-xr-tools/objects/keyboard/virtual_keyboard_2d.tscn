@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://lauwp8okd1vh"]
 
-[ext_resource type="Script" uid="uid://cqv200yladd7q" path="res://addons/godot-xr-tools/objects/keyboard/virtual_keyboard_2d.gd" id="1"]
-[ext_resource type="Script" uid="uid://cmmw1b65lfou7" path="res://addons/godot-xr-tools/objects/keyboard/virtual_key_char.gd" id="2_n0nlg"]
-[ext_resource type="Script" uid="uid://gbu5qwlj4ake" path="res://addons/godot-xr-tools/objects/keyboard/virtual_key.gd" id="3_h05ve"]
+[ext_resource type="Script" uid="uid://cvsjulluakk1q" path="res://addons/godot-xr-tools/objects/keyboard/virtual_keyboard_2d.gd" id="1"]
+[ext_resource type="Script" uid="uid://dboql26xmxgad" path="res://addons/godot-xr-tools/objects/keyboard/virtual_key_char.gd" id="2_n0nlg"]
+[ext_resource type="Script" uid="uid://n1bqft8xre2t" path="res://addons/godot-xr-tools/objects/keyboard/virtual_key.gd" id="3_h05ve"]
 
 [node name="VirtualKeyboard2D" type="CanvasLayer"]
 script = ExtResource("1")

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="4_v15jc"]
 [ext_resource type="Script" uid="uid://cm7vrc41eb5pq" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="5_javds"]
 [ext_resource type="Script" uid="uid://dhatg4chjvhoh" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_gg3t4"]
-[ext_resource type="Script" uid="uid://c4jm1yvvfkchr" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="7_3ygst"]
+[ext_resource type="Script" uid="uid://ccbllnfrppcoa" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="7_3ygst"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ygst"]
 animation = &"Grip"
