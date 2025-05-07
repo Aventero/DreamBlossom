@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://c3w0gho2ujed7"]
+[gd_scene load_steps=19 format=4 uid="uid://c3w0gho2ujed7"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_lnot5"]
 [ext_resource type="Texture2D" uid="uid://bya6cbcjjpk6a" path="res://Textures/Knosps/Knosp_Nommie.png" id="2_qego7"]
 [ext_resource type="PackedScene" uid="uid://b5rd0p831wcpb" path="res://Particles/Knosp/NommieKnospPullParticles.tscn" id="2_wqt41"]
 [ext_resource type="PackedScene" uid="uid://dguwjyjxha2dp" path="res://Particles/Knosp/NommieKnospCompleteParticles.tscn" id="3_xkw0a"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="4_os613"]
 
 [sub_resource type="Shader" id="Shader_w8877"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
@@ -101,10 +102,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wft7k")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0ic6"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 2
 albedo_texture = ExtResource("2_qego7")
 texture_filter = 0
 
@@ -239,6 +238,9 @@ shadow_mesh = SubResource("ArrayMesh_yntoq")
 [node name="Knosp" instance=ExtResource("1_lnot5")]
 pull_particles = ExtResource("2_wqt41")
 pull_complete_particles = ExtResource("3_xkw0a")
+
+[node name="Outline" parent="Model" index="0"]
+surface_material_override/0 = ExtResource("4_os613")
 
 [node name="Blossom" type="MeshInstance3D" parent="Model/Knosp Closed" index="0"]
 instance_shader_parameters/strength = 0.5

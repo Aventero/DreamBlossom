@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://ck1g5nye5nmn8"]
+[gd_scene load_steps=20 format=4 uid="uid://ck1g5nye5nmn8"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_a7gqo"]
 [ext_resource type="PackedScene" uid="uid://b5tiv84oqowi5" path="res://Particles/Knosp/BlubburuKnospPullParticles.tscn" id="2_4f11l"]
 [ext_resource type="PackedScene" uid="uid://dcvslll66eqru" path="res://Particles/Knosp/BlubburuKnospCompleteParticles.tscn" id="3_4sh5k"]
 [ext_resource type="Texture2D" uid="uid://we364gmry2ah" path="res://Textures/Knosps/Knosp_Blubburu.png" id="4_d8wxa"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="4_j8376"]
 
 [sub_resource type="Shader" id="Shader_b1ryy"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
@@ -103,10 +104,8 @@ shadow_mesh = SubResource("ArrayMesh_xd8hb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd5y7"]
 resource_name = "Blubbie"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 2
 albedo_texture = ExtResource("4_d8wxa")
 texture_filter = 2
 
@@ -251,6 +250,9 @@ shadow_mesh = SubResource("ArrayMesh_v8np5")
 pull_particles = ExtResource("2_4f11l")
 pull_complete_particles = ExtResource("3_4sh5k")
 
+[node name="Outline" parent="Model" index="0"]
+surface_material_override/0 = ExtResource("4_j8376")
+
 [node name="Blossom" type="MeshInstance3D" parent="Model/Knosp Closed" index="0"]
 instance_shader_parameters/strength = 0.5
 mesh = SubResource("ArrayMesh_d6tys")
@@ -276,5 +278,8 @@ skeleton = NodePath("")
 [node name="Center" type="MeshInstance3D" parent="Model/Knosp Open" index="2"]
 mesh = SubResource("ArrayMesh_8jgas")
 skeleton = NodePath("")
+
+[node name="XRToolsHighlightVisible" parent="Pull Origin/Pull Pickup" index="3"]
+visible = false
 
 [editable path="Pull Origin/Pull Pickup"]

@@ -3,6 +3,6 @@
 [resource]
 render_priority = 127
 shading_mode = 0
-albedo_color = Color(0.697095, 0.621458, 0.738191, 1)
+albedo_color = Color(0.313195, 0.785124, 0.273804, 1)
 billboard_keep_scale = true
 grow_amount = -0.01

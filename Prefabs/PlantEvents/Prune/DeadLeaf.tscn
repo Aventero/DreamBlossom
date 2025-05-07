@@ -1,17 +1,17 @@
-[gd_scene load_steps=14 format=4 uid="uid://cttivc1gdbb5y"]
+[gd_scene load_steps=15 format=4 uid="uid://cttivc1gdbb5y"]
 
 [ext_resource type="Script" uid="uid://bjova5lyl8632" path="res://Scripts/Farmland/Events/PruneEvent/DeadLeaf.gd" id="1_5aubd"]
 [ext_resource type="PackedScene" uid="uid://brrinjuf0ogmo" path="res://Particles/FallingLeaf.tscn" id="2_jm6qf"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="3_aenkw"]
 [ext_resource type="Shader" uid="uid://d3eqjcvd7p2hf" path="res://Shader/Outline_Inverted.gdshader" id="4_14rwj"]
 [ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="4_jtq4t"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="5_77crm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jx4s6"]
 resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
+transparency = 4
 cull_mode = 2
+depth_draw_mode = 2
 albedo_color = Color(0.435294, 0.329412, 0.211765, 1)
 albedo_texture = ExtResource("3_aenkw")
 texture_filter = 2
@@ -113,16 +113,19 @@ falling_leaf_particle = ExtResource("2_jm6qf")
 mesh = SubResource("ArrayMesh_xep0a")
 
 [node name="Outline" type="Node3D" parent="."]
+transform = Transform3D(1.08547, -0.0257718, 0.021116, 0.0296497, 0.943162, 0.00103695, -0.0229477, -0.000433736, 1.00016, 0, 0, 0)
 
 [node name="DeadLeaf2" type="MeshInstance3D" parent="Outline"]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.00208189, -0.002, -0.00226772)
+transform = Transform3D(1.07489, 0, 0, 0, 1.07489, 0, 0, 0, 1.07489, 0.00208189, -0.002, -0.00226772)
 mesh = SubResource("ArrayMesh_acmop")
 skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_77crm")
 
 [node name="DeadLeaf3" type="MeshInstance3D" parent="Outline"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.00208189, -8.63334e-05, -0.00226772)
 mesh = SubResource("ArrayMesh_scjps")
 skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_77crm")
 
 [node name="PruneTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027172, 0, 0.0382819)

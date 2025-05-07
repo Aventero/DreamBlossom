@@ -1,19 +1,17 @@
-[gd_scene load_steps=15 format=4 uid="uid://bdx7y6tgfx10"]
+[gd_scene load_steps=14 format=4 uid="uid://bdx7y6tgfx10"]
 
 [ext_resource type="PackedScene" uid="uid://bgxxukodos7os" path="res://Prefabs/Pullable.tscn" id="1_ggb8v"]
 [ext_resource type="Script" uid="uid://cjjmkjiw2bsbt" path="res://Scripts/Farmland/Weed/EventWeed.gd" id="2_yy5cd"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_befj4"]
 [ext_resource type="PackedScene" uid="uid://5bul7ayyv75b" path="res://Prefabs/PlantEvents/Weed/EventWeedPullParticles.tscn" id="4_duxw7"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_wi6of"]
-[ext_resource type="Shader" uid="uid://blbjrllaexqnu" path="res://Shader/Outline.gdshader" id="6_yak84"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="6_un8ey"]
 [ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="9_1cpbv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b53jb"]
 resource_name = "Leaves"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("5_wi6of")
 texture_filter = 2
 
@@ -62,15 +60,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("KLRwPLYvPbu0Sw88KLRwPLYvPbu0Sw88KLRwPLYvPbu0Sw88KLRwPFzp3T20Sw88KLRwPFzp3T20Sw88KLRwPFzp3T20Sw88KLRwPLYvPbsYTA+8KLRwPLYvPbsYTA+8KLRwPLYvPbsYTA+8KLRwPFzp3T0YTA+8KLRwPFzp3T0YTA+8KLRwPFzp3T0YTA+8AdMDPbYvPbu0Sw88AdMDPbYvPbu0Sw88AdMDPbYvPbu0Sw88AdMDPVzp3T20Sw88AdMDPVzp3T20Sw88AdMDPVzp3T20Sw88AdMDPbYvPbsYTA+8AdMDPbYvPbsYTA+8AdMDPbYvPbsYTA+8AdMDPVzp3T0YTA+8AdMDPVzp3T0YTA+8AdMDPVzp3T0YTA+8rk8PvLYvPbu0Sw88rk8PvLYvPbu0Sw88rk8PvLYvPbu0Sw88rk8PvNj0DD60Sw88rk8PvNj0DD60Sw88rk8PvNj0DD60Sw88rk8PvLYvPbsYTA+8rk8PvLYvPbsYTA+8rk8PvLYvPbsYTA+8rk8PvNj0DD4YTA+8rk8PvNj0DD4YTA+8rk8PvNj0DD4YTA+8MEgPPLYvPbu0Sw88MEgPPLYvPbu0Sw88MEgPPLYvPbu0Sw88MEgPPNj0DD60Sw88MEgPPNj0DD60Sw88MEgPPNj0DD60Sw88MEgPPLYvPbsYTA+8MEgPPLYvPbsYTA+8MEgPPLYvPbsYTA+8MEgPPNj0DD4YTA+8MEgPPNj0DD4YTA+8MEgPPNj0DD4YTA+8AdMDvbYvPbu0Sw88AdMDvbYvPbu0Sw88AdMDvbYvPbu0Sw88AdMDvQTpxT20Sw88AdMDvQTpxT20Sw88AdMDvQTpxT20Sw88AdMDvbYvPbsYTA+8AdMDvbYvPbsYTA+8AdMDvbYvPbsYTA+8AdMDvQTpxT0YTA+8AdMDvQTpxT0YTA+8AdMDvQTpxT0YTA+8JrRwvLYvPbu0Sw88JrRwvLYvPbu0Sw88JrRwvLYvPbu0Sw88JrRwvATpxT20Sw88JrRwvATpxT20Sw88JrRwvATpxT20Sw88JrRwvLYvPbsYTA+8JrRwvLYvPbsYTA+8JrRwvLYvPbsYTA+8JrRwvATpxT0YTA+8JrRwvATpxT0YTA+8JrRwvATpxT0YTA+8rk8PvLYvPbvn0gM9rk8PvLYvPbvn0gM9rk8PvLYvPbvn0gM9rk8PvB3Sez3n0gM9rk8PvB3Sez3n0gM9rk8PvB3Sez3n0gM9rk8PvLYvPbvUs3A8rk8PvLYvPbvUs3A8rk8PvLYvPbvUs3A8rk8PvB3Sez3Us3A8rk8PvB3Sez3Us3A8rk8PvB3Sez3Us3A8MEgPPLYvPbvn0gM9MEgPPLYvPbvn0gM9MEgPPLYvPbvn0gM9MEgPPB3Sez3n0gM9MEgPPB3Sez3n0gM9MEgPPB3Sez3n0gM9MEgPPLYvPbvUs3A8MEgPPLYvPbvUs3A8MEgPPLYvPbvUs3A8MEgPPB3Sez3Us3A8MEgPPB3Sez3Us3A8MEgPPB3Sez3Us3A8rk8PvLYvPbv6t3C8rk8PvLYvPbv6t3C8rk8PvLYvPbv6t3C8rk8PvB3Sez36t3C8rk8PvB3Sez36t3C8rk8PvB3Sez36t3C8rk8PvLYvPbsB0wO9rk8PvLYvPbsB0wO9rk8PvLYvPbsB0wO9rk8PvB3Sez0B0wO9rk8PvB3Sez0B0wO9rk8PvB3Sez0B0wO9MEgPPLYvPbv6t3C8MEgPPLYvPbv6t3C8MEgPPLYvPbv6t3C8MEgPPB3Sez36t3C8MEgPPB3Sez36t3C8MEgPPB3Sez36t3C8MEgPPLYvPbsB0wO9MEgPPLYvPbsB0wO9MEgPPLYvPbsB0wO9MEgPPB3Sez0B0wO9MEgPPB3Sez0B0wO9MEgPPB3Sez0B0wO9AQD/fwCA/78IgAMA+f/9//1//3/9//8/AQD/fwCA/7/9f/9//f//PwGA+/8AAP7/AQD/fwCA/78IgAMA+f/9//7/AAAAAP+/AQD/fwCA/7/+/wAAAAD/vwGA+/8AAP7/CIADAPn//f/9f/9//f//P/3/AID+//7//X//f/3//z8BgPv/AAD+//3/AID+//7/CIADAPn//f/+/wAAAAD/v/3/AID+//7//v8AAAAA/78BgPv/AAD+//3/AID+//7/AQD/fwCA/78IgAMA+f/9//1//3/9//8/AQD/fwCA/7/9f/9//f//PwGA+/8AAP7/AQD/fwCA/78IgAMA+f/9//7/AAAAAP+/AQD/fwCA/7/+/wAAAAD/vwGA+/8AAP7/CIADAPn//f/9f/9//f//P/3/AID+//7//X//f/3//z8BgPv/AAD+//3/AID+//7/CIADAPn//f/+/wAAAAD/v/3/AID+//7//v8AAAAA/78BgPv/AAD+//3/AID+//7/AQD/fwCA/78IgAMA+f/9//1//3/9//8/AQD/fwCA/7/9f/9//f//PwGA+/8AAP7/AQD/fwCA/78IgAMA+f/9//7/AAAAAP+/AQD/fwCA/7/+/wAAAAD/vwGA+/8AAP7/CIADAPn//f/9f/9//f//P/3/AID+//7//X//f/3//z8BgPv/AAD+//3/AID+//7/CIADAPn//f/+/wAAAAD/v/3/AID+//7//v8AAAAA/78BgPv/AAD+//3/AID+//7/AQD/fwCA/78IgAMA+f/9//1//3/9//8/AQD/fwCA/7/9f/9//f//PwGA+/8AAP7/AQD/fwCA/78IgAMA+f/9//7/AAAAAP+/AQD/fwCA/7/+/wAAAAD/vwGA+/8AAP7/CIADAPn//f/9f/9//f//P/3/AID+//7//X//f/3//z8BgPv/AAD+//3/AID+//7/CIADAPn//f/+/wAAAAD/v/3/AID+//7//v8AAAAA/78BgPv/AAD+//3/AID+//7/AQD/fwCA/78IgAMA+f/9//1//3/9//8/AQD/fwCA/7/9f/9//f//PwGA+/8AAP7/AQD/fwCA/78IgAMA+f/9//7/AAAAAP+/AQD/fwCA/7/+/wAAAAD/vwGA+/8AAP7/CIADAPn//f/9f/9//f//P/3/AID+//7//X//f/3//z8BgPv/AAD+//3/AID+//7/CIADAPn//f/+/wAAAAD/v/3/AID+//7//v8AAAAA/78BgPv/AAD+//3/AID+//7/")
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fm803"]
-render_priority = 0
-shader = ExtResource("6_yak84")
-shader_parameter/base_color = Color(1, 1, 1, 1)
-shader_parameter/color_difference = 0.4
-shader_parameter/speed = 4.0
-shader_parameter/UV_multiplier = 1.0
-shader_parameter/UV_offset = Vector2(0, 0)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_5pi5l"]
 radius = 0.035
 
@@ -99,6 +88,7 @@ pull_complete_particles = ExtResource("4_befj4")
 pull_complete_particles_offset = Vector3(0, 0.1, 0)
 
 [node name="Event Weed" type="MeshInstance3D" parent="Model" index="0"]
+transform = Transform3D(1.00077, 0, 0, 0, 1.00077, 0, 0, 0, 1.00077, 0, 0, 0)
 mesh = SubResource("ArrayMesh_n7mp3")
 skeleton = NodePath("")
 
@@ -108,7 +98,7 @@ remote_path = NodePath("../../../Pull Origin/Pull Pickup/XRToolsHighlightVisible
 [node name="Outline" type="MeshInstance3D" parent="Model" index="1"]
 mesh = SubResource("ArrayMesh_engw6")
 skeleton = NodePath("../Event Weed")
-surface_material_override/0 = SubResource("ShaderMaterial_fm803")
+surface_material_override/0 = ExtResource("6_un8ey")
 
 [node name="Pull Origin" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0342309, 0)
@@ -117,7 +107,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0342309, 0)
 shape = SubResource("SphereShape3D_5pi5l")
 
 [node name="Highlight" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0342309, 0)
+transform = Transform3D(1.00077, 0, 0, 0, 1.00077, 0, 0, 0, 1.00077, 0, -0.0342309, 0)
 mesh = SubResource("ArrayMesh_8dem7")
 skeleton = NodePath("../../../../Model/Event Weed")
 surface_material_override/0 = ExtResource("9_1cpbv")

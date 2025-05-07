@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqnourgpa1x8h" path="res://Prefabs/Farmland/Weed/WeedPullParticles.tscn" id="3_mqtlj"]
 [ext_resource type="PackedScene" uid="uid://bhlcenkafo3d1" path="res://Prefabs/Farmland/Weed/WeedPullCompleteParticles.tscn" id="4_huomt"]
 [ext_resource type="Texture2D" uid="uid://b8ptpbc0bxmye" path="res://Textures/Fruits/Blubburu/Blubburu.png" id="5_680ay"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="9_ewdmr"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="9_ewdmr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jug17"]
 resource_name = "Leaves"
@@ -88,6 +88,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0264307, 0)
 
 [node name="CollisionShape3D" parent="Pull Origin/Pull Pickup" index="0"]
 shape = SubResource("SphereShape3D_1mji4")
+
+[node name="XRToolsHighlightVisible" parent="Pull Origin/Pull Pickup" index="3"]
+visible = false
 
 [node name="Highlight" type="MeshInstance3D" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000210457, -0.0261443, 0.000245035)

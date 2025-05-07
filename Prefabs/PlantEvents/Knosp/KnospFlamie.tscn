@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=4 uid="uid://d7httil120fm"]
+[gd_scene load_steps=23 format=4 uid="uid://d7httil120fm"]
 
 [ext_resource type="PackedScene" uid="uid://crotm5abg7yvn" path="res://Prefabs/PlantEvents/Knosp/Knosp.tscn" id="1_jujtq"]
 [ext_resource type="PackedScene" uid="uid://uxwpev8kx63e" path="res://Particles/Knosp/FlamieKnospPullParticles.tscn" id="2_b7hp0"]
 [ext_resource type="Texture2D" uid="uid://bb05qsnqhdp07" path="res://Textures/Knosps/Knosp_Flamie.png" id="2_pw4ox"]
 [ext_resource type="PackedScene" uid="uid://cydtvc434h833" path="res://Particles/Knosp/FlamieKnospCompleteParticles.tscn" id="3_f2afs"]
-[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Highlight.tres" id="8_ukxpr"]
+[ext_resource type="Material" uid="uid://voph8uwua7y5" path="res://Materials/Outline/x_ray_outline_with_bg.tres" id="4_2xobl"]
+[ext_resource type="Material" uid="uid://cq1x3i8pni2ak" path="res://Materials/Outline/pickup_outline.tres" id="8_ukxpr"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vyyss"]
 _surfaces = [{
@@ -117,10 +118,8 @@ shadow_mesh = SubResource("ArrayMesh_fmbow")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2au34"]
 resource_name = "Blubbie"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 2
 albedo_texture = ExtResource("2_pw4ox")
 texture_filter = 2
 
@@ -284,6 +283,7 @@ pull_complete_particles_offset = Vector3(0, 0.031, 0)
 [node name="Outline" parent="Model" index="0"]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vyyss")
+surface_material_override/0 = ExtResource("4_2xobl")
 
 [node name="Knosp Closed" parent="Model" index="1"]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
@@ -314,6 +314,9 @@ skeleton = NodePath("")
 [node name="Center" type="MeshInstance3D" parent="Model/Knosp Open" index="2"]
 mesh = SubResource("ArrayMesh_kwc0h")
 skeleton = NodePath("")
+
+[node name="XRToolsHighlightVisible" parent="Pull Origin/Pull Pickup" index="3"]
+visible = false
 
 [node name="Highlight" parent="Pull Origin/Pull Pickup/XRToolsHighlightVisible" index="0"]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.0148183, 0)
