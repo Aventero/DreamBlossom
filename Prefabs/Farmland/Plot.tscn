@@ -1047,3 +1047,9 @@ skeleton = NodePath("")
 transform = Transform3D(0.0808, 0, 0.0345608, 0, 0.0878811, 0, -0.0345608, 0, 0.0808, 0.306834, 5.96046e-08, -0.189235)
 mesh = SubResource("ArrayMesh_a2hbm")
 skeleton = NodePath("")
+
+[node name="InsertCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_exited" from="Soil" to="Soil" method="_on_body_exited"]

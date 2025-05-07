@@ -17,7 +17,7 @@ signal bobo_ate(amount: int)
 @export_tool_button("hit_shield") var blinking = hit_shield
 @export_tool_button("Yawn") var yawning = yawn
 @export_tool_button("Attack") var attacking = attack
-@export_tool_button("Munch") var munching = munch.bind(3)
+@export_tool_button("Munch") var munching = munch.bind(2)
 @export_tool_button("OpenMouth") var open = open_mouth
 @export_tool_button("CloseMouth") var close = close_mouth
 @export var max_order_fails : int = 3
@@ -214,7 +214,7 @@ func attack() -> void:
 	tween.parallel().tween_property(head, "blend_shapes/Nose", 0.0, 0.3)
 	tween.parallel().tween_property(head, "blend_shapes/Blink", 0.0, 0.3)
 
-func munch(repeat_count: int = 3) -> void:
+func munch(repeat_count: int = 2) -> void:
 	is_eating = true
 	for active_tween in active_tweens:
 		active_tween.kill()
@@ -227,7 +227,7 @@ func munch(repeat_count: int = 3) -> void:
 	# Start with happy expression
 	munch_tween.tween_property(head, "blend_shapes/Happy", 1.0, 0.1)
 	# Repeat the munching cycle
-	for i in range(repeat_count):
+	for i in range(2):
 		# Set smooth transitions
 		munch_tween.set_trans(Tween.TRANS_SINE)  # Use sine for organic movement
 		munch_tween.set_ease(Tween.EASE_IN_OUT)  # Smooth easing
@@ -271,7 +271,7 @@ func open_mouth() -> Tween:
 	var tween = create_tracked_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(head, "blend_shapes/Mouth", 0.6, 0.5)
+	tween.tween_property(head, "blend_shapes/Mouth", 0.6, 0.25)
 	return tween
 
 func play_eating_animation(_munches: int) -> void:
@@ -552,7 +552,6 @@ func _on_shield_hit_apex_timer_timeout() -> void:
 
 # First order has started
 func _on_first_order_started() -> void:
-	heart.start_hunger()
 	day_cycle_manager.set_day_start_time(6.00)
 	day_cycle_manager.start_day()
 

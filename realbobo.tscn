@@ -1,17 +1,77 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxokdwcvqi6f2"]
+[gd_scene load_steps=28 format=3 uid="uid://bxokdwcvqi6f2"]
 
 [ext_resource type="PackedScene" uid="uid://ducw4rcae7wjl" path="res://Models/Mobs/Bobo.blend" id="1_q270a"]
 [ext_resource type="Script" uid="uid://65ren1aynfk5" path="res://Scripts/Bobo/Bobo.gd" id="2_l7kfl"]
+[ext_resource type="Texture2D" uid="uid://dot52jl0egqy2" path="res://Textures/Particles/CoralDust.png" id="3_53s1i"]
+[ext_resource type="Texture2D" uid="uid://cwiaehv38lot" path="res://Textures/Particles/Dust.png" id="3_e0r1l"]
 [ext_resource type="PackedScene" uid="uid://830vxop4jk4s" path="res://Prefabs/Mobs/heart.tscn" id="3_l7kfl"]
 [ext_resource type="AudioStream" uid="uid://ce533qig3fma3" path="res://Audio/BoboMhh.mp3" id="4_j1col"]
 [ext_resource type="AudioStream" uid="uid://n28yql0lg203" path="res://Audio/BoboHmmLong.mp3" id="4_m2324"]
 [ext_resource type="AudioStream" uid="uid://l8gnniynhm4k" path="res://Audio/Nom3.mp3" id="6_f0a55"]
 
+[sub_resource type="Curve" id="Curve_f0a55"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249275, 1), 0.0, 0.0, 0, 0, Vector2(0.681159, 0.769451), -0.982643, -0.982643, 0, 0, Vector2(1, 0), -3.49179, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_53s1i"]
+curve = SubResource("Curve_f0a55")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e0r1l"]
+lifetime_randomness = 0.3
+emission_shape = 2
+emission_sphere_radius = 0.7
+angular_velocity_min = -373.33
+angular_velocity_max = 320.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.0999978
+radial_accel_max = 0.299998
+scale_curve = SubResource("CurveTexture_53s1i")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.033
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16qul"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.914108, 0.914108, 0.914108, 1)
+albedo_texture = ExtResource("3_e0r1l")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8nuwn"]
+material = SubResource("StandardMaterial3D_16qul")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nuwn"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.506, 2, 0, 1)
+albedo_texture = ExtResource("3_53s1i")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gyd14"]
+material = SubResource("StandardMaterial3D_8nuwn")
+size = Vector2(0.1, 0.1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_q270a"]
-size = Vector3(1.31226, 1.75987, 0.754513)
+size = Vector3(1.31226, 1.54019, 0.346389)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7kfl"]
-size = Vector3(1.36426, 1.05914, 1.44464)
+size = Vector3(1.36426, 0.427993, 1.83462)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q270a"]
 radius = 0.696919
@@ -53,7 +113,6 @@ transitions = ["Start", "walk_to_sit", SubResource("AnimationNodeStateMachineTra
 graph_offset = Vector2(-146, 50)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m2324"]
-graph_offset = Vector2(-533.15, -2.03)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ff8xn")
 nodes/StateMachine/position = Vector2(-80, 20)
 nodes/output/position = Vector2(160, 20)
@@ -75,47 +134,73 @@ bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
 bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
 bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
 bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
-bones/4/position = Vector3(0.0606803, 0.599522, -2.58743)
+bones/4/position = Vector3(-0.0292613, 0.577784, -2.57282)
 bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(1.0917e-09, 1.54825, 0.129288)
-bones/6/rotation = Quaternion(-0.852051, -0.00629287, 0.00383074, 0.523408)
-bones/7/rotation = Quaternion(0.0324389, 0.518577, 0.854394, -0.00608139)
-bones/12/rotation = Quaternion(-0.752728, 0.0455299, 0.0191086, 0.656477)
-bones/13/rotation = Quaternion(0.346744, 0.00113683, 0.0411437, 0.937057)
-bones/14/rotation = Quaternion(-0.714716, -0.000528909, -0.10505, 0.69148)
-bones/15/rotation = Quaternion(-0.761943, -0.0218135, -0.0127279, 0.647152)
-bones/16/rotation = Quaternion(0.373622, -0.00112406, -0.044333, 0.92652)
-bones/17/rotation = Quaternion(-0.725, -0.0165626, 0.0968214, 0.681708)
-bones/18/rotation = Quaternion(-0.330345, 2.90017e-10, 7.97555e-08, 0.94386)
-bones/23/rotation = Quaternion(-0.914342, -0.0614735, -0.119039, 0.382137)
-bones/24/rotation = Quaternion(0.874407, -0.000688023, 0.0791267, 0.478698)
-bones/25/rotation = Quaternion(-0.753122, 0.0507552, 0.0155538, 0.655736)
-bones/26/rotation = Quaternion(0.443137, 0.00623601, -0.0114283, 0.89636)
-bones/27/rotation = Quaternion(0.0333653, 3.60868e-10, -1.00791e-08, 0.999443)
-bones/28/rotation = Quaternion(0.202568, -1.02606e-09, -5.48078e-08, 0.979268)
-bones/29/rotation = Quaternion(0.129637, -6.1988e-10, -2.52486e-08, 0.991561)
-bones/30/rotation = Quaternion(-0.916332, 0.0645148, 0.152585, 0.364542)
-bones/31/rotation = Quaternion(0.878497, 0.000677024, -0.0794967, 0.471087)
-bones/32/rotation = Quaternion(-0.747537, -0.0662363, -0.0363108, 0.659911)
+bones/6/position = Vector3(-3.73454e-10, 1.55441, 0.129288)
+bones/6/rotation = Quaternion(-0.857488, -0.00115915, 0.000761055, 0.514503)
+bones/7/rotation = Quaternion(0.0249253, 0.514361, 0.85709, -0.0144432)
+bones/12/rotation = Quaternion(-0.743542, 0.037514, 0.0166751, 0.667428)
+bones/13/rotation = Quaternion(0.344278, 0.00113795, 0.0408511, 0.937978)
+bones/14/rotation = Quaternion(-0.715545, 0.005739, -0.101094, 0.69119)
+bones/15/rotation = Quaternion(-0.74558, -0.0322827, -0.0153158, 0.665457)
+bones/16/rotation = Quaternion(0.349708, -0.00113548, -0.0414955, 0.935939)
+bones/17/rotation = Quaternion(-0.718065, -0.00935294, 0.0993079, 0.688791)
+bones/18/rotation = Quaternion(-0.327804, 1.53336e-10, 8.00047e-08, 0.944746)
+bones/23/rotation = Quaternion(-0.912293, -0.0631059, -0.13604, 0.381095)
+bones/24/rotation = Quaternion(0.880639, -0.000671221, 0.0796907, 0.467038)
+bones/25/rotation = Quaternion(-0.756398, 0.0595936, 0.0257298, 0.650883)
+bones/26/rotation = Quaternion(0.44943, -0.00181208, 0.00987974, 0.893259)
+bones/27/rotation = Quaternion(0.0326108, 1.5661e-10, -7.76652e-09, 0.999468)
+bones/28/rotation = Quaternion(0.199573, -1.42232e-10, -4.99826e-08, 0.979883)
+bones/29/rotation = Quaternion(0.127671, 4.27337e-10, -3.05704e-08, 0.991817)
+bones/30/rotation = Quaternion(-0.912642, 0.0637948, 0.143284, 0.37747)
+bones/31/rotation = Quaternion(0.881571, 0.000668666, -0.0797749, 0.465262)
+bones/32/rotation = Quaternion(-0.755333, -0.0628028, -0.0300566, 0.651632)
+
+[node name="Head" parent="Armature/Skeleton3D" index="1"]
+blend_shapes/Nose = 0.698843
+blend_shapes/Happy = 0.421993
+blend_shapes/Sad = 1.0
+blend_shapes/Suprise = 0.4
+blend_shapes/Squish = 0.0998347
+blend_shapes/Stretch = 0.0998347
 
 [node name="MouthAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.998259, -0.0401616, 0.0431902, 0.0298979, -0.28664, -0.957572, 0.0508376, 0.957196, -0.28494, -0.00160972, 1.65413, 0.562768)
+transform = Transform3D(0.999498, -0.0247768, 0.0197345, 0.0121325, -0.276055, -0.961065, 0.0292599, 0.960822, -0.275616, -0.000285861, 1.66936, 0.560583)
 bone_name = "Mouth"
 bone_idx = 10
 
-[node name="Ingredient Trigger" type="Area3D" parent="Armature/Skeleton3D/MouthAttachement" index="0"]
+[node name="FedIncorrect" type="GPUParticles3D" parent="Armature/Skeleton3D/MouthAttachement" index="0"]
+transform = Transform3D(0.994491, -0.0411629, 0.0964006, -0.011744, 0.870123, 0.492696, -0.104161, -0.491114, 0.864846, -0.0550649, 0.944807, -0.566058)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e0r1l")
+draw_pass_1 = SubResource("QuadMesh_8nuwn")
+
+[node name="FedCorrect" type="GPUParticles3D" parent="Armature/Skeleton3D/MouthAttachement" index="1"]
+transform = Transform3D(0.998599, -0.014346, 0.0509402, 0.000887662, 0.966962, 0.254918, -0.0529142, -0.254516, 0.96562, -0.0182248, 0.509187, -0.222539)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e0r1l")
+draw_pass_1 = SubResource("QuadMesh_gyd14")
+
+[node name="Ingredient Trigger" type="Area3D" parent="Armature/Skeleton3D/MouthAttachement" index="2"]
 collision_layer = 0
 collision_mask = 65540
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/MouthAttachement/Ingredient Trigger" index="0"]
-transform = Transform3D(1.00003, -1.00583e-07, 3.72529e-09, 4.09782e-08, 0.931136, -0.36476, 1.10827e-07, 0.364759, 0.931136, 0.0021261, 0.211683, 0.0907015)
+transform = Transform3D(1.00004, -1.21367e-07, 2.56183e-08, 4.84288e-08, 0.990636, -0.136795, 1.35042e-07, 0.136794, 0.990636, 0.00297676, 0.348138, 0.170545)
 shape = SubResource("BoxShape3D_q270a")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Armature/Skeleton3D/MouthAttachement/Ingredient Trigger" index="1"]
-transform = Transform3D(1.00005, -2.6077e-08, -3.86499e-08, 2.04891e-08, 0.991823, 0.127951, 1.34576e-07, -0.127952, 0.991823, 0.0095447, 0.326333, -0.35825)
+transform = Transform3D(1.00005, 5.21541e-08, 2.42144e-08, -3.35276e-08, 0.661944, 0.749612, 1.59256e-07, -0.749612, 0.661945, 0.00980303, 0.140122, -0.230797)
 shape = SubResource("BoxShape3D_l7kfl")
 
-[node name="Open Mouth Trigger" type="Area3D" parent="Armature/Skeleton3D/MouthAttachement" index="1"]
+[node name="Open Mouth Trigger" type="Area3D" parent="Armature/Skeleton3D/MouthAttachement" index="3"]
 collision_layer = 0
 collision_mask = 65540
 
@@ -124,12 +209,12 @@ transform = Transform3D(1.00004, -1.86265e-07, 1.52737e-07, 5.21541e-08, 1.00004
 shape = SubResource("SphereShape3D_q270a")
 
 [node name="NoseAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.998259, -0.0316551, -0.0497635, 0.0298991, 0.998918, -0.0356453, 0.050838, 0.0340953, 0.998125, -0.0532093, 1.83672, 1.4686)
+transform = Transform3D(0.999498, -0.0128424, -0.0289562, 0.0121337, 0.999626, -0.0245215, 0.0292603, 0.0241579, 0.99928, -0.0291119, 1.86211, 1.46532)
 bone_name = "Nose"
 bone_idx = 11
 
 [node name="HeartAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.998367, 0.029312, 0.0490366, 0.0298522, 0.999501, 0.0103197, -0.0487097, 0.0117667, -0.998744, 0.0033372, 1.65287, 0.562835)
+transform = Transform3D(-0.998479, 0.0476318, 0.0277583, 0.0476281, 0.998865, -0.00079152, -0.0277644, 0.000531793, -0.999614, 0.00463782, 1.66801, 0.560558)
 bone_name = "Head_2"
 bone_idx = 7
 
@@ -137,7 +222,10 @@ bone_idx = 7
 transform = Transform3D(-0.999124, 0.000389773, -0.0418391, 0.0290282, 0.726617, -0.686429, 0.0301335, -0.687042, -0.725992, -0.0314074, -0.860434, -0.600668)
 
 [node name="Heart" parent="Armature/Skeleton3D/HeartAttachement/Heart" index="0"]
-transform = Transform3D(-1.09299, 0.000759077, 0.00564723, 0.00591043, 0.561583, 0.712198, -0.00349548, 0.712214, -0.561576, 0.00301664, 0.129344, -0.326848)
+transform = Transform3D(-0.999963, 0.00286404, 0.00816524, 0.00709135, 0.811984, 0.583636, -0.00495849, 0.583672, -0.811974, 0.00301664, 0.129344, -0.326848)
+
+[node name="HeartFill" parent="Armature/Skeleton3D/HeartAttachement/Heart/Heart" index="3"]
+instance_shader_parameters/fill_percentage = 1.0
 
 [node name="AnimationPlayer" parent="." index="1"]
 speed_scale = 1.533

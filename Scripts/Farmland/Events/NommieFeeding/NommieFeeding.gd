@@ -22,7 +22,12 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	_accept_food = false
 	
+	# He Wants ingredients
 	if not body is Ingredient:
+		return
+		
+	# He also eats Seeds
+	if not body is Seed:
 		return
 	
 	# Despawn fertilizer

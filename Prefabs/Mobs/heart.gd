@@ -7,6 +7,7 @@ signal hunger_zero
 @export_tool_button("start beating") var beating = start_heartbeat
 @export_tool_button("stop beating") var stop_beating = stop_heartbeat
 @export_tool_button("hunger") var hungerer = hunger.bind(5)
+@export_tool_button("feed") var feeeeed = feed_heart.bind(5, true)
 var is_beating: bool = false
 var heartbeat_tween: Tween
 var sway_tween: Tween
@@ -17,9 +18,7 @@ var sway_tween: Tween
 @export_range(0.2, 5.0, 0.1) var heartspeed: float = 2.0
 
 func _ready() -> void:
-	stop_hunger()
 	$Heart.scale = Vector3(1.0, 1.0, 1.0)
-	$HungerTimer.stop()
 	start_heartbeat()
 	start_sway()
 	feed_level = initial_hunger_level
@@ -93,15 +92,22 @@ func sway(sway_amount: float, sway_time: float, forward_dir: int) -> void:
 # feeing, amount is out of 100
 func feed_heart(amount: int, is_correct: bool) -> void:
 	if is_correct:
+		$Heart/FedCorrect.restart()
 		$Heart/FedCorrect.emitting = true
+		$"../../MouthAttachement/FedCorrect".restart()
+		$"../../MouthAttachement/FedCorrect".emitting = true
 	else:
+		$Heart/FedIncorrect.restart()
 		$Heart/FedIncorrect.emitting = true
+		$"../../MouthAttachement/FedIncorrect".restart()
+		$"../../MouthAttachement/FedIncorrect".emitting = true
 	
-	feed_level += amount
+	feed_level = clamp(feed_level + amount, 0, 100)
 	$Heart/HeartFill.set_instance_shader_parameter("fill_percentage", float(feed_level) * 0.01)
 	print("Feeding: ", amount, " to bobo, now at: ", feed_level)
 
 func hunger(amount: int) -> void:
+	$Heart/HeartHunger.restart()
 	$Heart/HeartHunger.emitting = true
 	var prev_feed_level: int = feed_level
 	feed_level -= amount
@@ -110,12 +116,7 @@ func hunger(amount: int) -> void:
 	# grace tick, one time the level can get below 0 
 	if feed_level < 0 and prev_feed_level < 0:
 		hunger_zero.emit()
-
-func start_hunger() -> void:
-	$HungerTimer.start(GameBase.level.tick_time)
 	
-func stop_hunger() -> void:
-	$HungerTimer.stop()
-
-func _on_hunger_timer_timeout() -> void:
-	hunger(GameBase.level.hunger_tick)
+func _on_day_cycle_manager_hour_progressed(current_hour: Variant) -> void:
+	# do a hunger tick every hour
+	hunger(float(GameBase.level.hunger_tick) * float(HubBase.difficulty))

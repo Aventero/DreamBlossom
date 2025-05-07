@@ -648,7 +648,7 @@ func _update_body_under_camera(delta : float):
 	# Position the body using the origin's position but adjusted for height
 	curr_transform.origin = Vector3(
 		origin_node.global_transform.origin.x,
-		origin_node.global_transform.origin.y - (player_height/2.0),  
+		origin_node.global_transform.origin.y - HubBase.manual_head_offset,  
 		origin_node.global_transform.origin.z
 	)
 

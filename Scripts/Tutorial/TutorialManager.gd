@@ -177,7 +177,6 @@ func _on_bobo_bobo_ate(amount: int) -> void:
 		# Blossy respawns, Textboxes dissappear
 		type_writer.should_hide_in_time = true
 		blossy.enable_respawn()
-		blossy.drop()
 		type_writer.display_text("Eine bestellung...? Suche Samen und Pflanze sie ein!")
 		
 func _input(event: InputEvent) -> void:

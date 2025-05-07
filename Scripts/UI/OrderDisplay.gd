@@ -11,3 +11,7 @@ func start_order():
 	
 	# Show order
 	order_display_ui.start_order()
+
+
+func _on_order_display_order_completed() -> void:
+	$Success.play()

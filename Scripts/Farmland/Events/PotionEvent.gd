@@ -21,6 +21,19 @@ var plant_material : ShaderMaterial
 
 var _particle_instance : ParticleCombiner
 
+func check_feasibility():
+	if not GameBase.level:
+		return
+	
+	# Brewing is on, dont delete it
+	if GameBase.level.enable_brewing:
+		return
+	
+	print("removing enable_brewing")
+	# Delete self
+	queue_free()
+
+
 func initialize():
 	# Get plants digspot
 	digspot = DigSpotLookup.get_dig_spot(self.owner)

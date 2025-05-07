@@ -1561,6 +1561,7 @@ text = "START"
 outline_size = 0
 
 [node name="Level 1" type="Node3D" parent="Level Selection"]
+process_mode = 4
 transform = Transform3D(0.842645, -0.0957896, 0.529881, 0.015297, 0.987911, 0.154264, -0.538252, -0.121884, 0.833924, -0.301091, 1.47646, -0.389511)
 visible = false
 
@@ -1596,6 +1597,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 1"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.128956, 0)
+visible = false
 text = "Shroomie
 Shovel, Watering Can"
 font_size = 28
@@ -1638,6 +1640,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 2"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.197668, 0)
+visible = false
 text = "Shroomie, Blubburu
 Shovel, Watering Can
 Weed"
@@ -1681,6 +1684,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 3"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.264345, 0)
+visible = false
 text = "Shroomie, Blubburu, Flamie
 Shovel, Watering Can,
 Scissors Weed"
@@ -1724,6 +1728,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 4"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.264345, 0)
+visible = false
 text = "Shroomie, Blubburu,
 Flamie, Shellie
 
@@ -1771,6 +1776,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 5"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.295549, 0)
+visible = false
 text = "Shroomie, Blubburu,
 Flamie, Shellie,
 Pumkie
@@ -1819,6 +1825,7 @@ shape = SubResource("SphereShape3D_81ety")
 
 [node name="Level Description" type="Label3D" parent="Level Selection/Level 6"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, -0.331595, 0)
+visible = false
 text = "Shroomie, Blubburu,
 Flamie, Shellie,
 Pumkie, Nommie

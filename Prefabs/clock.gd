@@ -43,6 +43,7 @@ func _on_day_cycle_manager_hour_progressed(current_hour: Variant) -> void:
 	print("_update", current_hour)
 	_update_clock_rotation(int(current_hour))
 	set_escape_sprite(int(current_hour))
+	$SingleTicking.play()
 
 func set_escape_sprite(current_hour: int) -> void:
 	match current_hour:
@@ -63,3 +64,4 @@ func set_escape_sprite(current_hour: int) -> void:
 
 func _on_day_cycle_manager_day_started() -> void:
 	$EscapeSprite.play()
+	$TickTack.play()

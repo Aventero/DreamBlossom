@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://c41bidhh1glm8"]
+[gd_scene load_steps=17 format=3 uid="uid://c41bidhh1glm8"]
 
 [ext_resource type="PackedScene" uid="uid://md2avb6xc53a" path="res://Models/Environment/Clock.blend" id="1_43356"]
 [ext_resource type="Script" uid="uid://c7dcob184ta6p" path="res://Prefabs/clock.gd" id="2_6e4yl"]
 [ext_resource type="Texture2D" uid="uid://c3t6cq0bpskb1" path="res://Textures/Environment/Shield.png" id="3_7tqgl"]
 [ext_resource type="Texture2D" uid="uid://db6n4xnm8xlhu" path="res://Textures/Escape.png" id="4_g6cs5"]
+[ext_resource type="AudioStream" uid="uid://cmpt24n1u65qt" path="res://Audio/Ticking.mp3" id="5_ltagh"]
+[ext_resource type="AudioStream" uid="uid://bh6q54s3dqicq" path="res://Audio/TickTack.mp3" id="6_gw821"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6cs5"]
 resource_name = "Shield"
@@ -98,3 +100,16 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_00gbo")
 frame = 6
+
+[node name="SingleTicking" type="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("5_ltagh")
+volume_db = -4.0
+unit_size = 5.0
+pitch_scale = 0.9
+
+[node name="TickTack" type="AudioStreamPlayer3D" parent="." index="5"]
+stream = ExtResource("6_gw821")
+volume_db = -5.0
+unit_size = 5.0
+pitch_scale = 0.9
+parameters/looping = true

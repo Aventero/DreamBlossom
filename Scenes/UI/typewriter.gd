@@ -11,6 +11,7 @@ signal text_completed
 ## Time it takes for it to hide (when enabled)
 @export var hide_delay: float = 5.0 
 @export var should_hide_in_time: bool = false
+@export var text_box: Sprite3D
 
 var _full_text: String = ""
 var _current_position: int = 0
@@ -33,7 +34,7 @@ func is_displaying() -> bool:
 
 # Start the typing effect with new text
 func display_text(new_text: String) -> void:
-	visible = true
+	text_box.visible = true
 	_full_text = new_text
 	_current_position = 0
 	text = ""
@@ -54,7 +55,7 @@ func _display_next_character() -> void:
 		text_completed.emit()
 
 func show_full_text() -> void:
-	visible = true
+	text_box.visible = true
 	text = _full_text
 	_current_position = _full_text.length()
 	timer.stop()
@@ -85,4 +86,4 @@ func _on_text_completed() -> void:
 		$"../../../HideTextTimer".start(hide_delay)
 
 func _on_hide_text_timer_timeout() -> void:
-	visible = false
+	text_box.visible = false

@@ -29,8 +29,9 @@ func initialize():
 	
 	# for each spawnpoint spawn a fruit
 	for child in get_children():
-		var added_fruit = fruit.instantiate()
+		var added_fruit: Fruit = fruit.instantiate()
 		child.add_child(added_fruit)
+		added_fruit.enabled = false
 		
 		added_fruit.rotation = Vector3.ZERO
 		added_fruit.fruit_event = self
@@ -44,6 +45,7 @@ func initialize():
 			var tween : Tween = create_tween()
 			tween.tween_interval(scale_length)
 			tween.tween_callback(func(): added_fruit.visible = true)
+			tween.tween_callback(func(): added_fruit.enabled = true)
 			tween.tween_property(added_fruit, "scale", initial_scale, scale_length)
 		
 		if delayed_spawn:

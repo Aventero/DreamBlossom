@@ -46,6 +46,10 @@ func _on_action_pressed(_pickable: XRToolsPickable) -> void:
 
 func enable_respawn() -> void:
 	can_respawn = true
+	if is_picked_up():
+		drop()
+	else:
+		squish().tween_callback(set_to_respawn).set_delay(0.3)
 
 func set_to_respawn() -> void:
 	squish().tween_callback(func(): 
@@ -54,4 +58,4 @@ func set_to_respawn() -> void:
 	
 func _on_dropped(pickable: Variant) -> void:
 	if can_respawn:
-		var tween = squish().tween_callback(set_to_respawn).set_delay(0.3)
+		squish().tween_callback(set_to_respawn).set_delay(0.3)

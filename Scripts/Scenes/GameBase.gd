@@ -73,10 +73,10 @@ func _load_level(level_nr : int) -> void:
 	level = load("res://Levels/Level" + str(level_nr) + ".tscn").instantiate()
 	add_child(level)
 	
-	# Conect level events
-	level.completed.connect(_on_level_complete)
+func _on_day_cycle_manager_day_ended() -> void:
+	level_complete()
 
-func _on_level_complete():
+func level_complete():
 	await get_tree().create_timer(level_complete_fade_offset).timeout
 	
 	# TODO - Trigger gorgeous confetti effect

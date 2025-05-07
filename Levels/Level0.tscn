@@ -13,9 +13,11 @@ amount = 3
 script = ExtResource("1_510fn")
 active_plants = 2
 active_tools = 0
-soil_setup = "R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R, , , , ,R,R,R,R, , , , ,R,R"
+soil_setup = " , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , "
 time_between_orders = 3.0
-tick_time = 10
+day_length = 60
+death_time = 30
+tick_time = 2
 hunger_tick = 6
 
 [node name="Drei Blubburus" type="Timer" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://joqp3jp4vecn"]
+[gd_scene load_steps=7 format=3 uid="uid://joqp3jp4vecn"]
 
 [ext_resource type="PackedScene" uid="uid://dbigenword6yp" path="res://Prefabs/UI/OrderDisplayUI.tscn" id="1_cslj7"]
 [ext_resource type="Script" uid="uid://buh4yvoyx7e0h" path="res://Scripts/UI/OrderDisplay.gd" id="1_k262u"]
+[ext_resource type="AudioStream" uid="uid://co1h3ppdwkx46" path="res://Audio/Success.mp3" id="3_4ktc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8d46"]
 transparency = 2
@@ -37,5 +38,8 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(800, 503)
 
 [node name="Order Display" parent="Order Viewport" instance=ExtResource("1_cslj7")]
+
+[node name="Success" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_4ktc0")
 
 [connection signal="order_completed" from="Order Viewport/Order Display" to="." method="_on_order_display_order_completed"]

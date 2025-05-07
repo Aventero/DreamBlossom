@@ -64,6 +64,7 @@ var _day_length: int = 300
 @export var day_length: int = 300:
 	set(value):
 		_day_length = value
+		tick_time = _day_length / 24.0
 		hunger_tick = get_hunger_tick()
 	get:
 		return _day_length
@@ -77,14 +78,10 @@ var _death_time: int = 150
 	get:
 		return _death_time
 
-var _tick_time: int = 15
 ## Seconds it takes for each hunger tick to hunger
 @export var tick_time: int = 15:
-	set(value):
-		_tick_time = value
-		hunger_tick = get_hunger_tick()
 	get:
-		return _tick_time
+		return _day_length / 24.0
 
 ## Hunger Tick per second
 @export var hunger_tick: int:
@@ -156,10 +153,6 @@ func _on_order_completed(success : bool) -> void:
 	# Update current game statistics
 	if not success:
 		Statistics.failed_orders += 1
-
-	# Check if level is completed (No more orders)
-	if get_child_count() == 1:
-		completed.emit()
 
 func is_tool_active(tool : String) -> bool:
 	match tool:

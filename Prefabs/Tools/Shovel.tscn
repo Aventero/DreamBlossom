@@ -185,6 +185,10 @@ collide_with_bodies = false
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_rioud")
 
+[node name="PullCooldown" type="Timer" parent="." index="12"]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="dropped" from="." to="." method="_on_dropped"]
 [connection signal="picked_up" from="." to="." method="_on_picked_up"]
 [connection signal="body_entered" from="SoilTrigger" to="." method="_on_soil_trigger_body_entered"]

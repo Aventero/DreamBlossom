@@ -15,8 +15,8 @@ var data : Array[GridCell]
 
 # Weed
 var current_weed_amount : int = 0
-
 var center_offset : Vector3
+var shovel_exited: bool = true
 
 func _ready():
 	get_child(1).top_level = true
@@ -107,6 +107,9 @@ func get_placement_position(cell : GridCell, _width : int) -> Vector3:
 	return to_global(local_position)
 
 func is_placement_allowed(cell : GridCell, _width : int) -> bool:
+	if not shovel_exited:
+		return false
+	
 	# Check on null reference
 	if not cell:
 		return false
@@ -228,5 +231,13 @@ func get_nearby_free_cell(cell : GridCell) -> GridCell:
 	return possible_cells[randi_range(0, possible_cells.size() - 1)]
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is Shovel:
+	if body is Shovel and $"../InsertCooldown".is_stopped() and shovel_exited:
+		$"../InsertCooldown".start()
+		shovel_exited = false
 		body.on_soil_trigger_body_entered(body)
+		body.allowed_insertion = false
+
+func _on_body_exited(body: Node3D) -> void:
+	if body is Shovel:
+		body.allowed_insertion = true
+		shovel_exited = true

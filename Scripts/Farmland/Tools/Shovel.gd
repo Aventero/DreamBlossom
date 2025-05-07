@@ -110,6 +110,11 @@ func _process(delta):
 		_handle_shovel_pull()
 
 func _handle_shovel():
+	# Pull cooldown is running
+	if not $PullCooldown.is_stopped():
+		allowed_insertion = false
+		return
+	
 	if not intersection_raycast.is_colliding() or \
 		not intersection_raycast.get_collider().is_in_group("Soil") or \
 		not _insertion_angle_allowed():
@@ -203,6 +208,8 @@ func _handle_shovel_pull():
 		_handle_complete_pull()
 
 func _handle_complete_pull():
+	$PullCooldown.start()
+	
 	var controller_pickup : XRToolsFunctionPickup = pickable_pull.get_picked_up_by()
 
 	# Spawn pull complete particles
@@ -317,7 +324,6 @@ func _shovel_soil_insert():
 func set_collider_state(state) -> void:
 	shovel_pickup_collider.disabled = state
 	
-
 func _shovel_soil_leave():
 	# Disable pull pickable
 	pickable_pull.drop()
@@ -335,6 +341,8 @@ func _shovel_soil_leave():
 	shovel_pickup_collider.disabled = false
 	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
 	freeze = false
+	
+	allowed_insertion = true
 
 func _insertion_angle_allowed():
 	if angle < 1.570796 + min_insertion_angle:
