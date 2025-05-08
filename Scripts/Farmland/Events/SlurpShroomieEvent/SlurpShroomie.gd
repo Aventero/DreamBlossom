@@ -14,11 +14,11 @@ var _particle_material : StandardMaterial3D
 
 func _ready():
 	# Decide on request potion type
-	if GameBase.level.enable_brewing:
-		var random_index = randi_range(1, Potion.TYPE.size() - 1)
-		requested_potion_type = Potion.TYPE.values()[random_index]
-	else:
-		requested_potion_type = [Potion.TYPE.RED, Potion.TYPE.GREEN, Potion.TYPE.BLUE].pick_random() # Get random potion from "base" potions
+	#if GameBase.level.enable_brewing:
+		#var random_index = randi_range(1, Potion.TYPE.size() - 1)
+		#requested_potion_type = Potion.TYPE.values()[random_index]
+	#else:
+	requested_potion_type = [Potion.TYPE.RED, Potion.TYPE.GREEN, Potion.TYPE.BLUE].pick_random() # Get random potion from "base" potions
 	
 	# Load particle material
 	var _draw_pass_dup : Mesh = slurp_particles.draw_pass_1.duplicate()

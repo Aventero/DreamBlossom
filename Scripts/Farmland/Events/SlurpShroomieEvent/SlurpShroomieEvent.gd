@@ -7,6 +7,19 @@ extends PlantEvent
 var _slurp_shroomie_amount : int = 0
 var _slurped_amount : int = 0
 
+func check_feasibility():
+	if not GameBase.level:
+		return
+	
+	# Brewing is on, dont delete it
+	if GameBase.level.enable_brewing:
+		return
+	
+	print("removing enable_brewing")
+	# Delete self
+	queue_free()
+
+
 func initialize():
 	_slurp_shroomie_amount = get_child_count()
 	
