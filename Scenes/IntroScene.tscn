@@ -76,21 +76,20 @@ shader_parameter/cloudsTexture = ExtResource("3_hwf32")
 shader_parameter/horizonSkyGradient = ExtResource("4_83s18")
 shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_6ojh6")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(-0.544493, 0.709597, -0.447214)
+shader_parameter/sun_direction = Vector3(-1.64298e-16, -0.894427, -0.447214)
 shader_parameter/day_intensity = 0.793353
 shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
-shader_parameter/sun_size = 0.08
-shader_parameter/moon_direction = Vector3(0.544493, -0.709597, -0.447214)
-shader_parameter/night_intensity = 0.0209424
+shader_parameter/sun_size = 0.0
+shader_parameter/moon_direction = Vector3(2.7383e-16, 0.894427, -0.447214)
+shader_parameter/night_intensity = 1.0
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
-shader_parameter/moon_size = 0.0
+shader_parameter/moon_size = 0.05
 
 [sub_resource type="Sky" id="Sky_v0l8j"]
 sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.793353
 sky = SubResource("Sky_v0l8j")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
 ambient_light_sky_contribution = 0.99
@@ -112,7 +111,7 @@ fog_density = 1.0
 fog_aerial_perspective = 1.0
 fog_depth_curve = 3.86374
 fog_depth_begin = 0.0
-fog_depth_end = 17.0
+fog_depth_end = 7.0
 volumetric_fog_ambient_inject = 0.61
 volumetric_fog_sky_affect = 0.167
 adjustment_saturation = 1.25
@@ -566,7 +565,7 @@ tree_root = SubResource("AnimationNodeBlendTree_p3ug8")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
 script = ExtResource("7_254s0")
-time_of_day = 14.5
+time_of_day = 4.0
 base_brightness = 0.5
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
@@ -576,10 +575,11 @@ sun_size = 0.08
 moon_size = 0.05
 sunrise_start = 5.0
 sunrise_end = 8.0
-fog_level_view = 17.0
+fog_level_view = 7.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
 transform = Transform3D(-0.634698, 0.548346, -0.544491, 0, 0.704605, 0.709594, 0.772759, 0.450378, -0.447212, 0, 0, 0)
+visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
 light_energy = 0.793353
 shadow_enabled = true
@@ -596,10 +596,8 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.447292, -0.0167532, 0.894232, 0, 0.999822, 0.0187315, -0.894388, 0.00837841, -0.447214, 0, 0, 0)
-visible = false
+transform = Transform3D(-1, 7.81931e-08, -3.90967e-08, 0, 0.447212, 0.894428, 8.74228e-08, 0.894425, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.5
 shadow_enabled = true
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
@@ -733,6 +731,7 @@ script = ExtResource("22_qfwj1")
 
 [node name="Clock2" parent="." node_paths=PackedStringArray("day_cycle_manager") instance=ExtResource("27_as1bl")]
 transform = Transform3D(0.799465, -0.600713, 2.6258e-08, 0, -4.37114e-08, -1, 0.600713, 0.799465, -3.49457e-08, 1.63551, 1.13806, -1.50909)
+visible = false
 day_cycle_manager = NodePath("../Managers/DayCycleManager")
 
 [node name="Plot" parent="." instance=ExtResource("23_gocdt")]
@@ -790,28 +789,29 @@ surface_material_override/0 = null
 surface_material_override/0 = null
 
 [node name="SmackableRocks" parent="Plot" index="3"]
-visible = false
+visible = true
 
 [node name="SmackableRocks2" parent="Plot" index="4"]
-visible = false
+visible = true
 
 [node name="Shield" parent="." instance=ExtResource("56_7eudh")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
+visible = false
 
 [node name="Chain_0" parent="Shield" index="0"]
-transform = Transform3D(0.369284, 0, 0, 0, 0.36928, -0.00123755, 0, 0.00123755, 0.36928, 0.00454826, 0.00581809, -1.2968)
+transform = Transform3D(0.369284, 0, 0, 0, 0.369281, 0.0010499, 0, -0.0010499, 0.369281, 0.00454826, 0.00581809, -1.2968)
 
 [node name="Chain_1" parent="Shield/Chain_0" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999986, -0.00502682, 0, 0.00502682, 0.999986, -0.00757694, -0.00581186, 0.712115)
+transform = Transform3D(1, 0, 0, 0, 0.999989, 0.00426462, 0, -0.00426462, 0.999989, -0.00757694, -0.00581186, 0.712115)
 
 [node name="Chain_2" parent="Shield/Chain_0/Chain_1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999977, -0.00670241, 0, 0.00670241, 0.999977, 0, -0.00568961, 0.195105)
+transform = Transform3D(1, 0, 0, 0, 0.999983, 0.00568616, 0, -0.00568616, 0.999983, 0, -0.00568961, 0.195105)
 
 [node name="Chain_3" parent="Shield/Chain_0/Chain_1/Chain_2" index="0"]
-transform = Transform3D(0.999946, -0.0100535, 3.21964e-09, 0.0100531, 0.999913, -0.00837798, 8.42247e-05, 0.00837754, 0.999965, 0, 0, 0.436437)
+transform = Transform3D(0.99996, 0.00852917, 3.09662e-09, -0.00852894, 0.999937, 0.00710768, 6.06194e-05, -0.00710741, 0.999975, 0, 0, 0.436437)
 
 [node name="Shield" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
-transform = Transform3D(2.70787, -0.0271975, 0.00272239, 0.0272236, 2.70772, -0.0272249, -0.0024487, 0.0272508, 2.70785, 0.0136763, -0.0172326, 0.316601)
+transform = Transform3D(2.7079, 0.0231166, -0.00230963, -0.0230962, 2.70779, 0.0230969, 0.00250665, -0.0230764, 2.70788, 0.0136763, -0.0172326, 0.316601)
 
 [node name="OrderDisplay" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield" index="0" instance=ExtResource("25_lxsdg")]
 transform = Transform3D(1, 2.04636e-12, 2.91038e-11, 0, 0.00378711, 0.999993, 9.9476e-13, -0.999993, 0.00378711, -0.00521426, 0.0379831, 0.674724)
@@ -822,8 +822,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
 curve = SubResource("Curve3D_7eudh")
 
 [node name="BoboPathFollow3D" type="PathFollow3D" parent="BoboPath3D" node_paths=PackedStringArray("bobo")]
-transform = Transform3D(-0.514432, 0, -0.857388, 0, 1, 0, 0.857388, 0, -0.514432, -1.22917, 8.96795e-07, -0.861993)
-progress = 17.1751
+transform = Transform3D(-0.991869, 0, -0.126299, 0, 1, 0, 0.126299, 0, -0.991869, -4.60102, 1.02182e-05, -8.23914)
+progress = 8.58755
 rotation_mode = 1
 script = ExtResource("26_4cmys")
 bobo = NodePath("Bobo")
@@ -845,58 +845,60 @@ bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
 bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
 bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
 bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
-bones/4/position = Vector3(-0.077908, 0.599558, -2.58925)
+bones/4/position = Vector3(-0.0452848, 0.580124, -2.57479)
 bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
-bones/6/position = Vector3(-8.6916e-10, 1.5565, 0.129288)
-bones/6/rotation = Quaternion(-0.856008, -0.000752398, -0.0046799, 0.516941)
-bones/7/rotation = Quaternion(0.0163241, 0.500849, 0.865211, -0.0171287)
-bones/12/rotation = Quaternion(-0.746557, 0.0258502, 0.0168288, 0.664606)
-bones/13/rotation = Quaternion(0.349783, 0.00113544, 0.0415044, 0.93591)
-bones/14/rotation = Quaternion(-0.718889, 0.0114075, -0.0978677, 0.688107)
-bones/15/rotation = Quaternion(-0.74422, -0.0353119, -0.0199994, 0.6667)
-bones/16/rotation = Quaternion(0.338105, -0.00114072, -0.0401186, 0.940252)
-bones/17/rotation = Quaternion(-0.712273, -0.0130488, 0.0977674, 0.694937)
-bones/18/rotation = Quaternion(-0.311018, 5.84891e-10, 8.01393e-08, 0.950404)
-bones/23/rotation = Quaternion(-0.921623, -0.0627678, -0.136698, 0.35775)
-bones/24/rotation = Quaternion(0.87621, -0.000683174, 0.0792899, 0.475361)
-bones/25/rotation = Quaternion(-0.747771, 0.0539381, 0.0238053, 0.661334)
-bones/26/rotation = Quaternion(0.419061, -0.0115225, 0.0259022, 0.907516)
-bones/27/rotation = Quaternion(0.0373323, -5.27078e-10, -8.60847e-09, 0.999303)
-bones/28/rotation = Quaternion(0.218575, 8.03781e-10, -5.50842e-08, 0.97582)
-bones/29/rotation = Quaternion(0.140903, 8.78258e-10, -3.00831e-08, 0.990024)
-bones/30/rotation = Quaternion(-0.921904, 0.0622895, 0.12919, 0.359892)
-bones/31/rotation = Quaternion(0.872828, 0.000692129, -0.0789837, 0.481593)
-bones/32/rotation = Quaternion(-0.744089, -0.0570214, -0.0252675, 0.665163)
+bones/6/position = Vector3(-5.55129e-10, 1.55518, 0.129288)
+bones/6/rotation = Quaternion(-0.857347, -0.00155736, 0.000859035, 0.514736)
+bones/7/rotation = Quaternion(0.0234687, 0.512103, 0.858466, -0.0153344)
+bones/12/rotation = Quaternion(-0.742977, 0.036917, 0.0174369, 0.66807)
+bones/13/rotation = Quaternion(0.342497, 0.00113875, 0.0406398, 0.938639)
+bones/14/rotation = Quaternion(-0.714922, 0.00642528, -0.100687, 0.691886)
+bones/15/rotation = Quaternion(-0.74547, -0.0308493, -0.0157883, 0.665638)
+bones/16/rotation = Quaternion(0.349537, -0.00113556, -0.0414751, 0.936004)
+bones/17/rotation = Quaternion(-0.717821, -0.0109603, 0.0984779, 0.68914)
+bones/18/rotation = Quaternion(-0.323569, 3.02715e-10, 7.99889e-08, 0.946205)
+bones/23/rotation = Quaternion(-0.914494, -0.0627991, -0.13367, 0.376682)
+bones/24/rotation = Quaternion(0.879228, -0.000675043, 0.079563, 0.46971)
+bones/25/rotation = Quaternion(-0.754387, 0.057781, 0.0243601, 0.653428)
+bones/26/rotation = Quaternion(0.440441, -0.00343663, 0.0151441, 0.897647)
+bones/27/rotation = Quaternion(0.0342503, -1.82405e-10, -8.84485e-09, 0.999413)
+bones/28/rotation = Quaternion(0.206189, -2.22696e-10, -5.03334e-08, 0.978512)
+bones/29/rotation = Quaternion(0.132065, 3.51227e-10, -3.1755e-08, 0.991241)
+bones/30/rotation = Quaternion(-0.914977, 0.0636028, 0.142482, 0.372116)
+bones/31/rotation = Quaternion(0.880283, 0.000672185, -0.0796583, 0.467714)
+bones/32/rotation = Quaternion(-0.752904, -0.0618839, -0.0298756, 0.654534)
 
 [node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
-blend_shapes/Nose = 0.0
+blend_shapes/Nose = 0.7
 blend_shapes/Happy = 0.4
+blend_shapes/Anger = 0.000707912
 blend_shapes/Sad = 0.0
 blend_shapes/Suprise = 0.0
-blend_shapes/LookVertical = -0.630357
-blend_shapes/LookHorizontal = 0.741273
-blend_shapes/Squish = 0.0
-blend_shapes/Stretch = -0.00841279
+blend_shapes/LookVertical = 0.002645
+blend_shapes/LookHorizontal = 0.181181
+blend_shapes/Squish = 0.1
+blend_shapes/Stretch = 0.1
 
 [node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.997788, 0.0638995, 0.0183212, 0.0358751, -0.285604, -0.957676, -0.0559625, 0.956214, -0.287264, -0.00223446, 1.66546, 0.562098)
+transform = Transform3D(0.979265, 0.20143, -0.0215769, 0.0366604, -0.280956, -0.95902, -0.199237, 0.938344, -0.282515, -0.00117123, 1.66966, 0.561891)
 
 [node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.997788, -0.0338587, 0.0572053, 0.0358762, 0.998757, -0.0346169, -0.0559621, 0.0365926, 0.997762, 0.0419846, 1.84894, 1.46814)
+transform = Transform3D(0.979265, -0.0299682, 0.200353, 0.0366615, 0.998884, -0.0297804, -0.199237, 0.0365082, 0.979271, 0.172744, 1.85752, 1.45127)
 
 [node name="HeartAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.998028, 0.0243741, -0.0578414, 0.0238761, 0.999672, 0.00928665, 0.0580487, 0.00788732, -0.998282, 0.00269887, 1.66423, 0.561637)
+transform = Transform3D(-0.979306, 0.0235222, -0.201013, 0.0230998, 0.999723, 0.00444737, 0.201062, -0.000288027, -0.979578, 0.00364653, 1.66844, 0.560731)
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement" index="0"]
 transform = Transform3D(-0.999124, 0.00571593, -0.0414486, 0.0290282, 0.808133, -0.588284, 0.0301334, -0.588972, -0.807591, -0.0342545, -0.814063, -0.739737)
 
 [node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" index="0"]
-transform = Transform3D(-1, -1.03907e-07, -5.74502e-08, -1.11586e-07, 0.657153, 0.753757, -4.0567e-08, 0.753757, -0.657153, 0, 0.00293847, -0.373681)
+transform = Transform3D(-1, -2.20438e-07, 7.12655e-08, -1.3842e-07, 0.815182, 0.579205, -1.85773e-07, 0.579205, -0.815182, 0, 0.00293847, -0.373681)
 
 [node name="ShieldHitTimer" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="3"]
 wait_time = 2.7
 
 [node name="ToolArea" type="Node3D" parent="."]
+visible = false
 
 [node name="ToolTable" parent="ToolArea" instance=ExtResource("32_e8j2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
@@ -907,6 +909,7 @@ script = ExtResource("33_gr3yr")
 
 [node name="ShroomieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("34_k5cle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.886491, 1.31364, 0.402015)
+visible = false
 freeze = true
 ranged_grab_method = 0
 second_hand_grab = 0
@@ -918,29 +921,34 @@ second_hand_grab = 0
 
 [node name="FlamieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("36_2a8rh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.890626, 1.30993, 0.732673)
+visible = false
 freeze_mode = 1
 second_hand_grab = 0
 
 [node name="ShellieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("37_gxg4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.896495, 1.0968, 0.397698)
+visible = false
 freeze = true
 ranged_grab_method = 0
 second_hand_grab = 0
 
 [node name="PumkieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("38_nl5rc")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.895469, 1.0949, 0.570088)
+visible = false
 freeze = true
 ranged_grab_method = 0
 second_hand_grab = 0
 
 [node name="NommieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("39_cq2gk")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.896862, 1.09555, 0.734646)
+visible = false
 freeze = true
 ranged_grab_method = 0
 second_hand_grab = 0
 
 [node name="Variable Tools" type="Node3D" parent="ToolArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
+visible = false
 script = ExtResource("40_5dtw0")
 
 [node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("41_i6yab")]
@@ -955,6 +963,7 @@ second_hand_grab = 0
 
 [node name="Cauldron" parent="ToolArea" instance=ExtResource("44_5sfko")]
 transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
+visible = false
 
 [node name="Fixed Tools" type="Node3D" parent="ToolArea"]
 
@@ -969,6 +978,7 @@ transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 
 ranged_grab_method = 0
 
 [node name="Potions" type="Node3D" parent="ToolArea"]
+visible = false
 
 [node name="PotionRedSnap" type="Area3D" parent="ToolArea/Potions"]
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)

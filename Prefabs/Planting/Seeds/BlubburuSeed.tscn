@@ -169,7 +169,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.00101324, 0)
 shape = SubResource("SphereShape3D_ahffg")
 
 [node name="Model" type="Node3D" parent="." index="1"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.016, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.016, 0)
 
 [node name="Sphere2" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_7utqo")
@@ -191,7 +191,7 @@ skeleton = NodePath("")
 visible = true
 
 [node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.016, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.016, 0)
 mesh = SubResource("ArrayMesh_gsu5u")
 skeleton = NodePath("../../Model/Sphere2")
 surface_material_override/0 = ExtResource("3_5wlqc")

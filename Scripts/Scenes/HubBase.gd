@@ -63,7 +63,7 @@ func show_level_x(level: int, show: bool = true):
 		var level_node = get_node("Level Selection/Level " + str(level))
 		level_node.visible = show
 		if show:
-			level_node.process_mode = Node.PROCESS_MODE_INHERIT
+			level_node.process_mode = Node.PROCESS_MODE_ALWAYS
 		else:
 			level_node.process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -73,16 +73,21 @@ func _input(event: InputEvent) -> void:
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			var number_pressed = event.keycode - KEY_1 + 1
 			level_completed = number_pressed
-			print("Number pressed: ", level_completed)
 		if event.keycode == KEY_PLUS:
 			manual_head_offset += 0.05
 		if event.keycode == KEY_MINUS:
 			manual_head_offset -= 0.05
 
 func _on_load_scene_button_pressed(button : LevelButton) -> void:
-	load_scene("res://Scenes/IntroScene.tscn", {
-		"level": button.level_id
-	})
+	print("load:", button.level_id)
+	if button.level_id == 0:
+		load_scene("res://Scenes/IntroScene.tscn", {
+			"level": button.level_id
+		})
+	else:
+		load_scene("res://Scenes/GameScene.tscn", {
+			"level": button.level_id
+		})
 
 func _on_difficulty_button_button_pressed(button: DifficultyButton) -> void:
 	difficulty = button.difficulty_setting

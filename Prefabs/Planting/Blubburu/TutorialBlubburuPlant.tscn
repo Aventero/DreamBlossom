@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dyxeqetaldjif" path="res://Models/Plants/Blubburu/Blubburu.blend" id="3_tiyxu"]
 [ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_k0cqm"]
 [ext_resource type="Script" uid="uid://jxx8g0njrqp2" path="res://Scripts/Farmland/Events/EmptyEvent.gd" id="5_5feki"]
+[ext_resource type="Texture2D" uid="uid://ck2kxmaj3vdag" path="res://Textures/EventIcons/Fuit.png" id="8_5feki"]
 [ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="31_ex7s7"]
 [ext_resource type="PackedScene" uid="uid://mfpdeks8empd" path="res://Prefabs/Planting/Fruits/BlubburuFruit.tscn" id="32_u2xcj"]
-[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="33_c630p"]
 [ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="34_6yc03"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu4pi"]
@@ -4139,9 +4139,9 @@ libraries = {
 autoplay = "Grow"
 
 [node name="IconDisplay" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.693585, 1.50186e-08)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.693585, 1.50186e-08)
 
-[node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
+[node name="Stage1" type="Node3D" parent="." index="4" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
 animation_time = 10.0
 animation_name = "Grow"
@@ -4151,7 +4151,7 @@ icon_position = Vector3(0, 0.516, 0)
 script = ExtResource("5_5feki")
 metadata/_custom_type_script = "uid://c0fhsk44wqxef"
 
-[node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
+[node name="Stage2" type="Node3D" parent="." index="5" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
 animation_time = 12.0
 animation_name = "Grow"
@@ -4161,7 +4161,7 @@ icon_position = Vector3(0, 0.694, 0)
 script = ExtResource("5_5feki")
 metadata/_custom_type_script = "uid://c0fhsk44wqxef"
 
-[node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
+[node name="Stage Fruit" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
 animation_time = 8.0
 animation_name = "Grow"
@@ -4174,7 +4174,7 @@ delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
 despawn_models = [NodePath("../../Model/Blubburu"), NodePath("../../Model/Blubburu2"), NodePath("../../Model/Blubburu3")]
-icon_texture = ExtResource("33_c630p")
+icon_texture = ExtResource("8_5feki")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
 transform = Transform3D(-0.844167, 0.114116, 0.523793, 0.0871183, 0.993295, -0.0759994, -0.528954, -0.0185242, -0.848448, -0.11376, 0.179817, -0.07513)
@@ -4185,7 +4185,7 @@ transform = Transform3D(0.685892, 0.0231232, 0.727336, -0.0354139, 0.999371, 0.0
 [node name="Spawnpoint 3" type="Node3D" parent="Stage Fruit/FruitEvent" index="2"]
 transform = Transform3D(0.58149, 0.104392, -0.806828, -0.212299, 0.976842, -0.0266168, 0.785365, 0.186766, 0.590187, 0.0897533, 0.171529, 0.113272)
 
-[node name="Stage Death" type="Node3D" parent="." index="8" groups=["Stage"]]
+[node name="Stage Death" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_k0cqm")
 animation_name = "Grow"
 should_play_animation = false

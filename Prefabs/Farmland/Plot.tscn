@@ -994,6 +994,7 @@ shape = SubResource("ConcavePolygonShape3D_a8kl7")
 
 [node name="SmackableRocks" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.544953, 0.826108, -0.0088951)
+visible = false
 
 [node name="Rocks_001" type="MeshInstance3D" parent="SmackableRocks"]
 transform = Transform3D(-0.0212765, 0, 0.0637144, 0, 0.067173, 0, -0.0637144, 0, -0.0212765, 0.244418, 0, -0.313046)
@@ -1022,6 +1023,7 @@ skeleton = NodePath("")
 
 [node name="SmackableRocks2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.207145, 0.826108, 0.00380212)
+visible = false
 
 [node name="Rocks_001" type="MeshInstance3D" parent="SmackableRocks2"]
 transform = Transform3D(7.89617e-09, 0, 0.0441586, 0, 0.0441586, 0, -0.0441586, 0, 7.89617e-09, 0.0832546, 0, -0.349012)

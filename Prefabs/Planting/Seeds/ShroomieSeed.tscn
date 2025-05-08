@@ -66,12 +66,15 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.016, 0)
 shape = SubResource("ConvexPolygonShape3D_2u0tf")
 
 [node name="Model" type="MeshInstance3D" parent="." index="1"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.0155373, 0)
+transform = Transform3D(0.545, 0, 0, 0, 0.545, 0, 0, 0, 0.545, 0, -0.0155373, 0)
 mesh = SubResource("ArrayMesh_4ge1t")
 skeleton = NodePath("")
 
+[node name="XRToolsHighlightVisible" parent="." index="2"]
+visible = true
+
 [node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.0155373, 0)
+transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, -0.0080378, 0)
 mesh = SubResource("ArrayMesh_wo2ye")
 skeleton = NodePath("../../Model")
 surface_material_override/0 = ExtResource("3_sl1ta")

@@ -27,7 +27,6 @@ func check_feasibility():
 	# Delete self
 	queue_free()
 
-
 func initialize():
 	_slurp_shroomie_amount = get_child_count()
 	requested_potion_type = [Potion.TYPE.RED, Potion.TYPE.GREEN, Potion.TYPE.BLUE].pick_random()

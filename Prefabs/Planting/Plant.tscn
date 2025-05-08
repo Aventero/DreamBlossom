@@ -1,17 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0jc6djndpovy"]
+[gd_scene load_steps=3 format=3 uid="uid://c0jc6djndpovy"]
 
 [ext_resource type="Script" uid="uid://bai6ikll0dbnu" path="res://Scripts/Farmland/Plants/Plant.gd" id="1_unpe5"]
 [ext_resource type="Script" uid="uid://c8oa3t0eadndj" path="res://Scripts/Farmland/IconDisplay.gd" id="6_fcbyu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjk1"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-shading_mode = 0
-texture_filter = 0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4tofu"]
 
 [node name="Plant" type="Node3D"]
 script = ExtResource("1_unpe5")
@@ -22,23 +12,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182204, 0)
 [node name="StageTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="IconDisplay" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.35, 0)
-material_override = SubResource("StandardMaterial3D_pnjk1")
+[node name="IconDisplay" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57974, 0)
+pixel_size = 0.006
+axis = 1
+texture_filter = 2
 script = ExtResource("6_fcbyu")
-
-[node name="IconViewport" type="SubViewport" parent="."]
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(64, 83)
-
-[node name="Icon" type="TextureRect" parent="IconViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_4tofu")
-stretch_mode = 2
 
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

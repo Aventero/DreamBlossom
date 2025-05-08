@@ -1,142 +1,220 @@
-[gd_scene load_steps=78 format=4 uid="uid://fnefk1snbbap"]
+[gd_scene load_steps=104 format=4 uid="uid://6gttlv5plpcj"]
 
-[ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_r2msa"]
-[ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_ktote"]
-[ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="2_oidr1"]
-[ext_resource type="Texture2D" uid="uid://u877wgbu7hwa" path="res://Textures/Environment/Sky/Clouds.png" id="3_hcn1d"]
-[ext_resource type="Script" uid="uid://d1i3wjud78rmq" path="res://Scenes/DayNightCycle.gd" id="4_ko70n"]
-[ext_resource type="Texture2D" uid="uid://bkqeqguoix2cy" path="res://Textures/Shader/SkyHorizonGradient.png" id="4_o7bce"]
-[ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="5_n3w7w"]
-[ext_resource type="Texture2D" uid="uid://gsay7dt66edb" path="res://Textures/Environment/Sky/NightSky.png" id="5_ynlnb"]
-[ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="6_8t4s2"]
-[ext_resource type="Script" uid="uid://btis0u8sp58ql" path="res://Scripts/Utility/TextureLoader.gd" id="7_q25ib"]
-[ext_resource type="Script" uid="uid://btn01r75hgk22" path="res://Scripts/Cooking/IngredientTexture.gd" id="8_f24wb"]
-[ext_resource type="Texture2D" uid="uid://bbg826soj8ajf" path="res://Textures/Fruits/Shroomie/ShroomieIcon.png" id="9_rlf8w"]
-[ext_resource type="Texture2D" uid="uid://s2rpgvgaadg1" path="res://Textures/Fruits/Blubburu/BlubburuIcon.png" id="10_bopbb"]
-[ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/Flamie/FlamieIcon.png" id="11_q2ehd"]
-[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie/ShellieIcon.png" id="12_o21bg"]
-[ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/Pumkie/PumkieIcon.png" id="13_1nya5"]
-[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="13_cesqi"]
-[ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/Nommie/NommieIcon.png" id="14_ffiwl"]
-[ext_resource type="PackedScene" uid="uid://c1nll5jy2q080" path="res://Prefabs/Cooking/RecipeManager.tscn" id="16_jka1y"]
-[ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="17_1ewji"]
-[ext_resource type="Script" uid="uid://dqkwbmlcc4wdd" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="18_f3skm"]
-[ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="21_3pn3s"]
-[ext_resource type="Script" uid="uid://dbsc3hppcskh1" path="res://Scripts/Statistics.gd" id="22_a16c0"]
-[ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="22_s8pn7"]
-[ext_resource type="Script" uid="uid://bx3mxb3x0bxt7" path="res://Scripts/Farmland/Seeds/SeedBagsEnabler.gd" id="22_wos47"]
-[ext_resource type="PackedScene" uid="uid://c3tbx03ebxa0h" path="res://Prefabs/Farmland/ItemBags/SeedBags/BlubburuSeedBag.tscn" id="24_yqt5i"]
-[ext_resource type="PackedScene" uid="uid://bf313parhvyeb" path="res://Prefabs/Farmland/ItemBags/SeedBags/FlamieSeedBag.tscn" id="25_7iamt"]
-[ext_resource type="PackedScene" uid="uid://dno7emojpbyb3" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShellieSeedBag.tscn" id="26_1y0nt"]
-[ext_resource type="PackedScene" uid="uid://qfk5xbklb4np" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShroomieSeedBag.tscn" id="27_2vc3u"]
-[ext_resource type="PackedScene" uid="uid://cqjew7ckyr6bj" path="res://Prefabs/Farmland/ItemBags/SeedBags/PumkieSeedBag.tscn" id="27_h6dsn"]
-[ext_resource type="PackedScene" uid="uid://buxsxfl08780x" path="res://Prefabs/Farmland/ItemBags/SeedBags/NommieSeedBag.tscn" id="28_fuv11"]
-[ext_resource type="Script" uid="uid://kymhimjjtd0k" path="res://Scripts/Farmland/Tools/ToolEnabler.gd" id="29_n5npg"]
-[ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="30_r4hcs"]
-[ext_resource type="PackedScene" uid="uid://cva4637jdtsn2" path="res://Prefabs/Planting/Fruits/ShroomieFruit.tscn" id="31_1qxux"]
-[ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="31_yrpf0"]
-[ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="33_cn155"]
-[ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="34_opvkw"]
-[ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="36_eqljc"]
-[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="37_0pgb5"]
-[ext_resource type="PackedScene" uid="uid://bxokdwcvqi6f2" path="res://realbobo.tscn" id="38_1hlk4"]
-[ext_resource type="Texture2D" uid="uid://w6eurr5p0d0m" path="res://Textures/Environment/Rocks.png" id="38_esbj3"]
-[ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="39_43inh"]
-[ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="40_1g7i3"]
-[ext_resource type="Script" uid="uid://cnq25saegbvnv" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="47_1c8xm"]
-[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="47_5mn04"]
-[ext_resource type="PackedScene" uid="uid://dedweoe8jfunb" path="res://Scenes/Environment.tscn" id="48_ai1t1"]
-[ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="51_fasii"]
-[ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="51_nckfo"]
-[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="52_vtd61"]
+[ext_resource type="Script" uid="uid://d0bjmyp8y3dru" path="res://Scripts/Scenes/GameBase.gd" id="1_8kd31"]
+[ext_resource type="Shader" uid="uid://blghrxradoasv" path="res://Shader/Sky/DayNightShader.gdshader" id="2_mev8l"]
+[ext_resource type="Texture2D" uid="uid://u877wgbu7hwa" path="res://Textures/Environment/Sky/Clouds.png" id="3_wcenn"]
+[ext_resource type="Texture2D" uid="uid://bkqeqguoix2cy" path="res://Textures/Shader/SkyHorizonGradient.png" id="4_p5hnb"]
+[ext_resource type="Texture2D" uid="uid://gsay7dt66edb" path="res://Textures/Environment/Sky/NightSky.png" id="5_6gdqy"]
+[ext_resource type="PackedScene" uid="uid://cfjtxpaws0vq1" path="res://Prefabs/Player.tscn" id="6_ujfjq"]
+[ext_resource type="Script" uid="uid://d1i3wjud78rmq" path="res://Scenes/DayNightCycle.gd" id="7_uvgqy"]
+[ext_resource type="Script" uid="uid://btis0u8sp58ql" path="res://Scripts/Utility/TextureLoader.gd" id="8_5jhr0"]
+[ext_resource type="Script" uid="uid://btn01r75hgk22" path="res://Scripts/Cooking/IngredientTexture.gd" id="9_aq8tt"]
+[ext_resource type="Texture2D" uid="uid://bbg826soj8ajf" path="res://Textures/Fruits/Shroomie/ShroomieIcon.png" id="10_me2ev"]
+[ext_resource type="Texture2D" uid="uid://s2rpgvgaadg1" path="res://Textures/Fruits/Blubburu/BlubburuIcon.png" id="11_w8j51"]
+[ext_resource type="Texture2D" uid="uid://bgq736ou4kxmi" path="res://Textures/Fruits/Flamie/FlamieIcon.png" id="12_cuml4"]
+[ext_resource type="Texture2D" uid="uid://bfkhda820dl3e" path="res://Textures/Fruits/Shellie/ShellieIcon.png" id="13_grg0d"]
+[ext_resource type="Texture2D" uid="uid://j7wkydhbu5uy" path="res://Textures/Fruits/Pumkie/PumkieIcon.png" id="14_j10ei"]
+[ext_resource type="Texture2D" uid="uid://cqvb0560l3ial" path="res://Textures/Fruits/Nommie/NommieIcon.png" id="15_uwlof"]
+[ext_resource type="PackedScene" uid="uid://ckgm33aev62y8" path="res://Prefabs/Tools/ReturnManager.tscn" id="19_bmduy"]
+[ext_resource type="PackedScene" uid="uid://b3fsieu2raumu" path="res://Prefabs/Farmland/Weed/WeedManager.tscn" id="20_xb52p"]
+[ext_resource type="PackedScene" uid="uid://c1nll5jy2q080" path="res://Prefabs/Cooking/RecipeManager.tscn" id="21_w3rys"]
+[ext_resource type="Script" uid="uid://c0s6tv82jfsxm" path="res://Scenes/bobo_manager.gd" id="22_gnabl"]
+[ext_resource type="PackedScene" uid="uid://bpbhf76wqmjhw" path="res://Prefabs/InactivityManager.tscn" id="22_rlto2"]
+[ext_resource type="PackedScene" uid="uid://drynbtcx7drpc" path="res://Prefabs/KorikoManager.tscn" id="23_ecpul"]
+[ext_resource type="Script" uid="uid://cngyodr2rhism" path="res://Scripts/Utility/DayCycleManager.gd" id="24_0wleh"]
+[ext_resource type="Script" uid="uid://dqkwbmlcc4wdd" path="res://Scripts/Farmland/Digspot/DigSpotLookup.gd" id="25_l23ti"]
+[ext_resource type="Script" uid="uid://dbsc3hppcskh1" path="res://Scripts/Statistics.gd" id="26_q2poh"]
+[ext_resource type="PackedScene" uid="uid://c41bidhh1glm8" path="res://clock_new.tscn" id="27_r5dcc"]
+[ext_resource type="PackedScene" uid="uid://dlb878yj7axv0" path="res://Prefabs/Farmland/Plot.tscn" id="28_yqrlq"]
+[ext_resource type="PackedScene" uid="uid://cuechsdt8ob0m" path="res://Prefabs/shield.tscn" id="29_x6i4p"]
+[ext_resource type="PackedScene" uid="uid://joqp3jp4vecn" path="res://Prefabs/Bobo/OrderDisplay.tscn" id="30_1cw5n"]
+[ext_resource type="Script" uid="uid://flheggjts21a" path="res://Scripts/Tutorial/PathFollower.gd" id="31_wf8fi"]
+[ext_resource type="PackedScene" uid="uid://bxokdwcvqi6f2" path="res://realbobo.tscn" id="32_3hygu"]
+[ext_resource type="PackedScene" uid="uid://vi0jxt60kpxn" path="res://Prefabs/ToolTable.tscn" id="33_o3r0f"]
+[ext_resource type="Script" uid="uid://bx3mxb3x0bxt7" path="res://Scripts/Farmland/Seeds/SeedBagsEnabler.gd" id="34_7t7su"]
+[ext_resource type="PackedScene" uid="uid://qfk5xbklb4np" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShroomieSeedBag.tscn" id="35_q6auh"]
+[ext_resource type="PackedScene" uid="uid://c3tbx03ebxa0h" path="res://Prefabs/Farmland/ItemBags/SeedBags/BlubburuSeedBag.tscn" id="36_55lvi"]
+[ext_resource type="PackedScene" uid="uid://bf313parhvyeb" path="res://Prefabs/Farmland/ItemBags/SeedBags/FlamieSeedBag.tscn" id="37_aptor"]
+[ext_resource type="PackedScene" uid="uid://dno7emojpbyb3" path="res://Prefabs/Farmland/ItemBags/SeedBags/ShellieSeedBag.tscn" id="38_g56nx"]
+[ext_resource type="PackedScene" uid="uid://cqjew7ckyr6bj" path="res://Prefabs/Farmland/ItemBags/SeedBags/PumkieSeedBag.tscn" id="39_hg6sq"]
+[ext_resource type="PackedScene" uid="uid://buxsxfl08780x" path="res://Prefabs/Farmland/ItemBags/SeedBags/NommieSeedBag.tscn" id="40_hdnu8"]
+[ext_resource type="Script" uid="uid://kymhimjjtd0k" path="res://Scripts/Farmland/Tools/ToolEnabler.gd" id="41_qfbde"]
+[ext_resource type="PackedScene" uid="uid://b3atgcxkd78m4" path="res://Prefabs/Tools/Scissors.tscn" id="42_lcad3"]
+[ext_resource type="PackedScene" uid="uid://b8s3i47fse05c" path="res://Prefabs/Tools/MusicBox.tscn" id="43_tfr82"]
+[ext_resource type="PackedScene" uid="uid://baujfubj4ms61" path="res://Prefabs/Tools/Pickaxe.tscn" id="44_kws8j"]
+[ext_resource type="PackedScene" uid="uid://c78a1jfo7knpf" path="res://Prefabs/Brewing/Cauldron.tscn" id="45_u3eed"]
+[ext_resource type="PackedScene" uid="uid://cq7rntr2jsnlp" path="res://Prefabs/Tools/Shovel.tscn" id="46_cc1ug"]
+[ext_resource type="PackedScene" uid="uid://u1lj0ge0eu0v" path="res://Prefabs/Tools/WateringCan.tscn" id="47_4qnjj"]
+[ext_resource type="Script" uid="uid://cnq25saegbvnv" path="res://addons/godot-xr-tools/objects/snap_zone.gd" id="48_ka0r3"]
+[ext_resource type="PackedScene" uid="uid://cgb3ju2h2oipm" path="res://Prefabs/Brewing/Potion.tscn" id="49_7wo3f"]
+[ext_resource type="PackedScene" uid="uid://f2tflbsm5sd7" path="res://Prefabs/Cooking/CookingChest.tscn" id="50_33wmi"]
+[ext_resource type="PackedScene" uid="uid://dc0ufw1mg1d1g" path="res://Prefabs/Cooking/CookButton.tscn" id="51_kqels"]
+[ext_resource type="PackedScene" uid="uid://doufuc3rcvke" path="res://Prefabs/Cooking/RecipeBook.tscn" id="52_8fg1b"]
+[ext_resource type="PackedScene" uid="uid://cgbntkrrppll8" path="res://Prefabs/Deco/Candle.tscn" id="53_h2og8"]
+[ext_resource type="Texture2D" uid="uid://w6eurr5p0d0m" path="res://Textures/Environment/Rocks.png" id="54_ta4ro"]
+[ext_resource type="PackedScene" uid="uid://bqc273c7ufm2u" path="res://Prefabs/RealEnvironemtn.tscn" id="58_0pul7"]
+[ext_resource type="Texture2D" uid="uid://b5s1rlhd0g2pf" path="res://Textures/Environment/EnvRocks.png" id="59_c70py"]
+[ext_resource type="AudioStream" uid="uid://dfu8si1qpigxo" path="res://Audio/atmo-forest-wind-01.mp3" id="60_3pyjn"]
+[ext_resource type="AudioStream" uid="uid://pj75rsu18v4c" path="res://Audio/atmo-nature-forest-daytime-breeze-02.mp3" id="61_i47ef"]
 
 [sub_resource type="Gradient" id="Gradient_jxdvm"]
-offsets = PackedFloat32Array(0, 0.266667, 0.346032, 0.438095, 0.514286, 0.584127, 0.71746, 0.863492, 1)
-colors = PackedColorArray(0.0629985, 0.0878118, 0.244211, 1, 0.0084837, 0.0255356, 0.15296, 1, 0.018468, 0.0209527, 0.0947653, 1, 0.0980707, 0.0467364, 0.391297, 1, 0.504021, 0.0873909, 0.131443, 1, 0.774792, 0.502405, 0.0571394, 1, 0.0948898, 0.0612798, 0.3274, 1, 0.16329, 0.108322, 0.591325, 1, 0, 0.193019, 0.38345, 1)
+offsets = PackedFloat32Array(0, 0.224638, 0.327536, 0.438095, 0.514286, 0.584127, 0.71746, 0.849275, 1)
+colors = PackedColorArray(0.0548005, 0.0778889, 0.223487, 1, 0.0084837, 0.0255356, 0.15296, 1, 0.018468, 0.0209527, 0.0947653, 1, 0.0980707, 0.0467364, 0.391297, 1, 0.504021, 0.0873909, 0.131443, 1, 0.774792, 0.502405, 0.0571394, 1, 0.0948898, 0.0612798, 0.3274, 1, 0.16329, 0.108322, 0.591325, 1, 0, 0.193019, 0.38345, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_q02xl"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ojh6"]
 gradient = SubResource("Gradient_jxdvm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5puty"]
-shader = ExtResource("2_ktote")
-shader_parameter/nightSkyTexture = ExtResource("5_ynlnb")
-shader_parameter/cloudsTexture = ExtResource("3_hcn1d")
-shader_parameter/horizonSkyGradient = ExtResource("4_o7bce")
-shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_q02xl")
+shader = ExtResource("2_mev8l")
+shader_parameter/nightSkyTexture = ExtResource("5_6gdqy")
+shader_parameter/cloudsTexture = ExtResource("3_wcenn")
+shader_parameter/horizonSkyGradient = ExtResource("4_p5hnb")
+shader_parameter/baseSkyGradient = SubResource("GradientTexture1D_6ojh6")
 shader_parameter/day_sky_color = Color(0.458684, 0.603196, 0.878366, 1)
-shader_parameter/sun_direction = Vector3(0.826343, -0.342282, -0.447214)
-shader_parameter/day_intensity = 0.92388
-shader_parameter/sun_color = Color(16.757, 15.135, 14.595, 1)
+shader_parameter/sun_direction = Vector3(-1.64298e-16, -0.894427, -0.447214)
+shader_parameter/day_intensity = 0.793353
+shader_parameter/sun_color = Color(22.0078, 16.0588, 9.40392, 1)
 shader_parameter/sun_size = 0.0
-shader_parameter/moon_direction = Vector3(-0.826343, 0.342282, -0.447214)
-shader_parameter/night_intensity = 0.382683
+shader_parameter/moon_direction = Vector3(2.7383e-16, 0.894427, -0.447214)
+shader_parameter/night_intensity = 1.0
 shader_parameter/moon_color = Color(22.703, 20.54, 51.352, 1)
-shader_parameter/moon_size = 0.06
+shader_parameter/moon_size = 0.05
 
-[sub_resource type="Sky" id="Sky_eqxy8"]
+[sub_resource type="Sky" id="Sky_v0l8j"]
 sky_material = SubResource("ShaderMaterial_5puty")
 
 [sub_resource type="Environment" id="Environment_30re5"]
 background_mode = 2
-background_energy_multiplier = 0.75
-sky = SubResource("Sky_eqxy8")
+sky = SubResource("Sky_v0l8j")
 ambient_light_color = Color(0.425462, 0.593633, 0.976649, 1)
-ambient_light_sky_contribution = 0.9
+ambient_light_sky_contribution = 0.99
+reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 5.79
-glow_strength = 1.53
+glow_intensity = 1.8
+glow_strength = 1.3
 glow_blend_mode = 1
-glow_hdr_threshold = 2.72
-glow_hdr_scale = 2.24
+glow_hdr_threshold = 2.0
+glow_hdr_scale = 1.0
+glow_hdr_luminance_cap = 2.0
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(7.09929e-07, 0.24992, 0.264099, 1)
-fog_light_energy = 0.0
+fog_light_color = Color(0.038849, 0.0165402, 0.167356, 1)
+fog_sun_scatter = 0.03
 fog_density = 1.0
-fog_aerial_perspective = 0.5
-fog_sky_affect = 0.0
-fog_depth_curve = 0.366018
-fog_depth_begin = 5.0
-fog_depth_end = 15.0
+fog_aerial_perspective = 1.0
+fog_depth_curve = 3.86374
+fog_depth_begin = 0.0
+fog_depth_end = 7.0
+volumetric_fog_ambient_inject = 0.61
+volumetric_fog_sky_affect = 0.167
 adjustment_saturation = 1.25
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gnabl"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3m7m8"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6yhpj"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_L", "Armature/Skeleton3D:Little_Intermediate_L", "Armature/Skeleton3D:Little_Metacarpal_L", "Armature/Skeleton3D:Little_Proximal_L", "Armature/Skeleton3D:Middle_Distal_L", "Armature/Skeleton3D:Middle_Intermediate_L", "Armature/Skeleton3D:Middle_Metacarpal_L", "Armature/Skeleton3D:Middle_Proximal_L", "Armature/Skeleton3D:Ring_Distal_L", "Armature/Skeleton3D:Ring_Intermediate_L", "Armature/Skeleton3D:Ring_Metacarpal_L", "Armature/Skeleton3D:Ring_Proximal_L", "Armature/Skeleton3D:Thumb_Distal_L", "Armature/Skeleton3D:Thumb_Metacarpal_L", "Armature/Skeleton3D:Thumb_Proximal_L", "Armature/Skeleton:Little_Distal_L", "Armature/Skeleton:Little_Intermediate_L", "Armature/Skeleton:Little_Proximal_L", "Armature/Skeleton:Middle_Distal_L", "Armature/Skeleton:Middle_Intermediate_L", "Armature/Skeleton:Middle_Proximal_L", "Armature/Skeleton:Ring_Distal_L", "Armature/Skeleton:Ring_Intermediate_L", "Armature/Skeleton:Ring_Proximal_L", "Armature/Skeleton:Thumb_Distal_L", "Armature/Skeleton:Thumb_Proximal_L"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yola1"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_btbwo"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_L", "Armature/Skeleton3D:Index_Intermediate_L", "Armature/Skeleton3D:Index_Metacarpal_L", "Armature/Skeleton3D:Index_Proximal_L", "Armature/Skeleton:Index_Distal_L", "Armature/Skeleton:Index_Intermediate_L", "Armature/Skeleton:Index_Proximal_L"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8kd31"]
+graph_offset = Vector2(-536, 11)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_gnabl")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_3m7m8")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_6yhpj")
+nodes/Grip/position = Vector2(0, 20)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_yola1")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_btbwo")
+nodes/Trigger/position = Vector2(-360, 20)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mev8l"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wcenn"]
+animation = &"Grip"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_p5hnb"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Little_Distal_R", "Armature/Skeleton3D:Little_Intermediate_R", "Armature/Skeleton3D:Little_Metacarpal_R", "Armature/Skeleton3D:Little_Proximal_R", "Armature/Skeleton3D:Middle_Distal_R", "Armature/Skeleton3D:Middle_Intermediate_R", "Armature/Skeleton3D:Middle_Metacarpal_R", "Armature/Skeleton3D:Middle_Proximal_R", "Armature/Skeleton3D:Ring_Distal_R", "Armature/Skeleton3D:Ring_Intermediate_R", "Armature/Skeleton3D:Ring_Metacarpal_R", "Armature/Skeleton3D:Ring_Proximal_R", "Armature/Skeleton3D:Thumb_Distal_R", "Armature/Skeleton3D:Thumb_Metacarpal_R", "Armature/Skeleton3D:Thumb_Proximal_R", "Armature/Skeleton:Little_Distal_R", "Armature/Skeleton:Little_Intermediate_R", "Armature/Skeleton:Little_Proximal_R", "Armature/Skeleton:Middle_Distal_R", "Armature/Skeleton:Middle_Intermediate_R", "Armature/Skeleton:Middle_Proximal_R", "Armature/Skeleton:Ring_Distal_R", "Armature/Skeleton:Ring_Intermediate_R", "Armature/Skeleton:Ring_Proximal_R", "Armature/Skeleton:Thumb_Distal_R", "Armature/Skeleton:Thumb_Proximal_R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gdqy"]
+animation = &"Grip 5"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ujfjq"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Index_Distal_R", "Armature/Skeleton3D:Index_Intermediate_R", "Armature/Skeleton3D:Index_Metacarpal_R", "Armature/Skeleton3D:Index_Proximal_R", "Armature/Skeleton:Index_Distal_R", "Armature/Skeleton:Index_Intermediate_R", "Armature/Skeleton:Index_Proximal_R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uvgqy"]
+graph_offset = Vector2(-552.664, 107.301)
+nodes/ClosedHand1/node = SubResource("AnimationNodeAnimation_mev8l")
+nodes/ClosedHand1/position = Vector2(-600, 300)
+nodes/ClosedHand2/node = SubResource("AnimationNodeAnimation_wcenn")
+nodes/ClosedHand2/position = Vector2(-360, 300)
+nodes/Grip/node = SubResource("AnimationNodeBlend2_p5hnb")
+nodes/Grip/position = Vector2(0, 40)
+nodes/OpenHand/node = SubResource("AnimationNodeAnimation_6gdqy")
+nodes/OpenHand/position = Vector2(-600, 100)
+nodes/Trigger/node = SubResource("AnimationNodeBlend2_ujfjq")
+nodes/Trigger/position = Vector2(-360, 40)
+node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigger", 0, &"OpenHand", &"Trigger", 1, &"ClosedHand1", &"output", 0, &"Grip"]
+
 [sub_resource type="Resource" id="Resource_rrwnh"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 0
-texture = ExtResource("9_rlf8w")
+texture = ExtResource("10_me2ev")
 
 [sub_resource type="Resource" id="Resource_n7ng4"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 1
-texture = ExtResource("10_bopbb")
+texture = ExtResource("11_w8j51")
 
 [sub_resource type="Resource" id="Resource_28ykq"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 2
-texture = ExtResource("11_q2ehd")
+texture = ExtResource("12_cuml4")
 
 [sub_resource type="Resource" id="Resource_m38ty"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 3
-texture = ExtResource("12_o21bg")
+texture = ExtResource("13_grg0d")
 
 [sub_resource type="Resource" id="Resource_iswfo"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 4
-texture = ExtResource("13_1nya5")
+texture = ExtResource("14_j10ei")
 
 [sub_resource type="Resource" id="Resource_ru1rl"]
-script = ExtResource("8_f24wb")
+script = ExtResource("9_aq8tt")
 type = 5
-texture = ExtResource("14_ffiwl")
+texture = ExtResource("15_uwlof")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v1xlr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_31t65"]
 size = Vector3(20, 0.1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7yi6c"]
-size = Vector3(37.0232, 0.25, 38.6445)
+[sub_resource type="Curve3D" id="Curve3D_7eudh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.89615, -1.41141e-05, -15.3252, -0.22, 0, -6.295, -0.17, 0, 4.335, -4.50138, 1.05556e-05, -6.99395, -0.35, 0, -0.21, 0, 0, 0, -1.22917, 8.96793e-07, -0.861992),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
+radius = 0.241231
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvd5p"]
 resource_name = "Rock"
@@ -144,10 +222,10 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("38_esbj3")
+albedo_texture = ExtResource("54_ta4ro")
 texture_filter = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_p75u7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qfwj1"]
 _surfaces = [{
 "aabb": AABB(-0.75, -0.375, -0.46875, 0.679688, 0.5625, 1.10157),
 "format": 34896613377,
@@ -177,9 +255,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("9jQAAP7/IKP2NAAA/v90x/Y0AAD+//9/AAAAAN3Z/78AAAAA3dkgowAAAADd2Q7OAAAAAN3ZVNUAAAAAICb/vwAAAAAgJt7cAAAAACAmVNUAAAAAICYR3vY0AAAAAN7c9jQAAAAABuf2NAAAAAD/////AADd2Zzf//8AAN3ZVNX//wAA3dkgo///AADd2f+/CMsAAP7/atwIywAA/v//fwjLAAD+/yCjCMsAAAAAddAIywAAAAD//wjLAAAAAN7c//8AACAmVNX//wAAICb8zf//AAAgJt7c//8AACAm/78AAP/f3dn/vwAA/9/d2SCjAAD/393ZVu4AAP/f3dlr6vY0/9/+/yCj9jT/3/7/5PL2NP/f/v//f/Y0/9/+////9jT/3wAA3tz2NP/fAADt6fY0/98AAP//9jT/3wAA//8AAP/fICb/vwAA/98gJt7cAAD/3yAmn+UAAP/fICY67wjL/9/+//9/CMv/3/7///8Iy//f/v8Q9AjL/9/+/yCj////393ZpfL////f3dnT8v///9/d2SCj////393Z/7/////fICYh7f///98gJtrl////3yAm3tz////fICb/vwjL/98AAP//CMv/3wAA//8Iy//fAACB6wjL/98AAN7cyj3//6fvlvjKPf//p+///8o9//+n7///exr//93Zke17Gv//3dns7Xsa///d2f//exr//93Zov97Gv//ICbh5Hsa//8gJv/sexr//yAmuP97Gv//ICYO/8o9//9XEJvmyj3//1cQ///KPf//VxD//4Pl///d2f//g+X//93Z//+D5f//3dmA8YPl///d2bLxNML//6fv//80wv//p+///zTC//+n73fzNML//1cQ//80wv//VxAN/zTC//9XEC3sg+X//yAm9f6D5f//ICZr/4Pl//8gJnjug+X//yAmxuT/f///Ij7uYP9/////f////3///1JLVlqqKlTV/3////9///+qKlTV6F6LUP9///+SZzZM/3///3RgxU+qKlTV/38AAP9/AAA3XWNR/3////9/AADzToVY/3////9/AACqKlTVNUtkWv9/AAD/fwAA/3////9///95ZnSxj263pv9////Caiaj/3////9/fKX/f///93Nzzv9/////f4Ha/3////9///9ibV24mWphxf9/////f3ylrSK9Ff9/AABAIyEVQC66HP9/AAD/fwAAtkj1ESs4zxL/fwAA/38AAP9/////f4HagUsSD/9/AABVaOCg/398pf9//78LZwWy9Gw1pf9//79mgMu/CW4DuUNu7MhNgNi/CIF6v1p7mdX/f4Ha/3//v/9//7//f/+/uCOhFAov7xv/f3yl/3//v+oifBX/f4HaCoF5v1JKSxAjgW2/ooCtv45GLxQcOd4R")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_p75u7")
+shadow_mesh = SubResource("ArrayMesh_qfwj1")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_eglbb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gocdt"]
 _surfaces = [{
 "aabb": AABB(-0.128584, -0.234375, -0.117187, 0.208416, 0.46875, 0.152354),
 "format": 34896613377,
@@ -211,12 +289,12 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAPr//78AAAAA+v//vwAAAAD6//9/AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//OD7//9yq/MU4Pv//3Kr8xTg+///cqlTVAABU5Pr//78AAFTk+v/8xQAAVOT6//9/AABU5Pr//MU4Pv//HVX8xTg+//8dVarpOD7//x1VVNUAAFTkAAD/vwAAVOQAAPzFAABU5AAA//8AAFTkAACq6cbB///cqvzFxsH//9yqVNXGwf//3Kqq6cbB//8dVarpxsH//x1VVNXGwf//HVWq6f//AACfq/+///8AAJ+r/5///wAAn6v/v1TCAAD6//+/VMIAAPr//39UwgAA+v//n1TCAAAAAP+/VMIAAAAA//9UwgAAAAD/3///AABaVP+///8AAFpU/9///wAAWlT/v1TCVOT6//9/VMJU5Pr//MVUwlTk+v8RuVTCVOT6//+f//9U5J+rEbn//1Tkn6v/n///VOSfq6rp//9U5J+r/79k3Cn0Rs/8xWTcKfRGzxG5ZNwp9EbPqun//1TkWlTO6v//VORaVP/f//9U5FpUqun//1TkWlT/v1TCVOQAAP//VMJU5AAAqulUwlTkAADO6lTCVOQAAP/fZNwp9LMwqulk3Cn0szDO6mTcKfSzMKrpAABU5Pr/i8kAAFTk+v8GzgAAVOQAAGTd//8AAJ+rdaX//wAAn6ukuVTCVOT6/3jR//9U5J+rhKhk3Cn0Rs+RymTcKfRGzwTlZNwp9EbPeNH//1TkWlTV11TCVOQAAP//ZNwp9LMwMd5k3Cn0szAE5WTcKfSzMP///3///wAA/3//f////3///wAA/3//f////pwAxv6c/pyqqqqq/3////6cAMb/f////pz+nP6cAMYEtQS1qqqqqv9////+nADG/3///wS1BLX+nP6cqqqqqgS19ZUEtQS1qqqqqgS19ZUAAP9//38AAP9/AAAAAP9//3////9/AAAAAP9//3////9/AAAAAP9//38AAP9/AAD/f////pz+nGOjD2H/fwAAY6MPYf9/AAAEtfWV/38AAP6c/pxjow9hBLX1lUg+wCn/fwAABLX1lf9/AAD/f///BLUEtUg+wCn/fwAABLUEtUg+wCkEtfWV5qXYrFekOLcPoxKz/38AAP9/AABxq8CA/38AACijdJn/v/9/cavAgP9/AAAJBO+Qab69rf///78JBO+Q")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_eglbb")
+shadow_mesh = SubResource("ArrayMesh_gocdt")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yt8j3"]
 data = PackedVector3Array(0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, -0.1286, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0296, 0.1837, -0.1172, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, -0.2344, -0.1172, -0.1286, 0.1837, -0.1172, 0.0296, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0296, 0.1837, 0.0352, 0.0296, -0.2344, 0.0352, -0.1286, -0.2344, 0.0352, -0.1286, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, -0.0779, 0.2344, -0.0155, 0.0292, 0.2344, -0.0155, -0.0779, 0.2344, -0.0155, 0.0296, 0.1837, 0.0352, -0.1286, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, 0.0508, 0.2127, 0.0062, 0.0296, 0.1837, 0.0352, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, -0.1172, -0.0779, 0.2344, -0.0665, -0.0779, 0.2344, -0.0155, -0.1286, 0.1837, 0.0352, -0.1286, 0.1837, -0.1172, -0.1286, 0.1837, -0.1172, 0.0292, 0.2344, -0.0665, -0.0779, 0.2344, -0.0665, 0.0292, 0.2344, -0.0665, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0665, -0.1286, 0.1837, -0.1172, 0.0296, 0.1837, -0.1172, 0.0508, 0.2127, -0.0882, 0.0292, 0.2344, -0.0155, 0.0292, 0.2344, -0.0665, 0.0292, 0.2344, -0.0155, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.067, 0.0292, 0.2344, -0.0155, 0.0508, 0.2127, -0.0882, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, 0.0798, 0.1837, -0.015, 0.0296, 0.1837, 0.0352, 0.0508, 0.2127, 0.0062, 0.0798, 0.1837, -0.015, 0.0798, 0.1837, -0.067, 0.0508, 0.2127, -0.0882, 0.0296, 0.1837, -0.1172, 0.0798, -0.2344, -0.015, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.015, 0.0798, -0.2344, -0.015, 0.0296, -0.2344, 0.0352, 0.0296, 0.1837, 0.0352, 0.0798, 0.1837, -0.067, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.067, 0.0798, 0.1837, -0.067, 0.0296, 0.1837, -0.1172, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, -0.1172, 0.0296, -0.2344, -0.1172, 0.0798, -0.2344, -0.015, 0.0798, -0.2344, -0.067, 0.0798, -0.2344, -0.015, -0.1286, -0.2344, 0.0352, 0.0296, -0.2344, 0.0352, 0.0296, -0.2344, -0.1172, -0.1286, -0.2344, 0.0352, 0.0798, -0.2344, -0.015)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_chjtm"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lxsdg"]
 _surfaces = [{
 "aabb": AABB(-0.128584, -0.234375, -0.117187, 0.208416, 0.46875, 0.152354),
 "format": 34896613377,
@@ -248,12 +326,12 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAPr//78AAAAA+v//vwAAAAD6//9/AAAAAAAA/78AAAAAAAD/vwAAAAAAAP//OD7//9yq/MU4Pv//3Kr8xTg+///cqlTVAABU5Pr//78AAFTk+v/8xQAAVOT6//9/AABU5Pr//MU4Pv//HVX8xTg+//8dVarpOD7//x1VVNUAAFTkAAD/vwAAVOQAAPzFAABU5AAA//8AAFTkAACq6cbB///cqvzFxsH//9yqVNXGwf//3Kqq6cbB//8dVarpxsH//x1VVNXGwf//HVWq6f//AACfq/+///8AAJ+r/5///wAAn6v/v1TCAAD6//+/VMIAAPr//39UwgAA+v//n1TCAAAAAP+/VMIAAAAA//9UwgAAAAD/3///AABaVP+///8AAFpU/9///wAAWlT/v1TCVOT6//9/VMJU5Pr//MVUwlTk+v8RuVTCVOT6//+f//9U5J+rEbn//1Tkn6v/n///VOSfq6rp//9U5J+r/79k3Cn0Rs/8xWTcKfRGzxG5ZNwp9EbPqun//1TkWlTO6v//VORaVP/f//9U5FpUqun//1TkWlT/v1TCVOQAAP//VMJU5AAAqulUwlTkAADO6lTCVOQAAP/fZNwp9LMwqulk3Cn0szDO6mTcKfSzMKrpAABU5Pr/i8kAAFTk+v8GzgAAVOQAAGTd//8AAJ+rdaX//wAAn6ukuVTCVOT6/3jR//9U5J+rhKhk3Cn0Rs+RymTcKfRGzwTlZNwp9EbPeNH//1TkWlTV11TCVOQAAP//ZNwp9LMwMd5k3Cn0szAE5WTcKfSzMP///3///wAA/3//f////3///wAA/3//f////pwAxv6c/pyqqqqq/3////6cAMb/f////pz+nP6cAMYEtQS1qqqqqv9////+nADG/3///wS1BLX+nP6cqqqqqgS19ZUEtQS1qqqqqgS19ZUAAP9//38AAP9/AAAAAP9//3////9/AAAAAP9//3////9/AAAAAP9//38AAP9/AAD/f////pz+nGOjD2H/fwAAY6MPYf9/AAAEtfWV/38AAP6c/pxjow9hBLX1lUg+wCn/fwAABLX1lf9/AAD/f///BLUEtUg+wCn/fwAABLUEtUg+wCkEtfWV5qXYrFekOLcPoxKz/38AAP9/AABxq8CA/38AACijdJn/v/9/cavAgP9/AAAJBO+Qab69rf///78JBO+Q")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_chjtm")
+shadow_mesh = SubResource("ArrayMesh_lxsdg")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m6eh3"]
 points = PackedVector3Array(-0.128584, -0.234375, -0.117187, -0.128584, -0.234375, 0.0351546, -0.128584, 0.183673, -0.117187, 0.0296252, -0.234375, -0.117187, 0.0296252, -0.234375, 0.0351546, -0.128584, 0.183673, 0.0351546, -0.0779491, 0.234375, -0.066546, 0.0296252, 0.183673, -0.117187, 0.079832, -0.234375, -0.0669933, 0.079832, -0.234375, -0.0150544, 0.0296252, 0.183673, 0.0351546, -0.0779491, 0.234375, -0.0155167, 0.029156, 0.234375, -0.066546, 0.0508422, 0.212672, -0.0882133, 0.079832, 0.183673, -0.0669933, 0.079832, 0.183673, -0.0150544, 0.0508422, 0.212672, 0.0061655, 0.029156, 0.234375, -0.0155167)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_tw3o2"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ov5pe"]
 _surfaces = [{
 "aabb": AABB(-0.246094, 0.116526, -0.234398, 0.492188, 0.181641, 0.46876),
 "format": 34896613377,
@@ -285,9 +363,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("JEkAAP3/IKMkSQAA/f912iRJAAD9//9/AAAAAGSm/78AAAAAZKYgowAAAABkpoTWAAAAAGSmVNUAAAAAmFn/vwAAAACYWd7cAAAAAJhZVNUAAAAAmFkp1CRJAAAAAN7cJEkAAAAAjdAkSQAAAAD/////AABkpt3S//8AAGSmVNX//wAAZKYgo///AABkpv+/2rYAAP3/P9TatgAA/f//f9q2AAD9/yCj2rYAAAAAbtbatgAAAAD//9q2AAAAAN7c//8AAJhZVNX//wAAmFni1///AACYWd7c//8AAJhZ/78AAOacZKb/vwAA5pxkpiCjAADmnGSm/MUAAOacZKaRtyRJ5pz9/yCjJEnmnP3/yrckSeac/f//fyRJ5pz9/9y5JEnmnAAA3twkSeacAAC82CRJ5pwAAP//JEnmnAAAe+kAAOacmFn/vwAA5pyYWd7cAADmnJhZ/MUAAOacmFlF2dq25pz9//9/2rbmnP3/acXatuac/f+N3Nq25pz9/yCj///mnGSm5N7//+acZKaq6f//5pxkpiCj///mnGSm/7///+acmFlj8f//5pyYWarp///mnJhZ3tz//+acmFn/v9q25pwAAP//2rbmnAAA9uXatuacAACN8dq25pwAAN7cVVX//5fZ8rdVVf//l9mWvlVV//+X2dzakiT//2Sm/MWSJP//ZKapt5Ik//9kpkXXkiT//5hZ/MWSJP//mFkK2ZIk//+YWbzWVVX//2YmZ9hVVf//Zia/61VV//9mJlDYbNv//2SmvNZs2///ZKbp3Wzb//9kpqrpqqr//5fZM8yqqv//l9lQ2Kqq//+X2f3aqqr//2YmWOeqqv//Zibc2qqq//9mJqrxbNv//5hZRdds2///mFl08Wzb//+YWarpAAAAAGSm5LgAAAAAmFmJyAAA5pxkpo+2AADmnGSmrcgAAOacZKZixwAA5pxkpnTVJEnmnP3/TrkkSeacAADl4dq25pz9/87K///mnGSmpOD//+acmFnW4f9///8nW2tS/3////9/////f///v1afVKoqVNX/f////3///6oqVNXkUw1W/3///xVPdFj/f///PVLgVqoqVNX/fwAA/38AAABU/1X/f////38AAKRWrVT/f////38AAKoqVNVRWNZT/38AAP9/AAD/f////3////6cAMYjls24/3///9eVx7j/f///6KVimv9///8OqHrI/3///4a1qLT/f////3////6cAMZ3pZ3J/3///1yd45y2qv2O/38AAHepKZAEtfWV/38AAP9/AAD+vAyfBLX1lf9/AAD/fwAA/3///4DA5azFvESf/38AAKOVw7gbon+baaTKrf6cAMYDlsq4YKjOq/6cAMaNpiPJ/6h/q8yptcemr8+4MqdlrP+of6v8qayPBLX1lT2ZGJ4yp2Wsk6svjs67N7BppMqtnbxqn2CozqvovCKfBLX1lf9///+JgNz+/3///06Hp/BtpD21bqsSqeedo6zSrr6xGqMImyGkGpzpvlSi")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_tw3o2")
+shadow_mesh = SubResource("ArrayMesh_ov5pe")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mr7pr"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rra32"]
 _surfaces = [{
 "aabb": AABB(-0.246094, 0.116526, -0.234398, 0.492188, 0.181641, 0.46876),
 "format": 34896613377,
@@ -319,39 +397,178 @@ _surfaces = [{
 "vertex_data": PackedByteArray("JEkAAP3/IKMkSQAA/f912iRJAAD9//9/AAAAAGSm/78AAAAAZKYgowAAAABkpoTWAAAAAGSmVNUAAAAAmFn/vwAAAACYWd7cAAAAAJhZVNUAAAAAmFkp1CRJAAAAAN7cJEkAAAAAjdAkSQAAAAD/////AABkpt3S//8AAGSmVNX//wAAZKYgo///AABkpv+/2rYAAP3/P9TatgAA/f//f9q2AAD9/yCj2rYAAAAAbtbatgAAAAD//9q2AAAAAN7c//8AAJhZVNX//wAAmFni1///AACYWd7c//8AAJhZ/78AAOacZKb/vwAA5pxkpiCjAADmnGSm/MUAAOacZKaRtyRJ5pz9/yCjJEnmnP3/yrckSeac/f//fyRJ5pz9/9y5JEnmnAAA3twkSeacAAC82CRJ5pwAAP//JEnmnAAAe+kAAOacmFn/vwAA5pyYWd7cAADmnJhZ/MUAAOacmFlF2dq25pz9//9/2rbmnP3/acXatuac/f+N3Nq25pz9/yCj///mnGSm5N7//+acZKaq6f//5pxkpiCj///mnGSm/7///+acmFlj8f//5pyYWarp///mnJhZ3tz//+acmFn/v9q25pwAAP//2rbmnAAA9uXatuacAACN8dq25pwAAN7cVVX//5fZ8rdVVf//l9mWvlVV//+X2dzakiT//2Sm/MWSJP//ZKapt5Ik//9kpkXXkiT//5hZ/MWSJP//mFkK2ZIk//+YWbzWVVX//2YmZ9hVVf//Zia/61VV//9mJlDYbNv//2SmvNZs2///ZKbp3Wzb//9kpqrpqqr//5fZM8yqqv//l9lQ2Kqq//+X2f3aqqr//2YmWOeqqv//Zibc2qqq//9mJqrxbNv//5hZRdds2///mFl08Wzb//+YWarpAAAAAGSm5LgAAAAAmFmJyAAA5pxkpo+2AADmnGSmrcgAAOacZKZixwAA5pxkpnTVJEnmnP3/TrkkSeacAADl4dq25pz9/87K///mnGSmpOD//+acmFnW4f9///8nW2tS/3////9/////f///v1afVKoqVNX/f////3///6oqVNXkUw1W/3///xVPdFj/f///PVLgVqoqVNX/fwAA/38AAABU/1X/f////38AAKRWrVT/f////38AAKoqVNVRWNZT/38AAP9/AAD/f////3////6cAMYjls24/3///9eVx7j/f///6KVimv9///8OqHrI/3///4a1qLT/f////3////6cAMZ3pZ3J/3///1yd45y2qv2O/38AAHepKZAEtfWV/38AAP9/AAD+vAyfBLX1lf9/AAD/fwAA/3///4DA5azFvESf/38AAKOVw7gbon+baaTKrf6cAMYDlsq4YKjOq/6cAMaNpiPJ/6h/q8yptcemr8+4MqdlrP+of6v8qayPBLX1lT2ZGJ4yp2Wsk6svjs67N7BppMqtnbxqn2CozqvovCKfBLX1lf9///+JgNz+/3///06Hp/BtpD21bqsSqeedo6zSrr6xGqMImyGkGpzpvlSi")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_mr7pr")
+shadow_mesh = SubResource("ArrayMesh_rra32")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uyehh"]
 points = PackedVector3Array(-0.0703124, 0.117132, 0.468694, -0.21096, 0.117132, 0.632806, -0.0703124, -0.375, 0.468694, -0.0703124, 0.117132, -0.304746, -0.140636, 0.1875, 0.468694, -0.21096, -0.375, 0.632806, -0.23438, 0.1875, 0.562395, -0.609419, 0.117132, 0.632806, -0.0703124, -0.375, -0.304746, -0.21096, 0.117132, -0.46875, -0.140636, 0.1875, -0.304746, -0.609419, -0.375, 0.632806, -0.585999, 0.1875, 0.562395, -0.679743, 0.1875, 0.468694, -0.75, 0.117132, 0.468694, -0.21096, -0.375, -0.46875, -0.23438, 0.1875, -0.398447, -0.609419, 0.117132, -0.46875, -0.75, -0.375, 0.468694, -0.679743, 0.1875, -0.304746, -0.75, 0.117132, -0.304746, -0.609419, -0.375, -0.46875, -0.585999, 0.1875, -0.398447, -0.75, -0.375, -0.304746)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3oa2u"]
-radius = 0.241231
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atp6p"]
+resource_name = "Rock"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("54_ta4ro")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bkk68"]
+_surfaces = [{
+"aabb": AABB(-0.246094, 0, -0.234375, 0.492188, 0.181641, 0.46875),
+"format": 34896613377,
+"index_count": 132,
+"index_data": PackedByteArray("DgAFAA8ADwAFAA0ADwANAAkADgAPABAACQAQAA8ACQANAAwADAANAAUADgARAAUAEgAFABEAEwARAA4AEwASABEAEgALAAUADAAFAAsAEwALABIACQAMAAoACgAMAAsAEwAIAAsACgALAAgAEwAOABQADgAQABQAFQAIABMAEwAUABUABwAKAAgACQAKAAcAFQAGAAgABwAIAAYAFQAUABYAFgAUABAAFwAGABUAFQAWABcAFwABAAYAFgABABcABgADAAcABgABAAMACQAHAAQACQAEABAABAAHAAMAFgAQAAIAAgAQAAQAFgACAAEABAADAAAAAgAEAAAAAAADAAEAAAABAAIA"),
+"lods": [0.164008, PackedByteArray("AAABAAIAAAADAAEAAgAEAAAABAADAAAAAQAFAAIAAgAFAAQABgABAAMABgAFAAEABgADAAcABAAHAAMABwAIAAYACQAHAAQACQAEAAUABwAKAAgACQAKAAcABgAIAAsACgALAAgACwAFAAYACgAMAAsADAAFAAsACQAMAAoADAANAAUABQANAAkACQANAAwA")],
+"name": "Rock",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("JEkAAAAAAADatuacAAAAACRJ5pwAAAAA2rYAAAAAAAAAAAAAmVkAACRJ5pz//wAA///mnJlZAAD//wAAmVkAAP//5pxlpgAAAAAAAGWmAAD//wAAZaYAANq25pz//wAA2rYAAP//AAAkSQAA//8AAJIk//9lpgAAAADmnGWmAAAAAOacmVkAAFVV//+Y2QAAqqr//5jZAABs2///ZaYAAJIk//+ZWQAAbNv//5lZAABVVf//ZiYAAKqq//9mJgAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_77opt"]
+resource_name = "Environment_Cube_066"
+_surfaces = [{
+"aabb": AABB(-0.246094, 0, -0.234375, 0.492188, 0.181641, 0.46875),
+"attribute_data": PackedByteArray("/+H/o//O/5v/4f+b/87/o//U/6P/wf+b/9T/m//B/6P/wf+j/7f/m//B/5v/t/+j/7H/o/+o/6P/w/+b/8P/o/+W/5v/lv+j/6T/o/+R/5v/pP+b/5H/o/+k/5v/t/+j/6T/o/+3/5v/nv+E/5X/cv+e/23/lf99/5H/Uf+3/2P/kf9j/5//RP+3/1H/qv9E/63/hP+2/3L/tv99/63/bf+t/23/nv+E/57/bf+t/4T/qP9l/7f/Y/+q/27/r/9e/6j/Tv+v/17/qP9l/6//U/+f/2X/n/9O/5r/YP+a/1X/sf+j/6j/m/+x/5v/qP+j/7H/m/+o/5v/mv9g/5//bv+R/2P/n/9l/6//U/+v/17/qP9O/7f/Uf+v/1P/n/9O/6r/RP+o/07/n/9E/5r/Vf+f/07/kf9R/5r/YP+a/1X/qP9l/5//bv+f/2X/qv9u"),
+"format": 34896613399,
+"index_count": 132,
+"index_data": PackedByteArray("LAAtAC4ALAAvAC0AAAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkAMAAxADIAMAAzADEAMAAyADQAMAA0ADUANQA0ADYANQA2ADcAOAA5ADoAOAA7ADkAEgATABQAEgAVABMAPAAPAAwAPAAOAA8AEAANABEAEAA9AA0AFgAXABgAFgAZABcAGgAbABwAGgAdABsAPgA/AEAAPgBBAD8AQgAfAEMAQgAiAB8ARABFAEYARAAjAEUARwBIAEkARwBKAEgASwAhAEwASwBNACEATgAeAE8ATgAgAB4AUABRAFIAUABTAFEAJAAlACYAJAAnACUAKAApACoAKAArACkA"),
+"lods": [0.164008, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADgAPAAwAEAAOAA0AEAANABEAEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAIQAfAB4AIgAfACEAIQAjACIAJAAlACYAJAAnACUAKAApACoAKAArACkA")],
+"material": SubResource("StandardMaterial3D_atp6p"),
+"name": "Rock",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 84,
+"vertex_data": PackedByteArray("JEkAAAAA///atuacAAD//yRJ5pwAAP//2rYAAAAA///atgAA//8AgCRJ5pz//wCA2rbmnP//AIAkSQAA//8AgP//AACZWf+////mnGWm/7///+acmVn/v///AABlpv+/AAAAAGWmIKMAAAAAmVne3CRJ5pz//yCjJEkAAP//IKMkSeacAADe3CRJAAAAAN7c//8AAGWmIKPatuac//8go///5pxlpiCj2rYAAP//IKP//+acmVne3Nq2AAAAAN7c//8AAJlZ3tzatuacAADe3AAAAABlpgfU2rYAAP//X8///wAAZaat0SRJAAD//xzT2rbmnAAAKuckSeac//9auiRJ5pwAAEHq///mnJlZ3vHatuac//8cw///5pxlpgXeAAAAAJlZp9batgAAAADY2yRJAAAAAJ/X//8AAJlZLtkAAAAAZaZU1f//AACZWVTVAAAAAJlZVNX//wAAZaZU1ZIk//9lpjy3JEnmnP//RrcAAOacZaY1t1VV//+Y2VK3bNv//2WmtdZVVf//mNnt2JIk//9lpm/Wqqr//5jZOdqSJP//mVm11mzb//+ZWW/WVVX//2YmOdqqqv//Zibt2AAAAABlpv+/AADmnJlZ/78AAOacZab/vwAAAACZWf+/AADmnGWmIKMAAOacmVne3FVV//9mJtzYAADmnJlZY9kkSeacAAAR2ZIk//+ZWUDZqqr//5jZQMhVVf//mNn7vWzb//9lpqXc2rbmnP//v9qqqv//mNmQ2Gzb//+ZWarp///mnGWmquls2///Zaaq6f//5pyZWarpqqr//2YmsfJs2///mVkS8tq25pwAAFzyVVX//2YmMuyqqv//ZiZo6JIk//9lpvzFAADmnJlZ/MWSJP//mVn8xQAA5pxlpvzF/3////9/////f////3////9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAC6UyJWW01RWadQq1eOUrhWYrzOr3ylgZpxsyG2Vryun+GecZztqbuP51aLVJ9cr1EFWPxTw1kdU6oqVNWqKlTVqipU1aoqVNWTltW4hpbVuJ2W1rh2ltO4Bql7q4KmvaxYqVKrF6VzrQape6tYqVKrF6VzrYKmvaz/f////3////9/////f////3////9///9up8DI7qTZyW2mMcmOpZPJlJtonZCiXJupqgmPtqsOjvas4owEtfWVBLX1lQS19ZUEtfWVO7vAoBC885+tu1Kgja6WuZC4gbL+nADG/pwAxv6cAMb+nADG")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bkk68")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77vmx"]
+resource_name = "EnvRocks"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("59_c70py")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p3ug8"]
+_surfaces = [{
+"aabb": AABB(-1.43849, 0, -1.12474, 2.85645, 1e-05, 2.24947),
+"format": 34896613377,
+"index_count": 240,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0A"),
+"name": "EnvRocks",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 160,
+"vertex_data": PackedByteArray("MZsAAFXVAADMvAAAp6oAAMy8AABV1QAAMZsAAKeqAADLZAAAq6oAAGeGAAD9fwAAZ4YAAKuqAADLZAAA/X8AAGSGAACrqgAAAKgAAP1/AAAAqAAAq6oAAGSGAAD9fwAAl3kAAFXVAAAzmwAAp6oAADObAABV1QAAl3kAAKeqAACZIQAAq6oAADRDAAD9fwAANEMAAKuqAACZIQAA/X8AADJDAACrqgAAzWQAAP1/AADNZAAAq6oAADJDAAD9fwAAZTYAAFXVAAABWAAAp6oAAAFYAABV1QAAZTYAAKeqAAD+VwAAVdUAAJp5AACnqgAAmnkAAFXVAAD+VwAAp6oAAP8vAABXVQAAmlEAAKkqAACaUQAAV1UAAP8vAACpKgAAmFEAAFdVAAA0cwAAqSoAADRzAABXVQAAmFEAAKkqAAD/LwAAAYAAAJpRAABTVQAAmlEAAAGAAAD/LwAAU1UAAJhRAAABgAAANHMAAFNVAAA0cwAAAYAAAJhRAABTVQAAMXMAAFdVAADNlAAAqSoAAM2UAABXVQAAMXMAAKkqAADKlAAAV1UAAGa2AACpKgAAZrYAAFdVAADKlAAAqSoAADFzAAABgAAAzZQAAFNVAADNlAAAAYAAADFzAABTVQAAypQAAAGAAABmtgAAU1UAAGa2AAABgAAAypQAAFNVAADMFAAAVdUAAGg2AACnqgAAaDYAAFXVAADMFAAAp6oAAGYOAAABgAAAATAAAFNVAAABMAAAAYAAAGYOAABTVQAAZg4AAFdVAAABMAAAqSoAAAEwAABXVQAAZg4AAKkqAAAAAAAAq6oAAJshAAD9fwAAmyEAAKuqAAAAAAAA/X8AAGO2AAABgAAA/9cAAFNVAAD/1wAAAYAAAGO2AABTVQAAY7YAAFdVAAD/1wAAqSoAAP/XAABXVQAAY7YAAKkqAAD9pwAAq6oAAJnJAAD9fwAAmckAAKuqAAD9pwAA/X8AAMq8AABV1QAAZd4AAKeqAABl3gAAVdUAAMq8AACnqgAAlskAAKuqAAAy6wAA/X8AADLrAACrqgAAlskAAP1/AACXgQAA//8AADOjAABR1QAAM6MAAP//AACXgQAAUdUAAGU+AAD//wAAAWAAAFHVAAABYAAA//8AAGU+AABR1QAA/l8AAP//AACagQAAUdUAAJqBAAD//wAA/l8AAFHVAADMHAAA//8AAGc+AABR1QAAZz4AAP//AADMHAAAUdUAADGjAAD//wAAzMQAAFHVAADMxAAA//8AADGjAABR1QAAysQAAP//AABl5gAAUdUAAGXmAAD//wAAysQAAFHVAAD/NwAArSoAAJpZAAAAAAAAmlkAAK0qAAD/NwAAAAAAAJhZAACtKgAAM3sAAAAAAAAzewAArSoAAJhZAAAAAAAAMXsAAK0qAADNnAAAAAAAAM2cAACtKgAAMXsAAAAAAADKnAAArSoAAGa+AAAAAAAAZr4AAK0qAADKnAAAAAAAAGYWAACtKgAAATgAAAAAAAABOAAArSoAAGYWAAAAAAAAY74AAK0qAAD/3wAAAAAAAP/fAACtKgAAY74AAAAAAAD91wAAAYAAAJj5AABTVQAAmPkAAAGAAAD91wAAU1UAAP3XAABXVQAAmPkAAKkqAACY+QAAV1UAAP3XAACpKgAAY94AAFXVAAD//wAAp6oAAP//AABV1QAAY94AAKeqAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v0l8j"]
+resource_name = "Environment_Plane_221"
+_surfaces = [{
+"aabb": AABB(-1.43849, 0, -1.12474, 2.85645, 1e-05, 2.24947),
+"attribute_data": PackedByteArray("/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/e/+//93/Xf/d/7//e/9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/e/+//93/Xf/d/7//e/9d/33/v//f/13/3/+//33/Xf97/7//3f9d/93/v/97/13/ff+//9//Xf/f/7//ff9d/3v/v//d/13/3f+//3v/Xf99/7//3/9d/9//v/99/13/e/+//93/Xf/d/7//e/9d/33/v//f/13/3/+//33/Xf97/7//3f9d/93/v/97/13/ff+//9//Xf/f/7//ff9d/3v/v//d/13/3f+//3v/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/3v/v//d/13/3f+//3v/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/e/+//93/Xf/d/7//e/9d/33/v//f/13/3/+//33/Xf97/7//3f9d/93/v/97/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/Xf99/7//3/9d/9//v/99/13/ff+//9//Xf/f/7//ff9d/33/v//f/13/3/+//33/XQ=="),
+"format": 34896613399,
+"index_count": 240,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0A"),
+"material": SubResource("StandardMaterial3D_77vmx"),
+"name": "EnvRocks",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 160,
+"vertex_data": PackedByteArray("MZsAAFXV/7/MvAAAp6r/v8y8AABV1f+/MZsAAKeq/7/LZAAAq6r/v2eGAAD9f/+/Z4YAAKuq/7/LZAAA/X//v2SGAACrqv+/AKgAAP1//78AqAAAq6r/v2SGAAD9f/+/l3kAAFXV/78zmwAAp6r/vzObAABV1f+/l3kAAKeq/7+ZIQAAq6r/vzRDAAD9f/+/NEMAAKuq/7+ZIQAA/X//vzJDAACrqv+/zWQAAP1//7/NZAAAq6r/vzJDAAD9f/+/ZTYAAFXV/78BWAAAp6r/vwFYAABV1f+/ZTYAAKeq/7/+VwAAVdX/v5p5AACnqv+/mnkAAFXV/7/+VwAAp6r/v/8vAABXVf+/mlEAAKkq/7+aUQAAV1X/v/8vAACpKv+/mFEAAFdV/780cwAAqSr/vzRzAABXVf+/mFEAAKkq/7//LwAAAYD/v5pRAABTVf+/mlEAAAGA/7//LwAAU1X/v5hRAAABgP+/NHMAAFNV/780cwAAAYD/v5hRAABTVf+/MXMAAFdV/7/NlAAAqSr/v82UAABXVf+/MXMAAKkq/7/KlAAAV1X/v2a2AACpKv+/ZrYAAFdV/7/KlAAAqSr/vzFzAAABgP+/zZQAAFNV/7/NlAAAAYD/vzFzAABTVf+/ypQAAAGA/79mtgAAU1X/v2a2AAABgP+/ypQAAFNV/7/MFAAAVdX/v2g2AACnqv+/aDYAAFXV/7/MFAAAp6r/v2YOAAABgP+/ATAAAFNV/78BMAAAAYD/v2YOAABTVf+/Zg4AAFdV/78BMAAAqSr/vwEwAABXVf+/Zg4AAKkq/78AAAAAq6r/v5shAAD9f/+/myEAAKuq/78AAAAA/X//v2O2AAABgP+//9cAAFNV/7//1wAAAYD/v2O2AABTVf+/Y7YAAFdV/7//1wAAqSr/v//XAABXVf+/Y7YAAKkq/7/9pwAAq6r/v5nJAAD9f/+/mckAAKuq/7/9pwAA/X//v8q8AABV1f+/Zd4AAKeq/79l3gAAVdX/v8q8AACnqv+/lskAAKuq/78y6wAA/X//vzLrAACrqv+/lskAAP1//7+XgQAA////vzOjAABR1f+/M6MAAP///7+XgQAAUdX/v2U+AAD///+/AWAAAFHV/78BYAAA////v2U+AABR1f+//l8AAP///7+agQAAUdX/v5qBAAD///+//l8AAFHV/7/MHAAA////v2c+AABR1f+/Zz4AAP///7/MHAAAUdX/vzGjAAD///+/zMQAAFHV/7/MxAAA////vzGjAABR1f+/ysQAAP///79l5gAAUdX/v2XmAAD///+/ysQAAFHV/7//NwAArSr/v5pZAAAAAP+/mlkAAK0q/7//NwAAAAD/v5hZAACtKv+/M3sAAAAA/78zewAArSr/v5hZAAAAAP+/MXsAAK0q/7/NnAAAAAD/v82cAACtKv+/MXsAAAAA/7/KnAAArSr/v2a+AAAAAP+/Zr4AAK0q/7/KnAAAAAD/v2YWAACtKv+/ATgAAAAA/78BOAAArSr/v2YWAAAAAP+/Y74AAK0q/7//3wAAAAD/v//fAACtKv+/Y74AAAAA/7/91wAAAYD/v5j5AABTVf+/mPkAAAGA/7/91wAAU1X/v/3XAABXVf+/mPkAAKkq/7+Y+QAAV1X/v/3XAACpKv+/Y94AAFXV/7///wAAp6r/v///AABV1f+/Y94AAKeq/7////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_p3ug8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yi6c"]
+size = Vector3(37.0232, 0.25, 38.6445)
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_r2msa")
+script = ExtResource("1_8kd31")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_30re5")
 
-[node name="XROrigin3D" parent="." instance=ExtResource("2_oidr1")]
+[node name="XROrigin3D" parent="." instance=ExtResource("6_ujfjq")]
+
+[node name="Skeleton3D" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, -2.56581e-05, -0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, -0.0415175, -0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, 0.020971, 0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, -0.0116081, -0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, -0.00993208, -0.00794416, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, -0.0236108, -0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, -0.00929194, -0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, -0.000400032, 0.00636764, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, -0.00114471, -0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, 0.00193393, -0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, -0.00881294, -0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, 0.0101908, -0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, -0.00223624, -0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, 0.00812462, -0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252232, 0.00788073, -0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, 0.0203027, -0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, -0.000225721, -0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, 0.0216483, -0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, -0.00357275, -0.211953, 0.977249)
+
+[node name="AnimationTree" parent="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_8kd31")
+
+[node name="Skeleton3D" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r/Armature" index="0"]
+bones/1/rotation = Quaternion(0.323537, 2.56586e-05, 0.0272204, 0.945824)
+bones/2/rotation = Quaternion(-0.0904441, 0.0415175, 0.166293, 0.981042)
+bones/3/rotation = Quaternion(-0.0466199, -0.020971, -0.0103276, 0.998639)
+bones/5/rotation = Quaternion(-0.00128455, 0.0116081, 0.0168259, 0.99979)
+bones/6/rotation = Quaternion(0.102925, 0.00993208, 0.00794419, 0.994608)
+bones/7/rotation = Quaternion(-0.012859, 0.0236108, 0.323258, 0.945929)
+bones/8/rotation = Quaternion(0.0120575, 0.00929192, 0.247472, 0.968775)
+bones/10/rotation = Quaternion(-0.0357539, 0.000400032, -0.00636763, 0.99934)
+bones/11/rotation = Quaternion(-0.00264964, 0.00114471, 0.125992, 0.992027)
+bones/12/rotation = Quaternion(0.0394225, -0.00193393, 0.228074, 0.972843)
+bones/13/rotation = Quaternion(-0.0123395, 0.00881294, 0.280669, 0.959685)
+bones/15/rotation = Quaternion(-0.0702656, -0.0101908, 0.0243307, 0.99718)
+bones/16/rotation = Quaternion(-0.0320634, 0.00223624, 0.0686366, 0.997124)
+bones/17/rotation = Quaternion(0.0253452, -0.00812462, 0.249005, 0.968136)
+bones/18/rotation = Quaternion(0.00252233, -0.00788073, 0.243204, 0.96994)
+bones/20/rotation = Quaternion(-0.0917369, -0.0203027, 0.010183, 0.995524)
+bones/21/rotation = Quaternion(-0.0625182, 0.000225722, 0.115393, 0.991351)
+bones/22/rotation = Quaternion(0.0585786, -0.0216483, 0.269905, 0.96086)
+bones/23/rotation = Quaternion(0.00687177, 0.00357274, 0.211953, 0.977249)
+
+[node name="AnimationTree" parent="XROrigin3D/Right Hand/CollisionHandRight/RightHand" index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_uvgqy")
 
 [node name="DayNightCycle" type="Node3D" parent="." node_paths=PackedStringArray("world_environment", "sun", "moon")]
-script = ExtResource("4_ko70n")
-time_of_day = 4.5
-base_brightness = 0.75
+script = ExtResource("7_uvgqy")
+time_of_day = 4.0
+base_brightness = 0.5
 sky_shader_material = SubResource("ShaderMaterial_5puty")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
+sun_size = 0.08
+moon_size = 0.05
+sunrise_start = 5.0
+sunrise_end = 8.0
+fog_level_view = 7.0
 
 [node name="Sun" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.794102, -0.502235, 0.342282, 0, 0.563167, 0.826341, -0.60778, 0.656202, -0.447213, 0, 0, 0)
+transform = Transform3D(-0.634698, 0.548346, -0.544491, 0, 0.704605, 0.709594, 0.772759, 0.450378, -0.447212, 0, 0, 0)
 visible = false
 light_color = Color(0.811765, 1, 0.94902, 1)
-light_energy = 0.92388
+light_energy = 0.793353
 shadow_enabled = true
 shadow_normal_bias = 1.0
+shadow_opacity = 0.8
 shadow_blur = 0.9
+shadow_caster_mask = 4294967293
 directional_shadow_split_1 = 0.016
 directional_shadow_split_2 = 0.047
 directional_shadow_split_3 = 0.134
@@ -361,12 +578,13 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="DayNightCycle"]
-transform = Transform3D(-0.475964, 0.301026, -0.826344, 0, 0.939597, 0.342283, 0.879466, 0.162914, -0.447214, 0, 0, 0)
+transform = Transform3D(-1, 7.81931e-08, -3.90967e-08, 0, 0.447212, 0.894428, 8.74228e-08, 0.894425, -0.447214, 0, 0, 0)
 light_color = Color(0.537255, 0.741176, 0.937255, 1)
-light_energy = 0.75
 shadow_enabled = true
 shadow_normal_bias = 1.0
+shadow_opacity = 0.8
 shadow_blur = 0.9
+shadow_caster_mask = 4294967293
 directional_shadow_split_1 = 0.016
 directional_shadow_split_2 = 0.047
 directional_shadow_split_3 = 0.134
@@ -376,21 +594,21 @@ directional_shadow_max_distance = 63.0
 sky_mode = 1
 
 [node name="TextureLoader" type="Node" parent="."]
-script = ExtResource("7_q25ib")
-ingredients_textures = Array[ExtResource("8_f24wb")]([SubResource("Resource_rrwnh"), SubResource("Resource_n7ng4"), SubResource("Resource_28ykq"), SubResource("Resource_m38ty"), SubResource("Resource_iswfo"), SubResource("Resource_ru1rl")])
+script = ExtResource("8_5jhr0")
+ingredients_textures = Array[ExtResource("9_aq8tt")]([SubResource("Resource_rrwnh"), SubResource("Resource_n7ng4"), SubResource("Resource_28ykq"), SubResource("Resource_m38ty"), SubResource("Resource_iswfo"), SubResource("Resource_ru1rl")])
 
 [node name="Managers" type="Node3D" parent="."]
 
-[node name="ReturnManager" parent="Managers" instance=ExtResource("5_n3w7w")]
+[node name="ReturnManager" parent="Managers" instance=ExtResource("19_bmduy")]
 collision_layer = 0
 collision_mask = 4
 return_range = 2.5
 range_origin = Vector3(0, 1.5, 0)
 
 [node name="Collision" type="CollisionShape3D" parent="Managers/ReturnManager"]
-shape = SubResource("BoxShape3D_v1xlr")
+shape = SubResource("BoxShape3D_31t65")
 
-[node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plot") instance=ExtResource("6_8t4s2")]
+[node name="WeedManager" parent="Managers" node_paths=PackedStringArray("plot") instance=ExtResource("20_xb52p")]
 transform = Transform3D(0.909911, -0.230443, 0.344904, 0.339937, 0.890754, -0.301662, -0.237709, 0.391731, 0.888843, 0, 0, 0)
 plot = NodePath("../../Plot")
 spread_time = 10.0
@@ -399,11 +617,11 @@ spread_release_grace_time = 1.0
 spread_chance = 0.25
 obstacle_chance = 0.5
 
-[node name="RecipeManager" parent="Managers" instance=ExtResource("16_jka1y")]
+[node name="RecipeManager" parent="Managers" instance=ExtResource("21_w3rys")]
 
-[node name="InactivityManager" parent="Managers" instance=ExtResource("51_fasii")]
+[node name="InactivityManager" parent="Managers" instance=ExtResource("22_rlto2")]
 
-[node name="KorikoManager" parent="Managers" instance=ExtResource("17_1ewji")]
+[node name="KorikoManager" parent="Managers" instance=ExtResource("23_ecpul")]
 
 [node name="Spawnpoint1" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.8617, 0, -0.507418, 0, 1, 0, 0.507418, 0, 0.8617, 0.77485, 0.91463, -1.17053)
@@ -411,68 +629,381 @@ aabb = AABB(-0.1, -0.1, -0.1, 0.2, 0.2, 0.2)
 
 [node name="Spawnpoint2" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.884532, 0, 0.466479, 0, 1, 0, -0.466479, 0, 0.884532, -0.783108, 0.914296, -1.17668)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint3" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.543555, 0, 0.839373, 0, 1, 0, -0.839373, 0, 0.543555, -0.809922, 0.914411, -0.350212)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint4" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.8497, 0, -0.527267, 0, 1, 0, 0.527267, 0, 0.8497, 0.549694, 0.914356, -0.35636)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint5" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(-0.393332, 0, 0.919397, 0, 1, 0, -0.919397, 0, -0.393332, -0.916839, 0.663163, 0.22085)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint6" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(-0.697741, 0, -0.716351, 0, 1, 0, 0.716351, 0, -0.697741, 0.494977, 0.912426, 0.676683)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
 [node name="Spawnpoint7" type="VisibleOnScreenNotifier3D" parent="Managers/KorikoManager"]
 transform = Transform3D(0.923492, 0, 0.383618, 0, 1, 0, -0.383618, 0, 0.923492, -0.0845595, 0.914849, -0.35754)
+visible = false
 aabb = AABB(-0.15, 0, -0.15, 0.3, 0.3, 0.3)
 
+[node name="DayCycleManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("day_night_cycle")]
+script = ExtResource("24_0wleh")
+day_night_cycle = NodePath("../../DayNightCycle")
+
+[node name="BoboManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("bobo_follower", "bobo")]
+script = ExtResource("22_gnabl")
+bobo_follower = NodePath("../../BoboPath3D/BoboPathFollow3D")
+bobo = NodePath("../../BoboPath3D/BoboPathFollow3D/Bobo")
+
 [node name="DigSpotLookup" type="Node" parent="."]
-script = ExtResource("18_f3skm")
+script = ExtResource("25_l23ti")
 
 [node name="Statistics" type="Node" parent="."]
-script = ExtResource("22_a16c0")
+script = ExtResource("26_q2poh")
 
-[node name="Plot" parent="." instance=ExtResource("21_3pn3s")]
+[node name="Clock2" parent="." node_paths=PackedStringArray("day_cycle_manager") instance=ExtResource("27_r5dcc")]
+transform = Transform3D(0.799465, -0.600713, 2.6258e-08, 0, -4.37114e-08, -1, 0.600713, 0.799465, -3.49457e-08, 1.63551, 1.13806, -1.50909)
+day_cycle_manager = NodePath("../Managers/DayCycleManager")
+
+[node name="Plot" parent="." instance=ExtResource("28_yqrlq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.753313)
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="Leaf" parent="Plot/Table" index="0"]
+surface_material_override/0 = null
 
-[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
-shape = SubResource("BoxShape3D_7yi6c")
+[node name="Leaf_015" parent="Plot/Table" index="1"]
+surface_material_override/0 = null
 
-[node name="Bobo" parent="." instance=ExtResource("38_1hlk4")]
-transform = Transform3D(0.35207, 0, 0.935974, 0, 1, 0, -0.935974, 0, 0.35207, -1.52853, -0.00775862, -0.831064)
+[node name="Leaf_014" parent="Plot/Table" index="2"]
+surface_material_override/0 = null
 
-[node name="OrderDisplay" parent="." instance=ExtResource("22_s8pn7")]
-transform = Transform3D(1, 0, 0, 0, 0.987587, -0.157072, 0, 0.157072, 0.987587, 0, 1.55262, -1.35507)
+[node name="Leaf_013" parent="Plot/Table" index="3"]
+surface_material_override/0 = null
+
+[node name="Leaf_012" parent="Plot/Table" index="4"]
+surface_material_override/0 = null
+
+[node name="Leaf_011" parent="Plot/Table" index="5"]
+surface_material_override/0 = null
+
+[node name="Leaf_010" parent="Plot/Table" index="6"]
+surface_material_override/0 = null
+
+[node name="Leaf_009" parent="Plot/Table" index="7"]
+surface_material_override/0 = null
+
+[node name="Leaf_008" parent="Plot/Table" index="8"]
+surface_material_override/0 = null
+
+[node name="Leaf_007" parent="Plot/Table" index="9"]
+surface_material_override/0 = null
+
+[node name="Leaf_006" parent="Plot/Table" index="10"]
+surface_material_override/0 = null
+
+[node name="Leaf_005" parent="Plot/Table" index="11"]
+surface_material_override/0 = null
+
+[node name="Leaf_004" parent="Plot/Table" index="12"]
+surface_material_override/0 = null
+
+[node name="Leaf_003" parent="Plot/Table" index="13"]
+surface_material_override/0 = null
+
+[node name="Leaf_002" parent="Plot/Table" index="14"]
+surface_material_override/0 = null
+
+[node name="Leaf_001" parent="Plot/Table" index="15"]
+surface_material_override/0 = null
+
+[node name="Leaf_016" parent="Plot/Table" index="16"]
+surface_material_override/0 = null
+
+[node name="SmackableRocks" parent="Plot" index="3"]
+visible = true
+
+[node name="SmackableRocks2" parent="Plot" index="4"]
+visible = true
+
+[node name="Shield" parent="." instance=ExtResource("29_x6i4p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.83558, -1.32755)
+
+[node name="Chain_0" parent="Shield" index="0"]
+transform = Transform3D(0.369284, 0, 0, 0, 0.36928, -0.00124731, 0, 0.00124731, 0.36928, 0.00454826, 0.00581809, -1.2968)
+
+[node name="Chain_1" parent="Shield/Chain_0" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999985, -0.00506649, 0, 0.00506649, 0.999985, -0.00757694, -0.00581186, 0.712115)
+
+[node name="Chain_2" parent="Shield/Chain_0/Chain_1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999976, -0.0067553, 0, 0.0067553, 0.999976, 0, -0.00568961, 0.195105)
+
+[node name="Chain_3" parent="Shield/Chain_0/Chain_1/Chain_2" index="0"]
+transform = Transform3D(0.999945, -0.0101328, 3.0995e-09, 0.0101325, 0.999911, -0.0084441, 8.55595e-05, 0.00844365, 0.999964, 0, 0, 0.436437)
+
+[node name="Shield" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3" index="0"]
+transform = Transform3D(2.70786, -0.0274118, 0.00274387, 0.0274384, 2.70771, -0.0274396, -0.00246584, 0.027466, 2.70784, 0.0136763, -0.0172326, 0.316601)
+
+[node name="OrderDisplay" parent="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield" index="0" instance=ExtResource("30_1cw5n")]
+transform = Transform3D(1, 2.04636e-12, 2.91038e-11, 0, 0.00378711, 0.999993, 9.9476e-13, -0.999993, 0.00378711, -0.00521426, 0.0379831, 0.674724)
+visible = false
+
+[node name="BoboPath3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949244, 0, 0)
+curve = SubResource("Curve3D_7eudh")
+
+[node name="BoboPathFollow3D" type="PathFollow3D" parent="BoboPath3D" node_paths=PackedStringArray("bobo")]
+transform = Transform3D(-0.991869, 0, -0.126299, 0, 1, 0, 0.126299, 0, -0.991869, -4.60102, 1.02182e-05, -8.23914)
+progress = 8.58755
+rotation_mode = 1
+script = ExtResource("31_wf8fi")
+bobo = NodePath("Bobo")
+
+[node name="Bobo" parent="BoboPath3D/BoboPathFollow3D" node_paths=PackedStringArray("shield", "player_camera", "day_cycle_manager") instance=ExtResource("32_3hygu")]
+transform = Transform3D(-0.998192, 0.00147564, -0.060093, 0.00140514, 0.999998, 0.00121544, 0.0600948, 0.0011288, -0.998192, 0, 0, 0)
+shield = NodePath("../../../Shield")
+player_camera = NodePath("../../../XROrigin3D/XRCamera3D")
+day_cycle_manager = NodePath("../../../Managers/DayCycleManager")
+is_tutorial = true
+eye_look_weight = 5.0
+
+[node name="Skeleton3D" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature" index="0"]
+bones/0/position = Vector3(0.374864, 0.0616672, 0.602508)
+bones/0/rotation = Quaternion(0.73248, 0.0251986, -1.60558e-06, 0.680322)
+bones/1/position = Vector3(-0.374864, 0.0616672, 0.602508)
+bones/1/rotation = Quaternion(0.73248, -0.0251986, 1.60558e-06, 0.680322)
+bones/2/position = Vector3(0.607595, 0.0649739, -0.0379828)
+bones/2/rotation = Quaternion(0.73248, 0.0251985, -1.60726e-06, 0.680322)
+bones/3/position = Vector3(-0.607595, 0.0649739, -0.0379828)
+bones/3/rotation = Quaternion(0.73248, -0.0251985, 1.60726e-06, 0.680322)
+bones/4/position = Vector3(-0.0471307, 0.580418, -2.57503)
+bones/5/position = Vector3(-1.33242e-16, 2.46829, -1.64327)
+bones/6/position = Vector3(-5.75607e-10, 1.55526, 0.129288)
+bones/6/rotation = Quaternion(-0.857331, -0.00160224, 0.00087008, 0.514763)
+bones/7/rotation = Quaternion(0.0232815, 0.5118, 0.85865, -0.0154415)
+bones/12/rotation = Quaternion(-0.74294, 0.036768, 0.0175026, 0.668118)
+bones/13/rotation = Quaternion(0.342404, 0.00113879, 0.0406287, 0.938673)
+bones/14/rotation = Quaternion(-0.714885, 0.00652614, -0.100628, 0.691933)
+bones/15/rotation = Quaternion(-0.745447, -0.0307189, -0.0158514, 0.665668)
+bones/16/rotation = Quaternion(0.349351, -0.00113565, -0.041453, 0.936074)
+bones/17/rotation = Quaternion(-0.717779, -0.0111302, 0.0983901, 0.689195)
+bones/18/rotation = Quaternion(-0.323081, 3.15298e-10, 7.99865e-08, 0.946371)
+bones/23/rotation = Quaternion(-0.91475, -0.0627717, -0.133465, 0.376136)
+bones/24/rotation = Quaternion(0.879069, -0.00067547, 0.0795486, 0.47001)
+bones/25/rotation = Quaternion(-0.754166, 0.0575832, 0.0242285, 0.653706)
+bones/26/rotation = Quaternion(0.439422, -0.0036379, 0.015746, 0.898135)
+bones/27/rotation = Quaternion(0.034426, -1.89645e-10, -8.80326e-09, 0.999407)
+bones/28/rotation = Quaternion(0.206913, 2.92636e-10, -5.01128e-08, 0.978359)
+bones/29/rotation = Quaternion(0.132539, 1.66921e-10, -3.1728e-08, 0.991178)
+bones/30/rotation = Quaternion(-0.915237, 0.0635732, 0.142266, 0.371565)
+bones/31/rotation = Quaternion(0.880113, 0.000672658, -0.079643, 0.468035)
+bones/32/rotation = Quaternion(-0.75262, -0.0617573, -0.0298204, 0.654874)
+
+[node name="Head" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="1"]
+blend_shapes/Happy = 0.4
+blend_shapes/Sad = 0.0
+blend_shapes/LookVertical = 0.00299181
+blend_shapes/LookHorizontal = 0.18112
+blend_shapes/Stretch = -0.00791816
+
+[node name="MouthAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.979224, 0.201623, -0.0216251, 0.0367483, -0.281324, -0.958909, -0.199422, 0.938192, -0.282888, -0.00122606, 1.66968, 0.561902)
+
+[node name="NoseAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.979224, -0.0299704, 0.200552, 0.0367494, 0.998869, -0.0301639, -0.199422, 0.0369074, 0.979218, 0.172868, 1.8572, 1.45132)
+
+[node name="HeartAttachement" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.979265, 0.0235126, -0.201213, 0.0230111, 0.999723, 0.00483092, 0.201271, 0.000100623, -0.979535, 0.00359148, 1.66846, 0.560741)
+
+[node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement" index="0"]
+transform = Transform3D(-0.999124, 0.00571593, -0.0414486, 0.0290282, 0.808133, -0.588284, 0.0301334, -0.588972, -0.807591, -0.0342545, -0.814063, -0.739737)
+
+[node name="Heart" parent="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" index="0"]
+transform = Transform3D(-1, -1.01921e-07, -5.50888e-08, -1.07e-07, 0.630143, 0.776479, -4.44254e-08, 0.776479, -0.630143, 0, 0.00293847, -0.373681)
+
+[node name="ShieldHitTimer" parent="BoboPath3D/BoboPathFollow3D/Bobo" index="3"]
+wait_time = 2.7
+
+[node name="ToolArea" type="Node3D" parent="."]
+
+[node name="ToolTable" parent="ToolArea" instance=ExtResource("33_o3r0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
+
+[node name="Seed Bags" type="Node3D" parent="ToolArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160358, 0, 0.0296309)
+script = ExtResource("34_7t7su")
+
+[node name="ShroomieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("35_q6auh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.886491, 1.31364, 0.402015)
+freeze = true
+ranged_grab_method = 0
+second_hand_grab = 0
+
+[node name="BlubburuSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("36_55lvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.885419, 1.31305, 0.571799)
+freeze_mode = 1
+second_hand_grab = 0
+
+[node name="FlamieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("37_aptor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.890626, 1.30993, 0.732673)
+freeze_mode = 1
+second_hand_grab = 0
+
+[node name="ShellieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("38_g56nx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.896495, 1.0968, 0.397698)
+freeze = true
+ranged_grab_method = 0
+second_hand_grab = 0
+
+[node name="PumkieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("39_hg6sq")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.895469, 1.0949, 0.570088)
+freeze = true
+ranged_grab_method = 0
+second_hand_grab = 0
+
+[node name="NommieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("40_hdnu8")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.896862, 1.09555, 0.734646)
+freeze = true
+ranged_grab_method = 0
+second_hand_grab = 0
+
+[node name="Variable Tools" type="Node3D" parent="ToolArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
+script = ExtResource("41_qfbde")
+
+[node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("42_lcad3")]
+transform = Transform3D(0.459487, 0, -0.888184, 0, 1, 0, 0.888184, 0, 0.459487, 0.528193, 0.898578, 0.553849)
+
+[node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("43_tfr82")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.646891, 0.900121, 0.70396)
+
+[node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("44_kws8j")]
+transform = Transform3D(-0.509538, 0, -0.860449, 0, 1, 0, 0.860449, 0, -0.509538, 0.409234, 0.860584, 0.781112)
+second_hand_grab = 0
+
+[node name="Cauldron" parent="ToolArea" instance=ExtResource("45_u3eed")]
+transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
+
+[node name="Fixed Tools" type="Node3D" parent="ToolArea"]
+
+[node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("46_cc1ug")]
+transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.630592)
+min_insertion_angle = 0.149
+target_pull_distance = 0.2
+ranged_grab_method = 0
+
+[node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("47_4qnjj")]
+transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 0.669052, 0.858456, 0.44779)
+ranged_grab_method = 0
+
+[node name="Potions" type="Node3D" parent="ToolArea"]
+
+[node name="PotionRedSnap" type="Area3D" parent="ToolArea/Potions"]
+transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("48_ka0r3")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionRed"
+initial_object = NodePath("PotionRed")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionRedSnap"]
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionRedSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionRed" parent="ToolArea/Potions/PotionRedSnap" groups=["PotionRed", "Returnable"] instance=ExtResource("49_7wo3f")]
+type = 1
+infinite_drops = true
+
+[node name="PotionGreenSnap" type="Area3D" parent="ToolArea/Potions"]
+transform = Transform3D(0.954267, 0, -0.298958, 0, 1, 0, 0.298958, 0, 0.954267, 0.871379, 1.3195, -0.0400517)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("48_ka0r3")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionGreen"
+initial_object = NodePath("PotionGreen")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionGreenSnap"]
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionGreenSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionGreen" parent="ToolArea/Potions/PotionGreenSnap" groups=["PotionGreen", "Returnable"] instance=ExtResource("49_7wo3f")]
+type = 2
+infinite_drops = true
+metadata/_edit_lock_ = true
+
+[node name="PotionBlueSnap" type="Area3D" parent="ToolArea/Potions"]
+transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)
+collision_layer = 4
+collision_mask = 65540
+script = ExtResource("48_ka0r3")
+grab_distance = 0.1
+snap_mode = 1
+snap_require = "PotionBlue"
+initial_object = NodePath("PotionBlue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionBlueSnap"]
+shape = SubResource("SphereShape3D_3oa2u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionBlueSnap"]
+unit_size = 3.0
+max_db = 1.0
+max_distance = 100.0
+
+[node name="PotionBlue" parent="ToolArea/Potions/PotionBlueSnap" groups=["PotionBlue", "Returnable"] instance=ExtResource("49_7wo3f")]
+type = 4
+infinite_drops = true
 
 [node name="CookingArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348142, 0, 0.0424297)
 
-[node name="CookingChest" parent="CookingArea" instance=ExtResource("39_43inh")]
+[node name="CookingChest" parent="CookingArea" instance=ExtResource("50_33wmi")]
 transform = Transform3D(-0.305629, 0, 0.952151, 0, 1, 0, -0.952151, 0, -0.305629, -0.498897, 0.562432, 0.615636)
+visible = false
 
-[node name="CookingButton" parent="CookingArea/CookingChest" instance=ExtResource("47_5mn04")]
+[node name="CookingButton" parent="CookingArea/CookingChest" instance=ExtResource("51_kqels")]
 transform = Transform3D(0.274516, 0, -0.67332, 0, 0.727131, 0, 0.67332, 0, 0.274516, 0.426609, 0.071738, 0.280397)
 
-[node name="RecipeBook" parent="CookingArea" instance=ExtResource("40_1g7i3")]
+[node name="RecipeBook" parent="CookingArea" instance=ExtResource("52_8fg1b")]
 transform = Transform3D(0.23801, -0.458494, 0.856232, 0.0354846, 0.885083, 0.464079, -0.970614, -0.0800731, 0.226929, -0.449007, 1.09178, -0.0724361)
 visible = false
 
-[node name="Candle" parent="CookingArea" instance=ExtResource("30_r4hcs")]
+[node name="Candle" parent="CookingArea" instance=ExtResource("53_h2og8")]
 transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.508451, 0.570345, 0.0139393)
-ranged_grab_method = 1
+
+[node name="Candle4" parent="CookingArea" instance=ExtResource("53_h2og8")]
+transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.404676, 0.566143, 0.718957)
+
+[node name="Candle2" parent="CookingArea" instance=ExtResource("53_h2og8")]
+transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, -0.0404117, 0.626832, 1.42842)
+
+[node name="Candle3" parent="CookingArea" instance=ExtResource("53_h2og8")]
+transform = Transform3D(0.885823, 0, -0.464023, 0, 1, 0, 0.464023, 0, 0.885823, 0.563147, 0.563645, 1.61093)
 
 [node name="ChestRock" type="StaticBody3D" parent="CookingArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397164, 0.348511, 0.0218657)
+collision_layer = 1073741825
 
 [node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
@@ -519,156 +1050,116 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
 shape = SubResource("ConvexPolygonShape3D_uyehh")
 
-[node name="Shroomie" parent="CookingArea" instance=ExtResource("31_1qxux")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204742, 0.780494, -0.559639)
+[node name="ChestRock2" type="StaticBody3D" parent="CookingArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.13451, 0.348511, 1.47951)
+collision_layer = 1073741825
 
-[node name="ToolArea" type="Node3D" parent="."]
+[node name="ActualRock" type="MeshInstance3D" parent="CookingArea/ChestRock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
+layers = 129
+mesh = SubResource("ArrayMesh_h6ffo")
+skeleton = NodePath("")
 
-[node name="ToolTable" parent="ToolArea" instance=ExtResource("31_yrpf0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762668, -0.00198133, 0.596091)
+[node name="Rock" type="MeshInstance3D" parent="CookingArea/ChestRock2/ActualRock"]
+transform = Transform3D(0.572679, 0.292153, 0.990433, -0.644507, 0.506938, 0.00852391, -0.552184, -0.2887, 1.01725, -0.0778272, -0.222884, -0.365752)
+layers = 129
+mesh = SubResource("ArrayMesh_pval3")
+skeleton = NodePath("")
 
-[node name="Seed Bags" type="Node3D" parent="ToolArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583562, 0, 0.0296309)
-script = ExtResource("22_wos47")
+[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock2/ActualRock/Rock"]
 
-[node name="ShroomieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("27_2vc3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983311, 1.31364, 0.402015)
-freeze = true
-second_hand_grab = 0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock2/ActualRock/Rock/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_yt8j3")
 
-[node name="BlubburuSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("24_yqt5i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.982239, 1.31424, 0.571799)
-freeze_mode = 1
-second_hand_grab = 0
+[node name="Rock2" type="MeshInstance3D" parent="CookingArea/ChestRock2/ActualRock"]
+transform = Transform3D(0.00398746, -0.00796057, -2.22869, -1.01334, 0.794934, -0.0169322, 1.24749, 0.645751, -0.00663054, -0.522226, -0.159592, 0.674088)
+layers = 129
+mesh = SubResource("ArrayMesh_pq4o7")
+skeleton = NodePath("")
 
-[node name="FlamieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("25_7iamt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.987446, 1.30993, 0.732673)
-freeze_mode = 1
-ranged_grab_method = 1
-second_hand_grab = 0
+[node name="StaticBody3D" type="StaticBody3D" parent="CookingArea/ChestRock2/ActualRock/Rock2"]
 
-[node name="ShellieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("26_1y0nt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95032, 1.08007, 0.397698)
-freeze = true
-second_hand_grab = 0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock2/ActualRock/Rock2/StaticBody3D"]
+transform = Transform3D(1, 2.98023e-08, 0, -1.19209e-07, 1, -4.65661e-10, 0, 5.82077e-11, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_m6eh3")
 
-[node name="PumkieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("27_h6dsn")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.955668, 1.07998, 0.570088)
-freeze = true
-second_hand_grab = 0
+[node name="Rock3" type="MeshInstance3D" parent="CookingArea/ChestRock2/ActualRock"]
+transform = Transform3D(0.249475, 0, -0.312669, 0, 0.4, 0, 0.312669, 0, 0.249475, -0.31455, 0.13709, -0.185621)
+layers = 129
+mesh = SubResource("ArrayMesh_27sti")
+skeleton = NodePath("")
 
-[node name="NommieSeedBag" parent="ToolArea/Seed Bags" instance=ExtResource("28_fuv11")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.955118, 1.08404, 0.734646)
-freeze = true
-second_hand_grab = 0
+[node name="Rock4" type="MeshInstance3D" parent="CookingArea/ChestRock2/ActualRock"]
+transform = Transform3D(0.0211634, 0, -0.330505, 0, 0.331182, 0, 0.330505, 0, 0.0211634, -0.499544, 0.147079, -0.143808)
+layers = 129
+mesh = SubResource("ArrayMesh_dh3e5")
+skeleton = NodePath("")
 
-[node name="Variable Tools" type="Node3D" parent="ToolArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068431, 0, 0.149023)
-script = ExtResource("29_n5npg")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CookingArea/ChestRock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.348998, 0.0228022, 0.289101)
+shape = SubResource("ConvexPolygonShape3D_uyehh")
 
-[node name="Scissors" parent="ToolArea/Variable Tools" instance=ExtResource("33_cn155")]
-transform = Transform3D(0.459487, 0, -0.888184, 0, 1, 0, 0.888184, 0, 0.459487, 0.528193, 0.898578, 0.553849)
+[node name="Environment" parent="." instance=ExtResource("58_0pul7")]
 
-[node name="MusicBox" parent="ToolArea/Variable Tools" instance=ExtResource("34_opvkw")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.73505, 0.900121, 0.581508)
+[node name="Rock_004" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1.99933, 0, -1.99933, 0, 4.1143, 0, 1.99933, 0, 1.99933, 1.63057, -0.0308172, -1.56116)
+mesh = SubResource("ArrayMesh_77opt")
+skeleton = NodePath("")
+metadata/extras = {
+"sprytile_gridid": 3.0
+}
 
-[node name="Pickaxe" parent="ToolArea/Variable Tools" instance=ExtResource("37_0pgb5")]
-transform = Transform3D(-0.509538, 0, -0.860449, 0, 1, 0, 0.860449, 0, -0.509538, 0.409234, 0.860584, 0.781112)
-ranged_grab_method = 1
-second_hand_grab = 0
+[node name="Ground2" type="StaticBody3D" parent="Environment"]
+collision_layer = 1073741825
 
-[node name="Cauldron" parent="ToolArea" instance=ExtResource("51_nckfo")]
-transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0.541734, 0.853512, 0.0884053)
-
-[node name="Fixed Tools" type="Node3D" parent="ToolArea"]
-
-[node name="Shovel" parent="ToolArea/Fixed Tools" instance=ExtResource("13_cesqi")]
-transform = Transform3D(0.099024, 0, 0.995085, 0, 1, 0, -0.995085, 0, 0.099024, 0.394195, 0.851818, 0.630592)
-min_insertion_angle = 0.149
-target_pull_distance = 0.2
-
-[node name="WateringCan" parent="ToolArea/Fixed Tools" instance=ExtResource("36_eqljc")]
-transform = Transform3D(0.711475, 0, -0.702712, 0, 1, 0, 0.702712, 0, 0.711475, 0.669052, 0.858456, 0.44779)
-
-[node name="Potions" type="Node3D" parent="ToolArea"]
-
-[node name="PotionRedSnap" type="Area3D" parent="ToolArea/Potions"]
-transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, 0.880177, 1.21243, 0.126413)
-collision_layer = 4
-collision_mask = 65540
-script = ExtResource("47_1c8xm")
-grab_distance = 0.1
-snap_mode = 1
-snap_require = "PotionRed"
-initial_object = NodePath("PotionRed")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionRedSnap"]
-shape = SubResource("SphereShape3D_3oa2u")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionRedSnap"]
-unit_size = 3.0
-max_db = 1.0
-max_distance = 100.0
-
-[node name="PotionRed" parent="ToolArea/Potions/PotionRedSnap" groups=["PotionRed", "Returnable"] instance=ExtResource("52_vtd61")]
-type = 1
-infinite_drops = true
-ranged_grab_method = 1
-
-[node name="PotionGreenSnap" type="Area3D" parent="ToolArea/Potions"]
-transform = Transform3D(0.954267, 0, -0.298958, 0, 1, 0, 0.298958, 0, 0.954267, 0.871379, 1.3195, -0.0400517)
-collision_layer = 4
-collision_mask = 65540
-script = ExtResource("47_1c8xm")
-grab_distance = 0.1
-snap_mode = 1
-snap_require = "PotionGreen"
-initial_object = NodePath("PotionGreen")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionGreenSnap"]
-shape = SubResource("SphereShape3D_3oa2u")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionGreenSnap"]
-unit_size = 3.0
-max_db = 1.0
-max_distance = 100.0
-
-[node name="PotionGreen" parent="ToolArea/Potions/PotionGreenSnap" groups=["PotionGreen", "Returnable"] instance=ExtResource("52_vtd61")]
-type = 2
-infinite_drops = true
-ranged_grab_method = 1
+[node name="TheGroun" type="MeshInstance3D" parent="Environment/Ground2"]
+transform = Transform3D(10.5029, 0, 0, 0, 10.5029, 0, 0, 0, 10.5029, 0, 0, 0)
+mesh = SubResource("ArrayMesh_v0l8j")
+skeleton = NodePath("")
 metadata/_edit_lock_ = true
 
-[node name="PotionBlueSnap" type="Area3D" parent="ToolArea/Potions"]
-transform = Transform3D(-0.882948, 0, -0.469472, 0, 1, 0, 0.469472, 0, -0.882948, 0.977092, 1.4204, -0.174415)
-collision_layer = 4
-collision_mask = 65540
-script = ExtResource("47_1c8xm")
-grab_distance = 0.1
-snap_mode = 1
-snap_require = "PotionBlue"
-initial_object = NodePath("PotionBlue")
+[node name="GroundCollision" type="CollisionShape3D" parent="Environment/Ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878373, 0)
+shape = SubResource("BoxShape3D_7yi6c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolArea/Potions/PotionBlueSnap"]
-shape = SubResource("SphereShape3D_3oa2u")
+[node name="Audio" type="Node3D" parent="."]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ToolArea/Potions/PotionBlueSnap"]
-unit_size = 3.0
-max_db = 1.0
-max_distance = 100.0
+[node name="ForestWind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("60_3pyjn")
+volume_db = -19.195
+autoplay = true
+parameters/looping = true
 
-[node name="PotionBlue" parent="ToolArea/Potions/PotionBlueSnap" groups=["PotionBlue", "Returnable"] instance=ExtResource("52_vtd61")]
-type = 4
-infinite_drops = true
-ranged_grab_method = 1
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("61_i47ef")
+volume_db = -18.922
+pitch_scale = 0.5
+autoplay = true
+parameters/looping = true
 
-[node name="Environment" parent="." instance=ExtResource("48_ai1t1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0064286, 0)
-
-[connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
+[connection signal="day_ended" from="Managers/DayCycleManager" to="." method="_on_day_cycle_manager_day_ended"]
+[connection signal="day_started" from="Managers/DayCycleManager" to="Clock2" method="_on_day_cycle_manager_day_started"]
+[connection signal="hour_progressed" from="Managers/DayCycleManager" to="Clock2" method="_on_day_cycle_manager_hour_progressed"]
+[connection signal="hour_progressed" from="Managers/DayCycleManager" to="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart" method="_on_day_cycle_manager_hour_progressed"]
+[connection signal="order_completed" from="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/OrderDisplay/Order Viewport/Order Display" to="BoboPath3D/BoboPathFollow3D/Bobo" method="_on_order_display_order_completed"]
+[connection signal="bobo_done_moving" from="BoboPath3D/BoboPathFollow3D" to="Managers/BoboManager" method="_on_bobo_path_follow_3d_bobo_done_moving"]
+[connection signal="bobo_sat_down" from="BoboPath3D/BoboPathFollow3D/Bobo" to="Managers/BoboManager" method="_on_bobo_bobo_sat_down"]
+[connection signal="level_failed" from="BoboPath3D/BoboPathFollow3D/Bobo" to="." method="level_failed"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionRedSnap" to="ToolArea/Potions/PotionRedSnap" method="_on_snap_zone_body_exited"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionGreenSnap" to="ToolArea/Potions/PotionGreenSnap" method="_on_snap_zone_body_exited"]
 [connection signal="body_entered" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_entered"]
 [connection signal="body_exited" from="ToolArea/Potions/PotionBlueSnap" to="ToolArea/Potions/PotionBlueSnap" method="_on_snap_zone_body_exited"]
+[connection signal="button_pressed" from="CookingArea/CookingChest/CookingButton" to="CookingArea/CookingChest" method="_on_cook_button_pressed"]
+
+[editable path="XROrigin3D"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand"]
+[editable path="XROrigin3D/Left Hand/CollisionHandLeft/LeftHand/Hand_Nails_low_L/pixel_hand_l"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand"]
+[editable path="XROrigin3D/Right Hand/CollisionHandRight/RightHand/pixel_hand_r"]
+[editable path="Plot"]
+[editable path="Shield"]
+[editable path="Shield/Chain_0/Chain_1/Chain_2/Chain_3/Shield/OrderDisplay"]
+[editable path="BoboPath3D/BoboPathFollow3D/Bobo"]
+[editable path="BoboPath3D/BoboPathFollow3D/Bobo/Armature/Skeleton3D/HeartAttachement/Heart"]

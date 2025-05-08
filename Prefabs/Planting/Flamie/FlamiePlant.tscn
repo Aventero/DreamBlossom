@@ -1,30 +1,29 @@
-[gd_scene load_steps=98 format=4 uid="uid://dxhccbbkp1ghs"]
+[gd_scene load_steps=97 format=4 uid="uid://dxhccbbkp1ghs"]
 
 [ext_resource type="PackedScene" uid="uid://c0jc6djndpovy" path="res://Prefabs/Planting/Plant.tscn" id="1_xrug7"]
 [ext_resource type="PackedScene" uid="uid://c0tptbra7fl7l" path="res://Models/Plants/Flamie/FlamieFruit.blend" id="2_kawg3"]
 [ext_resource type="Texture2D" uid="uid://bfcg6mjs0u2fo" path="res://Textures/Fruits/Flamie/Flamie.png" id="3_5ptct"]
 [ext_resource type="Script" uid="uid://b2v8qlqslv3ff" path="res://Scripts/Farmland/Events/Stage.gd" id="4_cqu8f"]
 [ext_resource type="Script" uid="uid://blbvbwya176vi" path="res://Scripts/Farmland/Events/MusicEvent.gd" id="6_glrd6"]
-[ext_resource type="Texture2D" uid="uid://chh5yvq17g161" path="res://Textures/EditorIcons/MusicBox.png" id="7_6pry3"]
+[ext_resource type="Texture2D" uid="uid://cqqqvwepf5uqt" path="res://Textures/EventIcons/Music.png" id="6_wyyth"]
 [ext_resource type="Script" uid="uid://dmh43qu0grfqr" path="res://Scripts/Farmland/Events/WeedEvent.gd" id="8_4a6pc"]
 [ext_resource type="PackedScene" uid="uid://bdx7y6tgfx10" path="res://Prefabs/PlantEvents/Weed/EventWeed.tscn" id="9_5c5wj"]
-[ext_resource type="Texture2D" uid="uid://76d7fff1vfiq" path="res://Textures/EditorIcons/WeedEvent.png" id="10_xwg07"]
+[ext_resource type="Texture2D" uid="uid://2mbo8s87p5mu" path="res://Textures/EventIcons/WeedPull.png" id="9_c2bwt"]
 [ext_resource type="Script" uid="uid://qoyk0048n44s" path="res://Scripts/Farmland/Events/FireFairyEvent/FireFairyEvent.gd" id="11_5ym1y"]
 [ext_resource type="Script" uid="uid://cnhc3cgvinq7l" path="res://Scripts/Farmland/Events/KnospEvent/KnospEvent.gd" id="11_gjqbd"]
 [ext_resource type="PackedScene" uid="uid://d7httil120fm" path="res://Prefabs/PlantEvents/Knosp/KnospFlamie.tscn" id="12_reiha"]
-[ext_resource type="Texture2D" uid="uid://bw7k5msssk768" path="res://Textures/EditorIcons/LeafPullEvent.png" id="13_0tla4"]
-[ext_resource type="Texture2D" uid="uid://dr0ejtk2mq6yp" path="res://Textures/EditorIcons/FireFairyEvent.png" id="13_6y87b"]
+[ext_resource type="Texture2D" uid="uid://bbq66ynbednhw" path="res://Textures/EventIcons/Fire.png" id="12_xyol8"]
 [ext_resource type="Script" uid="uid://dek84er4s4jxp" path="res://Scripts/Farmland/Events/IceFairyEvent/IceFairyEvent.gd" id="14_h2h2n"]
 [ext_resource type="Script" uid="uid://d31kbfp6ggfc" path="res://Scripts/Farmland/Events/FruitEvent.gd" id="14_h10hx"]
 [ext_resource type="PackedScene" uid="uid://cl4tndyms65rq" path="res://Prefabs/Planting/Fruits/FlamieFruit.tscn" id="15_8ppun"]
 [ext_resource type="PackedScene" uid="uid://deixlqjk2x6ue" path="res://Prefabs/PlantEvents/IceFairy/IceCube.tscn" id="15_mb15r"]
 [ext_resource type="PackedScene" uid="uid://dm6iu3ejy5tdt" path="res://Prefabs/PlantEvents/FireFairy/FireFairy.tscn" id="15_u1al2"]
 [ext_resource type="PackedScene" uid="uid://o5roe0nubwuy" path="res://Particles/Ice/IceAppear.tscn" id="16_3yl4r"]
-[ext_resource type="Texture2D" uid="uid://b4b4n4044ulqc" path="res://Textures/EditorIcons/FruitEvent.png" id="16_8x7s2"]
-[ext_resource type="Texture2D" uid="uid://br3j2gkwk3476" path="res://Textures/EditorIcons/IceCube.png" id="16_ku3pk"]
 [ext_resource type="Script" uid="uid://doxg72o28hq7s" path="res://Scripts/Farmland/Events/DeathEvent.gd" id="17_2bt31"]
 [ext_resource type="PackedScene" uid="uid://ciajs30hmedpn" path="res://Prefabs/PlantEvents/IceFairy/FairySpawn.tscn" id="17_qbu5y"]
 [ext_resource type="PackedScene" uid="uid://veqkxhrjmuum" path="res://Prefabs/PlantEvents/IceFairy/IceFairy.tscn" id="18_n20ja"]
+[ext_resource type="Texture2D" uid="uid://cct0yabpk8tjh" path="res://Textures/EventIcons/KnospPull.png" id="19_xyol8"]
+[ext_resource type="Texture2D" uid="uid://crh7a5k17v6ma" path="res://Textures/EventIcons/Ice.png" id="22_c2bwt"]
 [ext_resource type="PackedScene" uid="uid://oy4mv3s1ayr7" path="res://Prefabs/PlantEvents/FireFairy/Fire.tscn" id="24_5ielf"]
 [ext_resource type="Script" uid="uid://d1nb3utitrlmi" path="res://Scripts/Farmland/Events/PotionEvent.gd" id="24_kj3ng"]
 [ext_resource type="PackedScene" uid="uid://dxnefxr42p1k4" path="res://Prefabs/Particles/FallingLeafes/FallingLeafes_Flamie.tscn" id="25_ssrgl"]
@@ -2883,9 +2882,9 @@ libraries = {
 }
 
 [node name="IconDisplay" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1.29, 0, 1, -5.63877e-08, 0, 0.62323, 6.43461e-09)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.62323, 6.43461e-09)
 
-[node name="Stage1" type="Node3D" parent="." index="5" groups=["Stage"]]
+[node name="Stage1" type="Node3D" parent="." index="4" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
 animation_time = 6.0
 animation_name = "Grow"
@@ -2894,12 +2893,12 @@ icon_position = Vector3(0, 0.283, 0)
 [node name="MusicEvent" type="Node3D" parent="Stage1" index="0"]
 script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("7_6pry3")
+icon_texture = ExtResource("6_wyyth")
 
 [node name="WeedEvent" type="Node3D" parent="Stage1" index="1"]
 script = ExtResource("8_4a6pc")
 event_weed = ExtResource("9_5c5wj")
-icon_texture = ExtResource("10_xwg07")
+icon_texture = ExtResource("9_c2bwt")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage1/WeedEvent" index="0"]
 transform = Transform3D(0.611232, -0.087837, -0.786562, -0.057111, 0.986337, -0.154527, 0.789388, 0.139373, 0.597864, -0.0118018, 0, 0.103418)
@@ -2917,7 +2916,7 @@ transform = Transform3D(0.979297, 0.202428, 0, -0.20071, 0.970984, 0.130024, 0.0
 script = ExtResource("11_5ym1y")
 fire = ExtResource("24_5ielf")
 fairy_spawns = [NodePath("FairySpawn")]
-icon_texture = ExtResource("13_6y87b")
+icon_texture = ExtResource("12_xyol8")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage1/FireFairyEvent" index="0" groups=["Spawnpoint"]]
 transform = Transform3D(0.945399, 0, -0.325915, 0, 1, 0, 0.325915, 0, 0.945399, -0.090717, 0.161926, 0.041283)
@@ -2934,7 +2933,7 @@ radius = 0.12
 max_vertical_movement = 0.02
 fairy = ExtResource("15_u1al2")
 
-[node name="Stage2" type="Node3D" parent="." index="6" groups=["Stage"]]
+[node name="Stage2" type="Node3D" parent="." index="5" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
 animation_time = 9.0
 animation_name = "Grow"
@@ -2949,7 +2948,7 @@ falling_leaf_particles = ExtResource("25_ssrgl")
 script = ExtResource("11_gjqbd")
 knosp = ExtResource("12_reiha")
 max_knosp_amount = 4
-icon_texture = ExtResource("13_0tla4")
+icon_texture = ExtResource("19_xyol8")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage2/KnospEvent" index="0"]
 transform = Transform3D(0.710342, -0.674223, -0.202084, -0.37546, -0.120117, -0.919022, 0.595352, 0.728695, -0.338468, -0.12387, 0.301186, 0.057191)
@@ -2966,14 +2965,14 @@ transform = Transform3D(-0.618767, -0.749987, -0.233768, -0.57755, 0.232592, 0.7
 [node name="MusicEvent" type="Node3D" parent="Stage2" index="2"]
 script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("7_6pry3")
+icon_texture = ExtResource("6_wyyth")
 
 [node name="IceFairyEvent" type="Node3D" parent="Stage2" index="3" node_paths=PackedStringArray("fairy_spawns")]
 script = ExtResource("14_h2h2n")
 ice_cube = ExtResource("15_mb15r")
 fairy_spawns = [NodePath("FairySpawn1"), NodePath("FairySpawn2")]
 appear_particles = ExtResource("16_3yl4r")
-icon_texture = ExtResource("16_ku3pk")
+icon_texture = ExtResource("22_c2bwt")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage2/IceFairyEvent" index="0" groups=["Spawnpoint"]]
 transform = Transform3D(-0.56057, 0.0282079, 0.059023, 0.0371649, 0.556377, 0.0870732, -0.0538343, 0.0903731, -0.554485, 0.00641219, 0.250701, 0.0501802)
@@ -2998,7 +2997,7 @@ fairy = ExtResource("18_n20ja")
 script = ExtResource("11_5ym1y")
 fire = ExtResource("24_5ielf")
 fairy_spawns = [NodePath("FairySpawn"), NodePath("FairySpawn2")]
-icon_texture = ExtResource("13_6y87b")
+icon_texture = ExtResource("12_xyol8")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage2/FireFairyEvent" index="0" groups=["Spawnpoint"]]
 transform = Transform3D(0.938083, 0.0636569, -0.340511, -0.180727, 0.928527, -0.324308, 0.295529, 0.365768, 0.88254, 0.112392, 0.170454, 0.0850994)
@@ -3024,7 +3023,7 @@ max_vertical_movement = 0.03
 vertical_movement_frequency = 2.0
 fairy = ExtResource("15_u1al2")
 
-[node name="Stage3" type="Node3D" parent="." index="7" groups=["Stage"]]
+[node name="Stage3" type="Node3D" parent="." index="6" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
 animation_time = 5.0
 animation_name = "Grow"
@@ -3038,12 +3037,12 @@ falling_leaf_particles = ExtResource("25_v5he5")
 [node name="MusicEvent" type="Node3D" parent="Stage3" index="1"]
 script = ExtResource("6_glrd6")
 target_time = 5.0
-icon_texture = ExtResource("7_6pry3")
+icon_texture = ExtResource("6_wyyth")
 
 [node name="WeedEvent" type="Node3D" parent="Stage3" index="2"]
 script = ExtResource("8_4a6pc")
 event_weed = ExtResource("9_5c5wj")
-icon_texture = ExtResource("10_xwg07")
+icon_texture = ExtResource("9_c2bwt")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage3/WeedEvent" index="0"]
 transform = Transform3D(-0.213072, 0.195678, -0.957241, -0.0966415, 0.970714, 0.219943, 0.972245, 0.139373, -0.187922, -0.0142303, 0.0168455, 0.11419)
@@ -3061,7 +3060,7 @@ min_cube_hits = 5
 max_cube_hits = 10
 fairy_spawns = [NodePath("../../Stage2/IceFairyEvent/FairySpawn1"), NodePath("../../Stage2/IceFairyEvent/FairySpawn2"), NodePath("FairySpawn3")]
 appear_particles = ExtResource("16_3yl4r")
-icon_texture = ExtResource("16_ku3pk")
+icon_texture = ExtResource("22_c2bwt")
 
 [node name="Spawnpoint 1" type="Node3D" parent="Stage3/IceFairyEvent" index="0" groups=["Spawnpoint"]]
 transform = Transform3D(-0.902348, -0.248456, 0.0471139, -0.240282, 0.8968, 0.127273, -0.0788304, 0.110472, -0.927235, 0.00330677, 0.272264, 0.0520001)
@@ -3094,7 +3093,7 @@ fairy = ExtResource("18_n20ja")
 script = ExtResource("11_5ym1y")
 fire = ExtResource("24_5ielf")
 fairy_spawns = [NodePath("../../Stage2/FireFairyEvent/FairySpawn"), NodePath("../../Stage2/FireFairyEvent/FairySpawn2")]
-icon_texture = ExtResource("13_6y87b")
+icon_texture = ExtResource("12_xyol8")
 
 [node name="Spawnpoint1" type="Node3D" parent="Stage3/FireFairyEvent" index="0" groups=["Spawnpoint"]]
 transform = Transform3D(0.476405, -0.374581, -0.795442, -0.00817692, 0.90278, -0.430025, 0.879188, 0.21137, 0.427026, 0.112667, 0.291182, 0.0768482)
@@ -3121,7 +3120,7 @@ max_vertical_movement = 0.03
 vertical_movement_frequency = 2.0
 fairy = ExtResource("15_u1al2")
 
-[node name="Stage Fruit" type="Node3D" parent="." index="8" groups=["Stage"]]
+[node name="Stage Fruit" type="Node3D" parent="." index="7" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
 animation_time = 10.0
 animation_name = "Grow"
@@ -3134,12 +3133,11 @@ delayed_spawn = false
 start_scale = Vector3(1.1, 1.1, 1.1)
 scale_length = 0.1
 despawn_models = [NodePath("../../Model/FlamieFruit")]
-icon_texture = ExtResource("16_8x7s2")
 
 [node name="Spawnpoint" type="Node3D" parent="Stage Fruit/FruitEvent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00641219, 0.232545, 0.0501802)
 
-[node name="Stage Death" type="Node3D" parent="." index="9" groups=["Stage"]]
+[node name="Stage Death" type="Node3D" parent="." index="8" groups=["Stage"]]
 script = ExtResource("4_cqu8f")
 should_play_animation = false
 

@@ -11,15 +11,14 @@ amount = 3
 
 [node name="LevelTutorial" type="Node3D"]
 script = ExtResource("1_510fn")
-active_plants = 63
-active_tools = 7
-soil_setup = " , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , "
-enable_brewing = true
+active_plants = 2
+active_tools = 0
+soil_setup = "R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R, , , , ,R,R,R,R, , , , ,R,R"
 time_between_orders = 3.0
 day_length = 180
-death_time = 60
+death_time = 100
 tick_time = 7
-hunger_tick = 11
+hunger_tick = 7
 
 [node name="Drei Blubburus" type="Timer" parent="."]
 script = ExtResource("2_qyhw8")

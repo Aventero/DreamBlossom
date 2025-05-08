@@ -47,6 +47,7 @@ var jiggle_tween : Tween
 
 var time : float = 0.0
 var to_be_deleted : bool = false
+var seed_was_planted: bool = false
 
 func _ready():
 	# Add self to lookup
@@ -111,6 +112,9 @@ func _free_callback():
 	queue_free()
 
 func _on_trigger_body_entered(body):
+	if body is Seed and seed_was_planted:
+		return
+	
 	# Check if body is hand
 	if hand_removal and body is XRToolsCollisionHand:
 		_handle_hand_movement(body)
@@ -144,6 +148,7 @@ func _handle_hand_movement(body : Node3D):
 	previous_hand_position = body.global_position
 
 func _handle_seed_insert():
+	seed_was_planted = true
 	# Force player to drop grow_seed
 	grow_seed.drop()
 	

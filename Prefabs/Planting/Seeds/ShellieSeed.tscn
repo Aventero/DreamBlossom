@@ -92,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.88292e-05, -0.000463864, -
 shape = SubResource("BoxShape3D_8g0a6")
 
 [node name="Model" type="Node3D" parent="." index="1"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.0189067, 0)
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, -0.0189067, 0)
 
 [node name="Coral" type="MeshInstance3D" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_y3rbp")
@@ -108,6 +108,10 @@ transform = Transform3D(-0.973121, -0.184108, 0.13835, -0.192877, 0.323295, -0.9
 mesh = SubResource("ArrayMesh_8uait")
 skeleton = NodePath("")
 
+[node name="XRToolsHighlightVisible" parent="." index="2"]
+visible = true
+
 [node name="Highlight" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0"]
+transform = Transform3D(1.24, 0, 0, 0, 1.42, 0, 0, 0, 1.24, 0, 0.0127298, 0)
 mesh = SubResource("BoxMesh_i50oc")
 surface_material_override/0 = ExtResource("3_41xgw")

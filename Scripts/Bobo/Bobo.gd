@@ -8,8 +8,8 @@ signal bobo_ate(amount: int)
 @export var shield: Shield
 @export_range(0.0, 1.0) var blend_open: float = 0
 @export var player_camera: Camera3D
-@onready var head: MeshInstance3D = $Armature/Skeleton3D/Head
-@onready var animation_tree: AnimationTree = $AnimationTree
+@export var head: MeshInstance3D
+@export var animation_tree: AnimationTree
 @export var nose_bone: BoneAttachment3D
 @export var day_cycle_manager: DayCycleManager
 
