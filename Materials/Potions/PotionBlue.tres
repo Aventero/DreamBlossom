@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cfm7kawvkpi21"]
 
-[ext_resource type="Shader" path="res://Shader/Potion.gdshader" id="1_q5yr7"]
+[ext_resource type="Shader" uid="uid://byjawnmvp6m8h" path="res://Shader/Potion.gdshader" id="1_q5yr7"]
 [ext_resource type="Texture2D" uid="uid://both4o3c0t4e1" path="res://Textures/Brewing/PotionNoise.png" id="2_ebcmf"]
 
 [resource]
@@ -8,10 +8,10 @@ render_priority = 0
 shader = ExtResource("1_q5yr7")
 shader_parameter/min_height = -0.04
 shader_parameter/max_height = 0.04
+shader_parameter/potion_noise = ExtResource("2_ebcmf")
 shader_parameter/base_color = Color(0.0313726, 0.266667, 1, 1)
 shader_parameter/surface_color = Color(0.333333, 0.537255, 1, 1)
 shader_parameter/line_color = Color(0.698039, 0.796078, 1, 1)
 shader_parameter/fresnel_color = Color(0.8, 0.866667, 1, 1)
 shader_parameter/line_width = 0.001
 shader_parameter/mix_amount = 0.8
-shader_parameter/potion_noise = ExtResource("2_ebcmf")
