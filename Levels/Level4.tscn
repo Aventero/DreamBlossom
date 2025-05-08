@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_aw0mc"]
 script = ExtResource("3_xdvtd")
-type = 3
-amount = 5
+type = 4
+amount = 2
 
 [sub_resource type="Resource" id="Resource_f47o0"]
 script = ExtResource("3_xdvtd")
@@ -27,12 +27,12 @@ amount = 3
 [sub_resource type="Resource" id="Resource_jp62o"]
 script = ExtResource("3_xdvtd")
 type = 0
-amount = 1
+amount = 3
 
 [sub_resource type="Resource" id="Resource_mjs2g"]
 script = ExtResource("3_xdvtd")
 type = 1
-amount = 2
+amount = 3
 
 [sub_resource type="Resource" id="Resource_hw541"]
 script = ExtResource("3_xdvtd")
@@ -42,7 +42,7 @@ amount = 1
 [sub_resource type="Resource" id="Resource_7rarr"]
 script = ExtResource("3_xdvtd")
 type = 3
-amount = 2
+amount = 4
 
 [sub_resource type="Resource" id="Resource_ahpf7"]
 script = ExtResource("3_xdvtd")
@@ -61,7 +61,7 @@ amount = 4
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_8rvmj")
-active_plants = 15
+active_plants = 31
 active_tools = 15
 spread_time = 10.0
 spread_indicator_time = 4.0
@@ -69,13 +69,19 @@ spread_release_grace_time = 1.0
 spread_chance = 0.25
 obstacle_spawn_chance = 0.3
 soil_setup = ",,,W,W,,,,,,,,,,W,,W,W,,,,,,W,,,,,W,W,,"
-time_before_first_spawn = 30.0
-inital_spawn_chance = 0.1
-stack_spawn_chance = 0.05
-time_until_death = 60.0
+enable_brewing = true
 time_between_orders = 10.0
+day_length = 240
+death_time = 100
+tick_time = 10
+hunger_tick = 10
 
-[node name="Order #1" type="Timer" parent="."]
+[node name="Pumkie #1" type="Timer" parent="."]
+script = ExtResource("2_34c56")
+time = 60
+requirements = Array[ExtResource("3_xdvtd")]([SubResource("Resource_aw0mc")])
+
+[node name="Mehr Pumkies  #7" type="Timer" parent="."]
 script = ExtResource("2_34c56")
 time = 60
 requirements = Array[ExtResource("3_xdvtd")]([SubResource("Resource_aw0mc")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br2n2fegflibc"]
+[gd_scene load_steps=11 format=3 uid="uid://br2n2fegflibc"]
 
 [ext_resource type="Script" uid="uid://hunun33tsrt0" path="res://Scripts/Level.gd" id="1_lfmrd"]
 [ext_resource type="Script" uid="uid://cpj8naljb5w8t" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_0o07s"]
@@ -7,16 +7,11 @@
 [sub_resource type="Resource" id="Resource_3umco"]
 script = ExtResource("3_03amo")
 type = 2
-amount = 1
-
-[sub_resource type="Resource" id="Resource_y626q"]
-script = ExtResource("3_03amo")
-type = 0
 amount = 2
 
 [sub_resource type="Resource" id="Resource_lspv2"]
 script = ExtResource("3_03amo")
-type = 2
+type = 3
 amount = 1
 
 [sub_resource type="Resource" id="Resource_pdx0t"]
@@ -46,7 +41,7 @@ amount = 1
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_lfmrd")
-active_plants = 7
+active_plants = 15
 active_tools = 15
 spread_time = 15.0
 spread_indicator_time = 5.0
@@ -54,13 +49,34 @@ spread_release_grace_time = 1.0
 spread_chance = 0.25
 obstacle_spawn_chance = 0.25
 soil_setup = ",W,W,W,,,,,W,W,,,,,,,W,,,W,,,,,W,,,,,,,W"
-time_before_first_spawn = 1e+07
-inital_spawn_chance = 0.1
-stack_spawn_chance = 0.05
-time_until_death = 30.0
+enable_brewing = true
 time_between_orders = 10.0
+day_length = 240
+death_time = 120
+tick_time = 10
+hunger_tick = 8
 
-[node name="Order #1" type="Timer" parent="."]
+[node name="Shellies #1" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
+
+[node name="Flamie #2" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
+
+[node name="Bestellung #3" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
+
+[node name="Bestellung #4" type="Timer" parent="."]
+script = ExtResource("2_0o07s")
+time = 60
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
+
+[node name="Bestellung #5" type="Timer" parent="."]
 script = ExtResource("2_0o07s")
 time = 60
 requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
@@ -68,7 +84,7 @@ requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_3umco")])
 [node name="Order #2" type="Timer" parent="."]
 script = ExtResource("2_0o07s")
 time = 60
-requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_y626q"), SubResource("Resource_lspv2")])
+requirements = Array[ExtResource("3_03amo")]([SubResource("Resource_lspv2")])
 
 [node name="Order #3" type="Timer" parent="."]
 script = ExtResource("2_0o07s")

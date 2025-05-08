@@ -55,7 +55,8 @@ func show_buttons() -> void:
 		show_level_x(4, true)
 	if level_completed > 4:
 		show_level_x(5, true)
-	if level_completed > 5:
+	
+	if level_completed > 0:
 		show_level_x(6, true)
 
 
@@ -64,8 +65,6 @@ func show_level_x(level: int, show: bool = true):
 		level_node.visible = show
 		if show:
 			level_node.process_mode = Node.PROCESS_MODE_ALWAYS
-		else:
-			level_node.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _input(event: InputEvent) -> void:
 	# Check for keyboard input

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://m4bba07ys6km"]
+[gd_scene load_steps=8 format=3 uid="uid://m4bba07ys6km"]
 
 [ext_resource type="Script" uid="uid://hunun33tsrt0" path="res://Scripts/Level.gd" id="1_132p8"]
 [ext_resource type="Script" uid="uid://cpj8naljb5w8t" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_tnwy3"]
@@ -7,65 +7,53 @@
 [sub_resource type="Resource" id="Resource_0gfwg"]
 script = ExtResource("3_i4fpv")
 type = 1
-amount = 2
+amount = 3
 
-[sub_resource type="Resource" id="Resource_myibx"]
+[sub_resource type="Resource" id="Resource_506po"]
 script = ExtResource("3_i4fpv")
-type = 0
-amount = 2
+type = 2
+amount = 1
+metadata/_custom_type_script = "uid://dywghgfiv8joo"
 
-[sub_resource type="Resource" id="Resource_f5b0t"]
-script = ExtResource("3_i4fpv")
-type = 1
-amount = 2
-
-[sub_resource type="Resource" id="Resource_j4ob6"]
-script = ExtResource("3_i4fpv")
-type = 1
-amount = 5
-
-[sub_resource type="Resource" id="Resource_ayxi0"]
+[sub_resource type="Resource" id="Resource_nn734"]
 script = ExtResource("3_i4fpv")
 type = 0
 amount = 3
+metadata/_custom_type_script = "uid://dywghgfiv8joo"
 
-[sub_resource type="Resource" id="Resource_0qpv5"]
+[sub_resource type="Resource" id="Resource_v115i"]
 script = ExtResource("3_i4fpv")
-type = 1
-amount = 3
+type = 2
+amount = 1
+metadata/_custom_type_script = "uid://dywghgfiv8joo"
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_132p8")
-active_plants = 3
+active_plants = 7
 active_tools = 7
-spread_time = 20.0
-spread_indicator_time = 5.0
-spread_release_grace_time = 1.0
-spread_chance = 0.2
-obstacle_spawn_chance = 0.25
 soil_setup = "W,W,W,,,,,W,,,,,,,,,,,,,,,,,,,,,,,,W"
-time_before_first_spawn = 1e+07
-inital_spawn_chance = 0.1
-stack_spawn_chance = 0.05
-time_until_death = 30.0
 time_between_orders = 10.0
+day_length = 220
+death_time = 100
+tick_time = 9
+hunger_tick = 9
 
-[node name="Order #1" type="Timer" parent="."]
+[node name="Shrubburu #1" type="Timer" parent="."]
 script = ExtResource("2_tnwy3")
 time = 90
-requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg")])
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg"), SubResource("Resource_506po")])
 
-[node name="Order #2" type="Timer" parent="."]
+[node name="Alles #2" type="Timer" parent="."]
 script = ExtResource("2_tnwy3")
-time = 75
-requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_myibx"), SubResource("Resource_f5b0t")])
+time = 90
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg"), SubResource("Resource_nn734")])
 
-[node name="Order #3" type="Timer" parent="."]
+[node name="Mehr #3" type="Timer" parent="."]
 script = ExtResource("2_tnwy3")
-time = 60
-requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_j4ob6")])
+time = 90
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg"), SubResource("Resource_nn734")])
 
-[node name="Order #4" type="Timer" parent="."]
+[node name="Bestellung #4" type="Timer" parent="."]
 script = ExtResource("2_tnwy3")
-time = 60
-requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_ayxi0"), SubResource("Resource_0qpv5")])
+time = 90
+requirements = Array[ExtResource("3_i4fpv")]([SubResource("Resource_0gfwg"), SubResource("Resource_nn734"), SubResource("Resource_v115i")])

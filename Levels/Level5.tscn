@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://6fhejqxgo1m7"]
+[gd_scene load_steps=22 format=3 uid="uid://6fhejqxgo1m7"]
 
 [ext_resource type="Script" uid="uid://hunun33tsrt0" path="res://Scripts/Level.gd" id="1_yearr"]
 [ext_resource type="Script" uid="uid://cpj8naljb5w8t" path="res://Scripts/Maybe Deprecated/Order.gd" id="2_obc6x"]
@@ -6,28 +6,23 @@
 
 [sub_resource type="Resource" id="Resource_0bxlw"]
 script = ExtResource("3_xtksf")
-type = 4
-amount = 1
-
-[sub_resource type="Resource" id="Resource_u35mp"]
-script = ExtResource("3_xtksf")
-type = 1
-amount = 2
+type = 5
+amount = 3
 
 [sub_resource type="Resource" id="Resource_c8oro"]
 script = ExtResource("3_xtksf")
-type = 0
-amount = 2
+type = 4
+amount = 1
 
 [sub_resource type="Resource" id="Resource_iw6l3"]
 script = ExtResource("3_xtksf")
-type = 3
-amount = 4
+type = 5
+amount = 3
 
 [sub_resource type="Resource" id="Resource_kserj"]
 script = ExtResource("3_xtksf")
 type = 1
-amount = 2
+amount = 3
 
 [sub_resource type="Resource" id="Resource_s45al"]
 script = ExtResource("3_xtksf")
@@ -42,12 +37,12 @@ amount = 1
 [sub_resource type="Resource" id="Resource_4rrpm"]
 script = ExtResource("3_xtksf")
 type = 1
-amount = 1
+amount = 3
 
 [sub_resource type="Resource" id="Resource_76hog"]
 script = ExtResource("3_xtksf")
 type = 3
-amount = 4
+amount = 6
 
 [sub_resource type="Resource" id="Resource_it8yp"]
 script = ExtResource("3_xtksf")
@@ -101,7 +96,7 @@ amount = 1
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_yearr")
-active_plants = 31
+active_plants = 63
 active_tools = 31
 spread_time = 10.0
 spread_indicator_time = 3.0
@@ -109,16 +104,17 @@ spread_release_grace_time = 1.0
 spread_chance = 0.3
 obstacle_spawn_chance = 0.4
 soil_setup = ",,,,W,,,,,,,,,,W,,,,,W,,,,,W,W,,,,,,"
-time_before_first_spawn = 20.0
-inital_spawn_chance = 0.15
-stack_spawn_chance = 0.06
-time_until_death = 50.0
+enable_brewing = true
 time_between_orders = 10.0
+day_length = 240
+death_time = 100
+tick_time = 10
+hunger_tick = 10
 
 [node name="Order #1" type="Timer" parent="."]
 script = ExtResource("2_obc6x")
 time = 90
-requirements = Array[ExtResource("3_xtksf")]([SubResource("Resource_0bxlw"), SubResource("Resource_u35mp")])
+requirements = Array[ExtResource("3_xtksf")]([SubResource("Resource_0bxlw")])
 
 [node name="Order #2" type="Timer" parent="."]
 script = ExtResource("2_obc6x")

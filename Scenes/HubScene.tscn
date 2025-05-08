@@ -1790,12 +1790,12 @@ line_spacing = 2.0
 
 [node name="Level 6" type="Node3D" parent="Level Selection"]
 process_mode = 4
-transform = Transform3D(0.977401, -0.0439764, 0.206768, -4.48116e-10, 0.978122, 0.208031, -0.211393, -0.20333, 0.956018, 0.0649867, 0.71113, -0.484176)
+transform = Transform3D(0.900472, -0.0439764, 0.432686, -0.0493403, 0.978122, 0.202095, -0.432107, -0.20333, 0.878602, 0.0649867, 0.71113, -0.484176)
 visible = false
 
 [node name="Level" type="Label3D" parent="Level Selection/Level 6"]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.11413, 0)
-text = "Level 6"
+text = "Sandbox"
 
 [node name="LevelButton" type="Area3D" parent="Level Selection/Level 6"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
