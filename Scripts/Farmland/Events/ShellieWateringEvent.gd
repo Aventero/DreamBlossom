@@ -13,6 +13,8 @@ func initialize():
 	# Shrink corals
 	for coral in impacted_corals:
 		coral.setup(coral.get_parent_node_3d(), self)
+	
+	icon_texture = load("res://Textures/EventIcons/CoralFire.png")
 
 func coral_watered():
 	_corals_watered += 1

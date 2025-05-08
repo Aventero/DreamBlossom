@@ -47,6 +47,7 @@ func initialize():
 		parts.global_position = ice_cube_instance.global_position
 		
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	icon_texture = load("res://Textures/EventIcons/Ice.png")
 
 func ice_cube_destroyed():
 	_destroyed_cubes += 1

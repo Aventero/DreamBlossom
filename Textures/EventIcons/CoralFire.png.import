@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7uv6c0bwvr6h"
-path="res://.godot/imported/PotionOrange.png-a51313497fa2620e191a8aebb6442aa2.ctex"
+uid="uid://c8c8j8oi8pgwb"
+path="res://.godot/imported/CoralFire.png-5d87f6d0a570b4f11f30212fe20048bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EventIcons/PotionOrange.png"
-dest_files=["res://.godot/imported/PotionOrange.png-a51313497fa2620e191a8aebb6442aa2.ctex"]
+source_file="res://Textures/EventIcons/CoralFire.png"
+dest_files=["res://.godot/imported/CoralFire.png-5d87f6d0a570b4f11f30212fe20048bf.ctex"]
 
 [params]
 

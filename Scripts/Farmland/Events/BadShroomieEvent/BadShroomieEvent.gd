@@ -23,6 +23,7 @@ func spawn_shroomie() -> void:
 	
 	var tween : Tween = create_tween()
 	tween.tween_property(bad_shroomie_instance, "scale", initial_scale, 0.5)
+	icon_texture = load("res://Textures/EventIcons/ShroomiePull.png")
 
 func shroomie_removed():
 	_removed_amount += 1

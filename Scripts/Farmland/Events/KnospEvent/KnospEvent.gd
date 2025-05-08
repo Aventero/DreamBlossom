@@ -33,6 +33,7 @@ func initialize():
 		tween.tween_property(knosp_instance, "scale", Vector3.ONE, 0.5)
 		
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	icon_texture = load("res://Textures/EventIcons/KnospPull.png")
 
 func knosp_open():
 	_opened_count += 1

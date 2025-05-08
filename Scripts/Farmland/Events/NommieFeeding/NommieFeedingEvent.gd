@@ -12,6 +12,7 @@ func initialize():
 	# Enable event triggers
 	for nommie in nommies:
 		nommie.enable_feeding_event(self)
+	icon_texture = load("res://Textures/EventIcons/NommieFeeding.png")
 
 func feeding_complete():
 	_current_amount += 1

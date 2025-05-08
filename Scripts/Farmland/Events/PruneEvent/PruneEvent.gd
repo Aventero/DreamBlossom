@@ -44,6 +44,7 @@ func initialize():
 		tween.tween_property(leaf_instance, "scale", initial_scale, 1)
 		
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	icon_texture = load("res://Textures/EventIcons/Prune.png")
 
 func pruned_leaf():
 	_prune_count += 1

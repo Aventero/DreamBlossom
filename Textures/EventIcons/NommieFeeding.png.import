@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7uv6c0bwvr6h"
-path="res://.godot/imported/PotionYellow.png-9591310201c8d2c7a875a3c670dd8ce4.ctex"
+uid="uid://cablt40qkp7ig"
+path="res://.godot/imported/NommieFeeding.png-39c5e4bde6688bef7063f00d05468679.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EventIcons/PotionYellow.png"
-dest_files=["res://.godot/imported/PotionYellow.png-9591310201c8d2c7a875a3c670dd8ce4.ctex"]
+source_file="res://Textures/EventIcons/NommieFeeding.png"
+dest_files=["res://.godot/imported/NommieFeeding.png-39c5e4bde6688bef7063f00d05468679.ctex"]
 
 [params]
 

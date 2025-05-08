@@ -31,6 +31,7 @@ func initialize():
 		tween.tween_property(fire_instance, "scale", Vector3.ONE, 0.1)
 		
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	icon_texture = load("res://Textures/EventIcons/Fire.png")
 
 func fire_extinguished():
 	_fire_extinguished += 1

@@ -32,6 +32,7 @@ func initialize():
 	
 	# Enable processing (_process function)
 	set_process(true)
+	icon_texture = load("res://Textures/EventIcons/Music.png")
 
 func _process(delta):
 	# Check if in affected range

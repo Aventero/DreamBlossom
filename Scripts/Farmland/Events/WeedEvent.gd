@@ -23,6 +23,7 @@ func initialize():
 		tween.tween_property(event_weed_instance, "scale", initial_scale, 0.5)
 		
 		await get_tree().create_timer(randf_range(0.1, 1.0)).timeout
+	icon_texture = load("res://Textures/EventIcons/WeedPull.png")
 
 func pulled_weed():
 	_pulled += 1

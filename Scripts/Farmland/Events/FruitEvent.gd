@@ -50,6 +50,8 @@ func initialize():
 		
 		if delayed_spawn:
 			await get_tree().create_timer(randf_range(0.1, 2.0)).timeout
+	
+	icon_texture = load("res://Textures/EventIcons/Fuit.png")
 
 # check when a fruit is picked
 func first_fruit_pickup(_picked_fruit : Fruit):

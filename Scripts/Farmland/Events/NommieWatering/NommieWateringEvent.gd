@@ -14,6 +14,8 @@ func initialize():
 	# Enable event triggers
 	for nommie in nommies:
 		nommie.enable_watering_event(self)
+	
+	icon_texture = load("res://Textures/EventIcons/Watering.png")
 
 func watering_completed():
 	_current_amount += 1

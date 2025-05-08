@@ -16,6 +16,7 @@ func initialize():
 	digspot.reset_watering(water_needed)
 	
 	digspot.watering_completed.connect(Callable(_watering_complete))
+	icon_texture = load("res://Textures/EventIcons/Watering.png")
 
 func cleanup():
 	digspot.watering_completed.disconnect(Callable(_watering_complete))

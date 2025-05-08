@@ -11,24 +11,30 @@ var slurp_event : SlurpShroomieEvent = null
 
 var requested_potion_type : Potion.TYPE
 var _particle_material : StandardMaterial3D
+#
+#func _ready():
+	## Decide on request potion type
+	##if GameBase.level.enable_brewing:
+		##var random_index = randi_range(1, Potion.TYPE.size() - 1)
+		##requested_potion_type = Potion.TYPE.values()[random_index]
+	##else:
+	#
+	## Load particle material
+	#var _draw_pass_dup : Mesh = slurp_particles.draw_pass_1.duplicate()
+	#_particle_material = _draw_pass_dup.surface_get_material(0).duplicate()
+	#_draw_pass_dup.surface_set_material(0, _particle_material)
+	#slurp_particles.draw_pass_1 = _draw_pass_dup
+	#complete_particles.draw_pass_1 = _draw_pass_dup
+	#
+	## Set requested fertilzer to random fertilizer
+	##_particle_material.albedo_color = Potion.get_potion_data(requested_potion_type, Potion.PROPERTIES.COLOR)
 
-func _ready():
-	# Decide on request potion type
-	#if GameBase.level.enable_brewing:
-		#var random_index = randi_range(1, Potion.TYPE.size() - 1)
-		#requested_potion_type = Potion.TYPE.values()[random_index]
-	#else:
-	requested_potion_type = [Potion.TYPE.RED, Potion.TYPE.GREEN, Potion.TYPE.BLUE].pick_random() # Get random potion from "base" potions
-	
-	# Load particle material
+func load_materials() -> void:
 	var _draw_pass_dup : Mesh = slurp_particles.draw_pass_1.duplicate()
 	_particle_material = _draw_pass_dup.surface_get_material(0).duplicate()
 	_draw_pass_dup.surface_set_material(0, _particle_material)
 	slurp_particles.draw_pass_1 = _draw_pass_dup
 	complete_particles.draw_pass_1 = _draw_pass_dup
-	
-	# Set requested fertilzer to random fertilizer
-	_particle_material.albedo_color = Potion.get_potion_data(requested_potion_type, Potion.PROPERTIES.COLOR)
 
 func _on_potion_trigger_body_entered(body : Variant):
 	if not body is PotionDrop:
